@@ -34,9 +34,15 @@ noncomputable def evalCombination
 
 /-- A certificate for a target expression. -/
 structure Cert (Var : Type u) [DecidableEq Var] where
+  /-- The entropy expression whose nonnegativity the certificate proves. -/
   target : EntropyExpr Var
+  /-- The certified decomposition into weighted known nonnegative inequalities. -/
   decomposition : List (WeightedIneq Var)
 
+/--
+A nonnegative linear combination of nonnegative interpreted expressions is
+nonnegative. This is the algebraic engine behind certificate soundness.
+-/
 theorem evalCombination_nonneg
     (value : EntropyAtom Var -> Real)
     {steps : List (WeightedIneq Var)}

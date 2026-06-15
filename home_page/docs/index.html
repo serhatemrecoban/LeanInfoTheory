@@ -19,15 +19,23 @@
     <main class="main-content" role="main">
       <p>
         Generated API documentation is the next documentation milestone. For now,
-        this page records the compileable Lean files in the initial scaffold.
+        this page records the compileable Lean files in the current foundation layer.
       </p>
       <ul>
-        <li><code>LeanInfoTheory.Basic</code>: namespace and mathlib imports.</li>
-        <li><code>LeanInfoTheory.InformationMeasures</code>: finite PMF/API target.</li>
+        <li><code>LeanInfoTheory.Basic</code>: lightweight project namespace and shared status vocabulary.</li>
+        <li><code>LeanInfoTheory.Probability.Finite</code>: real-mass bridge lemmas for finite <code>PMF</code> sums.</li>
+        <li><code>LeanInfoTheory.Shannon.Entropy</code>: finite Shannon entropy and random-variable entropy.</li>
+        <li><code>LeanInfoTheory.Shannon.InfoMeasures</code>: marginals, conditional entropy, mutual information, conditional mutual information, and support/orientation lemmas.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: separated home for future KL and conditional-law bridge theorems.</li>
+        <li><code>LeanInfoTheory.InformationMeasures</code>: public re-export for the finite information-measure API.</li>
         <li><code>LeanInfoTheory.EntropyExpr</code>: formal entropy-expression algebra.</li>
         <li><code>LeanInfoTheory.Certificate</code>: certificate soundness theorem.</li>
         <li><code>LeanInfoTheory.Examples</code>: closed toy example.</li>
       </ul>
+      <p>
+        Human-facing design notes are tracked in <code>docs/foundation-conventions.md</code>
+        and <code>docs/project-log.md</code> in the repository.
+      </p>
     </main>
   </body>
 </html>

@@ -4,62 +4,47 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Serhat Emre Coban
 -/
 
-import LeanInfoTheory.Basic
+import LeanInfoTheory.Shannon.InfoMeasures
 
 /-!
-# Finite information-measure API targets
+# Finite information-measure API
 
-This file records the semantic layer the project is aiming at. It deliberately
-uses mathlib's `PMF` for finite distributions and `Real` for information values.
-The concrete entropy/MI definitions should eventually be connected to mathlib or
-PFR-style entropy infrastructure; the certificate layer can already be developed
-against this interface.
+This file keeps the original public entry point for information measures while
+the concrete finite-discrete definitions live in `LeanInfoTheory.Shannon`.
 -/
 
 namespace LeanInfoTheory
 
-universe u
-
-/-- Finite probability distributions are represented by mathlib PMFs. -/
-abbrev FinitePMF (alpha : Type u) [Fintype alpha] := PMF alpha
-
-/--
-An interface for finite Shannon information measures.
-
-This is an API target rather than a claimed implementation. Keeping it as a
-structure lets the certificate layer state what semantic data it expects without
-pretending that the full entropy theory has already been formalized here.
+/-!
+The export list is intentionally explicit. Keeping the public names grouped by
+topic makes it easier to notice when a new foundation lemma should become part
+of the user-facing finite information-measure API.
 -/
-structure FiniteInfoAPI where
-  entropy :
-    {alpha : Type u} -> [Fintype alpha] -> FinitePMF alpha -> Real
-  jointEntropy :
-    {alpha beta : Type u} -> [Fintype alpha] -> [Fintype beta] ->
-      FinitePMF (alpha × beta) -> Real
-  condEntropy :
-    {alpha beta : Type u} -> [Fintype alpha] -> [Fintype beta] ->
-      FinitePMF (alpha × beta) -> Real
-  mutualInfo :
-    {alpha beta : Type u} -> [Fintype alpha] -> [Fintype beta] ->
-      FinitePMF (alpha × beta) -> Real
-  condMutualInfo :
-    {alpha beta gamma : Type u} -> [Fintype alpha] -> [Fintype beta] -> [Fintype gamma] ->
-      FinitePMF (alpha × beta × gamma) -> Real
-
-/-- Project-local alias for mathlib's binary entropy function. -/
-noncomputable def binaryEntropy (p : Real) : Real :=
-  Real.binEntropy p
-
-@[simp]
-theorem binaryEntropy_zero : binaryEntropy 0 = 0 := by
-  simp [binaryEntropy]
-
-@[simp]
-theorem binaryEntropy_one : binaryEntropy 1 = 0 := by
-  simp [binaryEntropy]
-
-theorem binaryEntropy_fair_bit' : binaryEntropy (2 : Real)⁻¹ = Real.log 2 := by
-  change Real.binEntropy (2 : Real)⁻¹ = Real.log 2
-  exact binaryEntropy_fair_bit
+export Shannon
+  (entropy entropyOf jointEntropy jointEntropyOf
+   fstMarginal sndMarginal fstThirdMarginal sndThirdMarginal thirdMarginal
+   condEntropy mutualInfo condMutualInfo
+   condEntropyOf mutualInfoOf condMutualInfoOf
+   fstMarginal_map sndMarginal_map fstMarginal_map_pair sndMarginal_map_pair
+   fstMarginal_map_swap sndMarginal_map_swap
+   fstMarginal_apply sndMarginal_apply
+   fstThirdMarginal_map sndThirdMarginal_map thirdMarginal_map
+   fstThirdMarginal_map_triple sndThirdMarginal_map_triple thirdMarginal_map_triple
+   fstThirdMarginal_map_swap12 sndThirdMarginal_map_swap12 thirdMarginal_map_swap12
+   fstThirdMarginal_apply sndThirdMarginal_apply thirdMarginal_apply
+   apply_le_fstMarginal apply_le_sndMarginal
+   apply_le_fstThirdMarginal apply_le_sndThirdMarginal apply_le_thirdMarginal
+   apply_eq_zero_of_fstMarginal_eq_zero apply_eq_zero_of_sndMarginal_eq_zero
+   fstMarginal_ne_zero_of_apply_ne_zero sndMarginal_ne_zero_of_apply_ne_zero
+   apply_eq_zero_of_fstThirdMarginal_eq_zero
+   apply_eq_zero_of_sndThirdMarginal_eq_zero apply_eq_zero_of_thirdMarginal_eq_zero
+   fstThirdMarginal_ne_zero_of_apply_ne_zero sndThirdMarginal_ne_zero_of_apply_ne_zero
+   thirdMarginal_ne_zero_of_apply_ne_zero
+   entropyOf_fst entropyOf_snd jointEntropyOf_fst_snd
+   condEntropyOf_fst_snd mutualInfoOf_fst_snd
+   entropyOf_third jointEntropyOf_fst_third jointEntropyOf_snd_third
+   condMutualInfoOf_fst_snd_third
+   condEntropy_eq mutualInfo_eq condMutualInfo_eq
+   condEntropyOf_eq mutualInfoOf_eq condMutualInfoOf_eq)
 
 end LeanInfoTheory

@@ -42,11 +42,13 @@ entropy atoms.
 noncomputable def eval (value : EntropyAtom Var -> Real) (e : EntropyExpr Var) : Real :=
   e.sum fun atom coeff => (coeff : Real) * value atom
 
+/-- The zero formal expression evaluates to zero under every interpretation. -/
 @[simp]
 theorem eval_zero (value : EntropyAtom Var -> Real) :
     eval value (0 : EntropyExpr Var) = 0 := by
   simp [eval]
 
+/-- A single entropy atom evaluates to the value assigned to that atom. -/
 @[simp]
 theorem eval_atom (value : EntropyAtom Var -> Real) (s : EntropyAtom Var) :
     eval value (atom s) = value s := by

@@ -40,12 +40,14 @@ theorem hxNonnegCert_sound
     (value : EntropyAtom Var -> Real)
     (hHX : 0 <= EntropyExpr.eval value HX) :
     0 <= EntropyExpr.eval value hxNonnegCert.target := by
+  -- The certificate has one ingredient: `1 * H(X)`.
   apply Certificate.sound (value := value) (cert := hxNonnegCert)
   · simp [hxNonnegCert, Certificate.evalCombination]
   · intro step hstep
     simp [hxNonnegCert] at hstep
     subst step
     constructor
+    -- The coefficient is nonnegative, and the semantic value is exactly `hHX`.
     · simp
     · simpa using hHX
 

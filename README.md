@@ -23,15 +23,30 @@ when they stabilize.
 - Lake project initialized with Lean `v4.30.0` and mathlib `v4.30.0`.
 - Mathlib cache fetched successfully for local builds.
 - Initial module structure added under `LeanInfoTheory/`.
+- Finite Shannon entropy and entropy-derived information measures now use
+  mathlib `PMF`s and `Real.negMulLog`.
 - Closed theorem examples are present in the algebraic certificate layer.
 - Website MVP lives in `home_page/`.
 - Blueprint and roadmap notes live in `blueprint/` and `docs/`.
 
 ## Lean Modules
 
-- `LeanInfoTheory.Basic`: project namespace and imported mathlib foundations.
-- `LeanInfoTheory.InformationMeasures`: finite PMF/API target for entropy, MI,
-  CMI, and related measures.
+- `LeanInfoTheory.Basic`: lightweight project namespace and shared status
+  vocabulary.
+- `LeanInfoTheory.MathlibFragments`: heavier mathlib anchors we expect to use
+  later, including binary/q-ary entropy, KL divergence, KL chain rules, PMF
+  constructions, and Kraft-McMillan.
+- `LeanInfoTheory.Probability.Finite`: real-mass bridge lemmas in the `PMF`
+  namespace for finite Shannon sums.
+- `LeanInfoTheory.Shannon.Entropy`: finite Shannon entropy in nats.
+- `LeanInfoTheory.Shannon.InfoMeasures`: conditional entropy, mutual
+  information, conditional mutual information, named marginals, and
+  random-variable versions.
+- `LeanInfoTheory.Shannon.SemanticBridge`: separated heavier import boundary
+  for future KL-divergence and conditional-law equivalence theorems.
+- `LeanInfoTheory.InformationMeasures`: public re-export for finite information
+  measures and their first rewrite lemmas. Binary and q-ary entropy remain mathlib names:
+  `Real.binEntropy` and `Real.qaryEntropy`.
 - `LeanInfoTheory.EntropyExpr`: formal rational linear combinations of entropy
   atoms.
 - `LeanInfoTheory.Certificate`: soundness skeleton for nonnegative certificate
@@ -40,9 +55,10 @@ when they stabilize.
 
 ## Roadmap
 
-1. Audit mathlib, PFR, and divergence-project entropy/KL APIs.
-2. Replace the semantic API target with concrete finite entropy definitions or
-   carefully adapted upstream-compatible definitions.
+1. Prove equivalence between the algebraic finite definitions and textbook
+   conditional-law/KL definitions.
+2. Audit mathlib, PFR, and divergence-project entropy/KL APIs for reusable
+   theorems.
 3. Expand entropy-expression normalization and certificate checking.
 4. Certify 5-10 toy and recognizable network-information-theory converse steps.
 5. Prepare small mathlib PRs for generic, stable pieces.

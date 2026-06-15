@@ -1,9 +1,9 @@
 # Blueprint
 
 This blueprint is the project map for LeanInfoTheory. It is intentionally short
-for the initial scaffold; the next step is to turn this into a generated
-blueprint site with theorem dependencies once the first semantic entropy files
-are stable.
+for the current foundation stage; the next step is to turn this into a
+generated blueprint site with theorem dependencies once semantic bridge
+theorems start landing.
 
 ## Layer 0: Existing Foundations
 
@@ -20,6 +20,8 @@ are stable.
 - conditional entropy `H[X|Y]`
 - mutual information `I[X;Y]`
 - conditional mutual information `I[X;Y|Z]`
+- equivalence between algebraic entropy definitions and textbook conditional
+  distribution / KL-divergence definitions
 
 ## Layer 2: Algebraic Entropy Expressions
 
