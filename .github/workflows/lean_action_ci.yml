@@ -1,4 +1,4 @@
-name: Lean Action CI
+name: Lean build and placeholder check
 
 on:
   push:
@@ -14,4 +14,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+
+      - name: Check Lean source has no placeholders
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE '(^|[^[:alnum:]_])(sorry|admit|axiom|opaque|undefined)([^[:alnum:]_]|$)' \
+              --include='*.lean' LeanInfoTheory LeanInfoTheory.lean; then
+            echo "::error::Lean source contains a placeholder or unapproved axiom."
+            exit 1
+          fi
+
       - uses: leanprover/lean-action@v1

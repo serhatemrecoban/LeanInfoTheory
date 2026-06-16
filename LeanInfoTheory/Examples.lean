@@ -5,6 +5,7 @@ Authors: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Certificate
+import LeanInfoTheory.EntropyVal
 
 /-!
 # Toy examples
@@ -29,6 +30,24 @@ open Var
 /-- The formal atom `H(X)`. -/
 noncomputable def HX : EntropyExpr Var :=
   EntropyExpr.atom ({X} : Finset Var)
+
+/-- The formal empty entropy atom `H(∅)`. -/
+noncomputable def HEmpty : EntropyExpr Var :=
+  EntropyExpr.empty Var
+
+/-- The empty entropy atom evaluates to zero under interpretations satisfying `H(∅) = 0`. -/
+theorem hEmpty_eval_eq_zero
+    (value : EntropyAtom Var -> Real)
+    (hvalue : EntropyExpr.RespectsEmpty value) :
+    EntropyExpr.eval value HEmpty = 0 := by
+  simpa [HEmpty] using
+    EntropyExpr.eval_empty_eq_zero_of_respectsEmpty (value := value) hvalue
+
+/-- Abstract Shannon entropy valuations evaluate `H(∅)` as zero. -/
+theorem hEmpty_eval_eq_zero_of_shannonEntropyVal
+    (h : ShannonEntropyVal Var) :
+    ShannonEntropyVal.eval h HEmpty = 0 := by
+  simp [HEmpty]
 
 /-- A one-step certificate for the nonnegativity of `H(X)`. -/
 noncomputable def hxNonnegCert : Certificate.Cert Var where

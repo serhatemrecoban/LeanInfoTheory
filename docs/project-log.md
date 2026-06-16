@@ -14,6 +14,9 @@ organized as they are, and which ideas are waiting for the right moment.
   documentation and examples.
 - `LeanInfoTheory/EntropyExpr.lean`: algebraic entropy-expression syntax for
   certificate-style reasoning.
+- `LeanInfoTheory/EntropyVal.lean`: abstract Shannon entropy valuations used
+  to state certificate-facing semantic assumptions independently of concrete
+  probability models.
 - `LeanInfoTheory/Certificate.lean`: certificate primitives and soundness
   scaffolding for entropy inequalities.
 - `LeanInfoTheory/Examples.lean`: small examples that exercise the current API.
@@ -34,7 +37,7 @@ organized as they are, and which ideas are waiting for the right moment.
 - `blueprint/`: project-map notes for theorem dependencies and future
   generated blueprint pages.
 - `docs/`: human-facing design notes, roadmap notes, foundation conventions,
-  and this project log.
+  external review notes, and this project log.
 - `home_page/`: static website files for the project site.
 - `.github/workflows/`: CI, docs, release, and update workflows.
 - `tmp/`, `.lake/`, and `info theory e-books/`: local working/reference
@@ -221,6 +224,68 @@ Near-term bridge theorem targets remain:
 - decide how zero-probability conditioning events should be represented in a
   way that agrees with mathlib's measure-theoretic conventions.
 
+### 10. Visible CI and Placeholder Policy
+
+The Lean CI workflow now has an explicit no-placeholder check before the Lean
+build. It scans Lean source files for `sorry`, `admit`, `opaque`, `undefined`,
+and unapproved `axiom` declarations, then runs `leanprover/lean-action`.
+
+The README and project homepage show workflow badges for the Lean build and the
+GitHub Pages deployment. This makes the current build and deployment status
+visible to readers without requiring them to inspect the Actions tab manually.
+
+### 11. Public Status and Limitation Wording
+
+The website was tightened to distinguish implemented code from planned work.
+The homepage now separates implemented foundations from planned milestones such
+as semantic bridge theorems, checked certificates, generated API documentation,
+and network-converse examples.
+
+The module-list page explicitly says that it is not generated declaration
+documentation yet. The concept note and blueprint now describe the certificate
+layer as a soundness skeleton, and mark semantic bridges, checked-certificate
+infrastructure, and network-information-theory examples as future work.
+
+### 12. Empty Entropy Atom Convention
+
+The entropy-expression layer now names the empty entropy atom through
+`EntropyAtom.empty` and the formal expression `EntropyExpr.empty`. Arbitrary
+semantic interpretations of entropy atoms are not forced to assign this atom
+the value zero. Instead, `EntropyExpr.RespectsEmpty` records the convention
+`H(empty) = 0` as an explicit assumption.
+
+This keeps the current algebraic layer honest while preparing for the next
+step: an abstract entropy-valuation structure that will include empty entropy,
+conditional entropy nonnegativity, and conditional mutual information
+nonnegativity as bundled assumptions. A small example theorem records that
+`EntropyExpr.empty` evaluates to zero under any interpretation satisfying
+`RespectsEmpty`.
+
+### 13. Abstract Shannon Entropy Valuations
+
+The new file `LeanInfoTheory/EntropyVal.lean` defines `ShannonEntropyVal`.
+This structure assigns a real value to each entropy atom and records the
+certificate-facing Shannon assumptions:
+
+- empty entropy: `H(empty) = 0`;
+- conditional entropy nonnegativity for adjoining one variable;
+- conditional mutual information nonnegativity in the form
+  `H(A,C) + H(B,C) - H(A,B,C) - H(C) >= 0`.
+
+The structure is intentionally abstract. It lets the certificate layer prove
+Shannon-type inequalities without waiting for all finite-`PMF` semantic bridge
+theorems. Later, the concrete finite-family entropy semantics should prove that
+actual finite random variables instantiate `ShannonEntropyVal`.
+
+## External Review Notes
+
+The detailed external review summary has been moved to
+`docs/external-review-notes-15-june-2026.md`. The main actionable outcome is
+that some mathematical work will happen naturally through theorem pressure, but
+the certificate-checker architecture and public-project hygiene need explicit
+tracking so they are not postponed indefinitely. The live follow-up items are
+recorded in the future-work list below.
+
 ## Mathlib `InformationTheory` Namespace Notes
 
 This project should eventually contribute stable, general pieces upstream to
@@ -359,3 +424,63 @@ step-by-step history above.
 
 16. Keep PSITIP/oXitip-style certificate infrastructure local unless mathlib
     maintainers specifically want a generic certificate framework.
+
+### Do Soon After The Immediate Layer
+
+17. Define the first primitive Shannon inequalities in the entropy-expression
+    language. The likely first primitives are empty entropy, conditional
+    entropy nonnegativity, and conditional mutual information nonnegativity.
+    Their statements should be chosen so that they evaluate cleanly under the
+    abstract entropy-valuation layer.
+
+18. Upgrade the certificate architecture from assumption-based soundness toward
+    checked certificates. Keep parsed external certificates as untrusted raw
+    data, then validate them into a checked form with nonnegative coefficients
+    and verified expression equality. This should introduce a clear
+    `RawCert`/`CheckedCert` distinction or an equivalent local pattern.
+
+19. Implement deterministic expression-equality checking for certificate
+    decompositions. The checker should normalize sparse rational expressions,
+    probably using the existing `Finsupp` representation, and compare the
+    target with the proposed nonnegative combination exactly over `Rat`.
+
+20. Use nonnegative coefficient types internally after validation. Parsed
+    external data can stay rational, but checked certificate steps should carry
+    nonnegative coefficients by construction, using `NNRat` or a subtype if
+    that fits Lean/mathlib best.
+
+21. Choose and formalize the first serious certificate demo. Good candidates
+    are submodularity from conditional mutual information nonnegativity, or a
+    symbolic data-processing inequality using a Markov constraint. The goal is
+    a non-toy theorem that exercises the abstract valuation, primitive
+    inequalities, checked decomposition, and soundness theorem together.
+
+22. Add core finite entropy sanity theorems that information theorists expect,
+    including entropy invariance under equivalences or injective relabelings,
+    entropy upper bounds by logarithm of alphabet size, and the uniform-law
+    equality case when the surrounding API is ready.
+
+### Do Later
+
+23. Add generated API documentation once the Lean API is stable enough. Until
+    then, keep the current docs page described as a module list rather than as
+    generated declaration documentation. When doc generation is added, link the
+    homepage and docs page directly to declarations and important modules.
+
+24. Add a minimal contributor surface before inviting broader collaboration:
+    `CONTRIBUTING.md`, beginner-friendly tasks, issue labels, and a short note
+    about which components may eventually be proposed upstream to mathlib.
+
+25. Add advanced certificate constraints only after the basic checked pipeline
+    exists. Independence constraints, functional-dependence constraints, and
+    Markov constraints are essential for network converses, but they should not
+    precede the basic primitive-inequality checker.
+
+26. Add PSITIP/oXitip-style certificate import only after the internal checked
+    certificate format is stable. The first parser should target a small,
+    explicit external format and should never be part of the trusted kernel.
+
+27. Expand website polish after the mathematical demo exists. A richer status
+    table, architecture diagram, collaboration page, and first-demo section
+    will be more meaningful after the project has a checked non-toy entropy
+    inequality to show.

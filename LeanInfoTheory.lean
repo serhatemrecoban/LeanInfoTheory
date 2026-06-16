@@ -4,6 +4,7 @@ import LeanInfoTheory.Shannon.Entropy
 import LeanInfoTheory.Shannon.InfoMeasures
 import LeanInfoTheory.InformationMeasures
 import LeanInfoTheory.EntropyExpr
+import LeanInfoTheory.EntropyVal
 import LeanInfoTheory.Certificate
 import LeanInfoTheory.Examples
 

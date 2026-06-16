@@ -27,6 +27,14 @@ reference material only and is intentionally not part of the repository.
 - Entropy is a function of a distribution. Random-variable entropy is entropy
   of the pushforward distribution under `PMF.map`.
 - Joint entropy is ordinary entropy of a joint distribution.
+- In the entropy-expression layer, the empty atom is named explicitly as
+  `EntropyExpr.empty`. Arbitrary atom interpretations do not automatically
+  satisfy `H(empty) = 0`; the predicate `EntropyExpr.RespectsEmpty` records
+  this convention until the abstract valuation layer packages it as a field.
+- The abstract `ShannonEntropyVal` layer packages entropy-expression semantics
+  independently of concrete `PMF`s. It records `H(empty) = 0`, conditional
+  entropy nonnegativity for adjoining one variable, and conditional mutual
+  information nonnegativity as assumptions for future certificate proofs.
 - The current `condEntropy` and `condMutualInfo` definitions use entropy
   identities. For finite variables these are equivalent to the conditional
   distribution formulas used in textbooks; proving that equivalence is an

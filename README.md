@@ -1,5 +1,8 @@
 # LeanInfoTheory
 
+[![Lean build and placeholder check](https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/lean_action_ci.yml/badge.svg)](https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/lean_action_ci.yml)
+[![Deploy website](https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/pages.yml/badge.svg)](https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/pages.yml)
+
 Lean-certified information measures and entropy-inequality automation for
 classical and network information theory.
 
@@ -22,6 +25,7 @@ when they stabilize.
 
 - Lake project initialized with Lean `v4.30.0` and mathlib `v4.30.0`.
 - Mathlib cache fetched successfully for local builds.
+- GitHub Actions runs the Lean build and a strict no-placeholder scan.
 - Initial module structure added under `LeanInfoTheory/`.
 - Finite Shannon entropy and entropy-derived information measures now use
   mathlib `PMF`s and `Real.negMulLog`.
@@ -48,7 +52,9 @@ when they stabilize.
   measures and their first rewrite lemmas. Binary and q-ary entropy remain mathlib names:
   `Real.binEntropy` and `Real.qaryEntropy`.
 - `LeanInfoTheory.EntropyExpr`: formal rational linear combinations of entropy
-  atoms.
+  atoms, including the empty-entropy convention interface.
+- `LeanInfoTheory.EntropyVal`: abstract Shannon entropy valuations for
+  certificate work.
 - `LeanInfoTheory.Certificate`: soundness skeleton for nonnegative certificate
   combinations.
 - `LeanInfoTheory.Examples`: toy closed examples for the certificate layer.
@@ -69,6 +75,9 @@ when they stabilize.
 lake exe cache get
 lake build
 ```
+
+The Lean CI workflow also fails if Lean source files contain `sorry`, `admit`,
+`opaque`, `undefined`, or an unapproved `axiom`.
 
 The public project website can be opened locally from:
 

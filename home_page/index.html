@@ -7,7 +7,7 @@
     <title>LeanInfoTheory | Lean-certified information theory</title>
     <meta
       name="description"
-      content="Lean-certified information measures and entropy-inequality automation for classical and network information theory."
+      content="A Lean/mathlib project for finite information measures and a planned entropy-inequality certificate pipeline."
     >
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -17,8 +17,9 @@
     <header class="page-header" role="banner">
       <h1 class="project-name">LeanInfoTheory</h1>
       <h2 class="project-tagline">
-        Lean-certified information measures and entropy-inequality automation for
-        classical and network information theory.
+        A Lean/mathlib project for finite information measures,
+        entropy-expression certificates, and future network-information-theory
+        converse automation.
       </h2>
       <p class="project-authors">by Serhat Emre Coban</p>
       <nav class="project-links" aria-label="Project links">
@@ -32,8 +33,30 @@
     <main id="content" class="main-content" role="main">
       <p>
         LeanInfoTheory is an early-stage Lean/mathlib project for finite
-        information measures, entropy-expression certificates, and
-        network-information-theory converse automation.
+        information measures and a planned certificate/converse pipeline.
+      </p>
+
+      <p>
+        Current milestone: the repository contains a mathlib-based finite-PMF
+        Shannon foundation and a first certificate-soundness skeleton. Semantic
+        KL/conditional-law bridge theorems, a checked certificate pipeline,
+        generated API documentation, and network-converse examples are planned
+        next milestones.
+      </p>
+
+      <p class="status-badges" aria-label="Project status">
+        <a href="https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/lean_action_ci.yml">
+          <img
+            src="https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/lean_action_ci.yml/badge.svg"
+            alt="Lean build and placeholder check status"
+          >
+        </a>
+        <a href="https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/pages.yml">
+          <img
+            src="https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/pages.yml/badge.svg"
+            alt="GitHub Pages deployment status"
+          >
+        </a>
       </p>
 
       <p>Useful links:</p>
@@ -41,30 +64,40 @@
         <li><a href="https://leanprover.zulipchat.com/">Zulip chat for Lean</a></li>
         <li><a href="blueprint/">Blueprint</a></li>
         <li><a href="blueprint/dep_graph_document.html">Dependency graph</a></li>
-        <li><a href="docs/">Doc pages for this repository</a></li>
+        <li><a href="docs/">Current module list</a></li>
         <li><a href="roadmap.html">Roadmap</a></li>
         <li><a href="concept-note.html">Concept note</a></li>
       </ul>
 
-      <h2>Current status</h2>
+      <h2>Implemented now</h2>
       <ul>
         <li>Lake project initialized with Lean 4.30.0 and mathlib 4.30.0.</li>
-        <li>Mathlib cache fetched and the project builds locally.</li>
+        <li>GitHub Actions runs the Lean build and a strict no-placeholder scan.</li>
         <li>Finite Shannon entropy is defined for mathlib <code>PMF</code>s using <code>Real.negMulLog</code>.</li>
-        <li>Conditional entropy, mutual information, conditional mutual information, marginals, and random-variable versions are available in the finite Shannon layer.</li>
+        <li>Conditional entropy, mutual information, and conditional mutual information are available as entropy-identity definitions.</li>
         <li>Marginal mass formulas, support/domination lemmas, and coordinate-orientation lemmas are part of the current API.</li>
-        <li>A separated semantic bridge module is reserved for KL-divergence and conditional-law equivalence theorems.</li>
+        <li>The certificate layer contains formal entropy expressions and a generic nonnegative-combination soundness theorem.</li>
+        <li>An abstract Shannon entropy valuation layer packages empty entropy, conditional entropy nonnegativity, and conditional mutual information nonnegativity assumptions.</li>
+        <li>A separated semantic bridge module exists as an import boundary for future KL-divergence and conditional-law equivalence theorems.</li>
         <li>No theorem placeholders are present in the current Lean source.</li>
+      </ul>
+
+      <h2>Planned, not yet implemented</h2>
+      <ul>
+        <li>Semantic bridge theorems identifying the entropy-identity definitions with conditional-law and KL-divergence semantics.</li>
+        <li>A checked certificate pipeline with primitive Shannon inequalities, normalized expression equality, and trusted checked certificates.</li>
+        <li>Generated API documentation; the current documentation page is a module list.</li>
+        <li>Non-toy network-information-theory converse examples.</li>
       </ul>
 
       <h2>Why this shape?</h2>
       <p>
         This site follows the standard Lean project pattern: a compact landing
-        page whose job is to route readers to the blueprint, generated
-        documentation, dependency graph, and GitHub repository. Since this project
-        is also a reusable library effort, the homepage records the present scope
-        and status explicitly instead of presenting itself as a completed theorem
-        formalization.
+        page whose job is to route readers to the blueprint, current module
+        list, future generated documentation, dependency graph, and GitHub
+        repository. Since this project is also a reusable library effort, the
+        homepage records the present scope and status explicitly instead of
+        presenting itself as a completed theorem formalization.
       </p>
 
       <footer class="site-footer">

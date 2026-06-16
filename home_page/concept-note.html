@@ -20,8 +20,9 @@
       <h2>Project</h2>
       <p>
         Lean-certified classical and network information theory: a reusable
-        finite information-measures layer plus AI-assisted, machine-checked
-        entropy-inequality/converse automation.
+        finite information-measures layer, with a planned path toward
+        AI-assisted, machine-checked entropy-inequality and converse
+        automation.
       </p>
 
       <h2>Motivation</h2>
@@ -34,13 +35,21 @@
         network-information-theory converse proofs.
       </p>
 
-      <h2>First deliverables</h2>
+      <h2>Current and near-term deliverables</h2>
       <ul>
-        <li>A public mathlib-based Lean repository with CI and documentation.</li>
+        <li>A public mathlib-based Lean repository with CI and a current module list.</li>
         <li>A finite <code>PMF</code>-based Shannon layer with entropy, marginals, conditional entropy, mutual information, and conditional mutual information.</li>
         <li>A separated semantic bridge path to existing mathlib KL and conditional-law infrastructure.</li>
         <li>A formal entropy-expression layer for rational linear combinations of entropy atoms.</li>
-        <li>A Lean-checked certificate soundness theorem for entropy inequalities.</li>
+        <li>An abstract Shannon entropy-valuation layer for certificate-facing semantic assumptions.</li>
+        <li>A generic Lean-checked soundness theorem for nonnegative certificate combinations.</li>
+      </ul>
+
+      <h2>Current limitations</h2>
+      <ul>
+        <li>The semantic KL and conditional-law bridge theorems are planned, not yet proved.</li>
+        <li>The certificate layer is a soundness skeleton, not yet a full checked-certificate pipeline.</li>
+        <li>Generated API documentation and non-toy network converse examples are future milestones.</li>
       </ul>
     </main>
   </body>

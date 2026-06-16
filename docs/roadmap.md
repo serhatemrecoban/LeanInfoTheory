@@ -1,5 +1,8 @@
 # Roadmap
 
+This roadmap records planned technical milestones. The homepage and current
+module list record what is implemented now.
+
 ## Now
 
 - Stabilize the finite `PMF`-based Shannon foundation layer.

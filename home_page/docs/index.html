@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Documentation | LeanInfoTheory</title>
+    <title>Module list | LeanInfoTheory</title>
     <link rel="stylesheet" href="../styles.css">
   </head>
   <body>
     <header class="page-header" role="banner">
-      <h1 class="project-name">Documentation</h1>
-      <h2 class="project-tagline">Current Lean modules and build status.</h2>
+      <h1 class="project-name">Module list</h1>
+      <h2 class="project-tagline">Current compileable Lean modules; generated API docs are planned.</h2>
       <nav class="project-links" aria-label="Project links">
         <a href="../" class="btn">Home</a>
         <a href="../blueprint/" class="btn">Blueprint</a>
@@ -18,18 +18,19 @@
     </header>
     <main class="main-content" role="main">
       <p>
-        Generated API documentation is the next documentation milestone. For now,
-        this page records the compileable Lean files in the current foundation layer.
+        This page is a hand-written module list, not generated declaration
+        documentation. Generated API documentation is a later milestone.
       </p>
       <ul>
         <li><code>LeanInfoTheory.Basic</code>: lightweight project namespace and shared status vocabulary.</li>
         <li><code>LeanInfoTheory.Probability.Finite</code>: real-mass bridge lemmas for finite <code>PMF</code> sums.</li>
         <li><code>LeanInfoTheory.Shannon.Entropy</code>: finite Shannon entropy and random-variable entropy.</li>
         <li><code>LeanInfoTheory.Shannon.InfoMeasures</code>: marginals, conditional entropy, mutual information, conditional mutual information, and support/orientation lemmas.</li>
-        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: separated home for future KL and conditional-law bridge theorems.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: separated import boundary for future KL and conditional-law bridge theorems.</li>
         <li><code>LeanInfoTheory.InformationMeasures</code>: public re-export for the finite information-measure API.</li>
-        <li><code>LeanInfoTheory.EntropyExpr</code>: formal entropy-expression algebra.</li>
-        <li><code>LeanInfoTheory.Certificate</code>: certificate soundness theorem.</li>
+        <li><code>LeanInfoTheory.EntropyExpr</code>: formal entropy-expression algebra and the empty-entropy convention interface.</li>
+        <li><code>LeanInfoTheory.EntropyVal</code>: abstract Shannon entropy valuations for certificate work.</li>
+        <li><code>LeanInfoTheory.Certificate</code>: generic nonnegative-combination soundness theorem, not yet a full certificate checker.</li>
         <li><code>LeanInfoTheory.Examples</code>: closed toy example.</li>
       </ul>
       <p>

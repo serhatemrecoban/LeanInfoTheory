@@ -76,6 +76,20 @@ a:hover {
   display: block;
 }
 
+.status-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 1rem 0 1.25rem;
+}
+
+.status-badges img {
+  display: block;
+  max-width: 100%;
+  height: 20px;
+}
+
 .btn {
   display: inline-block;
   margin-bottom: 1rem;
