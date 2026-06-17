@@ -5,7 +5,9 @@ Authors: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Certificate
+import LeanInfoTheory.Certificate.Checked
 import LeanInfoTheory.EntropyVal
+import LeanInfoTheory.PrimitiveIneq
 
 /-!
 # Toy examples
@@ -48,6 +50,81 @@ theorem hEmpty_eval_eq_zero_of_shannonEntropyVal
     (h : ShannonEntropyVal Var) :
     ShannonEntropyVal.eval h HEmpty = 0 := by
   simp [HEmpty]
+
+/-- Primitive conditional mutual information is nonnegative for abstract valuations. -/
+theorem primitiveCmi_nonneg
+    (h : ShannonEntropyVal Var) :
+    0 <= ShannonEntropyVal.eval h
+      (PrimitiveIneq.condMutualInfo ({X} : Finset Var) ({Y} : Finset Var) ({Z} : Finset Var)) := by
+  exact PrimitiveIneq.condMutualInfo_nonneg h _ _ _
+
+/-- A one-step checked certificate for primitive conditional mutual information. -/
+noncomputable def primitiveCmiCheckedCert : Certificate.CheckedCert Var where
+  target :=
+    PrimitiveIneq.condMutualInfo ({X} : Finset Var) ({Y} : Finset Var) ({Z} : Finset Var)
+  decomposition :=
+    [{
+      coeff := 1
+      primitive :=
+        PrimitiveIneq.Kind.condMutualInfo
+          ({X} : Finset Var) ({Y} : Finset Var) ({Z} : Finset Var)
+    }]
+  decomposition_matches := by
+    simp [Certificate.DecompositionMatches, Certificate.combinationExpr,
+      Certificate.CheckedStep.toWeightedIneq,
+      Certificate.CheckedStep.expr, PrimitiveIneq.Kind.expr]
+
+/-- The checked primitive-CMI certificate is sound for every abstract valuation. -/
+theorem primitiveCmiCheckedCert_sound
+    (h : ShannonEntropyVal Var) :
+    0 <= ShannonEntropyVal.eval h primitiveCmiCheckedCert.target := by
+  exact Certificate.CheckedCert.sound primitiveCmiCheckedCert h
+
+/-- The primitive tag used by the raw primitive-CMI certificate example. -/
+noncomputable def primitiveCmiKind : PrimitiveIneq.Kind Var :=
+  PrimitiveIneq.Kind.condMutualInfo
+    ({X} : Finset Var) ({Y} : Finset Var) ({Z} : Finset Var)
+
+/-- A raw external-style one-step certificate for primitive conditional mutual information. -/
+noncomputable def primitiveCmiRawCert : Certificate.RawCert Var where
+  target :=
+    PrimitiveIneq.condMutualInfo ({X} : Finset Var) ({Y} : Finset Var) ({Z} : Finset Var)
+  decomposition :=
+    [{
+      coeff := 1
+      expr :=
+        PrimitiveIneq.condMutualInfo
+          ({X} : Finset Var) ({Y} : Finset Var) ({Z} : Finset Var)
+    }]
+
+/-- The raw primitive-CMI certificate validates against its primitive tag. -/
+theorem primitiveCmiRawCert_toCheckedCert?_isSome :
+    (Certificate.RawCert.toCheckedCert? primitiveCmiRawCert [primitiveCmiKind]).isSome := by
+  simp [primitiveCmiRawCert, primitiveCmiKind, Certificate.RawCert.toCheckedCert?,
+    Certificate.checkStepsAgainstPrimitives?, Certificate.RawStep.toCheckedStep?,
+    Certificate.DecompositionMatches, Certificate.combinationExpr,
+    Certificate.CheckedStep.toWeightedIneq,
+    Certificate.CheckedStep.expr, PrimitiveIneq.Kind.expr]
+
+/-- A successfully validated raw primitive-CMI certificate proves its raw target. -/
+theorem primitiveCmiRawCert_validated_sound
+    (h : ShannonEntropyVal Var) {checked : Certificate.CheckedCert Var}
+    (hchecked :
+      Certificate.RawCert.toCheckedCert? primitiveCmiRawCert [primitiveCmiKind] = some checked) :
+    0 <= ShannonEntropyVal.eval h primitiveCmiRawCert.target := by
+  exact Certificate.RawCert.sound_of_toCheckedCert?_eq_some hchecked h
+
+/-- Running the raw primitive-CMI validator gives a sound certificate. -/
+theorem primitiveCmiRawCert_sound_from_validator
+    (h : ShannonEntropyVal Var) :
+    0 <= ShannonEntropyVal.eval h primitiveCmiRawCert.target := by
+  have hsome := primitiveCmiRawCert_toCheckedCert?_isSome
+  cases hchecked :
+      Certificate.RawCert.toCheckedCert? primitiveCmiRawCert [primitiveCmiKind] with
+  | none =>
+      simp [hchecked] at hsome
+  | some checked =>
+      exact Certificate.RawCert.sound_of_toCheckedCert?_eq_some hchecked h
 
 /-- A one-step certificate for the nonnegativity of `H(X)`. -/
 noncomputable def hxNonnegCert : Certificate.Cert Var where

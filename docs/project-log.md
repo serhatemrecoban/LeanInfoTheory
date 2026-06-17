@@ -13,12 +13,22 @@ organized as they are, and which ideas are waiting for the right moment.
 - `LeanInfoTheory/Basic.lean`: small project-level definitions used by
   documentation and examples.
 - `LeanInfoTheory/EntropyExpr.lean`: algebraic entropy-expression syntax for
-  certificate-style reasoning.
+  certificate-style reasoning, with evaluation implemented through real
+  coefficient linear combinations.
 - `LeanInfoTheory/EntropyVal.lean`: abstract Shannon entropy valuations used
   to state certificate-facing semantic assumptions independently of concrete
   probability models.
-- `LeanInfoTheory/Certificate.lean`: certificate primitives and soundness
-  scaffolding for entropy inequalities.
+- `LeanInfoTheory/PrimitiveIneq.lean`: primitive Shannon inequality
+  expressions and their soundness theorems under abstract valuations.
+- `LeanInfoTheory/Certificate.lean`: certificate primitives, exact
+  decomposition matching, and soundness scaffolding for entropy inequalities.
+- `LeanInfoTheory/Certificate/Checked.lean`: raw certificates, a first
+  raw-to-checked validator, and proof-carrying checked certificates for
+  primitive Shannon ingredients using nonnegative rational coefficients and
+  exact decomposition equality.
+- `LeanInfoTheory/Certificate/Submodularity.lean`: first non-toy
+  certificate demonstration, proving entropy submodularity from a validated
+  conditional-mutual-information certificate.
 - `LeanInfoTheory/Examples.lean`: small examples that exercise the current API.
 - `LeanInfoTheory/InformationMeasures.lean`: compatibility/re-export module for
   the finite Shannon definitions.
@@ -28,8 +38,9 @@ organized as they are, and which ideas are waiting for the right moment.
   not be treated as part of the lightweight foundation import surface.
 - `LeanInfoTheory/Probability/Finite.lean`: finite `PMF` real-mass bridge
   lemmas, kept in the `PMF` namespace and deliberately small.
-- `LeanInfoTheory/Shannon/Entropy.lean`: finite Shannon entropy and entropy of
-  finite-valued random variables via `PMF.map`.
+- `LeanInfoTheory/Shannon/Entropy.lean`: finite Shannon entropy, entropy of
+  finite-valued random variables via `PMF.map`, and first entropy sanity
+  theorems such as relabeling invariance.
 - `LeanInfoTheory/Shannon/InfoMeasures.lean`: marginals, conditional entropy,
   mutual information, conditional mutual information, and basic rewrite lemmas.
 - `LeanInfoTheory/Shannon/SemanticBridge.lean`: heavier bridge module for
@@ -242,9 +253,10 @@ as semantic bridge theorems, checked certificates, generated API documentation,
 and network-converse examples.
 
 The module-list page explicitly says that it is not generated declaration
-documentation yet. The concept note and blueprint now describe the certificate
-layer as a soundness skeleton, and mark semantic bridges, checked-certificate
-infrastructure, and network-information-theory examples as future work.
+documentation yet. The concept note and blueprint describe the certificate
+layer as an evolving proof-carrying foundation. At this stage, semantic
+bridges, deterministic raw-to-checked validation, generated API documentation,
+and network-information-theory examples were still future work.
 
 ### 12. Empty Entropy Atom Convention
 
@@ -276,6 +288,236 @@ The structure is intentionally abstract. It lets the certificate layer prove
 Shannon-type inequalities without waiting for all finite-`PMF` semantic bridge
 theorems. Later, the concrete finite-family entropy semantics should prove that
 actual finite random variables instantiate `ShannonEntropyVal`.
+
+### 14. Primitive Shannon Inequality Expressions
+
+The new file `LeanInfoTheory/PrimitiveIneq.lean` defines the first primitive
+Shannon inequality expressions as formal entropy expressions:
+
+- `PrimitiveIneq.emptyEntropy`, representing `H(empty)`;
+- `PrimitiveIneq.condEntropy`, representing `H(S ∪ {i}) - H(S)`;
+- `PrimitiveIneq.condMutualInfo`, representing
+  `H(A,C) + H(B,C) - H(A,B,C) - H(C)`.
+
+The file also includes evaluation formulas for these expressions under an
+arbitrary atom interpretation. At this stage, the primitive expressions had not
+yet been proved nonnegative under `ShannonEntropyVal`; that became the next
+certificate-facing step.
+
+### 15. Primitive Inequality Soundness
+
+The primitive Shannon inequality layer now proves that its expressions are
+sound under the abstract valuation semantics:
+
+- `PrimitiveIneq.emptyEntropy_nonneg` uses the bundled empty-entropy
+  convention, so `H(empty)` evaluates to zero and hence is nonnegative;
+- `PrimitiveIneq.condEntropy_nonneg` turns the `ShannonEntropyVal.cond_nonneg`
+  field into nonnegativity of the formal expression `H(S union {i}) - H(S)`;
+- `PrimitiveIneq.condMutualInfo_nonneg` turns the
+  `ShannonEntropyVal.cmi_nonneg` field into nonnegativity of the formal
+  conditional-mutual-information expression.
+
+The same file also provides `ShannonEntropyVal.eval` simp lemmas for the three
+primitive expressions. These lemmas keep future checked-certificate proofs
+close to the algebraic entropy notation while still making all semantic
+assumptions explicit in `ShannonEntropyVal`.
+
+This completes the earlier future-work item about proving primitive inequality
+soundness. The next certificate-facing pressure points are checked
+certificates, exact expression equality, and a first non-toy demonstration.
+
+### 16. Raw and Checked Certificate Architecture
+
+The new file `LeanInfoTheory/Certificate/Checked.lean` separates untrusted
+external-style certificate data from certificates that Lean can use for a
+soundness proof.
+
+The raw side contains:
+
+- `Certificate.RawStep`, with an unchecked rational coefficient and unchecked
+  entropy expression;
+- `Certificate.RawCert`, with an unchecked target and unchecked list of raw
+  steps.
+
+The checked side contains:
+
+- `PrimitiveIneq.Kind`, a typed basis of primitive Shannon inequalities;
+- `Certificate.CheckedStep`, whose coefficient was represented by a rational
+  number plus a nonnegativity proof and whose ingredient is a
+  `PrimitiveIneq.Kind`;
+- `Certificate.CheckedCert`, whose decomposition equality is represented by a
+  proof field;
+- `Certificate.CheckedCert.sound`, proving that every checked certificate is
+  sound under any abstract Shannon entropy valuation.
+
+This was intentionally proof-carrying rather than a full executable checker.
+The next certificate-layer step was to make the decomposition equality an exact
+rational entropy-expression equality rather than a semantic equality over all
+valuations.
+
+### 17. Exact Decomposition Equality
+
+The certificate layer now compares certificate decompositions as exact formal
+entropy expressions.
+
+The generic certificate file `LeanInfoTheory/Certificate.lean` adds:
+
+- `Certificate.combinationExpr`, the formal rational expression
+  `sum_i q_i • e_i` associated to a weighted decomposition;
+- `Certificate.eval_combinationExpr`, proving that evaluating this formal
+  expression agrees with the older semantic `evalCombination`;
+- `Certificate.DecompositionMatches`, the exact equality predicate
+  `target = combinationExpr decomposition`;
+- `Certificate.sound_of_decompositionMatches`, deriving certificate soundness
+  from exact formal equality plus nonnegativity of the checked ingredients.
+
+The checked certificate file now stores
+`Certificate.CheckedCert.decomposition_matches` as a `DecompositionMatches`
+proof. Since entropy expressions are `Finsupp`s over `Rat`, this equality is an
+atom-by-atom comparison of normalized sparse rational coefficients.
+
+The entropy-expression evaluation API was also adjusted so rational
+coefficients are first cast into a sparse real-coefficient expression and then
+evaluated using `Finsupp.linearCombination Real`. This makes the linearity
+lemmas for evaluation reflect the free-module structure of entropy
+expressions, while avoiding any unnecessary assumption that `Real` is imported
+as a `Rat`-module in this project.
+
+This completes the future-work item about deterministic expression equality
+for certificate decompositions. The next step was raw-to-checked validation:
+turning parsed external-style certificate data into checked primitive
+ingredients, nonnegative coefficients, and exact decomposition-equality proofs.
+
+### 18. Nonnegative Checked Coefficients
+
+Checked certificate steps now store coefficients as `NNRat`, the mathlib type
+of nonnegative rational numbers. This removes the separate nonnegativity proof
+field from `Certificate.CheckedStep`:
+
+- raw parsed data still uses ordinary `Rat` coefficients, because external
+  certificate input may be invalid;
+- checked data uses `NNRat`, so coefficient nonnegativity is part of the type;
+- `Certificate.CheckedStep.toWeightedIneq` forgets a checked step back to the
+  generic rational `WeightedIneq` format by coercing `NNRat` to `Rat`;
+- `Certificate.CheckedStep.coeff_rat_nonneg` and
+  `Certificate.CheckedStep.coeff_real_nonneg` recover the rational and real
+  nonnegativity facts needed by soundness proofs.
+
+This completes the future-work item about using nonnegative coefficient types
+inside checked certificates. It also prepares the raw-to-checked validator by
+making coefficient validation a coercion from raw `Rat` input into checked
+`NNRat` data.
+
+### 19. Raw-to-Checked Validation
+
+The checked certificate layer now contains the first deterministic validator
+from external-style raw certificate data into proof-carrying checked
+certificates.
+
+The new validation API is:
+
+- `Certificate.RawStep.toCheckedStep?`, which checks that a raw rational
+  coefficient is nonnegative and that the raw expression matches the proposed
+  `PrimitiveIneq.Kind`;
+- `Certificate.checkStepsAgainstPrimitives?`, which validates a raw step list
+  against a parallel list of primitive tags;
+- `Certificate.RawCert.toCheckedCert?`, which validates all steps and then
+  checks exact rational equality between the raw target and the checked
+  decomposition;
+- `Certificate.RawCert.sound_of_toCheckedCert?_eq_some`, which proves the raw
+  target nonnegative whenever validation succeeds.
+
+`LeanInfoTheory/Examples.lean` now includes a raw one-step primitive
+conditional-mutual-information certificate, a proof that it validates against
+its primitive tag, and a soundness theorem routed through the validator.
+
+This completes the previous near-term future-work item about raw-to-checked
+validation. At that point, the next certificate-layer task was to choose a
+first non-toy certificate demonstration and let that example guide any
+additional API refinement.
+
+### 20. Entropy Submodularity Certificate Demo
+
+The first non-toy certificate demonstration now lives in
+`LeanInfoTheory/Certificate/Submodularity.lean`.
+
+It proves the recognizable Shannon submodularity inequality
+
+`H(A) + H(B) - H(A union B) - H(A inter B) >= 0`
+
+for every abstract `ShannonEntropyVal` and arbitrary entropy atoms `A` and `B`.
+The proof uses the identity
+
+`H(A) + H(B) - H(A union B) - H(A inter B) =
+  I(A \ B ; B \ A | A inter B)`,
+
+then validates a one-step raw certificate against the corresponding
+conditional-mutual-information primitive.
+
+The new module includes:
+
+- `Certificate.Submodularity.expr`, the formal submodularity expression;
+- `Certificate.Submodularity.expr_eq_condMutualInfo`, the finite-set identity
+  reducing submodularity to a primitive CMI expression;
+- `Certificate.Submodularity.checkedCert`, a proof-carrying checked
+  certificate;
+- `Certificate.Submodularity.rawCert`, the corresponding raw external-style
+  certificate;
+- `Certificate.Submodularity.rawCert_toCheckedCert?_isSome`, proving the raw
+  certificate validates;
+- `Certificate.Submodularity.entropy_submodularity`, the user-facing
+  nonnegativity theorem.
+
+This completes the previous future-work item asking for a first serious
+certificate demo. The demo is intentionally primitive-only: independence,
+functional-dependence, and Markov constraints should be added later as
+extensions rather than mixed into the first certificate milestone.
+
+### 21. Finite Entropy Relabeling Sanity Theorems
+
+The finite Shannon entropy layer now proves that entropy is invariant under
+renaming finite alphabets.
+
+The new API in `LeanInfoTheory/Shannon/Entropy.lean` includes:
+
+- `Shannon.entropy_map_equiv`, showing that pushing a finite `PMF` forward
+  along an equivalence preserves entropy;
+- `Shannon.entropy_map_injective`, showing that an injective relabeling into a
+  larger finite alphabet preserves entropy, with atoms outside the image
+  contributing zero mass;
+- `Shannon.entropyOf_comp_equiv` and
+  `Shannon.entropyOf_comp_injective`, the corresponding random-variable
+  relabeling theorems;
+- `Shannon.entropy_map_swap`, `Shannon.jointEntropy_map_swap`, and
+  `Shannon.jointEntropyOf_swap`, recording the basic pair-coordinate swap
+  invariance expected by information theorists.
+
+This completes the relabeling-invariance part of the core finite entropy
+sanity work. The remaining finite entropy sanity targets are upper bounds by
+the logarithm of alphabet size and the uniform-law equality case; those should
+use mathlib's concavity/Jensen tools rather than ad hoc calculations.
+
+### 22. Immediate-Layer Repository Checkpoint
+
+After completing the immediate nine-step certificate and finite-entropy
+foundation pass, the project is ready for a repository checkpoint before
+starting harder theorem work.
+
+This checkpoint includes:
+
+- primitive Shannon inequality expressions and soundness;
+- raw and checked certificate structures;
+- exact rational decomposition matching;
+- nonnegative checked coefficients through `NNRat`;
+- raw-to-checked validation;
+- the entropy submodularity certificate demo;
+- finite entropy relabeling invariance under equivalences, injective maps, and
+  coordinate swaps;
+- updated README, project log, roadmap, and website status pages.
+
+The next mathematical step should continue from the remaining finite entropy
+sanity theorem backlog rather than reopening the completed immediate
+certificate layer.
 
 ## External Review Notes
 
@@ -359,13 +601,18 @@ step-by-step history above.
    `LeanInfoTheory.Shannon`, and `LeanInfoTheory.InformationMeasures` exports
    them into `LeanInfoTheory`. Before there are many more names, decide whether
    examples and documentation should prefer names such as `Shannon.entropy` or
-   exported names such as `LeanInfoTheory.entropy`.
+   exported names such as `LeanInfoTheory.entropy`. The same decision should
+   be made for theorem-facing certificate results: for example, decide whether
+   results currently named under namespaces such as
+   `Certificate.Submodularity.entropy_submodularity` should later receive
+   cleaner public aliases outside the certificate-demo namespace.
 
 2. Continue monitoring the top-level import surface. The root
    `LeanInfoTheory.lean` no longer imports the heavy `MathlibFragments` anchor
-   file, but it still imports examples. Before the project grows much further,
-   decide whether examples should remain in the root import or become
-   separately importable development aids.
+   file, but it still imports examples and the current certificate demo module.
+   Before the project grows much further, decide whether examples and
+   certificate demos should remain in the root import or become separately
+   importable development aids.
 
 3. Revisit which coordinate-orientation lemmas should be marked `[simp]`.
    They are currently explicit lemmas, not global simp lemmas, to avoid
@@ -392,9 +639,10 @@ step-by-step history above.
    averaged conditional-KL expression. The existing `SemanticBridge` file
    already imports mathlib's KL chain-rule API for this purpose.
 
-9. Add entropy invariance and orientation theorems that are about values rather
-   than marginals alone: invariance under equivalences, injective relabelings,
-   coordinate swap, and product reassociation.
+9. Add the remaining value-level orientation theorem for finite entropy:
+   product reassociation. Entropy invariance under equivalences, injective
+   relabelings, and pair-coordinate swap is now implemented in
+   `LeanInfoTheory/Shannon/Entropy.lean`.
 
 10. Keep the finite-family entropy API delayed until pair/triple APIs and
     semantic bridge proofs clarify the right representation. The main open
@@ -427,60 +675,58 @@ step-by-step history above.
 
 ### Do Soon After The Immediate Layer
 
-17. Define the first primitive Shannon inequalities in the entropy-expression
-    language. The likely first primitives are empty entropy, conditional
-    entropy nonnegativity, and conditional mutual information nonnegativity.
-    Their statements should be chosen so that they evaluate cleanly under the
-    abstract entropy-valuation layer.
-
-18. Upgrade the certificate architecture from assumption-based soundness toward
-    checked certificates. Keep parsed external certificates as untrusted raw
-    data, then validate them into a checked form with nonnegative coefficients
-    and verified expression equality. This should introduce a clear
-    `RawCert`/`CheckedCert` distinction or an equivalent local pattern.
-
-19. Implement deterministic expression-equality checking for certificate
-    decompositions. The checker should normalize sparse rational expressions,
-    probably using the existing `Finsupp` representation, and compare the
-    target with the proposed nonnegative combination exactly over `Rat`.
-
-20. Use nonnegative coefficient types internally after validation. Parsed
-    external data can stay rational, but checked certificate steps should carry
-    nonnegative coefficients by construction, using `NNRat` or a subtype if
-    that fits Lean/mathlib best.
-
-21. Choose and formalize the first serious certificate demo. Good candidates
-    are submodularity from conditional mutual information nonnegativity, or a
-    symbolic data-processing inequality using a Markov constraint. The goal is
-    a non-toy theorem that exercises the abstract valuation, primitive
-    inequalities, checked decomposition, and soundness theorem together.
-
-22. Add core finite entropy sanity theorems that information theorists expect,
-    including entropy invariance under equivalences or injective relabelings,
-    entropy upper bounds by logarithm of alphabet size, and the uniform-law
-    equality case when the surrounding API is ready.
+17. Add the remaining finite entropy sanity theorems that information theorists
+    expect: entropy upper bounds by the logarithm of alphabet size and the
+    uniform-law equality case. Entropy invariance under equivalences and
+    injective relabelings is now in the finite Shannon entropy API.
 
 ### Do Later
 
-23. Add generated API documentation once the Lean API is stable enough. Until
+18. Review the private PMF helper lemmas from entropy relabeling invariance.
+    The proof of finite entropy invariance under injective relabeling currently
+    uses private helper lemmas in `LeanInfoTheory/Shannon/Entropy.lean`,
+    morally saying that if `f : alpha -> beta` is injective, then
+    `(p.map f) (f a) = p a`, and if `b` is outside the range of `f`, then
+    `(p.map f) b = 0`. These are potentially useful beyond entropy, especially
+    for future finite-support, marginal, conditioning, and semantic bridge
+    proofs. Keep them private for now to avoid prematurely enlarging the public
+    API, but if they are reused in another module, consider promoting them to a
+    stable public location, likely in the `PMF` namespace or a finite
+    PMF support/mapping helper file. Before promotion, search mathlib again for
+    existing equivalent lemmas and choose names consistent with mathlib's
+    `PMF.map` API.
+
+19. Add generated API documentation once the Lean API is stable enough. Until
     then, keep the current docs page described as a module list rather than as
     generated declaration documentation. When doc generation is added, link the
     homepage and docs page directly to declarations and important modules.
 
-24. Add a minimal contributor surface before inviting broader collaboration:
+20. Add a minimal contributor surface before inviting broader collaboration:
     `CONTRIBUTING.md`, beginner-friendly tasks, issue labels, and a short note
     about which components may eventually be proposed upstream to mathlib.
 
-25. Add advanced certificate constraints only after the basic checked pipeline
-    exists. Independence constraints, functional-dependence constraints, and
-    Markov constraints are essential for network converses, but they should not
-    precede the basic primitive-inequality checker.
+21. Add advanced certificate constraints after the primitive-only checker
+    remains stable under a little more theorem pressure. Independence
+    constraints, functional-dependence constraints, and Markov constraints are
+    essential for network converses, but they should be introduced as explicit
+    extensions of the primitive certificate layer.
 
-26. Add PSITIP/oXitip-style certificate import only after the internal checked
+22. Add primitive-recognition/autotagging only after the manually tagged
+    certificate pipeline has been exercised on several examples. The current
+    validator checks a raw expression against a supplied `PrimitiveIneq.Kind`;
+    a later ergonomic layer could try to infer primitive tags from normalized
+    entropy expressions, for example recognizing
+    `H(A,C) + H(B,C) - H(A,B,C) - H(C)` as conditional mutual information.
+    This recognition layer should remain outside the trusted core: it may
+    propose tags, but the existing exact equality checker must still verify
+    them.
+
+23. Add PSITIP/oXitip-style certificate import only after the internal checked
     certificate format is stable. The first parser should target a small,
     explicit external format and should never be part of the trusted kernel.
 
-27. Expand website polish after the mathematical demo exists. A richer status
-    table, architecture diagram, collaboration page, and first-demo section
-    will be more meaningful after the project has a checked non-toy entropy
-    inequality to show.
+24. Expand website polish after the next mathematical milestone. A richer
+    status table, architecture diagram, collaboration page, and demo section
+    will be more meaningful after the project has both the submodularity demo,
+    finite-entropy relabeling invariance, and either a semantic bridge theorem
+    or an entropy upper-bound theorem to show.

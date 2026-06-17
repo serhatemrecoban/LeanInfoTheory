@@ -32,6 +32,36 @@ noncomputable def evalCombination
   | step :: rest =>
       (step.1 : Real) * EntropyExpr.eval value step.2 + evalCombination value rest
 
+/--
+The formal entropy expression represented by a rational linear combination of
+weighted inequalities.
+-/
+noncomputable def combinationExpr : List (WeightedIneq Var) -> EntropyExpr Var
+  | [] => 0
+  | step :: rest => step.1 • step.2 + combinationExpr rest
+
+/--
+Evaluating the formal combination expression agrees with the older semantic
+combination function.
+-/
+@[simp]
+theorem eval_combinationExpr
+    (value : EntropyAtom Var -> Real) :
+    forall steps : List (WeightedIneq Var),
+      EntropyExpr.eval value (combinationExpr steps) = evalCombination value steps
+  | [] => by
+      simp [combinationExpr, evalCombination]
+  | step :: rest => by
+      simp [combinationExpr, evalCombination, eval_combinationExpr value rest]
+
+/--
+An exact rational-expression check for a certificate decomposition. Since
+`EntropyExpr` is a `Finsupp`, this equality compares normalized sparse
+rational coefficients atom by atom.
+-/
+def DecompositionMatches (target : EntropyExpr Var) (steps : List (WeightedIneq Var)) : Prop :=
+  target = combinationExpr steps
+
 /-- A certificate for a target expression. -/
 structure Cert (Var : Type u) [DecidableEq Var] where
   /-- The entropy expression whose nonnegativity the certificate proves. -/
@@ -81,6 +111,24 @@ theorem sound
     0 <= EntropyExpr.eval value cert.target := by
   rw [hdecomp]
   exact evalCombination_nonneg value hsteps
+
+/--
+Certificate soundness from exact rational expression equality. This is the
+preferred route for checked certificates: first compare formal entropy
+expressions, then evaluate.
+-/
+theorem sound_of_decompositionMatches
+    (value : EntropyAtom Var -> Real)
+    (cert : Cert Var)
+    (hdecomp : DecompositionMatches cert.target cert.decomposition)
+    (hsteps :
+      forall step, step ∈ cert.decomposition ->
+        0 <= (step.1 : Real) ∧ 0 <= EntropyExpr.eval value step.2) :
+    0 <= EntropyExpr.eval value cert.target := by
+  apply sound (value := value) (cert := cert)
+  · rw [hdecomp]
+    simp
+  · exact hsteps
 
 end Certificate
 

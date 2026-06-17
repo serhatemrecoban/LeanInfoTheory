@@ -38,10 +38,13 @@
 
       <p>
         Current milestone: the repository contains a mathlib-based finite-PMF
-        Shannon foundation and a first certificate-soundness skeleton. Semantic
-        KL/conditional-law bridge theorems, a checked certificate pipeline,
-        generated API documentation, and network-converse examples are planned
-        next milestones.
+        Shannon foundation, primitive Shannon inequalities, and a first
+        proof-carrying checked-certificate layer with exact rational expression
+        matching plus basic raw-to-checked validation. The first non-toy
+        certificate demo proves entropy submodularity from a validated CMI
+        certificate. Semantic KL/conditional-law bridge theorems, external
+        certificate import, generated API documentation, and network-converse
+        examples are planned next milestones.
       </p>
 
       <p class="status-badges" aria-label="Project status">
@@ -74,10 +77,14 @@
         <li>Lake project initialized with Lean 4.30.0 and mathlib 4.30.0.</li>
         <li>GitHub Actions runs the Lean build and a strict no-placeholder scan.</li>
         <li>Finite Shannon entropy is defined for mathlib <code>PMF</code>s using <code>Real.negMulLog</code>.</li>
+        <li>Finite entropy is invariant under equivalence and injective alphabet relabelings.</li>
         <li>Conditional entropy, mutual information, and conditional mutual information are available as entropy-identity definitions.</li>
         <li>Marginal mass formulas, support/domination lemmas, and coordinate-orientation lemmas are part of the current API.</li>
         <li>The certificate layer contains formal entropy expressions and a generic nonnegative-combination soundness theorem.</li>
         <li>An abstract Shannon entropy valuation layer packages empty entropy, conditional entropy nonnegativity, and conditional mutual information nonnegativity assumptions.</li>
+        <li>Primitive Shannon inequality expressions are available for empty entropy, conditional entropy, and conditional mutual information, with soundness theorems under abstract Shannon entropy valuations.</li>
+        <li>A raw/checked certificate split is available; checked certificates use primitive Shannon ingredients, nonnegative rational coefficients, exact rational decomposition equality, and a first raw-to-checked validator.</li>
+        <li>A first non-toy certificate demo proves entropy submodularity from a validated conditional-mutual-information certificate.</li>
         <li>A separated semantic bridge module exists as an import boundary for future KL-divergence and conditional-law equivalence theorems.</li>
         <li>No theorem placeholders are present in the current Lean source.</li>
       </ul>
@@ -85,7 +92,8 @@
       <h2>Planned, not yet implemented</h2>
       <ul>
         <li>Semantic bridge theorems identifying the entropy-identity definitions with conditional-law and KL-divergence semantics.</li>
-        <li>A checked certificate pipeline with primitive Shannon inequalities, normalized expression equality, and trusted checked certificates.</li>
+        <li>Entropy upper bounds by logarithm of alphabet size and the uniform-law equality case.</li>
+        <li>Import support for external certificate formats and richer validation front ends.</li>
         <li>Generated API documentation; the current documentation page is a module list.</li>
         <li>Non-toy network-information-theory converse examples.</li>
       </ul>

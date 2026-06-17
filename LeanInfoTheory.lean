@@ -5,7 +5,10 @@ import LeanInfoTheory.Shannon.InfoMeasures
 import LeanInfoTheory.InformationMeasures
 import LeanInfoTheory.EntropyExpr
 import LeanInfoTheory.EntropyVal
+import LeanInfoTheory.PrimitiveIneq
 import LeanInfoTheory.Certificate
+import LeanInfoTheory.Certificate.Checked
+import LeanInfoTheory.Certificate.Submodularity
 import LeanInfoTheory.Examples
 
 /-!

@@ -24,16 +24,26 @@ network-information-theory converse proofs.
   atoms.
 - An abstract Shannon entropy-valuation layer for certificate-facing semantic
   assumptions.
+- Primitive Shannon inequality expressions for empty entropy, conditional
+  entropy, and conditional mutual information, with soundness theorems under
+  abstract Shannon entropy valuations.
 - A generic Lean-checked soundness theorem for nonnegative certificate
   combinations.
+- A first raw/checked certificate split, where checked certificates use
+  primitive Shannon ingredients, nonnegative rational coefficients, and the
+  proof data needed for soundness.
+- Exact rational expression matching for checked certificate decompositions.
+- A first raw-to-checked validator for primitive-tagged certificate steps.
+- A first non-toy certificate demo proving entropy submodularity from a
+  validated conditional-mutual-information certificate.
 - A small set of recognizable examples from classical/network information
   theory.
 
 ## Current Limitations
 
 - Semantic KL and conditional-law bridge theorems are planned, not yet proved.
-- The certificate layer is a soundness skeleton, not yet a full checked
-  certificate pipeline.
+- The certificate layer is not yet a full import pipeline for external
+  certificate formats.
 - Generated API documentation and non-toy network converse examples are future
   milestones.
 

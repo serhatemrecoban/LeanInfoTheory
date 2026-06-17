@@ -26,6 +26,8 @@ reference material only and is intentionally not part of the repository.
 - Zero-mass atoms contribute zero via mathlib's `Real.negMulLog 0 = 0`.
 - Entropy is a function of a distribution. Random-variable entropy is entropy
   of the pushforward distribution under `PMF.map`.
+- Finite entropy is invariant under equivalence and injective relabelings of
+  the alphabet; this records that entropy depends on masses, not atom names.
 - Joint entropy is ordinary entropy of a joint distribution.
 - In the entropy-expression layer, the empty atom is named explicitly as
   `EntropyExpr.empty`. Arbitrary atom interpretations do not automatically
@@ -35,6 +37,18 @@ reference material only and is intentionally not part of the repository.
   independently of concrete `PMF`s. It records `H(empty) = 0`, conditional
   entropy nonnegativity for adjoining one variable, and conditional mutual
   information nonnegativity as assumptions for future certificate proofs.
+- The primitive Shannon inequality expressions live in
+  `LeanInfoTheory.PrimitiveIneq`. They define the formal entropy-expression
+  shapes for empty entropy, conditional entropy, and conditional mutual
+  information, together with their soundness theorems under
+  `ShannonEntropyVal`.
+- The checked certificate layer lives in `LeanInfoTheory.Certificate.Checked`.
+  Raw certificates are untrusted data. Checked certificates carry
+  nonnegative rational coefficients by construction and exact decomposition
+  equality over normalized sparse rational entropy expressions. The first
+  validator derives checked certificates from raw rational coefficients,
+  proposed primitive tags, and exact decomposition matching; later import work
+  should parse external certificate formats into this raw layer.
 - The current `condEntropy` and `condMutualInfo` definitions use entropy
   identities. For finite variables these are equivalent to the conditional
   distribution formulas used in textbooks; proving that equivalence is an

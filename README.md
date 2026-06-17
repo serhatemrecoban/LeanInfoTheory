@@ -29,7 +29,12 @@ when they stabilize.
 - Initial module structure added under `LeanInfoTheory/`.
 - Finite Shannon entropy and entropy-derived information measures now use
   mathlib `PMF`s and `Real.negMulLog`.
-- Closed theorem examples are present in the algebraic certificate layer.
+- Finite entropy is proved invariant under equivalence and injective alphabet
+  relabelings.
+- Closed theorem examples are present in the algebraic and checked certificate
+  layers.
+- The first non-toy certificate demo proves entropy submodularity from a
+  validated conditional-mutual-information certificate.
 - Website MVP lives in `home_page/`.
 - Blueprint and roadmap notes live in `blueprint/` and `docs/`.
 
@@ -42,7 +47,8 @@ when they stabilize.
   constructions, and Kraft-McMillan.
 - `LeanInfoTheory.Probability.Finite`: real-mass bridge lemmas in the `PMF`
   namespace for finite Shannon sums.
-- `LeanInfoTheory.Shannon.Entropy`: finite Shannon entropy in nats.
+- `LeanInfoTheory.Shannon.Entropy`: finite Shannon entropy in nats, with
+  nonnegativity, deterministic-law, and relabeling-invariance theorems.
 - `LeanInfoTheory.Shannon.InfoMeasures`: conditional entropy, mutual
   information, conditional mutual information, named marginals, and
   random-variable versions.
@@ -55,9 +61,18 @@ when they stabilize.
   atoms, including the empty-entropy convention interface.
 - `LeanInfoTheory.EntropyVal`: abstract Shannon entropy valuations for
   certificate work.
+- `LeanInfoTheory.PrimitiveIneq`: primitive Shannon inequality expressions and
+  their soundness theorems under abstract Shannon entropy valuations.
 - `LeanInfoTheory.Certificate`: soundness skeleton for nonnegative certificate
-  combinations.
-- `LeanInfoTheory.Examples`: toy closed examples for the certificate layer.
+  combinations, including exact rational expression matching for
+  decompositions.
+- `LeanInfoTheory.Certificate.Checked`: raw certificate data, a first
+  raw-to-checked validator, and proof-carrying checked certificate structures
+  for primitive Shannon-inequality ingredients, using nonnegative rational
+  coefficients and exact decomposition equality.
+- `LeanInfoTheory.Certificate.Submodularity`: first non-toy certificate demo,
+  proving entropy submodularity from a validated CMI certificate.
+- `LeanInfoTheory.Examples`: toy closed examples for the certificate layers.
 
 ## Roadmap
 

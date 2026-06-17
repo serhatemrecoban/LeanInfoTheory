@@ -24,14 +24,17 @@
       <ol>
         <li><code>LeanInfoTheory.Basic</code>: lightweight project names.</li>
         <li><code>LeanInfoTheory.Probability.Finite</code>: real-valued finite-mass lemmas for <code>PMF</code>s.</li>
-        <li><code>LeanInfoTheory.Shannon.Entropy</code>: finite Shannon entropy over mathlib <code>PMF</code>s.</li>
+        <li><code>LeanInfoTheory.Shannon.Entropy</code>: finite Shannon entropy over mathlib <code>PMF</code>s, including relabeling invariance.</li>
         <li><code>LeanInfoTheory.Shannon.InfoMeasures</code>: marginals, entropy-derived information measures, support lemmas, and orientation lemmas.</li>
         <li><code>LeanInfoTheory.InformationMeasures</code>: public finite information-measure API.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: future KL-divergence and conditional-law bridge layer.</li>
         <li><code>LeanInfoTheory.EntropyExpr</code>: defines formal entropy atoms and rational expressions.</li>
         <li><code>LeanInfoTheory.EntropyVal</code>: packages abstract Shannon entropy valuation assumptions.</li>
-        <li><code>LeanInfoTheory.Certificate</code>: proves nonnegative-combination certificate soundness.</li>
-        <li><code>LeanInfoTheory.Examples</code>: contains a closed toy certificate example.</li>
+        <li><code>LeanInfoTheory.PrimitiveIneq</code>: defines primitive Shannon inequality expressions and proves their valuation soundness.</li>
+        <li><code>LeanInfoTheory.Certificate</code>: proves nonnegative-combination certificate soundness and exact decomposition matching.</li>
+        <li><code>LeanInfoTheory.Certificate.Checked</code>: separates raw certificates from proof-carrying checked certificates, with nonnegative rational coefficients, exact decomposition equality, and a first raw-to-checked validator.</li>
+        <li><code>LeanInfoTheory.Certificate.Submodularity</code>: proves entropy submodularity through a validated CMI certificate.</li>
+        <li><code>LeanInfoTheory.Examples</code>: contains closed toy examples for the certificate layers.</li>
       </ol>
     </main>
   </body>

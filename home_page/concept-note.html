@@ -42,13 +42,18 @@
         <li>A separated semantic bridge path to existing mathlib KL and conditional-law infrastructure.</li>
         <li>A formal entropy-expression layer for rational linear combinations of entropy atoms.</li>
         <li>An abstract Shannon entropy-valuation layer for certificate-facing semantic assumptions.</li>
+        <li>Primitive Shannon inequality expressions for empty entropy, conditional entropy, and conditional mutual information, with soundness theorems under abstract Shannon entropy valuations.</li>
         <li>A generic Lean-checked soundness theorem for nonnegative certificate combinations.</li>
+        <li>A first raw/checked certificate split, where checked certificates use primitive Shannon ingredients, nonnegative rational coefficients, and the proof data needed for soundness.</li>
+        <li>Exact rational expression matching for checked certificate decompositions.</li>
+        <li>A first raw-to-checked validator for primitive-tagged certificate steps.</li>
+        <li>A first non-toy certificate demo proving entropy submodularity from a validated conditional-mutual-information certificate.</li>
       </ul>
 
       <h2>Current limitations</h2>
       <ul>
         <li>The semantic KL and conditional-law bridge theorems are planned, not yet proved.</li>
-        <li>The certificate layer is a soundness skeleton, not yet a full checked-certificate pipeline.</li>
+        <li>The certificate layer is not yet a full import pipeline for external certificate formats.</li>
         <li>Generated API documentation and non-toy network converse examples are future milestones.</li>
       </ul>
     </main>
