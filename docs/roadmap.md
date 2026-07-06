@@ -5,8 +5,10 @@ module list record what is implemented now.
 
 ## Now
 
-- Stabilize the finite `PMF`-based Shannon foundation layer.
-- Continue finite entropy sanity theorems beyond relabeling invariance.
+- Continue semantic bridge work from the completed entropy/self-information
+  bridge theorem.
+- Design the finite conditional-law API, including zero-probability
+  conditioning behavior.
 - Maintain project notes in the foundation conventions and project log.
 - Keep the lightweight finite API separated from heavier KL and coding imports.
 - Use the semantic bridge module for future KL and conditional-law equivalence
@@ -14,7 +16,6 @@ module list record what is implemented now.
 
 ## 3 Months
 
-- Prove that entropy agrees with the expected self-information formula.
 - Design finite conditional laws with careful zero-probability behavior.
 - Prove bridge theorems from mutual information to mathlib KL divergence.
 - Extend the current primitive-only checked certificate path beyond the

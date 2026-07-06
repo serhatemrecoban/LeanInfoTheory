@@ -20,6 +20,10 @@ network-information-theory converse proofs.
 
 - A public mathlib-based Lean repository with CI and a current module list.
 - A finite information-measures API connected to existing mathlib/PFR work.
+- Finite entropy sanity theorems for relabeling, coordinate swaps,
+  reassociation, the logarithmic upper bound, and the uniform-law equality case.
+- A first semantic bridge theorem proving that finite entropy is expected
+  self-information over `PMF.toMeasure`.
 - A formal entropy-expression layer for rational linear combinations of entropy
   atoms.
 - An abstract Shannon entropy-valuation layer for certificate-facing semantic

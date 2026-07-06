@@ -26,3 +26,13 @@ jobs:
           fi
 
       - uses: leanprover/lean-action@v1
+
+      - name: Build separately importable modules
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake build LeanInfoTheory.Shannon.EntropyBounds
+          lake build LeanInfoTheory.Shannon.SemanticBridge
+          lake build LeanInfoTheory.MathlibFragments
+          lake build LeanInfoTheory.Certificate.Submodularity
+          lake build LeanInfoTheory.Examples

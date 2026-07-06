@@ -25,12 +25,17 @@ when they stabilize.
 
 - Lake project initialized with Lean `v4.30.0` and mathlib `v4.30.0`.
 - Mathlib cache fetched successfully for local builds.
-- GitHub Actions runs the Lean build and a strict no-placeholder scan.
+- GitHub Actions runs the lightweight root build, a strict no-placeholder
+  scan, and explicit builds for separately importable theorem/demo modules.
 - Initial module structure added under `LeanInfoTheory/`.
 - Finite Shannon entropy and entropy-derived information measures now use
   mathlib `PMF`s and `Real.negMulLog`.
 - Finite entropy is proved invariant under equivalence and injective alphabet
-  relabelings.
+  relabelings, coordinate swaps, and product reassociation.
+- A Jensen-based finite entropy upper bound and its uniform-law equality case
+  are proved in `LeanInfoTheory.Shannon.EntropyBounds`.
+- The first semantic bridge theorem identifies finite entropy with expected
+  self-information over `PMF.toMeasure`.
 - Closed theorem examples are present in the algebraic and checked certificate
   layers.
 - The first non-toy certificate demo proves entropy submodularity from a
@@ -45,15 +50,22 @@ when they stabilize.
 - `LeanInfoTheory.MathlibFragments`: heavier mathlib anchors we expect to use
   later, including binary/q-ary entropy, KL divergence, KL chain rules, PMF
   constructions, and Kraft-McMillan.
-- `LeanInfoTheory.Probability.Finite`: real-mass bridge lemmas in the `PMF`
-  namespace for finite Shannon sums.
+- `LeanInfoTheory.Probability.Finite`: real-mass bridge lemmas and reusable
+  pointwise `PMF.map` facts in the `PMF` namespace for finite Shannon sums and
+  relabeling arguments.
 - `LeanInfoTheory.Shannon.Entropy`: finite Shannon entropy in nats, with
   nonnegativity, deterministic-law, and relabeling-invariance theorems.
+- `LeanInfoTheory.Shannon.EntropyBounds`: Jensen-based upper bound
+  `entropy_le_log_card` and uniform-law equality theorem
+  `entropy_uniformOfFintype`, kept separate from the lightweight entropy
+  definition file because it imports convexity/Jensen tools. Import this
+  module explicitly when using these bounds.
 - `LeanInfoTheory.Shannon.InfoMeasures`: conditional entropy, mutual
   information, conditional mutual information, named marginals, and
   random-variable versions.
-- `LeanInfoTheory.Shannon.SemanticBridge`: separated heavier import boundary
-  for future KL-divergence and conditional-law equivalence theorems.
+- `LeanInfoTheory.Shannon.SemanticBridge`: separated heavier bridge layer;
+  currently contains `selfInfo` and `entropy_eq_integral_selfInfo`, with future
+  KL-divergence and conditional-law equivalence theorems planned here.
 - `LeanInfoTheory.InformationMeasures`: public re-export for finite information
   measures and their first rewrite lemmas. Binary and q-ary entropy remain mathlib names:
   `Real.binEntropy` and `Real.qaryEntropy`.
@@ -70,9 +82,32 @@ when they stabilize.
   raw-to-checked validator, and proof-carrying checked certificate structures
   for primitive Shannon-inequality ingredients, using nonnegative rational
   coefficients and exact decomposition equality.
-- `LeanInfoTheory.Certificate.Submodularity`: first non-toy certificate demo,
-  proving entropy submodularity from a validated CMI certificate.
-- `LeanInfoTheory.Examples`: toy closed examples for the certificate layers.
+- `LeanInfoTheory.Certificate.Submodularity`: separately importable first
+  non-toy certificate demo, proving entropy submodularity from a validated CMI
+  certificate.
+- `LeanInfoTheory.Examples`: separately importable toy closed examples for the
+  certificate layers.
+
+## Import and Namespace Policy
+
+Import `LeanInfoTheory` for the lightweight stable API: finite Shannon
+definitions, the finite information-measure re-export, and the core
+certificate/checker definitions.
+
+The canonical implementation namespace for finite information measures is
+`LeanInfoTheory.Shannon`. In theorem statements, docs, and proof-oriented code,
+prefer names such as `Shannon.entropy` and `Shannon.mutualInfo` when that makes
+the source layer clear. The `LeanInfoTheory.InformationMeasures` module exports
+the main finite-measure names into `LeanInfoTheory` as convenience aliases.
+
+Import heavier or demonstrational modules explicitly:
+
+- `LeanInfoTheory.Shannon.EntropyBounds` for Jensen-based entropy bounds.
+- `LeanInfoTheory.Shannon.SemanticBridge` for self-information,
+  KL/conditional-law bridge work.
+- `LeanInfoTheory.MathlibFragments` for heavy mathlib/coding anchors.
+- `LeanInfoTheory.Certificate.Submodularity` and `LeanInfoTheory.Examples` for
+  demos and examples.
 
 ## Roadmap
 
@@ -89,10 +124,17 @@ when they stabilize.
 ```powershell
 lake exe cache get
 lake build
+lake build LeanInfoTheory.Shannon.EntropyBounds
+lake build LeanInfoTheory.Shannon.SemanticBridge
+lake build LeanInfoTheory.MathlibFragments
+lake build LeanInfoTheory.Certificate.Submodularity
+lake build LeanInfoTheory.Examples
 ```
 
-The Lean CI workflow also fails if Lean source files contain `sorry`, `admit`,
-`opaque`, `undefined`, or an unapproved `axiom`.
+The first `lake build` checks the lightweight root import. The explicit module
+builds check heavier or demonstrational files that are intentionally kept out
+of the root import. The Lean CI workflow also fails if Lean source files
+contain `sorry`, `admit`, `opaque`, `undefined`, or an unapproved `axiom`.
 
 The public project website can be opened locally from:
 

@@ -23,18 +23,19 @@
       </p>
       <ul>
         <li><code>LeanInfoTheory.Basic</code>: lightweight project namespace and shared status vocabulary.</li>
-        <li><code>LeanInfoTheory.Probability.Finite</code>: real-mass bridge lemmas for finite <code>PMF</code> sums.</li>
-        <li><code>LeanInfoTheory.Shannon.Entropy</code>: finite Shannon entropy, random-variable entropy, and relabeling-invariance theorems.</li>
+        <li><code>LeanInfoTheory.Probability.Finite</code>: real-mass bridge lemmas and pointwise <code>PMF.map</code> facts for finite <code>PMF</code> sums and relabeling arguments.</li>
+        <li><code>LeanInfoTheory.Shannon.Entropy</code>: finite Shannon entropy, random-variable entropy, and relabeling, swap, and reassociation invariance theorems.</li>
+        <li><code>LeanInfoTheory.Shannon.EntropyBounds</code>: Jensen-based finite entropy upper bound <code>entropy_le_log_card</code> and uniform-law equality theorem <code>entropy_uniformOfFintype</code>. Import this module explicitly when those heavier analytic bounds are needed.</li>
         <li><code>LeanInfoTheory.Shannon.InfoMeasures</code>: marginals, conditional entropy, mutual information, conditional mutual information, and support/orientation lemmas.</li>
-        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: separated import boundary for future KL and conditional-law bridge theorems.</li>
-        <li><code>LeanInfoTheory.InformationMeasures</code>: public re-export for the finite information-measure API.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: separated bridge layer containing <code>selfInfo</code> and <code>entropy_eq_integral_selfInfo</code>, with future KL and conditional-law bridge theorems planned here.</li>
+        <li><code>LeanInfoTheory.InformationMeasures</code>: public convenience re-export for the finite information-measure API; theorem-oriented code should usually prefer the canonical <code>LeanInfoTheory.Shannon</code> names.</li>
         <li><code>LeanInfoTheory.EntropyExpr</code>: formal entropy-expression algebra and the empty-entropy convention interface.</li>
         <li><code>LeanInfoTheory.EntropyVal</code>: abstract Shannon entropy valuations for certificate work.</li>
         <li><code>LeanInfoTheory.PrimitiveIneq</code>: primitive Shannon inequality expressions and their soundness under abstract valuations.</li>
         <li><code>LeanInfoTheory.Certificate</code>: generic nonnegative-combination soundness theorem and exact decomposition matching.</li>
         <li><code>LeanInfoTheory.Certificate.Checked</code>: raw certificate data, a first raw-to-checked validator, and proof-carrying checked certificate structures with nonnegative rational coefficients and exact decomposition equality.</li>
-        <li><code>LeanInfoTheory.Certificate.Submodularity</code>: first non-toy certificate demo, proving entropy submodularity from a validated CMI certificate.</li>
-        <li><code>LeanInfoTheory.Examples</code>: closed toy examples for the certificate layers.</li>
+        <li><code>LeanInfoTheory.Certificate.Submodularity</code>: separately importable first non-toy certificate demo, proving entropy submodularity from a validated CMI certificate.</li>
+        <li><code>LeanInfoTheory.Examples</code>: separately importable closed toy examples for the certificate layers.</li>
       </ul>
       <p>
         Human-facing design notes are tracked in <code>docs/foundation-conventions.md</code>

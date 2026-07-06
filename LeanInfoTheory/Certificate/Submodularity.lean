@@ -34,6 +34,10 @@ noncomputable def expr (a b : EntropyAtom Var) : EntropyExpr Var :=
   EntropyExpr.atom a + EntropyExpr.atom b -
     EntropyExpr.atom (a ∪ b) - EntropyExpr.atom (a ∩ b)
 
+/--
+Set identity used to rewrite the first CMI atom in the submodularity proof:
+`(A \ B) union (A inter B)` is just `A`.
+-/
 private theorem diff_union_inter_eq_left (a b : EntropyAtom Var) :
     (a \ b) ∪ (a ∩ b) = a := by
   ext x
@@ -43,6 +47,10 @@ private theorem diff_union_inter_eq_left (a b : EntropyAtom Var) :
     · simp [hxa, hxb]
   · simp [hxa]
 
+/--
+Set identity used to rewrite the second CMI atom in the submodularity proof:
+`(B \ A) union (A inter B)` is just `B`.
+-/
 private theorem diff_union_inter_eq_right (a b : EntropyAtom Var) :
     (b \ a) ∪ (a ∩ b) = b := by
   ext x
@@ -54,6 +62,10 @@ private theorem diff_union_inter_eq_right (a b : EntropyAtom Var) :
     · simp [hxa, hxb]
     · simp [hxa, hxb]
 
+/--
+Set identity used to rewrite the joint CMI atom: the two differences together
+with the intersection reconstruct `A union B`.
+-/
 private theorem diff_union_diff_union_inter_eq_union (a b : EntropyAtom Var) :
     ((a \ b) ∪ (b \ a)) ∪ (a ∩ b) = a ∪ b := by
   ext x

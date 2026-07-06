@@ -8,8 +8,9 @@ organized as they are, and which ideas are waiting for the right moment.
 ## Current File Organization
 
 - `LeanInfoTheory.lean`: lightweight public library entry point. It imports
-  the stable finite-Shannon, certificate-facing, and current example modules,
-  but not the heavy KL/coding anchor files.
+  the stable finite-Shannon definitions and core certificate/checker modules,
+  but not examples, certificate demos, heavier analytic bounds, KL/coding
+  anchor files, or semantic bridge modules.
 - `LeanInfoTheory/Basic.lean`: small project-level definitions used by
   documentation and examples.
 - `LeanInfoTheory/EntropyExpr.lean`: algebraic entropy-expression syntax for
@@ -26,10 +27,11 @@ organized as they are, and which ideas are waiting for the right moment.
   raw-to-checked validator, and proof-carrying checked certificates for
   primitive Shannon ingredients using nonnegative rational coefficients and
   exact decomposition equality.
-- `LeanInfoTheory/Certificate/Submodularity.lean`: first non-toy
-  certificate demonstration, proving entropy submodularity from a validated
-  conditional-mutual-information certificate.
-- `LeanInfoTheory/Examples.lean`: small examples that exercise the current API.
+- `LeanInfoTheory/Certificate/Submodularity.lean`: separately importable first
+  non-toy certificate demonstration, proving entropy submodularity from a
+  validated conditional-mutual-information certificate.
+- `LeanInfoTheory/Examples.lean`: separately importable small examples that
+  exercise the current API.
 - `LeanInfoTheory/InformationMeasures.lean`: compatibility/re-export module for
   the finite Shannon definitions.
 - `LeanInfoTheory/MathlibFragments.lean`: heavier mathlib anchors we expect to
@@ -37,20 +39,27 @@ organized as they are, and which ideas are waiting for the right moment.
   entropy, and Kraft-McMillan. This module is separately importable and should
   not be treated as part of the lightweight foundation import surface.
 - `LeanInfoTheory/Probability/Finite.lean`: finite `PMF` real-mass bridge
-  lemmas, kept in the `PMF` namespace and deliberately small.
+  lemmas and reusable pointwise `PMF.map` facts, kept in the `PMF` namespace
+  and deliberately small.
 - `LeanInfoTheory/Shannon/Entropy.lean`: finite Shannon entropy, entropy of
   finite-valued random variables via `PMF.map`, and first entropy sanity
   theorems such as relabeling invariance.
+- `LeanInfoTheory/Shannon/EntropyBounds.lean`: Jensen-based finite entropy
+  upper bounds. This imports convexity/Jensen tools separately so the core
+  entropy definition file remains lightweight.
 - `LeanInfoTheory/Shannon/InfoMeasures.lean`: marginals, conditional entropy,
   mutual information, conditional mutual information, and basic rewrite lemmas.
 - `LeanInfoTheory/Shannon/SemanticBridge.lean`: heavier bridge module for
-  future KL-divergence and conditional-law equivalence theorems.
+  self-information, KL-divergence, and conditional-law equivalence theorems.
+  It currently proves the entropy/self-information bridge over `PMF.toMeasure`.
 - `blueprint/`: project-map notes for theorem dependencies and future
   generated blueprint pages.
 - `docs/`: human-facing design notes, roadmap notes, foundation conventions,
   external review notes, and this project log.
 - `home_page/`: static website files for the project site.
-- `.github/workflows/`: CI, docs, release, and update workflows.
+- `.github/workflows/`: CI, docs, release, and update workflows. The Lean CI
+  builds the lightweight root and explicitly builds separately importable
+  theorem/demo/reference modules.
 - `tmp/`, `.lake/`, and `info theory e-books/`: local working/reference
   material that should remain outside the repository.
 
@@ -519,6 +528,173 @@ The next mathematical step should continue from the remaining finite entropy
 sanity theorem backlog rather than reopening the completed immediate
 certificate layer.
 
+### 23. Product Reassociation Entropy Invariance
+
+The finite Shannon entropy API now records that entropy is invariant under the
+canonical reassociation equivalence between `(alpha × beta) × gamma` and
+`alpha × beta × gamma`.
+
+The new theorem layer includes:
+
+- `Shannon.entropy_map_prodAssoc`, for reassociating a left-associated triple
+  alphabet to Lean's right-associated triple product;
+- `Shannon.entropy_map_prodAssoc_symm`, for the reverse orientation;
+- `Shannon.entropyOf_prodAssoc`, for finite-valued random variables
+  `(X, Y, Z)`.
+
+These are intentionally proved from the existing relabeling-invariance theorem
+`Shannon.entropy_map_equiv`, so the API keeps one proof principle: entropy is
+unchanged by bijective renaming of finite atoms. This completes the live
+future-work item about product reassociation. The remaining finite-entropy
+sanity backlog is now the harder textbook-style upper bound by logarithm of
+alphabet size and its uniform-law equality case.
+
+### 24. Finite Entropy Upper Bound And Uniform Equality
+
+The new file `LeanInfoTheory/Shannon/EntropyBounds.lean` proves the first
+textbook-style finite entropy bound and its basic equality example:
+
+- `Shannon.entropy_le_log_card`: for a nonempty finite alphabet, the entropy of
+  any `PMF alpha` is at most `Real.log (Fintype.card alpha)`;
+- `Shannon.entropy_uniformOfFintype`: the uniform distribution on a nonempty
+  finite alphabet has entropy exactly `Real.log (Fintype.card alpha)`.
+
+The proof uses mathlib's `Real.concaveOn_negMulLog` together with finite
+Jensen's inequality, rather than duplicating calculus inside this project. The
+theorem lives in a separate bounds module because importing Jensen is
+noticeably heavier than the core entropy definition and relabeling API. This
+keeps the base `LeanInfoTheory/Shannon/Entropy.lean` file focused on definitions
+and cheap sanity theorems, while still giving theorem work an explicit place
+for analytic finite-entropy bounds.
+
+The equality theorem uses mathlib's `PMF.uniformOfFintype` API. Together, these
+theorems complete the finite entropy sanity mini-milestone covering alphabet
+relabeling/reassociation, the textbook upper bound by alphabet size, and the
+uniform-law equality example.
+
+### 25. Lean Code Commentary Convention
+
+We made the Lean source commentary convention explicit: public definitions,
+theorems, structures, inductive types, and instances should have short
+human-readable docstrings explaining the mathematical meaning, even when the
+Lean name is already suggestive. Private helper lemmas should also be commented
+when their role is not obvious from the statement alone.
+
+This pass added missing explanations for:
+
+- PMF map helper lemmas that were then private and used in entropy relabeling
+  invariance;
+- private finite-set identities used to turn entropy submodularity into a
+  conditional-mutual-information primitive;
+- the coercion from `ShannonEntropyVal` to its underlying atom-value function;
+- the `entropyOf_id` identity;
+- the main steps inside the Jensen proof of the finite entropy upper bound.
+
+The goal is not verbose prose inside every proof, but enough mathematical
+orientation that future contributors can read theorem files as a formalized
+textbook development rather than as isolated Lean terms.
+
+### 26. Public Website Status Refresh
+
+The website and public-facing documentation were refreshed after the finite
+entropy upper-bound milestone. The homepage now has a status snapshot table
+that separates the finite Shannon foundation, entropy sanity theorems,
+certificate core, first certificate demo, and semantic bridge boundary. The
+implemented list now mentions coordinate swaps, product reassociation, the
+finite entropy upper bound, and the uniform-law equality theorem, while the
+planned list no longer treats the entropy upper bound as future work.
+
+The module-list page now includes `LeanInfoTheory.Shannon.EntropyBounds`, and
+the blueprint/dependency-map pages record the heavier Jensen-based bounds
+module separately from the lightweight entropy definition module. The roadmap
+was also adjusted so the immediate mathematical direction is now semantic
+bridge work: expected self-information, conditional laws, and KL-equivalence
+theorems.
+
+This completes the public-facing website polish item that was waiting for the
+finite entropy sanity milestone. Generated API documentation, richer
+collaboration material, and network-converse demos remain later milestones.
+
+### 27. Public PMF Map Helper Lemmas
+
+The private pointwise `PMF.map` helper lemmas used by entropy relabeling
+invariance were reviewed against mathlib's current `PMF` API. Mathlib already
+provides the general pushed-forward mass formula `PMF.map_apply`, support facts
+such as `PMF.support_map`, and the measure bridge
+`PMF.toOuterMeasure_map_apply`, but it does not provide the exact pointwise
+injective-map facts we use repeatedly.
+
+We promoted the reusable facts to `LeanInfoTheory/Probability/Finite.lean`
+inside the `PMF` namespace:
+
+- `PMF.map_apply_of_injective`: if `f` is injective, then
+  `(p.map f) (f a) = p a`;
+- `PMF.map_apply_eq_zero_of_notMem_range`: atoms outside the range of a map
+  have zero mass under the pushed-forward PMF;
+- `PMF.map_apply_equiv`: pushing a PMF forward along an equivalence preserves
+  each atom's mass at the renamed atom.
+
+The entropy relabeling proofs now depend on these public helper lemmas instead
+of carrying private duplicates. This keeps the entropy file focused on entropy
+arguments and gives future support, conditioning, marginal, and semantic bridge
+proofs a stable place to reuse pointwise PMF-map facts.
+
+### 28. Namespace and Root Import Policy
+
+The namespace and import-surface policy is now explicit.
+
+For finite information measures, `LeanInfoTheory.Shannon` is the canonical
+implementation namespace. The `LeanInfoTheory.InformationMeasures` module still
+exports the main finite-measure names into `LeanInfoTheory` for convenience,
+but theorem-oriented code and documentation should prefer `Shannon.*` names
+when that makes the source layer clearer.
+
+The root module `LeanInfoTheory.lean` is now a lightweight library entry point:
+it imports the stable finite-measure API and the core certificate/checker
+definitions, but it no longer imports `LeanInfoTheory.Certificate.Submodularity`
+or `LeanInfoTheory.Examples`. It also continues to leave
+`LeanInfoTheory.Shannon.EntropyBounds`, `LeanInfoTheory.Shannon.SemanticBridge`,
+and `LeanInfoTheory.MathlibFragments` as explicit imports. This keeps demo
+files, heavier analytic theorem files, KL bridge files, and reference-anchor
+files out of ordinary user imports.
+
+To avoid losing coverage, the Lean CI now explicitly builds the separately
+importable modules:
+
+- `LeanInfoTheory.Shannon.EntropyBounds`;
+- `LeanInfoTheory.Shannon.SemanticBridge`;
+- `LeanInfoTheory.MathlibFragments`;
+- `LeanInfoTheory.Certificate.Submodularity`;
+- `LeanInfoTheory.Examples`.
+
+Certificate-demo theorems also remain in descriptive namespaces such as
+`Certificate.Submodularity.entropy_submodularity`. We will add polished public
+aliases only after enough theorem examples exist to justify an alias layer.
+
+### 29. Entropy Self-Information Semantic Bridge
+
+The semantic bridge layer now contains the first theorem connecting the local
+finite-sum entropy definition to textbook measure-theoretic semantics.
+
+The new API in `LeanInfoTheory/Shannon/SemanticBridge.lean` includes:
+
+- `Shannon.selfInfo`, the self-information of an atom under a `PMF`, defined as
+  `-log p(a)` on nonzero real mass and `0` on zero-mass atoms;
+- `Shannon.selfInfo_of_toReal_eq_zero` and
+  `Shannon.selfInfo_of_toReal_ne_zero`, recording the two branches of the
+  definition;
+- `Shannon.toReal_mul_selfInfo`, proving that mass times self-information is
+  exactly the `Real.negMulLog` entropy summand;
+- `Shannon.entropy_eq_integral_selfInfo`, proving
+  `entropy p = ∫ a, selfInfo p a ∂p.toMeasure` for finite alphabets with
+  measurable singletons.
+
+This is the textbook identity `H(P) = E[-log P(X)]`, formalized with the
+zero-mass convention made explicit. It gives the project its first completed
+semantic bridge theorem and sets the pattern for later bridges: use the
+finite-sum API in core files, then prove equivalence to the
+measure-theoretic/mathlib semantics in separately importable bridge files.
+
 ## External Review Notes
 
 The detailed external review summary has been moved to
@@ -597,121 +773,74 @@ These are the live notes we are keeping for future work. Completed foundation
 reminders have been removed from this backlog and are recorded instead in the
 step-by-step history above.
 
-1. Make the namespace policy explicit. Definitions currently live in
-   `LeanInfoTheory.Shannon`, and `LeanInfoTheory.InformationMeasures` exports
-   them into `LeanInfoTheory`. Before there are many more names, decide whether
-   examples and documentation should prefer names such as `Shannon.entropy` or
-   exported names such as `LeanInfoTheory.entropy`. The same decision should
-   be made for theorem-facing certificate results: for example, decide whether
-   results currently named under namespaces such as
-   `Certificate.Submodularity.entropy_submodularity` should later receive
-   cleaner public aliases outside the certificate-demo namespace.
-
-2. Continue monitoring the top-level import surface. The root
-   `LeanInfoTheory.lean` no longer imports the heavy `MathlibFragments` anchor
-   file, but it still imports examples and the current certificate demo module.
-   Before the project grows much further, decide whether examples and
-   certificate demos should remain in the root import or become separately
-   importable development aids.
-
-3. Revisit which coordinate-orientation lemmas should be marked `[simp]`.
+1. Revisit which coordinate-orientation lemmas should be marked `[simp]`.
    They are currently explicit lemmas, not global simp lemmas, to avoid
    surprising simplifier behavior. Promote only the ones that prove harmless
    after more theorem pressure.
 
-4. Prove the semantic bridge for `entropy`, connecting the finite
-   `Real.negMulLog` sum to the expected self-information or the corresponding
-   measure-theoretic expression over `PMF.toMeasure`.
-
-5. Design the finite conditional-law API carefully. In particular, decide how
+2. Design the finite conditional-law API carefully. In particular, decide how
    zero-probability conditioning events should be represented. Rocq chooses a
    default finite distribution, but mathlib already has measure-level
    conditioning conventions, so copying Rocq directly may create friction.
 
-6. Prove that `condEntropy` agrees with the expected entropy of finite
+3. Prove that `condEntropy` agrees with the expected entropy of finite
    conditional laws once the conditional-law representation is chosen.
 
-7. Prove that `mutualInfo` agrees with `InformationTheory.klDiv` from the joint
+4. Prove that `mutualInfo` agrees with `InformationTheory.klDiv` from the joint
    law to the product of its marginals. This should live in
    `LeanInfoTheory/Shannon/SemanticBridge.lean` or a later subfile of it.
 
-8. Prove that `condMutualInfo` agrees with a KL chain-rule expression or an
+5. Prove that `condMutualInfo` agrees with a KL chain-rule expression or an
    averaged conditional-KL expression. The existing `SemanticBridge` file
    already imports mathlib's KL chain-rule API for this purpose.
 
-9. Add the remaining value-level orientation theorem for finite entropy:
-   product reassociation. Entropy invariance under equivalences, injective
-   relabelings, and pair-coordinate swap is now implemented in
-   `LeanInfoTheory/Shannon/Entropy.lean`.
-
-10. Keep the finite-family entropy API delayed until pair/triple APIs and
+6. Keep the finite-family entropy API delayed until pair/triple APIs and
     semantic bridge proofs clarify the right representation. The main open
     question is whether the API should be indexed by `Fin n`, finite sets of
     variable names, dependent finite alphabets, vectors, or another
     mathlib-friendly structure.
 
-11. Split `LeanInfoTheory/Shannon/InfoMeasures.lean` only when the file becomes
+7. Split `LeanInfoTheory/Shannon/InfoMeasures.lean` only when the file becomes
     too large or theorem pressure makes the boundaries clear. A likely future
     layout is `Marginals`, `ConditionalEntropy`, `MutualInfo`,
     `ConditionalMutualInfo`, and one or more heavier semantic bridge files.
 
-12. Keep imports light in the core finite Shannon files. Heavy bridge files can
+8. Keep imports light in the core finite Shannon files. Heavy bridge files can
     import KL divergence, kernels, conditional probability, and coding theory
     only when those APIs are actually needed.
 
-13. Treat `LeanInfoTheory/MathlibFragments.lean` as a separately importable
+9. Treat `LeanInfoTheory/MathlibFragments.lean` as a separately importable
     anchor and checklist for upstream APIs, not as part of the lightweight
     public import surface.
 
-14. Add coding-theory material, including Kraft-McMillan connections, in a
+10. Add coding-theory material, including Kraft-McMillan connections, in a
     later coding-oriented layer rather than in the finite Shannon foundation.
 
-15. Upstream conservatively to mathlib. Small generic lemmas can go earlier,
+11. Upstream conservatively to mathlib. Small generic lemmas can go earlier,
     but substantial `InformationTheory` definitions should wait until local
     names, assumptions, and theorem statements have stabilized.
 
-16. Keep PSITIP/oXitip-style certificate infrastructure local unless mathlib
+12. Keep PSITIP/oXitip-style certificate infrastructure local unless mathlib
     maintainers specifically want a generic certificate framework.
-
-### Do Soon After The Immediate Layer
-
-17. Add the remaining finite entropy sanity theorems that information theorists
-    expect: entropy upper bounds by the logarithm of alphabet size and the
-    uniform-law equality case. Entropy invariance under equivalences and
-    injective relabelings is now in the finite Shannon entropy API.
 
 ### Do Later
 
-18. Review the private PMF helper lemmas from entropy relabeling invariance.
-    The proof of finite entropy invariance under injective relabeling currently
-    uses private helper lemmas in `LeanInfoTheory/Shannon/Entropy.lean`,
-    morally saying that if `f : alpha -> beta` is injective, then
-    `(p.map f) (f a) = p a`, and if `b` is outside the range of `f`, then
-    `(p.map f) b = 0`. These are potentially useful beyond entropy, especially
-    for future finite-support, marginal, conditioning, and semantic bridge
-    proofs. Keep them private for now to avoid prematurely enlarging the public
-    API, but if they are reused in another module, consider promoting them to a
-    stable public location, likely in the `PMF` namespace or a finite
-    PMF support/mapping helper file. Before promotion, search mathlib again for
-    existing equivalent lemmas and choose names consistent with mathlib's
-    `PMF.map` API.
-
-19. Add generated API documentation once the Lean API is stable enough. Until
+13. Add generated API documentation once the Lean API is stable enough. Until
     then, keep the current docs page described as a module list rather than as
     generated declaration documentation. When doc generation is added, link the
     homepage and docs page directly to declarations and important modules.
 
-20. Add a minimal contributor surface before inviting broader collaboration:
+14. Add a minimal contributor surface before inviting broader collaboration:
     `CONTRIBUTING.md`, beginner-friendly tasks, issue labels, and a short note
     about which components may eventually be proposed upstream to mathlib.
 
-21. Add advanced certificate constraints after the primitive-only checker
+15. Add advanced certificate constraints after the primitive-only checker
     remains stable under a little more theorem pressure. Independence
     constraints, functional-dependence constraints, and Markov constraints are
     essential for network converses, but they should be introduced as explicit
     extensions of the primitive certificate layer.
 
-22. Add primitive-recognition/autotagging only after the manually tagged
+16. Add primitive-recognition/autotagging only after the manually tagged
     certificate pipeline has been exercised on several examples. The current
     validator checks a raw expression against a supplied `PrimitiveIneq.Kind`;
     a later ergonomic layer could try to infer primitive tags from normalized
@@ -721,12 +850,6 @@ step-by-step history above.
     propose tags, but the existing exact equality checker must still verify
     them.
 
-23. Add PSITIP/oXitip-style certificate import only after the internal checked
+17. Add PSITIP/oXitip-style certificate import only after the internal checked
     certificate format is stable. The first parser should target a small,
     explicit external format and should never be part of the trusted kernel.
-
-24. Expand website polish after the next mathematical milestone. A richer
-    status table, architecture diagram, collaboration page, and demo section
-    will be more meaningful after the project has both the submodularity demo,
-    finite-entropy relabeling invariance, and either a semantic bridge theorem
-    or an entropy upper-bound theorem to show.

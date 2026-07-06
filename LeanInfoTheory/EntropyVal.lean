@@ -55,6 +55,7 @@ namespace ShannonEntropyVal
 
 variable {Var : Type u} [DecidableEq Var]
 
+/-- Use a Shannon entropy valuation as the underlying function assigning values to atoms. -/
 instance : CoeFun (ShannonEntropyVal Var) (fun _ => EntropyAtom Var -> Real) where
   coe h := h.value
 

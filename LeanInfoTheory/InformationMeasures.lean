@@ -9,8 +9,13 @@ import LeanInfoTheory.Shannon.InfoMeasures
 /-!
 # Finite information-measure API
 
-This file keeps the original public entry point for information measures while
-the concrete finite-discrete definitions live in `LeanInfoTheory.Shannon`.
+This file keeps a public re-export entry point for finite information measures
+while the canonical finite-discrete definitions live in
+`LeanInfoTheory.Shannon`.
+
+Project theorem files and documentation should prefer the namespaced
+`Shannon.*` names when the distinction matters. The exported names in
+`LeanInfoTheory` are convenience aliases for users who import the project root.
 -/
 
 namespace LeanInfoTheory

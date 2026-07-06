@@ -47,72 +47,6 @@ theorem entropy_nonneg {alpha : Type u} [Fintype alpha] (p : PMF alpha) :
       (PMF.toReal_nonneg p a)
       (PMF.toReal_le_one p a)
 
-private theorem map_apply_equiv {alpha : Type u} {beta : Type v}
-    (p : PMF alpha) (e : alpha ≃ beta) (a : alpha) :
-    p.map e (e a) = p a := by
-  have hpre : e ⁻¹' ({e a} : Set beta) = ({a} : Set alpha) := by
-    ext x
-    constructor
-    · intro hx
-      exact e.injective hx
-    · intro hx
-      rw [hx]
-      rfl
-  calc
-    p.map e (e a) =
-        (p.map e).toOuterMeasure ({e a} : Set beta) := by
-      exact (PMF.toOuterMeasure_apply_singleton (p := p.map e) (e a)).symm
-    _ = p.toOuterMeasure (e ⁻¹' ({e a} : Set beta)) := by
-      rw [PMF.toOuterMeasure_map_apply]
-    _ = p.toOuterMeasure ({a} : Set alpha) := by
-      rw [hpre]
-    _ = p a := by
-      exact PMF.toOuterMeasure_apply_singleton (p := p) a
-
-private theorem map_apply_of_injective {alpha : Type u} {beta : Type v}
-    (p : PMF alpha) {f : alpha -> beta} (hf : Function.Injective f) (a : alpha) :
-    p.map f (f a) = p a := by
-  have hpre : f ⁻¹' ({f a} : Set beta) = ({a} : Set alpha) := by
-    ext x
-    constructor
-    · intro hx
-      exact hf (by simpa using hx)
-    · intro hx
-      rw [hx]
-      rfl
-  calc
-    p.map f (f a) =
-        (p.map f).toOuterMeasure ({f a} : Set beta) := by
-      exact (PMF.toOuterMeasure_apply_singleton (p := p.map f) (f a)).symm
-    _ = p.toOuterMeasure (f ⁻¹' ({f a} : Set beta)) := by
-      rw [PMF.toOuterMeasure_map_apply]
-    _ = p.toOuterMeasure ({a} : Set alpha) := by
-      rw [hpre]
-    _ = p a := by
-      exact PMF.toOuterMeasure_apply_singleton (p := p) a
-
-private theorem map_apply_eq_zero_of_notMem_range {alpha : Type u} {beta : Type v}
-    (p : PMF alpha) {f : alpha -> beta} {b : beta} (hb : b ∉ Set.range f) :
-    p.map f b = 0 := by
-  have hpre : f ⁻¹' ({b} : Set beta) = (∅ : Set alpha) := by
-    ext x
-    constructor
-    · intro hx
-      exfalso
-      exact hb ⟨x, by simpa using hx⟩
-    · intro hx
-      cases hx
-  calc
-    p.map f b =
-        (p.map f).toOuterMeasure ({b} : Set beta) := by
-      exact (PMF.toOuterMeasure_apply_singleton (p := p.map f) b).symm
-    _ = p.toOuterMeasure (f ⁻¹' ({b} : Set beta)) := by
-      rw [PMF.toOuterMeasure_map_apply]
-    _ = p.toOuterMeasure (∅ : Set alpha) := by
-      rw [hpre]
-    _ = 0 := by
-      simp
-
 /--
 Entropy is invariant under relabeling the alphabet by an equivalence.
 
@@ -128,7 +62,7 @@ theorem entropy_map_equiv {alpha : Type u} {beta : Type v}
     (Fintype.sum_equiv e
       (fun a : alpha => Real.negMulLog (p a).toReal)
       (fun b : beta => Real.negMulLog (p.map e b).toReal)
-      (fun a => by simp [map_apply_equiv p e a])).symm
+      (fun a => by simp [PMF.map_apply_equiv p e a])).symm
 
 /--
 Entropy is invariant under injective relabeling into a larger finite alphabet.
@@ -152,7 +86,7 @@ theorem entropy_map_injective {alpha : Type u} {beta : Type v}
           intro hbrange
           rcases hbrange with ⟨a, rfl⟩
           exact hbimage (by simp)
-        simp [map_apply_eq_zero_of_notMem_range p hbrange]
+        simp [PMF.map_apply_eq_zero_of_notMem_range p hbrange]
     _ = ∑ a, g (f a) := by
       rw [Finset.sum_image]
       intro a _ha a' _ha' h
@@ -163,7 +97,7 @@ theorem entropy_map_injective {alpha : Type u} {beta : Type v}
           ∑ a, Real.negMulLog (p a).toReal
       apply Finset.sum_congr rfl
       intro a _ha
-      rw [map_apply_of_injective p hf a]
+      rw [PMF.map_apply_of_injective p hf a]
 
 /-- A deterministic finite PMF has entropy zero. -/
 @[simp]
@@ -183,6 +117,7 @@ def entropyOf {omega : Type u} {alpha : Type v} [Fintype alpha]
     (p : PMF omega) (X : omega -> alpha) : Real :=
   entropy (p.map X)
 
+/-- Entropy of the identity random variable is the entropy of the original law. -/
 @[simp]
 theorem entropyOf_id {alpha : Type u} [Fintype alpha] (p : PMF alpha) :
     entropyOf p id = entropy p := by
@@ -217,6 +152,26 @@ theorem entropy_map_swap {alpha : Type u} {beta : Type v}
     entropy (p.map Prod.swap) = entropy p := by
   simpa using entropy_map_equiv (p := p) (Equiv.prodComm alpha beta)
 
+/--
+Reassociating a left-associated triple alphabet preserves entropy.
+
+This records that `H((A, B), C)` and `H(A, B, C)` are the same entropy after
+the canonical product reassociation equivalence.
+-/
+theorem entropy_map_prodAssoc {alpha : Type u} {beta : Type v} {gamma : Type w}
+    [Fintype alpha] [Fintype beta] [Fintype gamma]
+    (p : PMF ((alpha × beta) × gamma)) :
+    entropy (p.map (Equiv.prodAssoc alpha beta gamma)) = entropy p := by
+  exact entropy_map_equiv (p := p) (Equiv.prodAssoc alpha beta gamma)
+
+/-- Reassociating a right-associated triple alphabet back to the left preserves entropy. -/
+theorem entropy_map_prodAssoc_symm
+    {alpha : Type u} {beta : Type v} {gamma : Type w}
+    [Fintype alpha] [Fintype beta] [Fintype gamma]
+    (p : PMF (alpha × beta × gamma)) :
+    entropy (p.map (Equiv.prodAssoc alpha beta gamma).symm) = entropy p := by
+  exact entropy_map_equiv (p := p) (Equiv.prodAssoc alpha beta gamma).symm
+
 /-- Swapping the two coordinates of a joint law preserves joint entropy. -/
 theorem jointEntropy_map_swap {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
@@ -239,6 +194,29 @@ theorem jointEntropyOf_swap
     entropy_map_equiv
       (p := p.map fun omega => (X omega, Y omega))
       (Equiv.prodComm alpha beta)
+
+/--
+Entropy of three finite-valued random variables is invariant under reassociating
+the product alphabet.
+-/
+theorem entropyOf_prodAssoc
+    {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
+    [Fintype alpha] [Fintype beta] [Fintype gamma]
+    (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta) (Z : omega -> gamma) :
+    entropyOf p (fun omega => (X omega, Y omega, Z omega)) =
+      entropyOf p (fun omega => ((X omega, Y omega), Z omega)) := by
+  unfold entropyOf
+  have hmap :
+      (p.map fun omega => (X omega, Y omega, Z omega)) =
+        (p.map fun omega => ((X omega, Y omega), Z omega)).map
+          (Equiv.prodAssoc alpha beta gamma) := by
+    simpa [Function.comp_def] using
+      (PMF.map_comp
+        (p := p)
+        (f := fun omega => ((X omega, Y omega), Z omega))
+        (g := Equiv.prodAssoc alpha beta gamma)).symm
+  rw [hmap]
+  exact entropy_map_prodAssoc (p := p.map fun omega => ((X omega, Y omega), Z omega))
 
 end
 
