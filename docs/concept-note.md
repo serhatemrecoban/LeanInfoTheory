@@ -57,7 +57,7 @@ network-information-theory converse proofs.
   certificate formats such as PSITIP/oXitip output.
 - Independence, Markov, and functional-dependence constraints are not yet part
   of the checked certificate language.
-- Generated API documentation and non-toy network converse examples are future
+- Full Lean doc-gen output and non-toy network converse examples are future
   milestones.
 
 ## Funding Use

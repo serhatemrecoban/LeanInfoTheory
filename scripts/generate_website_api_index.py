@@ -214,6 +214,11 @@ def source_link(decl: Declaration) -> str:
     return f"{GITHUB_SOURCE_ROOT}/{decl.path}#L{decl.line}"
 
 
+def declaration_id(decl: Declaration) -> str:
+    slug = re.sub(r"[^A-Za-z0-9_-]+", "-", decl.name).strip("-")
+    return f"decl-{slug}"
+
+
 def doc_text(decl: Declaration) -> str:
     if decl.doc:
         return html.escape(decl.doc)
@@ -248,7 +253,7 @@ def declaration_rows(declarations: list[Declaration]) -> str:
     rows = []
     for decl in declarations:
         rows.append(
-            "<tr>"
+            f"<tr id=\"{html.escape(declaration_id(decl))}\">"
             f"<td><code>{html.escape(decl.name)}</code></td>"
             f"<td>{html.escape(KIND_LABELS[decl.kind])}</td>"
             f"<td><code>{html.escape(decl.module)}</code></td>"
@@ -265,18 +270,19 @@ def generated_html(declarations: list[Declaration]) -> str:
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Generated API index | LeanInfoTheory</title>
+    <title>Generated declaration index | LeanInfoTheory</title>
     <link rel="stylesheet" href="../styles.css">
   </head>
   <body>
     <header class="page-header" role="banner">
-      <h1 class="project-name">Generated API Index</h1>
+      <h1 class="project-name">Generated Declaration Index</h1>
       <h2 class="project-tagline">Source-derived declaration inventory for LeanInfoTheory.</h2>
       <nav class="project-links" aria-label="Project links">
         <a href="../" class="btn">Home</a>
-        <a href="./" class="btn">Documentation</a>
-        <a href="../module-guide.html" class="btn">Module guide</a>
         <a href="../theorems.html" class="btn">Theorems</a>
+        <a href="../submodularity-demo.html" class="btn">Demo</a>
+        <a href="./api-index.html" class="btn">API Index</a>
+        <a href="../blueprint/" class="btn">Blueprint</a>
         <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
     </header>

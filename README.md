@@ -41,8 +41,8 @@ when they stabilize.
 - The first non-toy certificate demo proves entropy submodularity from a
   validated conditional-mutual-information certificate.
 - Website dashboard, theorem highlights, module guide, certificate-demo pages,
-  generated module-level dependency map, and generated declaration index live
-  in `home_page/`.
+  generated module dependency map, and source-derived declaration index live in
+  `home_page/`.
 - Blueprint and roadmap notes live in `blueprint/` and `docs/`.
 
 ## Lean Modules
@@ -116,9 +116,9 @@ Import heavier or demonstrational modules explicitly:
 
 ## Roadmap
 
-1. Upgrade the public site beyond the current module graph and declaration
-   index with a theorem-level blueprint, full Lean doc-gen output, and a
-   blueprint PDF.
+1. Upgrade the public site beyond the current module dependency map and
+   source-derived declaration index with a theorem-level blueprint, full Lean
+   doc-gen output, and a blueprint PDF.
 2. Extend the checked-certificate path beyond the submodularity demo with more
    textbook entropy inequalities.
 3. Add richer certificate assumptions such as independence, Markov, and

@@ -21,9 +21,10 @@
       </h2>
       <p class="project-authors">by Serhat Emre Coban</p>
       <nav class="project-links" aria-label="Project links">
-        <a href="blueprint/" class="btn">Blueprint</a>
-        <a href="docs/" class="btn">Documentation</a>
         <a href="theorems.html" class="btn">Theorems</a>
+        <a href="submodularity-demo.html" class="btn">Demo</a>
+        <a href="docs/api-index.html" class="btn">API Index</a>
+        <a href="blueprint/" class="btn">Blueprint</a>
         <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
     </header>
@@ -49,6 +50,70 @@
           semantic bridges to conditional laws and KL divergence, and a checked
           certificate demo for entropy submodularity.
         </p>
+      </section>
+
+      <section class="project-summary" aria-labelledby="summary-heading">
+        <h2 id="summary-heading">Project Summary</h2>
+        <p>
+          LeanInfoTheory is a Lean 4/mathlib project building a finite
+          information-theory library and a trusted entropy-inequality
+          certificate checker. The current formalization covers entropy,
+          conditional entropy, mutual information, conditional mutual
+          information, semantic bridges to conditional laws and KL divergence,
+          and a checked Shannon submodularity demo; the longer-term goal is a
+          textbook-scale library with importable external certificates for
+          network-information-theory converses.
+        </p>
+      </section>
+
+      <section aria-labelledby="dashboard-heading">
+        <h2 id="dashboard-heading">Status at a Glance</h2>
+        <div class="dashboard-grid">
+          <article class="dashboard-item">
+            <span class="status-pill proved">Proved</span>
+            <h3>Finite PMF Information Measures</h3>
+            <p>
+              Entropy, conditional entropy, mutual information, conditional
+              mutual information, relabeling invariance, and finite entropy
+              upper-bound results are checked in Lean.
+            </p>
+            <a href="theorems.html">See theorem highlights</a>
+          </article>
+          <article class="dashboard-item">
+            <span class="status-pill proved">Proved bridge</span>
+            <h3>Semantic and KL Bridge</h3>
+            <p>
+              The finite definitions are connected to expected self-information,
+              conditional laws, KL divergence, averaged conditional KL,
+              nonnegativity, and a first chain rule.
+            </p>
+            <a href="theorems.html">See bridge statements</a>
+          </article>
+          <article class="dashboard-item">
+            <span class="status-pill demo">Checked demo</span>
+            <h3>Certificate Checker</h3>
+            <p>
+              Lean validates supplied primitive-Shannon certificates by checking
+              nonnegative rational coefficients and exact normalized
+              entropy-expression equality. It does not search automatically yet.
+            </p>
+            <a href="submodularity-demo.html">See submodularity demo</a>
+          </article>
+          <article class="dashboard-item">
+            <span class="status-pill separate">Generated references</span>
+            <h3>Documentation Artifacts</h3>
+            <p>
+              The site currently has a source-derived declaration index and a
+              module-level dependency map. Full Lean doc-gen and theorem-level
+              blueprint output remain future milestones.
+            </p>
+            <p class="dashboard-links">
+              <a href="docs/api-index.html">Declaration index</a>
+              <span aria-hidden="true">/</span>
+              <a href="blueprint/dep_graph_document.html">Module dependency map</a>
+            </p>
+          </article>
+        </div>
       </section>
 
       <section aria-labelledby="layers-heading">
@@ -94,18 +159,44 @@
 
       <section aria-labelledby="architecture-heading">
         <h2 id="architecture-heading">Architecture</h2>
-        <div class="architecture-diagram" role="img" aria-label="LeanInfoTheory architecture: finite Shannon layer and certificate layer meet in verified theorem demos, then support future network converses.">
-          <div class="arch-node">mathlib PMF, measure, KL</div>
-          <div class="arch-arrow">to</div>
-          <div class="arch-node">finite Shannon layer</div>
-          <div class="arch-arrow">to</div>
-          <div class="arch-node">semantic bridge</div>
-          <div class="arch-join">supports</div>
-          <div class="arch-node">entropy expressions</div>
-          <div class="arch-arrow">to</div>
-          <div class="arch-node">checked certificates</div>
-          <div class="arch-arrow">to</div>
-          <div class="arch-node">verified inequalities</div>
+        <div class="architecture-diagram" aria-label="LeanInfoTheory architecture with two branches: a finite Shannon library branch and a certificate-validation branch that meet in checked theorem demos.">
+          <div class="arch-branch arch-library">
+            <p class="arch-label">Formal library branch</p>
+            <div class="arch-flow">
+              <div class="arch-node">mathlib PMF, measure, KL</div>
+              <div class="arch-arrow">then</div>
+              <div class="arch-node">finite Shannon layer</div>
+              <div class="arch-arrow">then</div>
+              <div class="arch-node">semantic bridge theorems</div>
+            </div>
+          </div>
+
+          <div class="arch-branch arch-certificate">
+            <p class="arch-label">Certificate-validation branch</p>
+            <div class="arch-flow">
+              <div class="arch-node">entropy expressions</div>
+              <div class="arch-arrow">then</div>
+              <div class="arch-node">primitive Shannon inequalities</div>
+              <div class="arch-arrow">then</div>
+              <div class="arch-node">raw certificates checked by Lean</div>
+            </div>
+          </div>
+
+          <div class="arch-merge">
+            <span class="status-pill proved">Lean checked</span>
+            <strong>Verified theorem demos</strong>
+            <p>
+              The library branch proves the semantic facts; the certificate
+              branch validates algebraic entropy decompositions. Together they
+              support checked inequalities such as Shannon submodularity.
+            </p>
+          </div>
+
+          <p class="arch-future">
+            Later milestones extend the same shape toward textbook inequalities,
+            richer assumptions, external certificate imports, and network
+            converse examples.
+          </p>
         </div>
       </section>
 
@@ -113,11 +204,11 @@
         <h2 id="start-heading">Start Here</h2>
         <div class="link-grid">
           <a href="theorems.html">Theorem highlights</a>
-          <a href="docs/api-index.html">Generated API index</a>
           <a href="submodularity-demo.html">Submodularity demo</a>
+          <a href="docs/api-index.html">Generated declaration index</a>
           <a href="module-guide.html">Module guide</a>
           <a href="blueprint/">Blueprint</a>
-          <a href="blueprint/dep_graph_document.html">Dependency map</a>
+          <a href="blueprint/dep_graph_document.html">Module dependency map</a>
           <a href="development.html">Development</a>
           <a href="prior-art.html">Prior art</a>
           <a href="roadmap.html">Roadmap</a>
@@ -184,7 +275,7 @@
       <section aria-labelledby="next-heading">
         <h2 id="next-heading">Planned Next</h2>
         <ul>
-          <li>Theorem-level blueprint, full Lean doc-gen output, and blueprint PDF on top of the current generated module graph and declaration index.</li>
+          <li>Theorem-level blueprint, full Lean doc-gen output, and blueprint PDF on top of the current generated module dependency map and source-derived declaration index.</li>
           <li>More checked textbook inequalities and richer certificate assumptions.</li>
           <li>PSITIP/oXitip-style import into untrusted raw certificate data.</li>
           <li>Non-toy network-information-theory converse examples.</li>

@@ -5,7 +5,7 @@ highlights, and module guide record what is implemented now.
 
 ## Now
 
-- Extend the current generated module-level dependency map and generated
+- Extend the current generated module dependency map and source-derived
   declaration index toward a real theorem-level blueprint, full Lean doc-gen
   output, and blueprint PDF.
 - Keep the public website's theorem highlights, module guide, and certificate
@@ -42,4 +42,5 @@ highlights, and module guide record what is implemented now.
 - Formalize selected converse proof skeletons.
 - Write a technical report or short paper describing the Lean library and
   certificate pipeline.
-- Stabilize project documentation, API docs, and blueprint dependency graph.
+- Stabilize project documentation, full Lean doc-gen output, and theorem-level
+  blueprint dependency graph.

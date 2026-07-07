@@ -161,6 +161,60 @@ a:hover {
   margin-bottom: 0;
 }
 
+.project-summary {
+  margin: 0 0 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #dce6ea;
+}
+
+.project-summary h2 {
+  margin-top: 0;
+}
+
+.project-summary p {
+  max-width: 56rem;
+  color: #31444d;
+  font-size: 1.05rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.dashboard-item {
+  min-width: 0;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid #dce6ea;
+  border-radius: 8px;
+}
+
+.dashboard-item h3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  color: #31444d;
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+.dashboard-item p {
+  margin-bottom: 0.8rem;
+}
+
+.dashboard-item a {
+  font-weight: 700;
+}
+
+.dashboard-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
@@ -261,17 +315,41 @@ a:hover {
 
 .architecture-diagram {
   display: grid;
-  grid-template-columns: minmax(9rem, 1fr) auto minmax(9rem, 1fr) auto minmax(9rem, 1fr);
-  gap: 0.6rem;
-  align-items: center;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: stretch;
   margin: 1rem 0 1.5rem;
 }
 
-.arch-node,
-.arch-arrow,
-.arch-join {
+.arch-branch {
   min-width: 0;
-  padding: 0.65rem 0.75rem;
+  padding: 0.9rem;
+  background: #fff;
+  border: 1px solid #dce6ea;
+  border-top: 4px solid #1e6bb8;
+  border-radius: 8px;
+}
+
+.arch-certificate {
+  border-top-color: #159957;
+}
+
+.arch-label {
+  margin: 0 0 0.75rem;
+  color: #31444d;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.arch-flow {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.arch-node,
+.arch-arrow {
+  min-width: 0;
+  padding: 0.6rem 0.7rem;
   text-align: center;
   border-radius: 8px;
   overflow-wrap: anywhere;
@@ -284,18 +362,40 @@ a:hover {
   font-weight: 700;
 }
 
-.arch-arrow,
-.arch-join {
+.arch-arrow {
   color: #46545b;
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
 }
 
-.arch-join {
+.arch-merge {
   grid-column: 1 / -1;
-  padding: 0.15rem 0;
+  min-width: 0;
+  padding: 1rem 1.1rem;
+  color: #31444d;
+  background: #f4faf8;
+  border: 1px solid #b8dfc8;
+  border-radius: 8px;
+}
+
+.arch-merge strong {
+  display: block;
+  margin-top: 0.55rem;
   color: #0f5d37;
+  font-size: 1.05rem;
+}
+
+.arch-merge p {
+  margin: 0.45rem 0 0;
+}
+
+.arch-future {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 0.2rem 0.4rem 0;
+  color: #46545b;
+  font-size: 0.95rem;
 }
 
 .notice {
@@ -382,6 +482,19 @@ a:hover {
   white-space: normal;
   overflow-wrap: anywhere;
   word-break: break-word;
+}
+
+.status-table tr:target {
+  background: #fff8ea;
+  outline: 2px solid #e7c477;
+}
+
+.decl-actions {
+  display: block;
+  margin-top: 0.25rem;
+  color: #77858b;
+  font-size: 0.82rem;
+  font-weight: 700;
 }
 
 .site-footer {
@@ -505,14 +618,19 @@ a:hover {
   }
 
   .card-grid,
+  .dashboard-grid,
   .link-grid,
   .metric-grid,
   .architecture-diagram {
     grid-template-columns: 1fr;
   }
 
-  .arch-arrow,
-  .arch-join {
+  .arch-branch,
+  .arch-merge {
+    padding: 0.85rem;
+  }
+
+  .arch-arrow {
     padding: 0.15rem 0;
   }
 }

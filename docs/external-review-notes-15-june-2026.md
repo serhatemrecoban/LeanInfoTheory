@@ -112,7 +112,7 @@ These items are easy to postpone unless they remain explicit:
 - make the public status machine-checkable with a visible build badge,
   no-placeholder check for `sorry`, `admit`, and unapproved `axiom`s, and later
   generated API documentation;
-- keep the website wording precise until generated API docs and non-toy
+- keep the website wording precise until full Lean doc-gen output and non-toy
   examples exist, including clear limitations about the semantic bridge,
   certificate checker, and network-converse status;
 - add a minimal collaboration surface, such as `CONTRIBUTING.md`, beginner

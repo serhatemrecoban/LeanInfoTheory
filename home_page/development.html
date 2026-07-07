@@ -12,8 +12,10 @@
       <h2 class="project-tagline">How the project is built, checked, and organized.</h2>
       <nav class="project-links" aria-label="Project links">
         <a href="./" class="btn">Home</a>
-        <a href="module-guide.html" class="btn">Module guide</a>
-        <a href="roadmap.html" class="btn">Roadmap</a>
+        <a href="theorems.html" class="btn">Theorems</a>
+        <a href="submodularity-demo.html" class="btn">Demo</a>
+        <a href="docs/api-index.html" class="btn">API Index</a>
+        <a href="blueprint/" class="btn">Blueprint</a>
         <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
     </header>
@@ -41,7 +43,8 @@ python scripts/check_website.py</code></pre>
       <p>
         Run these after changing Lean imports, public declarations, or doc
         comments. They regenerate the website's module-level dependency map,
-        generated declaration index, and machine-readable graph/index data.
+        source-derived declaration index, and machine-readable module/declaration
+        JSON data.
         The checker validates generated JSON and local website links. CI checks
         that the generated files are current.
       </p>
@@ -67,8 +70,8 @@ python scripts/check_website.py</code></pre>
       <p>
         The living project history is tracked in <code>docs/project-log.md</code>.
         Foundation conventions live in <code>docs/foundation-conventions.md</code>.
-        Generated API documentation is planned, but this page and the module
-        guide are hand-written for now.
+        Full Lean doc-gen output is planned, but this page and the module guide
+        are hand-written for now.
       </p>
       <p>
         For mathlib and Lean community questions, see

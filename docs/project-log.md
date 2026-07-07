@@ -87,7 +87,7 @@ organized as they are, and which ideas are waiting for the right moment.
   generated module-level blueprint/dependency pages.
 - `scripts/generate_website_blueprint.py`: stdlib-only generator for the
   website module-dependency map. It parses local Lean `import` lines, computes
-  the current module graph, and writes
+  the current module dependency map, and writes
   `home_page/blueprint/dep_graph_document.html` plus
   `home_page/blueprint/module_graph.json`.
 - `scripts/generate_website_api_index.py`: stdlib-only generator for the
@@ -751,7 +751,7 @@ bridge work: expected self-information, conditional laws, and KL-equivalence
 theorems.
 
 This completes the public-facing website polish item that was waiting for the
-finite entropy sanity milestone. Generated API documentation, richer
+finite entropy sanity milestone. Full Lean doc-gen output, richer
 collaboration material, and network-converse demos remain later milestones.
 
 ### 27. Public PMF Map Helper Lemmas
@@ -1292,7 +1292,7 @@ HTML and JSON outputs have no unstaged diff, so import-graph drift should be
 caught automatically.
 
 The website and roadmap wording were updated to distinguish the current
-generated module graph from later full Lean doc-gen output, theorem-level
+generated module dependency map from later full Lean doc-gen output, theorem-level
 blueprint pages, and a blueprint PDF.
 
 ### 42. Generated Declaration Index
@@ -1341,6 +1341,91 @@ The CI workflow now runs:
 This makes the public site less likely to drift from the Lean import graph,
 public declarations, or generated JSON files. The README and development page
 now show the same regeneration/check commands that CI uses.
+
+### 44. Navigation and Generated-Artifact Terminology Pass
+
+The first follow-up step from the July 7 website-review task cleaned up the
+public site navigation and the names of generated artifacts. The top-level
+navigation is now centered on the main reader tasks:
+
+- theorem highlights;
+- the submodularity certificate demo;
+- the generated API/declaration index;
+- the blueprint area;
+- the GitHub repository.
+
+The short navigation label is `API Index`, but the generated page itself is
+now titled `Generated Declaration Index`. This keeps the navigation compact
+while making clear that the current artifact is a source-derived declaration
+inventory, not full Lean doc-gen output.
+
+The generated import graph is now described as a `module dependency map` or
+`Generated Module Dependency Map`. This avoids suggesting that the current
+graph is already a theorem-level dependency graph. A theorem-level blueprint,
+full Lean doc-gen output, and blueprint PDF remain future milestones.
+
+The handwritten website pages and the two website generators were updated, then
+the generated declaration index and generated module dependency map were
+regenerated from source.
+
+### 45. Homepage Project Summary
+
+The second follow-up step from the July 7 website-review task added a compact
+project summary near the top of the homepage, immediately after the build and
+deployment status badges. The paragraph now states, in one place, that
+LeanInfoTheory is a Lean 4/mathlib project for finite information theory and
+trusted entropy-inequality certificate checking.
+
+The summary also separates the current formalized scope from the longer-term
+goal. It names the checked finite PMF information measures, semantic bridges to
+conditional laws and KL divergence, and the Shannon submodularity certificate
+demo as current work, while describing textbook-scale library growth and
+external-certificate imports for network-information-theory converses as later
+goals.
+
+### 46. Two-Branch Architecture Diagram
+
+The third follow-up step from the July 7 website-review task redesigned the
+homepage architecture diagram. The previous diagram was a mostly linear chain,
+which made the finite-library work and certificate-checking work look like one
+single pipeline.
+
+The homepage now presents two parallel branches:
+
+- the formal library branch, from mathlib `PMF`, measure, and KL APIs through
+  the finite Shannon layer to semantic bridge theorems;
+- the certificate-validation branch, from entropy expressions through
+  primitive Shannon inequalities to raw certificates checked by Lean.
+
+The two branches meet in a shared checked-theorem block explaining that the
+semantic library facts and algebraic certificate validation together support
+verified inequalities such as Shannon submodularity. A short future-facing line
+connects this architecture to textbook inequalities, richer assumptions,
+external certificate imports, and network converse examples.
+
+### 47. Homepage Dashboard and Terminology Tightening
+
+The website dashboard was tightened with a new `Status at a Glance` section on
+the homepage. The section separates four public-facing statuses:
+
+- checked finite PMF information-measure theorems;
+- checked semantic and KL bridge theorems;
+- the current Lean-side certificate checker and submodularity demo;
+- generated reference artifacts.
+
+This makes the homepage clearer about what is proved, what is a demo, and what
+is generated documentation support. The certificate-checker card also states
+that Lean currently validates supplied certificates but does not search for
+certificates automatically.
+
+The terminology pass also made the website and living docs more precise:
+
+- the current import artifact is a `module dependency map`, not a theorem-level
+  dependency graph;
+- `home_page/docs/api-index.html` is a source-derived declaration index, not
+  full Lean doc-gen output;
+- full Lean doc-gen output, theorem-level blueprint pages, and a blueprint PDF
+  remain future milestones.
 
 ## Near-Term Semantic Bridge Plan
 
@@ -1540,16 +1625,16 @@ items that should wait for more theorem pressure.
 ### Do Later
 
 9. Add theorem-level blueprint and full Lean doc-gen output once the Lean API is
-    stable enough. The current generated artifacts are a module-level import
-    graph and a source-derived declaration index. Until richer generation
-    exists, keep `/docs/` as a documentation landing page, keep
+    stable enough. The current generated artifacts are a module dependency map
+    built from local import lines and a source-derived declaration index. Until
+    richer generation exists, keep `/docs/` as a documentation landing page, keep
     `home_page/module-guide.html` as the hand-written import guide, and keep
     `home_page/docs/api-index.html` described as lighter than full Lean
     doc-gen. When full doc generation is added, link the homepage, theorem
-    highlights, docs landing page, module guide, generated module graph, and
-    declaration index directly to rendered declaration pages. A blueprint PDF
-    should be added after the theorem-level blueprint source is real enough to
-    be worth rendering.
+    highlights, docs landing page, module guide, generated module dependency
+    map, and declaration index directly to rendered declaration pages. A
+    blueprint PDF should be added after the theorem-level blueprint source is
+    real enough to be worth rendering.
 
 10. Add a minimal contributor surface before inviting broader collaboration:
     `CONTRIBUTING.md`, beginner-friendly tasks, issue labels, and a short note
