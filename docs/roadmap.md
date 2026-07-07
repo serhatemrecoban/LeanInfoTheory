@@ -1,33 +1,39 @@
 # Roadmap
 
-This roadmap records planned technical milestones. The homepage and current
-module list record what is implemented now.
+This roadmap records planned technical milestones. The homepage, theorem
+highlights, and module guide record what is implemented now.
 
 ## Now
 
-- Continue semantic bridge work from the completed entropy/self-information
-  bridge theorem.
-- Design the finite conditional-law API, including zero-probability
-  conditioning behavior.
+- Extend the current generated module-level dependency map and generated
+  declaration index toward a real theorem-level blueprint, full Lean doc-gen
+  output, and blueprint PDF.
+- Keep the public website's theorem highlights, module guide, and certificate
+  demo aligned with the Lean code as the API evolves.
 - Maintain project notes in the foundation conventions and project log.
 - Keep the lightweight finite API separated from heavier KL and coding imports.
-- Use the semantic bridge module for future KL and conditional-law equivalence
-  theorems.
+- Choose the next finite-information-theory theorem milestone after the
+  completed semantic bridge plan.
 
 ## 3 Months
 
-- Design finite conditional laws with careful zero-probability behavior.
-- Prove bridge theorems from mutual information to mathlib KL divergence.
+- Publish a genuine leanblueprint web page, blueprint PDF, and theorem-level
+  dependency graph.
+- Upgrade the current source-derived declaration index into full Lean doc-gen
+  output, while keeping the hand-written module guide as a stable
+  orientation page.
+- Link generated docs and blueprint entries back to the curated theorem
+  highlights and submodularity demo page.
 - Extend the current primitive-only checked certificate path beyond the
-  submodularity demo.
+  submodularity demo with additional textbook inequalities.
 
 ## 6 Months
 
-- Connect conditional entropy and conditional mutual information to
-  conditional-law or KL-chain-rule semantics.
 - Add richer certificate constraints such as independence, functional
   dependence, and Markov constraints.
 - Certify several textbook entropy inequalities.
+- Develop more of the Cover-Thomas Chapter 2 theorem layer, such as data
+  processing, Fano, and broader chain-rule APIs.
 - Prepare focused mathlib PRs for generic finite-measure lemmas.
 
 ## 12 Months

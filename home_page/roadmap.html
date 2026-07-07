@@ -12,37 +12,40 @@
       <h2 class="project-tagline">A 3 / 6 / 12 month plan for the library and certificate checker.</h2>
       <nav class="project-links" aria-label="Project links">
         <a href="./" class="btn">Home</a>
-        <a href="blueprint/" class="btn">Blueprint</a>
+        <a href="theorems.html" class="btn">Theorems</a>
+        <a href="module-guide.html" class="btn">Module guide</a>
         <a href="docs/" class="btn">Documentation</a>
+        <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
     </header>
     <main class="main-content" role="main">
       <p>
         This roadmap records planned technical milestones. The homepage and
-        module list record what is currently implemented.
+        theorem highlights record what is currently implemented.
       </p>
 
       <h2>Now</h2>
       <ul>
-        <li>Continue semantic bridge work from the completed entropy/self-information bridge theorem.</li>
-        <li>Design the finite conditional-law API, including zero-probability conditioning behavior.</li>
+        <li>Extend the current generated module-level dependency map and generated declaration index toward a real theorem-level blueprint, full Lean doc-gen output, and blueprint PDF.</li>
+        <li>Keep the public website's theorem highlights, module guide, and certificate demo aligned with the Lean code as the API evolves.</li>
         <li>Maintain project notes in the foundation conventions and project log.</li>
         <li>Keep the lightweight finite API separated from heavier KL and coding imports.</li>
-        <li>Use the semantic bridge module for future KL and conditional-law equivalence theorems.</li>
+        <li>Choose the next finite-information-theory theorem milestone after the completed semantic bridge plan.</li>
       </ul>
 
       <h2>3 months</h2>
       <ul>
-        <li>Design finite conditional laws with careful zero-probability behavior.</li>
-        <li>Prove bridge theorems from mutual information to mathlib KL divergence.</li>
-        <li>Extend the current primitive-only checked certificate path beyond the submodularity demo.</li>
+        <li>Publish a genuine leanblueprint web page, blueprint PDF, and theorem-level dependency graph.</li>
+        <li>Upgrade the current source-derived declaration index into full Lean doc-gen output, while keeping the hand-written module guide as a stable orientation page.</li>
+        <li>Link generated docs and blueprint entries back to the curated theorem highlights and submodularity demo page.</li>
+        <li>Extend the current primitive-only checked certificate path beyond the submodularity demo with additional textbook inequalities.</li>
       </ul>
 
       <h2>6 months</h2>
       <ul>
-        <li>Connect conditional entropy and conditional mutual information to conditional-law or KL-chain-rule semantics.</li>
         <li>Add richer certificate constraints such as independence, functional dependence, and Markov constraints.</li>
         <li>Certify several textbook entropy inequalities.</li>
+        <li>Develop more of the Cover-Thomas Chapter 2 theorem layer, such as data processing, Fano, and broader chain-rule APIs.</li>
         <li>Prepare focused mathlib PRs for generic finite-measure lemmas.</li>
       </ul>
 

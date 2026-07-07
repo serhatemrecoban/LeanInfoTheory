@@ -1,0 +1,289 @@
+{
+  "layers": [
+    "Root import",
+    "Shared foundation",
+    "Finite Shannon layer",
+    "Semantic bridge layer",
+    "Certificate layer",
+    "Reference anchors"
+  ],
+  "local_edge_count": 30,
+  "module_count": 21,
+  "modules": [
+    {
+      "external_imports": [],
+      "layer": "Root import",
+      "local_imports": [
+        "LeanInfoTheory.Basic",
+        "LeanInfoTheory.Certificate",
+        "LeanInfoTheory.Certificate.Checked",
+        "LeanInfoTheory.EntropyExpr",
+        "LeanInfoTheory.EntropyVal",
+        "LeanInfoTheory.InformationMeasures",
+        "LeanInfoTheory.PrimitiveIneq",
+        "LeanInfoTheory.Probability.Finite"
+      ],
+      "name": "LeanInfoTheory",
+      "path": "LeanInfoTheory.lean",
+      "root_reachable": true,
+      "summary": "Lightweight public root import for stable finite Shannon and core certificate APIs."
+    },
+    {
+      "external_imports": [],
+      "layer": "Shared foundation",
+      "local_imports": [],
+      "name": "LeanInfoTheory.Basic",
+      "path": "LeanInfoTheory/Basic.lean",
+      "root_reachable": true,
+      "summary": "Project namespace and shared status vocabulary."
+    },
+    {
+      "external_imports": [
+        "Mathlib.Data.ENNReal.BigOperators",
+        "Mathlib.Data.ENNReal.Real",
+        "Mathlib.Probability.ProbabilityMassFunction.Basic",
+        "Mathlib.Probability.ProbabilityMassFunction.Constructions"
+      ],
+      "layer": "Shared foundation",
+      "local_imports": [],
+      "name": "LeanInfoTheory.Probability.Finite",
+      "path": "LeanInfoTheory/Probability/Finite.lean",
+      "root_reachable": true,
+      "summary": "Finite PMF real-mass bridge lemmas and pointwise PMF.map facts."
+    },
+    {
+      "external_imports": [],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.InfoMeasures"
+      ],
+      "name": "LeanInfoTheory.InformationMeasures",
+      "path": "LeanInfoTheory/InformationMeasures.lean",
+      "root_reachable": true,
+      "summary": "Convenience re-export for the finite information-measure API."
+    },
+    {
+      "external_imports": [
+        "Mathlib.Analysis.SpecialFunctions.Log.NegMulLog",
+        "Mathlib.Probability.ProbabilityMassFunction.Constructions"
+      ],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Probability.Finite"
+      ],
+      "name": "LeanInfoTheory.Shannon.Entropy",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "root_reachable": true,
+      "summary": "Finite Shannon entropy, entropy of finite-valued random variables, and first entropy invariance theorems."
+    },
+    {
+      "external_imports": [
+        "Mathlib.Analysis.Convex.Jensen",
+        "Mathlib.Probability.Distributions.Uniform"
+      ],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.Entropy"
+      ],
+      "name": "LeanInfoTheory.Shannon.EntropyBounds",
+      "path": "LeanInfoTheory/Shannon/EntropyBounds.lean",
+      "root_reachable": false,
+      "summary": "Jensen-based finite entropy upper bound and uniform-law equality theorem."
+    },
+    {
+      "external_imports": [],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.Entropy"
+      ],
+      "name": "LeanInfoTheory.Shannon.InfoMeasures",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "root_reachable": true,
+      "summary": "Marginals, conditional entropy, mutual information, conditional mutual information, and orientation lemmas."
+    },
+    {
+      "external_imports": [
+        "Mathlib.Probability.ProbabilityMassFunction.Integrals"
+      ],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.Theorems"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge.lean",
+      "root_reachable": false,
+      "summary": "Entry point for expected self-information, finite conditional laws, KL bridges, nonnegativity, and chain rules."
+    },
+    {
+      "external_imports": [
+        "Mathlib.Probability.ProbabilityMassFunction.Constructions"
+      ],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.InfoMeasures"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "root_reachable": false,
+      "summary": "Finite conditional-law API and expected conditional entropy / conditional mutual-information formulas."
+    },
+    {
+      "external_imports": [],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.InfoMeasures"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteSums.lean",
+      "root_reachable": false,
+      "summary": "Finite real-sum rewrites and mutual-information log-ratio formulas."
+    },
+    {
+      "external_imports": [
+        "Mathlib.InformationTheory.KullbackLeibler.Basic",
+        "Mathlib.Probability.ProbabilityMassFunction.Integrals"
+      ],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+        "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+        "LeanInfoTheory.Shannon.SemanticBridge.Product"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/KL.lean",
+      "root_reachable": false,
+      "summary": "Finite KL expansion, mutual information as KL, and averaged conditional-KL bridge theorems."
+    },
+    {
+      "external_imports": [
+        "Mathlib.MeasureTheory.Measure.Prod",
+        "Mathlib.Probability.ProbabilityMassFunction.Constructions"
+      ],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.InfoMeasures"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Product.lean",
+      "root_reachable": false,
+      "summary": "Independent-product PMFs, product-measure semantics, support formulas, and absolute-continuity facts."
+    },
+    {
+      "external_imports": [],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.KL"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean",
+      "root_reachable": false,
+      "summary": "User-facing semantic nonnegativity and first mutual-information chain-rule theorems."
+    },
+    {
+      "external_imports": [],
+      "layer": "Certificate layer",
+      "local_imports": [
+        "LeanInfoTheory.EntropyExpr"
+      ],
+      "name": "LeanInfoTheory.Certificate",
+      "path": "LeanInfoTheory/Certificate.lean",
+      "root_reachable": true,
+      "summary": "Nonnegative-combination certificate soundness and exact decomposition matching."
+    },
+    {
+      "external_imports": [
+        "Mathlib.Data.Rat.Cast.Order"
+      ],
+      "layer": "Certificate layer",
+      "local_imports": [
+        "LeanInfoTheory.Certificate",
+        "LeanInfoTheory.PrimitiveIneq"
+      ],
+      "name": "LeanInfoTheory.Certificate.Checked",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "root_reachable": true,
+      "summary": "Raw/checked certificate split with a first validator."
+    },
+    {
+      "external_imports": [],
+      "layer": "Certificate layer",
+      "local_imports": [
+        "LeanInfoTheory.Certificate.Checked"
+      ],
+      "name": "LeanInfoTheory.Certificate.Submodularity",
+      "path": "LeanInfoTheory/Certificate/Submodularity.lean",
+      "root_reachable": false,
+      "summary": "First non-toy checked certificate demo, proving entropy submodularity."
+    },
+    {
+      "external_imports": [
+        "Mathlib.Data.Finset.Basic",
+        "Mathlib.Data.Finsupp.Basic",
+        "Mathlib.Data.Rat.Defs",
+        "Mathlib.Data.Real.Basic",
+        "Mathlib.LinearAlgebra.Finsupp.LinearCombination"
+      ],
+      "layer": "Certificate layer",
+      "local_imports": [],
+      "name": "LeanInfoTheory.EntropyExpr",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "root_reachable": true,
+      "summary": "Formal rational entropy-expression algebra and empty-entropy convention interface."
+    },
+    {
+      "external_imports": [],
+      "layer": "Certificate layer",
+      "local_imports": [
+        "LeanInfoTheory.EntropyExpr"
+      ],
+      "name": "LeanInfoTheory.EntropyVal",
+      "path": "LeanInfoTheory/EntropyVal.lean",
+      "root_reachable": true,
+      "summary": "Abstract Shannon entropy valuations for certificate soundness."
+    },
+    {
+      "external_imports": [],
+      "layer": "Certificate layer",
+      "local_imports": [
+        "LeanInfoTheory.Certificate",
+        "LeanInfoTheory.Certificate.Checked",
+        "LeanInfoTheory.EntropyVal",
+        "LeanInfoTheory.PrimitiveIneq"
+      ],
+      "name": "LeanInfoTheory.Examples",
+      "path": "LeanInfoTheory/Examples.lean",
+      "root_reachable": false,
+      "summary": "Separately importable toy examples for the certificate layers."
+    },
+    {
+      "external_imports": [],
+      "layer": "Certificate layer",
+      "local_imports": [
+        "LeanInfoTheory.EntropyVal"
+      ],
+      "name": "LeanInfoTheory.PrimitiveIneq",
+      "path": "LeanInfoTheory/PrimitiveIneq.lean",
+      "root_reachable": true,
+      "summary": "Primitive Shannon inequality expressions and soundness under abstract valuations."
+    },
+    {
+      "external_imports": [
+        "Mathlib.Analysis.SpecialFunctions.BinaryEntropy",
+        "Mathlib.InformationTheory.Coding.KraftMcMillan",
+        "Mathlib.InformationTheory.KullbackLeibler.Basic",
+        "Mathlib.InformationTheory.KullbackLeibler.ChainRule",
+        "Mathlib.Probability.ProbabilityMassFunction.Constructions"
+      ],
+      "layer": "Reference anchors",
+      "local_imports": [],
+      "name": "LeanInfoTheory.MathlibFragments",
+      "path": "LeanInfoTheory/MathlibFragments.lean",
+      "root_reachable": false,
+      "summary": "Separately importable checklist of heavier mathlib information-theory and coding anchors."
+    }
+  ],
+  "root": "LeanInfoTheory",
+  "root_reachable_count": 11,
+  "schema": "lean-info-theory.module-graph.v1",
+  "separate_import_count": 10
+}

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prior art | LeanInfoTheory</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Prior Art</h1>
+      <h2 class="project-tagline">What LeanInfoTheory builds on and how it differs.</h2>
+      <nav class="project-links" aria-label="Project links">
+        <a href="./" class="btn">Home</a>
+        <a href="theorems.html" class="btn">Theorems</a>
+        <a href="development.html" class="btn">Development</a>
+        <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="main-content" role="main">
+      <h2>mathlib</h2>
+      <p>
+        The project is intentionally mathlib-based. It reuses mathlib
+        <code>PMF</code>s, finite types, real analysis, products of measures,
+        Markov kernels, <code>PMF.toMeasure</code>, binary and q-ary entropy,
+        KL divergence, and coding-theory anchors such as Kraft-McMillan.
+      </p>
+
+      <h2>PFR Formalization</h2>
+      <p>
+        The Lean PFR project is an important reference for entropy and mutual
+        information in a serious formalization. LeanInfoTheory keeps the first
+        project layer finite and <code>PMF</code>-oriented, while auditing PFR
+        and mathlib APIs before adding more general measure-theoretic layers.
+      </p>
+
+      <h2>Rocq Infotheo</h2>
+      <p>
+        Rocq's Infotheo library is a useful comparison point for finite
+        distributions, conditional distributions, and textbook-style
+        information measures. LeanInfoTheory follows Lean and mathlib naming
+        and typeclass conventions first, but uses Infotheo as a sanity check
+        for whether definitions can scale to larger theorem families.
+      </p>
+
+      <h2>PSITIP and oXitip</h2>
+      <p>
+        PSITIP and oXitip are relevant for entropy-inequality certificate
+        search. The planned architecture is that external tools may search for
+        certificates and export raw data, but Lean remains the trusted checker
+        that validates the certificate and proves the target inequality.
+      </p>
+
+      <h2>Textbook Anchors</h2>
+      <p>
+        The near-term mathematical path is closest to the finite discrete
+        foundations in Cover and Thomas, El Gamal and Kim, Yeung, and
+        Polyanskiy and Wu. The project does not try to mirror a textbook line
+        by line; it follows mathlib-compatible definitions and then records
+        which textbook statements have been formalized.
+      </p>
+
+      <h2>What This Project Adds</h2>
+      <p>
+        LeanInfoTheory currently adds a finite <code>PMF</code>-based Shannon
+        layer, semantic bridges to expected self-information and KL divergence,
+        and a Lean-checked certificate pipeline for primitive Shannon
+        inequalities.
+      </p>
+    </main>
+  </body>
+</html>

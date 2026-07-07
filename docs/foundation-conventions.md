@@ -56,16 +56,21 @@ reference material only and is intentionally not part of the repository.
   should parse external certificate formats into this raw layer.
 - The current `condEntropy` and `condMutualInfo` definitions use entropy
   identities. For finite variables these are equivalent to the conditional
-  distribution formulas used in textbooks; proving that equivalence is an
-  early theorem target.
+  distribution formulas used in textbooks. The semantic bridge now proves
+  `condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd` and
+  `condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThird`,
+  making those expected-fiber interpretations explicit.
 - Mutual information is currently defined by the entropy identity
-  `H(X) + H(Y) - H(X,Y)`. A later bridge should identify this with finite KL
-  divergence from the joint law to the product of marginals.
-- The first semantic bridge theorem lives in
-  `LeanInfoTheory.Shannon.SemanticBridge`: `Shannon.selfInfo` records
-  self-information with the zero-mass convention, and
-  `Shannon.entropy_eq_integral_selfInfo` proves that finite entropy is expected
-  self-information over `PMF.toMeasure`.
+  `H(X) + H(Y) - H(X,Y)`. The semantic bridge now identifies it with finite KL
+  divergence from the joint law to the product of marginals through
+  `mutualInfo_eq_toReal_klDiv_joint_indepProd` and the product-measure form
+  `mutualInfo_eq_toReal_klDiv_joint_prod_marginals`.
+- The semantic bridge lives in `LeanInfoTheory.Shannon.SemanticBridge` and its
+  subfiles. It includes `Shannon.selfInfo`,
+  `Shannon.entropy_eq_integral_selfInfo`, finite conditional laws,
+  mutual-information-as-KL theorems, averaged conditional-KL for conditional
+  mutual information, semantic nonnegativity of mutual information and
+  conditional mutual information, and the first mutual-information chain rule.
 
 ## Mathlib Boundary
 
@@ -128,17 +133,17 @@ ordinary entropies. Since Project A will check linear entropy-expression
 certificates, the algebraic form is the most useful definitional layer.
 
 This is a design compromise, not a mathematical change: the next foundation
-milestones should prove the equivalence between the algebraic definitions and
-the conditional-law/KL definitions.
+milestones should continue extending the theorem layer while preserving the
+separation between lightweight entropy-identity definitions and heavier
+semantic bridge imports.
 
 The comparison with Rocq `infotheo` is recorded in `docs/project-log.md`.
 
 ## Near-Term Theorem Targets
 
-- `condEntropy` agrees with the expected entropy of finite conditional PMFs.
-- `mutualInfo` agrees with KL divergence between the joint law and product of
-  marginals.
-- `condMutualInfo` agrees with averaged conditional mutual information.
-- Chain rules for entropy, conditional entropy, mutual information, and
-  conditional mutual information.
-- Nonnegativity of mutual information and conditional mutual information.
+- Broader chain rules for entropy, conditional entropy, mutual information,
+  and conditional mutual information.
+- Conditioning-reduces-entropy and equality conditions.
+- Data processing and Markov-chain APIs.
+- Concrete finite semantics for the abstract certificate assumptions.
+- More textbook entropy inequalities and certificate examples.

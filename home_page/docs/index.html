@@ -3,44 +3,47 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Module list | LeanInfoTheory</title>
+    <title>Documentation | LeanInfoTheory</title>
     <link rel="stylesheet" href="../styles.css">
   </head>
   <body>
     <header class="page-header" role="banner">
-      <h1 class="project-name">Module list</h1>
-      <h2 class="project-tagline">Current compileable Lean modules; generated API docs are planned.</h2>
+      <h1 class="project-name">Documentation</h1>
+      <h2 class="project-tagline">Hand-written guides plus a generated declaration index.</h2>
       <nav class="project-links" aria-label="Project links">
         <a href="../" class="btn">Home</a>
+        <a href="../theorems.html" class="btn">Theorems</a>
         <a href="../blueprint/" class="btn">Blueprint</a>
         <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
     </header>
     <main class="main-content" role="main">
-      <p>
-        This page is a hand-written module list, not generated declaration
-        documentation. Generated API documentation is a later milestone.
+      <p class="lead">
+        The site currently combines hand-written guides with generated
+        reference artifacts. A lightweight declaration index is available now;
+        full Lean doc-gen output and a theorem-level blueprint remain planned.
       </p>
-      <ul>
-        <li><code>LeanInfoTheory.Basic</code>: lightweight project namespace and shared status vocabulary.</li>
-        <li><code>LeanInfoTheory.Probability.Finite</code>: real-mass bridge lemmas and pointwise <code>PMF.map</code> facts for finite <code>PMF</code> sums and relabeling arguments.</li>
-        <li><code>LeanInfoTheory.Shannon.Entropy</code>: finite Shannon entropy, random-variable entropy, and relabeling, swap, and reassociation invariance theorems.</li>
-        <li><code>LeanInfoTheory.Shannon.EntropyBounds</code>: Jensen-based finite entropy upper bound <code>entropy_le_log_card</code> and uniform-law equality theorem <code>entropy_uniformOfFintype</code>. Import this module explicitly when those heavier analytic bounds are needed.</li>
-        <li><code>LeanInfoTheory.Shannon.InfoMeasures</code>: marginals, conditional entropy, mutual information, conditional mutual information, and support/orientation lemmas.</li>
-        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: separated bridge layer containing <code>selfInfo</code> and <code>entropy_eq_integral_selfInfo</code>, with future KL and conditional-law bridge theorems planned here.</li>
-        <li><code>LeanInfoTheory.InformationMeasures</code>: public convenience re-export for the finite information-measure API; theorem-oriented code should usually prefer the canonical <code>LeanInfoTheory.Shannon</code> names.</li>
-        <li><code>LeanInfoTheory.EntropyExpr</code>: formal entropy-expression algebra and the empty-entropy convention interface.</li>
-        <li><code>LeanInfoTheory.EntropyVal</code>: abstract Shannon entropy valuations for certificate work.</li>
-        <li><code>LeanInfoTheory.PrimitiveIneq</code>: primitive Shannon inequality expressions and their soundness under abstract valuations.</li>
-        <li><code>LeanInfoTheory.Certificate</code>: generic nonnegative-combination soundness theorem and exact decomposition matching.</li>
-        <li><code>LeanInfoTheory.Certificate.Checked</code>: raw certificate data, a first raw-to-checked validator, and proof-carrying checked certificate structures with nonnegative rational coefficients and exact decomposition equality.</li>
-        <li><code>LeanInfoTheory.Certificate.Submodularity</code>: separately importable first non-toy certificate demo, proving entropy submodularity from a validated CMI certificate.</li>
-        <li><code>LeanInfoTheory.Examples</code>: separately importable closed toy examples for the certificate layers.</li>
-      </ul>
-      <p>
-        Human-facing design notes are tracked in <code>docs/foundation-conventions.md</code>
-        and <code>docs/project-log.md</code> in the repository.
-      </p>
+
+      <div class="link-grid">
+        <a href="api-index.html">Generated API index</a>
+        <a href="../module-guide.html">Module guide</a>
+        <a href="../theorems.html">Theorem highlights</a>
+        <a href="../submodularity-demo.html">Submodularity demo</a>
+        <a href="../development.html">Development</a>
+        <a href="../prior-art.html">Prior art</a>
+        <a href="../blueprint/">Blueprint</a>
+        <a href="../blueprint/dep_graph_document.html">Dependency map</a>
+        <a href="../roadmap.html">Roadmap</a>
+      </div>
+
+      <section class="notice" aria-label="Generated docs status">
+        <p>
+          The generated API index is source-derived and intentionally lighter
+          than full Lean doc-gen. Use the module guide for import choices and
+          the theorem highlights page for the main checked mathematical
+          statements.
+        </p>
+      </section>
     </main>
   </body>
 </html>

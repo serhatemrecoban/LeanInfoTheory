@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Development | LeanInfoTheory</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Development</h1>
+      <h2 class="project-tagline">How the project is built, checked, and organized.</h2>
+      <nav class="project-links" aria-label="Project links">
+        <a href="./" class="btn">Home</a>
+        <a href="module-guide.html" class="btn">Module guide</a>
+        <a href="roadmap.html" class="btn">Roadmap</a>
+        <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="main-content" role="main">
+      <h2>Build</h2>
+      <pre><code>git clone https://github.com/serhatemrecoban/LeanInfoTheory.git
+cd LeanInfoTheory
+lake exe cache get
+lake build LeanInfoTheory</code></pre>
+      <p>
+        The repository currently uses Lean <code>v4.30.0</code> and mathlib
+        <code>v4.30.0</code>.
+      </p>
+
+      <h2>Focused Checks</h2>
+      <pre><code>lake build LeanInfoTheory.Shannon.SemanticBridge
+lake build LeanInfoTheory.Certificate.Submodularity
+lake build LeanInfoTheory.Examples</code></pre>
+
+      <h2>Website Generation</h2>
+      <pre><code>python scripts/generate_website_blueprint.py
+python scripts/generate_website_api_index.py
+python scripts/check_website.py</code></pre>
+      <p>
+        Run these after changing Lean imports, public declarations, or doc
+        comments. They regenerate the website's module-level dependency map,
+        generated declaration index, and machine-readable graph/index data.
+        The checker validates generated JSON and local website links. CI checks
+        that the generated files are current.
+      </p>
+
+      <h2>Project Hygiene</h2>
+      <ul>
+        <li>The CI build includes a strict placeholder scan for Lean source files.</li>
+        <li>Core finite Shannon files keep imports light.</li>
+        <li>Heavier KL, conditional-law, and semantic theorem imports live in the semantic bridge layer.</li>
+        <li>Certificate examples are separately importable so the base finite API stays small.</li>
+      </ul>
+
+      <h2>Import Guide</h2>
+      <ul>
+        <li>Use <code>LeanInfoTheory.Shannon.Entropy</code> for finite entropy basics.</li>
+        <li>Use <code>LeanInfoTheory.Shannon.InfoMeasures</code> for marginals, conditional entropy, mutual information, and conditional mutual information.</li>
+        <li>Use <code>LeanInfoTheory.Shannon.EntropyBounds</code> when the Jensen-based upper bound or uniform equality theorem is needed.</li>
+        <li>Use <code>LeanInfoTheory.Shannon.SemanticBridge</code> for expected self-information, conditional-law, KL, nonnegativity, and chain-rule theorems.</li>
+        <li>Use <code>LeanInfoTheory.Certificate.Submodularity</code> for the first certificate-backed inequality demo.</li>
+      </ul>
+
+      <h2>Working Notes</h2>
+      <p>
+        The living project history is tracked in <code>docs/project-log.md</code>.
+        Foundation conventions live in <code>docs/foundation-conventions.md</code>.
+        Generated API documentation is planned, but this page and the module
+        guide are hand-written for now.
+      </p>
+      <p>
+        For mathlib and Lean community questions, see
+        <a href="https://leanprover.zulipchat.com/">Lean Zulip</a>.
+      </p>
+    </main>
+  </body>
+</html>

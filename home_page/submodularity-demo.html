@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Submodularity demo | LeanInfoTheory</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Submodularity Demo</h1>
+      <h2 class="project-tagline">The first checked entropy-inequality certificate in the project.</h2>
+      <nav class="project-links" aria-label="Project links">
+        <a href="./" class="btn">Home</a>
+        <a href="theorems.html" class="btn">Theorems</a>
+        <a href="module-guide.html" class="btn">Module guide</a>
+        <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="main-content" role="main">
+      <p class="lead">
+        The demo proves the Shannon submodularity inequality through the same
+        certificate-checking path that later examples should use.
+      </p>
+
+      <h2>Target Inequality</h2>
+      <p>
+        For entropy atoms <code>A</code> and <code>B</code>, the checked target is
+      </p>
+      <p>
+        <code>H(A) + H(B) - H(A union B) - H(A inter B) &gt;= 0</code>.
+      </p>
+
+      <h2>Certificate Idea</h2>
+      <p>
+        Let <code>C = A inter B</code>, <code>A' = A \ B</code>, and
+        <code>B' = B \ A</code>. The normalized expression above is exactly the
+        conditional mutual information primitive
+      </p>
+      <p>
+        <code>I(A';B' | C) = H(A',C) + H(B',C) - H(A',B',C) - H(C)</code>.
+      </p>
+      <p>
+        Since conditional mutual information is one of the primitive
+        nonnegative Shannon inequalities in the abstract valuation layer, the
+        one-step certificate proves the target inequality.
+      </p>
+
+      <h2>Trusted Path</h2>
+      <ol>
+        <li>Build the formal entropy expression for submodularity.</li>
+        <li>Represent the certificate as raw data with one CMI primitive step.</li>
+        <li>Run the raw-to-checked validator.</li>
+        <li>Check that the normalized rational expression equals the target.</li>
+        <li>Use the generic certificate soundness theorem to obtain the inequality.</li>
+      </ol>
+
+      <h2>Lean Declarations</h2>
+      <table class="status-table">
+        <thead>
+          <tr>
+            <th scope="col">Declaration</th>
+            <th scope="col">Meaning</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>Certificate.Submodularity.expr</code></td>
+            <td>The entropy-expression form of <code>H(A)+H(B)-H(A union B)-H(A inter B)</code>.</td>
+          </tr>
+          <tr>
+            <td><code>Certificate.Submodularity.expr_eq_condMutualInfo</code></td>
+            <td>The exact identity with <code>I(A \ B; B \ A | A inter B)</code>.</td>
+          </tr>
+          <tr>
+            <td><code>Certificate.Submodularity.rawCert_toCheckedCert?_isSome</code></td>
+            <td>The raw external-style certificate validates into checked proof data.</td>
+          </tr>
+          <tr>
+            <td><code>Certificate.Submodularity.entropy_submodularity</code></td>
+            <td>The final theorem: the submodularity expression evaluates to a nonnegative real number.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Current Limits</h2>
+      <p>
+        The project checks a supplied certificate, but it does not yet search
+        for certificates automatically. Independence, Markov, and functional
+        dependence assumptions are also future extensions of the certificate
+        language.
+      </p>
+    </main>
+  </body>
+</html>

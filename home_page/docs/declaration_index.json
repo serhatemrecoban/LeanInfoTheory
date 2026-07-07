@@ -1,0 +1,2664 @@
+{
+  "declaration_count": 263,
+  "declarations": [
+    {
+      "doc": "Public project name used by documentation and the website.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 18,
+      "module": "LeanInfoTheory.Basic",
+      "name": "LeanInfoTheory.projectName",
+      "path": "LeanInfoTheory/Basic.lean",
+      "short_name": "projectName"
+    },
+    {
+      "doc": "A small status vocabulary for roadmap items and generated documentation.",
+      "kind": "inductive",
+      "kind_label": "Inductive",
+      "line": 21,
+      "module": "LeanInfoTheory.Basic",
+      "name": "LeanInfoTheory.Status",
+      "path": "LeanInfoTheory/Basic.lean",
+      "short_name": "Status"
+    },
+    {
+      "doc": "A weighted already-known inequality, represented by a nonnegative expression.",
+      "kind": "abbrev",
+      "kind_label": "Definition",
+      "line": 26,
+      "module": "LeanInfoTheory.Certificate",
+      "name": "LeanInfoTheory.Certificate.WeightedIneq",
+      "path": "LeanInfoTheory/Certificate.lean",
+      "short_name": "WeightedIneq"
+    },
+    {
+      "doc": "Evaluate a list of weighted inequalities as a real linear combination.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 29,
+      "module": "LeanInfoTheory.Certificate",
+      "name": "LeanInfoTheory.Certificate.evalCombination",
+      "path": "LeanInfoTheory/Certificate.lean",
+      "short_name": "evalCombination"
+    },
+    {
+      "doc": "The formal entropy expression represented by a rational linear combination of weighted inequalities.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 39,
+      "module": "LeanInfoTheory.Certificate",
+      "name": "LeanInfoTheory.Certificate.combinationExpr",
+      "path": "LeanInfoTheory/Certificate.lean",
+      "short_name": "combinationExpr"
+    },
+    {
+      "doc": "Evaluating the formal combination expression agrees with the older semantic combination function.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 48,
+      "module": "LeanInfoTheory.Certificate",
+      "name": "LeanInfoTheory.Certificate.eval_combinationExpr",
+      "path": "LeanInfoTheory/Certificate.lean",
+      "short_name": "eval_combinationExpr"
+    },
+    {
+      "doc": "An exact rational-expression check for a certificate decomposition. Since `EntropyExpr` is a `Finsupp`, this equality compares normalized sparse rational coefficients atom by atom.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 62,
+      "module": "LeanInfoTheory.Certificate",
+      "name": "LeanInfoTheory.Certificate.DecompositionMatches",
+      "path": "LeanInfoTheory/Certificate.lean",
+      "short_name": "DecompositionMatches"
+    },
+    {
+      "doc": "A certificate for a target expression.",
+      "kind": "structure",
+      "kind_label": "Structure",
+      "line": 66,
+      "module": "LeanInfoTheory.Certificate",
+      "name": "LeanInfoTheory.Certificate.Cert",
+      "path": "LeanInfoTheory/Certificate.lean",
+      "short_name": "Cert"
+    },
+    {
+      "doc": "A nonnegative linear combination of nonnegative interpreted expressions is nonnegative. This is the algebraic engine behind certificate soundness.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 76,
+      "module": "LeanInfoTheory.Certificate",
+      "name": "LeanInfoTheory.Certificate.evalCombination_nonneg",
+      "path": "LeanInfoTheory/Certificate.lean",
+      "short_name": "evalCombination_nonneg"
+    },
+    {
+      "doc": "Certificate soundness: if the target evaluates to the certified combination and each ingredient is nonnegative under the semantic interpretation, then the target inequality is nonnegative.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 102,
+      "module": "LeanInfoTheory.Certificate",
+      "name": "LeanInfoTheory.Certificate.sound",
+      "path": "LeanInfoTheory/Certificate.lean",
+      "short_name": "sound"
+    },
+    {
+      "doc": "Certificate soundness from exact rational expression equality. This is the preferred route for checked certificates: first compare formal entropy expressions, then evaluate.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 120,
+      "module": "LeanInfoTheory.Certificate",
+      "name": "LeanInfoTheory.Certificate.sound_of_decompositionMatches",
+      "path": "LeanInfoTheory/Certificate.lean",
+      "short_name": "sound_of_decompositionMatches"
+    },
+    {
+      "doc": "An untrusted certificate step as it might be parsed from an external source. No soundness proof should use a `RawStep` directly.",
+      "kind": "structure",
+      "kind_label": "Structure",
+      "line": 32,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.RawStep",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "RawStep"
+    },
+    {
+      "doc": "An untrusted certificate as it might be parsed from an external source. It must be validated before it can justify an entropy inequality.",
+      "kind": "structure",
+      "kind_label": "Structure",
+      "line": 42,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.RawCert",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "RawCert"
+    },
+    {
+      "doc": "Forget a raw step into the older generic weighted-inequality format.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 51,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.RawStep.toWeightedIneq",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "toWeightedIneq"
+    },
+    {
+      "doc": "Forget a raw certificate into the older generic certificate format.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 59,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.RawCert.toCert",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "toCert"
+    },
+    {
+      "doc": "A checked certificate step. Its coefficient has been proved nonnegative, and its ingredient is one of the primitive Shannon inequalities.",
+      "kind": "structure",
+      "kind_label": "Structure",
+      "line": 69,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.CheckedStep",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "CheckedStep"
+    },
+    {
+      "doc": "The entropy expression used by a checked step.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 78,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.CheckedStep.expr",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "expr"
+    },
+    {
+      "doc": "Forget a checked step into the older generic weighted-inequality format.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 82,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.CheckedStep.toWeightedIneq",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "toWeightedIneq"
+    },
+    {
+      "doc": "The coefficient of a checked step is nonnegative as a rational number.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 86,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.CheckedStep.coeff_rat_nonneg",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "coeff_rat_nonneg"
+    },
+    {
+      "doc": "The coefficient of a checked step is nonnegative after casting to `Real`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 91,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.CheckedStep.coeff_real_nonneg",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "coeff_real_nonneg"
+    },
+    {
+      "doc": "The ingredient expression of a checked step is nonnegative under any Shannon valuation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 96,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.CheckedStep.expr_nonneg",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "expr_nonneg"
+    },
+    {
+      "doc": "Validate a raw step against a proposed primitive Shannon inequality. The check accepts exactly when the raw coefficient is nonnegative and the raw expression is equal to the primitive expression as a normalized sparse entropy expression. The resulting `CheckedStep` carries the nonnegative coefficient as an `NNRat`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 112,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.RawStep.toCheckedStep?",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "toCheckedStep?"
+    },
+    {
+      "doc": "Validate raw steps against a parallel list of primitive Shannon inequalities. This is intentionally list-shaped for the first certificate layer: external certificate import can parse candidate primitive tags separately, and this function checks that every raw expression and coefficient agrees with those tags.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 134,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.checkStepsAgainstPrimitives?",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "checkStepsAgainstPrimitives?"
+    },
+    {
+      "doc": "A checked certificate for a target entropy inequality.",
+      "kind": "structure",
+      "kind_label": "Structure",
+      "line": 144,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.CheckedCert",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "CheckedCert"
+    },
+    {
+      "doc": "Forget a checked certificate into the older generic certificate format.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 160,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.CheckedCert.toCert",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "toCert"
+    },
+    {
+      "doc": "Every checked step in a checked certificate is semantically nonnegative.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 165,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.CheckedCert.steps_nonneg",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "steps_nonneg"
+    },
+    {
+      "doc": "Checked certificate soundness under any abstract Shannon entropy valuation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 173,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.CheckedCert.sound",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "sound"
+    },
+    {
+      "doc": "Validate a raw certificate against a list of proposed primitive Shannon ingredients. The validator checks each raw step against the corresponding primitive tag, then checks exact rational equality between the target and the resulting checked decomposition.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 191,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.RawCert.toCheckedCert?",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "toCheckedCert?"
+    },
+    {
+      "doc": "Any successfully validated raw certificate proves its raw target expression.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 206,
+      "module": "LeanInfoTheory.Certificate.Checked",
+      "name": "LeanInfoTheory.Certificate.RawCert.sound_of_toCheckedCert?_eq_some",
+      "path": "LeanInfoTheory/Certificate/Checked.lean",
+      "short_name": "sound_of_toCheckedCert?_eq_some"
+    },
+    {
+      "doc": "The formal entropy-expression form of submodularity.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 33,
+      "module": "LeanInfoTheory.Certificate.Submodularity",
+      "name": "LeanInfoTheory.Certificate.Submodularity.expr",
+      "path": "LeanInfoTheory/Certificate/Submodularity.lean",
+      "short_name": "expr"
+    },
+    {
+      "doc": "Submodularity is exactly the conditional mutual information primitive `I(A \\ B ; B \\ A | A inter B)` as a formal entropy expression.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 78,
+      "module": "LeanInfoTheory.Certificate.Submodularity",
+      "name": "LeanInfoTheory.Certificate.Submodularity.expr_eq_condMutualInfo",
+      "path": "LeanInfoTheory/Certificate/Submodularity.lean",
+      "short_name": "expr_eq_condMutualInfo"
+    },
+    {
+      "doc": "The primitive Shannon inequality used by the submodularity certificate.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 87,
+      "module": "LeanInfoTheory.Certificate.Submodularity",
+      "name": "LeanInfoTheory.Certificate.Submodularity.primitive",
+      "path": "LeanInfoTheory/Certificate/Submodularity.lean",
+      "short_name": "primitive"
+    },
+    {
+      "doc": "The checked step used by the submodularity certificate.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 91,
+      "module": "LeanInfoTheory.Certificate.Submodularity",
+      "name": "LeanInfoTheory.Certificate.Submodularity.checkedStep",
+      "path": "LeanInfoTheory/Certificate/Submodularity.lean",
+      "short_name": "checkedStep"
+    },
+    {
+      "doc": "The checked step has exactly the target submodularity expression.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 96,
+      "module": "LeanInfoTheory.Certificate.Submodularity",
+      "name": "LeanInfoTheory.Certificate.Submodularity.checkedStep_decomposition_matches",
+      "path": "LeanInfoTheory/Certificate/Submodularity.lean",
+      "short_name": "checkedStep_decomposition_matches"
+    },
+    {
+      "doc": "A proof-carrying checked certificate for entropy submodularity.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 103,
+      "module": "LeanInfoTheory.Certificate.Submodularity",
+      "name": "LeanInfoTheory.Certificate.Submodularity.checkedCert",
+      "path": "LeanInfoTheory/Certificate/Submodularity.lean",
+      "short_name": "checkedCert"
+    },
+    {
+      "doc": "The raw step used by the submodularity certificate.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 109,
+      "module": "LeanInfoTheory.Certificate.Submodularity",
+      "name": "LeanInfoTheory.Certificate.Submodularity.rawStep",
+      "path": "LeanInfoTheory/Certificate/Submodularity.lean",
+      "short_name": "rawStep"
+    },
+    {
+      "doc": "The raw submodularity step validates to the checked submodularity step.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 114,
+      "module": "LeanInfoTheory.Certificate.Submodularity",
+      "name": "LeanInfoTheory.Certificate.Submodularity.rawStep_toCheckedStep?_eq_some",
+      "path": "LeanInfoTheory/Certificate/Submodularity.lean",
+      "short_name": "rawStep_toCheckedStep?_eq_some"
+    },
+    {
+      "doc": "The raw submodularity step list validates against the primitive tag list.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 120,
+      "module": "LeanInfoTheory.Certificate.Submodularity",
+      "name": "LeanInfoTheory.Certificate.Submodularity.checkStepsAgainstPrimitives_eq_some",
+      "path": "LeanInfoTheory/Certificate/Submodularity.lean",
+      "short_name": "checkStepsAgainstPrimitives_eq_some"
+    },
+    {
+      "doc": "A raw external-style certificate for entropy submodularity.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 125,
+      "module": "LeanInfoTheory.Certificate.Submodularity",
+      "name": "LeanInfoTheory.Certificate.Submodularity.rawCert",
+      "path": "LeanInfoTheory/Certificate/Submodularity.lean",
+      "short_name": "rawCert"
+    },
+    {
+      "doc": "The raw submodularity certificate validates against its primitive tag.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 130,
+      "module": "LeanInfoTheory.Certificate.Submodularity",
+      "name": "LeanInfoTheory.Certificate.Submodularity.rawCert_toCheckedCert?_isSome",
+      "path": "LeanInfoTheory/Certificate/Submodularity.lean",
+      "short_name": "rawCert_toCheckedCert?_isSome"
+    },
+    {
+      "doc": "Running the raw submodularity validator gives a sound certificate.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 152,
+      "module": "LeanInfoTheory.Certificate.Submodularity",
+      "name": "LeanInfoTheory.Certificate.Submodularity.sound_from_validator",
+      "path": "LeanInfoTheory/Certificate/Submodularity.lean",
+      "short_name": "sound_from_validator"
+    },
+    {
+      "doc": "Entropy submodularity for every abstract Shannon entropy valuation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 163,
+      "module": "LeanInfoTheory.Certificate.Submodularity",
+      "name": "LeanInfoTheory.Certificate.Submodularity.entropy_submodularity",
+      "path": "LeanInfoTheory/Certificate/Submodularity.lean",
+      "short_name": "entropy_submodularity"
+    },
+    {
+      "doc": "An entropy atom is a finite set of random-variable names.",
+      "kind": "abbrev",
+      "kind_label": "Definition",
+      "line": 26,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyAtom",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "EntropyAtom"
+    },
+    {
+      "doc": "The empty entropy atom, conventionally written `H(\u2205)`.",
+      "kind": "abbrev",
+      "kind_label": "Definition",
+      "line": 31,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyAtom.empty",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "empty"
+    },
+    {
+      "doc": "A formal rational linear combination of entropy atoms.",
+      "kind": "abbrev",
+      "kind_label": "Definition",
+      "line": 37,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "EntropyExpr"
+    },
+    {
+      "doc": "The expression with coefficient `1` on one entropy atom.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 44,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.atom",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "atom"
+    },
+    {
+      "doc": "The formal entropy expression `H(\u2205)`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 48,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.empty",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "empty"
+    },
+    {
+      "doc": "Cast a rational entropy expression to real coefficients.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 52,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.realCoeffs",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "realCoeffs"
+    },
+    {
+      "doc": "Evaluate a formal entropy expression against any assignment of real values to entropy atoms.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 60,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.eval",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "eval"
+    },
+    {
+      "doc": "An interpretation of entropy atoms respects the empty-entropy convention if it assigns value `0` to `H(\u2205)`. This is deliberately a separate predicate rather than a property of every function `EntropyAtom Var -> Real`: the next certificate layer can require this assumption, and the later concrete finite-family semantics should prove it.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 71,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.RespectsEmpty",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "RespectsEmpty"
+    },
+    {
+      "doc": "Casting coefficients to `Real` sends the zero expression to zero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 76,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.realCoeffs_zero",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "realCoeffs_zero"
+    },
+    {
+      "doc": "Casting coefficients to `Real` sends a single rational coefficient to a single real one.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 83,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.realCoeffs_single",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "realCoeffs_single"
+    },
+    {
+      "doc": "Casting coefficients to `Real` commutes with addition.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 90,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.realCoeffs_add",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "realCoeffs_add"
+    },
+    {
+      "doc": "Casting coefficients to `Real` commutes with negation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 97,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.realCoeffs_neg",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "realCoeffs_neg"
+    },
+    {
+      "doc": "Casting coefficients to `Real` commutes with subtraction.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 104,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.realCoeffs_sub",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "realCoeffs_sub"
+    },
+    {
+      "doc": "Casting coefficients to `Real` commutes with rational scalar multiplication.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 111,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.realCoeffs_smul",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "realCoeffs_smul"
+    },
+    {
+      "doc": "The zero formal expression evaluates to zero under every interpretation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 118,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.eval_zero",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "eval_zero"
+    },
+    {
+      "doc": "Evaluation is additive in the formal entropy expression.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 124,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.eval_add",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "eval_add"
+    },
+    {
+      "doc": "Evaluation commutes with subtracting formal entropy expressions.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 131,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.eval_sub",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "eval_sub"
+    },
+    {
+      "doc": "Evaluation commutes with negating a formal entropy expression.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 138,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.eval_neg",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "eval_neg"
+    },
+    {
+      "doc": "Evaluation commutes with rational scalar multiplication.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 145,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.eval_smul",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "eval_smul"
+    },
+    {
+      "doc": "A single entropy atom evaluates to the value assigned to that atom.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 152,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.eval_atom",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "eval_atom"
+    },
+    {
+      "doc": "The empty entropy expression evaluates to the value assigned to the empty atom.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 158,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.eval_empty",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "eval_empty"
+    },
+    {
+      "doc": "Under the empty-entropy convention, the expression `H(\u2205)` evaluates to zero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 163,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.eval_empty_eq_zero_of_respectsEmpty",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "eval_empty_eq_zero_of_respectsEmpty"
+    },
+    {
+      "doc": "For an arbitrary atom interpretation, respecting the empty-entropy convention is equivalent to evaluating the formal expression `H(\u2205)` as zero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 172,
+      "module": "LeanInfoTheory.EntropyExpr",
+      "name": "LeanInfoTheory.EntropyExpr.respectsEmpty_iff_eval_empty_eq_zero",
+      "path": "LeanInfoTheory/EntropyExpr.lean",
+      "short_name": "respectsEmpty_iff_eval_empty_eq_zero"
+    },
+    {
+      "doc": "An abstract Shannon entropy valuation assigns a real value to every entropy atom and records the basic Shannon-type facts needed by the certificate layer. The fields are intentionally semantic assumptions rather than proved facts: concrete finite-probability models should instantiate this structure later.",
+      "kind": "structure",
+      "kind_label": "Structure",
+      "line": 34,
+      "module": "LeanInfoTheory.EntropyVal",
+      "name": "LeanInfoTheory.ShannonEntropyVal",
+      "path": "LeanInfoTheory/EntropyVal.lean",
+      "short_name": "ShannonEntropyVal"
+    },
+    {
+      "doc": "Evaluate an entropy expression using an abstract Shannon entropy valuation.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 63,
+      "module": "LeanInfoTheory.EntropyVal",
+      "name": "LeanInfoTheory.ShannonEntropyVal.eval",
+      "path": "LeanInfoTheory/EntropyVal.lean",
+      "short_name": "eval"
+    },
+    {
+      "doc": "A Shannon entropy valuation respects the empty-entropy convention.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 67,
+      "module": "LeanInfoTheory.EntropyVal",
+      "name": "LeanInfoTheory.ShannonEntropyVal.respectsEmpty",
+      "path": "LeanInfoTheory/EntropyVal.lean",
+      "short_name": "respectsEmpty"
+    },
+    {
+      "doc": "The empty atom has value zero under a Shannon entropy valuation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 72,
+      "module": "LeanInfoTheory.EntropyVal",
+      "name": "LeanInfoTheory.ShannonEntropyVal.apply_empty",
+      "path": "LeanInfoTheory/EntropyVal.lean",
+      "short_name": "apply_empty"
+    },
+    {
+      "doc": "The zero expression evaluates to zero under a Shannon entropy valuation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 78,
+      "module": "LeanInfoTheory.EntropyVal",
+      "name": "LeanInfoTheory.ShannonEntropyVal.eval_zero",
+      "path": "LeanInfoTheory/EntropyVal.lean",
+      "short_name": "eval_zero"
+    },
+    {
+      "doc": "A single entropy atom evaluates to the value assigned by the valuation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 84,
+      "module": "LeanInfoTheory.EntropyVal",
+      "name": "LeanInfoTheory.ShannonEntropyVal.eval_atom",
+      "path": "LeanInfoTheory/EntropyVal.lean",
+      "short_name": "eval_atom"
+    },
+    {
+      "doc": "The empty entropy expression evaluates to zero under a Shannon entropy valuation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 90,
+      "module": "LeanInfoTheory.EntropyVal",
+      "name": "LeanInfoTheory.ShannonEntropyVal.eval_empty",
+      "path": "LeanInfoTheory/EntropyVal.lean",
+      "short_name": "eval_empty"
+    },
+    {
+      "doc": "Three variable names used in toy entropy expressions.",
+      "kind": "inductive",
+      "kind_label": "Inductive",
+      "line": 24,
+      "module": "LeanInfoTheory.Examples",
+      "name": "LeanInfoTheory.Examples.Var",
+      "path": "LeanInfoTheory/Examples.lean",
+      "short_name": "Var"
+    },
+    {
+      "doc": "The formal atom `H(X)`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 33,
+      "module": "LeanInfoTheory.Examples",
+      "name": "LeanInfoTheory.Examples.HX",
+      "path": "LeanInfoTheory/Examples.lean",
+      "short_name": "HX"
+    },
+    {
+      "doc": "The formal empty entropy atom `H(\u2205)`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 37,
+      "module": "LeanInfoTheory.Examples",
+      "name": "LeanInfoTheory.Examples.HEmpty",
+      "path": "LeanInfoTheory/Examples.lean",
+      "short_name": "HEmpty"
+    },
+    {
+      "doc": "The empty entropy atom evaluates to zero under interpretations satisfying `H(\u2205) = 0`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 41,
+      "module": "LeanInfoTheory.Examples",
+      "name": "LeanInfoTheory.Examples.hEmpty_eval_eq_zero",
+      "path": "LeanInfoTheory/Examples.lean",
+      "short_name": "hEmpty_eval_eq_zero"
+    },
+    {
+      "doc": "Abstract Shannon entropy valuations evaluate `H(\u2205)` as zero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 49,
+      "module": "LeanInfoTheory.Examples",
+      "name": "LeanInfoTheory.Examples.hEmpty_eval_eq_zero_of_shannonEntropyVal",
+      "path": "LeanInfoTheory/Examples.lean",
+      "short_name": "hEmpty_eval_eq_zero_of_shannonEntropyVal"
+    },
+    {
+      "doc": "Primitive conditional mutual information is nonnegative for abstract valuations.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 55,
+      "module": "LeanInfoTheory.Examples",
+      "name": "LeanInfoTheory.Examples.primitiveCmi_nonneg",
+      "path": "LeanInfoTheory/Examples.lean",
+      "short_name": "primitiveCmi_nonneg"
+    },
+    {
+      "doc": "A one-step checked certificate for primitive conditional mutual information.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 62,
+      "module": "LeanInfoTheory.Examples",
+      "name": "LeanInfoTheory.Examples.primitiveCmiCheckedCert",
+      "path": "LeanInfoTheory/Examples.lean",
+      "short_name": "primitiveCmiCheckedCert"
+    },
+    {
+      "doc": "The checked primitive-CMI certificate is sound for every abstract valuation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 78,
+      "module": "LeanInfoTheory.Examples",
+      "name": "LeanInfoTheory.Examples.primitiveCmiCheckedCert_sound",
+      "path": "LeanInfoTheory/Examples.lean",
+      "short_name": "primitiveCmiCheckedCert_sound"
+    },
+    {
+      "doc": "The primitive tag used by the raw primitive-CMI certificate example.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 84,
+      "module": "LeanInfoTheory.Examples",
+      "name": "LeanInfoTheory.Examples.primitiveCmiKind",
+      "path": "LeanInfoTheory/Examples.lean",
+      "short_name": "primitiveCmiKind"
+    },
+    {
+      "doc": "A raw external-style one-step certificate for primitive conditional mutual information.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 89,
+      "module": "LeanInfoTheory.Examples",
+      "name": "LeanInfoTheory.Examples.primitiveCmiRawCert",
+      "path": "LeanInfoTheory/Examples.lean",
+      "short_name": "primitiveCmiRawCert"
+    },
+    {
+      "doc": "The raw primitive-CMI certificate validates against its primitive tag.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 101,
+      "module": "LeanInfoTheory.Examples",
+      "name": "LeanInfoTheory.Examples.primitiveCmiRawCert_toCheckedCert?_isSome",
+      "path": "LeanInfoTheory/Examples.lean",
+      "short_name": "primitiveCmiRawCert_toCheckedCert?_isSome"
+    },
+    {
+      "doc": "A successfully validated raw primitive-CMI certificate proves its raw target.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 110,
+      "module": "LeanInfoTheory.Examples",
+      "name": "LeanInfoTheory.Examples.primitiveCmiRawCert_validated_sound",
+      "path": "LeanInfoTheory/Examples.lean",
+      "short_name": "primitiveCmiRawCert_validated_sound"
+    },
+    {
+      "doc": "Running the raw primitive-CMI validator gives a sound certificate.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 118,
+      "module": "LeanInfoTheory.Examples",
+      "name": "LeanInfoTheory.Examples.primitiveCmiRawCert_sound_from_validator",
+      "path": "LeanInfoTheory/Examples.lean",
+      "short_name": "primitiveCmiRawCert_sound_from_validator"
+    },
+    {
+      "doc": "A one-step certificate for the nonnegativity of `H(X)`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 130,
+      "module": "LeanInfoTheory.Examples",
+      "name": "LeanInfoTheory.Examples.hxNonnegCert",
+      "path": "LeanInfoTheory/Examples.lean",
+      "short_name": "hxNonnegCert"
+    },
+    {
+      "doc": "The toy certificate is sound whenever the semantic value assigned to `H(X)` is nonnegative.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 135,
+      "module": "LeanInfoTheory.Examples",
+      "name": "LeanInfoTheory.Examples.hxNonnegCert_sound",
+      "path": "LeanInfoTheory/Examples.lean",
+      "short_name": "hxNonnegCert_sound"
+    },
+    {
+      "doc": "The primitive empty-entropy expression `H(empty)`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 26,
+      "module": "LeanInfoTheory.PrimitiveIneq",
+      "name": "LeanInfoTheory.PrimitiveIneq.emptyEntropy",
+      "path": "LeanInfoTheory/PrimitiveIneq.lean",
+      "short_name": "emptyEntropy"
+    },
+    {
+      "doc": "The primitive conditional-entropy expression `H(S \u222a {i}) - H(S)`. When evaluated by a Shannon entropy valuation and `i \u2209 S`, this should be nonnegative.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 35,
+      "module": "LeanInfoTheory.PrimitiveIneq",
+      "name": "LeanInfoTheory.PrimitiveIneq.condEntropy",
+      "path": "LeanInfoTheory/PrimitiveIneq.lean",
+      "short_name": "condEntropy"
+    },
+    {
+      "doc": "The primitive conditional-mutual-information expression `H(A,C) + H(B,C) - H(A,B,C) - H(C)`. When evaluated by a Shannon entropy valuation, this should be nonnegative.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 44,
+      "module": "LeanInfoTheory.PrimitiveIneq",
+      "name": "LeanInfoTheory.PrimitiveIneq.condMutualInfo",
+      "path": "LeanInfoTheory/PrimitiveIneq.lean",
+      "short_name": "condMutualInfo"
+    },
+    {
+      "doc": "Evaluation formula for the primitive empty-entropy expression.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 51,
+      "module": "LeanInfoTheory.PrimitiveIneq",
+      "name": "LeanInfoTheory.PrimitiveIneq.eval_emptyEntropy",
+      "path": "LeanInfoTheory/PrimitiveIneq.lean",
+      "short_name": "eval_emptyEntropy"
+    },
+    {
+      "doc": "Evaluation formula for primitive conditional entropy.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 57,
+      "module": "LeanInfoTheory.PrimitiveIneq",
+      "name": "LeanInfoTheory.PrimitiveIneq.eval_condEntropy",
+      "path": "LeanInfoTheory/PrimitiveIneq.lean",
+      "short_name": "eval_condEntropy"
+    },
+    {
+      "doc": "Evaluation formula for primitive conditional mutual information.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 64,
+      "module": "LeanInfoTheory.PrimitiveIneq",
+      "name": "LeanInfoTheory.PrimitiveIneq.eval_condMutualInfo",
+      "path": "LeanInfoTheory/PrimitiveIneq.lean",
+      "short_name": "eval_condMutualInfo"
+    },
+    {
+      "doc": "Shannon-valuation evaluation formula for the empty-entropy primitive.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 72,
+      "module": "LeanInfoTheory.PrimitiveIneq",
+      "name": "LeanInfoTheory.PrimitiveIneq.shannonEval_emptyEntropy",
+      "path": "LeanInfoTheory/PrimitiveIneq.lean",
+      "short_name": "shannonEval_emptyEntropy"
+    },
+    {
+      "doc": "Shannon-valuation evaluation formula for primitive conditional entropy.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 78,
+      "module": "LeanInfoTheory.PrimitiveIneq",
+      "name": "LeanInfoTheory.PrimitiveIneq.shannonEval_condEntropy",
+      "path": "LeanInfoTheory/PrimitiveIneq.lean",
+      "short_name": "shannonEval_condEntropy"
+    },
+    {
+      "doc": "Shannon-valuation evaluation formula for primitive conditional mutual information.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 88,
+      "module": "LeanInfoTheory.PrimitiveIneq",
+      "name": "LeanInfoTheory.PrimitiveIneq.shannonEval_condMutualInfo",
+      "path": "LeanInfoTheory/PrimitiveIneq.lean",
+      "short_name": "shannonEval_condMutualInfo"
+    },
+    {
+      "doc": "The empty-entropy primitive evaluates to a nonnegative quantity.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 95,
+      "module": "LeanInfoTheory.PrimitiveIneq",
+      "name": "LeanInfoTheory.PrimitiveIneq.emptyEntropy_nonneg",
+      "path": "LeanInfoTheory/PrimitiveIneq.lean",
+      "short_name": "emptyEntropy_nonneg"
+    },
+    {
+      "doc": "Primitive conditional entropy is nonnegative under a Shannon entropy valuation when the adjoined variable is not already present.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 103,
+      "module": "LeanInfoTheory.PrimitiveIneq",
+      "name": "LeanInfoTheory.PrimitiveIneq.condEntropy_nonneg",
+      "path": "LeanInfoTheory/PrimitiveIneq.lean",
+      "short_name": "condEntropy_nonneg"
+    },
+    {
+      "doc": "Primitive conditional mutual information is nonnegative under a Shannon entropy valuation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 112,
+      "module": "LeanInfoTheory.PrimitiveIneq",
+      "name": "LeanInfoTheory.PrimitiveIneq.condMutualInfo_nonneg",
+      "path": "LeanInfoTheory/PrimitiveIneq.lean",
+      "short_name": "condMutualInfo_nonneg"
+    },
+    {
+      "doc": "The primitive Shannon inequalities that the first checked certificate layer is allowed to use as trusted ingredients.",
+      "kind": "inductive",
+      "kind_label": "Inductive",
+      "line": 121,
+      "module": "LeanInfoTheory.PrimitiveIneq",
+      "name": "LeanInfoTheory.PrimitiveIneq.Kind",
+      "path": "LeanInfoTheory/PrimitiveIneq.lean",
+      "short_name": "Kind"
+    },
+    {
+      "doc": "The entropy expression represented by a primitive Shannon inequality.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 137,
+      "module": "LeanInfoTheory.PrimitiveIneq",
+      "name": "LeanInfoTheory.PrimitiveIneq.Kind.expr",
+      "path": "LeanInfoTheory/PrimitiveIneq.lean",
+      "short_name": "expr"
+    },
+    {
+      "doc": "Every primitive Shannon inequality is sound under a Shannon entropy valuation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 143,
+      "module": "LeanInfoTheory.PrimitiveIneq",
+      "name": "LeanInfoTheory.PrimitiveIneq.Kind.nonneg",
+      "path": "LeanInfoTheory/PrimitiveIneq.lean",
+      "short_name": "nonneg"
+    },
+    {
+      "doc": "Each atom of a `PMF` has nonnegative real mass.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 29,
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.toReal_nonneg",
+      "path": "LeanInfoTheory/Probability/Finite.lean",
+      "short_name": "toReal_nonneg"
+    },
+    {
+      "doc": "Each atom of a `PMF` has real mass at most one.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 33,
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.toReal_le_one",
+      "path": "LeanInfoTheory/Probability/Finite.lean",
+      "short_name": "toReal_le_one"
+    },
+    {
+      "doc": "On a finite type, the real masses of a `PMF` sum to one.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 37,
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.sum_toReal",
+      "path": "LeanInfoTheory/Probability/Finite.lean",
+      "short_name": "sum_toReal"
+    },
+    {
+      "doc": "If `f` is injective, pushing a PMF forward along `f` preserves the mass of each source atom at its image.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 59,
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.map_apply_of_injective",
+      "path": "LeanInfoTheory/Probability/Finite.lean",
+      "short_name": "map_apply_of_injective"
+    },
+    {
+      "doc": "If a target atom is outside the range of a map, then the pushed-forward PMF assigns zero mass to that atom.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 85,
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.map_apply_eq_zero_of_notMem_range",
+      "path": "LeanInfoTheory/Probability/Finite.lean",
+      "short_name": "map_apply_eq_zero_of_notMem_range"
+    },
+    {
+      "doc": "Pushing a PMF forward along an equivalence preserves the mass of each atom at the renamed atom.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 111,
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.map_apply_equiv",
+      "path": "LeanInfoTheory/Probability/Finite.lean",
+      "short_name": "map_apply_equiv"
+    },
+    {
+      "doc": "Shannon entropy, in nats, of a finite probability mass function.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 31,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "entropy"
+    },
+    {
+      "doc": "The defining finite-sum formula for Shannon entropy.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 35,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_eq_sum",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "entropy_eq_sum"
+    },
+    {
+      "doc": "Shannon entropy is nonnegative for finite PMFs.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 40,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_nonneg",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "entropy_nonneg"
+    },
+    {
+      "doc": "Entropy is invariant under relabeling the alphabet by an equivalence. This is one of the basic sanity checks for finite entropy: only the masses matter, not the names of the atoms.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 56,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_map_equiv",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "entropy_map_equiv"
+    },
+    {
+      "doc": "Entropy is invariant under injective relabeling into a larger finite alphabet. Atoms outside the image of the relabeling have zero pushed-forward mass.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 71,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_map_injective",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "entropy_map_injective"
+    },
+    {
+      "doc": "A deterministic finite PMF has entropy zero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 104,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_pure",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "entropy_pure"
+    },
+    {
+      "doc": "Entropy of a finite-valued random variable under a discrete law.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 116,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropyOf",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "entropyOf"
+    },
+    {
+      "doc": "Entropy of the identity random variable is the entropy of the original law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 122,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropyOf_id",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "entropyOf_id"
+    },
+    {
+      "doc": "Relabeling a finite-valued random variable by an equivalence preserves its entropy.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 127,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropyOf_comp_equiv",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "entropyOf_comp_equiv"
+    },
+    {
+      "doc": "Applying an injective relabeling to a finite-valued random variable preserves its entropy.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 135,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropyOf_comp_injective",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "entropyOf_comp_injective"
+    },
+    {
+      "doc": "Joint entropy is entropy of a joint finite distribution.",
+      "kind": "abbrev",
+      "kind_label": "Definition",
+      "line": 145,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.jointEntropy",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "jointEntropy"
+    },
+    {
+      "doc": "Swapping the two coordinates of a joint law preserves entropy.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 150,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_map_swap",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "entropy_map_swap"
+    },
+    {
+      "doc": "Reassociating a left-associated triple alphabet preserves entropy. This records that `H((A, B), C)` and `H(A, B, C)` are the same entropy after the canonical product reassociation equivalence.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 161,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_map_prodAssoc",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "entropy_map_prodAssoc"
+    },
+    {
+      "doc": "Reassociating a right-associated triple alphabet back to the left preserves entropy.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 168,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_map_prodAssoc_symm",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "entropy_map_prodAssoc_symm"
+    },
+    {
+      "doc": "Swapping the two coordinates of a joint law preserves joint entropy.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 176,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.jointEntropy_map_swap",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "jointEntropy_map_swap"
+    },
+    {
+      "doc": "Joint entropy of two finite-valued random variables under a discrete law.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 182,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "jointEntropyOf"
+    },
+    {
+      "doc": "Joint entropy of two random variables is invariant under swapping their order.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 188,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_swap",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "jointEntropyOf_swap"
+    },
+    {
+      "doc": "Entropy of three finite-valued random variables is invariant under reassociating the product alphabet.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 202,
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropyOf_prodAssoc",
+      "path": "LeanInfoTheory/Shannon/Entropy.lean",
+      "short_name": "entropyOf_prodAssoc"
+    },
+    {
+      "doc": "Finite Shannon entropy is bounded above by the logarithm of the alphabet size. The proof is Jensen's inequality for the concave function `Real.negMulLog`, applied with uniform weights over the finite alphabet.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 34,
+      "module": "LeanInfoTheory.Shannon.EntropyBounds",
+      "name": "LeanInfoTheory.Shannon.entropy_le_log_card",
+      "path": "LeanInfoTheory/Shannon/EntropyBounds.lean",
+      "short_name": "entropy_le_log_card"
+    },
+    {
+      "doc": "The uniform distribution reaches the finite entropy upper bound. Mathematically, this is the equality case `H(U_alpha) = log |alpha|` for the uniform law on a nonempty finite alphabet.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 138,
+      "module": "LeanInfoTheory.Shannon.EntropyBounds",
+      "name": "LeanInfoTheory.Shannon.entropy_uniformOfFintype",
+      "path": "LeanInfoTheory/Shannon/EntropyBounds.lean",
+      "short_name": "entropy_uniformOfFintype"
+    },
+    {
+      "doc": "The first marginal of a finite joint PMF.",
+      "kind": "abbrev",
+      "kind_label": "Definition",
+      "line": 30,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstMarginal",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "fstMarginal"
+    },
+    {
+      "doc": "The second marginal of a finite joint PMF.",
+      "kind": "abbrev",
+      "kind_label": "Definition",
+      "line": 34,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndMarginal",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "sndMarginal"
+    },
+    {
+      "doc": "Taking the first marginal after pushing a PMF forward to a pair is the same as pushing forward by the first coordinate of that pair-valued map.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 42,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_map",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "fstMarginal_map"
+    },
+    {
+      "doc": "Taking the second marginal after pushing a PMF forward to a pair is the same as pushing forward by the second coordinate of that pair-valued map.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 53,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_map",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "sndMarginal_map"
+    },
+    {
+      "doc": "For a joint law built from random variables `(X, Y)`, the first marginal is the law of `X`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 61,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_map_pair",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "fstMarginal_map_pair"
+    },
+    {
+      "doc": "For a joint law built from random variables `(X, Y)`, the second marginal is the law of `Y`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 68,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_map_pair",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "sndMarginal_map_pair"
+    },
+    {
+      "doc": "Swapping the two coordinates turns the first marginal into the original second marginal.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 75,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_map_swap",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "fstMarginal_map_swap"
+    },
+    {
+      "doc": "Swapping the two coordinates turns the second marginal into the original first marginal.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 82,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_map_swap",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "sndMarginal_map_swap"
+    },
+    {
+      "doc": "The mass of the first marginal is the sum of the joint masses over the second coordinate.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 88,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_apply",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "fstMarginal_apply"
+    },
+    {
+      "doc": "The mass of the second marginal is the sum of the joint masses over the first coordinate.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 115,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_apply",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "sndMarginal_apply"
+    },
+    {
+      "doc": "The marginal on the first and third coordinates of a finite triple PMF.",
+      "kind": "abbrev",
+      "kind_label": "Definition",
+      "line": 142,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstThirdMarginal",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "fstThirdMarginal"
+    },
+    {
+      "doc": "The marginal on the second and third coordinates of a finite triple PMF.",
+      "kind": "abbrev",
+      "kind_label": "Definition",
+      "line": 147,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndThirdMarginal",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "sndThirdMarginal"
+    },
+    {
+      "doc": "The marginal on the third coordinate of a finite triple PMF.",
+      "kind": "abbrev",
+      "kind_label": "Definition",
+      "line": 152,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "thirdMarginal"
+    },
+    {
+      "doc": "Projection formula for the first-third marginal of a pushed-forward triple law. This is the triple analogue of `fstMarginal_map`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 161,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstThirdMarginal_map",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "fstThirdMarginal_map"
+    },
+    {
+      "doc": "Projection formula for the second-third marginal of a pushed-forward triple law. The product `alpha \u00d7 beta \u00d7 gamma` is right-associated in Lean.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 174,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndThirdMarginal_map",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "sndThirdMarginal_map"
+    },
+    {
+      "doc": "Projection formula for the third-coordinate marginal of a pushed-forward triple law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 183,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal_map",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "thirdMarginal_map"
+    },
+    {
+      "doc": "For a joint law built from `(X, Y, Z)`, the first-third marginal is the joint law of `(X, Z)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 195,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstThirdMarginal_map_triple",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "fstThirdMarginal_map_triple"
+    },
+    {
+      "doc": "For a joint law built from `(X, Y, Z)`, the second-third marginal is the joint law of `(Y, Z)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 207,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndThirdMarginal_map_triple",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "sndThirdMarginal_map_triple"
+    },
+    {
+      "doc": "For a joint law built from `(X, Y, Z)`, the third marginal is the law of `Z`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 216,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal_map_triple",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "thirdMarginal_map_triple"
+    },
+    {
+      "doc": "After swapping the first two coordinates of `(A, B, C)`, the first-third marginal is the original second-third marginal.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 227,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstThirdMarginal_map_swap12",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "fstThirdMarginal_map_swap12"
+    },
+    {
+      "doc": "After swapping the first two coordinates of `(A, B, C)`, the second-third marginal is the original first-third marginal.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 238,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndThirdMarginal_map_swap12",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "sndThirdMarginal_map_swap12"
+    },
+    {
+      "doc": "Swapping the first two coordinates leaves the third marginal unchanged.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 246,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal_map_swap12",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "thirdMarginal_map_swap12"
+    },
+    {
+      "doc": "The mass of the first-third marginal is the sum of the triple joint masses over the second coordinate.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 256,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstThirdMarginal_apply",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "fstThirdMarginal_apply"
+    },
+    {
+      "doc": "The mass of the second-third marginal is the sum of the triple joint masses over the first coordinate.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 294,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndThirdMarginal_apply",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "sndThirdMarginal_apply"
+    },
+    {
+      "doc": "The mass of the third marginal is the sum of the triple joint masses over the first two coordinates.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 332,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal_apply",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "thirdMarginal_apply"
+    },
+    {
+      "doc": "A joint atom mass is bounded by the mass of its first marginal atom. This is the basic support/domination fact behind conditioning on the first coordinate.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 383,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_le_fstMarginal",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "apply_le_fstMarginal"
+    },
+    {
+      "doc": "A joint atom mass is bounded by the mass of its second marginal atom.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 394,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_le_sndMarginal",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "apply_le_sndMarginal"
+    },
+    {
+      "doc": "In a triple law, a full atom is bounded by the corresponding `(first, third)` marginal atom.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 406,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_le_fstThirdMarginal",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "apply_le_fstThirdMarginal"
+    },
+    {
+      "doc": "In a triple law, a full atom is bounded by the corresponding `(second, third)` marginal atom.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 419,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_le_sndThirdMarginal",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "apply_le_sndThirdMarginal"
+    },
+    {
+      "doc": "In a triple law, a full atom is bounded by the mass of its third-coordinate marginal atom. This is the support fact needed for conditioning on `gamma`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 432,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_le_thirdMarginal",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "apply_le_thirdMarginal"
+    },
+    {
+      "doc": "If a first marginal atom has zero mass, then every joint atom over that first coordinate has zero mass.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 453,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_eq_zero_of_fstMarginal_eq_zero",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "apply_eq_zero_of_fstMarginal_eq_zero"
+    },
+    {
+      "doc": "If a second marginal atom has zero mass, then every joint atom over that second coordinate has zero mass.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 463,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_eq_zero_of_sndMarginal_eq_zero",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "apply_eq_zero_of_sndMarginal_eq_zero"
+    },
+    {
+      "doc": "Nonzero joint mass forces the corresponding first marginal mass to be nonzero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 472,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_ne_zero_of_apply_ne_zero",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "fstMarginal_ne_zero_of_apply_ne_zero"
+    },
+    {
+      "doc": "Nonzero joint mass forces the corresponding second marginal mass to be nonzero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 482,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_ne_zero_of_apply_ne_zero",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "sndMarginal_ne_zero_of_apply_ne_zero"
+    },
+    {
+      "doc": "If a `(first, third)` marginal atom has zero mass, then every triple atom over that pair has zero mass.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 493,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_eq_zero_of_fstThirdMarginal_eq_zero",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "apply_eq_zero_of_fstThirdMarginal_eq_zero"
+    },
+    {
+      "doc": "If a `(second, third)` marginal atom has zero mass, then every triple atom over that pair has zero mass.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 504,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_eq_zero_of_sndThirdMarginal_eq_zero",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "apply_eq_zero_of_sndThirdMarginal_eq_zero"
+    },
+    {
+      "doc": "If a third marginal atom has zero mass, then every triple atom over that third coordinate has zero mass.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 515,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_eq_zero_of_thirdMarginal_eq_zero",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "apply_eq_zero_of_thirdMarginal_eq_zero"
+    },
+    {
+      "doc": "Nonzero triple mass forces the corresponding `(first, third)` marginal mass to be nonzero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 526,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstThirdMarginal_ne_zero_of_apply_ne_zero",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "fstThirdMarginal_ne_zero_of_apply_ne_zero"
+    },
+    {
+      "doc": "Nonzero triple mass forces the corresponding `(second, third)` marginal mass to be nonzero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 538,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndThirdMarginal_ne_zero_of_apply_ne_zero",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "sndThirdMarginal_ne_zero_of_apply_ne_zero"
+    },
+    {
+      "doc": "Nonzero triple mass forces the corresponding third-coordinate marginal mass to be nonzero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 550,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal_ne_zero_of_apply_ne_zero",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "thirdMarginal_ne_zero_of_apply_ne_zero"
+    },
+    {
+      "doc": "Conditional entropy `H(alpha | beta)` of a finite joint PMF on `alpha \u00d7 beta`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 561,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condEntropy",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "condEntropy"
+    },
+    {
+      "doc": "Mutual information `I(alpha; beta)` of a finite joint PMF on `alpha \u00d7 beta`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 566,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfo",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "mutualInfo"
+    },
+    {
+      "doc": "Conditional mutual information `I(alpha; beta | gamma)` of a finite joint PMF on `alpha \u00d7 beta \u00d7 gamma`, where the product is Lean's right-associated product.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 574,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "condMutualInfo"
+    },
+    {
+      "doc": "Conditional entropy `H(X | Y)` for finite-valued random variables.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 581,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "condEntropyOf"
+    },
+    {
+      "doc": "Mutual information `I(X; Y)` for finite-valued random variables.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 587,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "mutualInfoOf"
+    },
+    {
+      "doc": "Conditional mutual information `I(X; Y | Z)` for finite-valued random variables.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 593,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoOf",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "condMutualInfoOf"
+    },
+    {
+      "doc": "Entropy of the first coordinate projection is entropy of the first marginal.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 602,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.entropyOf_fst",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "entropyOf_fst"
+    },
+    {
+      "doc": "Entropy of the second coordinate projection is entropy of the second marginal.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 609,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.entropyOf_snd",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "entropyOf_snd"
+    },
+    {
+      "doc": "The joint entropy of the two coordinate projections of an existing pair law is the entropy of that pair law itself.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 619,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_fst_snd",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "jointEntropyOf_fst_snd"
+    },
+    {
+      "doc": "Conditional entropy of the coordinate projections of a pair law recovers the PMF-level conditional entropy of that pair law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 634,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_fst_snd",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "condEntropyOf_fst_snd"
+    },
+    {
+      "doc": "Mutual information of the coordinate projections of a pair law recovers the PMF-level mutual information of that pair law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 649,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_fst_snd",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "mutualInfoOf_fst_snd"
+    },
+    {
+      "doc": "Entropy of the third coordinate projection is entropy of the third marginal.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 661,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.entropyOf_third",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "entropyOf_third"
+    },
+    {
+      "doc": "Joint entropy of the first and third coordinate projections is the entropy of the first-third marginal.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 672,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_fst_third",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "jointEntropyOf_fst_third"
+    },
+    {
+      "doc": "Joint entropy of the second and third coordinate projections is the entropy of the second-third marginal.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 684,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_snd_third",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "jointEntropyOf_snd_third"
+    },
+    {
+      "doc": "Conditional mutual information of the coordinate projections of a triple law recovers the PMF-level `I(first; second | third)` quantity.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 696,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoOf_fst_snd_third",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "condMutualInfoOf_fst_snd_third"
+    },
+    {
+      "doc": "Unfolding lemma for the entropy-identity definition of conditional entropy.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 713,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condEntropy_eq",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "condEntropy_eq"
+    },
+    {
+      "doc": "Unfolding lemma for the entropy-identity definition of mutual information.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 719,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_eq",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "mutualInfo_eq"
+    },
+    {
+      "doc": "Unfolding lemma for the entropy-identity definition of conditional mutual information.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 728,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_eq",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "condMutualInfo_eq"
+    },
+    {
+      "doc": "Random-variable conditional entropy rewrites to joint entropy minus entropy of the conditioning variable.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 742,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_eq",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "condEntropyOf_eq"
+    },
+    {
+      "doc": "Random-variable mutual information rewrites to the standard entropy identity `H(X) + H(Y) - H(X,Y)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 752,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_eq",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "mutualInfoOf_eq"
+    },
+    {
+      "doc": "Random-variable conditional mutual information rewrites to the entropy identity `H(X,Z) + H(Y,Z) - H(Z) - H(X,Y,Z)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 763,
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoOf_eq",
+      "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
+      "short_name": "condMutualInfoOf_eq"
+    },
+    {
+      "doc": "Self-information of an atom under a finite PMF, in nats. It is `-log p(a)` when the real mass of `a` is nonzero, and `0` on zero-mass atoms. The zero branch is the usual entropy convention that zero-probability outcomes contribute no expected information.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 61,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge",
+      "name": "LeanInfoTheory.Shannon.selfInfo",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge.lean",
+      "short_name": "selfInfo"
+    },
+    {
+      "doc": "A zero-mass atom has zero self-information by convention.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 66,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge",
+      "name": "LeanInfoTheory.Shannon.selfInfo_of_toReal_eq_zero",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge.lean",
+      "short_name": "selfInfo_of_toReal_eq_zero"
+    },
+    {
+      "doc": "A nonzero-mass atom has self-information `-log p(a)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 72,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge",
+      "name": "LeanInfoTheory.Shannon.selfInfo_of_toReal_ne_zero",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge.lean",
+      "short_name": "selfInfo_of_toReal_ne_zero"
+    },
+    {
+      "doc": "Multiplying self-information by the atom mass recovers the `Real.negMulLog` entropy summand.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 81,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge",
+      "name": "LeanInfoTheory.Shannon.toReal_mul_selfInfo",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge.lean",
+      "short_name": "toReal_mul_selfInfo"
+    },
+    {
+      "doc": "Semantic bridge for finite entropy: the finite-sum definition of `Shannon.entropy` is the expected self-information with respect to `PMF.toMeasure`. Informally, this is the textbook identity `H(P) = E[-log P(X)]`, with the zero-mass convention handled by `selfInfo`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 95,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge",
+      "name": "LeanInfoTheory.Shannon.entropy_eq_integral_selfInfo",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge.lean",
+      "short_name": "entropy_eq_integral_selfInfo"
+    },
+    {
+      "doc": "Conditional law of the first coordinate given a nonzero second-coordinate atom. Mathematically, this is the finite PMF `P_{A | B=b}(a) = P_{A,B}(a,b) / P_B(b)`. The proof argument `hb : sndMarginal p b \u2260 0` is part of the API so that zero-probability conditioning atoms do not receive a fake default distribution.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 47,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSnd",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condFstGivenSnd"
+    },
+    {
+      "doc": "Atom formula for the conditional law: `P_{A | B=b}(a) = P_{A,B}(a,b) / P_B(b)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 67,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSnd_apply",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condFstGivenSnd_apply"
+    },
+    {
+      "doc": "The conditional PMF does not depend on which proof of nonzero marginal mass was used to construct it.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 76,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSnd_proof_irrel",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condFstGivenSnd_proof_irrel"
+    },
+    {
+      "doc": "An atom has zero conditional mass exactly when the corresponding joint atom has zero mass.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 88,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSnd_apply_eq_zero_iff",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condFstGivenSnd_apply_eq_zero_iff"
+    },
+    {
+      "doc": "An atom has nonzero conditional mass exactly when the corresponding joint atom has nonzero mass.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 107,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSnd_apply_ne_zero_iff",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condFstGivenSnd_apply_ne_zero_iff"
+    },
+    {
+      "doc": "The support of `P_{A | B=b}` is the fiber of the joint support over `b`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 117,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.support_condFstGivenSnd",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "support_condFstGivenSnd"
+    },
+    {
+      "doc": "Joint mass factors as conditional mass times the conditioning marginal: `P_{A | B=b}(a) * P_B(b) = P_{A,B}(a,b)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 128,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSnd_mul_sndMarginal",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condFstGivenSnd_mul_sndMarginal"
+    },
+    {
+      "doc": "Joint mass factors as the conditioning marginal times conditional mass: `P_B(b) * P_{A | B=b}(a) = P_{A,B}(a,b)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 139,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_mul_condFstGivenSnd",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "sndMarginal_mul_condFstGivenSnd"
+    },
+    {
+      "doc": "Real-valued version of the joint factorization: `P_B(b) * P_{A | B=b}(a) = P_{A,B}(a,b)` after converting masses to `Real`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 150,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_toReal_mul_condFstGivenSnd_toReal",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "sndMarginal_toReal_mul_condFstGivenSnd_toReal"
+    },
+    {
+      "doc": "Entropy of the conditional fiber, with explicit zero-mass branch. This helper is intended for expected conditional entropy formulas. If `P_B(b)=0`, the branch is the number `0`, not the entropy of an arbitrary default conditional PMF.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 166,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condEntropyFstGivenSnd",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condEntropyFstGivenSnd"
+    },
+    {
+      "doc": "Zero-marginal conditioning atoms contribute zero to conditional-fiber entropy.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 175,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condEntropyFstGivenSnd_of_sndMarginal_eq_zero",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condEntropyFstGivenSnd_of_sndMarginal_eq_zero"
+    },
+    {
+      "doc": "On nonzero conditioning atoms, `condEntropyFstGivenSnd` is the entropy of the canonical conditional PMF `P_{A | B=b}`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 185,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condEntropyFstGivenSnd_of_sndMarginal_ne_zero",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condEntropyFstGivenSnd_of_sndMarginal_ne_zero"
+    },
+    {
+      "doc": "Per-fiber conditional entropy identity. For each conditioning atom `b`, `p_B(b) * H(P_{A | B=b}) = sum_a h(p(a,b)) - h(p_B(b))`, where `h(x) = -x log x`. If `p_B(b)=0`, the left side uses the explicit zero branch of `condEntropyFstGivenSnd`, and the right side is zero because every joint atom over `b` has zero mass.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 200,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_toReal_mul_condEntropyFstGivenSnd",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "sndMarginal_toReal_mul_condEntropyFstGivenSnd"
+    },
+    {
+      "doc": "Expected conditional entropy formula for the finite conditional-law API: `H(A | B) = sum_b p_B(b) * H(P_{A | B=b})`. The right-hand side is written using `condEntropyFstGivenSnd`, whose value is `0` on zero-marginal conditioning atoms and the entropy of the canonical conditional PMF on nonzero atoms.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 268,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd"
+    },
+    {
+      "doc": "The right-associated law `P_{A,B,C}` viewed as a law on `((A, B), C)`. This is the law whose conditional fibers over `C=c` are joint laws on `A \u00d7 B`.",
+      "kind": "abbrev",
+      "kind_label": "Definition",
+      "line": 306,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.pairThirdLaw",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "pairThirdLaw"
+    },
+    {
+      "doc": "Atom formula for the reassociated law `((A,B),C)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 312,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.pairThirdLaw_apply",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "pairThirdLaw_apply"
+    },
+    {
+      "doc": "The second marginal of the reassociated law `((A,B),C)` is the law of `C`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 320,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_pairThirdLaw",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "sndMarginal_pairThirdLaw"
+    },
+    {
+      "doc": "Reassociating `(A,B,C)` as `((A,B),C)` preserves entropy.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 328,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.entropy_pairThirdLaw",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "entropy_pairThirdLaw"
+    },
+    {
+      "doc": "Conditional joint law of the first two coordinates given a nonzero third coordinate atom. Mathematically, this is `P_{A,B | C=c}(a,b) = P_{A,B,C}(a,b,c) / P_C(c)`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 341,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstSndGivenThird",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condFstSndGivenThird"
+    },
+    {
+      "doc": "Atom formula for `P_{A,B | C=c}`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 362,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstSndGivenThird_apply",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condFstSndGivenThird_apply"
+    },
+    {
+      "doc": "Joint mass factors through the conditional joint law: `P_C(c) * P_{A,B|C=c}(a,b) = P_{A,B,C}(a,b,c)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 374,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal_mul_condFstSndGivenThird",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "thirdMarginal_mul_condFstSndGivenThird"
+    },
+    {
+      "doc": "Real-valued joint factorization for the conditional joint law: `P_C(c) * P_{A,B|C=c}(a,b) = P_{A,B,C}(a,b,c)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 387,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal_toReal_mul_condFstSndGivenThird_toReal",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "thirdMarginal_toReal_mul_condFstSndGivenThird_toReal"
+    },
+    {
+      "doc": "The second marginal of the `(A,C)` law is the law of `C`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 401,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_fstThirdMarginal",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "sndMarginal_fstThirdMarginal"
+    },
+    {
+      "doc": "The second marginal of the `(B,C)` law is the law of `C`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 417,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_sndThirdMarginal",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "sndMarginal_sndThirdMarginal"
+    },
+    {
+      "doc": "The first marginal of `P_{A,B|C=c}` is the conditional law `P_{A|C=c}`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 439,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_condFstSndGivenThird",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "fstMarginal_condFstSndGivenThird"
+    },
+    {
+      "doc": "The second marginal of `P_{A,B|C=c}` is the conditional law `P_{B|C=c}`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 469,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_condFstSndGivenThird",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "sndMarginal_condFstSndGivenThird"
+    },
+    {
+      "doc": "The conditional law of `(A,B)` given `C=c`, obtained by conditioning the reassociated law `((A,B),C)`, is the same as `condFstSndGivenThird`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 500,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSnd_pairThirdLaw_eq_condFstSndGivenThird",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condFstGivenSnd_pairThirdLaw_eq_condFstSndGivenThird"
+    },
+    {
+      "doc": "Conditional mutual information of the fiber over `C=c`. The value is zero when `P_C(c)=0`; otherwise it is the mutual information of the conditional joint law `P_{A,B|C=c}`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 520,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condMutualInfoFstSndGivenThird"
+    },
+    {
+      "doc": "Zero-marginal conditioning atoms contribute zero fiber mutual information.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 531,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird_of_thirdMarginal_eq_zero",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condMutualInfoFstSndGivenThird_of_thirdMarginal_eq_zero"
+    },
+    {
+      "doc": "On nonzero third-coordinate atoms, the fiber CMI is the mutual information of `P_{A,B|C=c}`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 543,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird_of_thirdMarginal_ne_zero",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condMutualInfoFstSndGivenThird_of_thirdMarginal_ne_zero"
+    },
+    {
+      "doc": "Conditional mutual information can be rewritten as `H(A|C) + H(B|C) - H(A,B|C)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 556,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_eq_condEntropy_marginals",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condMutualInfo_eq_condEntropy_marginals"
+    },
+    {
+      "doc": "On a nonzero third-coordinate atom, fiber CMI is the entropy identity for the three conditional fibers: `I(A;B | C=c) = H(A|C=c) + H(B|C=c) - H(A,B|C=c)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 573,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird_eq_entropy_fibers_of_ne_zero",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condMutualInfoFstSndGivenThird_eq_entropy_fibers_of_ne_zero"
+    },
+    {
+      "doc": "Weighted pointwise bridge between fiber CMI and the three conditional entropy fibers. The zero-marginal case is killed by the factor `P_C(c)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 602,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal_toReal_mul_condMutualInfoFstSndGivenThird",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "thirdMarginal_toReal_mul_condMutualInfoFstSndGivenThird"
+    },
+    {
+      "doc": "Expected conditional mutual information formula: `I(A;B | C) = sum_c P_C(c) I(A;B | C=c)`. The fiber term is zero on zero-marginal `c` and otherwise the mutual information of `P_{A,B|C=c}`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 624,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThird",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
+      "short_name": "condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThird"
+    },
+    {
+      "doc": "Real-valued first-marginal mass formula. Mathematically, for a finite joint PMF `p` on `alpha \u00d7 beta`, `p_A(a) = sum_b p(a,b)`, now stated after converting all finite masses to real numbers.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 45,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_toReal_apply",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteSums.lean",
+      "short_name": "fstMarginal_toReal_apply"
+    },
+    {
+      "doc": "Real-valued second-marginal mass formula. Mathematically, for a finite joint PMF `p` on `alpha \u00d7 beta`, `p_B(b) = sum_a p(a,b)`, now stated after converting all finite masses to real numbers.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 61,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_toReal_apply",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteSums.lean",
+      "short_name": "sndMarginal_toReal_apply"
+    },
+    {
+      "doc": "Rewrite an expectation of a first-coordinate observable under the joint law as an expectation under the first marginal: `sum_{a,b} p(a,b) f(a) = sum_a p_A(a) f(a)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 75,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.sum_toReal_mul_fstMarginal",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteSums.lean",
+      "short_name": "sum_toReal_mul_fstMarginal"
+    },
+    {
+      "doc": "Rewrite an expectation of a second-coordinate observable under the joint law as an expectation under the second marginal: `sum_{a,b} p(a,b) f(b) = sum_b p_B(b) f(b)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 98,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.sum_toReal_mul_sndMarginal",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteSums.lean",
+      "short_name": "sum_toReal_mul_sndMarginal"
+    },
+    {
+      "doc": "Entropy as the elementary finite sum `sum_a p(a) * (-log p(a))`. This is definitionally the same as the `Real.negMulLog` formula, but this shape is better for comparing entropy identities with KL-divergence sums.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 126,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.entropy_eq_sum_toReal_mul_neg_log",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteSums.lean",
+      "short_name": "entropy_eq_sum_toReal_mul_neg_log"
+    },
+    {
+      "doc": "First-marginal entropy as a joint-law expectation: `H(A) = sum_{a,b} p(a,b) * (-log p_A(a))`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 140,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.entropy_fstMarginal_eq_sum_joint",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteSums.lean",
+      "short_name": "entropy_fstMarginal_eq_sum_joint"
+    },
+    {
+      "doc": "Second-marginal entropy as a joint-law expectation: `H(B) = sum_{a,b} p(a,b) * (-log p_B(b))`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 159,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.entropy_sndMarginal_eq_sum_joint",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteSums.lean",
+      "short_name": "entropy_sndMarginal_eq_sum_joint"
+    },
+    {
+      "doc": "Mutual information written as the joint expectation of the three entropy summands: `I(A;B) = sum_{a,b} p(a,b) * (-log p_A(a) + -log p_B(b) - -log p(a,b))`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 181,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_eq_sum_neg_log",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteSums.lean",
+      "short_name": "mutualInfo_eq_sum_neg_log"
+    },
+    {
+      "doc": "Pointwise algebra behind the KL formula for mutual information. For every atom `(a,b)`, the weighted entropy summand equals `p(a,b) * log (p(a,b) / (p_A(a) * p_B(b)))`. If `p(a,b)=0`, both sides are zero; otherwise nonzero joint mass forces both marginal masses to be nonzero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 202,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_summand_eq_log_ratio",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteSums.lean",
+      "short_name": "mutualInfo_summand_eq_log_ratio"
+    },
+    {
+      "doc": "Finite log-ratio formula for mutual information: `I(A;B) = sum_{a,b} p(a,b) log (p(a,b) / (p_A(a) p_B(b)))`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 234,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_eq_sum_log_ratio",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteSums.lean",
+      "short_name": "mutualInfo_eq_sum_log_ratio"
+    },
+    {
+      "doc": "Countable PMF density formula. If `p.toMeasure \u226a q.toMeasure`, then `p.toMeasure` is obtained from `q.toMeasure` by the density `a \u21a6 p(a) / q(a)`. On atoms with `q(a)=0`, absolute continuity forces `p(a)=0`, so the formula is still valid.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 54,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.toMeasure_withDensity_pmf_div",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/KL.lean",
+      "short_name": "toMeasure_withDensity_pmf_div"
+    },
+    {
+      "doc": "Finite KL expansion for absolutely continuous PMFs: `D(P || Q) = sum_a p(a) log (p(a) / q(a))`. The left-hand side is mathlib's measure-theoretic KL divergence applied to `PMF.toMeasure`; the right-hand side is the usual finite sum over atoms.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 85,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_pmf_eq_sum",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/KL.lean",
+      "short_name": "toReal_klDiv_pmf_eq_sum"
+    },
+    {
+      "doc": "Semantic bridge for finite mutual information: `I(A;B) = D(P_AB || P_A \u00d7 P_B)`. Here `P_A \u00d7 P_B` is represented by the finite independent-product PMF `indepProd (fstMarginal p) (sndMarginal p)`. This theorem is the finite textbook identity connecting the entropy definition of mutual information to mathlib's measure-theoretic KL divergence.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 125,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_eq_toReal_klDiv_joint_indepProd",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/KL.lean",
+      "short_name": "mutualInfo_eq_toReal_klDiv_joint_indepProd"
+    },
+    {
+      "doc": "Product-measure form of the finite mutual-information KL bridge: `I(A;B) = D(P_AB || P_A.toMeasure.prod P_B.toMeasure)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 149,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_eq_toReal_klDiv_joint_prod_marginals",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/KL.lean",
+      "short_name": "mutualInfo_eq_toReal_klDiv_joint_prod_marginals"
+    },
+    {
+      "doc": "Fiberwise KL form of conditional mutual information. This is zero on zero-marginal third-coordinate atoms. On nonzero atoms it is `D(P_{A,B|C=c} || P_{A|C=c} \u00d7 P_{B|C=c})`, using the marginals of the conditional joint law.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 170,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThirdKL",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/KL.lean",
+      "short_name": "condMutualInfoFstSndGivenThirdKL"
+    },
+    {
+      "doc": "The fiber mutual-information helper agrees with the fiberwise KL expression `D(P_{A,B|C=c} || P_{A|C=c} \u00d7 P_{B|C=c})`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 187,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird_eq_KL",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/KL.lean",
+      "short_name": "condMutualInfoFstSndGivenThird_eq_KL"
+    },
+    {
+      "doc": "Averaged conditional-KL bridge for finite conditional mutual information: `I(A;B | C) = sum_c P_C(c) D(P_{A,B|C=c} || P_{A|C=c} \u00d7 P_{B|C=c})`. Zero-marginal `c` contribute zero by definition of `condMutualInfoFstSndGivenThirdKL`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 211,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThirdKL",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/KL.lean",
+      "short_name": "condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThirdKL"
+    },
+    {
+      "doc": "Independent product of two probability mass functions. Mathematically, this is the law of `(X, Y)` when `X` has law `p`, `Y` has law `q`, and the two variables are independent.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 39,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.indepProd",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Product.lean",
+      "short_name": "indepProd"
+    },
+    {
+      "doc": "The atom mass of an independent product is the product of the two atom masses.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 63,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.indepProd_apply",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Product.lean",
+      "short_name": "indepProd_apply"
+    },
+    {
+      "doc": "An atom of the independent product has zero mass exactly when one of the two coordinate atoms has zero mass.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 78,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.indepProd_apply_eq_zero_iff",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Product.lean",
+      "short_name": "indepProd_apply_eq_zero_iff"
+    },
+    {
+      "doc": "An atom belongs to the independent product support exactly when both coordinate atoms belong to the corresponding supports.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 88,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.indepProd_apply_ne_zero_iff",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Product.lean",
+      "short_name": "indepProd_apply_ne_zero_iff"
+    },
+    {
+      "doc": "The support of an independent product is the product of the two supports.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 95,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.support_indepProd",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Product.lean",
+      "short_name": "support_indepProd"
+    },
+    {
+      "doc": "The first marginal of an independent product is the first factor law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 104,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_indepProd",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Product.lean",
+      "short_name": "fstMarginal_indepProd"
+    },
+    {
+      "doc": "The second marginal of an independent product is the second factor law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 121,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_indepProd",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Product.lean",
+      "short_name": "sndMarginal_indepProd"
+    },
+    {
+      "doc": "Swapping the coordinates of an independent product swaps the two factor laws.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 139,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.indepProd_map_swap",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Product.lean",
+      "short_name": "indepProd_map_swap"
+    },
+    {
+      "doc": "The independent product law assigns product rectangles the product of the factor probabilities.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 159,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.indepProd_toMeasure_prod",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Product.lean",
+      "short_name": "indepProd_toMeasure_prod"
+    },
+    {
+      "doc": "The measure associated to the independent product PMF is the product of the two associated measures.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 208,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.indepProd_toMeasure",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Product.lean",
+      "short_name": "indepProd_toMeasure"
+    },
+    {
+      "doc": "A finite joint PMF is absolutely continuous with respect to the independent product of its two marginals. Mathematically, if the product of the marginal masses of `(a, b)` is zero, then one marginal atom is zero, hence the joint atom `p (a, b)` is zero. This is the support fact needed before comparing finite mutual information with KL divergence from the joint law to the product of its marginals.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 229,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.joint_toMeasure_absolutelyContinuous_indepProd_marginals",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Product.lean",
+      "short_name": "joint_toMeasure_absolutelyContinuous_indepProd_marginals"
+    },
+    {
+      "doc": "Product-measure version of `joint_toMeasure_absolutelyContinuous_indepProd_marginals`. This is the form expected by KL-divergence statements that use `Measure.prod` directly.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 264,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.joint_toMeasure_absolutelyContinuous_prod_marginals",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Product.lean",
+      "short_name": "joint_toMeasure_absolutelyContinuous_prod_marginals"
+    },
+    {
+      "doc": "Mutual information is nonnegative: `0 <= I(A;B)`. The proof passes through the semantic bridge `I(A;B) = D(P_AB || P_A x P_B)` and then uses nonnegativity of the real coercion of an `ENNReal` KL divergence.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 44,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_nonneg",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean",
+      "short_name": "mutualInfo_nonneg"
+    },
+    {
+      "doc": "Fiber conditional mutual information is nonnegative: `0 <= I(A;B | C=c)`. On zero-mass fibers this is `0 <= 0`; on nonzero fibers it reduces to `mutualInfo_nonneg` applied to the conditional joint law `P_{A,B|C=c}`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 60,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird_nonneg",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean",
+      "short_name": "condMutualInfoFstSndGivenThird_nonneg"
+    },
+    {
+      "doc": "Conditional mutual information is nonnegative: `0 <= I(A;B | C)`. We use the finite semantic bridge `I(A;B | C) = sum_c P_C(c) * I(A;B | C=c)`, then each summand is nonnegative because both `P_C(c)` and the fiber mutual information are nonnegative.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 82,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_nonneg",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean",
+      "short_name": "condMutualInfo_nonneg"
+    },
+    {
+      "doc": "Taking the first marginal after projecting `(A,B,C)` to `(A,C)` recovers the first marginal of the original law: `(P_AC)_A = P_A`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 101,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_fstThirdMarginal",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean",
+      "short_name": "fstMarginal_fstThirdMarginal"
+    },
+    {
+      "doc": "Viewing a triple law as a joint law of `A` and `(B,C)`, the second marginal is the same law as the explicit `(B,C)` marginal: `P_{B,C} = sndMarginal P_{A,(B,C)}`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 114,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_eq_sndThirdMarginal",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean",
+      "short_name": "sndMarginal_eq_sndThirdMarginal"
+    },
+    {
+      "doc": "First mutual-information chain rule: `I(A;B,C) = I(A;C) + I(A;B | C)`. In Lean's right-associated product convention, a PMF `p : PMF (alpha \u00d7 beta \u00d7 gamma)` is also a joint law of `A` and `(B,C)`, so `mutualInfo p` denotes `I(A;B,C)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 131,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_chain_rule_fst",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean",
+      "short_name": "mutualInfo_chain_rule_fst"
+    }
+  ],
+  "documented_count": 263,
+  "kind_counts": {
+    "Definition": 61,
+    "Inductive": 3,
+    "Structure": 6,
+    "Theorem": 193
+  },
+  "modules": [
+    "LeanInfoTheory.Basic",
+    "LeanInfoTheory.Certificate",
+    "LeanInfoTheory.Certificate.Checked",
+    "LeanInfoTheory.Certificate.Submodularity",
+    "LeanInfoTheory.EntropyExpr",
+    "LeanInfoTheory.EntropyVal",
+    "LeanInfoTheory.Examples",
+    "LeanInfoTheory.PrimitiveIneq",
+    "LeanInfoTheory.Probability.Finite",
+    "LeanInfoTheory.Shannon.Entropy",
+    "LeanInfoTheory.Shannon.EntropyBounds",
+    "LeanInfoTheory.Shannon.InfoMeasures",
+    "LeanInfoTheory.Shannon.SemanticBridge",
+    "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+    "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+    "LeanInfoTheory.Shannon.SemanticBridge.KL",
+    "LeanInfoTheory.Shannon.SemanticBridge.Product",
+    "LeanInfoTheory.Shannon.SemanticBridge.Theorems"
+  ],
+  "schema": "lean-info-theory.declaration-index.v1",
+  "undocumented_count": 0
+}

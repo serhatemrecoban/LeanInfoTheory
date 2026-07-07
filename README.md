@@ -40,7 +40,9 @@ when they stabilize.
   layers.
 - The first non-toy certificate demo proves entropy submodularity from a
   validated conditional-mutual-information certificate.
-- Website MVP lives in `home_page/`.
+- Website dashboard, theorem highlights, module guide, certificate-demo pages,
+  generated module-level dependency map, and generated declaration index live
+  in `home_page/`.
 - Blueprint and roadmap notes live in `blueprint/` and `docs/`.
 
 ## Lean Modules
@@ -64,8 +66,10 @@ when they stabilize.
   information, conditional mutual information, named marginals, and
   random-variable versions.
 - `LeanInfoTheory.Shannon.SemanticBridge`: separated heavier bridge layer;
-  currently contains `selfInfo` and `entropy_eq_integral_selfInfo`, with future
-  KL-divergence and conditional-law equivalence theorems planned here.
+  contains finite entropy as expected self-information, finite conditional-law
+  formulas, mutual information as KL divergence, conditional mutual information
+  as averaged fiber mutual information and averaged fiber KL, semantic
+  nonnegativity, and a first mutual-information chain rule.
 - `LeanInfoTheory.InformationMeasures`: public re-export for finite information
   measures and their first rewrite lemmas. Binary and q-ary entropy remain mathlib names:
   `Real.binEntropy` and `Real.qaryEntropy`.
@@ -104,20 +108,23 @@ Import heavier or demonstrational modules explicitly:
 
 - `LeanInfoTheory.Shannon.EntropyBounds` for Jensen-based entropy bounds.
 - `LeanInfoTheory.Shannon.SemanticBridge` for self-information,
-  KL/conditional-law bridge work.
+  conditional-law, KL, averaged conditional-KL, nonnegativity, and chain-rule
+  bridge theorems.
 - `LeanInfoTheory.MathlibFragments` for heavy mathlib/coding anchors.
 - `LeanInfoTheory.Certificate.Submodularity` and `LeanInfoTheory.Examples` for
   demos and examples.
 
 ## Roadmap
 
-1. Prove equivalence between the algebraic finite definitions and textbook
-   conditional-law/KL definitions.
-2. Audit mathlib, PFR, and divergence-project entropy/KL APIs for reusable
-   theorems.
-3. Expand entropy-expression normalization and certificate checking.
+1. Upgrade the public site beyond the current module graph and declaration
+   index with a theorem-level blueprint, full Lean doc-gen output, and a
+   blueprint PDF.
+2. Extend the checked-certificate path beyond the submodularity demo with more
+   textbook entropy inequalities.
+3. Add richer certificate assumptions such as independence, Markov, and
+   functional-dependence constraints.
 4. Certify 5-10 toy and recognizable network-information-theory converse steps.
-5. Prepare small mathlib PRs for generic, stable pieces.
+5. Prepare small mathlib PRs for generic, stable finite-measure pieces.
 
 ## Build
 
@@ -135,6 +142,18 @@ The first `lake build` checks the lightweight root import. The explicit module
 builds check heavier or demonstrational files that are intentionally kept out
 of the root import. The Lean CI workflow also fails if Lean source files
 contain `sorry`, `admit`, `opaque`, `undefined`, or an unapproved `axiom`.
+
+Regenerate website reference artifacts after changing Lean imports or public
+declarations:
+
+```powershell
+python scripts\generate_website_blueprint.py
+python scripts\generate_website_api_index.py
+python scripts\check_website.py
+```
+
+CI checks that the generated website artifacts are up to date and that local
+website links plus generated JSON files are valid.
 
 The public project website can be opened locally from:
 

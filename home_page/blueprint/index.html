@@ -13,15 +13,18 @@
       <nav class="project-links" aria-label="Project links">
         <a href="../" class="btn">Home</a>
         <a href="../docs/" class="btn">Documentation</a>
+        <a href="../theorems.html" class="btn">Theorems</a>
         <a href="dep_graph_document.html" class="btn">Dependency graph</a>
         <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
     </header>
     <main class="main-content" role="main">
       <p>
-        This blueprint mixes implemented modules with planned layers. Planned
-        items are marked as future work; the current Lean code is still an
-        early foundation, not a completed network-information-theory library.
+        This blueprint mixes implemented modules with planned layers. The
+        <a href="dep_graph_document.html">module-level dependency map</a> is
+        generated from Lean <code>import</code> lines; a source-derived API
+        index is available under documentation; theorem-level blueprint pages,
+        full Lean doc-gen output, and a blueprint PDF remain future work.
       </p>
 
       <h2>Layer 0: Existing foundations</h2>
@@ -41,7 +44,12 @@
         <li>joint entropy, conditional entropy, mutual information, and conditional mutual information</li>
         <li>marginal mass formulas, support/domination lemmas, and coordinate-orientation lemmas</li>
         <li>semantic bridge theorem identifying entropy with expected self-information over <code>PMF.toMeasure</code></li>
-        <li>future semantic bridge theorems for conditional laws and KL divergence</li>
+        <li>finite conditional laws with explicit zero-mass conventions</li>
+        <li>conditional entropy as expected entropy of conditional fibers</li>
+        <li>mutual information as KL divergence from the joint law to the product of marginals</li>
+        <li>conditional mutual information as averaged fiber mutual information and averaged fiber KL</li>
+        <li>semantic nonnegativity of mutual information and conditional mutual information</li>
+        <li>first mutual-information chain rule <code>I(A;B,C) = I(A;C) + I(A;B|C)</code></li>
       </ul>
 
       <h2>Layer 2: Algebraic entropy expressions</h2>
@@ -60,6 +68,7 @@
         <li>current exact rational expression matching for checked decompositions</li>
         <li>current basic raw-to-checked validation for primitive-tagged steps</li>
         <li>current entropy submodularity demo from a validated CMI certificate</li>
+        <li>current checker validates normalized entropy-expression equality; it does not search for certificates automatically</li>
         <li>future import support for external certificate formats</li>
         <li>future import path for PSITIP/oXitip-style certificates</li>
       </ul>

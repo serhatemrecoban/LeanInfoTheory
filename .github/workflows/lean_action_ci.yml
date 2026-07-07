@@ -15,6 +15,19 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Check generated website blueprint is current
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/generate_website_blueprint.py
+          python scripts/generate_website_api_index.py
+          python scripts/check_website.py
+          git diff --exit-code -- \
+            home_page/blueprint/dep_graph_document.html \
+            home_page/blueprint/module_graph.json \
+            home_page/docs/api-index.html \
+            home_page/docs/declaration_index.json
+
       - name: Check Lean source has no placeholders
         shell: bash
         run: |

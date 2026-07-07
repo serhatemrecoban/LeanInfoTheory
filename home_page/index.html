@@ -7,7 +7,7 @@
     <title>LeanInfoTheory | Lean-certified information theory</title>
     <meta
       name="description"
-      content="A Lean/mathlib project for finite information measures and a planned entropy-inequality certificate pipeline."
+      content="A Lean/mathlib project for finite information measures, semantic bridge theorems, and checked entropy-inequality certificates."
     >
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -17,143 +17,179 @@
     <header class="page-header" role="banner">
       <h1 class="project-name">LeanInfoTheory</h1>
       <h2 class="project-tagline">
-        A Lean/mathlib project for finite information measures,
-        entropy-expression certificates, and future network-information-theory
-        converse automation.
+        Lean-certified finite information measures and entropy-certificate checking.
       </h2>
       <p class="project-authors">by Serhat Emre Coban</p>
       <nav class="project-links" aria-label="Project links">
-        <a href="blueprint/" class="btn">Blueprint (web)</a>
+        <a href="blueprint/" class="btn">Blueprint</a>
         <a href="docs/" class="btn">Documentation</a>
-        <a href="blueprint/dep_graph_document.html" class="btn">Dependency graph</a>
+        <a href="theorems.html" class="btn">Theorems</a>
         <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
     </header>
 
     <main id="content" class="main-content" role="main">
-      <p>
-        LeanInfoTheory is an early-stage Lean/mathlib project for finite
-        information measures and a planned certificate/converse pipeline.
-      </p>
+      <section class="status-strip" aria-label="Project status">
+        <p class="status-badges">
+          <a href="https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/lean_action_ci.yml">
+            <img
+              src="https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/lean_action_ci.yml/badge.svg"
+              alt="Lean build and placeholder check status"
+            >
+          </a>
+          <a href="https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/pages.yml">
+            <img
+              src="https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/pages.yml/badge.svg"
+              alt="GitHub Pages deployment status"
+            >
+          </a>
+        </p>
+        <p>
+          Current milestone: finite PMF entropy and information measures,
+          semantic bridges to conditional laws and KL divergence, and a checked
+          certificate demo for entropy submodularity.
+        </p>
+      </section>
 
-      <p>
-        Current milestone: the repository contains a mathlib-based finite-PMF
-        Shannon foundation, primitive Shannon inequalities, and a first
-        proof-carrying checked-certificate layer with exact rational expression
-        matching plus basic raw-to-checked validation. The finite entropy layer
-        now includes relabeling, swap, reassociation, upper-bound, and
-        uniform-law sanity theorems. The first non-toy certificate demo proves
-        entropy submodularity from a validated CMI certificate. Semantic
-        KL/conditional-law bridge theorems, external certificate import,
-        generated API documentation, and network-converse examples are planned
-        next milestones.
-      </p>
+      <section aria-labelledby="layers-heading">
+        <h2 id="layers-heading">Implemented Layers</h2>
+        <div class="card-grid">
+          <article class="info-card">
+            <p class="status-pill proved">Proved foundation</p>
+            <h3>Finite Shannon Layer</h3>
+            <p>
+              Entropy, conditional entropy, mutual information, conditional
+              mutual information, marginal APIs, entropy bounds, relabeling,
+              swaps, and reassociation over mathlib <code>PMF</code>s.
+            </p>
+          </article>
+          <article class="info-card">
+            <p class="status-pill proved">Proved bridge</p>
+            <h3>Semantic Bridge</h3>
+            <p>
+              Entropy as expected self-information, finite conditional laws,
+              mutual information as KL, averaged conditional-KL, semantic
+              nonnegativity, and the first MI chain rule.
+            </p>
+          </article>
+          <article class="info-card">
+            <p class="status-pill proved">Checked core</p>
+            <h3>Certificate Layer</h3>
+            <p>
+              Entropy expressions, abstract Shannon valuations, primitive
+              inequalities, raw-to-checked validation, and exact rational
+              decomposition matching.
+            </p>
+          </article>
+          <article class="info-card">
+            <p class="status-pill demo">Proved demo</p>
+            <h3>Submodularity Demo</h3>
+            <p>
+              A one-step CMI certificate validates the Shannon submodularity
+              inequality through the trusted Lean checker.
+            </p>
+          </article>
+        </div>
+      </section>
 
-      <p class="status-badges" aria-label="Project status">
-        <a href="https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/lean_action_ci.yml">
-          <img
-            src="https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/lean_action_ci.yml/badge.svg"
-            alt="Lean build and placeholder check status"
-          >
-        </a>
-        <a href="https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/pages.yml">
-          <img
-            src="https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/pages.yml/badge.svg"
-            alt="GitHub Pages deployment status"
-          >
-        </a>
-      </p>
+      <section aria-labelledby="architecture-heading">
+        <h2 id="architecture-heading">Architecture</h2>
+        <div class="architecture-diagram" role="img" aria-label="LeanInfoTheory architecture: finite Shannon layer and certificate layer meet in verified theorem demos, then support future network converses.">
+          <div class="arch-node">mathlib PMF, measure, KL</div>
+          <div class="arch-arrow">to</div>
+          <div class="arch-node">finite Shannon layer</div>
+          <div class="arch-arrow">to</div>
+          <div class="arch-node">semantic bridge</div>
+          <div class="arch-join">supports</div>
+          <div class="arch-node">entropy expressions</div>
+          <div class="arch-arrow">to</div>
+          <div class="arch-node">checked certificates</div>
+          <div class="arch-arrow">to</div>
+          <div class="arch-node">verified inequalities</div>
+        </div>
+      </section>
 
-      <p>Useful links:</p>
-      <ul>
-        <li><a href="https://leanprover.zulipchat.com/">Zulip chat for Lean</a></li>
-        <li><a href="blueprint/">Blueprint</a></li>
-        <li><a href="blueprint/dep_graph_document.html">Dependency graph</a></li>
-        <li><a href="docs/">Current module list</a></li>
-        <li><a href="roadmap.html">Roadmap</a></li>
-        <li><a href="concept-note.html">Concept note</a></li>
-      </ul>
+      <section aria-labelledby="start-heading">
+        <h2 id="start-heading">Start Here</h2>
+        <div class="link-grid">
+          <a href="theorems.html">Theorem highlights</a>
+          <a href="docs/api-index.html">Generated API index</a>
+          <a href="submodularity-demo.html">Submodularity demo</a>
+          <a href="module-guide.html">Module guide</a>
+          <a href="blueprint/">Blueprint</a>
+          <a href="blueprint/dep_graph_document.html">Dependency map</a>
+          <a href="development.html">Development</a>
+          <a href="prior-art.html">Prior art</a>
+          <a href="roadmap.html">Roadmap</a>
+        </div>
+      </section>
 
-      <h2>Implemented now</h2>
-      <table class="status-table">
-        <caption>Current public status</caption>
-        <thead>
-          <tr>
-            <th scope="col">Layer</th>
-            <th scope="col">Status</th>
-            <th scope="col">Representative Lean names</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Finite Shannon measures</td>
-            <td>Implemented foundation over mathlib <code>PMF</code>s.</td>
-            <td><code>Shannon.entropy</code>, <code>Shannon.condEntropy</code>, <code>Shannon.mutualInfo</code>, <code>Shannon.condMutualInfo</code></td>
-          </tr>
-          <tr>
-            <td>Entropy sanity theorems</td>
-            <td>Relabeling, swap, reassociation, finite upper bound, and uniform equality are proved.</td>
-            <td><code>Shannon.entropy_map_equiv</code>, <code>Shannon.entropy_map_prodAssoc</code>, <code>Shannon.entropy_le_log_card</code></td>
-          </tr>
-          <tr>
-            <td>Certificate core</td>
-            <td>Proof-carrying primitive certificates with exact rational decomposition matching.</td>
-            <td><code>Certificate.CheckedCert.sound</code>, <code>Certificate.RawCert.toCheckedCert?</code></td>
-          </tr>
-          <tr>
-            <td>First certificate demo</td>
-            <td>Entropy submodularity is proved from a validated CMI certificate.</td>
-            <td><code>Certificate.Submodularity.entropy_submodularity</code></td>
-          </tr>
-          <tr>
-            <td>Semantic bridge</td>
-            <td>First bridge theorem identifies entropy with expected self-information over <code>PMF.toMeasure</code>; conditional-law and KL bridges are planned next.</td>
-            <td><code>Shannon.selfInfo</code>, <code>Shannon.entropy_eq_integral_selfInfo</code></td>
-          </tr>
-        </tbody>
-      </table>
+      <section aria-labelledby="theorems-heading">
+        <h2 id="theorems-heading">Theorem Highlights</h2>
+        <table class="status-table">
+          <caption>Selected checked statements</caption>
+          <thead>
+            <tr>
+              <th scope="col">Mathematical statement</th>
+              <th scope="col">Lean theorem</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>H(P) >= 0</code></td>
+              <td><code>Shannon.entropy_nonneg</code></td>
+              <td><span class="status-pill proved">Proved</span></td>
+            </tr>
+            <tr>
+              <td><code>H(P) <= log |alpha|</code></td>
+              <td><code>Shannon.entropy_le_log_card</code></td>
+              <td><span class="status-pill proved">Proved</span></td>
+            </tr>
+            <tr>
+              <td><code>I(A;B) = D(P_AB || P_A x P_B)</code></td>
+              <td><code>Shannon.mutualInfo_eq_toReal_klDiv_joint_indepProd</code></td>
+              <td><span class="status-pill proved">Proved</span></td>
+            </tr>
+            <tr>
+              <td><code>0 <= I(A;B)</code> and <code>0 <= I(A;B | C)</code></td>
+              <td><code>Shannon.mutualInfo_nonneg</code>, <code>Shannon.condMutualInfo_nonneg</code></td>
+              <td><span class="status-pill proved">Proved</span></td>
+            </tr>
+            <tr>
+              <td>Entropy submodularity from a checked CMI certificate</td>
+              <td><code>Certificate.Submodularity.entropy_submodularity</code></td>
+              <td><span class="status-pill demo">Proved demo</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <p><a href="theorems.html">See the curated theorem page.</a></p>
+      </section>
 
-      <ul>
-        <li>Lake project initialized with Lean 4.30.0 and mathlib 4.30.0.</li>
-        <li>GitHub Actions runs the lightweight root build, separately importable module builds, and a strict no-placeholder scan.</li>
-        <li>Finite Shannon entropy is defined for mathlib <code>PMF</code>s using <code>Real.negMulLog</code>.</li>
-        <li>Finite entropy is invariant under equivalence and injective alphabet relabelings, coordinate swaps, and product reassociation.</li>
-        <li>Finite entropy is bounded by <code>log |alphabet|</code>, and the uniform distribution attains that value.</li>
-        <li>Conditional entropy, mutual information, and conditional mutual information are available as entropy-identity definitions.</li>
-        <li>Marginal mass formulas, support/domination lemmas, and coordinate-orientation lemmas are part of the current API.</li>
-        <li>The certificate layer contains formal entropy expressions and a generic nonnegative-combination soundness theorem.</li>
-        <li>An abstract Shannon entropy valuation layer packages empty entropy, conditional entropy nonnegativity, and conditional mutual information nonnegativity assumptions.</li>
-        <li>Primitive Shannon inequality expressions are available for empty entropy, conditional entropy, and conditional mutual information, with soundness theorems under abstract Shannon entropy valuations.</li>
-        <li>A raw/checked certificate split is available; checked certificates use primitive Shannon ingredients, nonnegative rational coefficients, exact rational decomposition equality, and a first raw-to-checked validator.</li>
-        <li>A first non-toy certificate demo proves entropy submodularity from a validated conditional-mutual-information certificate.</li>
-        <li>The semantic bridge module proves that finite entropy is expected self-information over <code>PMF.toMeasure</code>.</li>
-        <li>No theorem placeholders are present in the current Lean source.</li>
-      </ul>
+      <section aria-labelledby="validation-heading">
+        <h2 id="validation-heading">Certificate Validation</h2>
+        <p>
+          The Lean side currently checks certificates; it does not search for
+          them automatically. Given raw certificate data, Lean validates
+          primitive tags, nonnegative rational coefficients, and exact
+          normalized entropy-expression equality.
+        </p>
+        <p>
+          External tools such as PSITIP or oXitip may later search for
+          certificates. The importer and external tool remain untrusted; Lean
+          validation is the trusted step.
+        </p>
+      </section>
 
-      <h2>Demonstrations</h2>
-      <ul>
-        <li><code>LeanInfoTheory.Shannon.EntropyBounds</code> proves the textbook finite entropy bound <code>H(P) <= log |alpha|</code> and the uniform-law equality case.</li>
-        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code> proves the textbook expectation identity <code>H(P) = E[-log P(X)]</code> using <code>PMF.toMeasure</code>.</li>
-        <li><code>LeanInfoTheory.Certificate.Submodularity</code> validates a one-step CMI certificate and derives Shannon entropy submodularity.</li>
-      </ul>
-
-      <h2>Planned, not yet implemented</h2>
-      <ul>
-        <li>Semantic bridge theorems identifying conditional entropy, mutual information, and conditional mutual information with conditional-law and KL-divergence semantics.</li>
-        <li>Import support for external certificate formats and richer validation front ends.</li>
-        <li>Generated API documentation; the current documentation page is a module list.</li>
-        <li>Non-toy network-information-theory converse examples.</li>
-      </ul>
-
-      <h2>Why this shape?</h2>
-      <p>
-        This site follows the standard Lean project pattern: a compact landing
-        page whose job is to route readers to the blueprint, current module
-        list, future generated documentation, dependency graph, and GitHub
-        repository. Since this project is also a reusable library effort, the
-        homepage records the present scope and status explicitly instead of
-        presenting itself as a completed theorem formalization.
-      </p>
+      <section aria-labelledby="next-heading">
+        <h2 id="next-heading">Planned Next</h2>
+        <ul>
+          <li>Theorem-level blueprint, full Lean doc-gen output, and blueprint PDF on top of the current generated module graph and declaration index.</li>
+          <li>More checked textbook inequalities and richer certificate assumptions.</li>
+          <li>PSITIP/oXitip-style import into untrusted raw certificate data.</li>
+          <li>Non-toy network-information-theory converse examples.</li>
+        </ul>
+      </section>
 
       <footer class="site-footer">
         <span class="site-footer-owner">

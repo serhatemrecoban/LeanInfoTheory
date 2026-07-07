@@ -50,9 +50,10 @@ organized as they are, and which ideas are waiting for the right moment.
 - `LeanInfoTheory/Shannon/InfoMeasures.lean`: marginals, conditional entropy,
   mutual information, conditional mutual information, and basic rewrite lemmas.
 - `LeanInfoTheory/Shannon/SemanticBridge.lean`: heavier bridge entry point for
-  self-information, KL-divergence, and future conditional-law equivalence
-  theorems. It proves the entropy/self-information bridge over
-  `PMF.toMeasure` and imports the semantic bridge subfiles.
+  self-information, KL-divergence, finite conditional laws, averaged
+  conditional-KL, semantic nonnegativity, and chain-rule theorems. It proves
+  the entropy/self-information bridge over `PMF.toMeasure` and imports the
+  semantic bridge subfiles.
 - `LeanInfoTheory/Shannon/SemanticBridge/Product.lean`: independent-product
   PMF infrastructure, product-measure semantics, marginal recovery, support
   formulas, and joint-law absolute-continuity facts.
@@ -80,9 +81,24 @@ organized as they are, and which ideas are waiting for the right moment.
   generated blueprint pages.
 - `docs/`: human-facing design notes, roadmap notes, foundation conventions,
   external review notes, and this project log.
-- `home_page/`: static website files for the project site.
+- `home_page/`: static website files for the project site, including the
+  homepage dashboard, theorem highlights, module guide, submodularity demo,
+  development guide, prior-art note, roadmap, documentation landing page, and
+  generated module-level blueprint/dependency pages.
+- `scripts/generate_website_blueprint.py`: stdlib-only generator for the
+  website module-dependency map. It parses local Lean `import` lines, computes
+  the current module graph, and writes
+  `home_page/blueprint/dep_graph_document.html` plus
+  `home_page/blueprint/module_graph.json`.
+- `scripts/generate_website_api_index.py`: stdlib-only generator for the
+  source-derived declaration index. It scans public declaration starters and
+  nearby Lean doc comments, then writes `home_page/docs/api-index.html` plus
+  `home_page/docs/declaration_index.json`.
+- `scripts/check_website.py`: stdlib-only static website checker. It validates
+  the generated JSON files and local links under `home_page/`.
 - `.github/workflows/`: CI, docs, release, and update workflows. The Lean CI
-  builds the lightweight root and explicitly builds separately importable
+  checks that the generated module-dependency map is current, builds the
+  lightweight root, and explicitly builds separately importable
   theorem/demo/reference modules.
 - `tmp/`, `.lake/`, and `info theory e-books/`: local working/reference
   material that should remain outside the repository.
@@ -1180,6 +1196,152 @@ This completes the nine-step near-term semantic bridge plan. The next natural
 work is to choose a new focused milestone rather than continuing to stretch
 this plan.
 
+### 39. Public Website Status Refresh
+
+After checkpointing the completed semantic bridge milestone, we started the
+website-improvement plan with a truth/status refresh. This was deliberately a
+low-risk content pass, not the full dashboard redesign or generated
+blueprint/docgen infrastructure.
+
+The homepage, module list, concept note, roadmap, blueprint overview, and
+hand-written dependency map were updated so they no longer describe KL and
+conditional-law bridge theorems as merely planned. The public status now
+mentions:
+
+- finite conditional laws with explicit zero-mass conventions;
+- conditional entropy as expected fiber entropy;
+- mutual information as KL divergence from the joint law to the product of
+  marginals;
+- conditional mutual information as averaged fiber mutual information and
+  averaged fiber KL;
+- semantic nonnegativity of mutual information and conditional mutual
+  information;
+- the first mutual-information chain rule
+  `I(A;B,C) = I(A;C) + I(A;B|C)`.
+
+The homepage also now includes a compact theorem-highlight table and a
+certificate-validation explanation. The validation note emphasizes that the
+current Lean side checks certificates; it does not search for them
+automatically. External tools such as PSITIP/oXitip may later search for
+certificates, but Lean validation remains the trusted step.
+
+Related public Markdown files, including the README, concept note, roadmap,
+and foundation conventions, were refreshed to avoid contradicting the website.
+The next website step is the larger homepage/dashboard and new page pass
+before moving on to generated blueprint/docgen infrastructure.
+
+### 40. Homepage Dashboard and Hand-Written Guide Pages
+
+The third website-improvement step replaced the older status-memo homepage
+with a project-dashboard homepage. The new homepage now gives a compact current
+milestone, implemented-layer cards, an architecture flow, start-here links, a
+short theorem-highlight table, a certificate-validation explanation, and a
+small planned-next section.
+
+Several hand-written pages were added under `home_page/`:
+
+- `theorems.html`: a curated list matching mathematical statements to Lean
+  declarations, including entropy nonnegativity, pure-law entropy, relabeling
+  invariance, reassociation invariance, entropy upper bound, uniform entropy,
+  entropy as expected self-information, conditional entropy as expected fiber
+  entropy, mutual information as KL divergence, conditional mutual information
+  as averaged fiber MI/KL, semantic nonnegativity, the first MI chain rule, and
+  the submodularity certificate theorem.
+- `submodularity-demo.html`: an explanation of the checked certificate
+  proving
+  `H(A) + H(B) - H(A union B) - H(A inter B) >= 0`
+  by recognizing it as
+  `I(A \ B; B \ A | A inter B)`.
+- `module-guide.html`: the hand-written module guide, moved out of the
+  `/docs/` landing page so the generated declaration index and future full
+  Lean doc-gen output can live there.
+- `development.html`: build commands, focused build targets, import guidance,
+  and project-hygiene notes.
+- `prior-art.html`: the project's relationship to mathlib, PFR, Rocq
+  Infotheo, PSITIP/oXitip, and textbook references.
+
+The `/docs/` page is now a documentation landing page linking to these guides,
+and the existing concept, roadmap, blueprint, and dependency-map pages received
+light navigation updates. These pages remain hand-written; full Lean doc-gen
+output, a real theorem-level blueprint source, a generated theorem-level
+dependency graph, and a blueprint PDF remain future website milestones.
+
+### 41. Generated Module-Level Blueprint Infrastructure
+
+The fourth website-improvement step added the first reproducible generated
+website artifact. The new `scripts/generate_website_blueprint.py` script reads
+the Lean files, parses local `import` lines, computes the LeanInfoTheory module
+graph, and writes:
+
+- `home_page/blueprint/dep_graph_document.html`, the generated module-level
+  dependency map shown on the website;
+- `home_page/blueprint/module_graph.json`, a machine-readable copy of the same
+  graph data.
+
+The generated map currently records 21 local Lean modules, 30 local import
+edges, 11 modules reachable from the lightweight root import
+`LeanInfoTheory`, and 10 modules that are intentionally separately importable.
+The map also groups modules into project layers: root import, shared
+foundation, finite Shannon layer, semantic bridge layer, certificate layer,
+and reference anchors.
+
+This is not a theorem-level dependency graph yet. It is a reliable module-level
+checkpoint that keeps the public site synchronized with the actual Lean import
+graph. The CI workflow now runs the generator and checks that the generated
+HTML and JSON outputs have no unstaged diff, so import-graph drift should be
+caught automatically.
+
+The website and roadmap wording were updated to distinguish the current
+generated module graph from later full Lean doc-gen output, theorem-level
+blueprint pages, and a blueprint PDF.
+
+### 42. Generated Declaration Index
+
+The fifth website-improvement step added a lightweight generated API index.
+The new `scripts/generate_website_api_index.py` script scans local Lean source
+files for public declaration starters, tracks namespaces, reads nearby Lean doc
+comments, and writes:
+
+- `home_page/docs/api-index.html`, a source-derived declaration inventory on
+  the website;
+- `home_page/docs/declaration_index.json`, the machine-readable declaration
+  index data.
+
+The generated index currently records 263 public declarations across 18
+modules with declarations. The kind breakdown is 193 theorems/lemmas, 61
+definitions/abbreviations, 6 structures/classes, and 3 inductive declarations.
+All indexed declarations currently have doc comments, which is a useful
+side-effect of the recent Lean-commentary pass.
+
+This is intentionally not full Lean doc-gen output. It does not elaborate
+types, render equations, link namespaces like mathlib docs, or replace a future
+proper API documentation pipeline. Its job is to give the public site a
+truthful, generated, source-derived reference page now, while keeping the
+hand-written theorem highlights and module guide readable for humans.
+
+The docs landing page, homepage, theorem highlights, module guide, development
+page, README, roadmap, and CI workflow were updated. CI now runs both website
+generators and checks the generated HTML/JSON artifacts for drift.
+
+### 43. Website Verification and Publishing Pass
+
+The sixth website-improvement step added the final verification wrapper for the
+website milestone. The new `scripts/check_website.py` script validates the
+generated JSON files and all local links under `home_page/`, so the website
+checks are now reusable instead of living only as ad hoc command snippets from
+development sessions.
+
+The CI workflow now runs:
+
+1. `python scripts/generate_website_blueprint.py`;
+2. `python scripts/generate_website_api_index.py`;
+3. `python scripts/check_website.py`;
+4. a `git diff --exit-code` check over the generated website artifacts.
+
+This makes the public site less likely to drift from the Lean import graph,
+public declarations, or generated JSON files. The README and development page
+now show the same regeneration/check commands that CI uses.
+
 ## Near-Term Semantic Bridge Plan
 
 The next focused project phase is a nine-step plan. Its purpose is to move
@@ -1377,10 +1539,17 @@ items that should wait for more theorem pressure.
 
 ### Do Later
 
-9. Add generated API documentation once the Lean API is stable enough. Until
-    then, keep the current docs page described as a module list rather than as
-    generated declaration documentation. When doc generation is added, link the
-    homepage and docs page directly to declarations and important modules.
+9. Add theorem-level blueprint and full Lean doc-gen output once the Lean API is
+    stable enough. The current generated artifacts are a module-level import
+    graph and a source-derived declaration index. Until richer generation
+    exists, keep `/docs/` as a documentation landing page, keep
+    `home_page/module-guide.html` as the hand-written import guide, and keep
+    `home_page/docs/api-index.html` described as lighter than full Lean
+    doc-gen. When full doc generation is added, link the homepage, theorem
+    highlights, docs landing page, module guide, generated module graph, and
+    declaration index directly to rendered declaration pages. A blueprint PDF
+    should be added after the theorem-level blueprint source is real enough to
+    be worth rendering.
 
 10. Add a minimal contributor surface before inviting broader collaboration:
     `CONTRIBUTING.md`, beginner-friendly tasks, issue labels, and a short note

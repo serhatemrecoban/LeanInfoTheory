@@ -18,12 +18,15 @@ network-information-theory converse proofs.
 
 ## Current and Near-Term Deliverables
 
-- A public mathlib-based Lean repository with CI and a current module list.
+- A public mathlib-based Lean repository with CI and a current module guide.
 - A finite information-measures API connected to existing mathlib/PFR work.
 - Finite entropy sanity theorems for relabeling, coordinate swaps,
   reassociation, the logarithmic upper bound, and the uniform-law equality case.
-- A first semantic bridge theorem proving that finite entropy is expected
-  self-information over `PMF.toMeasure`.
+- Semantic bridge theorems proving finite entropy as expected self-information
+  over `PMF.toMeasure`, mutual information as KL divergence, conditional
+  entropy as expected fiber entropy, conditional mutual information as averaged
+  fiber mutual information and averaged fiber KL, semantic nonnegativity, and
+  a first mutual-information chain rule.
 - A formal entropy-expression layer for rational linear combinations of entropy
   atoms.
 - An abstract Shannon entropy-valuation layer for certificate-facing semantic
@@ -45,9 +48,15 @@ network-information-theory converse proofs.
 
 ## Current Limitations
 
-- Semantic KL and conditional-law bridge theorems are planned, not yet proved.
+- The semantic bridge is still finite-PMF focused; full textbook theorem
+  families such as data processing, Fano, AEP, and source/channel coding are
+  future work.
+- The certificate layer checks and validates certificates, but it does not yet
+  search for certificates automatically.
 - The certificate layer is not yet a full import pipeline for external
-  certificate formats.
+  certificate formats such as PSITIP/oXitip output.
+- Independence, Markov, and functional-dependence constraints are not yet part
+  of the checked certificate language.
 - Generated API documentation and non-toy network converse examples are future
   milestones.
 

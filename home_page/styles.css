@@ -148,11 +148,212 @@ a:hover {
   margin-top: 0.15rem;
 }
 
+.status-strip {
+  margin: 0 0 2rem;
+  padding: 1rem 1.2rem;
+  color: #31444d;
+  background: #f4faf8;
+  border-left: 4px solid #159957;
+  border-radius: 8px;
+}
+
+.status-strip p:last-child {
+  margin-bottom: 0;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.info-card {
+  min-width: 0;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid #dce6ea;
+  border-radius: 8px;
+}
+
+.info-card h3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.5rem;
+  color: #31444d;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.info-card p:last-child {
+  margin-bottom: 0;
+}
+
+.status-pill {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  padding: 0.18rem 0.5rem;
+  color: #31444d;
+  background: #edf5f7;
+  border: 1px solid #dce6ea;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.status-pill.proved {
+  color: #0f5d37;
+  background: #e7f6ed;
+  border-color: #b8dfc8;
+}
+
+.status-pill.demo {
+  color: #754b09;
+  background: #fff3db;
+  border-color: #e7c477;
+}
+
+.status-pill.planned {
+  color: #46545b;
+  background: #f4f6f7;
+  border-color: #d7dee2;
+}
+
+.status-pill.prototype {
+  color: #174f7d;
+  background: #e9f3fb;
+  border-color: #bad7ec;
+}
+
+.status-pill.separate {
+  color: #174f7d;
+  background: #e9f3fb;
+  border-color: #bad7ec;
+}
+
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.link-grid a {
+  display: block;
+  min-width: 0;
+  padding: 0.75rem 0.85rem;
+  color: #1f5f87;
+  background: #f7fbfc;
+  border: 1px solid #dce6ea;
+  border-left: 4px solid #1e6bb8;
+  border-radius: 8px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.link-grid a:hover {
+  color: #144463;
+  text-decoration: none;
+  background: #edf5f7;
+}
+
+.architecture-diagram {
+  display: grid;
+  grid-template-columns: minmax(9rem, 1fr) auto minmax(9rem, 1fr) auto minmax(9rem, 1fr);
+  gap: 0.6rem;
+  align-items: center;
+  margin: 1rem 0 1.5rem;
+}
+
+.arch-node,
+.arch-arrow,
+.arch-join {
+  min-width: 0;
+  padding: 0.65rem 0.75rem;
+  text-align: center;
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+}
+
+.arch-node {
+  color: #31444d;
+  background: #f7fbfc;
+  border: 1px solid #dce6ea;
+  font-weight: 700;
+}
+
+.arch-arrow,
+.arch-join {
+  color: #46545b;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.arch-join {
+  grid-column: 1 / -1;
+  padding: 0.15rem 0;
+  color: #0f5d37;
+}
+
+.notice {
+  padding: 1rem 1.2rem;
+  color: #31444d;
+  background: #fff8ea;
+  border: 1px solid #e7c477;
+  border-radius: 8px;
+}
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.metric-card {
+  min-width: 0;
+  padding: 0.85rem;
+  color: #31444d;
+  background: #f7fbfc;
+  border: 1px solid #dce6ea;
+  border-radius: 8px;
+}
+
+.metric-card strong,
+.metric-card span {
+  display: block;
+}
+
+.metric-card strong {
+  color: #159957;
+  font-size: 1.6rem;
+  line-height: 1.1;
+}
+
+.metric-card span {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.muted {
+  color: #77858b;
+}
+
+.lead {
+  color: #46545b;
+  font-size: 1.05em;
+}
+
 .status-table {
   width: 100%;
   margin: 1rem 0 1.5rem;
   border-collapse: collapse;
   font-size: 0.95rem;
+  table-layout: fixed;
 }
 
 .status-table caption {
@@ -167,6 +368,7 @@ a:hover {
   padding: 0.7rem 0.8rem;
   vertical-align: top;
   border: 1px solid #dce6ea;
+  overflow-wrap: anywhere;
 }
 
 .status-table th {
@@ -178,6 +380,8 @@ a:hover {
 
 .status-table code {
   white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .site-footer {
@@ -298,5 +502,17 @@ a:hover {
     display: block;
     max-width: 100%;
     overflow-x: auto;
+  }
+
+  .card-grid,
+  .link-grid,
+  .metric-grid,
+  .architecture-diagram {
+    grid-template-columns: 1fr;
+  }
+
+  .arch-arrow,
+  .arch-join {
+    padding: 0.15rem 0;
   }
 }

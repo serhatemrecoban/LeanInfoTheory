@@ -12,8 +12,10 @@
       <h2 class="project-tagline">Lean-certified classical and network information theory.</h2>
       <nav class="project-links" aria-label="Project links">
         <a href="./" class="btn">Home</a>
+        <a href="theorems.html" class="btn">Theorems</a>
+        <a href="module-guide.html" class="btn">Module guide</a>
         <a href="roadmap.html" class="btn">Roadmap</a>
-        <a href="blueprint/" class="btn">Blueprint</a>
+        <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
     </header>
     <main class="main-content" role="main">
@@ -37,11 +39,10 @@
 
       <h2>Current and near-term deliverables</h2>
       <ul>
-        <li>A public mathlib-based Lean repository with CI and a current module list.</li>
+        <li>A public mathlib-based Lean repository with CI and a current module guide.</li>
         <li>A finite <code>PMF</code>-based Shannon layer with entropy, marginals, conditional entropy, mutual information, and conditional mutual information.</li>
         <li>Finite entropy sanity theorems for relabeling, coordinate swaps, reassociation, the logarithmic upper bound, and the uniform-law equality case.</li>
-        <li>A first semantic bridge theorem proving that finite entropy is expected self-information over <code>PMF.toMeasure</code>.</li>
-        <li>A separated semantic bridge path to existing mathlib KL and conditional-law infrastructure.</li>
+        <li>Semantic bridge theorems proving finite entropy as expected self-information over <code>PMF.toMeasure</code>, mutual information as KL divergence, conditional entropy as expected fiber entropy, conditional mutual information as averaged fiber mutual information and averaged fiber KL, semantic nonnegativity, and a first mutual-information chain rule.</li>
         <li>A formal entropy-expression layer for rational linear combinations of entropy atoms.</li>
         <li>An abstract Shannon entropy-valuation layer for certificate-facing semantic assumptions.</li>
         <li>Primitive Shannon inequality expressions for empty entropy, conditional entropy, and conditional mutual information, with soundness theorems under abstract Shannon entropy valuations.</li>
@@ -54,8 +55,10 @@
 
       <h2>Current limitations</h2>
       <ul>
-        <li>The semantic KL and conditional-law bridge theorems are planned, not yet proved.</li>
-        <li>The certificate layer is not yet a full import pipeline for external certificate formats.</li>
+        <li>The semantic bridge is still finite-PMF focused; full textbook theorem families such as data processing, Fano, AEP, and source/channel coding are future work.</li>
+        <li>The certificate layer checks and validates certificates, but it does not yet search for certificates automatically.</li>
+        <li>The certificate layer is not yet a full import pipeline for external certificate formats such as PSITIP/oXitip output.</li>
+        <li>Independence, Markov, and functional-dependence constraints are not yet part of the checked certificate language.</li>
         <li>Generated API documentation and non-toy network converse examples are future milestones.</li>
       </ul>
     </main>

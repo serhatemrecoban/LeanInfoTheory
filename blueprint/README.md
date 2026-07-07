@@ -1,9 +1,11 @@
 # Blueprint
 
-This blueprint is the project map for LeanInfoTheory. It is intentionally short
-for the current foundation stage; the next step is to turn this into a
-generated blueprint site with theorem dependencies once semantic bridge
-theorems start landing.
+This blueprint is the project map for LeanInfoTheory. The website now includes
+a generated module-level dependency map produced from Lean `import` lines by
+`scripts/generate_website_blueprint.py`. The website also has a source-derived
+declaration index from `scripts/generate_website_api_index.py`. A theorem-level
+blueprint, full Lean doc-gen output, and blueprint PDF remain later
+milestones.
 
 ## Layer 0: Existing Foundations
 
