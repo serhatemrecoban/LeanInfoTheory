@@ -49,9 +49,33 @@ organized as they are, and which ideas are waiting for the right moment.
   entropy definition file remains lightweight.
 - `LeanInfoTheory/Shannon/InfoMeasures.lean`: marginals, conditional entropy,
   mutual information, conditional mutual information, and basic rewrite lemmas.
-- `LeanInfoTheory/Shannon/SemanticBridge.lean`: heavier bridge module for
-  self-information, KL-divergence, and conditional-law equivalence theorems.
-  It currently proves the entropy/self-information bridge over `PMF.toMeasure`.
+- `LeanInfoTheory/Shannon/SemanticBridge.lean`: heavier bridge entry point for
+  self-information, KL-divergence, and future conditional-law equivalence
+  theorems. It proves the entropy/self-information bridge over
+  `PMF.toMeasure` and imports the semantic bridge subfiles.
+- `LeanInfoTheory/Shannon/SemanticBridge/Product.lean`: independent-product
+  PMF infrastructure, product-measure semantics, marginal recovery, support
+  formulas, and joint-law absolute-continuity facts.
+- `LeanInfoTheory/Shannon/SemanticBridge/FiniteSums.lean`: reusable finite
+  real-sum rewrites for marginals, entropy, and the log-ratio formula
+  `I(A;B) = sum p(a,b) log (p(a,b)/(p_A(a)p_B(b)))`.
+- `LeanInfoTheory/Shannon/SemanticBridge/KL.lean`: finite PMF density and KL
+  bridge theorems, including
+  `mutualInfo_eq_toReal_klDiv_joint_indepProd` and the product-measure form
+  `mutualInfo_eq_toReal_klDiv_joint_prod_marginals`. It also contains the
+  averaged conditional-KL bridge for finite conditional mutual information.
+- `LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean`: finite
+  conditional-law API. It defines `condFstGivenSnd p b hb`, the conditional
+  PMF `P_{A | B=b}` on nonzero conditioning atoms, plus factorization and
+  support lemmas. It also proves
+  `condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd`, identifying
+  finite `condEntropy` with expected entropy of the conditional fibers, and
+  `condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThird`,
+  identifying finite `condMutualInfo` with expected fiber mutual information.
+- `LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean`: first user-facing
+  semantic theorem API built from the bridge layer, including nonnegativity of
+  mutual information and conditional mutual information, plus the chain rule
+  `I(A;B,C) = I(A;C) + I(A;B|C)`.
 - `blueprint/`: project-map notes for theorem dependencies and future
   generated blueprint pages.
 - `docs/`: human-facing design notes, roadmap notes, foundation conventions,
@@ -222,10 +246,11 @@ safe and ergonomic.
 ### 9. Semantic Bridge Import Boundary
 
 The KL/conditional-law bridge layer was separated from the lightweight finite
-Shannon API. The new file `LeanInfoTheory/Shannon/SemanticBridge.lean` imports
-the finite information-measure API together with mathlib's KL divergence and
-KL chain-rule files. It is currently a compiled scaffold for future bridge
-theorem statements rather than a source of weak placeholder theorems.
+Shannon API. The `LeanInfoTheory/Shannon/SemanticBridge.lean` entry point and
+its subfiles import heavier measure-theoretic tools only when bridge theorems
+need them. The layer now contains the entropy/self-information bridge,
+independent-product PMF infrastructure, finite log-ratio sum formulas, and the
+first mutual-information-as-KL theorem.
 
 The root `LeanInfoTheory.lean` no longer imports `LeanInfoTheory.MathlibFragments`.
 This keeps ordinary project imports focused on the finite Shannon and
@@ -234,15 +259,11 @@ Kraft-McMillan, kernels, and conditional probability remain available through
 separately importable files when we work on the semantic bridge or coding
 theory layers.
 
-Near-term bridge theorem targets remain:
-
-- identify `mutualInfo` with KL divergence from the joint law to the product of
-  the marginals;
-- identify `condEntropy` with expected entropy of finite conditional laws;
-- identify `condMutualInfo` with KL chain-rule or averaged conditional-KL
-  expressions;
-- decide how zero-probability conditioning events should be represented in a
-  way that agrees with mathlib's measure-theoretic conventions.
+The later semantic bridge steps completed the expected conditional-entropy
+formula, averaged conditional-KL formula, and explicit zero-mass conditioning
+convention. The next semantic bridge work should therefore focus on API polish
+and broader theorem coverage rather than re-opening the import-boundary
+decision.
 
 ### 10. Visible CI and Placeholder Policy
 
@@ -482,6 +503,108 @@ certificate demo. The demo is intentionally primitive-only: independence,
 functional-dependence, and Markov constraints should be added later as
 extensions rather than mixed into the first certificate milestone.
 
+### Certificate and Validation
+
+This note records the intended meaning of "certificate", "certificate checker",
+and "validation" in the project. The terminology is useful but can be
+misleading at first, because the checker is not searching for a proof in the
+same way a human or an automated theorem prover might.
+
+A certificate is proof data: a proposed algebraic explanation of why an
+entropy expression is nonnegative. In the current primitive Shannon layer, a
+certificate says that a target expression is equal to a nonnegative rational
+combination of primitive Shannon inequalities. The current primitive
+ingredients include:
+
+- the empty entropy convention, `H(empty) = 0`;
+- conditional entropy nonnegativity, written informally as `H(X | Y) >= 0`;
+- conditional mutual information nonnegativity, written as
+  `I(X;Y | Z) >= 0`.
+
+Here CMI means conditional mutual information. Algebraically,
+
+`I(X;Y | Z) = H(X union Z) + H(Y union Z) -
+  H(X union Y union Z) - H(Z)`.
+
+For example, the submodularity certificate for two entropy atoms `A` and `B`
+is the one-step certificate
+
+`H(A) + H(B) - H(A union B) - H(A inter B)
+  = 1 * I(A \ B ; B \ A | A inter B)`.
+
+Since the coefficient `1` is nonnegative and CMI is a primitive nonnegative
+ingredient, this certificate proves
+
+`H(A) + H(B) - H(A union B) - H(A inter B) >= 0`.
+
+The certificate checker is the small trusted Lean-side mechanism that checks
+whether such proof data is legitimate. Conceptually, it performs the following
+steps:
+
+1. Check that each raw coefficient is nonnegative, turning it into a checked
+   nonnegative rational coefficient.
+2. Check that each proposed raw step really matches the primitive inequality
+   tag supplied for it, for example that a step tagged as CMI is exactly the
+   formal expression for some `I(X;Y | Z)`.
+3. Form the rational linear combination of all checked primitive steps.
+4. Check that this computed combination is exactly equal to the target entropy
+   expression.
+5. If all checks succeed, produce a checked certificate whose soundness theorem
+   proves that the target expression is nonnegative under any
+   `ShannonEntropyVal`.
+
+The most important design point is that step 4 is not a lookup for a
+pre-existing named theorem. The checker does not need a theorem specifically
+named, say, "submodularity identity". Instead, entropy expressions are stored
+as normalized sparse rational linear combinations of entropy atoms. Informally,
+
+`H(A) + H(B) - H(A union B)`
+
+is stored like a coefficient table:
+
+`A -> 1`, `B -> 1`, `A union B -> -1`.
+
+Two entropy expressions are equal when these normalized coefficient tables are
+the same. Thus, for the submodularity certificate, the checker expands
+
+`I(A \ B ; B \ A | A inter B)`
+
+to
+
+`H((A \ B) union (A inter B))
+ + H((B \ A) union (A inter B))
+ - H((A \ B) union (B \ A) union (A inter B))
+ - H(A inter B)`,
+
+and the finite-set expressions simplify to
+
+`H(A) + H(B) - H(A union B) - H(A inter B)`.
+
+That is why the certificate validates. The validation succeeds because the
+computed normalized expression is exactly the target, not because Lean already
+had a separate theorem saying this particular identity is true.
+
+The same principle applies to larger certificates. If a four-variable
+certificate claims, for example, that some target expression is
+
+`2 * I(A;B | C) + 3 * I(A;D | B union C) +
+  (1 / 2) * H(D | A union B)`,
+
+then the checker can validate it provided that all coefficients are
+nonnegative, every step matches one of the currently supported primitive
+inequality forms, and the expanded normalized combination is exactly the
+target expression. No separate theorem for that exact four-variable identity is
+needed.
+
+There are also clear current limits. The checker is not yet a certificate
+search engine: it does not invent the decomposition. It also does not yet use
+extra assumptions such as independence, Markov constraints, or functional
+dependence. For example, it cannot currently use assumptions like
+`I(A;B) = 0` or `H(Y | X) = 0` unless those assumptions are added to the
+certificate framework as supported rules. The current checker validates
+primitive Shannon-style entropy inequality certificates by exact normalized
+entropy-expression equality.
+
 ### 21. Finite Entropy Relabeling Sanity Theorems
 
 The finite Shannon entropy layer now proves that entropy is invariant under
@@ -695,6 +818,442 @@ semantic bridge theorem and sets the pattern for later bridges: use the
 finite-sum API in core files, then prove equivalence to the
 measure-theoretic/mathlib semantics in separately importable bridge files.
 
+### 30. Semantic Bridge API Audit
+
+The first near-term semantic bridge step is complete. We audited the relevant
+mathlib APIs and two external Lean reference projects before choosing the
+shape of the next semantic bridge definitions and lemmas.
+
+The detailed audit is recorded in `docs/semantic-bridge-api-audit.md`. The
+main conclusion is that the finite Shannon layer should remain PMF-first and
+lightweight, while semantic equivalence theorems should reuse mathlib's
+measure, kernel, conditional distribution, product measure, and KL-divergence
+APIs in heavier bridge files.
+
+Important findings:
+
+- mathlib already provides the right `PMF.map`, `PMF.bind`, `PMF.toMeasure`,
+  finite-integral, product-measure, kernel, conditional-distribution, and
+  `InformationTheory.klDiv` infrastructure;
+- the pinned mathlib version does not appear to expose a canonical finite
+  `PMF.prod`, so we should add a small local independent-product helper before
+  proving the mutual-information-as-KL theorem;
+- mathlib's event conditioning returns the zero measure on zero-probability
+  conditioning events, so any finite conditional-law API must state its
+  zero-mass convention explicitly;
+- PFR confirms that measure/kernel semantics are a strong long-term direction,
+  while still leaving room for our lightweight PMF-first finite API;
+- the divergence-project audit confirms that averaged conditional KL is
+  important later, but the next mutual-information bridge should use mathlib's
+  existing `InformationTheory.klDiv` directly.
+
+This completes step 1 of the near-term semantic bridge plan. Step 2 is to
+write the semantic-bridge design note before implementing the product-law and
+KL bridge infrastructure.
+
+### 31. Semantic Bridge Design Note
+
+The second near-term semantic bridge step is complete. We wrote
+`docs/semantic-bridge-design.md`, turning the API audit into concrete design
+choices for the next implementation phase.
+
+Main design decisions:
+
+- the independent product of finite PMFs should be introduced as the
+  project-local helper `Shannon.indepProd`, not as `PMF.prod`, so the name is
+  explicit and will not fight a future mathlib product construction;
+- the first main KL bridge should state finite mutual information as the
+  `toReal` of mathlib's `InformationTheory.klDiv` from the joint law to the
+  independent product of its marginals;
+- a second theorem should rewrite the independent product law as
+  `MeasureTheory.Measure.prod` of the marginal measures;
+- the finite conditional-law API should avoid arbitrary default PMFs on
+  zero-probability conditioning atoms by requiring a nonzero marginal proof for
+  pointwise conditional PMFs;
+- total expected-conditional-entropy expressions may branch over all
+  conditioning atoms, but the zero-mass branch should be the number `0`, not
+  the entropy of a fake default conditional law;
+- semantic bridge imports should stay out of the lightweight finite Shannon
+  files, with optional future subfiles under
+  `LeanInfoTheory/Shannon/SemanticBridge/` if theorem pressure justifies the
+  split.
+
+This completes step 2 of the near-term semantic bridge plan. Step 3 is to add
+the product-law, product-measure, support, absolute-continuity, and
+finite-sum/integral helper layer needed for the KL bridge.
+
+### 32. Semantic Bridge Product Infrastructure
+
+The third near-term semantic bridge step is complete. We added
+`LeanInfoTheory/Shannon/SemanticBridge/Product.lean` and imported it from the
+main `LeanInfoTheory.Shannon.SemanticBridge` entry point.
+
+The new product infrastructure includes:
+
+- `Shannon.indepProd`, the independent product law of two PMFs, implemented via
+  mathlib's `PMF.bind` and `PMF.map`;
+- `Shannon.indepProd_apply`, proving that the atom mass of `(a, b)` is
+  `p a * q b`;
+- zero/nonzero atom lemmas and `Shannon.support_indepProd`, recording that the
+  support of the independent product is the product of the supports;
+- `Shannon.fstMarginal_indepProd` and `Shannon.sndMarginal_indepProd`, proving
+  that the marginals of the independent product recover the original laws;
+- `Shannon.indepProd_map_swap`, proving that swapping the coordinates of an
+  independent product swaps the two factor laws;
+- `Shannon.indepProd_toMeasure_prod`, the rectangle formula for the associated
+  measure of the independent product;
+- `Shannon.indepProd_toMeasure`, proving that the measure associated to
+  `indepProd p q` is `MeasureTheory.Measure.prod p.toMeasure q.toMeasure`;
+- `Shannon.joint_toMeasure_absolutelyContinuous_indepProd_marginals`, proving
+  that a finite joint law is absolutely continuous with respect to the
+  independent product of its marginals;
+- `Shannon.joint_toMeasure_absolutelyContinuous_prod_marginals`, the same
+  absolute-continuity fact stated directly against
+  `MeasureTheory.Measure.prod` of the marginal measures.
+
+This gives the next KL bridge theorem the main structural facts it needs:
+pointwise product masses, product-measure semantics, marginal recovery, support
+control, and the absolute-continuity fact needed before taking KL divergence
+from a joint law to the product of its marginals.
+
+We did not add a general finite KL expansion helper in this step. The design
+note already says to add that helper only if the mutual-information proof
+actually needs it, so the exact theorem statement should be chosen during step
+4 rather than guessed now.
+
+This completes step 3 of the near-term semantic bridge plan. Step 4 is to prove
+that finite `mutualInfo` agrees with mathlib KL divergence from the joint law
+to the product of its marginals.
+
+### 33. Mutual Information as KL Divergence
+
+The fourth near-term semantic bridge step is complete. We proved the finite
+textbook identity
+
+`I(A;B) = D(P_AB || P_A × P_B)`
+
+for the project's finite PMF mutual information and mathlib's
+measure-theoretic `InformationTheory.klDiv`.
+
+The implementation was split into two semantic bridge subfiles:
+
+- `LeanInfoTheory/Shannon/SemanticBridge/FiniteSums.lean` contains reusable
+  finite real-sum identities. The most important formulas are:
+  `(fstMarginal p a).toReal = sum_b (p (a,b)).toReal`,
+  `(sndMarginal p b).toReal = sum_a (p (a,b)).toReal`,
+  `sum_{a,b} p(a,b) f(a) = sum_a p_A(a) f(a)`,
+  `sum_{a,b} p(a,b) g(b) = sum_b p_B(b) g(b)`, and
+  `I(A;B) = sum_{a,b} p(a,b) log (p(a,b)/(p_A(a) p_B(b)))`.
+- `LeanInfoTheory/Shannon/SemanticBridge/KL.lean` contains the KL bridge. It
+  first proves the countable PMF density formula
+  `Q.withDensity (fun a => P(a)/Q(a)) = P` under `P ≪ Q`, then the finite KL
+  expansion
+  `D(P || Q) = sum_a P(a) log (P(a)/Q(a))`, and finally the mutual-information
+  bridge against the independent product of marginals.
+
+The main new theorems are:
+
+- `Shannon.toMeasure_withDensity_pmf_div`: if `p.toMeasure ≪ q.toMeasure`,
+  then `q.toMeasure.withDensity (fun a => p a / q a) = p.toMeasure`;
+- `Shannon.toReal_klDiv_pmf_eq_sum`: if `p.toMeasure ≪ q.toMeasure`, then
+  `(InformationTheory.klDiv p.toMeasure q.toMeasure).toReal =
+   sum_a (p a).toReal * log ((p a / q a).toReal)`;
+- `Shannon.mutualInfo_eq_sum_log_ratio`:
+  `mutualInfo p =
+   sum_{a,b} p(a,b) log (p(a,b)/(p_A(a)p_B(b)))`;
+- `Shannon.mutualInfo_eq_toReal_klDiv_joint_indepProd`:
+  `mutualInfo p =
+   (InformationTheory.klDiv p.toMeasure
+     (indepProd (fstMarginal p) (sndMarginal p)).toMeasure).toReal`;
+- `Shannon.mutualInfo_eq_toReal_klDiv_joint_prod_marginals`, the same theorem
+  stated with mathlib's product measure
+  `Measure.prod (fstMarginal p).toMeasure (sndMarginal p).toMeasure`.
+
+This completes step 4 of the near-term semantic bridge plan. Step 5 is to
+refine and implement the finite conditional-law API using the zero-mass
+convention recorded in `docs/semantic-bridge-design.md`.
+
+### 34. Finite Conditional-Law API
+
+The fifth near-term semantic bridge step is complete. We added
+`LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean`, implementing the
+first finite conditional-law API without assigning arbitrary PMFs to zero-mass
+conditioning atoms.
+
+For a joint law `p : PMF (alpha × beta)`, the project convention remains that
+`condEntropy p` means `H(alpha | beta)`. The new conditional PMF is therefore
+
+`condFstGivenSnd p b hb : PMF alpha`,
+
+where `hb : sndMarginal p b ≠ 0`. Mathematically,
+
+`condFstGivenSnd p b hb a = p(a,b) / p_B(b)`.
+
+The proof argument is intentional: when `p_B(b)=0`, there is no canonical
+finite conditional PMF `P_{A | B=b}`. This matches the design note and avoids
+the Rocq-style default-distribution choice at the finite-PMF API level.
+
+The main new facts are:
+
+- `Shannon.condFstGivenSnd_apply`:
+  `P_{A | B=b}(a) = p(a,b) / p_B(b)`;
+- `Shannon.condFstGivenSnd_proof_irrel`: the conditional PMF does not depend
+  on which proof of `p_B(b) ≠ 0` is passed;
+- `Shannon.condFstGivenSnd_apply_eq_zero_iff` and
+  `Shannon.condFstGivenSnd_apply_ne_zero_iff`: conditional support is exactly
+  the joint support fiber over `b`;
+- `Shannon.support_condFstGivenSnd`:
+  `support(P_{A | B=b}) = {a | p(a,b) ≠ 0}`;
+- `Shannon.sndMarginal_mul_condFstGivenSnd`:
+  `p_B(b) * P_{A | B=b}(a) = p(a,b)`;
+- `Shannon.sndMarginal_toReal_mul_condFstGivenSnd_toReal`, the same
+  factorization after converting masses to real numbers;
+- `Shannon.condEntropyFstGivenSnd`, the zero-branch helper for expected
+  conditional entropy formulas. It is `0` when `p_B(b)=0`, and otherwise
+  `entropy (condFstGivenSnd p b hb)`.
+
+This completes step 5 of the near-term semantic bridge plan. Step 6 is to
+prove that finite `condEntropy p = H(A,B) - H(B)` agrees with the expected
+entropy of these conditional laws:
+
+`condEntropy p = sum_b p_B(b) * H(P_{A | B=b})`,
+
+with the zero branch handled by `condEntropyFstGivenSnd`.
+
+### 35. Conditional Entropy as Expected Fiber Entropy
+
+The sixth near-term semantic bridge step is complete. We proved that the
+entropy-identity definition of finite conditional entropy agrees with the
+expected entropy of the finite conditional laws introduced in step 5.
+
+The main theorem is:
+
+- `Shannon.condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd`:
+  `condEntropy p =
+   sum_b (sndMarginal p b).toReal * condEntropyFstGivenSnd p b`.
+
+Mathematically, this is the textbook identity
+
+`H(A | B) = sum_b P_B(b) H(P_{A | B=b})`.
+
+The proof uses the per-fiber identity
+
+`P_B(b) H(P_{A | B=b})
+  = sum_a h(P_AB(a,b)) - h(P_B(b))`,
+
+where `h(x) = -x log x`. On zero-marginal fibers, the left side is zero by
+the explicit zero branch of `condEntropyFstGivenSnd`, and the right side is
+zero because `P_B(b)=0` forces every joint atom `P_AB(a,b)` to be zero. On
+nonzero fibers, the proof uses the factorization
+`P_B(b) * P_{A | B=b}(a) = P_AB(a,b)` and mathlib's
+`Real.negMulLog_mul`.
+
+This completes step 6 of the near-term semantic bridge plan. Step 7 is to
+prove that finite `condMutualInfo` agrees with either a KL chain-rule
+expression or an averaged conditional-KL expression.
+
+### 36. Conditional Mutual Information as Averaged Fiber KL
+
+The seventh near-term semantic bridge step is complete. We proved finite
+conditional mutual information as an average over conditional fibers, and then
+connected each nonzero fiber to mathlib KL divergence.
+
+The new conditional-fiber API in
+`LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean` includes:
+
+- `Shannon.pairThirdLaw`, viewing a right-associated law `P_{A,B,C}` as a law
+  on `((A,B),C)`;
+- `Shannon.condFstSndGivenThird p c hc`, the conditional joint law
+  `P_{A,B | C=c}` for `hc : P_C(c) ≠ 0`;
+- marginal recovery theorems:
+  `fstMarginal (P_{A,B | C=c}) = P_{A | C=c}` and
+  `sndMarginal (P_{A,B | C=c}) = P_{B | C=c}`;
+- `Shannon.condMutualInfoFstSndGivenThird`, the fiber value that is zero when
+  `P_C(c)=0` and otherwise equals `I(P_{A,B | C=c})`.
+
+The main averaged mutual-information theorem is:
+
+- `Shannon.condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThird`:
+  `condMutualInfo p =
+   sum_c (thirdMarginal p c).toReal *
+     condMutualInfoFstSndGivenThird p c`.
+
+Mathematically:
+
+`I(A;B | C) = sum_c P_C(c) I(A;B | C=c)`.
+
+The KL-facing corollary in `LeanInfoTheory/Shannon/SemanticBridge/KL.lean` is:
+
+- `Shannon.condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThirdKL`:
+  `I(A;B | C) =
+   sum_c P_C(c) D(P_{A,B|C=c} || P_{A|C=c} × P_{B|C=c})`.
+
+Zero-marginal fibers contribute zero by definition, matching the convention
+chosen in `docs/semantic-bridge-design.md`.
+
+This completes step 7 of the near-term semantic bridge plan. Step 8 is to add
+the first semantic theorem API built on the bridge results, such as chain-rule
+and semantic nonnegativity theorems for mutual information and conditional
+mutual information.
+
+### 37. Semantic Nonnegativity and First Chain Rule
+
+The eighth near-term semantic bridge step is complete. We added
+`LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean`, a small user-facing
+theorem layer built on the conditional-law and KL bridge files.
+
+The main new semantic theorems are:
+
+- `Shannon.mutualInfo_nonneg`: `0 <= I(A;B)`;
+- `Shannon.condMutualInfoFstSndGivenThird_nonneg`:
+  `0 <= I(A;B | C=c)` for each fiber, with zero-marginal fibers handled by
+  the explicit zero branch;
+- `Shannon.condMutualInfo_nonneg`: `0 <= I(A;B | C)`;
+- `Shannon.mutualInfo_chain_rule_fst`:
+  `I(A;B,C) = I(A;C) + I(A;B | C)`.
+
+The nonnegativity proof for `mutualInfo` uses the already proved KL bridge
+
+`I(A;B) = D(P_AB || P_A x P_B)`
+
+and then the nonnegativity of the real coercion of mathlib's `ENNReal` KL
+divergence. Conditional mutual information nonnegativity follows from the
+averaged fiber formula
+
+`I(A;B | C) = sum_c P_C(c) I(A;B | C=c)`,
+
+where every factor `P_C(c)` and every fiber mutual information term is
+nonnegative.
+
+The chain rule is proved from the entropy definitions, using the two marginal
+reassociation facts now recorded in the same theorem module:
+
+- `(P_AC)_A = P_A`;
+- viewing `P_ABC` as a law of `A` and `(B,C)`, its second marginal is
+  `P_BC`.
+
+This completes step 8 of the near-term semantic bridge plan. Step 9 is API
+polish after theorem pressure: review simp status, possible file splits, and
+whether public theorem aliases are justified.
+
+### 38. Semantic Bridge API Polish
+
+The ninth near-term semantic bridge step is complete. We reviewed the API
+after the conditional-law, KL, nonnegativity, and chain-rule theorems had put
+real theorem pressure on the foundations.
+
+The main code change was to promote safe coordinate/projection orientation
+lemmas to `[simp]` in `LeanInfoTheory/Shannon/InfoMeasures.lean`. These are
+lemmas whose left-hand sides are clearly more complicated projection forms and
+whose right-hand sides are canonical marginals or PMF-level quantities. The
+promoted simplifications include:
+
+- pair swaps:
+  `fstMarginal (P_{B,A}) = P_B` and `sndMarginal (P_{B,A}) = P_A`;
+- triple first/second swaps:
+  `(P_{B,A,C})_{B,C} = P_{B,C}`,
+  `(P_{B,A,C})_{A,C} = P_{A,C}`, and the third marginal is unchanged;
+- coordinate-projection random-variable identities, such as
+  `I_P(fst; snd) = I(P)` and
+  `I_P(first; second | third) = I(P)`.
+
+We deliberately did not mark the entropy-identity unfolding lemmas
+`condEntropy_eq`, `mutualInfo_eq`, or `condMutualInfo_eq` as simp lemmas.
+Those are powerful algebraic rewrites and should remain explicit in proofs
+unless later theorem pressure shows that global simplification is safe.
+
+We also decided not to split `LeanInfoTheory/Shannon/InfoMeasures.lean` yet.
+The file is large enough to watch, but it is still coherent: it contains the
+finite PMF information-measure API, while the heavier semantic bridge has
+already been split into subfiles. A split should happen when one of the
+following pressures becomes real: finite-family entropy, many more conditional
+mutual-information variants, or repeated long build/review cycles in the
+single file.
+
+Finally, we did not add polished public aliases for the semantic bridge
+theorems yet. The current names in `LeanInfoTheory.Shannon` are descriptive,
+and the theorem sample size is still small. Alias design should wait until we
+have more chain rules, symmetry variants, and concrete users of the semantic
+bridge.
+
+This completes the nine-step near-term semantic bridge plan. The next natural
+work is to choose a new focused milestone rather than continuing to stretch
+this plan.
+
+## Near-Term Semantic Bridge Plan
+
+The next focused project phase is a nine-step plan. Its purpose is to move
+from the completed entropy/self-information bridge to the main textbook
+semantic equivalence theorems, without choosing an awkward conditional-law or
+KL API too early.
+
+After each step, update this log and remove or rewrite any future-work note
+that the step completes.
+
+Current status: all nine steps are complete.
+
+1. Completed on July 6, 2026: audit the relevant mathlib, PFR, and
+   divergence-project APIs for product PMFs, product measures, `PMF.toMeasure`,
+   finite sums as integrals, `InformationTheory.klDiv`, conditional measures,
+   kernels, and zero-mass conventions. The detailed result is recorded in
+   `docs/semantic-bridge-api-audit.md`.
+
+2. Completed on July 6, 2026: write a semantic-bridge design note before
+   proving the larger bridge theorems. The design specifies the product-law
+   representation, the planned KL theorem statements, the conditional-law
+   representation, and the convention for conditioning on zero-probability
+   events. The detailed result is recorded in
+   `docs/semantic-bridge-design.md`.
+
+3. Completed on July 6, 2026: add a small semantic-bridge infrastructure
+   layer. The new `LeanInfoTheory/Shannon/SemanticBridge/Product.lean` file
+   provides the independent product PMF, support and marginal formulas,
+   `PMF.toMeasure` product-measure bridge lemmas, and the joint-law
+   absolute-continuity helper needed by the KL bridge. A general finite KL
+   expansion helper remains deferred until step 4 shows its exact required
+   shape.
+
+4. Completed on July 6, 2026: prove that finite `mutualInfo` agrees with
+   mathlib KL divergence from the joint law to the product of its marginals.
+   The proof lives in semantic-bridge subfiles:
+   `SemanticBridge/FiniteSums.lean` proves the finite log-ratio formula
+   `I(A;B) = sum p(a,b) log (p(a,b)/(p_A(a)p_B(b)))`, and
+   `SemanticBridge/KL.lean` proves both the `indepProd` and `Measure.prod`
+   KL-divergence statements.
+
+5. Completed on July 6, 2026: refine and implement the finite conditional-law
+   API carefully, using the nonzero-mass conditional-law convention from
+   `docs/semantic-bridge-design.md`. The new
+   `SemanticBridge/Conditional.lean` file defines
+   `condFstGivenSnd p b hb`, proves the atom formula
+   `p(a,b)/p_B(b)`, support equivalences, proof irrelevance, and the
+   factorization `p_B(b) * P_{A | B=b}(a) = p(a,b)`.
+
+6. Completed on July 6, 2026: prove that finite `condEntropy` agrees with
+   expected entropy of the chosen finite conditional laws. The main theorem is
+   `condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd`, stating
+   `H(A | B) = sum_b P_B(b) H(P_{A | B=b})`, with zero-marginal fibers handled
+   by the numeric zero branch in `condEntropyFstGivenSnd`.
+
+7. Completed on July 6, 2026: prove that finite `condMutualInfo` agrees with
+   an averaged conditional-KL expression, using the previous conditional-law
+   and KL bridge work. The main formulas are
+   `I(A;B | C) = sum_c P_C(c) I(A;B | C=c)` and
+   `I(A;B | C) =
+    sum_c P_C(c) D(P_{A,B|C=c} || P_{A|C=c} × P_{B|C=c})`.
+
+8. Completed on July 6, 2026: add the first semantic theorem API built on the
+   bridge results. The new `SemanticBridge/Theorems.lean` file proves
+   `0 <= I(A;B)`, fiberwise `0 <= I(A;B | C=c)`, `0 <= I(A;B | C)`, and the
+   chain rule `I(A;B,C) = I(A;C) + I(A;B | C)`.
+
+9. Completed on July 6, 2026: revisit local API polish after theorem pressure.
+   Safe coordinate/projection orientation lemmas were promoted to `[simp]`.
+   `LeanInfoTheory/Shannon/InfoMeasures.lean` was not split yet, because the
+   semantic bridge itself is already split and the finite PMF API remains
+   coherent. Public aliases for semantic theorem names were also deferred
+   until more chain-rule and semantic-bridge examples exist.
+
 ## External Review Notes
 
 The detailed external review summary has been moved to
@@ -771,76 +1330,69 @@ Stage 3, after certificate and finite-family pressure:
 
 These are the live notes we are keeping for future work. Completed foundation
 reminders have been removed from this backlog and are recorded instead in the
-step-by-step history above.
+step-by-step history above. The near-term semantic bridge plan above is
+complete; this section records important later work, ongoing guardrails, and
+items that should wait for more theorem pressure.
 
-1. Revisit which coordinate-orientation lemmas should be marked `[simp]`.
-   They are currently explicit lemmas, not global simp lemmas, to avoid
-   surprising simplifier behavior. Promote only the ones that prove harmless
-   after more theorem pressure.
-
-2. Design the finite conditional-law API carefully. In particular, decide how
-   zero-probability conditioning events should be represented. Rocq chooses a
-   default finite distribution, but mathlib already has measure-level
-   conditioning conventions, so copying Rocq directly may create friction.
-
-3. Prove that `condEntropy` agrees with the expected entropy of finite
-   conditional laws once the conditional-law representation is chosen.
-
-4. Prove that `mutualInfo` agrees with `InformationTheory.klDiv` from the joint
-   law to the product of its marginals. This should live in
-   `LeanInfoTheory/Shannon/SemanticBridge.lean` or a later subfile of it.
-
-5. Prove that `condMutualInfo` agrees with a KL chain-rule expression or an
-   averaged conditional-KL expression. The existing `SemanticBridge` file
-   already imports mathlib's KL chain-rule API for this purpose.
-
-6. Keep the finite-family entropy API delayed until pair/triple APIs and
+1. Keep the finite-family entropy API delayed until pair/triple APIs and
     semantic bridge proofs clarify the right representation. The main open
     question is whether the API should be indexed by `Fin n`, finite sets of
     variable names, dependent finite alphabets, vectors, or another
     mathlib-friendly structure.
 
-7. Split `LeanInfoTheory/Shannon/InfoMeasures.lean` only when the file becomes
-    too large or theorem pressure makes the boundaries clear. A likely future
-    layout is `Marginals`, `ConditionalEntropy`, `MutualInfo`,
-    `ConditionalMutualInfo`, and one or more heavier semantic bridge files.
+2. Split `LeanInfoTheory/Shannon/InfoMeasures.lean` only when the file becomes
+    too large or theorem pressure makes the boundaries clear. The July 6 API
+    polish pass decided not to split it yet: the file is around the watchlist
+    size, but it still contains one coherent finite PMF information-measure
+    layer, and the heavier semantic bridge has already been split into
+    subfiles. Revisit the split when finite-family entropy, additional
+    conditional mutual-information variants, or repeated long review/build
+    cycles make the boundaries obvious. A likely future layout is `Marginals`,
+    `ConditionalEntropy`, `MutualInfo`, `ConditionalMutualInfo`, and one or
+    more heavier semantic bridge files.
 
-8. Keep imports light in the core finite Shannon files. Heavy bridge files can
+3. Keep imports light in the core finite Shannon files. Heavy bridge files can
     import KL divergence, kernels, conditional probability, and coding theory
     only when those APIs are actually needed.
 
-9. Treat `LeanInfoTheory/MathlibFragments.lean` as a separately importable
+4. Treat `LeanInfoTheory/MathlibFragments.lean` as a separately importable
     anchor and checklist for upstream APIs, not as part of the lightweight
     public import surface.
 
-10. Add coding-theory material, including Kraft-McMillan connections, in a
+5. Add coding-theory material, including Kraft-McMillan connections, in a
     later coding-oriented layer rather than in the finite Shannon foundation.
 
-11. Upstream conservatively to mathlib. Small generic lemmas can go earlier,
+6. Upstream conservatively to mathlib. Small generic lemmas can go earlier,
     but substantial `InformationTheory` definitions should wait until local
     names, assumptions, and theorem statements have stabilized.
 
-12. Keep PSITIP/oXitip-style certificate infrastructure local unless mathlib
+7. Keep PSITIP/oXitip-style certificate infrastructure local unless mathlib
     maintainers specifically want a generic certificate framework.
+
+8. Re-run the semantic bridge API audit whenever the project upgrades mathlib.
+    In particular, re-check whether mathlib has added a canonical finite
+    product construction for `PMF`, new finite KL expansion lemmas, or a public
+    averaged conditional-KL API. If any of those exist upstream, prefer reusing
+    them over maintaining parallel local helpers.
 
 ### Do Later
 
-13. Add generated API documentation once the Lean API is stable enough. Until
+9. Add generated API documentation once the Lean API is stable enough. Until
     then, keep the current docs page described as a module list rather than as
     generated declaration documentation. When doc generation is added, link the
     homepage and docs page directly to declarations and important modules.
 
-14. Add a minimal contributor surface before inviting broader collaboration:
+10. Add a minimal contributor surface before inviting broader collaboration:
     `CONTRIBUTING.md`, beginner-friendly tasks, issue labels, and a short note
     about which components may eventually be proposed upstream to mathlib.
 
-15. Add advanced certificate constraints after the primitive-only checker
+11. Add advanced certificate constraints after the primitive-only checker
     remains stable under a little more theorem pressure. Independence
     constraints, functional-dependence constraints, and Markov constraints are
     essential for network converses, but they should be introduced as explicit
     extensions of the primitive certificate layer.
 
-16. Add primitive-recognition/autotagging only after the manually tagged
+12. Add primitive-recognition/autotagging only after the manually tagged
     certificate pipeline has been exercised on several examples. The current
     validator checks a raw expression against a supplied `PrimitiveIneq.Kind`;
     a later ergonomic layer could try to infer primitive tags from normalized
@@ -850,6 +1402,13 @@ step-by-step history above.
     propose tags, but the existing exact equality checker must still verify
     them.
 
-17. Add PSITIP/oXitip-style certificate import only after the internal checked
+13. Add PSITIP/oXitip-style certificate import only after the internal checked
     certificate format is stable. The first parser should target a small,
     explicit external format and should never be part of the trusted kernel.
+
+14. Revisit public semantic theorem aliases after more theorem pressure. The
+    July 6 API polish pass deferred aliases for results like
+    `mutualInfo_chain_rule_fst` because the current names are descriptive and
+    the semantic theorem layer is still small. Reconsider this once we have
+    several chain rules, symmetry variants, and downstream examples that show
+    which names users naturally reach for.

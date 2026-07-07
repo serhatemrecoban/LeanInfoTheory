@@ -71,12 +71,14 @@ theorem sndMarginal_map_pair {omega : Type u} {alpha : Type v} {beta : Type w}
   simp
 
 /-- Swapping the two coordinates turns the first marginal into the original second marginal. -/
+@[simp]
 theorem fstMarginal_map_swap {alpha : Type u} {beta : Type v}
     (p : PMF (alpha × beta)) :
     fstMarginal (p.map Prod.swap) = sndMarginal p := by
   simp [sndMarginal]
 
 /-- Swapping the two coordinates turns the second marginal into the original first marginal. -/
+@[simp]
 theorem sndMarginal_map_swap {alpha : Type u} {beta : Type v}
     (p : PMF (alpha × beta)) :
     sndMarginal (p.map Prod.swap) = fstMarginal p := by
@@ -221,6 +223,7 @@ theorem thirdMarginal_map_triple
 After swapping the first two coordinates of `(A, B, C)`, the first-third
 marginal is the original second-third marginal.
 -/
+@[simp]
 theorem fstThirdMarginal_map_swap12
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     (p : PMF (alpha × beta × gamma)) :
@@ -231,6 +234,7 @@ theorem fstThirdMarginal_map_swap12
 After swapping the first two coordinates of `(A, B, C)`, the second-third
 marginal is the original first-third marginal.
 -/
+@[simp]
 theorem sndThirdMarginal_map_swap12
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     (p : PMF (alpha × beta × gamma)) :
@@ -238,6 +242,7 @@ theorem sndThirdMarginal_map_swap12
   simp [fstThirdMarginal]
 
 /-- Swapping the first two coordinates leaves the third marginal unchanged. -/
+@[simp]
 theorem thirdMarginal_map_swap12
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     (p : PMF (alpha × beta × gamma)) :
@@ -593,12 +598,14 @@ def condMutualInfoOf {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : 
 /-! ## Coordinate Projection Identities -/
 
 /-- Entropy of the first coordinate projection is entropy of the first marginal. -/
+@[simp]
 theorem entropyOf_fst {alpha : Type u} {beta : Type v} [Fintype alpha]
     (p : PMF (alpha × beta)) :
     entropyOf p Prod.fst = entropy (fstMarginal p) :=
   rfl
 
 /-- Entropy of the second coordinate projection is entropy of the second marginal. -/
+@[simp]
 theorem entropyOf_snd {alpha : Type u} {beta : Type v} [Fintype beta]
     (p : PMF (alpha × beta)) :
     entropyOf p Prod.snd = entropy (sndMarginal p) :=
@@ -608,6 +615,7 @@ theorem entropyOf_snd {alpha : Type u} {beta : Type v} [Fintype beta]
 The joint entropy of the two coordinate projections of an existing pair law is
 the entropy of that pair law itself.
 -/
+@[simp]
 theorem jointEntropyOf_fst_snd {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
     jointEntropyOf p Prod.fst Prod.snd = jointEntropy p := by
@@ -622,6 +630,7 @@ theorem jointEntropyOf_fst_snd {alpha : Type u} {beta : Type v}
 Conditional entropy of the coordinate projections of a pair law recovers the
 PMF-level conditional entropy of that pair law.
 -/
+@[simp]
 theorem condEntropyOf_fst_snd {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
     condEntropyOf p Prod.fst Prod.snd = condEntropy p := by
@@ -636,6 +645,7 @@ theorem condEntropyOf_fst_snd {alpha : Type u} {beta : Type v}
 Mutual information of the coordinate projections of a pair law recovers the
 PMF-level mutual information of that pair law.
 -/
+@[simp]
 theorem mutualInfoOf_fst_snd {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
     mutualInfoOf p Prod.fst Prod.snd = mutualInfo p := by
@@ -647,6 +657,7 @@ theorem mutualInfoOf_fst_snd {alpha : Type u} {beta : Type v}
   simp [PMF.map_id]
 
 /-- Entropy of the third coordinate projection is entropy of the third marginal. -/
+@[simp]
 theorem entropyOf_third
     {alpha : Type u} {beta : Type v} {gamma : Type w} [Fintype gamma]
     (p : PMF (alpha × beta × gamma)) :
@@ -657,6 +668,7 @@ theorem entropyOf_third
 Joint entropy of the first and third coordinate projections is the entropy of
 the first-third marginal.
 -/
+@[simp]
 theorem jointEntropyOf_fst_third
     {alpha : Type u} {beta : Type v} {gamma : Type w} [Fintype alpha] [Fintype gamma]
     (p : PMF (alpha × beta × gamma)) :
@@ -668,6 +680,7 @@ theorem jointEntropyOf_fst_third
 Joint entropy of the second and third coordinate projections is the entropy of
 the second-third marginal.
 -/
+@[simp]
 theorem jointEntropyOf_snd_third
     {alpha : Type u} {beta : Type v} {gamma : Type w} [Fintype beta] [Fintype gamma]
     (p : PMF (alpha × beta × gamma)) :
@@ -679,6 +692,7 @@ theorem jointEntropyOf_snd_third
 Conditional mutual information of the coordinate projections of a triple law
 recovers the PMF-level `I(first; second | third)` quantity.
 -/
+@[simp]
 theorem condMutualInfoOf_fst_snd_third
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]

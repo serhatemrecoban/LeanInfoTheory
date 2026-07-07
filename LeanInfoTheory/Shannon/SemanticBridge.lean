@@ -4,9 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Serhat Emre Coban
 -/
 
-import LeanInfoTheory.InformationMeasures
-import Mathlib.InformationTheory.KullbackLeibler.Basic
-import Mathlib.InformationTheory.KullbackLeibler.ChainRule
+import LeanInfoTheory.Shannon.SemanticBridge.Theorems
 import Mathlib.Probability.ProbabilityMassFunction.Integrals
 
 /-!
@@ -23,16 +21,24 @@ semantic bridge layer proves that these definitions agree with the
 textbook/measure-theoretic semantics.
 
 - `entropy` as expected self-information over `PMF.toMeasure`;
-- future: `condEntropy` as the expected entropy of conditional laws;
-- future: `mutualInfo` as a KL divergence from the joint law to the product of its
+- `indepProd` as the independent product law of two PMFs, together with
+  product-measure and joint-law absolute-continuity bridge lemmas;
+- finite-sum formulas rewriting `mutualInfo` as
+  `sum p(a,b) log (p(a,b) / (p_A(a) p_B(b)))`;
+- `mutualInfo` as KL divergence from the joint law to the product of its
   marginals;
-- future: `condMutualInfo` as either a KL chain-rule expression or an averaged
-  conditional KL divergence.
+- `condFstGivenSnd`, the nonzero-mass conditional law `P_{A | B=b}`;
+- `condEntropy` as the expected entropy of these conditional laws;
+- `condMutualInfo` as expected fiber mutual information and as an averaged
+  conditional KL divergence;
+- semantic theorem API: `0 <= I(A;B)`, `0 <= I(A;B|C)`, and the chain rule
+  `I(A;B,C) = I(A;C) + I(A;B|C)`.
 
 Keeping this file separate prevents KL divergence, kernels, and related
 measure-theoretic imports from becoming dependencies of the lightweight finite
-Shannon API. Conditional-probability imports should be added here when the
-first conditional-law theorem actually needs them.
+Shannon API. More conditional-probability and kernel imports should still stay
+in this bridge layer or its subfiles, rather than in the core finite Shannon
+API.
 -/
 
 namespace LeanInfoTheory
