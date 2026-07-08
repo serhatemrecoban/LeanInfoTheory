@@ -28,11 +28,15 @@ of the user-facing finite information-measure API.
 export Shannon
   (entropy entropyOf jointEntropy jointEntropyOf
    fstMarginal sndMarginal fstThirdMarginal sndThirdMarginal thirdMarginal
+   fstSndMarginal
    condEntropy mutualInfo condMutualInfo
    condEntropyOf mutualInfoOf condMutualInfoOf
+   mutualInfo_map_swap mutualInfoOf_swap
+   condMutualInfo_map_swap12 condMutualInfoOf_swap
    fstMarginal_map sndMarginal_map fstMarginal_map_pair sndMarginal_map_pair
    fstMarginal_map_swap sndMarginal_map_swap
    fstMarginal_apply sndMarginal_apply
+   fstSndMarginal_map fstSndMarginal_map_triple
    fstThirdMarginal_map sndThirdMarginal_map thirdMarginal_map
    fstThirdMarginal_map_triple sndThirdMarginal_map_triple thirdMarginal_map_triple
    fstThirdMarginal_map_swap12 sndThirdMarginal_map_swap12 thirdMarginal_map_swap12
@@ -50,6 +54,10 @@ export Shannon
    entropyOf_third jointEntropyOf_fst_third jointEntropyOf_snd_third
    condMutualInfoOf_fst_snd_third
    condEntropy_eq mutualInfo_eq condMutualInfo_eq
+   entropy_eq_entropy_sndMarginal_add_condEntropy
+   entropy_eq_entropy_fstMarginal_add_condEntropy_swap
+   jointEntropyOf_eq_entropyOf_add_condEntropyOf
+   jointEntropyOf_eq_entropyOf_add_condEntropyOf_swap
    condEntropyOf_eq mutualInfoOf_eq condMutualInfoOf_eq)
 
 end LeanInfoTheory

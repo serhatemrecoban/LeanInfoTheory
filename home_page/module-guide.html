@@ -33,12 +33,12 @@
         <li><code>LeanInfoTheory.Shannon.Entropy</code>: finite Shannon entropy, random-variable entropy, and relabeling, swap, and reassociation invariance theorems.</li>
         <li><code>LeanInfoTheory.Shannon.EntropyBounds</code>: Jensen-based finite entropy upper bound <code>entropy_le_log_card</code> and uniform-law equality theorem <code>entropy_uniformOfFintype</code>. Import this module explicitly when those heavier analytic bounds are needed.</li>
         <li><code>LeanInfoTheory.Shannon.InfoMeasures</code>: marginals, conditional entropy, mutual information, conditional mutual information, and support/orientation lemmas.</li>
-        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: separated bridge entry point for finite entropy as expected self-information, finite conditional laws, mutual information as KL divergence, conditional mutual information as averaged fiber mutual information and averaged fiber KL, semantic nonnegativity, and the first mutual-information chain rule.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: separated bridge entry point for finite entropy as expected self-information, finite conditional laws, mutual information as KL divergence, conditional mutual information as averaged fiber mutual information and averaged fiber KL, semantic nonnegativity, mutual-information chain rules, and conditioning-reduces-entropy.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Product</code>: independent-product PMF infrastructure, product-measure bridge lemmas, and joint-law absolute-continuity facts.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.FiniteSums</code>: finite real-sum rewrites for marginals, entropy, and the log-ratio formula for mutual information.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Conditional</code>: finite conditional-law API and expected conditional entropy / conditional mutual information fiber formulas.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.KL</code>: finite KL expansion, mutual information as KL, and averaged conditional-KL bridge theorems.</li>
-        <li><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code>: user-facing semantic theorems, including nonnegativity of mutual information and conditional mutual information plus <code>I(A;B,C) = I(A;C) + I(A;B|C)</code>.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code>: user-facing semantic theorems, including nonnegativity, mutual-information chain-rule variants, random-variable forms, and conditioning-reduces-entropy.</li>
         <li><code>LeanInfoTheory.InformationMeasures</code>: public convenience re-export for the finite information-measure API; theorem-oriented code should usually prefer the canonical <code>LeanInfoTheory.Shannon</code> names.</li>
         <li><code>LeanInfoTheory.EntropyExpr</code>: formal entropy-expression algebra and the empty-entropy convention interface.</li>
         <li><code>LeanInfoTheory.EntropyVal</code>: abstract Shannon entropy valuations for certificate work.</li>
@@ -46,6 +46,8 @@
         <li><code>LeanInfoTheory.Certificate</code>: generic nonnegative-combination soundness theorem and exact decomposition matching.</li>
         <li><code>LeanInfoTheory.Certificate.Checked</code>: raw certificate data, a first raw-to-checked validator, and proof-carrying checked certificate structures with nonnegative rational coefficients and exact decomposition equality.</li>
         <li><code>LeanInfoTheory.Certificate.Submodularity</code>: separately importable first non-toy certificate demo, proving entropy submodularity from a validated CMI certificate.</li>
+        <li><code>LeanInfoTheory.Certificate.Subadditivity</code>: separately importable checked certificate demo, proving entropy subadditivity from a two-step primitive certificate.</li>
+        <li><code>LeanInfoTheory.Certificate.Monotonicity</code>: separately importable checked certificate demo, proving one-variable entropy monotonicity from a conditional-entropy primitive.</li>
         <li><code>LeanInfoTheory.Examples</code>: separately importable closed toy examples for the certificate layers.</li>
       </ul>
 

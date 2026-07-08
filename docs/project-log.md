@@ -30,6 +30,12 @@ organized as they are, and which ideas are waiting for the right moment.
 - `LeanInfoTheory/Certificate/Submodularity.lean`: separately importable first
   non-toy certificate demonstration, proving entropy submodularity from a
   validated conditional-mutual-information certificate.
+- `LeanInfoTheory/Certificate/Subadditivity.lean`: separately importable
+  checked certificate demonstration, proving entropy subadditivity through a
+  two-step primitive certificate.
+- `LeanInfoTheory/Certificate/Monotonicity.lean`: separately importable
+  checked certificate demonstration, proving one-variable entropy monotonicity
+  from the conditional-entropy primitive.
 - `LeanInfoTheory/Examples.lean`: separately importable small examples that
   exercise the current API.
 - `LeanInfoTheory/InformationMeasures.lean`: compatibility/re-export module for
@@ -73,10 +79,10 @@ organized as they are, and which ideas are waiting for the right moment.
   finite `condEntropy` with expected entropy of the conditional fibers, and
   `condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThird`,
   identifying finite `condMutualInfo` with expected fiber mutual information.
-- `LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean`: first user-facing
-  semantic theorem API built from the bridge layer, including nonnegativity of
-  mutual information and conditional mutual information, plus the chain rule
-  `I(A;B,C) = I(A;C) + I(A;B|C)`.
+- `LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean`: user-facing semantic
+  theorem API built from the bridge layer, including nonnegativity,
+  mutual-information chain-rule variants, random-variable forms, and
+  conditioning-reduces-entropy.
 - `blueprint/`: project-map notes for theorem dependencies and future
   generated blueprint pages.
 - `docs/`: human-facing design notes, roadmap notes, foundation conventions,
@@ -1278,9 +1284,9 @@ graph, and writes:
 - `home_page/blueprint/module_graph.json`, a machine-readable copy of the same
   graph data.
 
-The generated map currently records 21 local Lean modules, 30 local import
+The generated map currently records 23 local Lean modules, 32 local import
 edges, 11 modules reachable from the lightweight root import
-`LeanInfoTheory`, and 10 modules that are intentionally separately importable.
+`LeanInfoTheory`, and 12 modules that are intentionally separately importable.
 The map also groups modules into project layers: root import, shared
 foundation, finite Shannon layer, semantic bridge layer, certificate layer,
 and reference anchors.
@@ -1307,8 +1313,8 @@ comments, and writes:
 - `home_page/docs/declaration_index.json`, the machine-readable declaration
   index data.
 
-The generated index currently records 263 public declarations across 18
-modules with declarations. The kind breakdown is 193 theorems/lemmas, 61
+The generated index currently records 316 public declarations across 20
+modules with declarations. The kind breakdown is 230 theorems/lemmas, 77
 definitions/abbreviations, 6 structures/classes, and 3 inductive declarations.
 All indexed declarations currently have doc comments, which is a useful
 side-effect of the recent Lean-commentary pass.
@@ -1472,6 +1478,262 @@ to distinguish the current source-derived declaration index and module
 dependency map from future full Lean doc-gen output and theorem-level
 leanblueprint pages.
 
+### 51. Mutual Information Symmetry
+
+The first step of the new Lean theorem-focused thread is complete. The finite
+information-measure layer now proves mutual-information symmetry without
+importing the semantic bridge:
+
+- `Shannon.mutualInfo_map_swap`:
+  `mutualInfo (p.map Prod.swap) = mutualInfo p`;
+- `Shannon.mutualInfoOf_swap`:
+  `mutualInfoOf p Y X = mutualInfoOf p X Y`.
+
+The proof lives in `LeanInfoTheory/Shannon/InfoMeasures.lean` because it only
+uses the entropy-identity definition of mutual information, the existing
+coordinate-swap marginal lemmas, and entropy invariance under coordinate swap.
+The declarations are exported through `LeanInfoTheory.InformationMeasures`, so
+they are available from the lightweight root import.
+
+This completes step 1 of the active nine-step Lean theorem plan. The next
+theorem-development step is conditional mutual-information symmetry, followed
+by conditional entropy nonnegativity and broader chain-rule variants.
+
+### 52. Conditional Mutual Information Symmetry
+
+The second step of the new Lean theorem-focused thread is complete. The finite
+information-measure layer now proves conditional mutual information symmetry in
+the first two coordinates:
+
+- `Shannon.condMutualInfo_map_swap12`:
+  `condMutualInfo (p.map fun x => (x.2.1, x.1, x.2.2)) = condMutualInfo p`;
+- `Shannon.condMutualInfoOf_swap`:
+  `condMutualInfoOf p Y X Z = condMutualInfoOf p X Y Z`.
+
+Like mutual-information symmetry, this theorem belongs in
+`LeanInfoTheory/Shannon/InfoMeasures.lean`, not the semantic bridge. Its proof
+uses the entropy-identity definition of conditional mutual information, the
+existing first/second-coordinate triple-swap marginal lemmas, and entropy
+invariance under injective relabeling for the swapped triple law.
+
+This completes step 2 of the active nine-step Lean theorem plan. The next
+theorem-development step is finite conditional entropy nonnegativity, using
+the semantic bridge theorem that writes `H(A|B)` as an average of fiber
+entropies.
+
+### 53. Conditional Entropy Nonnegativity
+
+The third step of the new Lean theorem-focused thread is complete. The semantic
+theorem layer now proves finite conditional entropy nonnegativity:
+
+- `Shannon.condEntropyFstGivenSnd_nonneg`:
+  `0 <= condEntropyFstGivenSnd p b`;
+- `Shannon.condEntropy_nonneg`:
+  `0 <= condEntropy p`;
+- `Shannon.condEntropyOf_nonneg`:
+  `0 <= condEntropyOf p X Y`.
+
+Unlike the symmetry theorems from steps 1 and 2, this belongs in
+`LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean`, because the proof uses
+the semantic conditional-law formula
+
+`H(A | B) = sum_b P_B(b) H(P_{A | B=b})`.
+
+Each summand is nonnegative: the marginal mass is a nonnegative real number,
+and the fiber entropy is nonnegative, with zero-marginal fibers handled by the
+explicit zero branch in `condEntropyFstGivenSnd`.
+
+This completes step 3 of the active nine-step Lean theorem plan. The next
+theorem-development step is the conditional entropy chain-rule API.
+
+### 54. Conditional Entropy Chain Rules
+
+The fourth step of the new Lean theorem-focused thread is complete. The finite
+information-measure layer now records conditional entropy chain-rule variants:
+
+- `Shannon.entropy_eq_entropy_sndMarginal_add_condEntropy`:
+  `entropy p = entropy (sndMarginal p) + condEntropy p`;
+- `Shannon.entropy_eq_entropy_fstMarginal_add_condEntropy_swap`:
+  `entropy p = entropy (fstMarginal p) + condEntropy (p.map Prod.swap)`;
+- `Shannon.jointEntropyOf_eq_entropyOf_add_condEntropyOf`:
+  `jointEntropyOf p X Y = entropyOf p Y + condEntropyOf p X Y`;
+- `Shannon.jointEntropyOf_eq_entropyOf_add_condEntropyOf_swap`:
+  `jointEntropyOf p X Y = entropyOf p X + condEntropyOf p Y X`.
+
+These theorems live in `LeanInfoTheory/Shannon/InfoMeasures.lean` because they
+are algebraic consequences of the entropy-identity definition of conditional
+entropy and existing coordinate-swap facts. They do not need KL divergence or
+conditional-law imports.
+
+This completes step 4 of the active nine-step Lean theorem plan. The next
+theorem-development step is to add mutual-information chain-rule variants
+beyond `mutualInfo_chain_rule_fst`.
+
+### 55. Mutual Information Chain-Rule Variants
+
+The fifth step of the new Lean theorem-focused thread is complete. The semantic
+theorem layer now contains the sibling chain-rule expansion
+
+`I(A;B,C) = I(A;B) + I(A;C | B)`.
+
+The main new declarations are:
+
+- `Shannon.mutualInfo_chain_rule_snd`;
+- `Shannon.mutualInfoOf_chain_rule_fst`;
+- `Shannon.mutualInfoOf_chain_rule_snd`.
+
+To state the second PMF-level chain rule cleanly, the finite information
+measure layer also now has the small missing triple marginal helper
+`Shannon.fstSndMarginal`, together with projection lemmas
+`Shannon.fstSndMarginal_map` and `Shannon.fstSndMarginal_map_triple`. This is
+the first-second analogue of the existing first-third, second-third, and
+third-coordinate marginal helpers.
+
+This completes step 5 of the active nine-step Lean theorem plan. The next
+theorem-development step is conditioning-reduces-entropy, likely using the
+new chain-rule variants and conditional mutual-information nonnegativity.
+
+### 56. Conditioning Reduces Entropy
+
+The sixth step of the new Lean theorem-focused thread is complete. The semantic
+theorem layer now proves the finite conditioning-reduces-entropy theorem
+
+`H(A | B,C) <= H(A | C)`.
+
+The main new declarations are:
+
+- `Shannon.condMutualInfo_eq_condEntropy_fstThirdMarginal_sub_condEntropy`:
+  `I(A;B | C) = H(A | C) - H(A | B,C)`;
+- `Shannon.condEntropy_le_condEntropy_fstThirdMarginal`:
+  `H(A | B,C) <= H(A | C)`;
+- `Shannon.condEntropyOf_pair_le_condEntropyOf`:
+  `H(X | Y,Z) <= H(X | Z)`.
+
+The proof rewrites the conditional-entropy difference as conditional mutual
+information, then applies `Shannon.condMutualInfo_nonneg`. This uses the
+semantic theorem API rather than adding new definitions or changing the
+lightweight finite layer.
+
+This completes the finite-theorem part of the active nine-step plan. The next
+step is to add one or two small checked-certificate examples beyond
+submodularity, so the raw-to-checked validator sees more theorem pressure
+before any primitive-recognition or richer-assumption work.
+
+### 57. Additional Checked Certificate Demos
+
+The seventh step of the active Lean theorem/certificate plan is complete. Two
+small, separately importable checked-certificate demos now exercise the
+raw-to-checked validator beyond the original submodularity example.
+
+`LeanInfoTheory.Certificate.Subadditivity` proves
+
+`0 <= H(A) + H(B) - H(A union B)`
+
+for every abstract `ShannonEntropyVal`. The certificate is intentionally small
+but not single-step: it validates the decomposition
+
+`I(A;B | empty) + H(empty)`.
+
+This uses conditional mutual information together with the empty-entropy
+primitive to cancel the extra `-H(empty)` term in the CMI expression.
+
+`LeanInfoTheory.Certificate.Monotonicity` proves
+
+`0 <= H(insert i S) - H(S)`
+
+under `i notin S`. This gives the checked-certificate layer a direct example
+using the conditional-entropy primitive.
+
+The main new user-facing declarations are:
+
+- `Certificate.Subadditivity.entropy_subadditivity`;
+- `Certificate.Monotonicity.entropy_insert_monotonicity`.
+
+This completes step 7 of the active nine-step plan. The next step is to review
+certificate ergonomics, especially the amount of boilerplate around raw steps,
+primitive tags, and exact decomposition proofs.
+
+### 58. Certificate Ergonomics Review
+
+The eighth step of the active Lean theorem/certificate plan is complete. The
+review compared the submodularity, subadditivity, and one-variable
+monotonicity certificate demos and identified one repeated proof pattern worth
+abstracting now.
+
+Each demo proved that its raw certificate validates by showing
+
+`(RawCert.toCheckedCert? raw primitives).isSome`,
+
+then manually split the resulting option only to call the existing
+`RawCert.sound_of_toCheckedCert?_eq_some` theorem. The checked-certificate
+core now provides the ergonomic theorem
+
+`Certificate.RawCert.sound_of_toCheckedCert?_isSome`.
+
+This theorem states that any raw certificate whose validator returns some
+checked certificate proves its raw target expression. The three certificate
+demos now route their `sound_from_validator` proofs through this generic
+helper instead of repeating the same option split.
+
+The review deliberately did not add primitive-recognition/autotagging or a
+larger certificate DSL. The explicit primitive-list API is still useful for
+trust boundaries, and the current examples are too small to justify a
+recognition layer. Future ergonomic work should wait for larger manually
+tagged certificates to show whether repeated raw-step constructors,
+decomposition proof scripts, or primitive tags are the dominant source of
+friction.
+
+### 59. Nine-Step Theorem Plan Reference Refresh
+
+The ninth step of the active Lean theorem/certificate plan is complete. This
+was a synchronization step rather than a new theorem step.
+
+The project notes now record the nine-step phase as complete, and the future
+work notes distinguish immediate next decisions from later infrastructure:
+
+- choose the next focused Lean phase explicitly, with finite-family entropy
+  semantics and larger manually tagged certificate examples as the two most
+  natural candidates;
+- keep primitive-recognition/autotagging delayed until larger certificates
+  show that explicit primitive tags are the real bottleneck;
+- keep independence, Markov, functional-dependence, and PSITIP/oXitip-style
+  import work as later certificate extensions;
+- keep theorem-level blueprint and full Lean doc-gen work separate from the
+  current source-derived declaration index and module-level dependency map.
+
+The generated website reference artifacts were refreshed, and the hand-written
+theorem-highlight table was checked against the generated declaration index so
+its source-line links match the current Lean files.
+
+## Near-Term Semantic Theorem API Plan
+
+The next focused Lean theorem phase is a nine-step plan. Its purpose is to
+turn the completed semantic bridge infrastructure into a broader textbook-style
+finite information-measure API, while keeping root imports lightweight and
+letting theorem pressure guide naming.
+
+Current status: all nine steps are complete.
+
+1. Completed on July 8, 2026: prove mutual-information symmetry in the
+   lightweight finite layer.
+2. Completed on July 8, 2026: prove conditional mutual-information symmetry in
+   the first two variables.
+3. Completed on July 8, 2026: prove conditional entropy nonnegativity from the
+   expected conditional-law formula.
+4. Completed on July 8, 2026: add conditional entropy chain-rule variants.
+5. Completed on July 8, 2026: add mutual-information chain-rule variants
+   beyond `mutualInfo_chain_rule_fst`.
+6. Completed on July 8, 2026: prove conditioning-reduces-entropy from
+   conditional mutual information nonnegativity.
+7. Completed on July 8, 2026: add small checked-certificate examples beyond
+   submodularity, without adding new assumptions yet.
+8. Completed on July 8, 2026: review certificate ergonomics after those
+   examples and add the generic raw-validator soundness helper
+   `Certificate.RawCert.sound_of_toCheckedCert?_isSome`.
+9. Completed on July 8, 2026: refresh project logs, current-state notes,
+   future-work notes, generated website reference artifacts, and hand-written
+   theorem-highlight source links.
+
 ## Near-Term Semantic Bridge Plan
 
 The next focused project phase is a nine-step plan. Its purpose is to move
@@ -1626,6 +1888,13 @@ step-by-step history above. The near-term semantic bridge plan above is
 complete; this section records important later work, ongoing guardrails, and
 items that should wait for more theorem pressure.
 
+The near-term theorem/certificate plan above is now complete. The next focused
+Lean phase should be chosen explicitly rather than assumed. Items not completed
+by that phase, such as finite-family entropy, richer certificate assumptions,
+external certificate import, coding-theory layers, theorem-level blueprint
+work, and substantial mathlib PR preparation, should remain later work until a
+new focused plan moves one of them into active development.
+
 1. Keep the finite-family entropy API delayed until pair/triple APIs and
     semantic bridge proofs clarify the right representation. The main open
     question is whether the API should be indexed by `Fin n`, finite sets of
@@ -1692,7 +1961,9 @@ items that should wait for more theorem pressure.
     extensions of the primitive certificate layer.
 
 12. Add primitive-recognition/autotagging only after the manually tagged
-    certificate pipeline has been exercised on several examples. The current
+    certificate pipeline has been exercised on larger examples. The step 8
+    ergonomics review added a generic raw-validator soundness helper, but did
+    not show enough pressure to justify primitive recognition yet. The current
     validator checks a raw expression against a supplied `PrimitiveIneq.Kind`;
     a later ergonomic layer could try to infer primitive tags from normalized
     entropy expressions, for example recognizing
@@ -1708,6 +1979,61 @@ items that should wait for more theorem pressure.
 14. Revisit public semantic theorem aliases after more theorem pressure. The
     July 6 API polish pass deferred aliases for results like
     `mutualInfo_chain_rule_fst` because the current names are descriptive and
-    the semantic theorem layer is still small. Reconsider this once we have
-    several chain rules, symmetry variants, and downstream examples that show
-    which names users naturally reach for.
+    the semantic theorem layer is still small. The July 8 theorem pass added
+    `mutualInfo_map_swap`, `mutualInfoOf_swap`,
+    `condMutualInfo_map_swap12`, and `condMutualInfoOf_swap`, but aliases
+    should still wait until we have several chain rules and downstream examples
+    that show which names users naturally reach for.
+
+15. Revisit `[simp]` status for mutual-information and
+    conditional-mutual-information symmetry after the symmetry and chain-rule
+    API has more theorem pressure. The PMF-level swap-normalization theorem
+    `mutualInfo_map_swap`, whose left-hand side contains the visibly more
+    complicated expression `mutualInfo (p.map Prod.swap)`, is a plausible
+    future simp lemma because it rewrites an explicit coordinate swap back to
+    the canonical unswapped joint law. The CMI symmetry theorem
+    `condMutualInfo_map_swap12` should be evaluated similarly because it
+    normalizes an explicit `swap12` map to the canonical `I(A;B|C)`
+    orientation. In contrast,
+    pure random-variable commutativity statements such as
+    `mutualInfoOf p Y X = mutualInfoOf p X Y` need more care, because both
+    sides have the same syntactic shape and an automatic rewrite could choose
+    an arbitrary orientation or interact poorly with later chain-rule rewrites.
+    Before adding `[simp]`, test the candidate lemmas on the next few
+    chain-rule, CMI-symmetry, and conditioning-reduces-entropy proofs. Promote
+    only rewrites that reduce explicit coordinate maps or projections to a
+    canonical form, do not create rewrite loops, and make ordinary `simp`
+    calls more predictable.
+
+16. Revisit `[simp]` status for conditional entropy chain-rule theorems after
+    the chain-rule family has more downstream examples. The July 8 chain-rule
+    step deliberately kept
+    `entropy_eq_entropy_sndMarginal_add_condEntropy`,
+    `entropy_eq_entropy_fstMarginal_add_condEntropy_swap`, and the
+    random-variable variants explicit rather than marking them `[simp]`.
+    These theorems rewrite between mathematically equivalent but differently
+    useful normal forms, such as `H(A,B)` and `H(B) + H(A|B)`, so automatic
+    simplification could make proofs noisier or choose a direction too early.
+    Reconsider this only after the mutual-information chain-rule variants,
+    conditioning-reduces-entropy theorem, and a few certificate or example
+    proofs show whether the library wants a canonical entropy-expanded normal
+    form. If a direction is promoted, prefer one that reliably reduces proof
+    search and does not fight later chain-rule rewrites.
+
+17. Run the broader project build suite before release, commit, or milestone
+    checkpoints, while keeping focused builds for small theorem iterations.
+    During individual theorem steps it is reasonable to build the touched
+    module, the root import, and the main downstream semantic bridge target,
+    because repeatedly building examples, demos, reference anchors, and heavier
+    theorem modules can slow iteration without adding much signal for a local
+    algebraic lemma. Before finalizing a milestone, preparing a commit, or
+    publishing updated public status, run the full expected suite from the
+    README/agent notes: `lake build LeanInfoTheory`,
+    `lake build LeanInfoTheory.Shannon.EntropyBounds`,
+    `lake build LeanInfoTheory.Shannon.SemanticBridge`,
+    `lake build LeanInfoTheory.MathlibFragments`,
+    `lake build LeanInfoTheory.Certificate.Submodularity`,
+    `lake build LeanInfoTheory.Certificate.Subadditivity`,
+    `lake build LeanInfoTheory.Certificate.Monotonicity`, and
+    `lake build LeanInfoTheory.Examples`, plus the website generators and
+    checks when public declarations or imports changed.

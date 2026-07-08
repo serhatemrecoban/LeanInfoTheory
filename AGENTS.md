@@ -54,5 +54,7 @@ lake build LeanInfoTheory.Shannon.EntropyBounds
 lake build LeanInfoTheory.Shannon.SemanticBridge
 lake build LeanInfoTheory.MathlibFragments
 lake build LeanInfoTheory.Certificate.Submodularity
+lake build LeanInfoTheory.Certificate.Subadditivity
+lake build LeanInfoTheory.Certificate.Monotonicity
 lake build LeanInfoTheory.Examples
 ```

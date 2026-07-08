@@ -82,6 +82,18 @@
             <td><span class="status-pill proved">Proved</span></td>
           </tr>
           <tr>
+            <td><code>I(A;B) = I(B;A)</code>.</td>
+            <td><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-mutualInfo_map_swap"><code>Shannon.mutualInfo_map_swap</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-mutualInfo_map_swap">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/InfoMeasures.lean#L631">source</a></span></td>
+            <td><code>LeanInfoTheory.Shannon.InfoMeasures</code></td>
+            <td><span class="status-pill proved">Proved</span></td>
+          </tr>
+          <tr>
+            <td><code>I(A;B | C) = I(B;A | C)</code>.</td>
+            <td><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-condMutualInfo_map_swap12"><code>Shannon.condMutualInfo_map_swap12</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-condMutualInfo_map_swap12">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/InfoMeasures.lean#L652">source</a></span></td>
+            <td><code>LeanInfoTheory.Shannon.InfoMeasures</code></td>
+            <td><span class="status-pill proved">Proved</span></td>
+          </tr>
+          <tr>
             <td><code>H(P) = E[-log P(X)]</code> over <code>PMF.toMeasure</code>.</td>
             <td><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-entropy_eq_integral_selfInfo"><code>Shannon.entropy_eq_integral_selfInfo</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-entropy_eq_integral_selfInfo">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge.lean#L95">source</a></span></td>
             <td><code>LeanInfoTheory.Shannon.SemanticBridge</code></td>
@@ -91,6 +103,24 @@
             <td><code>H(A | B) = sum_b P_B(b) H(P_{A|B=b})</code>.</td>
             <td><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd"><code>Shannon.condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean#L268">source</a></span></td>
             <td><code>LeanInfoTheory.Shannon.SemanticBridge.Conditional</code></td>
+            <td><span class="status-pill proved">Proved</span></td>
+          </tr>
+          <tr>
+            <td><code>0 &lt;= H(A | B)</code>.</td>
+            <td><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-condEntropy_nonneg"><code>Shannon.condEntropy_nonneg</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-condEntropy_nonneg">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean#L82">source</a></span></td>
+            <td><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td>
+            <td><span class="status-pill proved">Proved</span></td>
+          </tr>
+          <tr>
+            <td><code>H(A,B) = H(B) + H(A | B)</code>.</td>
+            <td><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-entropy_eq_entropy_sndMarginal_add_condEntropy"><code>Shannon.entropy_eq_entropy_sndMarginal_add_condEntropy</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-entropy_eq_entropy_sndMarginal_add_condEntropy">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/InfoMeasures.lean#L831">source</a></span></td>
+            <td><code>LeanInfoTheory.Shannon.InfoMeasures</code></td>
+            <td><span class="status-pill proved">Proved</span></td>
+          </tr>
+          <tr>
+            <td><code>H(A | B,C) &lt;= H(A | C)</code>.</td>
+            <td><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-condEntropy_le_condEntropy_fstThirdMarginal"><code>Shannon.condEntropy_le_condEntropy_fstThirdMarginal</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-condEntropy_le_condEntropy_fstThirdMarginal">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean#L289">source</a></span></td>
+            <td><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td>
             <td><span class="status-pill proved">Proved</span></td>
           </tr>
           <tr>
@@ -113,19 +143,25 @@
           </tr>
           <tr>
             <td><code>0 &lt;= I(A;B)</code>.</td>
-            <td><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-mutualInfo_nonneg"><code>Shannon.mutualInfo_nonneg</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-mutualInfo_nonneg">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean#L44">source</a></span></td>
+            <td><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-mutualInfo_nonneg"><code>Shannon.mutualInfo_nonneg</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-mutualInfo_nonneg">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean#L46">source</a></span></td>
             <td><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td>
             <td><span class="status-pill proved">Proved</span></td>
           </tr>
           <tr>
             <td><code>0 &lt;= I(A;B | C)</code>.</td>
-            <td><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-condMutualInfo_nonneg"><code>Shannon.condMutualInfo_nonneg</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-condMutualInfo_nonneg">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean#L82">source</a></span></td>
+            <td><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-condMutualInfo_nonneg"><code>Shannon.condMutualInfo_nonneg</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-condMutualInfo_nonneg">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean#L128">source</a></span></td>
             <td><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td>
             <td><span class="status-pill proved">Proved</span></td>
           </tr>
           <tr>
             <td><code>I(A;B,C) = I(A;C) + I(A;B | C)</code>.</td>
-            <td><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-mutualInfo_chain_rule_fst"><code>Shannon.mutualInfo_chain_rule_fst</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-mutualInfo_chain_rule_fst">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean#L131">source</a></span></td>
+            <td><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-mutualInfo_chain_rule_fst"><code>Shannon.mutualInfo_chain_rule_fst</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-mutualInfo_chain_rule_fst">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean#L177">source</a></span></td>
+            <td><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td>
+            <td><span class="status-pill proved">Proved</span></td>
+          </tr>
+          <tr>
+            <td><code>I(A;B,C) = I(A;B) + I(A;C | B)</code>.</td>
+            <td><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-mutualInfo_chain_rule_snd"><code>Shannon.mutualInfo_chain_rule_snd</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Shannon-mutualInfo_chain_rule_snd">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean#L192">source</a></span></td>
             <td><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td>
             <td><span class="status-pill proved">Proved</span></td>
           </tr>
@@ -147,8 +183,24 @@
             <td>
               <code>H(A) + H(B) - H(A union B) - H(A inter B) &gt;= 0</code>.
             </td>
-            <td><a href="docs/api-index.html#decl-LeanInfoTheory-Certificate-Submodularity-entropy_submodularity"><code>Certificate.Submodularity.entropy_submodularity</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Certificate-Submodularity-entropy_submodularity">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Certificate/Submodularity.lean#L163">source</a></span></td>
+            <td><a href="docs/api-index.html#decl-LeanInfoTheory-Certificate-Submodularity-entropy_submodularity"><code>Certificate.Submodularity.entropy_submodularity</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Certificate-Submodularity-entropy_submodularity">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Certificate/Submodularity.lean#L159">source</a></span></td>
             <td><code>LeanInfoTheory.Certificate.Submodularity</code></td>
+            <td><span class="status-pill demo">Proved demo</span></td>
+          </tr>
+          <tr>
+            <td>
+              <code>H(A) + H(B) - H(A union B) &gt;= 0</code>.
+            </td>
+            <td><a href="docs/api-index.html#decl-LeanInfoTheory-Certificate-Subadditivity-entropy_subadditivity"><code>Certificate.Subadditivity.entropy_subadditivity</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Certificate-Subadditivity-entropy_subadditivity">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Certificate/Subadditivity.lean#L149">source</a></span></td>
+            <td><code>LeanInfoTheory.Certificate.Subadditivity</code></td>
+            <td><span class="status-pill demo">Proved demo</span></td>
+          </tr>
+          <tr>
+            <td>
+              <code>H(S union {i}) - H(S) &gt;= 0</code> when <code>i notin S</code>.
+            </td>
+            <td><a href="docs/api-index.html#decl-LeanInfoTheory-Certificate-Monotonicity-entropy_insert_monotonicity"><code>Certificate.Monotonicity.entropy_insert_monotonicity</code></a><span class="decl-actions"><a href="docs/api-index.html#decl-LeanInfoTheory-Certificate-Monotonicity-entropy_insert_monotonicity">API index</a> | <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Certificate/Monotonicity.lean#L122">source</a></span></td>
+            <td><code>LeanInfoTheory.Certificate.Monotonicity</code></td>
             <td><span class="status-pill demo">Proved demo</span></td>
           </tr>
         </tbody>

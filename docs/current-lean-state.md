@@ -1,6 +1,7 @@
 # Current Lean State
 
-Last checkpoint: July 8, 2026, on local commit `63ec77b`.
+Last checkpoint: July 8, 2026, after completing the active nine-step Lean
+theorem/certificate plan.
 
 This is a handoff note for future Lean-focused work. It summarizes the current
 architecture and the next useful Lean tasks without changing theorem
@@ -30,7 +31,9 @@ statements.
   primitive Shannon inequality layer.
 - `LeanInfoTheory.Certificate` and `LeanInfoTheory.Certificate.Checked` contain
   the checked certificate skeleton and raw-to-checked validation path.
-- `LeanInfoTheory.Certificate.Submodularity` and `LeanInfoTheory.Examples` are
+- `LeanInfoTheory.Certificate.Submodularity`,
+  `LeanInfoTheory.Certificate.Subadditivity`,
+  `LeanInfoTheory.Certificate.Monotonicity`, and `LeanInfoTheory.Examples` are
   separately importable demonstration modules.
 - `LeanInfoTheory.MathlibFragments` is a separately importable anchor/checklist
   for mathlib APIs that the project expects to use later.
@@ -49,10 +52,16 @@ Implemented and building:
 - joint entropy as entropy of a joint `PMF`;
 - invariance under equivalences, injective relabelings, coordinate swaps, and
   product reassociation;
-- marginal laws for pairs and triples, with pointwise mass formulas and
-  domination/zero-mass helper lemmas;
+- marginal laws for pairs and triples, including first-second, first-third,
+  second-third, and third-coordinate projections, with pointwise mass formulas
+  and domination/zero-mass helper lemmas;
 - finite conditional entropy, mutual information, and conditional mutual
   information as entropy identities;
+- conditional entropy chain-rule variants for joint PMFs and finite-valued
+  random variables;
+- mutual information symmetry and conditional mutual information symmetry
+  under coordinate swaps, plus random-variable symmetry theorems
+  `I(Y;X) = I(X;Y)` and `I(Y;X|Z) = I(X;Y|Z)`;
 - Jensen-based bound `H(P) <= log |alpha|` for nonempty finite alphabets;
 - uniform-law equality case for the entropy upper bound.
 
@@ -83,10 +92,13 @@ Implemented and building:
 - conditional entropy as `sum_b P_B(b) H(P_{A | B=b})`;
 - conditional mutual information as averaged fiber mutual information;
 - conditional mutual information as averaged fiber KL divergence;
-- semantic nonnegativity of mutual information and conditional mutual
-  information;
-- first mutual-information chain rule:
-  `I(A; B, C) = I(A; C) + I(A; B | C)`.
+- semantic nonnegativity of conditional entropy, mutual information, and
+  conditional mutual information;
+- mutual-information chain rules:
+  `I(A; B, C) = I(A; C) + I(A; B | C)` and
+  `I(A; B, C) = I(A; B) + I(A; C | B)`, plus random-variable forms.
+- conditioning-reduces-entropy:
+  `H(A | B, C) <= H(A | C)`, plus the random-variable form.
 
 The semantic bridge API is useful but still young. Public aliases for theorem
 names should wait until more chain rules, symmetry variants, and downstream
@@ -112,14 +124,19 @@ Implemented and building:
 - raw certificate data and a raw-to-checked validator;
 - exact decomposition matching over normalized rational entropy expressions;
 - soundness theorem: if raw data validates to a checked certificate, then the
-  target entropy expression is nonnegative under every `ShannonEntropyVal`.
+  target entropy expression is nonnegative under every `ShannonEntropyVal`;
+- ergonomic raw-validator soundness theorem
+  `Certificate.RawCert.sound_of_toCheckedCert?_isSome`, for demos that prove
+  only that validation succeeds;
+- checked certificate demos for entropy submodularity, entropy
+  subadditivity, and one-variable entropy monotonicity.
 
 The current project has the checking/validation side, not automatic
 certificate generation. Future PSITIP/oXitip-style integration should remain
 untrusted: external tools can search for certificates and emit raw data, while
 Lean validation remains the trusted step.
 
-## Submodularity Certificate Demo Status
+## Certificate Demo Status
 
 `LeanInfoTheory.Certificate.Submodularity` is the first non-toy checked
 certificate demo.
@@ -149,6 +166,16 @@ The demo includes:
 This is a real checked-certificate path, but it is still a small example. It
 does not yet include independence, Markov, or functional-dependence
 assumptions.
+
+Two additional small checked-certificate demos now exercise the validator on
+more primitive combinations:
+
+- `LeanInfoTheory.Certificate.Subadditivity` proves
+  `0 <= H(A) + H(B) - H(A union B)` by validating the two-step certificate
+  `I(A;B | empty) + H(empty)`.
+- `LeanInfoTheory.Certificate.Monotonicity` proves
+  `0 <= H(insert i S) - H(S)` under `i notin S` by validating a
+  conditional-entropy primitive certificate.
 
 ## Website Status
 
@@ -182,25 +209,52 @@ future work.
 
 ## Recommended Next Lean Tasks
 
-1. Add more semantic theorem API around the current bridge layer:
-   mutual-information symmetry, additional chain rules, conditional entropy
-   chain rules, and conditioning-reduces-entropy.
-2. Add more textbook entropy inequalities through the checked-certificate
-   path, starting with small primitive-Shannon examples before larger network
-   converse steps.
-3. Exercise the raw-to-checked certificate validator on several examples before
-   adding primitive-recognition/autotagging.
+1. Choose the next focused Lean phase explicitly. The two strongest candidates
+   are a finite-family entropy semantics layer for certificate-facing atom sets,
+   or a larger manually tagged certificate example that stresses the current
+   primitive-only checker.
+2. Revisit public theorem aliases and `[simp]` status for symmetry and
+   chain-rule lemmas only after one more downstream theorem/example pass shows
+   which normal forms are pleasant.
+3. Keep primitive-recognition/autotagging delayed until larger manually tagged
+   certificates show that the explicit primitive-list API is the bottleneck.
 4. Design certificate extensions for independence, Markov constraints, and
-   functional dependence, but only after the primitive-only checker has more
-   theorem pressure.
-5. Delay finite-family entropy until pair/triple APIs and semantic bridge
-   proofs show the right representation.
-6. Revisit whether `LeanInfoTheory.Shannon.InfoMeasures` should be split only
-   when file size or theorem pressure makes boundaries clear.
-7. Prepare small mathlib PR candidates for generic reusable PMF and finite
+   functional dependence after the primitive-only checker has more theorem
+   pressure.
+5. Delay any `Shannon.InfoMeasures` split until file size or theorem pressure
+   makes the module boundary obvious.
+6. Prepare small mathlib PR candidates for generic reusable PMF and finite
    measure lemmas once names and assumptions stabilize locally.
-8. Later, add PSITIP/oXitip-style certificate import after the internal raw
+7. Later, add PSITIP/oXitip-style certificate import after the internal raw
    certificate format is stable.
+
+## Active 9-Step Lean Theorem Plan
+
+Current status: all nine steps are complete.
+
+1. Completed on July 8, 2026: prove mutual-information symmetry through
+   `Shannon.mutualInfo_map_swap` and `Shannon.mutualInfoOf_swap`.
+2. Completed on July 8, 2026: prove conditional mutual-information symmetry
+   through `Shannon.condMutualInfo_map_swap12` and
+   `Shannon.condMutualInfoOf_swap`.
+3. Completed on July 8, 2026: prove finite conditional entropy nonnegativity
+   through `Shannon.condEntropy_nonneg` and `Shannon.condEntropyOf_nonneg`.
+4. Completed on July 8, 2026: add conditional entropy chain-rule variants
+   for joint PMFs and finite-valued random variables.
+5. Completed on July 8, 2026: add mutual-information chain-rule variants
+   beyond `mutualInfo_chain_rule_fst`, including the sibling
+   `I(A;B,C) = I(A;B) + I(A;C|B)` and random-variable forms.
+6. Completed on July 8, 2026: prove conditioning-reduces-entropy through
+   `Shannon.condEntropy_le_condEntropy_fstThirdMarginal` and
+   `Shannon.condEntropyOf_pair_le_condEntropyOf`.
+7. Completed on July 8, 2026: add small checked-certificate examples beyond
+   submodularity, namely entropy subadditivity and one-variable entropy
+   monotonicity.
+8. Completed on July 8, 2026: review certificate ergonomics after the new
+   examples and add `Certificate.RawCert.sound_of_toCheckedCert?_isSome` to
+   remove repeated option-splitting in demo soundness proofs.
+9. Completed on July 8, 2026: refresh project notes, future-work notes, and
+   website reference artifacts after the completed theorem/certificate phase.
 
 ## Commands After Lean Edits
 
@@ -213,6 +267,8 @@ lake build LeanInfoTheory.Shannon.EntropyBounds
 lake build LeanInfoTheory.Shannon.SemanticBridge
 lake build LeanInfoTheory.MathlibFragments
 lake build LeanInfoTheory.Certificate.Submodularity
+lake build LeanInfoTheory.Certificate.Subadditivity
+lake build LeanInfoTheory.Certificate.Monotonicity
 lake build LeanInfoTheory.Examples
 ```
 

@@ -32,10 +32,10 @@
       <section aria-labelledby="metrics-heading">
         <h2 id="metrics-heading">Current Graph</h2>
         <div class="metric-grid">
-          <div class="metric-card"><strong>21</strong><span>local modules</span></div>
-          <div class="metric-card"><strong>30</strong><span>local import edges</span></div>
+          <div class="metric-card"><strong>23</strong><span>local modules</span></div>
+          <div class="metric-card"><strong>32</strong><span>local import edges</span></div>
           <div class="metric-card"><strong>11</strong><span>root-reachable modules</span></div>
-          <div class="metric-card"><strong>10</strong><span>separate-import modules</span></div>
+          <div class="metric-card"><strong>12</strong><span>separate-import modules</span></div>
         </div>
       </section>
 
@@ -55,7 +55,7 @@
 <tr><td>Shared foundation</td><td>2</td><td>2</td><td>0</td></tr>
 <tr><td>Finite Shannon layer</td><td>4</td><td>3</td><td>1</td></tr>
 <tr><td>Semantic bridge layer</td><td>6</td><td>0</td><td>6</td></tr>
-<tr><td>Certificate layer</td><td>7</td><td>5</td><td>2</td></tr>
+<tr><td>Certificate layer</td><td>9</td><td>5</td><td>4</td></tr>
 <tr><td>Reference anchors</td><td>1</td><td>0</td><td>1</td></tr>
           </tbody>
         </table>
@@ -89,6 +89,8 @@
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td><td>Semantic bridge layer</td><td><span class="status-pill separate">separate import</span></td><td>User-facing semantic nonnegativity and first mutual-information chain-rule theorems.</td><td><code>LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Certificate</code></td><td>Certificate layer</td><td><span class="status-pill proved">root reachable</span></td><td>Nonnegative-combination certificate soundness and exact decomposition matching.</td><td><code>LeanInfoTheory/Certificate.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Certificate.Checked</code></td><td>Certificate layer</td><td><span class="status-pill proved">root reachable</span></td><td>Raw/checked certificate split with a first validator.</td><td><code>LeanInfoTheory/Certificate/Checked.lean</code></td></tr>
+<tr><td><code>LeanInfoTheory.Certificate.Monotonicity</code></td><td>Certificate layer</td><td><span class="status-pill separate">separate import</span></td><td>Checked certificate demo proving one-variable entropy monotonicity.</td><td><code>LeanInfoTheory/Certificate/Monotonicity.lean</code></td></tr>
+<tr><td><code>LeanInfoTheory.Certificate.Subadditivity</code></td><td>Certificate layer</td><td><span class="status-pill separate">separate import</span></td><td>Checked certificate demo proving entropy subadditivity.</td><td><code>LeanInfoTheory/Certificate/Subadditivity.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Certificate.Submodularity</code></td><td>Certificate layer</td><td><span class="status-pill separate">separate import</span></td><td>First non-toy checked certificate demo, proving entropy submodularity.</td><td><code>LeanInfoTheory/Certificate/Submodularity.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.EntropyExpr</code></td><td>Certificate layer</td><td><span class="status-pill proved">root reachable</span></td><td>Formal rational entropy-expression algebra and empty-entropy convention interface.</td><td><code>LeanInfoTheory/EntropyExpr.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.EntropyVal</code></td><td>Certificate layer</td><td><span class="status-pill proved">root reachable</span></td><td>Abstract Shannon entropy valuations for certificate soundness.</td><td><code>LeanInfoTheory/EntropyVal.lean</code></td></tr>
@@ -125,6 +127,8 @@
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td><td><code>LeanInfoTheory.Shannon.SemanticBridge.KL</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Certificate</code></td><td><code>LeanInfoTheory.EntropyExpr</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Certificate.Checked</code></td><td><code>LeanInfoTheory.Certificate</code><br><code>LeanInfoTheory.PrimitiveIneq</code></td><td>1</td></tr>
+<tr><td><code>LeanInfoTheory.Certificate.Monotonicity</code></td><td><code>LeanInfoTheory.Certificate.Checked</code></td><td>0</td></tr>
+<tr><td><code>LeanInfoTheory.Certificate.Subadditivity</code></td><td><code>LeanInfoTheory.Certificate.Checked</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Certificate.Submodularity</code></td><td><code>LeanInfoTheory.Certificate.Checked</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.EntropyExpr</code></td><td><span class="muted">none</span></td><td>5</td></tr>
 <tr><td><code>LeanInfoTheory.EntropyVal</code></td><td><code>LeanInfoTheory.EntropyExpr</code></td><td>0</td></tr>

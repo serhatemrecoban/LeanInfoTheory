@@ -43,6 +43,8 @@ MODULE_SUMMARIES = {
     "LeanInfoTheory.Certificate": "Nonnegative-combination certificate soundness and exact decomposition matching.",
     "LeanInfoTheory.Certificate.Checked": "Raw/checked certificate split with a first validator.",
     "LeanInfoTheory.Certificate.Submodularity": "First non-toy checked certificate demo, proving entropy submodularity.",
+    "LeanInfoTheory.Certificate.Subadditivity": "Checked certificate demo proving entropy subadditivity.",
+    "LeanInfoTheory.Certificate.Monotonicity": "Checked certificate demo proving one-variable entropy monotonicity.",
     "LeanInfoTheory.Examples": "Separately importable toy examples for the certificate layers.",
     "LeanInfoTheory.MathlibFragments": "Separately importable checklist of heavier mathlib information-theory and coding anchors.",
 }

@@ -7,8 +7,8 @@
     "Certificate layer",
     "Reference anchors"
   ],
-  "local_edge_count": 30,
-  "module_count": 21,
+  "local_edge_count": 32,
+  "module_count": 23,
   "modules": [
     {
       "external_imports": [],
@@ -210,6 +210,28 @@
       "local_imports": [
         "LeanInfoTheory.Certificate.Checked"
       ],
+      "name": "LeanInfoTheory.Certificate.Monotonicity",
+      "path": "LeanInfoTheory/Certificate/Monotonicity.lean",
+      "root_reachable": false,
+      "summary": "Checked certificate demo proving one-variable entropy monotonicity."
+    },
+    {
+      "external_imports": [],
+      "layer": "Certificate layer",
+      "local_imports": [
+        "LeanInfoTheory.Certificate.Checked"
+      ],
+      "name": "LeanInfoTheory.Certificate.Subadditivity",
+      "path": "LeanInfoTheory/Certificate/Subadditivity.lean",
+      "root_reachable": false,
+      "summary": "Checked certificate demo proving entropy subadditivity."
+    },
+    {
+      "external_imports": [],
+      "layer": "Certificate layer",
+      "local_imports": [
+        "LeanInfoTheory.Certificate.Checked"
+      ],
       "name": "LeanInfoTheory.Certificate.Submodularity",
       "path": "LeanInfoTheory/Certificate/Submodularity.lean",
       "root_reachable": false,
@@ -285,5 +307,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 11,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 10
+  "separate_import_count": 12
 }

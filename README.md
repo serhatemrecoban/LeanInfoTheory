@@ -34,12 +34,13 @@ when they stabilize.
   relabelings, coordinate swaps, and product reassociation.
 - A Jensen-based finite entropy upper bound and its uniform-law equality case
   are proved in `LeanInfoTheory.Shannon.EntropyBounds`.
-- The first semantic bridge theorem identifies finite entropy with expected
-  self-information over `PMF.toMeasure`.
+- Semantic bridge theorems connect the finite API to expected
+  self-information, conditional laws, KL divergence, semantic nonnegativity,
+  chain rules, and conditioning-reduces-entropy.
 - Closed theorem examples are present in the algebraic and checked certificate
   layers.
-- The first non-toy certificate demo proves entropy submodularity from a
-  validated conditional-mutual-information certificate.
+- Checked certificate demos now cover entropy submodularity, entropy
+  subadditivity, and one-variable entropy monotonicity.
 - Website dashboard, theorem highlights, module guide, certificate-demo pages,
   generated module dependency map, and source-derived declaration index live in
   `home_page/`.
@@ -69,9 +70,10 @@ when they stabilize.
   contains finite entropy as expected self-information, finite conditional-law
   formulas, mutual information as KL divergence, conditional mutual information
   as averaged fiber mutual information and averaged fiber KL, semantic
-  nonnegativity, and a first mutual-information chain rule.
+  nonnegativity, mutual-information chain rules, and
+  conditioning-reduces-entropy.
 - `LeanInfoTheory.InformationMeasures`: public re-export for finite information
-  measures and their first rewrite lemmas. Binary and q-ary entropy remain mathlib names:
+  measures and their core rewrite lemmas. Binary and q-ary entropy remain mathlib names:
   `Real.binEntropy` and `Real.qaryEntropy`.
 - `LeanInfoTheory.EntropyExpr`: formal rational linear combinations of entropy
   atoms, including the empty-entropy convention interface.
@@ -89,6 +91,11 @@ when they stabilize.
 - `LeanInfoTheory.Certificate.Submodularity`: separately importable first
   non-toy certificate demo, proving entropy submodularity from a validated CMI
   certificate.
+- `LeanInfoTheory.Certificate.Subadditivity`: separately importable checked
+  certificate demo, proving entropy subadditivity from a two-step certificate.
+- `LeanInfoTheory.Certificate.Monotonicity`: separately importable checked
+  certificate demo, proving one-variable entropy monotonicity from a
+  conditional-entropy primitive.
 - `LeanInfoTheory.Examples`: separately importable toy closed examples for the
   certificate layers.
 
@@ -111,7 +118,9 @@ Import heavier or demonstrational modules explicitly:
   conditional-law, KL, averaged conditional-KL, nonnegativity, and chain-rule
   bridge theorems.
 - `LeanInfoTheory.MathlibFragments` for heavy mathlib/coding anchors.
-- `LeanInfoTheory.Certificate.Submodularity` and `LeanInfoTheory.Examples` for
+- `LeanInfoTheory.Certificate.Submodularity`,
+  `LeanInfoTheory.Certificate.Subadditivity`,
+  `LeanInfoTheory.Certificate.Monotonicity`, and `LeanInfoTheory.Examples` for
   demos and examples.
 
 ## Roadmap
@@ -119,8 +128,8 @@ Import heavier or demonstrational modules explicitly:
 1. Upgrade the public site beyond the current module dependency map and
    source-derived declaration index with a theorem-level blueprint, full Lean
    doc-gen output, and a blueprint PDF.
-2. Extend the checked-certificate path beyond the submodularity demo with more
-   textbook entropy inequalities.
+2. Continue extending the checked-certificate path with more textbook entropy
+   inequalities.
 3. Add richer certificate assumptions such as independence, Markov, and
    functional-dependence constraints.
 4. Certify 5-10 toy and recognizable network-information-theory converse steps.
@@ -135,6 +144,8 @@ lake build LeanInfoTheory.Shannon.EntropyBounds
 lake build LeanInfoTheory.Shannon.SemanticBridge
 lake build LeanInfoTheory.MathlibFragments
 lake build LeanInfoTheory.Certificate.Submodularity
+lake build LeanInfoTheory.Certificate.Subadditivity
+lake build LeanInfoTheory.Certificate.Monotonicity
 lake build LeanInfoTheory.Examples
 ```
 

@@ -238,6 +238,26 @@ theorem sound_of_toCheckedCert?_eq_some
     · rw [dif_neg hdecomp] at hchecked
       cases hchecked
 
+/--
+Any raw certificate whose validation returns some checked certificate proves
+its raw target expression.
+
+This is the ergonomic form used by certificate demos: once a concrete raw
+certificate has a validation theorem of the form
+`(cert.toCheckedCert? primitives).isSome`, callers do not need to split the
+resulting option by hand.
+-/
+theorem sound_of_toCheckedCert?_isSome
+    {cert : RawCert Var} {primitives : List (PrimitiveIneq.Kind Var)}
+    (hvalidated : (cert.toCheckedCert? primitives).isSome)
+    (h : ShannonEntropyVal Var) :
+    0 <= ShannonEntropyVal.eval h cert.target := by
+  cases hchecked : cert.toCheckedCert? primitives with
+  | none =>
+      simp [hchecked] at hvalidated
+  | some _checked =>
+      exact sound_of_toCheckedCert?_eq_some hchecked h
+
 end RawCert
 
 end Certificate

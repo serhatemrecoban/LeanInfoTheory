@@ -152,12 +152,8 @@ theorem rawCert_toCheckedCert?_isSome (a b : EntropyAtom Var) :
 theorem sound_from_validator
     (h : ShannonEntropyVal Var) (a b : EntropyAtom Var) :
     0 <= ShannonEntropyVal.eval h (expr a b) := by
-  have hsome := rawCert_toCheckedCert?_isSome (a := a) (b := b)
-  cases hchecked : RawCert.toCheckedCert? (rawCert a b) [primitive a b] with
-  | none =>
-      simp [hchecked] at hsome
-  | some _checked =>
-      exact RawCert.sound_of_toCheckedCert?_eq_some hchecked h
+  exact RawCert.sound_of_toCheckedCert?_isSome
+    (rawCert_toCheckedCert?_isSome (a := a) (b := b)) h
 
 /-- Entropy submodularity for every abstract Shannon entropy valuation. -/
 theorem entropy_submodularity

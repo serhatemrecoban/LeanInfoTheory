@@ -47,8 +47,8 @@
         </p>
         <p>
           Current milestone: finite PMF entropy and information measures,
-          semantic bridges to conditional laws and KL divergence, and a checked
-          certificate demo for entropy submodularity.
+          semantic bridges to conditional laws and KL divergence, and checked
+          certificate demos for entropy inequalities.
         </p>
       </section>
 
@@ -60,7 +60,7 @@
           certificate checker. The current formalization covers entropy,
           conditional entropy, mutual information, conditional mutual
           information, semantic bridges to conditional laws and KL divergence,
-          and a checked Shannon submodularity demo; the longer-term goal is a
+          and checked Shannon-inequality demos; the longer-term goal is a
           textbook-scale library with importable external certificates for
           network-information-theory converses.
         </p>
@@ -85,7 +85,7 @@
             <p>
               The finite definitions are connected to expected self-information,
               conditional laws, KL divergence, averaged conditional KL,
-              nonnegativity, and a first chain rule.
+              nonnegativity, chain rules, and conditioning-reduces-entropy.
             </p>
             <a href="theorems.html">See bridge statements</a>
           </article>
@@ -134,7 +134,7 @@
             <p>
               Entropy as expected self-information, finite conditional laws,
               mutual information as KL, averaged conditional-KL, semantic
-              nonnegativity, and the first MI chain rule.
+              nonnegativity, MI chain rules, and conditioning-reduces-entropy.
             </p>
           </article>
           <article class="info-card">
@@ -188,7 +188,8 @@
             <p>
               The library branch proves the semantic facts; the certificate
               branch validates algebraic entropy decompositions. Together they
-              support checked inequalities such as Shannon submodularity.
+              support checked inequalities such as Shannon submodularity and
+              subadditivity.
             </p>
           </div>
 
@@ -250,6 +251,16 @@
             <tr>
               <td>Entropy submodularity from a checked CMI certificate</td>
               <td><code>Certificate.Submodularity.entropy_submodularity</code></td>
+              <td><span class="status-pill demo">Proved demo</span></td>
+            </tr>
+            <tr>
+              <td>Entropy subadditivity from a checked primitive certificate</td>
+              <td><code>Certificate.Subadditivity.entropy_subadditivity</code></td>
+              <td><span class="status-pill demo">Proved demo</span></td>
+            </tr>
+            <tr>
+              <td>One-variable entropy monotonicity from a checked primitive certificate</td>
+              <td><code>Certificate.Monotonicity.entropy_insert_monotonicity</code></td>
               <td><span class="status-pill demo">Proved demo</span></td>
             </tr>
           </tbody>
