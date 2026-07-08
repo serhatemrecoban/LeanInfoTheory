@@ -1444,6 +1444,34 @@ and how LeanInfoTheory differs: it reuses mathlib foundations, learns from PFR
 and Infotheo, and treats external inequality tools as untrusted search/import
 front ends while keeping Lean validation as the trusted proof step.
 
+### 49. Submodularity Demo Trusted-Flow Diagram
+
+The sixth step of the current website plan added a visual trusted-flow diagram
+to the submodularity demo page. The diagram separates:
+
+- untrusted raw certificate data;
+- Lean validation of primitive tags, nonnegative rational coefficients, and
+  exact normalized entropy-expression equality;
+- checked certificate data passed to the generic soundness theorem;
+- the final proved entropy submodularity statement.
+
+The wording is deliberately explicit that future external search/import tools
+would enter as untrusted raw data, while Lean validation remains the trusted
+step.
+
+### 50. Roadmap Status Labels
+
+The seventh step of the current website plan improved the roadmap/status
+presentation. The roadmap page now separates work into explicit completed,
+active, planned, and later categories, with status pills for each item.
+
+The homepage `Planned Next` section was also adjusted to use the same labels,
+so readers can distinguish active maintenance, planned theorem/documentation
+work, and later infrastructure milestones at a glance. The wording continues
+to distinguish the current source-derived declaration index and module
+dependency map from future full Lean doc-gen output and theorem-level
+leanblueprint pages.
+
 ## Near-Term Semantic Bridge Plan
 
 The next focused project phase is a nine-step plan. Its purpose is to move

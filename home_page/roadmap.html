@@ -20,41 +20,76 @@
       </nav>
     </header>
     <main class="main-content" role="main">
-      <p>
-        This roadmap records planned technical milestones. The homepage and
-        theorem highlights record what is currently implemented.
+      <p class="lead">
+        This roadmap separates completed Lean/site work from active polish,
+        planned theorem work, and later infrastructure milestones. The labels
+        are intentionally conservative: they describe the current repository,
+        not aspirations.
       </p>
 
-      <h2>Now</h2>
-      <ul>
-        <li>Extend the current generated module dependency map and source-derived declaration index toward a real theorem-level blueprint, full Lean doc-gen output, and blueprint PDF.</li>
-        <li>Keep the public website's theorem highlights, module guide, and certificate demo aligned with the Lean code as the API evolves.</li>
-        <li>Maintain project notes in the foundation conventions and project log.</li>
-        <li>Keep the lightweight finite API separated from heavier KL and coding imports.</li>
-        <li>Choose the next finite-information-theory theorem milestone after the completed semantic bridge plan.</li>
+      <h2>Status Snapshot</h2>
+      <table class="status-table">
+        <thead>
+          <tr>
+            <th scope="col">Status</th>
+            <th scope="col">Current meaning</th>
+            <th scope="col">Examples</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="status-pill proved">Completed</span></td>
+            <td>Checked Lean work or completed website/documentation work.</td>
+            <td>Finite PMF information measures, semantic/KL bridge theorems, submodularity certificate demo, generated reference artifacts, and website steps 1-6.</td>
+          </tr>
+          <tr>
+            <td><span class="status-pill prototype">Active</span></td>
+            <td>Current near-term maintenance or presentation work.</td>
+            <td>Keeping theorem highlights, module guide, roadmap, and demo pages aligned with the Lean code.</td>
+          </tr>
+          <tr>
+            <td><span class="status-pill planned">Planned</span></td>
+            <td>Next technical goals that are not yet formalized or generated.</td>
+            <td>More textbook inequalities, richer certificate assumptions, theorem-level blueprint, blueprint PDF, and full Lean doc-gen output.</td>
+          </tr>
+          <tr>
+            <td><span class="status-pill separate">Later</span></td>
+            <td>Larger infrastructure or research-facing milestones.</td>
+            <td>PSITIP/oXitip import, network converse skeletons, and a technical report or paper.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Completed</h2>
+      <ul class="roadmap-list">
+        <li><span class="status-pill proved">Completed</span> Finite <code>PMF</code>-based entropy, conditional entropy, mutual information, and conditional mutual information.</li>
+        <li><span class="status-pill proved">Completed</span> Entropy relabeling, coordinate swap, reassociation, upper-bound, and uniform-law equality theorems.</li>
+        <li><span class="status-pill proved">Completed</span> Semantic bridge theorems for expected self-information, conditional laws, KL divergence, nonnegativity, and a first chain rule.</li>
+        <li><span class="status-pill demo">Completed demo</span> Submodularity from a Lean-validated conditional-mutual-information certificate.</li>
+        <li><span class="status-pill proved">Completed</span> Website dashboard, theorem highlights, module guide, source-derived declaration index, module dependency map, prior-art page, and trusted-flow demo diagram.</li>
       </ul>
 
-      <h2>3 months</h2>
-      <ul>
-        <li>Publish a genuine leanblueprint web page, blueprint PDF, and theorem-level dependency graph.</li>
-        <li>Upgrade the current source-derived declaration index into full Lean doc-gen output, while keeping the hand-written module guide as a stable orientation page.</li>
-        <li>Link generated docs and blueprint entries back to the curated theorem highlights and submodularity demo page.</li>
-        <li>Extend the current primitive-only checked certificate path beyond the submodularity demo with additional textbook inequalities.</li>
+      <h2>Active</h2>
+      <ul class="roadmap-list">
+        <li><span class="status-pill prototype">Active</span> Keep public website pages aligned with the current Lean code and terminology.</li>
+        <li><span class="status-pill prototype">Active</span> Maintain project notes in the foundation conventions, project log, and website-task note.</li>
+        <li><span class="status-pill prototype">Active</span> Choose the next finite-information-theory theorem milestone after the completed semantic bridge plan.</li>
       </ul>
 
-      <h2>6 months</h2>
-      <ul>
-        <li>Add richer certificate constraints such as independence, functional dependence, and Markov constraints.</li>
-        <li>Certify several textbook entropy inequalities.</li>
-        <li>Develop more of the Cover-Thomas Chapter 2 theorem layer, such as data processing, Fano, and broader chain-rule APIs.</li>
-        <li>Prepare focused mathlib PRs for generic finite-measure lemmas.</li>
+      <h2>Planned</h2>
+      <ul class="roadmap-list">
+        <li><span class="status-pill planned">Planned</span> Extend the current module dependency map and source-derived declaration index toward theorem-level leanblueprint pages, a blueprint PDF, and full Lean doc-gen output.</li>
+        <li><span class="status-pill planned">Planned</span> Add more checked textbook entropy inequalities beyond the current submodularity demo.</li>
+        <li><span class="status-pill planned">Planned</span> Add richer certificate assumptions such as independence, functional dependence, and Markov constraints.</li>
+        <li><span class="status-pill planned">Planned</span> Develop more of the Cover-Thomas Chapter 2 theorem layer, such as data processing, Fano, and broader chain-rule APIs.</li>
+        <li><span class="status-pill planned">Planned</span> Prepare focused mathlib PRs for generic, stable finite-measure lemmas.</li>
       </ul>
 
-      <h2>12 months</h2>
-      <ul>
-        <li>Add PSITIP/oXitip-style certificate import.</li>
-        <li>Formalize selected converse proof skeletons.</li>
-        <li>Write a technical report or short paper describing the Lean library and certificate pipeline.</li>
+      <h2>Later</h2>
+      <ul class="roadmap-list">
+        <li><span class="status-pill separate">Later</span> Add PSITIP/oXitip-style import into untrusted raw certificate data.</li>
+        <li><span class="status-pill separate">Later</span> Formalize selected network-information-theory converse proof skeletons.</li>
+        <li><span class="status-pill separate">Later</span> Write a technical report or short paper describing the Lean library and certificate pipeline.</li>
       </ul>
     </main>
   </body>

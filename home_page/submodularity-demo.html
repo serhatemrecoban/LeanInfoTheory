@@ -49,6 +49,42 @@
       </p>
 
       <h2>Trusted Path</h2>
+      <div class="trusted-flow" aria-label="Trusted certificate validation flow from untrusted raw data to a Lean theorem.">
+        <div class="trusted-step untrusted-step">
+          <span class="status-pill planned">Untrusted input</span>
+          <h3>Raw certificate data</h3>
+          <p>
+            A candidate one-step CMI certificate is represented as raw data.
+            Future PSITIP/oXitip import would also enter here.
+          </p>
+        </div>
+        <div class="trusted-arrow">validated by Lean</div>
+        <div class="trusted-step">
+          <span class="status-pill proved">Checked data</span>
+          <h3>Raw-to-checked validator</h3>
+          <p>
+            Lean checks the primitive tag, nonnegative rational coefficient,
+            and exact normalized entropy-expression equality.
+          </p>
+        </div>
+        <div class="trusted-arrow">then</div>
+        <div class="trusted-step">
+          <span class="status-pill proved">Trusted proof</span>
+          <h3>Certificate soundness</h3>
+          <p>
+            The checked certificate is passed to the generic soundness theorem
+            for abstract Shannon entropy valuations.
+          </p>
+        </div>
+        <div class="trusted-result">
+          <span class="status-pill demo">Proved demo</span>
+          <strong>Entropy submodularity</strong>
+          <p>
+            Lean proves
+            <code>H(A) + H(B) - H(A union B) - H(A inter B) &gt;= 0</code>.
+          </p>
+        </div>
+      </div>
       <ol>
         <li>Build the formal entropy expression for submodularity.</li>
         <li>Represent the certificate as raw data with one CMI primitive step.</li>
