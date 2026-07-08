@@ -21,6 +21,13 @@
     </header>
 
     <main class="main-content" role="main">
+      <p class="lead">
+        LeanInfoTheory is meant to sit between existing formal libraries,
+        theorem-proving projects, and external entropy-inequality search tools:
+        it reuses mathlib foundations, learns from prior formalizations, and
+        keeps Lean as the trusted checker for certificate-backed results.
+      </p>
+
       <h2>mathlib</h2>
       <p>
         The project is intentionally mathlib-based. It reuses mathlib
@@ -28,6 +35,13 @@
         Markov kernels, <code>PMF.toMeasure</code>, binary and q-ary entropy,
         KL divergence, and coding-theory anchors such as Kraft-McMillan.
       </p>
+      <div class="link-grid">
+        <a href="https://leanprover-community.github.io/mathlib4_docs/Mathlib/Probability/ProbabilityMassFunction/Basic.html">PMF documentation</a>
+        <a href="https://leanprover-community.github.io/mathlib4_docs/Mathlib/Analysis/SpecialFunctions/BinaryEntropy.html">Binary and q-ary entropy</a>
+        <a href="https://leanprover-community.github.io/mathlib4_docs/Mathlib/InformationTheory/KullbackLeibler/Basic.html">KL divergence</a>
+        <a href="https://leanprover-community.github.io/mathlib4_docs/Mathlib/InformationTheory/KullbackLeibler/ChainRule.html">KL chain rules</a>
+        <a href="https://leanprover-community.github.io/mathlib4_docs/Mathlib/InformationTheory/Coding/KraftMcMillan.html">Kraft-McMillan</a>
+      </div>
 
       <h2>PFR Formalization</h2>
       <p>
@@ -36,6 +50,11 @@
         project layer finite and <code>PMF</code>-oriented, while auditing PFR
         and mathlib APIs before adding more general measure-theoretic layers.
       </p>
+      <div class="link-grid">
+        <a href="https://github.com/teorth/pfr">PFR repository</a>
+        <a href="https://teorth.github.io/pfr/">PFR project website</a>
+        <a href="https://teorth.github.io/pfr/blueprint/">PFR blueprint</a>
+      </div>
 
       <h2>Rocq Infotheo</h2>
       <p>
@@ -45,6 +64,11 @@
         and typeclass conventions first, but uses Infotheo as a sanity check
         for whether definitions can scale to larger theorem families.
       </p>
+      <div class="link-grid">
+        <a href="https://github.com/affeldt-aist/infotheo">Infotheo repository</a>
+        <a href="https://rocq-prover.org/p/coq-infotheo">Rocq package page</a>
+        <a href="https://github.com/affeldt-aist/infotheo/tree/master/information_theory">Information-theory sources</a>
+      </div>
 
       <h2>PSITIP and oXitip</h2>
       <p>
@@ -53,6 +77,12 @@
         certificates and export raw data, but Lean remains the trusted checker
         that validates the certificate and proves the target inequality.
       </p>
+      <div class="link-grid">
+        <a href="https://github.com/cheuktingli/psitip">PSITIP repository</a>
+        <a href="https://www.oxitip.com/">oXitip</a>
+        <a href="https://www.oxitip.com/Help">oXitip help</a>
+        <a href="https://github.com/convexsoft/AITIP">AITIP repository</a>
+      </div>
 
       <h2>Textbook Anchors</h2>
       <p>
@@ -62,6 +92,79 @@
         by line; it follows mathlib-compatible definitions and then records
         which textbook statements have been formalized.
       </p>
+
+      <h2>Comparison</h2>
+      <table class="status-table">
+        <thead>
+          <tr>
+            <th scope="col">Reference</th>
+            <th scope="col">Main role</th>
+            <th scope="col">Relationship to LeanInfoTheory</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>mathlib</td>
+            <td>
+              General Lean foundation for <code>PMF</code>s, measures, real
+              analysis, KL divergence, binary/q-ary entropy, and coding anchors.
+            </td>
+            <td>
+              LeanInfoTheory reuses these APIs directly and adds a finite
+              <code>PMF</code>-based Shannon layer rather than defining a local
+              probability model.
+            </td>
+          </tr>
+          <tr>
+            <td>PFR formalization</td>
+            <td>
+              Large Lean formalization where Shannon entropy methods are part
+              of serious additive-combinatorics infrastructure.
+            </td>
+            <td>
+              LeanInfoTheory treats PFR as a guide for scalable semantic bridge
+              design, while keeping its first public layer finite and
+              information-theorist-facing.
+            </td>
+          </tr>
+          <tr>
+            <td>Rocq Infotheo</td>
+            <td>
+              Mature Rocq library for discrete probabilities, information
+              theory, and linear error-correcting codes.
+            </td>
+            <td>
+              LeanInfoTheory follows Lean/mathlib conventions first, but uses
+              Infotheo as a sanity check for finite-distribution and
+              conditional-distribution API shape.
+            </td>
+          </tr>
+          <tr>
+            <td>PSITIP, oXitip, AITIP</td>
+            <td>
+              External tools for searching, checking, proving, or disproving
+              information inequalities.
+            </td>
+            <td>
+              These tools can later provide untrusted search/import data.
+              LeanInfoTheory's trusted role is to validate imported certificate
+              data and prove the target inequality inside Lean.
+            </td>
+          </tr>
+          <tr>
+            <td>Textbooks</td>
+            <td>
+              Mathematical reference points for finite entropy, conditional
+              entropy, mutual information, KL divergence, and network converses.
+            </td>
+            <td>
+              LeanInfoTheory does not mirror a textbook line by line. It uses
+              mathlib-compatible definitions and records checked textbook-style
+              statements on the theorem highlights page.
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
       <h2>What This Project Adds</h2>
       <p>

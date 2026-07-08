@@ -20,14 +20,12 @@ site only.
 4. Completed: theorem highlights source/API links.
    The theorem highlights page now links highlighted declarations to stable
    generated declaration-index anchors and to their GitHub source locations.
+5. Completed: prior-art links and comparison table.
+   The prior-art page now links to mathlib information-theory foundations,
+   PFR, Rocq Infotheo, and entropy-inequality search/checking tools, and it
+   includes a compact comparison table explaining LeanInfoTheory's role.
 
 ## Remaining Website Tasks
-
-5. Strengthen the prior-art page with links and a comparison table.
-   The prior-art page should include useful links to mathlib information-theory
-   fragments, Rocq `infotheo`, PFR-style entropy infrastructure, and relevant
-   certificate-generation tools such as PSITIP/oXitip, plus a compact
-   comparison table explaining what LeanInfoTheory currently contributes.
 
 6. Add a visual trusted-flow diagram to the submodularity demo page.
    The demo should visually separate untrusted raw certificate data, Lean

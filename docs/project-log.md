@@ -1427,6 +1427,23 @@ The terminology pass also made the website and living docs more precise:
 - full Lean doc-gen output, theorem-level blueprint pages, and a blueprint PDF
   remain future milestones.
 
+### 48. Prior-Art Page Links and Comparison Table
+
+The fifth step of the current website plan strengthened the prior-art page.
+The page now includes concrete links to:
+
+- mathlib foundations used by the project, including `PMF`, binary/q-ary
+  entropy, KL divergence, KL chain rules, and Kraft-McMillan;
+- the Lean PFR formalization, project website, and blueprint;
+- Rocq Infotheo and its information-theory source directory;
+- PSITIP, oXitip, and AITIP as external entropy-inequality search or checking
+  tools.
+
+The page also now has a comparison table explaining the role of each reference
+and how LeanInfoTheory differs: it reuses mathlib foundations, learns from PFR
+and Infotheo, and treats external inequality tools as untrusted search/import
+front ends while keeping Lean validation as the trusted proof step.
+
 ## Near-Term Semantic Bridge Plan
 
 The next focused project phase is a nine-step plan. Its purpose is to move
