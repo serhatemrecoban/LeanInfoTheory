@@ -33,8 +33,10 @@ statements.
   the checked certificate skeleton and raw-to-checked validation path.
 - `LeanInfoTheory.Certificate.Submodularity`,
   `LeanInfoTheory.Certificate.Subadditivity`,
-  `LeanInfoTheory.Certificate.Monotonicity`, and `LeanInfoTheory.Examples` are
-  separately importable demonstration modules.
+  `LeanInfoTheory.Certificate.Monotonicity`,
+  `LeanInfoTheory.Certificate.ThreeWaySubadditivity`, and
+  `LeanInfoTheory.Examples` are separately importable demonstration and
+  pressure-test modules.
 - `LeanInfoTheory.MathlibFragments` is a separately importable anchor/checklist
   for mathlib APIs that the project expects to use later.
 
@@ -129,7 +131,8 @@ Implemented and building:
   `Certificate.RawCert.sound_of_toCheckedCert?_isSome`, for demos that prove
   only that validation succeeds;
 - checked certificate demos for entropy submodularity, entropy
-  subadditivity, and one-variable entropy monotonicity.
+  subadditivity, one-variable entropy monotonicity, and three-way entropy
+  subadditivity.
 
 The current project has the checking/validation side, not automatic
 certificate generation. Future PSITIP/oXitip-style integration should remain
@@ -209,24 +212,24 @@ future work.
 
 ## Recommended Next Lean Tasks
 
-1. Choose the next focused Lean phase explicitly. The two strongest candidates
-   are a finite-family entropy semantics layer for certificate-facing atom sets,
-   or a larger manually tagged certificate example that stresses the current
-   primitive-only checker.
-2. Revisit public theorem aliases and `[simp]` status for symmetry and
-   chain-rule lemmas only after one more downstream theorem/example pass shows
-   which normal forms are pleasant.
-3. Keep primitive-recognition/autotagging delayed until larger manually tagged
-   certificates show that the explicit primitive-list API is the bottleneck.
-4. Design certificate extensions for independence, Markov constraints, and
-   functional dependence after the primitive-only checker has more theorem
+1. Produce a detailed Project B formalization map for finite textbook
+   information-theory fundamentals, centered on Chapter 2 of Cover and Thomas
+   and cross-checked against the other local textbooks.
+2. Turn that map into a first focused theorem-development phase with explicit
+   module boundaries, dependencies, success criteria, and build targets before
+   editing Lean.
+3. Start from the existing finite PMF entropy, conditional-law, information
+   measure, entropy-bound, and KL bridge APIs; audit mathlib before introducing
+   new definitions or parallel infrastructure.
+4. Keep the finite-family entropy representation undecided until the Project B
+   map and further pair/triple theorem pressure clarify what later chapters
+   need.
+5. Keep Project A certificate automation, richer assumptions, and external
+   certificate import as later work while Project B develops the mathematical
+   foundation they will eventually consume.
+6. Revisit public theorem aliases, `[simp]` policy, module splitting, and
+   upstream candidates only when the new theorem development supplies concrete
    pressure.
-5. Delay any `Shannon.InfoMeasures` split until file size or theorem pressure
-   makes the module boundary obvious.
-6. Prepare small mathlib PR candidates for generic reusable PMF and finite
-   measure lemmas once names and assumptions stabilize locally.
-7. Later, add PSITIP/oXitip-style certificate import after the internal raw
-   certificate format is stable.
 
 ## Active 9-Step Lean Theorem Plan
 
@@ -256,6 +259,51 @@ Current status: all nine steps are complete.
 9. Completed on July 8, 2026: refresh project notes, future-work notes, and
    website reference artifacts after the completed theorem/certificate phase.
 
+## Completed Manual Certificate Pressure-Test Plan
+
+Current status: all six steps are complete.
+
+1. Completed on July 8, 2026: add the separately importable module
+   `LeanInfoTheory.Certificate.ThreeWaySubadditivity`.
+2. Completed on July 8, 2026: define the target expression
+   `H(A) + H(B) + H(C) - H(A union B union C)` and prove its evaluation
+   formula through `Certificate.ThreeWaySubadditivity.eval_expr`.
+3. Completed on July 8, 2026: use a manually tagged two-block primitive
+   certificate:
+   `I(A;B | empty) + H(empty)` and
+   `I(A union B;C | empty) + H(empty)`, proving
+   `Certificate.ThreeWaySubadditivity.entropy_three_way_subadditivity`.
+4. Completed on July 9, 2026: audit the conservative scope. The pressure-test
+   module imports only `LeanInfoTheory.Certificate.Checked`, does not change
+   the root import, and adds no assumptions, primitive recognition, certificate
+   DSL, or finite-family entropy representation.
+5. Completed on July 9, 2026: record the pressure-test lessons. The main
+   friction was expression normalization in exact decomposition proofs; raw
+   step boilerplate and explicit primitive tags are still manageable at this
+   scale, and the descriptive theorem name
+   `entropy_three_way_subadditivity` is acceptable.
+6. Completed on July 9, 2026: refresh public artifacts, add the three-way
+   theorem to hand-written theorem highlights, and run the relevant Lean and
+   website checks.
+
+### Pressure-Test Lessons
+
+The three-way subadditivity example is the first certificate demo large enough
+to say something useful about ergonomics beyond one- or two-step examples.
+
+- Raw-step boilerplate is repetitive but still readable for a four-step
+  certificate. It does not yet justify a certificate DSL.
+- Explicit primitive tags are verbose but useful for the trust boundary. This
+  example does not justify primitive-recognition/autotagging yet.
+- Exact decomposition proofs are the first real pain point. The proof needed
+  local additive-group normalization for associativity and cancellation after
+  expanding the two CMI-plus-empty blocks.
+- The theorem naming style remains workable: descriptive names such as
+  `entropy_three_way_subadditivity` are clear enough for demo modules.
+- The next larger certificate should watch whether expression normalization
+  repeats; if it does, a small untrusted or proof-only normalization helper may
+  be more urgent than primitive-tag inference.
+
 ## Commands After Lean Edits
 
 Use the relevant subset, and run broader checks for shared API or theorem-layer
@@ -269,6 +317,7 @@ lake build LeanInfoTheory.MathlibFragments
 lake build LeanInfoTheory.Certificate.Submodularity
 lake build LeanInfoTheory.Certificate.Subadditivity
 lake build LeanInfoTheory.Certificate.Monotonicity
+lake build LeanInfoTheory.Certificate.ThreeWaySubadditivity
 lake build LeanInfoTheory.Examples
 ```
 

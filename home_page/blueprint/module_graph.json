@@ -7,8 +7,8 @@
     "Certificate layer",
     "Reference anchors"
   ],
-  "local_edge_count": 32,
-  "module_count": 23,
+  "local_edge_count": 33,
+  "module_count": 24,
   "modules": [
     {
       "external_imports": [],
@@ -238,6 +238,17 @@
       "summary": "First non-toy checked certificate demo, proving entropy submodularity."
     },
     {
+      "external_imports": [],
+      "layer": "Certificate layer",
+      "local_imports": [
+        "LeanInfoTheory.Certificate.Checked"
+      ],
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "root_reachable": false,
+      "summary": "Manual certificate pressure-test module for three-way entropy subadditivity."
+    },
+    {
       "external_imports": [
         "Mathlib.Data.Finset.Basic",
         "Mathlib.Data.Finsupp.Basic",
@@ -307,5 +318,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 11,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 12
+  "separate_import_count": 13
 }

@@ -36,6 +36,9 @@ organized as they are, and which ideas are waiting for the right moment.
 - `LeanInfoTheory/Certificate/Monotonicity.lean`: separately importable
   checked certificate demonstration, proving one-variable entropy monotonicity
   from the conditional-entropy primitive.
+- `LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean`: separately
+  importable manual certificate pressure-test module for a larger
+  entropy-subadditivity example.
 - `LeanInfoTheory/Examples.lean`: separately importable small examples that
   exercise the current API.
 - `LeanInfoTheory/InformationMeasures.lean`: compatibility/re-export module for
@@ -1284,9 +1287,9 @@ graph, and writes:
 - `home_page/blueprint/module_graph.json`, a machine-readable copy of the same
   graph data.
 
-The generated map currently records 23 local Lean modules, 32 local import
+The generated map currently records 24 local Lean modules, 33 local import
 edges, 11 modules reachable from the lightweight root import
-`LeanInfoTheory`, and 12 modules that are intentionally separately importable.
+`LeanInfoTheory`, and 13 modules that are intentionally separately importable.
 The map also groups modules into project layers: root import, shared
 foundation, finite Shannon layer, semantic bridge layer, certificate layer,
 and reference anchors.
@@ -1313,8 +1316,8 @@ comments, and writes:
 - `home_page/docs/declaration_index.json`, the machine-readable declaration
   index data.
 
-The generated index currently records 316 public declarations across 20
-modules with declarations. The kind breakdown is 230 theorems/lemmas, 77
+The generated index currently records 339 public declarations across 21
+modules with declarations. The kind breakdown is 241 theorems/lemmas, 89
 definitions/abbreviations, 6 structures/classes, and 3 inductive declarations.
 All indexed declarations currently have doc comments, which is a useful
 side-effect of the recent Lean-commentary pass.
@@ -1705,6 +1708,112 @@ The generated website reference artifacts were refreshed, and the hand-written
 theorem-highlight table was checked against the generated declaration index so
 its source-line links match the current Lean files.
 
+### 60. Three-Way Subadditivity Pressure-Test Module
+
+The next focused Lean phase is the manual certificate pressure test for
+three-way entropy subadditivity. Its goal is to add one larger, still
+primitive-only checked certificate example before introducing any new trusted
+assumptions, primitive-recognition layer, certificate DSL, or finite-family
+entropy representation.
+
+The first step is complete: the new separately importable module
+`LeanInfoTheory.Certificate.ThreeWaySubadditivity` exists and imports only the
+checked-certificate layer. It is intentionally a module shell at this point;
+the target expression, manually tagged certificate, and final theorem are the
+next steps.
+
+The module was also added to the focused build lists and generated
+module-dependency map so it stays visible as a separate-import certificate
+target while the pressure-test phase proceeds.
+
+The second step is also complete. The module now defines
+`Certificate.ThreeWaySubadditivity.expr`, the formal entropy expression
+
+`H(A) + H(B) + H(C) - H(A union B union C)`,
+
+and proves `Certificate.ThreeWaySubadditivity.eval_expr`, identifying its
+evaluation under any `ShannonEntropyVal` with the expected real-valued
+inequality body. The next step is the manually tagged two-block primitive
+certificate.
+
+The third step is complete. The module now contains a four-step manually
+tagged raw certificate with the primitive list
+
+`I(A;B | empty), H(empty), I(A union B;C | empty), H(empty)`.
+
+Its exact decomposition proof uses only local additive-group normalization:
+the larger example did expose a small amount of associativity/cancellation
+noise, but it did not require a new trusted helper, a primitive-recognition
+layer, or an extra tactic import. The final user-facing theorem is
+`Certificate.ThreeWaySubadditivity.entropy_three_way_subadditivity`.
+
+The fourth step is complete. The pressure-test module stayed within the
+intended conservative scope: it imports only `LeanInfoTheory.Certificate.Checked`,
+remains separately importable, leaves the root import lightweight, and adds no
+new assumptions, primitive-recognition/autotagging layer, certificate DSL, or
+finite-family entropy representation. The root module's documentation was
+updated to mention the expanded set of separately importable certificate demo
+and pressure-test files without changing any imports.
+
+The fifth step is complete. The pressure-test lessons are:
+
+- raw-step boilerplate is repetitive but still manageable for a four-step
+  certificate;
+- explicit primitive tags remain a good trust-boundary choice and are not yet
+  the dominant bottleneck;
+- exact decomposition proofs are the first meaningful ergonomic pressure
+  point, because the two-block expression required local additive-group
+  normalization for associativity and cancellation;
+- theorem naming is still fine with descriptive names such as
+  `entropy_three_way_subadditivity`;
+- the next larger certificate should watch whether normalization scripts
+  repeat. If they do, a small proof-side normalization helper may be more
+  valuable than primitive-recognition/autotagging.
+
+The sixth step is complete. Public artifacts were refreshed after the theorem
+landed: generated module/declaration artifacts were regenerated, the homepage
+and theorem-highlight tables now list
+`Certificate.ThreeWaySubadditivity.entropy_three_way_subadditivity`, and the
+README/current-state notes describe the module as a proved pressure-test
+certificate rather than only a planned shell.
+
+### 61. Project B Transition Decision
+
+On July 10, 2026, after completing the manual certificate pressure test and
+reviewing the repository's general Lean status, the next mathematical direction
+was chosen explicitly: focus on Project B, the formalization of textbook
+information-theory fundamentals, before returning to the Project A
+Lean-checked certificate system and converse-step program.
+
+The Project B scope will be source-driven. Chapter 2 of Cover and Thomas is the
+primary finite-information-theory spine, cross-checked against the local Yeung,
+El Gamal--Kim, Polyanskiy--Wu, and Csiszar--Korner texts so that definitions and
+theorem boundaries also support later coding, network-information-theory, and
+learning-oriented chapters. The existing finite `PMF` entropy,
+conditional-law, mutual-information, entropy-bound, and semantic KL bridge APIs
+remain the starting point.
+
+This transition does not yet choose a new Lean representation, change a theorem
+statement, or alter the root import. The detailed Project B formalization map
+and execution order will be designed after the current milestone cleanup and
+before new Lean edits. In particular, finite-family entropy, kernel/Markov
+infrastructure, relative-entropy API shape, data processing, sufficient
+statistics, and Fano's inequality must be ordered by dependency and by existing
+mathlib support rather than introduced all at once.
+
+Project A is paused rather than abandoned. The checked certificate core and its
+pressure-test lessons remain available, while primitive recognition, richer
+certificate assumptions, external certificate import, and larger converse
+examples stay in the future-work backlog until the stronger Project B
+foundation makes returning to them worthwhile.
+
+The milestone verification suite passed on July 11, 2026. Both generated
+website reference artifacts were refreshed; a single multi-target Lake build
+checked the lightweight root, entropy bounds, semantic bridge, mathlib anchors,
+all certificate demos and pressure tests, and examples; and the website,
+generated JSON, forbidden-placeholder, and diff-hygiene checks all passed. The
+root import remains unchanged.
+
 ## Near-Term Semantic Theorem API Plan
 
 The next focused Lean theorem phase is a nine-step plan. Its purpose is to
@@ -1888,18 +1997,20 @@ step-by-step history above. The near-term semantic bridge plan above is
 complete; this section records important later work, ongoing guardrails, and
 items that should wait for more theorem pressure.
 
-The near-term theorem/certificate plan above is now complete. The next focused
-Lean phase should be chosen explicitly rather than assumed. Items not completed
-by that phase, such as finite-family entropy, richer certificate assumptions,
-external certificate import, coding-theory layers, theorem-level blueprint
-work, and substantial mathlib PR preparation, should remain later work until a
-new focused plan moves one of them into active development.
+The near-term theorem/certificate plan above is now complete, and the next
+direction has been chosen explicitly: Project B will focus on finite textbook
+information-theory fundamentals before the project returns to Project A's
+certificate and converse program. The detailed Project B formalization map has
+not yet promoted individual backlog items into active implementation. Until it
+does, finite-family entropy, richer certificate assumptions, external
+certificate import, coding-theory layers, theorem-level blueprint work, and
+substantial mathlib PR preparation remain later work.
 
-1. Keep the finite-family entropy API delayed until pair/triple APIs and
-    semantic bridge proofs clarify the right representation. The main open
-    question is whether the API should be indexed by `Fin n`, finite sets of
-    variable names, dependent finite alphabets, vectors, or another
-    mathlib-friendly structure.
+1. Keep the finite-family entropy API delayed until the first Project B plan
+    and further pair/triple and semantic bridge theorem pressure clarify the
+    right representation. The main open question is whether the API should be
+    indexed by `Fin n`, finite sets of variable names, dependent finite
+    alphabets, vectors, or another mathlib-friendly structure.
 
 2. Split `LeanInfoTheory/Shannon/InfoMeasures.lean` only when the file becomes
     too large or theorem pressure makes the boundaries clear. The July 6 API
@@ -1962,9 +2073,11 @@ new focused plan moves one of them into active development.
 
 12. Add primitive-recognition/autotagging only after the manually tagged
     certificate pipeline has been exercised on larger examples. The step 8
-    ergonomics review added a generic raw-validator soundness helper, but did
-    not show enough pressure to justify primitive recognition yet. The current
-    validator checks a raw expression against a supplied `PrimitiveIneq.Kind`;
+    ergonomics review added a generic raw-validator soundness helper, and the
+    three-way subadditivity pressure test showed expression normalization
+    pressure before primitive-tag pressure. Neither result justifies primitive
+    recognition yet. The current validator checks a raw expression against a
+    supplied `PrimitiveIneq.Kind`;
     a later ergonomic layer could try to infer primitive tags from normalized
     entropy expressions, for example recognizing
     `H(A,C) + H(B,C) - H(A,B,C) - H(C)` as conditional mutual information.
@@ -2034,6 +2147,7 @@ new focused plan moves one of them into active development.
     `lake build LeanInfoTheory.MathlibFragments`,
     `lake build LeanInfoTheory.Certificate.Submodularity`,
     `lake build LeanInfoTheory.Certificate.Subadditivity`,
-    `lake build LeanInfoTheory.Certificate.Monotonicity`, and
+    `lake build LeanInfoTheory.Certificate.Monotonicity`,
+    `lake build LeanInfoTheory.Certificate.ThreeWaySubadditivity`, and
     `lake build LeanInfoTheory.Examples`, plus the website generators and
     checks when public declarations or imports changed.

@@ -1,5 +1,5 @@
 {
-  "declaration_count": 316,
+  "declaration_count": 339,
   "declarations": [
     {
       "doc": "Public project name used by documentation and the website.",
@@ -750,6 +750,236 @@
       "name": "LeanInfoTheory.Certificate.Submodularity.entropy_submodularity",
       "path": "LeanInfoTheory/Certificate/Submodularity.lean",
       "short_name": "entropy_submodularity"
+    },
+    {
+      "doc": "The three-way entropy subadditivity expression `H(A) + H(B) + H(C) - H(A \u222a B \u222a C)`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 24,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.expr",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "expr"
+    },
+    {
+      "doc": "Evaluating the formal three-way subadditivity expression gives the expected inequality body.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 29,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.eval_expr",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "eval_expr"
+    },
+    {
+      "doc": "The target expression is the sum of two subadditivity-style primitive blocks: `I(A;B | \u2205) + H(\u2205)` and `I(A \u222a B;C | \u2205) + H(\u2205)`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 37,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.expr_eq_two_cmi_empty_blocks",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "expr_eq_two_cmi_empty_blocks"
+    },
+    {
+      "doc": "The first CMI primitive used by the certificate: `I(A;B | \u2205)`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 48,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.leftCmiPrimitive",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "leftCmiPrimitive"
+    },
+    {
+      "doc": "The second CMI primitive used by the certificate: `I(A \u222a B;C | \u2205)`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 52,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.rightCmiPrimitive",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "rightCmiPrimitive"
+    },
+    {
+      "doc": "The empty-entropy primitive used to cancel each CMI block's `-H(\u2205)` term.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 56,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.emptyPrimitive",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "emptyPrimitive"
+    },
+    {
+      "doc": "Checked step for the first CMI block.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 60,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.checkedLeftCmiStep",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "checkedLeftCmiStep"
+    },
+    {
+      "doc": "Checked step for the second CMI block.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 65,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.checkedRightCmiStep",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "checkedRightCmiStep"
+    },
+    {
+      "doc": "Checked empty-entropy step with coefficient `1`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 70,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.checkedEmptyStep",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "checkedEmptyStep"
+    },
+    {
+      "doc": "The checked step list has exactly the target three-way subadditivity expression.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 75,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.checkedSteps_decomposition_matches",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "checkedSteps_decomposition_matches"
+    },
+    {
+      "doc": "Checked certificate for three-way entropy subadditivity.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 86,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.checkedCert",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "checkedCert"
+    },
+    {
+      "doc": "Soundness of the checked three-way subadditivity certificate.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 94,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.checkedCert_sound",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "checkedCert_sound"
+    },
+    {
+      "doc": "Raw step for the first CMI block.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 100,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.rawLeftCmiStep",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "rawLeftCmiStep"
+    },
+    {
+      "doc": "Raw step for the second CMI block.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 105,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.rawRightCmiStep",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "rawRightCmiStep"
+    },
+    {
+      "doc": "Raw empty-entropy step.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 110,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.rawEmptyStep",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "rawEmptyStep"
+    },
+    {
+      "doc": "Raw certificate for three-way entropy subadditivity.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 115,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.rawCert",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "rawCert"
+    },
+    {
+      "doc": "The raw first CMI step validates to the intended checked step.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 120,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.rawLeftCmiStep_toCheckedStep?_eq_some",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "rawLeftCmiStep_toCheckedStep?_eq_some"
+    },
+    {
+      "doc": "The raw second CMI step validates to the intended checked step.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 128,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.rawRightCmiStep_toCheckedStep?_eq_some",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "rawRightCmiStep_toCheckedStep?_eq_some"
+    },
+    {
+      "doc": "The raw empty-entropy step validates to the intended checked step.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 136,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.rawEmptyStep_toCheckedStep?_eq_some",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "rawEmptyStep_toCheckedStep?_eq_some"
+    },
+    {
+      "doc": "The raw step list validates to the intended checked step list.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 145,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.checkStepsAgainstPrimitives_eq_some",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "checkStepsAgainstPrimitives_eq_some"
+    },
+    {
+      "doc": "The raw three-way subadditivity certificate is accepted by the validator.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 156,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.rawCert_toCheckedCert?_isSome",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "rawCert_toCheckedCert?_isSome"
+    },
+    {
+      "doc": "Running the raw three-way subadditivity validator gives a sound certificate.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 187,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.sound_from_validator",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "sound_from_validator"
+    },
+    {
+      "doc": "Three-way entropy subadditivity for every abstract Shannon entropy valuation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 194,
+      "module": "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
+      "name": "LeanInfoTheory.Certificate.ThreeWaySubadditivity.entropy_three_way_subadditivity",
+      "path": "LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean",
+      "short_name": "entropy_three_way_subadditivity"
     },
     {
       "doc": "An entropy atom is a finite set of random-variable names.",
@@ -3162,12 +3392,12 @@
       "short_name": "condEntropyOf_pair_le_condEntropyOf"
     }
   ],
-  "documented_count": 316,
+  "documented_count": 339,
   "kind_counts": {
-    "Definition": 77,
+    "Definition": 89,
     "Inductive": 3,
     "Structure": 6,
-    "Theorem": 230
+    "Theorem": 241
   },
   "modules": [
     "LeanInfoTheory.Basic",
@@ -3176,6 +3406,7 @@
     "LeanInfoTheory.Certificate.Monotonicity",
     "LeanInfoTheory.Certificate.Subadditivity",
     "LeanInfoTheory.Certificate.Submodularity",
+    "LeanInfoTheory.Certificate.ThreeWaySubadditivity",
     "LeanInfoTheory.EntropyExpr",
     "LeanInfoTheory.EntropyVal",
     "LeanInfoTheory.Examples",

@@ -40,7 +40,8 @@ when they stabilize.
 - Closed theorem examples are present in the algebraic and checked certificate
   layers.
 - Checked certificate demos now cover entropy submodularity, entropy
-  subadditivity, and one-variable entropy monotonicity.
+  subadditivity, one-variable entropy monotonicity, and three-way entropy
+  subadditivity.
 - Website dashboard, theorem highlights, module guide, certificate-demo pages,
   generated module dependency map, and source-derived declaration index live in
   `home_page/`.
@@ -96,6 +97,9 @@ when they stabilize.
 - `LeanInfoTheory.Certificate.Monotonicity`: separately importable checked
   certificate demo, proving one-variable entropy monotonicity from a
   conditional-entropy primitive.
+- `LeanInfoTheory.Certificate.ThreeWaySubadditivity`: separately importable
+  manual certificate pressure-test module, proving three-way entropy
+  subadditivity from a four-step primitive certificate.
 - `LeanInfoTheory.Examples`: separately importable toy closed examples for the
   certificate layers.
 
@@ -120,20 +124,23 @@ Import heavier or demonstrational modules explicitly:
 - `LeanInfoTheory.MathlibFragments` for heavy mathlib/coding anchors.
 - `LeanInfoTheory.Certificate.Submodularity`,
   `LeanInfoTheory.Certificate.Subadditivity`,
-  `LeanInfoTheory.Certificate.Monotonicity`, and `LeanInfoTheory.Examples` for
-  demos and examples.
+  `LeanInfoTheory.Certificate.Monotonicity`,
+  `LeanInfoTheory.Certificate.ThreeWaySubadditivity`, and
+  `LeanInfoTheory.Examples` for demos and examples.
 
 ## Roadmap
 
-1. Upgrade the public site beyond the current module dependency map and
-   source-derived declaration index with a theorem-level blueprint, full Lean
-   doc-gen output, and a blueprint PDF.
-2. Continue extending the checked-certificate path with more textbook entropy
-   inequalities.
-3. Add richer certificate assumptions such as independence, Markov, and
-   functional-dependence constraints.
-4. Certify 5-10 toy and recognizable network-information-theory converse steps.
-5. Prepare small mathlib PRs for generic, stable finite-measure pieces.
+1. Design the Project B formalization map for finite textbook
+   information-theory fundamentals, centered on Chapter 2 of Cover and Thomas
+   and aligned with the existing finite Shannon and semantic bridge APIs.
+2. Formalize the selected finite entropy, relative-entropy, Markov/data
+   processing, sufficient-statistics, and Fano foundations in focused phases.
+3. Return to Project A by extending the checked-certificate path and certifying
+   recognizable information-theoretic converse steps on top of that foundation.
+4. Add richer certificate assumptions such as independence, Markov, and
+   functional-dependence constraints when concrete examples require them.
+5. Prepare small mathlib PRs and richer theorem/blueprint documentation once
+   the relevant APIs have stabilized locally.
 
 ## Build
 
@@ -146,6 +153,7 @@ lake build LeanInfoTheory.MathlibFragments
 lake build LeanInfoTheory.Certificate.Submodularity
 lake build LeanInfoTheory.Certificate.Subadditivity
 lake build LeanInfoTheory.Certificate.Monotonicity
+lake build LeanInfoTheory.Certificate.ThreeWaySubadditivity
 lake build LeanInfoTheory.Examples
 ```
 

@@ -22,6 +22,9 @@ Import these separately when needed:
 - `LeanInfoTheory.Shannon.SemanticBridge` for KL/conditional-law bridge work;
 - `LeanInfoTheory.MathlibFragments` for heavier mathlib information-theory and
   coding anchors;
-- `LeanInfoTheory.Certificate.Submodularity` and `LeanInfoTheory.Examples` for
-  demonstration files.
+- `LeanInfoTheory.Certificate.Submodularity`,
+  `LeanInfoTheory.Certificate.Subadditivity`,
+  `LeanInfoTheory.Certificate.Monotonicity`,
+  `LeanInfoTheory.Certificate.ThreeWaySubadditivity`, and
+  `LeanInfoTheory.Examples` for demonstration and pressure-test files.
 -/
