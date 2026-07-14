@@ -168,14 +168,14 @@ reference material only and is intentionally not part of the repository.
   `jointCondEntropy` terminology.
 - The lightweight theorem API also exposes the equivalent textbook forms
   `I(X;Y) = H(X) - H(X|Y)` and `I(X;Y) = H(Y) - H(Y|X)`, plus
-  `I(X;X) = H(X)`. These remain explicit rewrites; later inequality proofs and
-  the planned API review should determine whether reverse-oriented aliases or
-  any simp attributes are useful.
+  `I(X;X) = H(X)`. These remain explicit rewrites. The completed inequality
+  and API reviews found no stable need for reverse-oriented aliases or further
+  simp attributes; reconsider them only after repeated downstream use.
 - The lightweight conditional-mutual-information API exposes
   `I(X;Y|Z) = H(X|Z) - H(X|Y,Z)`, its symmetric form in `Y`, and
   `I(X;Y|Z) = H(X|Z) + H(Y|Z) - H(X,Y|Z)`. These remain explicit rewrite
-  theorems and supply the normal forms for the next triple-level inequality
-  step.
+  theorems and supplied the normal forms for the completed triple-level
+  inequality family.
 - Deterministic mutual-information processing follows the exact decomposition
   `I(X;Y) = I(f(X);Y) + I(X;Y|f(X))`. Consequently, applying deterministic
   maps to the left variable, the right variable, or both variables cannot
@@ -284,11 +284,15 @@ The comparison with Rocq `infotheo` is recorded in `docs/project-log.md`.
 
 ## Near-Term Theorem Targets
 
-- Further chain rules for entropy, mutual information, and conditional mutual
-  information, building on the completed pair/triple conditional-entropy
-  family.
-- Conditioning-reduces-entropy and equality conditions.
-- Stochastic data-processing and Markov-chain APIs, building on the completed
-  deterministic entropy-processing results.
-- Concrete finite semantics for the abstract certificate assumptions.
-- More textbook entropy inequalities and certificate examples.
+- Select and lock a focused finite stochastic-channel and Markov
+  representation after auditing mathlib's current kernel and PMF APIs and
+  deciding module ownership.
+- Prove finite stochastic data processing and its Markov-chain forms on top of
+  the completed deterministic-processing and conditional-independence layers.
+- Let concrete channel and Markov consumers determine whether independence
+  predicates need a lighter module boundary and which closure or symmetry
+  conveniences are justified.
+- Extend toward sufficient statistics and Fano only after the channel and
+  data-processing contracts are stable.
+- Keep concrete finite semantics for abstract certificate assumptions and
+  richer certificate examples in later Project A work.

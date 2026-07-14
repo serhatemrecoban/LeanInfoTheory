@@ -346,7 +346,7 @@ future work.
    with focused Lake builds during development and a full suite at each
    milestone boundary.
 
-## Active Project B Chunk 2 Plan
+## Completed Project B Chunk 2 Plan
 
 Current status: all 18 steps are complete. The chunk covers finite KL
 support/equality, uniformity, independence, and conditional independence, and
@@ -432,10 +432,9 @@ the final milestone suite and hygiene checks pass.
   `toReal_klDiv_pmf_eq_zero_iff`. The main equality theorems use
   `mutualInfo_eq_zero_iff_isIndependent` and
   `condMutualInfo_eq_zero_iff_isCondIndependent`, with parallel `...Of` forms.
-- The ordinary independence API lives in the separately importable
-  `Shannon.SemanticBridge.Independence` module, which will also own the planned
-  conditional-independence layer. The aggregate semantic bridge imports it,
-  but the lightweight root does not.
+- The ordinary- and conditional-independence APIs live in the separately
+  importable `Shannon.SemanticBridge.Independence` module. The aggregate
+  semantic bridge imports it, but the lightweight root does not.
 - Stochastic channels, Markov chains, general data processing, sufficient
   statistics, Fano, and finite-family entropy remain outside this chunk.
 
@@ -547,7 +546,7 @@ references, and full milestone suite.
 - The root import, certificate architecture, and existing theorem statements
   remain unchanged throughout this chunk.
 
-## Active 9-Step Lean Theorem Plan
+## Completed 9-Step Lean Theorem Plan
 
 Current status: all nine steps are complete.
 

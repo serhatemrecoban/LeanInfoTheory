@@ -3381,6 +3381,28 @@ review the Project B formalization map and live future-work notes and define a
 focused next chunk; stochastic channels, Markov structure, and data processing
 are the leading dependency-layer candidate.
 
+### 93. Post-Chunk 2 Status and Backlog Cleanup
+
+The three-step post-Chunk-2 documentation cleanup was completed on July 14,
+2026. `docs/current-lean-state.md` now labels the finished Chunk 2 and earlier
+nine-step plans as completed, and its locked Chunk 2 contract describes the
+implemented conditional-independence ownership rather than calling that layer
+planned.
+
+`docs/foundation-conventions.md` now records the completed API-review and
+triple-inequality results and replaces the stale near-term targets with the
+current stochastic-channel, Markov, and data-processing direction. The Future
+Work Notes retain all 28 numbers and detailed triggers but now have a compact
+status index. Note 20 is explicitly closed, while Notes 21, 25, 26, and 27 are
+clearly identified as consumer-triggered Chunk 3 watch items rather than
+pre-Chunk-3 implementation tasks.
+
+This pass changed no Lean source, theorem statement, public name, import,
+website source, generator, or generated artifact. The final stale-status and
+note-number scans passed, `git diff --check` passed, and the changed-file review
+contained only the three intended documentation files. No Lake build or
+website regeneration was needed for this documentation-only checkpoint.
+
 ## Near-Term Semantic Theorem API Plan
 
 The next focused Lean theorem phase is a nine-step plan. Its purpose is to
@@ -3558,11 +3580,11 @@ Stage 3, after certificate and finite-family pressure:
 
 ## Future Work Notes
 
-These are the live notes we are keeping for future work. Completed foundation
-reminders have been removed from this backlog and are recorded instead in the
-step-by-step history above. The near-term semantic bridge plan above is
-complete; this section records important later work, ongoing guardrails, and
-items that should wait for more theorem pressure.
+These notes record future work, ongoing guardrails, and proof-pressure
+triggers. Completed foundation reminders are generally recorded in the
+step-by-step history above instead; an entry explicitly marked closed remains
+here only when preserving its number and context helps later cross-references.
+The near-term semantic bridge plan above is complete.
 
 The near-term theorem/certificate plan above is complete, and Project B is now
 active. Its 14-step pair/triple Shannon Chunk 1 is complete and checkpointed as
@@ -3575,6 +3597,20 @@ Finite-family entropy,
 richer certificate assumptions, external certificate import, coding-theory
 layers, theorem-level blueprint work, and substantial mathlib PR preparation
 remain later work.
+
+### Status Index
+
+| Status | Notes | Meaning |
+| --- | --- | --- |
+| Standing guardrails | 2-4, 6-8, 14-18 | Apply these policies continuously; they do not create standalone cleanup tasks. |
+| Chunk 3 watchlist | 21, 25-27 | Revisit these only when concrete channel, Markov, or data-processing consumers reach their stated triggers. |
+| Proof-pressure deferred | 19, 22-24 | Wait for the repeated proof or new statement pressure specified in each note. |
+| Later milestones | 1, 5, 9-13, 28 | Keep these outside the pre-Chunk-3 cleanup and schedule them in their own later phases. |
+| Closed/historical | 20 | Retained for numbered references and rationale; it is not an active backlog item. |
+
+This index is a navigation aid. It does not renumber the detailed notes, change
+their theorem-pressure conditions, or serve as the naming decision table
+requested by Note 14 for the next scheduled API review.
 
 1. Keep the finite-family entropy API delayed through Project B Chunk 1 and the
     intervening KL/channel theorem pressure. Revisit it in the planned
@@ -4111,8 +4147,9 @@ remain later work.
     added opt-in APIs, not a replacement for it and not required after theorem
     steps that do not alter public declarations or imports.
 
-18. Preserve the boundary between the completed pair/triple Chunk 1 and the later
-    Project B chunks. The full equality characterization for the
+18. Standing architecture guardrail: preserve the boundary between the
+    completed pair/triple Chunk 1, the completed equality/independence Chunk 2,
+    and later Project B chunks. The full equality characterization for the
     support-cardinality entropy bound, `I(X;Y) = 0` iff independence,
     `H(X|Y) = H(X)` iff independence, and the corresponding conditional-
     independence equality cases belong with the general finite KL/equality
@@ -4186,11 +4223,11 @@ remain later work.
     promotion of the private decomposition. Only that possible future
     decomposition theorem remains deferred in this note.
 
-20. The proposed separately importable elementary-MI usage example was closed
-    without adding a redundant module during Step 13. Step 9 supplied genuine
-    proof pressure for the Step 8 identities, and the Step 13 simp probes plus
-    generated theorem documentation were sufficient to review the final
-    aliases and self/diagonal simplification behavior.
+20. Closed historical note: the proposed separately importable elementary-MI
+    usage example was closed without adding a redundant module during Step 13.
+    Step 9 supplied genuine proof pressure for the Step 8 identities, and the
+    Step 13 simp probes plus generated theorem documentation were sufficient to
+    review the final aliases and self/diagonal simplification behavior.
 
     A worthwhile example should exercise all three mathematical views rather
     than simply restate theorem signatures:
@@ -4204,15 +4241,15 @@ remain later work.
     quantity vanishes. Keep any such example outside the core Shannon modules
     and out of the lightweight root. This note is no longer an active API task.
 
-21. Revisit mutual-information invariance under injective relabeling when a
-    second genuine consumer appears; this is not immediate work. The private
-    Step 10 helper proves the special case needed there by adjoining a
-    deterministic image to its source variable and using entropy invariance
-    under an injective map. If later deterministic-processing, sufficient-
-    statistic, or channel proofs repeat that argument, extract a coherent
-    public theorem family saying that injectively relabeling either random
-    variable preserves mutual information, together with PMF coordinate forms
-    only when they are used.
+21. Chunk 3 watch item: revisit mutual-information invariance under injective
+    relabeling only when a second genuine consumer appears. This is not a
+    pre-Chunk-3 cleanup task. The private Step 10 helper proves the special case
+    needed there by adjoining a deterministic image to its source variable and
+    using entropy invariance under an injective map. If later deterministic-
+    processing, sufficient-statistic, or channel proofs repeat that argument,
+    extract a coherent public theorem family saying that injectively relabeling
+    either random variable preserves mutual information, together with PMF
+    coordinate forms only when they are used.
 
     Before fixing statements, decide whether the main contract should assume a
     global `Function.Injective` map or the sharper support-aware condition
@@ -4376,11 +4413,12 @@ remain later work.
     repeat strict Jensen. It therefore supplies no new pressure for either
     abstraction.
 
-25. Add ordinary-independence convenience theorems only when concrete
-    downstream proofs need them; this is not immediate work. The primary
-    design remains PMF-first: `IsIndependent` is equality with the independent
-    product of the marginals, and `IsIndependentOf` applies that predicate to
-    the mapped joint law. Do not redefine either predicate through mathlib
+25. Chunk 3 watch item: add ordinary-independence convenience theorems only
+    when concrete downstream proofs need them. This is not a pre-Chunk-3
+    cleanup task. The primary design remains PMF-first: `IsIndependent` is
+    equality with the independent product of the marginals, and
+    `IsIndependentOf` applies that predicate to the mapped joint law. Do not
+    redefine either predicate through mathlib
     `ProbabilityTheory.IndepFun`; doing so would force measurable-space and
     measurability assumptions into the basic distributional vocabulary. Keep
     those assumptions confined to the explicit semantic bridge, as recorded
@@ -4434,11 +4472,11 @@ remain later work.
     deterministic recovery, and KL support failure rather than ordinary
     independence. They create no consumer for the deferred convenience API.
 
-26. Step 17 reviewed the size and import boundary of
-    `Shannon.SemanticBridge.Independence` and retained the current module. The
-    file combines elementary PMF and
-    random-variable independence predicates with the mathlib `IndepFun`
-    bridge, KL-based zero-MI equivalences, pair entropy equality cases,
+26. Chunk 3 module-boundary guardrail: do not split
+    `Shannon.SemanticBridge.Independence` preemptively. Step 17 reviewed its
+    size and import boundary and retained the current module. The file combines
+    elementary PMF and random-variable independence predicates with the mathlib
+    `IndepFun` bridge, KL-based zero-MI equivalences, pair entropy equality cases,
     positive-fiber results, and conditional independence. This remains a
     coherent semantic independence layer, so file length alone does not
     justify splitting it.
@@ -4474,10 +4512,11 @@ remain later work.
     split only when the metric comparison and actual consumers identify a
     coherent dependency or maintenance benefit.
 
-27. Revisit conditional-independence ergonomics when the first Markov-chain,
-    stochastic-channel, or data-processing proofs create concrete consumers;
-    this is not immediate work. Add a small separately importable finite
-    example in that phase, preferably a nontrivial common-cause construction,
+27. Chunk 3 watch item: revisit conditional-independence ergonomics when the
+    first Markov-chain, stochastic-channel, or data-processing proofs create
+    concrete consumers. This is not a pre-Chunk-3 cleanup task. Add a small,
+    separately importable finite example in that phase, preferably a
+    nontrivial common-cause construction,
     that exercises `IsCondIndependentOf`, the positive-fiber characterization,
     and `condMutualInfoOf_eq_zero_iff_isCondIndependentOf`. The example should
     clarify the mathematical contract rather than merely restate theorem
