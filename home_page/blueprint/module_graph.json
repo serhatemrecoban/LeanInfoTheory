@@ -7,8 +7,8 @@
     "Certificate layer",
     "Reference anchors"
   ],
-  "local_edge_count": 34,
-  "module_count": 25,
+  "local_edge_count": 41,
+  "module_count": 28,
   "modules": [
     {
       "external_imports": [],
@@ -88,7 +88,7 @@
       "name": "LeanInfoTheory.Shannon.EntropyBounds",
       "path": "LeanInfoTheory/Shannon/EntropyBounds.lean",
       "root_reachable": false,
-      "summary": "Jensen-based finite entropy upper bound and uniform-law equality theorem."
+      "summary": "Sharp alphabet/support entropy bounds and their uniform-law equality cases."
     },
     {
       "external_imports": [],
@@ -120,12 +120,13 @@
       ],
       "layer": "Semantic bridge layer",
       "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.Independence",
         "LeanInfoTheory.Shannon.SemanticBridge.Theorems"
       ],
       "name": "LeanInfoTheory.Shannon.SemanticBridge",
       "path": "LeanInfoTheory/Shannon/SemanticBridge.lean",
       "root_reachable": false,
-      "summary": "Entry point for expected self-information, finite conditional laws, KL bridges, nonnegativity, and chain rules."
+      "summary": "Aggregate entry point for finite semantic, KL, independence, and equality-case bridges."
     },
     {
       "external_imports": [
@@ -153,7 +154,21 @@
     },
     {
       "external_imports": [
+        "Mathlib.Probability.Independence.Basic"
+      ],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.Theorems"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Independence.lean",
+      "root_reachable": false,
+      "summary": "PMF-first ordinary/conditional independence, zero MI/CMI, and entropy equality cases."
+    },
+    {
+      "external_imports": [
         "Mathlib.InformationTheory.KullbackLeibler.Basic",
+        "Mathlib.Probability.Distributions.Uniform",
         "Mathlib.Probability.ProbabilityMassFunction.Integrals"
       ],
       "layer": "Semantic bridge layer",
@@ -165,7 +180,7 @@
       "name": "LeanInfoTheory.Shannon.SemanticBridge.KL",
       "path": "LeanInfoTheory/Shannon/SemanticBridge/KL.lean",
       "root_reachable": false,
-      "summary": "Finite KL expansion, mutual information as KL, and averaged conditional-KL bridge theorems."
+      "summary": "PMF support/KL finiteness and equality, uniform-reference identities, and MI/CMI KL bridges."
     },
     {
       "external_imports": [
@@ -291,26 +306,51 @@
       "external_imports": [],
       "layer": "Certificate layer",
       "local_imports": [
-        "LeanInfoTheory.Certificate",
-        "LeanInfoTheory.Certificate.Checked",
-        "LeanInfoTheory.EntropyVal",
-        "LeanInfoTheory.PrimitiveIneq"
-      ],
-      "name": "LeanInfoTheory.Examples",
-      "path": "LeanInfoTheory/Examples.lean",
-      "root_reachable": false,
-      "summary": "Separately importable toy examples for the certificate layers."
-    },
-    {
-      "external_imports": [],
-      "layer": "Certificate layer",
-      "local_imports": [
         "LeanInfoTheory.EntropyVal"
       ],
       "name": "LeanInfoTheory.PrimitiveIneq",
       "path": "LeanInfoTheory/PrimitiveIneq.lean",
       "root_reachable": true,
       "summary": "Primitive Shannon inequality expressions and soundness under abstract valuations."
+    },
+    {
+      "external_imports": [],
+      "layer": "Reference anchors",
+      "local_imports": [
+        "LeanInfoTheory.Certificate",
+        "LeanInfoTheory.Certificate.Checked",
+        "LeanInfoTheory.EntropyVal",
+        "LeanInfoTheory.Examples.KLTop",
+        "LeanInfoTheory.Examples.SupportSensitive",
+        "LeanInfoTheory.PrimitiveIneq"
+      ],
+      "name": "LeanInfoTheory.Examples",
+      "path": "LeanInfoTheory/Examples.lean",
+      "root_reachable": false,
+      "summary": "Opt-in aggregate for certificate and support-sensitive finite information examples."
+    },
+    {
+      "external_imports": [],
+      "layer": "Reference anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.KL"
+      ],
+      "name": "LeanInfoTheory.Examples.KLTop",
+      "path": "LeanInfoTheory/Examples/KLTop.lean",
+      "root_reachable": false,
+      "summary": "Disjoint-support PMF example exposing the infinite-KL toReal zero trap."
+    },
+    {
+      "external_imports": [],
+      "layer": "Reference anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.EntropyBounds",
+        "LeanInfoTheory.Shannon.SemanticBridge.Theorems"
+      ],
+      "name": "LeanInfoTheory.Examples.SupportSensitive",
+      "path": "LeanInfoTheory/Examples/SupportSensitive.lean",
+      "root_reachable": false,
+      "summary": "Support-aware entropy, conditional-fiber, functional-dependence, and recovery examples."
     },
     {
       "external_imports": [
@@ -331,5 +371,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 11,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 14
+  "separate_import_count": 17
 }

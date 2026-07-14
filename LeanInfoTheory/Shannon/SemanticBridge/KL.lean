@@ -8,6 +8,7 @@ import LeanInfoTheory.Shannon.SemanticBridge.Conditional
 import LeanInfoTheory.Shannon.SemanticBridge.FiniteSums
 import LeanInfoTheory.Shannon.SemanticBridge.Product
 import Mathlib.InformationTheory.KullbackLeibler.Basic
+import Mathlib.Probability.Distributions.Uniform
 import Mathlib.Probability.ProbabilityMassFunction.Integrals
 
 /-!
@@ -43,6 +44,109 @@ universe w
 private theorem pmf_apply_ne_top {alpha : Type u} (p : PMF alpha) (a : alpha) :
     p a ≠ ⊤ := by
   exact ne_of_lt ((PMF.coe_le_one (p := p) a).trans_lt ENNReal.one_lt_top)
+
+/-! ## Finite PMF support and KL finiteness -/
+
+/--
+Absolute continuity between PMF measures is exactly inclusion of their
+set-valued supports.
+
+This statement does not require a finite alphabet: measurable singletons let
+the forward direction test individual atoms, while the reverse direction uses
+the PMF measure's zero-set characterization.
+-/
+theorem toMeasure_absolutelyContinuous_iff_support_subset
+    {alpha : Type u} [MeasurableSpace alpha] [MeasurableSingletonClass alpha]
+    (p q : PMF alpha) :
+    p.toMeasure ≪ q.toMeasure ↔ p.support ⊆ q.support := by
+  constructor
+  · intro hpq a ha
+    by_contra hqa
+    have hq_zero : q.toMeasure ({a} : Set alpha) = 0 := by
+      rw [PMF.toMeasure_apply_singleton q a (MeasurableSet.singleton a)]
+      exact (q.apply_eq_zero_iff a).2 hqa
+    have hp_zero := hpq hq_zero
+    rw [PMF.toMeasure_apply_singleton p a (MeasurableSet.singleton a)] at hp_zero
+    exact (p.mem_support_iff a).1 ha hp_zero
+  · intro hpq
+    refine Measure.AbsolutelyContinuous.mk ?_
+    intro s hs hq_zero
+    rw [PMF.toMeasure_apply_eq_zero_iff q hs] at hq_zero
+    rw [PMF.toMeasure_apply_eq_zero_iff p hs]
+    rw [Set.disjoint_left] at hq_zero ⊢
+    intro a hpa has
+    exact hq_zero (hpq hpa) has
+
+/--
+On a finite alphabet, PMF KL divergence is finite exactly when the first PMF's
+support is contained in the second PMF's support.
+-/
+theorem klDiv_pmf_ne_top_iff_support_subset
+    {alpha : Type u} [Finite alpha]
+    [MeasurableSpace alpha] [MeasurableSingletonClass alpha]
+    (p q : PMF alpha) :
+    InformationTheory.klDiv p.toMeasure q.toMeasure ≠ ⊤ ↔
+      p.support ⊆ q.support := by
+  constructor
+  · intro h
+    have hac := (InformationTheory.klDiv_ne_top_iff.mp h).1
+    exact (toMeasure_absolutelyContinuous_iff_support_subset p q).1 hac
+  · intro h
+    apply InformationTheory.klDiv_ne_top
+    · exact (toMeasure_absolutelyContinuous_iff_support_subset p q).2 h
+    · exact Integrable.of_finite
+
+/--
+On a finite alphabet, PMF KL divergence is infinite exactly when support
+inclusion fails.
+-/
+theorem klDiv_pmf_eq_top_iff_not_support_subset
+    {alpha : Type u} [Finite alpha]
+    [MeasurableSpace alpha] [MeasurableSingletonClass alpha]
+    (p q : PMF alpha) :
+    InformationTheory.klDiv p.toMeasure q.toMeasure = ⊤ ↔
+      ¬ p.support ⊆ q.support := by
+  constructor
+  · intro h hsupport
+    exact (klDiv_pmf_ne_top_iff_support_subset p q).2 hsupport h
+  · intro hsupport
+    by_contra h
+    exact hsupport ((klDiv_pmf_ne_top_iff_support_subset p q).1 h)
+
+/--
+KL divergence between two PMFs is zero exactly when the PMFs are equal.
+
+The alphabet need not be finite: PMF measures are finite measures, and
+measurable singletons make `PMF.toMeasure` injective.
+-/
+theorem klDiv_pmf_eq_zero_iff
+    {alpha : Type u} [MeasurableSpace alpha] [MeasurableSingletonClass alpha]
+    (p q : PMF alpha) :
+    InformationTheory.klDiv p.toMeasure q.toMeasure = 0 ↔ p = q := by
+  rw [InformationTheory.klDiv_eq_zero_iff, PMF.toMeasure_inj]
+
+/--
+On a finite alphabet and under support inclusion, real-valued PMF KL
+divergence is zero exactly when the PMFs are equal.
+
+The support hypothesis is essential: without KL finiteness,
+`ENNReal.toReal ⊤ = 0` would make the reverse characterization false.
+-/
+theorem toReal_klDiv_pmf_eq_zero_iff
+    {alpha : Type u} [Finite alpha]
+    [MeasurableSpace alpha] [MeasurableSingletonClass alpha]
+    (p q : PMF alpha) (h : p.support ⊆ q.support) :
+    (InformationTheory.klDiv p.toMeasure q.toMeasure).toReal = 0 ↔ p = q := by
+  have hne : InformationTheory.klDiv p.toMeasure q.toMeasure ≠ ⊤ :=
+    (klDiv_pmf_ne_top_iff_support_subset p q).2 h
+  constructor
+  · intro hzero
+    rcases (ENNReal.toReal_eq_zero_iff _).1 hzero with hkl | htop
+    · exact (klDiv_pmf_eq_zero_iff p q).1 hkl
+    · exact (hne htop).elim
+  · intro hpq
+    rw [(klDiv_pmf_eq_zero_iff p q).2 hpq]
+    simp
 
 /--
 Countable PMF density formula.
@@ -111,6 +215,70 @@ theorem toReal_klDiv_pmf_eq_sum {alpha : Type u}
   apply Finset.sum_congr rfl
   intro a _ha
   rw [smul_eq_mul]
+
+/-! ## Uniform reference laws -/
+
+/--
+KL divergence from a finite PMF to the uniform law on a nonempty finset is the
+uniform log-cardinality minus entropy, provided the PMF is supported on that
+finset:
+
+`D(P || U_s) = log |s| - H(P)`.
+-/
+theorem toReal_klDiv_pmf_uniformOfFinset
+    {alpha : Type u} [Fintype alpha]
+    [MeasurableSpace alpha] [MeasurableSingletonClass alpha]
+    (p : PMF alpha) (s : Finset alpha) (hs : s.Nonempty)
+    (h : p.support ⊆ (s : Set alpha)) :
+    (InformationTheory.klDiv p.toMeasure
+      (PMF.uniformOfFinset s hs).toMeasure).toReal =
+        Real.log (s.card : Real) - entropy p := by
+  classical
+  have hac : p.toMeasure ≪ (PMF.uniformOfFinset s hs).toMeasure := by
+    apply (toMeasure_absolutelyContinuous_iff_support_subset p _).2
+    simpa using h
+  have hn : (s.card : Real) ≠ 0 := by
+    exact_mod_cast hs.card_ne_zero
+  rw [toReal_klDiv_pmf_eq_sum p (PMF.uniformOfFinset s hs) hac]
+  calc
+    (∑ a : alpha,
+        (p a).toReal *
+          Real.log ((p a / PMF.uniformOfFinset s hs a).toReal)) =
+        ∑ a : alpha,
+          ((p a).toReal * Real.log (s.card : Real) -
+            Real.negMulLog (p a).toReal) := by
+      apply Finset.sum_congr rfl
+      intro a _ha
+      by_cases hpa : p a = 0
+      · simp [hpa]
+      · have has : a ∈ s := h ((p.mem_support_iff a).2 hpa)
+        have hpReal : (p a).toReal ≠ 0 :=
+          ENNReal.toReal_ne_zero.2 ⟨hpa, p.apply_ne_top a⟩
+        rw [PMF.uniformOfFinset_apply_of_mem hs has]
+        simp only [ENNReal.toReal_div, ENNReal.toReal_inv, ENNReal.toReal_natCast]
+        rw [div_inv_eq_mul, Real.log_mul hpReal hn, Real.negMulLog]
+        ring
+    _ = (∑ a : alpha, (p a).toReal) * Real.log (s.card : Real) -
+          ∑ a : alpha, Real.negMulLog (p a).toReal := by
+      rw [Finset.sum_sub_distrib, ← Finset.sum_mul]
+    _ = Real.log (s.card : Real) - entropy p := by
+      rw [PMF.sum_toReal, entropy_eq_sum, one_mul]
+
+/--
+Full-alphabet form of `toReal_klDiv_pmf_uniformOfFinset`:
+
+`D(P || U_alpha) = log |alpha| - H(P)`.
+-/
+theorem toReal_klDiv_pmf_uniformOfFintype
+    {alpha : Type u} [Fintype alpha] [Nonempty alpha]
+    [MeasurableSpace alpha] [MeasurableSingletonClass alpha]
+    (p : PMF alpha) :
+    (InformationTheory.klDiv p.toMeasure
+      (PMF.uniformOfFintype alpha).toMeasure).toReal =
+        Real.log (Fintype.card alpha : Real) - entropy p := by
+  simpa [PMF.uniformOfFintype] using
+    (toReal_klDiv_pmf_uniformOfFinset p Finset.univ
+      Finset.univ_nonempty (by simp))
 
 /--
 Semantic bridge for finite mutual information:

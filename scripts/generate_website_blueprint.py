@@ -28,14 +28,15 @@ MODULE_SUMMARIES = {
     "LeanInfoTheory.Basic": "Project namespace and shared status vocabulary.",
     "LeanInfoTheory.Probability.Finite": "Finite PMF real-mass bridge lemmas and pointwise PMF.map facts.",
     "LeanInfoTheory.Shannon.Entropy": "Finite Shannon entropy, entropy of finite-valued random variables, and first entropy invariance theorems.",
-    "LeanInfoTheory.Shannon.EntropyBounds": "Jensen-based finite entropy upper bound and uniform-law equality theorem.",
+    "LeanInfoTheory.Shannon.EntropyBounds": "Sharp alphabet/support entropy bounds and their uniform-law equality cases.",
     "LeanInfoTheory.Shannon.InfoMeasures": "Marginals, conditional entropy, mutual information, conditional mutual information, and orientation lemmas.",
     "LeanInfoTheory.Shannon.Units": "Opt-in logarithm-base conversion for canonical nat-valued finite information measures.",
-    "LeanInfoTheory.Shannon.SemanticBridge": "Entry point for expected self-information, finite conditional laws, KL bridges, nonnegativity, and chain rules.",
+    "LeanInfoTheory.Shannon.SemanticBridge": "Aggregate entry point for finite semantic, KL, independence, and equality-case bridges.",
     "LeanInfoTheory.Shannon.SemanticBridge.Product": "Independent-product PMFs, product-measure semantics, support formulas, and absolute-continuity facts.",
     "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums": "Finite real-sum rewrites and mutual-information log-ratio formulas.",
     "LeanInfoTheory.Shannon.SemanticBridge.Conditional": "Finite conditional-law API and expected conditional entropy / conditional mutual-information formulas.",
-    "LeanInfoTheory.Shannon.SemanticBridge.KL": "Finite KL expansion, mutual information as KL, and averaged conditional-KL bridge theorems.",
+    "LeanInfoTheory.Shannon.SemanticBridge.KL": "PMF support/KL finiteness and equality, uniform-reference identities, and MI/CMI KL bridges.",
+    "LeanInfoTheory.Shannon.SemanticBridge.Independence": "PMF-first ordinary/conditional independence, zero MI/CMI, and entropy equality cases.",
     "LeanInfoTheory.Shannon.SemanticBridge.Theorems": "User-facing semantic nonnegativity and first mutual-information chain-rule theorems.",
     "LeanInfoTheory.InformationMeasures": "Convenience re-export for the finite information-measure API.",
     "LeanInfoTheory.EntropyExpr": "Formal rational entropy-expression algebra and empty-entropy convention interface.",
@@ -47,7 +48,9 @@ MODULE_SUMMARIES = {
     "LeanInfoTheory.Certificate.Subadditivity": "Checked certificate demo proving entropy subadditivity.",
     "LeanInfoTheory.Certificate.Monotonicity": "Checked certificate demo proving one-variable entropy monotonicity.",
     "LeanInfoTheory.Certificate.ThreeWaySubadditivity": "Manual certificate pressure-test module for three-way entropy subadditivity.",
-    "LeanInfoTheory.Examples": "Separately importable toy examples for the certificate layers.",
+    "LeanInfoTheory.Examples": "Opt-in aggregate for certificate and support-sensitive finite information examples.",
+    "LeanInfoTheory.Examples.KLTop": "Disjoint-support PMF example exposing the infinite-KL toReal zero trap.",
+    "LeanInfoTheory.Examples.SupportSensitive": "Support-aware entropy, conditional-fiber, functional-dependence, and recovery examples.",
     "LeanInfoTheory.MathlibFragments": "Separately importable checklist of heavier mathlib information-theory and coding anchors.",
 }
 
@@ -100,7 +103,7 @@ def classify_module(name: str) -> str:
         return "Root import"
     if name in {"LeanInfoTheory.Basic", "LeanInfoTheory.Probability.Finite"}:
         return "Shared foundation"
-    if name == "LeanInfoTheory.MathlibFragments":
+    if name == "LeanInfoTheory.MathlibFragments" or name.startswith("LeanInfoTheory.Examples"):
         return "Reference anchors"
     if name.startswith("LeanInfoTheory.Shannon.SemanticBridge"):
         return "Semantic bridge layer"

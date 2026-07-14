@@ -52,6 +52,39 @@ theorem sum_toReal [Fintype α] (p : PMF α) : (∑ a, (p a).toReal) = 1 := by
     _ = 1 := by
       simp
 
+/--
+The finite set of atoms to which a finite PMF assigns nonzero mass.
+
+Its coercion to a set is `p.support`; this finset view is intended for finite
+sums and support-cardinality arguments.
+-/
+noncomputable def supportFinset [Fintype α] (p : PMF α) : Finset α :=
+  Finset.univ.filter fun a => p a ≠ 0
+
+/-- Membership in `p.supportFinset` is membership in the set-valued PMF support. -/
+@[simp]
+theorem mem_supportFinset [Fintype α] (p : PMF α) (a : α) :
+    a ∈ p.supportFinset ↔ a ∈ p.support := by
+  simp [supportFinset, PMF.mem_support_iff]
+
+/-- The finite support finset coerces to the set-valued PMF support. -/
+@[simp]
+theorem coe_supportFinset [Fintype α] (p : PMF α) :
+    (p.supportFinset : Set α) = p.support := by
+  ext a
+  simp
+
+/-- The finite support finset has the set-theoretic support cardinality. -/
+theorem supportFinset_card [Fintype α] (p : PMF α) :
+    p.supportFinset.card = p.support.ncard := by
+  rw [← Set.ncard_coe_finset, coe_supportFinset]
+
+/-- The finite support finset of a PMF is nonempty. -/
+theorem supportFinset_nonempty [Fintype α] (p : PMF α) :
+    p.supportFinset.Nonempty := by
+  obtain ⟨a, ha⟩ := p.support_nonempty
+  exact ⟨a, (mem_supportFinset p a).2 ha⟩
+
 /-- A PMF is pure at `a` exactly when its support is the singleton `{a}`. -/
 theorem eq_pure_iff_support_eq_singleton (p : PMF α) (a : α) :
     p = PMF.pure a ↔ p.support = {a} := by

@@ -34,15 +34,18 @@ reference material only and is intentionally not part of the repository.
 - Finite entropy is invariant under equivalence and injective relabelings of
   the alphabet, coordinate swaps, and product reassociation; this records that
   entropy depends on masses, not atom names.
-- The finite entropy upper bound by `log |alphabet|` and its uniform-law
-  equality case live in
+- The finite entropy upper bound by `log |alphabet|` and its exact equality
+  characterization, equality iff the PMF is `PMF.uniformOfFintype`, live in
   `LeanInfoTheory.Shannon.EntropyBounds`, separated from the core entropy
   definition because the proof uses mathlib's convexity/Jensen API.
 - The stronger support-sensitive bound also lives in `EntropyBounds`:
   `entropy_le_log_support_ncard` bounds entropy by the logarithm of the number
   of nonzero atoms, and its random-variable form counts the support of the
-  pushforward law. The proof restricts to a private finite support PMF and
-  reuses the alphabet-cardinality theorem.
+  pushforward law. `PMF.supportFinset` is the canonical public finite view of
+  the set-valued support; the proof still keeps the stronger support-restricted
+  PMF private and reuses the alphabet-cardinality theorem. Equality holds
+  exactly when the PMF, or the random variable's pushforward law, is uniform on
+  that support.
 - Joint entropy is ordinary entropy of a joint distribution.
 - In the entropy-expression layer, the empty atom is named explicitly as
   `EntropyExpr.empty`. Arbitrary atom interpretations do not automatically
@@ -108,6 +111,61 @@ reference material only and is intentionally not part of the repository.
   divergence from the joint law to the product of marginals through
   `mutualInfo_eq_toReal_klDiv_joint_indepProd` and the product-measure form
   `mutualInfo_eq_toReal_klDiv_joint_prod_marginals`.
+- For PMF measures with measurable singletons, absolute continuity is exactly
+  support inclusion. On a finite alphabet, this is also exactly the condition
+  that mathlib's `InformationTheory.klDiv` is not `⊤`; failure of inclusion
+  makes KL equal to `⊤`. This support-sensitive `ENNReal` distinction must be
+  preserved before taking `ENNReal.toReal`, since `ENNReal.toReal ⊤ = 0`.
+- PMF KL divergence itself is zero exactly when the two PMFs are equal; this
+  specialization does not require a finite alphabet. The real-valued theorem
+  `toReal_klDiv_pmf_eq_zero_iff` does require a finite alphabet and explicit
+  support inclusion, which rules out the otherwise indistinguishable `⊤`
+  branch of `ENNReal.toReal_eq_zero_iff`.
+- For a finite PMF supported on a nonempty finset `s`, the uniform-reference
+  identity is `D(P || U_s) = log |s| - H(P)`. The primary theorem keeps the
+  support inclusion explicit, and the full-alphabet corollary specializes to
+  `PMF.uniformOfFintype`. This KL identity remains in the semantic bridge and
+  does not make `Shannon.EntropyBounds` depend on KL infrastructure. The sharp
+  entropy equality cases are proved independently there with strict Jensen.
+- Ordinary independence is PMF-first in the separately importable
+  `Shannon.SemanticBridge.Independence` module. `IsIndependent p` states that a
+  joint law equals `indepProd` of its two marginals, while `IsIndependentOf p X
+  Y` applies that predicate to the mapped joint law. Pointwise marginal
+  factorization and coordinate-swap symmetry are derived theorems. The
+  predicates themselves do not choose measurable-space instances; the bridge
+  `isIndependentOf_iff_indepFun` to mathlib
+  `ProbabilityTheory.IndepFun` keeps measurability and measurable-singleton
+  assumptions explicit. For finite alphabets,
+  `mutualInfo_eq_zero_iff_isIndependent` and its `...Of` form hide only a local
+  discrete measurable-space choice and state the assumption-free textbook
+  equivalence between zero mutual information and independence. Consequently,
+  conditioning preserves entropy and joint entropy is additive exactly under
+  independence, with PMF and random-variable forms in the same module. The
+  short `jointEntropy_additive_iff_isIndependent` and
+  `jointEntropyOf_additive_iff_isIndependentOf` declarations are compatibility
+  aliases; the descriptive equality names remain available.
+- The conditional-independence layer is likewise PMF-first.
+  `condMutualInfo_eq_zero_iff_condMutualInfoFstSndGivenThird_eq_zero` states
+  that `I(A;B|C) = 0` exactly when every fiber with `P_C(c) != 0` has zero
+  mutual information. Null fibers are excluded from the pointwise hypothesis
+  and contribute zero through their weight. `IsCondIndependent p` is the
+  proof-independent atomwise identity
+  `p(a,b,c) p_C(c) = p_AC(a,c) p_BC(b,c)`, while
+  `IsCondIndependentOf p X Y Z` applies it to the mapped triple law. The theorem
+  `isCondIndependent_iff_isIndependent_condFstSndGivenThird` proves that this
+  primary definition is equivalent to ordinary independence of every positive-
+  mass conditional joint law. The definitions require no finite alphabets; the
+  fiber theorem needs only finite first and second alphabets, not a finite
+  conditioning alphabet. For finite alphabets,
+  `condMutualInfo_eq_zero_iff_isCondIndependent` and its `...Of` form give the
+  assumption-free textbook equivalence between zero conditional mutual
+  information and conditional independence. Consequently, conditioning on the
+  second coordinate preserves the first coordinate's entropy given the third,
+  and conditional joint entropy is additive, exactly under conditional
+  independence, with PMF and random-variable forms in the same module. The
+  `condEntropy_pair_additive_iff_isCondIndependent` and `...Of` declarations
+  provide the reviewed short additive aliases without introducing
+  `jointCondEntropy` terminology.
 - The lightweight theorem API also exposes the equivalent textbook forms
   `I(X;Y) = H(X) - H(X|Y)` and `I(X;Y) = H(Y) - H(Y|X)`, plus
   `I(X;X) = H(X)`. These remain explicit rewrites; later inequality proofs and
@@ -125,12 +183,17 @@ reference material only and is intentionally not part of the repository.
   stochastic channels or the later general data-processing infrastructure.
 - Semantic nonnegativity yields the pair-level bounds
   `H(X|Y) <= H(X)`, `I(X;Y) <= H(X), H(Y)`, and
-  `H(X), H(Y) <= H(X,Y) <= H(X) + H(Y)`. Equality characterizations involving
-  independence remain deferred to the later finite KL/equality layer.
+  `H(X), H(Y) <= H(X,Y) <= H(X) + H(Y)`. The independence-governed endpoints
+  are now closed: `H(X|Y) = H(X)` and
+  `H(X,Y) = H(X) + H(Y)` are equivalent to independence. MI-upper and
+  marginal-to-joint equality instead reduce to zero conditional entropy and
+  support-wise functional dependence; they are not independence statements.
 - At the triple level, semantic nonnegativity and the CMI identities yield
   `I(X;Y|Z) <= H(X|Z), H(Y|Z)` and the conditional entropy band
   `H(X|Z), H(Y|Z) <= H(X,Y|Z) <= H(X|Z) + H(Y|Z)`. Equality
-  characterizations involving conditional independence remain deferred.
+  in conditioning-reduces-entropy and conditional subadditivity is now
+  characterized by conditional independence. The other band endpoints reduce
+  to zero conditional entropy and support-wise functional dependence instead.
 - The semantic bridge lives in `LeanInfoTheory.Shannon.SemanticBridge` and its
   subfiles. It includes `Shannon.selfInfo`,
   `Shannon.entropy_eq_integral_selfInfo`, finite conditional laws,
@@ -141,7 +204,10 @@ reference material only and is intentionally not part of the repository.
   mutual-information chain rules, deterministic mutual-information processing,
   and both PMF conditional-entropy difference forms for conditional mutual
   information, together with PMF and random-variable triple-level conditional
-  inequalities.
+  inequalities and the positive-fiber characterization of zero averaged
+  conditional mutual information, plus the proof-independent conditional-
+  independence predicates, their conditional-law characterization, and the
+  PMF/random-variable zero-CMI and conditional-entropy equality equivalences.
 
 ## Mathlib Boundary
 
@@ -185,6 +251,12 @@ expect to connect to next.
   `LeanInfoTheory.MathlibFragments`,
   `LeanInfoTheory.Certificate.Submodularity`, and
   `LeanInfoTheory.Examples` explicitly when working with those layers.
+- The semantic examples remain opt-in. Import
+  `LeanInfoTheory.Examples.SupportSensitive` for support-aware entropy,
+  conditional-fiber, functional-dependence, and recovery examples, or
+  `LeanInfoTheory.Examples.KLTop` for the disjoint-support real-KL trap. The
+  `LeanInfoTheory.Examples` aggregate imports both, but the project root imports
+  neither.
 - Certificate-demo theorems stay in their descriptive namespaces, such as
   `Certificate.Submodularity.entropy_submodularity`, until enough examples
   exist to justify a separate polished theorem-facing alias layer.

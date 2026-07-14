@@ -5,6 +5,7 @@ Authors: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.SemanticBridge.Theorems
+import LeanInfoTheory.Shannon.SemanticBridge.Independence
 import Mathlib.Probability.ProbabilityMassFunction.Integrals
 
 /-!
@@ -23,6 +24,13 @@ textbook/measure-theoretic semantics.
 - `entropy` as expected self-information over `PMF.toMeasure`;
 - `indepProd` as the independent product law of two PMFs, together with
   product-measure and joint-law absolute-continuity bridge lemmas;
+- `IsIndependent` and `IsIndependentOf` as PMF and random-variable
+  independence predicates, with a bridge to mathlib `IndepFun` and zero-mutual-
+  information and pair-entropy equality characterizations;
+- `IsCondIndependent` and `IsCondIndependentOf` through proof-independent
+  cross-product factorization, equivalent to independence of each positive-
+  mass conditional joint law and to zero conditional mutual information, with
+  the resulting conditional-entropy equality cases;
 - finite-sum formulas rewriting `mutualInfo` as
   `sum p(a,b) log (p(a,b) / (p_A(a) p_B(b)))`;
 - `mutualInfo` as KL divergence from the joint law to the product of its

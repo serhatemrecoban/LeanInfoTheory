@@ -7,14 +7,16 @@ Authors: Serhat Emre Coban
 import LeanInfoTheory.Certificate
 import LeanInfoTheory.Certificate.Checked
 import LeanInfoTheory.EntropyVal
+import LeanInfoTheory.Examples.KLTop
+import LeanInfoTheory.Examples.SupportSensitive
 import LeanInfoTheory.PrimitiveIneq
 
 /-!
 # Toy examples
 
-These examples are intentionally small. Their job is to keep the initial project
-honest: the scaffold contains at least one closed Lean theorem in the certificate
-layer, even before the analytic entropy API is complete.
+This aggregate contains the original small certificate examples and imports the
+separately usable `Examples.SupportSensitive` and `Examples.KLTop` semantic
+examples. It remains outside the lightweight root import.
 -/
 
 namespace LeanInfoTheory

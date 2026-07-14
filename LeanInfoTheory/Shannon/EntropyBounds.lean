@@ -129,40 +129,20 @@ theorem entropy_le_log_card {alpha : Type u} [Fintype alpha] [Nonempty alpha]
         _ = Real.log n := by
           rw [mul_one_div_cancel hn_ne, one_mul]
 
-private def supportFinset {alpha : Type u} [Fintype alpha]
-    (p : PMF alpha) : Finset alpha :=
-  Finset.univ.filter fun a => p a ≠ 0
-
-private theorem mem_supportFinset {alpha : Type u} [Fintype alpha]
-    (p : PMF alpha) (a : alpha) :
-    a ∈ supportFinset p ↔ a ∈ p.support := by
-  simp [supportFinset]
-
-private theorem supportFinset_card {alpha : Type u} [Fintype alpha]
-    (p : PMF alpha) :
-    (supportFinset p).card = p.support.ncard := by
-  have hset : (supportFinset p : Set alpha) = p.support := by
-    ext a
-    exact mem_supportFinset p a
-  calc
-    (supportFinset p).card = (supportFinset p : Set alpha).ncard := by
-      rw [Set.ncard_coe_finset]
-    _ = p.support.ncard := by rw [hset]
-
 private def supportPMF {alpha : Type u} [Fintype alpha]
-    (p : PMF alpha) : PMF (supportFinset p) := by
+    (p : PMF alpha) : PMF p.supportFinset := by
   classical
-  apply PMF.ofFintype (fun a : supportFinset p => p a.1)
+  apply PMF.ofFintype (fun a : p.supportFinset => p a.1)
   have hsupportSum :
-      (∑ a : supportFinset p, p a.1) =
-        ∑ a ∈ supportFinset p, p a := by
+      (∑ a : p.supportFinset, p a.1) =
+        ∑ a ∈ p.supportFinset, p a := by
     rw [Finset.univ_eq_attach]
-    exact Finset.sum_attach (supportFinset p) (fun a => p a)
+    exact Finset.sum_attach p.supportFinset (fun a => p a)
   have hsum_all : (∑ a : alpha, p a) = 1 := by
     simpa using p.tsum_coe
   calc
-    (∑ a : supportFinset p, p a.1) =
-        ∑ a ∈ supportFinset p, p a := hsupportSum
+    (∑ a : p.supportFinset, p a.1) =
+        ∑ a ∈ p.supportFinset, p a := hsupportSum
     _ = ∑ a : alpha, p a := by
       apply Finset.sum_subset
       · intro a ha
@@ -170,7 +150,7 @@ private def supportPMF {alpha : Type u} [Fintype alpha]
       · intro a _ha hnot
         have ha_not_support : a ∉ p.support := by
           intro ha
-          exact hnot ((mem_supportFinset p a).2 ha)
+          exact hnot ((PMF.mem_supportFinset p a).2 ha)
         rw [(p.apply_eq_zero_iff a).2 ha_not_support]
     _ = 1 := hsum_all
 
@@ -179,18 +159,18 @@ private theorem entropy_supportPMF {alpha : Type u} [Fintype alpha]
   classical
   rw [entropy_eq_sum, entropy_eq_sum]
   have hsupportSum :
-      (∑ a : supportFinset p, Real.negMulLog (p a.1).toReal) =
-      ∑ a ∈ supportFinset p, Real.negMulLog (p a).toReal := by
+      (∑ a : p.supportFinset, Real.negMulLog (p a.1).toReal) =
+      ∑ a ∈ p.supportFinset, Real.negMulLog (p a).toReal := by
     rw [Finset.univ_eq_attach]
     exact
-      Finset.sum_attach (supportFinset p)
+      Finset.sum_attach p.supportFinset
         (fun a => Real.negMulLog (p a).toReal)
   calc
-    (∑ a : supportFinset p,
+    (∑ a : p.supportFinset,
         Real.negMulLog (supportPMF p a).toReal) =
-        ∑ a : supportFinset p, Real.negMulLog (p a.1).toReal := by
+        ∑ a : p.supportFinset, Real.negMulLog (p a.1).toReal := by
       rfl
-    _ = ∑ a ∈ supportFinset p,
+    _ = ∑ a ∈ p.supportFinset,
           Real.negMulLog (p a).toReal := hsupportSum
     _ = ∑ a : alpha, Real.negMulLog (p a).toReal := by
       apply Finset.sum_subset
@@ -199,7 +179,7 @@ private theorem entropy_supportPMF {alpha : Type u} [Fintype alpha]
       · intro a _ha hnot
         have ha_not_support : a ∉ p.support := by
           intro ha
-          exact hnot ((mem_supportFinset p a).2 ha)
+          exact hnot ((PMF.mem_supportFinset p a).2 ha)
         rw [(p.apply_eq_zero_iff a).2 ha_not_support]
         simp
 
@@ -214,11 +194,11 @@ theorem entropy_le_log_support_ncard {alpha : Type u} [Fintype alpha]
     (p : PMF alpha) :
     entropy p <= Real.log (p.support.ncard : Real) := by
   classical
-  letI : Nonempty (supportFinset p) := by
-    obtain ⟨a, ha⟩ := p.support_nonempty
-    exact ⟨⟨a, (mem_supportFinset p a).2 ha⟩⟩
+  letI : Nonempty p.supportFinset := by
+    obtain ⟨a, ha⟩ := p.supportFinset_nonempty
+    exact ⟨⟨a, ha⟩⟩
   have h := entropy_le_log_card (supportPMF p)
-  rw [entropy_supportPMF, Fintype.card_coe, supportFinset_card] at h
+  rw [entropy_supportPMF, Fintype.card_coe, PMF.supportFinset_card] at h
   exact h
 
 /--
@@ -272,6 +252,203 @@ theorem entropy_uniformOfFintype {alpha : Type u} [Fintype alpha] [Nonempty alph
           ring
         _ = Real.log n := by
           rw [mul_one_div_cancel hn_ne, one_mul]
+
+/--
+Finite Shannon entropy reaches the alphabet-cardinality bound exactly at the
+uniform distribution.
+-/
+theorem entropy_eq_log_card_iff_eq_uniformOfFintype
+    {alpha : Type u} [Fintype alpha] [Nonempty alpha] (p : PMF alpha) :
+    entropy p = Real.log (Fintype.card alpha) ↔
+      p = PMF.uniformOfFintype alpha := by
+  classical
+  constructor
+  · intro hp
+    let n : Real := Fintype.card alpha
+    have hn_pos : 0 < n := by
+      simpa [n] using
+        (Nat.cast_pos.mpr (Fintype.card_pos (α := alpha)) :
+          (0 : Real) < Fintype.card alpha)
+    have hweights :
+        (∑ _a ∈ (Finset.univ : Finset alpha), (1 : Real) / n) = 1 := by
+      calc
+        (∑ _a ∈ (Finset.univ : Finset alpha), (1 : Real) / n) =
+            ((Finset.univ : Finset alpha).card : Real) * (1 / n) := by
+          simp [Finset.sum_const, nsmul_eq_mul]
+        _ = n * (1 / n) := by simp [n]
+        _ = 1 := by rw [mul_one_div_cancel (ne_of_gt hn_pos)]
+    have hleft :
+        (∑ a ∈ (Finset.univ : Finset alpha),
+            ((1 : Real) / n) • Real.negMulLog (p a).toReal) =
+          (1 / n) * entropy p := by
+      calc
+        (∑ a ∈ (Finset.univ : Finset alpha),
+            ((1 : Real) / n) • Real.negMulLog (p a).toReal) =
+            ∑ a ∈ (Finset.univ : Finset alpha),
+              (1 / n) * Real.negMulLog (p a).toReal := by
+          apply Finset.sum_congr rfl
+          intro a _ha
+          rw [smul_eq_mul]
+        _ = (1 / n) * ∑ a ∈ (Finset.univ : Finset alpha),
+            Real.negMulLog (p a).toReal := by
+          rw [Finset.mul_sum]
+        _ = (1 / n) * entropy p := by rw [entropy_eq_sum]
+    have hright :
+        (∑ a ∈ (Finset.univ : Finset alpha),
+            ((1 : Real) / n) • (p a).toReal) = 1 / n := by
+      calc
+        (∑ a ∈ (Finset.univ : Finset alpha),
+            ((1 : Real) / n) • (p a).toReal) =
+            ∑ a ∈ (Finset.univ : Finset alpha), (1 / n) * (p a).toReal := by
+          apply Finset.sum_congr rfl
+          intro a _ha
+          rw [smul_eq_mul]
+        _ = (1 / n) * ∑ a ∈ (Finset.univ : Finset alpha), (p a).toReal := by
+          rw [Finset.mul_sum]
+        _ = 1 / n := by rw [PMF.sum_toReal p, mul_one]
+    have hlog : Real.log (1 / n) = -Real.log n := by
+      rw [div_eq_mul_inv, one_mul, Real.log_inv]
+    have hneg : Real.negMulLog (1 / n) = (1 / n) * Real.log n := by
+      rw [Real.negMulLog, hlog]
+      ring
+    have hp' : entropy p = Real.log n := by simpa [n] using hp
+    have hJ_eq :
+        Real.negMulLog
+            (∑ a ∈ (Finset.univ : Finset alpha),
+              ((1 : Real) / n) • (p a).toReal) =
+          ∑ a ∈ (Finset.univ : Finset alpha),
+            ((1 : Real) / n) • Real.negMulLog (p a).toReal := by
+      rw [hright, hleft, hp', hneg]
+    have hconst :=
+      (Real.strictConcaveOn_negMulLog.map_sum_eq_iff
+        (t := (Finset.univ : Finset alpha))
+        (w := fun _ => (1 : Real) / n)
+        (p := fun a => (p a).toReal)
+        (fun _ _ => div_pos zero_lt_one hn_pos)
+        hweights
+        (fun a _ => PMF.toReal_nonneg p a)).1 hJ_eq
+    apply PMF.ext
+    intro a
+    apply
+      (ENNReal.toReal_eq_toReal_iff'
+        (p.apply_ne_top a)
+        ((PMF.uniformOfFintype alpha).apply_ne_top a)).1
+    have hpReal := hconst a (Finset.mem_univ a)
+    rw [hright] at hpReal
+    rw [hpReal, PMF.uniformOfFintype_apply]
+    simp [n]
+  · rintro rfl
+    exact entropy_uniformOfFintype
+
+private theorem entropy_uniformOfFinset {alpha : Type u} [Fintype alpha]
+    (s : Finset alpha) (hs : s.Nonempty) :
+    entropy (PMF.uniformOfFinset s hs) = Real.log (s.card : Real) := by
+  classical
+  let n : Real := s.card
+  have hn_pos : 0 < n := by
+    simpa [n] using (Nat.cast_pos.mpr hs.card_pos : (0 : Real) < s.card)
+  have hn_ne : n ≠ 0 := ne_of_gt hn_pos
+  have hmass {a : alpha} (ha : a ∈ s) :
+      (PMF.uniformOfFinset s hs a).toReal = 1 / n := by
+    rw [PMF.uniformOfFinset_apply_of_mem hs ha]
+    simp [n]
+  rw [entropy_eq_sum]
+  calc
+    (∑ a : alpha, Real.negMulLog (PMF.uniformOfFinset s hs a).toReal) =
+        ∑ a ∈ s, Real.negMulLog (PMF.uniformOfFinset s hs a).toReal := by
+      symm
+      apply Finset.sum_subset
+      · simp
+      · intro a _ha hnot
+        rw [PMF.uniformOfFinset_apply_of_notMem hs hnot]
+        simp
+    _ = ∑ _a ∈ s, Real.negMulLog (1 / n) := by
+      apply Finset.sum_congr rfl
+      intro a ha
+      rw [hmass ha]
+    _ = n * Real.negMulLog (1 / n) := by
+      rw [Finset.sum_const]
+      simp [n, nsmul_eq_mul]
+    _ = Real.log (s.card : Real) := by
+      have hlog : Real.log (1 / n) = -Real.log n := by
+        rw [div_eq_mul_inv, one_mul, Real.log_inv]
+      rw [Real.negMulLog, hlog]
+      change n * (-(1 / n) * -Real.log n) = Real.log n
+      calc
+        n * (-(1 / n) * -Real.log n) = n * ((1 / n) * Real.log n) := by ring
+        _ = (n * (1 / n)) * Real.log n := by ring
+        _ = Real.log n := by rw [mul_one_div_cancel hn_ne, one_mul]
+
+/--
+Finite Shannon entropy reaches its support-cardinality bound exactly when the
+distribution is uniform on its support.
+-/
+theorem entropy_eq_log_support_ncard_iff_eq_uniformOnSupport
+    {alpha : Type u} [Fintype alpha] (p : PMF alpha) :
+    entropy p = Real.log (p.support.ncard : Real) ↔
+      p = PMF.uniformOfFinset p.supportFinset p.supportFinset_nonempty := by
+  classical
+  letI : Nonempty p.supportFinset := by
+    obtain ⟨a, ha⟩ := p.supportFinset_nonempty
+    exact ⟨⟨a, ha⟩⟩
+  constructor
+  · intro hp
+    have hrestricted :
+        entropy (supportPMF p) =
+          Real.log (Fintype.card p.supportFinset : Real) := by
+      rw [entropy_supportPMF, Fintype.card_coe, PMF.supportFinset_card]
+      exact hp
+    have hu :=
+      (entropy_eq_log_card_iff_eq_uniformOfFintype (supportPMF p)).1 hrestricted
+    apply PMF.ext
+    intro a
+    by_cases ha : a ∈ p.supportFinset
+    · calc
+        p a = supportPMF p ⟨a, ha⟩ := rfl
+        _ = PMF.uniformOfFintype p.supportFinset ⟨a, ha⟩ := by rw [hu]
+        _ = (p.supportFinset.card : ENNReal)⁻¹ := by
+          simp only [PMF.uniformOfFintype_apply, Fintype.card_coe]
+        _ = PMF.uniformOfFinset p.supportFinset p.supportFinset_nonempty a := by
+          symm
+          exact PMF.uniformOfFinset_apply_of_mem p.supportFinset_nonempty ha
+    · have ha_not_support : a ∉ p.support := by simpa using ha
+      rw [(p.apply_eq_zero_iff a).2 ha_not_support]
+      symm
+      exact PMF.uniformOfFinset_apply_of_notMem p.supportFinset_nonempty ha
+  · intro hp
+    calc
+      entropy p =
+          entropy (PMF.uniformOfFinset p.supportFinset p.supportFinset_nonempty) :=
+        congrArg entropy hp
+      _ = Real.log (p.supportFinset.card : Real) :=
+        entropy_uniformOfFinset p.supportFinset p.supportFinset_nonempty
+      _ = Real.log (p.support.ncard : Real) := by
+        rw [PMF.supportFinset_card]
+
+/--
+A finite-valued random variable reaches the alphabet-cardinality entropy bound
+exactly when its law is uniform on the alphabet.
+-/
+theorem entropyOf_eq_log_card_iff_map_eq_uniformOfFintype
+    {omega : Type u} {alpha : Type v} [Fintype alpha] [Nonempty alpha]
+    (p : PMF omega) (X : omega → alpha) :
+    entropyOf p X = Real.log (Fintype.card alpha) ↔
+      p.map X = PMF.uniformOfFintype alpha := by
+  simpa [entropyOf] using
+    entropy_eq_log_card_iff_eq_uniformOfFintype (p.map X)
+
+/--
+A finite-valued random variable reaches its law-support entropy bound exactly
+when that law is uniform on its support.
+-/
+theorem entropyOf_eq_log_support_ncard_iff_map_eq_uniformOnSupport
+    {omega : Type u} {alpha : Type v} [Fintype alpha]
+    (p : PMF omega) (X : omega → alpha) :
+    entropyOf p X = Real.log ((p.map X).support.ncard : Real) ↔
+      p.map X = PMF.uniformOfFinset (p.map X).supportFinset
+        (p.map X).supportFinset_nonempty := by
+  simpa [entropyOf] using
+    entropy_eq_log_support_ncard_iff_eq_uniformOnSupport (p.map X)
 
 end
 

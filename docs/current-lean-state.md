@@ -1,7 +1,31 @@
 # Current Lean State
 
-Last checkpoint: July 14, 2026, after completing all 14 steps of Project B
-Chunk 1 and passing the full milestone build/check suite.
+Last milestone checkpoint: July 14, 2026. Project B Chunk 1 was committed as
+`7ab3aa0`, and Project B Chunk 2 is now complete after passing its full
+milestone build/check suite. All 18 Chunk 2 steps are finished. The chunk began
+from the clean Chunk 1 checkpoint, its new theorem contracts were validated by
+temporary
+no-placeholder Lean proofs, and the finite KL support, equality, and
+uniform-reference APIs, sharp finite entropy equality cases, and ordinary
+independence predicates, mathlib `IndepFun` bridge, and zero-MI
+and pair-entropy equality characterizations are public. Zero averaged
+conditional mutual information is now equivalent to zero mutual information
+on every positive-mass conditional fiber. The proof-independent
+`IsCondIndependent` and `IsCondIndependentOf` predicates are public, and the
+PMF predicate is equivalent to ordinary independence on every positive-mass
+conditional joint law. Zero conditional mutual information is now equivalent
+to conditional independence at both PMF and random-variable levels, and the
+corresponding conditioning-equality and conditional-additivity cases are
+public. The opt-in `Examples.SupportSensitive` and `Examples.KLTop` modules now
+exercise the support-aware theorem contracts and the non-absolutely-continuous
+real-KL zero trap without changing the lightweight root.
+The scheduled API review retained every existing declaration and added only
+four short additive-entropy aliases. Simp policy, module ownership, and import
+boundaries remain unchanged; the proposed fiber, uniform-law, general KL, and
+MI relabeling APIs remain deferred for concrete theorem pressure. The final
+integration pass rebuilt all ten milestone targets, regenerated both public
+reference sets, passed the website and repository hygiene checks, and left the
+lightweight root unchanged.
 
 This is a handoff note for future Lean-focused work. It summarizes the current
 architecture and the next useful Lean tasks without changing theorem
@@ -14,8 +38,9 @@ statements.
   but not heavier theorem, semantic bridge, demo, coding, or reference modules.
 - `LeanInfoTheory.Basic` holds lightweight namespace/status vocabulary.
 - `LeanInfoTheory.Probability.Finite` contains reusable finite `PMF` helper
-  lemmas, including real-mass facts, pointwise `PMF.map` formulas, and the
-  singleton-support characterization `PMF.eq_pure_iff_support_eq_singleton`.
+  lemmas, including real-mass facts, the canonical finite `PMF.supportFinset`
+  view, pointwise `PMF.map` formulas, and the singleton-support characterization
+  `PMF.eq_pure_iff_support_eq_singleton`.
 - `LeanInfoTheory.Shannon.Entropy` defines finite Shannon entropy in nats using
   mathlib `PMF`s and `Real.negMulLog`.
 - `LeanInfoTheory.Shannon.InfoMeasures` defines finite marginal laws,
@@ -25,11 +50,15 @@ statements.
   conversion layer. It leaves the canonical definitions in nats and supplies
   division-by-`Real.log`/`Real.logb` bridge theorems.
 - `LeanInfoTheory.Shannon.EntropyBounds` is separately importable and contains
-  the Jensen-based finite entropy upper bound and the uniform-law equality
-  theorem.
+  the Jensen-based alphabet- and support-cardinality entropy bounds and their
+  exact uniform-law equality characterizations.
 - `LeanInfoTheory.Shannon.SemanticBridge` and its subfiles are the heavier
   bridge layer connecting the finite Shannon API to `PMF.toMeasure`, product
-  measures, conditional laws, and `InformationTheory.klDiv`.
+  measures, conditional laws, and `InformationTheory.klDiv`, including finite
+  PMF support characterizations of absolute continuity, finiteness, and the
+  KL zero-equality case, support-aware uniform-reference identities, and the
+  separately importable independence module, including its conditional-
+  independence definitions and positive-fiber characterization.
 - `LeanInfoTheory.EntropyExpr`, `LeanInfoTheory.EntropyVal`, and
   `LeanInfoTheory.PrimitiveIneq` form the abstract entropy-expression and
   primitive Shannon inequality layer.
@@ -40,7 +69,9 @@ statements.
   `LeanInfoTheory.Certificate.Monotonicity`,
   `LeanInfoTheory.Certificate.ThreeWaySubadditivity`, and
   `LeanInfoTheory.Examples` are separately importable demonstration and
-  pressure-test modules.
+  pressure-test modules. `LeanInfoTheory.Examples.SupportSensitive` and
+  `LeanInfoTheory.Examples.KLTop` can also be imported directly when only the
+  new semantic examples are wanted.
 - `LeanInfoTheory.MathlibFragments` is a separately importable anchor/checklist
   for mathlib APIs that the project expects to use later.
 
@@ -88,7 +119,9 @@ Implemented and building:
   `H(X) <= log |support (law X)|` through
   `Shannon.entropy_le_log_support_ncard` and
   `Shannon.entropyOf_le_log_support_ncard`;
-- uniform-law equality case for the entropy upper bound.
+- alphabet-cardinality equality exactly for `PMF.uniformOfFintype`, and
+  support-cardinality equality exactly for uniformity on the PMF support, at
+  both PMF and random-variable levels.
 
 The layer intentionally does not introduce a project-local probability type.
 It should continue to reuse mathlib `PMF`, `PMF.map`, `PMF.bind`,
@@ -107,6 +140,35 @@ Implemented and building:
 - finite entropy as expected self-information over `PMF.toMeasure`;
 - independent product PMF `indepProd`, including support, marginal, and
   product-measure bridge lemmas;
+- PMF independence `Shannon.IsIndependent` and random-variable independence
+  `Shannon.IsIndependentOf`, with pointwise marginal factorization,
+  independent-product construction, symmetry theorems, and the explicit
+  `Shannon.isIndependentOf_iff_indepFun` measure-theoretic bridge;
+- zero mutual information characterized by ordinary independence through
+  `Shannon.mutualInfo_eq_zero_iff_isIndependent` and
+  `Shannon.mutualInfoOf_eq_zero_iff_isIndependentOf`;
+- conditioning preserves entropy and joint entropy is additive exactly under
+  ordinary independence, at both PMF and random-variable levels;
+- `Shannon.condMutualInfo_eq_zero_iff_condMutualInfoFstSndGivenThird_eq_zero`,
+  which extracts zero mutual information on every positive-mass conditional
+  fiber from zero averaged conditional mutual information and proves the
+  converse;
+- conditional independence predicates `Shannon.IsCondIndependent` and
+  `Shannon.IsCondIndependentOf`, with the former defined by atomwise
+  cross-product factorization and characterized by
+  `Shannon.isCondIndependent_iff_isIndependent_condFstSndGivenThird` as
+  independence of every positive-mass conditional joint law;
+- zero conditional mutual information characterized by conditional
+  independence through `Shannon.condMutualInfo_eq_zero_iff_isCondIndependent`
+  and `Shannon.condMutualInfoOf_eq_zero_iff_isCondIndependentOf`;
+- conditioning preserves conditional entropy exactly under conditional
+  independence through
+  `Shannon.condEntropy_eq_condEntropy_fstThirdMarginal_iff_isCondIndependent`
+  and `Shannon.condEntropyOf_eq_condEntropyOf_iff_isCondIndependentOf`;
+- conditional joint entropy is additive exactly under conditional independence
+  through `Shannon.condEntropy_pair_eq_add_condEntropy_iff_isCondIndependent`
+  and
+  `Shannon.condEntropyOf_pair_eq_add_condEntropyOf_iff_isCondIndependentOf`;
 - absolute-continuity helpers from a joint finite law to the product of its
   marginals;
 - finite log-ratio formulas for mutual information;
@@ -269,23 +331,113 @@ future work.
 
 ## Recommended Next Lean Tasks
 
-1. Before editing Lean for the next phase, prepare a focused implementation
-   plan for Project B Chunk 2 against the completed Chunk 1 API and the
-   textbook formalization map.
-2. Treat the general finite KL/equality layer as the leading dependency for
-   the equality cases deferred from Chunk 1: `I(X;Y) = 0` iff independence,
-   `H(X|Y) = H(X)` iff independence, and their conditional counterparts.
-3. Keep the root import unchanged. Entropy bounds, semantic theorems, units,
+1. Review the Project B formalization map and live future-work notes, then fix
+   the scope and theorem contracts of the next focused chunk before editing
+   Lean.
+2. Keep the root import unchanged. Entropy bounds, semantic theorems, units,
    demos, and reference anchors remain separately importable where appropriate.
-4. Introduce generic PMF support helpers only when more than one production
-   proof uses them; the Step 1 scratch proofs do not by themselves justify a
-   broad new support abstraction.
-5. Keep stochastic channels, Markov structure, general data processing, Fano,
-   binary/q-ary bridges, and finite-family entropy in their planned later
-   chunks unless the Chunk 2 proof plan establishes a direct dependency.
-6. Continue updating the project log after each completed implementation step,
+3. Treat a stochastic-channel, Markov, and data-processing dependency layer as
+   the leading next-chunk candidate. Audit mathlib's finite-kernel contracts
+   and settle module ownership before choosing public definitions.
+4. Keep sufficient statistics, Fano, binary/q-ary bridges, and finite-family
+   entropy in later focused chunks unless the next planning pass establishes a
+   direct prerequisite.
+5. Continue updating the project log after each completed implementation step,
    with focused Lake builds during development and a full suite at each
    milestone boundary.
+
+## Active Project B Chunk 2 Plan
+
+Current status: all 18 steps are complete. The chunk covers finite KL
+support/equality, uniformity, independence, and conditional independence, and
+the final milestone suite and hygiene checks pass.
+
+1. Completed on July 14, 2026: checkpoint the completed Chunk 1 milestone as
+   commit `7ab3aa0` with a clean worktree.
+2. Completed on July 14, 2026: lock theorem shapes, names, ownership, support
+   conventions, and proof routes through temporary no-placeholder Lean spikes.
+3. Completed on July 14, 2026: promote the lightweight finite
+   `PMF.supportFinset` API and make `EntropyBounds` consume it while retaining
+   the stronger support-restriction PMF as private implementation machinery.
+4. Completed on July 14, 2026: characterize PMF absolute continuity by support
+   inclusion and, on finite alphabets, characterize finite and infinite KL
+   divergence by whether that inclusion holds.
+5. Completed on July 14, 2026: specialize mathlib's KL zero-equality theorem to
+   PMFs and prove the real-valued zero characterization under the finite
+   support-inclusion guard.
+6. Completed on July 14, 2026: prove the support-aware KL identity against
+   `PMF.uniformOfFinset` and its full-alphabet `PMF.uniformOfFintype` corollary.
+7. Completed on July 14, 2026: characterize equality in the alphabet- and
+   support-cardinality entropy bounds by uniformity, at both PMF and
+   random-variable levels, using strict Jensen in the opt-in bounds module.
+8. Completed on July 14, 2026: introduce ordinary PMF and random-variable
+   independence predicates, pointwise/product-law characterizations, and
+   symmetry in the separately importable semantic independence module.
+9. Completed on July 14, 2026: bridge mapped-law independence to mathlib
+   `ProbabilityTheory.IndepFun` under explicit measurability and measurable-
+   singleton assumptions.
+10. Completed on July 14, 2026: characterize zero mutual information by
+    `IsIndependent` and `IsIndependentOf`, with the discrete measurable-space
+    choice confined locally to the KL proof.
+11. Completed on July 14, 2026: characterize equality in conditioning-reduces-
+    entropy and joint-entropy subadditivity by ordinary independence, at both
+    PMF and random-variable levels.
+12. Completed on July 14, 2026: characterize zero averaged conditional mutual
+    information by zero mutual information on every positive-mass conditional
+    joint fiber.
+13. Completed on July 14, 2026: introduce `IsCondIndependent` and
+    `IsCondIndependentOf` through proof-independent cross-product factorization
+    and prove the PMF predicate equivalent to independence of every positive-
+    mass conditional joint law.
+14. Completed on July 14, 2026: characterize zero conditional mutual
+    information by `IsCondIndependent` and `IsCondIndependentOf` at PMF and
+    random-variable levels.
+15. Completed on July 14, 2026: characterize preservation of conditional
+    entropy and additivity of conditional joint entropy by conditional
+    independence, at PMF and random-variable levels.
+16. Completed on July 14, 2026: add separately importable support-sensitive and
+    non-absolutely-continuous examples using the public theorem contracts.
+17. Completed on July 14, 2026: review names, aliases, simp policy, module
+    pressure, and deferred relabeling; add only the four approved additive-
+    entropy compatibility aliases.
+18. Completed on July 14, 2026: integrate the accumulated work, regenerate both
+    public reference sets, run the complete ten-target milestone suite and
+    repository hygiene checks, and prepare the clean Chunk 2 checkpoint.
+
+### Locked Step 2 Contract
+
+- `PMF.supportFinset` will expose only membership, set coercion, cardinality,
+  and nonemptiness facts. The stronger support-restriction PMF remains private.
+- For finite PMFs, `p.toMeasure ≪ q.toMeasure` is represented by
+  `p.support ⊆ q.support`; on a finite alphabet this is equivalent to
+  `klDiv p.toMeasure q.toMeasure ≠ ∞`, while failure of inclusion is equivalent
+  to KL being `∞`.
+- The project continues to use mathlib's `InformationTheory.klDiv : ENNReal`.
+  A real-valued zero theorem must assume support inclusion/finiteness so that
+  `ENNReal.toReal ∞ = 0` cannot create a false equality characterization.
+- The uniform-reference identity has the generalized support-aware shape
+  `D(p || uniform(s)) = log |s| - H(p)` under `support(p) ⊆ s`.
+- Entropy-bound equality remains in `Shannon.EntropyBounds` and uses strict
+  Jensen. The KL identity remains in the separately importable semantic layer.
+- `Shannon.IsIndependent p` means that a joint PMF equals the independent
+  product of its marginals. `Shannon.IsIndependentOf p X Y` applies this to the
+  mapped joint law. The mathlib bridge uses explicit measurability assumptions.
+- `Shannon.IsCondIndependent p` is primarily the proof-independent statement
+  `p(a,b,c) * p_C(c) = p_AC(a,c) * p_BC(b,c)` for every atom. Independence of
+  each positive conditional joint law is an equivalent theorem; null fibers
+  satisfy the primary factorization automatically.
+- The primary KL families use support-explicit names such as
+  `klDiv_pmf_ne_top_iff_support_subset`,
+  `klDiv_pmf_eq_top_iff_not_support_subset`, and
+  `toReal_klDiv_pmf_eq_zero_iff`. The main equality theorems use
+  `mutualInfo_eq_zero_iff_isIndependent` and
+  `condMutualInfo_eq_zero_iff_isCondIndependent`, with parallel `...Of` forms.
+- The ordinary independence API lives in the separately importable
+  `Shannon.SemanticBridge.Independence` module, which will also own the planned
+  conditional-independence layer. The aggregate semantic bridge imports it,
+  but the lightweight root does not.
+- Stochastic channels, Markov chains, general data processing, sufficient
+  statistics, Fano, and finite-family entropy remain outside this chunk.
 
 ## Completed Project B Chunk 1 Plan
 
