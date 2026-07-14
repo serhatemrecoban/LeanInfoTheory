@@ -628,6 +628,7 @@ def condMutualInfoOf {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : 
 /-! ## Symmetry Theorems -/
 
 /-- Mutual information is symmetric under swapping the two coordinates of a joint law. -/
+@[simp]
 theorem mutualInfo_map_swap {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
     mutualInfo (p.map Prod.swap) = mutualInfo p := by
@@ -649,6 +650,7 @@ theorem mutualInfoOf_swap
 Conditional mutual information is symmetric in its first two coordinates:
 `I(B;A | C) = I(A;B | C)`.
 -/
+@[simp]
 theorem condMutualInfo_map_swap12
     {alpha : Type u} {beta : Type v} {gamma : Type w}
     [Fintype alpha] [Fintype beta] [Fintype gamma]
@@ -875,6 +877,38 @@ theorem jointEntropyOf_eq_entropyOf_add_condEntropyOf_swap
   rw [← jointEntropyOf_swap (p := p) (X := X) (Y := Y)]
   exact jointEntropyOf_eq_entropyOf_add_condEntropyOf (p := p) (X := Y) (Y := X)
 
+/-! ## Textbook-Facing Chain-Rule Aliases -/
+
+/-- Right-oriented PMF entropy chain rule: `H(A,B) = H(B) + H(A|B)`. -/
+theorem entropy_chain_rule_right
+    {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
+    (p : PMF (alpha × beta)) :
+    entropy p = entropy (sndMarginal p) + condEntropy p :=
+  entropy_eq_entropy_sndMarginal_add_condEntropy p
+
+/-- Left-oriented PMF entropy chain rule: `H(A,B) = H(A) + H(B|A)`. -/
+theorem entropy_chain_rule_left
+    {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
+    (p : PMF (alpha × beta)) :
+    entropy p = entropy (fstMarginal p) + condEntropy (p.map Prod.swap) :=
+  entropy_eq_entropy_fstMarginal_add_condEntropy_swap p
+
+/-- Right-oriented random-variable entropy chain rule. -/
+theorem jointEntropyOf_chain_rule_right
+    {omega : Type u} {alpha : Type v} {beta : Type w}
+    [Fintype alpha] [Fintype beta]
+    (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta) :
+    jointEntropyOf p X Y = entropyOf p Y + condEntropyOf p X Y :=
+  jointEntropyOf_eq_entropyOf_add_condEntropyOf p X Y
+
+/-- Left-oriented random-variable entropy chain rule. -/
+theorem jointEntropyOf_chain_rule_left
+    {omega : Type u} {alpha : Type v} {beta : Type w}
+    [Fintype alpha] [Fintype beta]
+    (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta) :
+    jointEntropyOf p X Y = entropyOf p X + condEntropyOf p Y X :=
+  jointEntropyOf_eq_entropyOf_add_condEntropyOf_swap p X Y
+
 /-! ## Random-Variable Identities -/
 
 /--
@@ -886,6 +920,81 @@ theorem condEntropyOf_eq {omega : Type u} {alpha : Type v} {beta : Type w}
     (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta) :
     condEntropyOf p X Y = jointEntropyOf p X Y - entropyOf p Y := by
   simp [condEntropyOf, condEntropy_eq, jointEntropyOf, entropyOf]
+
+/-! ## Triple Conditional Entropy Chain Rules -/
+
+/--
+Conditional joint entropy is invariant under swapping the two variables being
+conditioned: `H(Y,X|Z) = H(X,Y|Z)`.
+-/
+theorem condEntropyOf_pair_swap
+    {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
+    [Fintype alpha] [Fintype beta] [Fintype gamma]
+    (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta) (Z : omega -> gamma) :
+    condEntropyOf p (fun omega => (Y omega, X omega)) Z =
+      condEntropyOf p (fun omega => (X omega, Y omega)) Z := by
+  let swapPair : (alpha × beta) × gamma -> (beta × alpha) × gamma :=
+    fun z => ((z.1.2, z.1.1), z.2)
+  have hswap : Function.Injective swapPair := by
+    intro z z' h
+    exact
+      Prod.ext
+        (Prod.ext
+          (congrArg (fun t : (beta × alpha) × gamma => t.1.2) h)
+          (congrArg (fun t : (beta × alpha) × gamma => t.1.1) h))
+        (congrArg (fun t : (beta × alpha) × gamma => t.2) h)
+  have hmap :
+      (p.map fun omega => ((Y omega, X omega), Z omega)) =
+        (p.map fun omega => ((X omega, Y omega), Z omega)).map swapPair := by
+    simpa [swapPair, Function.comp_def] using
+      (PMF.map_comp
+        (p := p)
+        (f := fun omega => ((X omega, Y omega), Z omega))
+        (g := swapPair)).symm
+  have hjoint :
+      jointEntropyOf p (fun omega => (Y omega, X omega)) Z =
+        jointEntropyOf p (fun omega => (X omega, Y omega)) Z := by
+    unfold jointEntropyOf entropyOf
+    rw [hmap]
+    exact
+      entropy_map_injective
+        (p := p.map fun omega => ((X omega, Y omega), Z omega)) hswap
+  rw [condEntropyOf_eq, condEntropyOf_eq, hjoint]
+
+/--
+Triple conditional-entropy chain rule:
+`H(X,Y|Z) = H(Y|Z) + H(X|Y,Z)`.
+-/
+theorem condEntropyOf_pair_chain_rule
+    {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
+    [Fintype alpha] [Fintype beta] [Fintype gamma]
+    (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta) (Z : omega -> gamma) :
+    condEntropyOf p (fun omega => (X omega, Y omega)) Z =
+      condEntropyOf p Y Z +
+        condEntropyOf p X (fun omega => (Y omega, Z omega)) := by
+  rw [condEntropyOf_eq, condEntropyOf_eq, condEntropyOf_eq]
+  unfold jointEntropyOf
+  rw [entropyOf_prodAssoc]
+  ring
+
+/--
+Swapped triple conditional-entropy chain rule:
+`H(X,Y|Z) = H(X|Z) + H(Y|X,Z)`.
+-/
+theorem condEntropyOf_pair_chain_rule_swap
+    {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
+    [Fintype alpha] [Fintype beta] [Fintype gamma]
+    (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta) (Z : omega -> gamma) :
+    condEntropyOf p (fun omega => (X omega, Y omega)) Z =
+      condEntropyOf p X Z +
+        condEntropyOf p Y (fun omega => (X omega, Z omega)) := by
+  calc
+    condEntropyOf p (fun omega => (X omega, Y omega)) Z =
+        condEntropyOf p (fun omega => (Y omega, X omega)) Z :=
+      (condEntropyOf_pair_swap p X Y Z).symm
+    _ = condEntropyOf p X Z +
+          condEntropyOf p Y (fun omega => (X omega, Z omega)) :=
+      condEntropyOf_pair_chain_rule p Y X Z
 
 /--
 Random-variable mutual information rewrites to the standard entropy identity
@@ -910,6 +1019,126 @@ theorem condMutualInfoOf_eq
       jointEntropyOf p X Z + jointEntropyOf p Y Z -
         entropyOf p Z - entropyOf p (fun omega => (X omega, Y omega, Z omega)) := by
   simp [condMutualInfoOf, condMutualInfo_eq, jointEntropyOf, entropyOf]
+
+/-! ## Conditional Mutual Information Identities -/
+
+/--
+Conditional mutual information as a difference of conditional entropies:
+`I(X;Y|Z) = H(X|Z) - H(X|Y,Z)`.
+-/
+theorem condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf
+    {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
+    [Fintype alpha] [Fintype beta] [Fintype gamma]
+    (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta) (Z : omega -> gamma) :
+    condMutualInfoOf p X Y Z =
+      condEntropyOf p X Z -
+        condEntropyOf p X (fun omega => (Y omega, Z omega)) := by
+  rw [condMutualInfoOf_eq, condEntropyOf_eq, condEntropyOf_eq]
+  unfold jointEntropyOf
+  ring
+
+/--
+Symmetric conditional-entropy difference form:
+`I(X;Y|Z) = H(Y|Z) - H(Y|X,Z)`.
+-/
+theorem condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf_swap
+    {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
+    [Fintype alpha] [Fintype beta] [Fintype gamma]
+    (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta) (Z : omega -> gamma) :
+    condMutualInfoOf p X Y Z =
+      condEntropyOf p Y Z -
+        condEntropyOf p Y (fun omega => (X omega, Z omega)) := by
+  calc
+    condMutualInfoOf p X Y Z = condMutualInfoOf p Y X Z :=
+      (condMutualInfoOf_swap p X Y Z).symm
+    _ = condEntropyOf p Y Z -
+          condEntropyOf p Y (fun omega => (X omega, Z omega)) :=
+      condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf p Y X Z
+
+/--
+Conditional mutual information as conditional marginal entropies minus
+conditional joint entropy:
+`I(X;Y|Z) = H(X|Z) + H(Y|Z) - H(X,Y|Z)`.
+-/
+theorem condMutualInfoOf_eq_condEntropyOf_add_condEntropyOf_sub_condEntropyOf_pair
+    {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
+    [Fintype alpha] [Fintype beta] [Fintype gamma]
+    (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta) (Z : omega -> gamma) :
+    condMutualInfoOf p X Y Z =
+      condEntropyOf p X Z + condEntropyOf p Y Z -
+        condEntropyOf p (fun omega => (X omega, Y omega)) Z := by
+  rw [condMutualInfoOf_eq, condEntropyOf_eq, condEntropyOf_eq, condEntropyOf_eq]
+  unfold jointEntropyOf
+  rw [entropyOf_prodAssoc p X Y Z]
+  ring
+
+/-! ## Elementary Mutual Information Identities -/
+
+/-- Mutual information as `I(A;B) = H(A) - H(A|B)`. -/
+theorem mutualInfo_eq_entropy_fstMarginal_sub_condEntropy
+    {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
+    (p : PMF (alpha × beta)) :
+    mutualInfo p = entropy (fstMarginal p) - condEntropy p := by
+  rw [mutualInfo_eq, condEntropy_eq]
+  ring
+
+/-- Mutual information as `I(A;B) = H(B) - H(B|A)`. -/
+theorem mutualInfo_eq_entropy_sndMarginal_sub_condEntropy_swap
+    {alpha : Type u} {beta : Type v} [Fintype alpha] [Fintype beta]
+    (p : PMF (alpha × beta)) :
+    mutualInfo p =
+      entropy (sndMarginal p) - condEntropy (p.map Prod.swap) := by
+  rw [mutualInfo_eq, condEntropy_eq, sndMarginal_map_swap, entropy_map_swap]
+  ring
+
+/-- Random-variable form `I(X;Y) = H(X) - H(X|Y)`. -/
+theorem mutualInfoOf_eq_entropyOf_sub_condEntropyOf
+    {omega : Type u} {alpha : Type v} {beta : Type w}
+    [Fintype alpha] [Fintype beta]
+    (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta) :
+    mutualInfoOf p X Y = entropyOf p X - condEntropyOf p X Y := by
+  rw [mutualInfoOf_eq, condEntropyOf_eq]
+  ring
+
+/-- Symmetric random-variable form `I(X;Y) = H(Y) - H(Y|X)`. -/
+theorem mutualInfoOf_eq_entropyOf_sub_condEntropyOf_swap
+    {omega : Type u} {alpha : Type v} {beta : Type w}
+    [Fintype alpha] [Fintype beta]
+    (p : PMF omega) (X : omega -> alpha) (Y : omega -> beta) :
+    mutualInfoOf p X Y = entropyOf p Y - condEntropyOf p Y X := by
+  calc
+    mutualInfoOf p X Y = mutualInfoOf p Y X :=
+      (mutualInfoOf_swap p X Y).symm
+    _ = entropyOf p Y - condEntropyOf p Y X :=
+      mutualInfoOf_eq_entropyOf_sub_condEntropyOf p Y X
+
+/-- A diagonal joint law has mutual information equal to its source entropy. -/
+@[simp]
+theorem mutualInfo_map_diag
+    {alpha : Type u} [Fintype alpha] (p : PMF alpha) :
+    mutualInfo (p.map fun a => (a, a)) = entropy p := by
+  have hdiag : Function.Injective (fun a : alpha => (a, a)) := by
+    intro a a' h
+    exact congrArg Prod.fst h
+  have hfst : fstMarginal (p.map fun a => (a, a)) = p := by
+    rw [fstMarginal_map]
+    change p.map id = p
+    exact PMF.map_id p
+  have hsnd : sndMarginal (p.map fun a => (a, a)) = p := by
+    rw [sndMarginal_map]
+    change p.map id = p
+    exact PMF.map_id p
+  rw [mutualInfo_eq, hfst, hsnd, entropy_map_injective p hdiag]
+  ring
+
+/-- The mutual information of a finite-valued variable with itself is its entropy. -/
+@[simp]
+theorem mutualInfoOf_self
+    {omega : Type u} {alpha : Type v} [Fintype alpha]
+    (p : PMF omega) (X : omega -> alpha) :
+    mutualInfoOf p X X = entropyOf p X := by
+  simpa [mutualInfoOf, entropyOf, Function.comp_def, PMF.map_comp] using
+    mutualInfo_map_diag (p.map X)
 
 end
 

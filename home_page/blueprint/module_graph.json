@@ -7,8 +7,8 @@
     "Certificate layer",
     "Reference anchors"
   ],
-  "local_edge_count": 33,
-  "module_count": 24,
+  "local_edge_count": 34,
+  "module_count": 25,
   "modules": [
     {
       "external_imports": [],
@@ -100,6 +100,19 @@
       "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
       "root_reachable": true,
       "summary": "Marginals, conditional entropy, mutual information, conditional mutual information, and orientation lemmas."
+    },
+    {
+      "external_imports": [
+        "Mathlib.Analysis.SpecialFunctions.Log.Base"
+      ],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.InfoMeasures"
+      ],
+      "name": "LeanInfoTheory.Shannon.Units",
+      "path": "LeanInfoTheory/Shannon/Units.lean",
+      "root_reachable": false,
+      "summary": "Opt-in logarithm-base conversion for canonical nat-valued finite information measures."
     },
     {
       "external_imports": [
@@ -318,5 +331,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 11,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 13
+  "separate_import_count": 14
 }

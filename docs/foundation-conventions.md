@@ -23,6 +23,11 @@ reference material only and is intentionally not part of the repository.
 - Entropy values live in `Real`.
 - The current entropy unit is the nat, because mathlib's logarithm is natural
   logarithm and mathlib's `Real.binEntropy` is documented in nats.
+- Logarithm-base conversion is opt-in through
+  `LeanInfoTheory.Shannon.Units`. A nat-valued information quantity is
+  converted to base-`b` units by division by `Real.log b`; the module supplies
+  a generic change-of-base theorem and `Real.logb` entropy formulas rather
+  than parallel base-indexed definitions.
 - Zero-mass atoms contribute zero via mathlib's `Real.negMulLog 0 = 0`.
 - Entropy is a function of a distribution. Random-variable entropy is entropy
   of the pushforward distribution under `PMF.map`.
@@ -33,6 +38,11 @@ reference material only and is intentionally not part of the repository.
   equality case live in
   `LeanInfoTheory.Shannon.EntropyBounds`, separated from the core entropy
   definition because the proof uses mathlib's convexity/Jensen API.
+- The stronger support-sensitive bound also lives in `EntropyBounds`:
+  `entropy_le_log_support_ncard` bounds entropy by the logarithm of the number
+  of nonzero atoms, and its random-variable form counts the support of the
+  pushforward law. The proof restricts to a private finite support PMF and
+  reuses the alphabet-cardinality theorem.
 - Joint entropy is ordinary entropy of a joint distribution.
 - In the entropy-expression layer, the empty atom is named explicitly as
   `EntropyExpr.empty`. Arbitrary atom interpretations do not automatically
@@ -60,17 +70,78 @@ reference material only and is intentionally not part of the repository.
   `condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd` and
   `condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThird`,
   making those expected-fiber interpretations explicit.
+- A zero-marginal conditioning fiber contributes the number zero without a
+  fabricated conditional PMF. On a nonzero fiber,
+  `condEntropyFstGivenSnd_eq_zero_iff_of_sndMarginal_ne_zero` says that zero
+  fiber entropy is exactly purity of the canonical conditional law.
+- Functional dependence is currently stated directly and support-wise:
+  `condEntropyOf_eq_zero_iff_exists_function` uses
+  `X omega = f (Y omega)` only for `omega in p.support`. The project does not
+  impose pointwise equality outside the law's support or introduce a separate
+  functional-dependence predicate at this stage.
+- Triple conditional entropy follows the textbook chain rules
+  `H(X,Y|Z) = H(Y|Z) + H(X|Y,Z)` and
+  `H(X,Y|Z) = H(X|Z) + H(Y|X,Z)`. The lightweight declarations are stated for
+  random variables; the conditional semantic bridge supplies PMF-facing forms
+  using `pairThirdLaw` and the named triple marginals.
+- Conditional-entropy chain rules remain explicit rewrites rather than
+  `[simp]` lemmas. Expanded and unexpanded entropy expressions are both useful,
+  and the Chunk 1 API review found no stable reason to choose either direction
+  as an automatic normal form. Short left/right aliases are available for the
+  pair chain rules.
+- Mutual-information simplification removes explicit PMF coordinate swaps,
+  diagonal PMF laws, and random-variable self constructions. Pure
+  random-variable symmetry and entropy-difference identities remain explicit
+  rewrites so simplification does not choose an arbitrary variable ordering or
+  entropy normal form.
+- Deterministic processing cannot increase finite entropy. Equality
+  `H(f(X)) = H(X)` is characterized by `Set.InjOn f (p.map X).support`, because
+  the relevant injectivity is on the values actually taken by `X`, not on the
+  source outcome space.
+- Conditionally,
+  `H(X|Z) = H(f(X)|Z) + H(X|f(X),Z)`. Thus `H(f(X)|Z) <= H(X|Z)`, with equality
+  exactly when `X` can be recovered from `(f(X), Z)` on `p.support`. This is a
+  deterministic theorem; stochastic channels and general data processing
+  remain later infrastructure.
 - Mutual information is currently defined by the entropy identity
   `H(X) + H(Y) - H(X,Y)`. The semantic bridge now identifies it with finite KL
   divergence from the joint law to the product of marginals through
   `mutualInfo_eq_toReal_klDiv_joint_indepProd` and the product-measure form
   `mutualInfo_eq_toReal_klDiv_joint_prod_marginals`.
+- The lightweight theorem API also exposes the equivalent textbook forms
+  `I(X;Y) = H(X) - H(X|Y)` and `I(X;Y) = H(Y) - H(Y|X)`, plus
+  `I(X;X) = H(X)`. These remain explicit rewrites; later inequality proofs and
+  the planned API review should determine whether reverse-oriented aliases or
+  any simp attributes are useful.
+- The lightweight conditional-mutual-information API exposes
+  `I(X;Y|Z) = H(X|Z) - H(X|Y,Z)`, its symmetric form in `Y`, and
+  `I(X;Y|Z) = H(X|Z) + H(Y|Z) - H(X,Y|Z)`. These remain explicit rewrite
+  theorems and supply the normal forms for the next triple-level inequality
+  step.
+- Deterministic mutual-information processing follows the exact decomposition
+  `I(X;Y) = I(f(X);Y) + I(X;Y|f(X))`. Consequently, applying deterministic
+  maps to the left variable, the right variable, or both variables cannot
+  increase mutual information. This finite theorem does not introduce
+  stochastic channels or the later general data-processing infrastructure.
+- Semantic nonnegativity yields the pair-level bounds
+  `H(X|Y) <= H(X)`, `I(X;Y) <= H(X), H(Y)`, and
+  `H(X), H(Y) <= H(X,Y) <= H(X) + H(Y)`. Equality characterizations involving
+  independence remain deferred to the later finite KL/equality layer.
+- At the triple level, semantic nonnegativity and the CMI identities yield
+  `I(X;Y|Z) <= H(X|Z), H(Y|Z)` and the conditional entropy band
+  `H(X|Z), H(Y|Z) <= H(X,Y|Z) <= H(X|Z) + H(Y|Z)`. Equality
+  characterizations involving conditional independence remain deferred.
 - The semantic bridge lives in `LeanInfoTheory.Shannon.SemanticBridge` and its
   subfiles. It includes `Shannon.selfInfo`,
   `Shannon.entropy_eq_integral_selfInfo`, finite conditional laws,
   mutual-information-as-KL theorems, averaged conditional-KL for conditional
   mutual information, semantic nonnegativity of mutual information and
-  conditional mutual information, and the first mutual-information chain rule.
+  conditional mutual information, PMF-facing triple conditional-entropy chain
+  rules, deterministic entropy processing and equality cases,
+  mutual-information chain rules, deterministic mutual-information processing,
+  and both PMF conditional-entropy difference forms for conditional mutual
+  information, together with PMF and random-variable triple-level conditional
+  inequalities.
 
 ## Mathlib Boundary
 
@@ -141,9 +212,11 @@ The comparison with Rocq `infotheo` is recorded in `docs/project-log.md`.
 
 ## Near-Term Theorem Targets
 
-- Broader chain rules for entropy, conditional entropy, mutual information,
-  and conditional mutual information.
+- Further chain rules for entropy, mutual information, and conditional mutual
+  information, building on the completed pair/triple conditional-entropy
+  family.
 - Conditioning-reduces-entropy and equality conditions.
-- Data processing and Markov-chain APIs.
+- Stochastic data-processing and Markov-chain APIs, building on the completed
+  deterministic entropy-processing results.
 - Concrete finite semantics for the abstract certificate assumptions.
 - More textbook entropy inequalities and certificate examples.

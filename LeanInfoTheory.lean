@@ -19,6 +19,8 @@ Import these separately when needed:
 
 - `LeanInfoTheory.Shannon.EntropyBounds` for Jensen-based finite entropy
   bounds;
+- `LeanInfoTheory.Shannon.Units` for opt-in logarithm-base conversion while
+  keeping the canonical information measures in nats;
 - `LeanInfoTheory.Shannon.SemanticBridge` for KL/conditional-law bridge work;
 - `LeanInfoTheory.MathlibFragments` for heavier mathlib information-theory and
   coding anchors;

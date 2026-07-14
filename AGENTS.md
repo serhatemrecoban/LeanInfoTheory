@@ -44,6 +44,22 @@ python scripts/generate_website_api_index.py
 python scripts/check_website.py
 ```
 
+## Public API Naming
+
+- Do not interrupt an active theorem-development step merely to rename a
+  correct public declaration whose descriptive name is long.
+- When a new or newly pressured public theorem name is unusually long, hard to
+  discover, or exposes representation machinery such as named marginals,
+  coordinate maps, `Prod.swap`, or `pairThirdLaw`, append it to the naming and
+  alias watchlist in Future Work Note 14 of `docs/project-log.md`.
+- Record why the name is awkward and, when useful, a provisional shorter alias
+  pattern. Do not treat a provisional alias as an approved API decision.
+- Preserve existing names during ordinary theorem steps. Revisit the watchlist
+  during a scheduled API review, preferring compatibility-preserving aliases
+  unless an explicit migration has been approved.
+- After each theorem-development step, check whether any newly added long
+  public names should be added to Future Work Note 14.
+
 ## Lean Checks
 
 Use these commands for Lean checks:
@@ -51,6 +67,7 @@ Use these commands for Lean checks:
 ```powershell
 lake build LeanInfoTheory
 lake build LeanInfoTheory.Shannon.EntropyBounds
+lake build LeanInfoTheory.Shannon.Units
 lake build LeanInfoTheory.Shannon.SemanticBridge
 lake build LeanInfoTheory.MathlibFragments
 lake build LeanInfoTheory.Certificate.Submodularity

@@ -1,7 +1,7 @@
 # Current Lean State
 
-Last checkpoint: July 8, 2026, after completing the active nine-step Lean
-theorem/certificate plan.
+Last checkpoint: July 14, 2026, after completing all 14 steps of Project B
+Chunk 1 and passing the full milestone build/check suite.
 
 This is a handoff note for future Lean-focused work. It summarizes the current
 architecture and the next useful Lean tasks without changing theorem
@@ -14,12 +14,16 @@ statements.
   but not heavier theorem, semantic bridge, demo, coding, or reference modules.
 - `LeanInfoTheory.Basic` holds lightweight namespace/status vocabulary.
 - `LeanInfoTheory.Probability.Finite` contains reusable finite `PMF` helper
-  lemmas, including real-mass facts and pointwise `PMF.map` formulas.
+  lemmas, including real-mass facts, pointwise `PMF.map` formulas, and the
+  singleton-support characterization `PMF.eq_pure_iff_support_eq_singleton`.
 - `LeanInfoTheory.Shannon.Entropy` defines finite Shannon entropy in nats using
   mathlib `PMF`s and `Real.negMulLog`.
 - `LeanInfoTheory.Shannon.InfoMeasures` defines finite marginal laws,
   conditional entropy, mutual information, conditional mutual information, and
   random-variable versions via `PMF.map`.
+- `LeanInfoTheory.Shannon.Units` is a separately importable logarithm-base
+  conversion layer. It leaves the canonical definitions in nats and supplies
+  division-by-`Real.log`/`Real.logb` bridge theorems.
 - `LeanInfoTheory.Shannon.EntropyBounds` is separately importable and contains
   the Jensen-based finite entropy upper bound and the uniform-law equality
   theorem.
@@ -50,6 +54,10 @@ Implemented and building:
 - entropy as a finite sum of `Real.negMulLog` terms;
 - entropy nonnegativity;
 - deterministic-law entropy `H(delta_a) = 0`;
+- zero entropy characterized by purity through
+  `Shannon.entropy_eq_zero_iff`;
+- random-variable zero entropy characterized by constancy on the source PMF
+  support through `Shannon.entropyOf_eq_zero_iff`;
 - entropy of random variables via pushforward laws;
 - joint entropy as entropy of a joint `PMF`;
 - invariance under equivalences, injective relabelings, coordinate swaps, and
@@ -59,12 +67,27 @@ Implemented and building:
   and domination/zero-mass helper lemmas;
 - finite conditional entropy, mutual information, and conditional mutual
   information as entropy identities;
-- conditional entropy chain-rule variants for joint PMFs and finite-valued
-  random variables;
+- pair conditional-entropy decompositions and the triple random-variable chain
+  rules `H(X,Y|Z) = H(Y|Z) + H(X|Y,Z)` and
+  `H(X,Y|Z) = H(X|Z) + H(Y|X,Z)`, together with swap invariance for the
+  conditioned pair;
 - mutual information symmetry and conditional mutual information symmetry
   under coordinate swaps, plus random-variable symmetry theorems
   `I(Y;X) = I(X;Y)` and `I(Y;X|Z) = I(X;Y|Z)`;
+- the equivalent mutual-information identities
+  `I(X;Y) = H(X) - H(X|Y)` and `I(X;Y) = H(Y) - H(Y|X)`, at both PMF and
+  random-variable levels, together with `I(X;X) = H(X)`;
+- the random-variable conditional-mutual-information identities
+  `I(X;Y|Z) = H(X|Z) - H(X|Y,Z)`, its symmetric form in `Y`, and
+  `I(X;Y|Z) = H(X|Z) + H(Y|Z) - H(X,Y|Z)`;
+- opt-in change of logarithm base through `Shannon.div_log_change_base`,
+  `Shannon.negMulLog_div_log`, `Shannon.entropy_div_log`, and
+  `Shannon.entropyOf_div_log`;
 - Jensen-based bound `H(P) <= log |alpha|` for nonempty finite alphabets;
+- support-sensitive bounds `H(P) <= log |support P|` and
+  `H(X) <= log |support (law X)|` through
+  `Shannon.entropy_le_log_support_ncard` and
+  `Shannon.entropyOf_le_log_support_ncard`;
 - uniform-law equality case for the entropy upper bound.
 
 The layer intentionally does not introduce a project-local probability type.
@@ -91,20 +114,54 @@ Implemented and building:
   product law and to the product of marginal measures;
 - finite conditional laws `P_{A | B=b}` for nonzero-marginal fibers, with
   factorization lemmas;
+- zero entropy on a positive conditional fiber characterized by purity of its
+  canonical conditional PMF through
+  `Shannon.condEntropyFstGivenSnd_eq_zero_iff_of_sndMarginal_ne_zero`;
+- global zero conditional entropy characterized by support-wise functional
+  dependence through `Shannon.condEntropy_eq_zero_iff_exists_function` and
+  `Shannon.condEntropyOf_eq_zero_iff_exists_function`;
+- deterministic and self-conditioning consequences
+  `Shannon.condEntropyOf_comp_eq_zero` and
+  `Shannon.condEntropyOf_self_eq_zero`, together with PMF and random-variable
+  joint-entropy equality characterizations;
 - conditional entropy as `sum_b P_B(b) H(P_{A | B=b})`;
+- PMF-facing triple conditional-entropy chain rules for `pairThirdLaw`, in both
+  variable orders;
+- deterministic entropy processing for PMFs and random variables, with equality
+  characterized by injectivity on the relevant law support;
+- the conditional deterministic chain rule
+  `H(X|Z) = H(f(X)|Z) + H(X|f(X),Z)`, its entropy-processing inequality, and
+  equality characterized by support-wise recovery of `X` from `(f(X), Z)`,
+  together with PMF-facing first-coordinate forms;
 - conditional mutual information as averaged fiber mutual information;
 - conditional mutual information as averaged fiber KL divergence;
 - semantic nonnegativity of conditional entropy, mutual information, and
   conditional mutual information;
+- random-variable conditional-mutual-information nonnegativity through
+  `Shannon.condMutualInfoOf_nonneg`;
+- pair-level inequalities `H(A|B) <= H(A)`,
+  `I(A;B) <= H(A), H(B)`, and
+  `H(A), H(B) <= H(A,B) <= H(A) + H(B)`, together with random-variable forms;
 - mutual-information chain rules:
   `I(A; B, C) = I(A; C) + I(A; B | C)` and
-  `I(A; B, C) = I(A; B) + I(A; C | B)`, plus random-variable forms.
+  `I(A; B, C) = I(A; B) + I(A; C | B)`, plus random-variable forms;
+- deterministic mutual-information processing, including
+  `I(X;Y) = I(f(X);Y) + I(X;Y|f(X))`, one-sided and two-sided random-variable
+  inequalities, and PMF coordinate-map corollaries;
+- both PMF conditional-entropy difference forms for conditional mutual
+  information;
+- triple-level conditional inequalities in PMF and random-variable forms:
+  `I(X;Y|Z) <= H(X|Z), H(Y|Z)` and
+  `H(X|Z), H(Y|Z) <= H(X,Y|Z) <= H(X|Z) + H(Y|Z)`;
 - conditioning-reduces-entropy:
   `H(A | B, C) <= H(A | C)`, plus the random-variable form.
 
-The semantic bridge API is useful but still young. Public aliases for theorem
-names should wait until more chain rules, symmetry variants, and downstream
-examples reveal the most natural naming scheme.
+The semantic bridge API remains separately importable. The Chunk 1 API review
+added compatibility-preserving left/right/both aliases for the pair bounds,
+deterministic processing, and conditional inequality band while retaining all
+descriptive marginal/coordinate names. More speculative MI/CMI-difference,
+fiber, reverse-identity, and relabeling aliases remain deferred pending real
+proof pressure.
 
 ## Certificate Layer Status
 
@@ -212,24 +269,131 @@ future work.
 
 ## Recommended Next Lean Tasks
 
-1. Produce a detailed Project B formalization map for finite textbook
-   information-theory fundamentals, centered on Chapter 2 of Cover and Thomas
-   and cross-checked against the other local textbooks.
-2. Turn that map into a first focused theorem-development phase with explicit
-   module boundaries, dependencies, success criteria, and build targets before
-   editing Lean.
-3. Start from the existing finite PMF entropy, conditional-law, information
-   measure, entropy-bound, and KL bridge APIs; audit mathlib before introducing
-   new definitions or parallel infrastructure.
-4. Keep the finite-family entropy representation undecided until the Project B
-   map and further pair/triple theorem pressure clarify what later chapters
-   need.
-5. Keep Project A certificate automation, richer assumptions, and external
-   certificate import as later work while Project B develops the mathematical
-   foundation they will eventually consume.
-6. Revisit public theorem aliases, `[simp]` policy, module splitting, and
-   upstream candidates only when the new theorem development supplies concrete
-   pressure.
+1. Before editing Lean for the next phase, prepare a focused implementation
+   plan for Project B Chunk 2 against the completed Chunk 1 API and the
+   textbook formalization map.
+2. Treat the general finite KL/equality layer as the leading dependency for
+   the equality cases deferred from Chunk 1: `I(X;Y) = 0` iff independence,
+   `H(X|Y) = H(X)` iff independence, and their conditional counterparts.
+3. Keep the root import unchanged. Entropy bounds, semantic theorems, units,
+   demos, and reference anchors remain separately importable where appropriate.
+4. Introduce generic PMF support helpers only when more than one production
+   proof uses them; the Step 1 scratch proofs do not by themselves justify a
+   broad new support abstraction.
+5. Keep stochastic channels, Markov structure, general data processing, Fano,
+   binary/q-ary bridges, and finite-family entropy in their planned later
+   chunks unless the Chunk 2 proof plan establishes a direct dependency.
+6. Continue updating the project log after each completed implementation step,
+   with focused Lake builds during development and a full suite at each
+   milestone boundary.
+
+## Completed Project B Chunk 1 Plan
+
+Current status: all 14 steps are complete. Step 1 fixed the theorem
+contract; steps 2 and 3 completed the ordinary-entropy block; steps 4 and 5
+completed the zero-conditional-entropy and functional-dependence block; step 6
+completed the pair/triple conditional-entropy chain-rule block; step 7 completed
+deterministic entropy processing and its equality cases; step 8 completed the
+elementary mutual-information identity family; step 9 completed the pair-level
+entropy and mutual-information inequalities; step 10 completed deterministic
+mutual-information processing; step 11 completed the conditional-mutual-
+information identity family; step 12 completed the triple-level conditional
+inequality band; step 13 completed opt-in units and the pressured API review;
+step 14 completed the integration review, public-status refresh, generated
+references, and full milestone suite.
+
+1. Completed on July 12, 2026: freeze theorem statements, support conventions,
+   names, file ownership, and proof routes. Temporary no-placeholder Lean
+   proofs validated both `H(X) = 0` iff purity and `H(X|Y) = 0` iff support-wise
+   functional dependence.
+2. Completed on July 12, 2026: prove `Shannon.entropy_eq_zero_iff`, stating
+   that a finite PMF has zero entropy exactly when it is pure, and
+   `Shannon.entropyOf_eq_zero_iff`, stating that a finite-valued random
+   variable has zero entropy exactly when it is constant on the source PMF
+   support.
+3. Completed on July 12, 2026: prove
+   `Shannon.entropy_le_log_support_ncard` and
+   `Shannon.entropyOf_le_log_support_ncard` by restricting the PMF to its
+   finite nonzero support and reusing `entropy_le_log_card`.
+4. Completed on July 12, 2026: prove
+   `Shannon.condEntropyFstGivenSnd_eq_zero_iff_of_sndMarginal_ne_zero`, reducing
+   positive-fiber zero entropy exactly to purity of the canonical conditional
+   PMF.
+5. Completed on July 12, 2026: characterize PMF and random-variable zero
+   conditional entropy by support-wise functional dependence; add deterministic
+   function, self-conditioning, and joint-entropy equality corollaries; and
+   promote the reused singleton-support PMF lemma.
+6. Completed on July 12, 2026: prove random-variable conditioned-pair swap
+   invariance and both triple conditional-entropy chain rules, together with
+   PMF-facing `pairThirdLaw` forms. The new rules remain explicit rewrites.
+7. Completed on July 12, 2026: prove PMF and random-variable deterministic
+   entropy monotonicity with equality exactly under injectivity on the law
+   support; prove the conditional deterministic chain identity, monotonicity,
+   and equality exactly under support-wise recovery from `(f(X), Z)`, together
+   with PMF-facing first-coordinate forms.
+8. Completed on July 14, 2026: prove both PMF and random-variable forms of
+   `I(A;B) = H(A) - H(A|B)` and `I(A;B) = H(B) - H(B|A)`, plus the diagonal-law
+   and self identities `I(A;A) = H(A)`, all in the lightweight finite layer.
+9. Completed on July 14, 2026: prove PMF and random-variable forms of
+   conditioning-reduces-entropy, MI upper bounds by both marginal entropies,
+   both marginal-to-joint entropy bounds, and joint entropy subadditivity;
+   independence-based equality cases remain deferred.
+10. Completed on July 14, 2026: add random-variable conditional-MI
+    nonnegativity, prove the exact deterministic chain decomposition
+    `I(X;Y) = I(f(X);Y) + I(X;Y|f(X))`, and derive one-sided and two-sided
+    deterministic mutual-information processing for random variables and joint
+    PMFs. Stochastic channels and conditional-independence equality
+    characterizations remain deferred.
+11. Completed on July 14, 2026: add random-variable forms of
+    `I(X;Y|Z) = H(X|Z) - H(X|Y,Z)`, its symmetric `Y` form, and
+    `I(X;Y|Z) = H(X|Z) + H(Y|Z) - H(X,Y|Z)` in the lightweight layer; add the
+    missing symmetric PMF difference identity in the semantic theorem layer.
+12. Completed on July 14, 2026: prove PMF and random-variable forms of
+    `I(X;Y|Z) <= H(X|Z), H(Y|Z)` and
+    `H(X|Z), H(Y|Z) <= H(X,Y|Z) <= H(X|Z) + H(Y|Z)`; conditional-independence
+    equality cases remain deferred.
+13. Completed on July 14, 2026: add the separately importable
+    `Shannon.Units` change-of-base module; add compatibility-preserving
+    left/right/both aliases for the pressured chain-rule, inequality, and
+    deterministic-processing families; and promote only canonical PMF
+    swap/diagonal and RV self reductions to `[simp]`.
+14. Completed on July 14, 2026: review the accumulated Chunk 1 diff and module
+    boundaries, update public status, regenerate the dependency graph and
+    434-declaration API index, and pass the complete root, bounds, units,
+    semantic bridge, reference, certificate-demo, examples, website,
+    placeholder, and diff-hygiene suite.
+
+### Locked Step 1 Contract
+
+- Equalities of random variables are support-wise: `X omega = f (Y omega)` is
+  required only for `omega in p.support`. No global equality outside the
+  probability law's support is imposed.
+- The primary zero-entropy theorems will use the names
+  `entropy_eq_zero_iff` and `entropyOf_eq_zero_iff`.
+- The primary zero-conditional-entropy theorems will use the names
+  `condEntropyFstGivenSnd_eq_zero_iff_of_sndMarginal_ne_zero`,
+  `condEntropy_eq_zero_iff_exists_function`, and
+  `condEntropyOf_eq_zero_iff_exists_function`.
+- Deterministic entropy equality is characterized by
+  `Set.InjOn f (p.map X).support`, not injectivity of `f comp X` on the source
+  support. Conditional deterministic equality instead uses recovery of
+  `X` from `(f(X), Z)` on the source support.
+- The new support bounds will be named
+  `entropy_le_log_support_ncard` and
+  `entropyOf_le_log_support_ncard`; they will not require an artificial
+  `[Nonempty alpha]` assumption because a PMF has nonempty support.
+- Lightweight algebraic identities and the new conditional chain rules remain
+  in `Shannon/InfoMeasures.lean`. Zero entropy remains in
+  `Shannon/Entropy.lean`, support bounds remain in
+  `Shannon/EntropyBounds.lean`, and semantic nonnegativity/equality consequences
+  remain in `Shannon/SemanticBridge/Theorems.lean` unless actual file pressure
+  justifies a later split.
+- Base conversion is opt-in and leaves nats canonical. `Shannon.Units` exposes
+  division-by-`Real.log`/`Real.logb` bridge theorems rather
+  than duplicate the entropy, conditional-entropy, MI, and CMI definition
+  hierarchy.
+- The root import, certificate architecture, and existing theorem statements
+  remain unchanged throughout this chunk.
 
 ## Active 9-Step Lean Theorem Plan
 
@@ -312,6 +476,7 @@ changes.
 ```powershell
 lake build LeanInfoTheory
 lake build LeanInfoTheory.Shannon.EntropyBounds
+lake build LeanInfoTheory.Shannon.Units
 lake build LeanInfoTheory.Shannon.SemanticBridge
 lake build LeanInfoTheory.MathlibFragments
 lake build LeanInfoTheory.Certificate.Submodularity

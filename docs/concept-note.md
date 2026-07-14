@@ -41,16 +41,16 @@ network-information-theory converse proofs.
   proof data needed for soundness.
 - Exact rational expression matching for checked certificate decompositions.
 - A first raw-to-checked validator for primitive-tagged certificate steps.
-- A first non-toy certificate demo proving entropy submodularity from a
-  validated conditional-mutual-information certificate.
+- Checked certificate demos proving entropy submodularity, subadditivity,
+  one-variable monotonicity, and three-way subadditivity.
 - A small set of recognizable examples from classical/network information
   theory.
 
 ## Current Limitations
 
-- The semantic bridge is still finite-PMF focused; full textbook theorem
-  families such as data processing, Fano, AEP, and source/channel coding are
-  future work.
+- The semantic bridge is still finite-PMF focused; general stochastic data
+  processing, independence equality cases, Fano, AEP, and source/channel
+  coding are future work.
 - The certificate layer checks and validates certificates, but it does not yet
   search for certificates automatically.
 - The certificate layer is not yet a full import pipeline for external

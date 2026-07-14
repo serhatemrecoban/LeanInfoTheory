@@ -30,13 +30,36 @@ when they stabilize.
 - Initial module structure added under `LeanInfoTheory/`.
 - Finite Shannon entropy and entropy-derived information measures now use
   mathlib `PMF`s and `Real.negMulLog`.
+- Zero entropy is characterized exactly: a finite PMF is pure, and a
+  finite-valued random variable is constant on the source PMF support.
 - Finite entropy is proved invariant under equivalence and injective alphabet
   relabelings, coordinate swaps, and product reassociation.
 - A Jensen-based finite entropy upper bound and its uniform-law equality case
   are proved in `LeanInfoTheory.Shannon.EntropyBounds`.
+- The stronger support-sensitive bounds `H(P) <= log |support P|` and
+  `H(X) <= log |support (law X)|` are also proved in the opt-in bounds module.
 - Semantic bridge theorems connect the finite API to expected
   self-information, conditional laws, KL divergence, semantic nonnegativity,
-  chain rules, and conditioning-reduces-entropy.
+  zero conditional entropy as support-wise functional dependence, pair/triple
+  conditional-entropy and mutual-information chain rules, deterministic
+  entropy processing with exact support-aware equality cases, deterministic
+  mutual-information processing, and conditioning-reduces-entropy.
+- The lightweight finite API includes the equivalent identities
+  `I(X;Y) = H(X) - H(X|Y)`, `I(X;Y) = H(Y) - H(Y|X)`, and
+  `I(X;X) = H(X)`.
+- Conditional mutual information has all three standard conditional-entropy
+  forms, including both differences `H(X|Z) - H(X|Y,Z)` and
+  `H(Y|Z) - H(Y|X,Z)`, and the conditional subadditivity gap
+  `H(X|Z) + H(Y|Z) - H(X,Y|Z)`.
+- The separately importable `LeanInfoTheory.Shannon.Units` module converts the
+  canonical nat-valued quantities to other logarithm bases without duplicating
+  the information-measure definitions.
+- The semantic theorem API proves `H(X|Y) <= H(X)`, bounds mutual information
+  by either marginal entropy, and places joint entropy between each marginal
+  and their sum. Deterministic maps of either or both variables cannot increase
+  mutual information. Conditionally, it proves
+  `I(X;Y|Z) <= H(X|Z), H(Y|Z)` and
+  `H(X|Z), H(Y|Z) <= H(X,Y|Z) <= H(X|Z) + H(Y|Z)`.
 - Closed theorem examples are present in the algebraic and checked certificate
   layers.
 - Checked certificate demos now cover entropy submodularity, entropy
@@ -46,6 +69,9 @@ when they stabilize.
   generated module dependency map, and source-derived declaration index live in
   `home_page/`.
 - Blueprint and roadmap notes live in `blueprint/` and `docs/`.
+- Project B Chunk 1 is complete: all 14 pair/triple finite-Shannon steps and
+  the full root/bounds/units/semantic/reference/certificate/example milestone
+  suite pass.
 
 ## Lean Modules
 
@@ -56,22 +82,35 @@ when they stabilize.
   constructions, and Kraft-McMillan.
 - `LeanInfoTheory.Probability.Finite`: real-mass bridge lemmas and reusable
   pointwise `PMF.map` facts in the `PMF` namespace for finite Shannon sums and
-  relabeling arguments.
+  relabeling arguments, plus the pure-law/singleton-support equivalence.
 - `LeanInfoTheory.Shannon.Entropy`: finite Shannon entropy in nats, with
-  nonnegativity, deterministic-law, and relabeling-invariance theorems.
-- `LeanInfoTheory.Shannon.EntropyBounds`: Jensen-based upper bound
-  `entropy_le_log_card` and uniform-law equality theorem
-  `entropy_uniformOfFintype`, kept separate from the lightweight entropy
-  definition file because it imports convexity/Jensen tools. Import this
-  module explicitly when using these bounds.
+  nonnegativity, zero-entropy characterizations, and relabeling-invariance
+  theorems.
+- `LeanInfoTheory.Shannon.EntropyBounds`: Jensen-based alphabet and support
+  upper bounds, including `entropy_le_log_card` and
+  `entropy_le_log_support_ncard`, plus the uniform-law equality theorem
+  `entropy_uniformOfFintype`. It stays separate from the lightweight entropy
+  definition because it imports convexity/Jensen tools. Import this module
+  explicitly when using these bounds.
 - `LeanInfoTheory.Shannon.InfoMeasures`: conditional entropy, mutual
   information, conditional mutual information, named marginals, and
-  random-variable versions.
+  random-variable versions, including both triple conditional-entropy chain
+  rules and the elementary mutual-information and conditional-mutual-
+  information identity families.
+- `LeanInfoTheory.Shannon.Units`: small opt-in logarithm-base conversion layer.
+  The canonical definitions remain measured in nats; this module relates
+  division by `Real.log` to `Real.logb` formulas without duplicating the
+  information-measure hierarchy.
 - `LeanInfoTheory.Shannon.SemanticBridge`: separated heavier bridge layer;
   contains finite entropy as expected self-information, finite conditional-law
   formulas, mutual information as KL divergence, conditional mutual information
   as averaged fiber mutual information and averaged fiber KL, semantic
-  nonnegativity, mutual-information chain rules, and
+  nonnegativity, zero conditional entropy as functional dependence,
+  PMF-facing triple conditional-entropy chain rules, mutual-information chain
+  rules, deterministic entropy processing and recovery equality cases,
+  pair-level entropy and mutual-information inequalities, deterministic
+  mutual-information processing, PMF-facing conditional-MI difference forms,
+  triple-level conditional inequalities and subadditivity, and
   conditioning-reduces-entropy.
 - `LeanInfoTheory.InformationMeasures`: public re-export for finite information
   measures and their core rewrite lemmas. Binary and q-ary entropy remain mathlib names:
@@ -118,6 +157,7 @@ the main finite-measure names into `LeanInfoTheory` as convenience aliases.
 Import heavier or demonstrational modules explicitly:
 
 - `LeanInfoTheory.Shannon.EntropyBounds` for Jensen-based entropy bounds.
+- `LeanInfoTheory.Shannon.Units` for logarithm-base conversion.
 - `LeanInfoTheory.Shannon.SemanticBridge` for self-information,
   conditional-law, KL, averaged conditional-KL, nonnegativity, and chain-rule
   bridge theorems.
@@ -130,11 +170,11 @@ Import heavier or demonstrational modules explicitly:
 
 ## Roadmap
 
-1. Design the Project B formalization map for finite textbook
-   information-theory fundamentals, centered on Chapter 2 of Cover and Thomas
-   and aligned with the existing finite Shannon and semantic bridge APIs.
-2. Formalize the selected finite entropy, relative-entropy, Markov/data
-   processing, sufficient-statistics, and Fano foundations in focused phases.
+1. Prepare the detailed implementation plan for Project B Chunk 2, beginning
+   from the finite KL/equality and independence infrastructure deliberately
+   deferred from the completed pair/triple Chunk 1.
+2. Continue the selected relative-entropy, Markov/data-processing,
+   sufficient-statistics, and Fano foundations in focused later chunks.
 3. Return to Project A by extending the checked-certificate path and certifying
    recognizable information-theoretic converse steps on top of that foundation.
 4. Add richer certificate assumptions such as independence, Markov, and
@@ -148,6 +188,7 @@ Import heavier or demonstrational modules explicitly:
 lake exe cache get
 lake build
 lake build LeanInfoTheory.Shannon.EntropyBounds
+lake build LeanInfoTheory.Shannon.Units
 lake build LeanInfoTheory.Shannon.SemanticBridge
 lake build LeanInfoTheory.MathlibFragments
 lake build LeanInfoTheory.Certificate.Submodularity

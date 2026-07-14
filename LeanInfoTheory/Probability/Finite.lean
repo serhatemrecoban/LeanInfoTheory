@@ -52,6 +52,23 @@ theorem sum_toReal [Fintype α] (p : PMF α) : (∑ a, (p a).toReal) = 1 := by
     _ = 1 := by
       simp
 
+/-- A PMF is pure at `a` exactly when its support is the singleton `{a}`. -/
+theorem eq_pure_iff_support_eq_singleton (p : PMF α) (a : α) :
+    p = PMF.pure a ↔ p.support = {a} := by
+  constructor
+  · intro h
+    rw [h, PMF.support_pure]
+  · intro h
+    apply PMF.ext
+    intro x
+    by_cases hx : x = a
+    · subst x
+      rw [(p.apply_eq_one_iff a).2 h]
+      simp
+    · have hpx : p x = 0 := (p.apply_eq_zero_iff x).2 (by simpa [h] using hx)
+      rw [hpx]
+      simp [hx]
+
 /--
 If `f` is injective, pushing a PMF forward along `f` preserves the mass of each
 source atom at its image.

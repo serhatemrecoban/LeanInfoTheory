@@ -5,6 +5,10 @@ highlights, and module guide record what is implemented now.
 
 ## Now
 
+- Prepare the detailed Project B Chunk 2 implementation plan on top of the
+  completed finite pair/triple Chunk 1 API.
+- Develop the finite KL/equality and independence infrastructure required by
+  the equality cases deliberately deferred from Chunk 1.
 - Extend the current generated module dependency map and source-derived
   declaration index toward a real theorem-level blueprint, full Lean doc-gen
   output, and blueprint PDF.
@@ -12,8 +16,6 @@ highlights, and module guide record what is implemented now.
   demo aligned with the Lean code as the API evolves.
 - Maintain project notes in the foundation conventions and project log.
 - Keep the lightweight finite API separated from heavier KL and coding imports.
-- Choose the next finite-information-theory theorem milestone after the
-  completed semantic bridge plan.
 
 ## 3 Months
 
@@ -24,16 +26,15 @@ highlights, and module guide record what is implemented now.
   orientation page.
 - Link generated docs and blueprint entries back to the curated theorem
   highlights and submodularity demo page.
-- Extend the current primitive-only checked certificate path beyond the
-  submodularity demo with additional textbook inequalities.
+- Extend the Cover-Thomas Chapter 2 layer toward stochastic data processing,
+  sufficient statistics, and Fano after the finite equality infrastructure.
 
 ## 6 Months
 
 - Add richer certificate constraints such as independence, functional
   dependence, and Markov constraints.
-- Certify several textbook entropy inequalities.
-- Develop more of the Cover-Thomas Chapter 2 theorem layer, such as data
-  processing, Fano, and broader chain-rule APIs.
+- Return to richer checked-certificate assumptions and recognizable converse
+  steps after the planned Project B foundations are in place.
 - Prepare focused mathlib PRs for generic finite-measure lemmas.
 
 ## 12 Months

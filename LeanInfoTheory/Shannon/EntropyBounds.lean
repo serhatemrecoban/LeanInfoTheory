@@ -21,7 +21,7 @@ namespace Shannon
 
 open scoped BigOperators
 
-universe u
+universe u v
 
 noncomputable section
 
@@ -128,6 +128,108 @@ theorem entropy_le_log_card {alpha : Type u} [Fintype alpha] [Nonempty alpha]
           ring
         _ = Real.log n := by
           rw [mul_one_div_cancel hn_ne, one_mul]
+
+private def supportFinset {alpha : Type u} [Fintype alpha]
+    (p : PMF alpha) : Finset alpha :=
+  Finset.univ.filter fun a => p a ≠ 0
+
+private theorem mem_supportFinset {alpha : Type u} [Fintype alpha]
+    (p : PMF alpha) (a : alpha) :
+    a ∈ supportFinset p ↔ a ∈ p.support := by
+  simp [supportFinset]
+
+private theorem supportFinset_card {alpha : Type u} [Fintype alpha]
+    (p : PMF alpha) :
+    (supportFinset p).card = p.support.ncard := by
+  have hset : (supportFinset p : Set alpha) = p.support := by
+    ext a
+    exact mem_supportFinset p a
+  calc
+    (supportFinset p).card = (supportFinset p : Set alpha).ncard := by
+      rw [Set.ncard_coe_finset]
+    _ = p.support.ncard := by rw [hset]
+
+private def supportPMF {alpha : Type u} [Fintype alpha]
+    (p : PMF alpha) : PMF (supportFinset p) := by
+  classical
+  apply PMF.ofFintype (fun a : supportFinset p => p a.1)
+  have hsupportSum :
+      (∑ a : supportFinset p, p a.1) =
+        ∑ a ∈ supportFinset p, p a := by
+    rw [Finset.univ_eq_attach]
+    exact Finset.sum_attach (supportFinset p) (fun a => p a)
+  have hsum_all : (∑ a : alpha, p a) = 1 := by
+    simpa using p.tsum_coe
+  calc
+    (∑ a : supportFinset p, p a.1) =
+        ∑ a ∈ supportFinset p, p a := hsupportSum
+    _ = ∑ a : alpha, p a := by
+      apply Finset.sum_subset
+      · intro a ha
+        simp at ha ⊢
+      · intro a _ha hnot
+        have ha_not_support : a ∉ p.support := by
+          intro ha
+          exact hnot ((mem_supportFinset p a).2 ha)
+        rw [(p.apply_eq_zero_iff a).2 ha_not_support]
+    _ = 1 := hsum_all
+
+private theorem entropy_supportPMF {alpha : Type u} [Fintype alpha]
+    (p : PMF alpha) : entropy (supportPMF p) = entropy p := by
+  classical
+  rw [entropy_eq_sum, entropy_eq_sum]
+  have hsupportSum :
+      (∑ a : supportFinset p, Real.negMulLog (p a.1).toReal) =
+      ∑ a ∈ supportFinset p, Real.negMulLog (p a).toReal := by
+    rw [Finset.univ_eq_attach]
+    exact
+      Finset.sum_attach (supportFinset p)
+        (fun a => Real.negMulLog (p a).toReal)
+  calc
+    (∑ a : supportFinset p,
+        Real.negMulLog (supportPMF p a).toReal) =
+        ∑ a : supportFinset p, Real.negMulLog (p a.1).toReal := by
+      rfl
+    _ = ∑ a ∈ supportFinset p,
+          Real.negMulLog (p a).toReal := hsupportSum
+    _ = ∑ a : alpha, Real.negMulLog (p a).toReal := by
+      apply Finset.sum_subset
+      · intro a ha
+        simp at ha ⊢
+      · intro a _ha hnot
+        have ha_not_support : a ∉ p.support := by
+          intro ha
+          exact hnot ((mem_supportFinset p a).2 ha)
+        rw [(p.apply_eq_zero_iff a).2 ha_not_support]
+        simp
+
+/--
+Finite Shannon entropy is bounded by the logarithm of the number of atoms with
+nonzero mass.
+
+Unlike `entropy_le_log_card`, this theorem counts only the PMF support and does
+not require a separate nonempty-alphabet instance.
+-/
+theorem entropy_le_log_support_ncard {alpha : Type u} [Fintype alpha]
+    (p : PMF alpha) :
+    entropy p <= Real.log (p.support.ncard : Real) := by
+  classical
+  letI : Nonempty (supportFinset p) := by
+    obtain ⟨a, ha⟩ := p.support_nonempty
+    exact ⟨⟨a, (mem_supportFinset p a).2 ha⟩⟩
+  have h := entropy_le_log_card (supportPMF p)
+  rw [entropy_supportPMF, Fintype.card_coe, supportFinset_card] at h
+  exact h
+
+/--
+The entropy of a finite-valued random variable is bounded by the logarithm of
+the support size of its pushforward law.
+-/
+theorem entropyOf_le_log_support_ncard
+    {omega : Type u} {alpha : Type v} [Fintype alpha]
+    (p : PMF omega) (X : omega -> alpha) :
+    entropyOf p X <= Real.log ((p.map X).support.ncard : Real) := by
+  simpa [entropyOf] using entropy_le_log_support_ncard (p.map X)
 
 /--
 The uniform distribution reaches the finite entropy upper bound.

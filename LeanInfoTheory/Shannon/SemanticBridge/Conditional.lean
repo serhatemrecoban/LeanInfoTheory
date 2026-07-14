@@ -295,7 +295,7 @@ theorem condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd
           intro b _hb
           exact (sndMarginal_toReal_mul_condEntropyFstGivenSnd p b).symm
 
-/-! ## Conditional mutual information fibers -/
+/-! ## Triple conditioning infrastructure -/
 
 /--
 The right-associated law `P_{A,B,C}` viewed as a law on `((A, B), C)`.
@@ -315,6 +315,16 @@ theorem pairThirdLaw_apply {alpha : Type u} {beta : Type v} {gamma : Type w}
   simpa [pairThirdLaw] using
     PMF.map_apply_equiv (p := p) (e := (Equiv.prodAssoc alpha beta gamma).symm) (a, b, c)
 
+private theorem map_pair_eq_pairThirdLaw
+    {alpha : Type u} {beta : Type v} {gamma : Type w}
+    (p : PMF (alpha × beta × gamma)) :
+    p.map (fun z => ((z.1, z.2.1), z.2.2)) = pairThirdLaw p := by
+  unfold pairThirdLaw
+  apply congrArg (fun f => p.map f)
+  funext z
+  rcases z with ⟨a, b, c⟩
+  rfl
+
 /-- The second marginal of the reassociated law `((A,B),C)` is the law of `C`. -/
 @[simp]
 theorem sndMarginal_pairThirdLaw {alpha : Type u} {beta : Type v} {gamma : Type w}
@@ -330,6 +340,52 @@ theorem entropy_pairThirdLaw {alpha : Type u} {beta : Type v} {gamma : Type w}
     (p : PMF (alpha × beta × gamma)) :
     entropy (pairThirdLaw p) = entropy p := by
   exact entropy_map_prodAssoc_symm p
+
+/--
+PMF form of the triple conditional-entropy chain rule:
+`H(A,B|C) = H(B|C) + H(A|B,C)`.
+-/
+theorem condEntropy_pairThirdLaw_chain_rule
+    {alpha : Type u} {beta : Type v} {gamma : Type w}
+    [Fintype alpha] [Fintype beta] [Fintype gamma]
+    (p : PMF (alpha × beta × gamma)) :
+    condEntropy (pairThirdLaw p) =
+      condEntropy (sndThirdMarginal p) + condEntropy p := by
+  have hsnd : p.map (fun z => z.2) = sndThirdMarginal p := by
+    apply congrArg (fun f => p.map f)
+    funext z
+    rfl
+  have hid : p.map (fun z => z) = p := by
+    change p.map id = p
+    exact PMF.map_id p
+  have h :=
+    condEntropyOf_pair_chain_rule
+      p (fun z => z.1) (fun z => z.2.1) (fun z => z.2.2)
+  unfold condEntropyOf at h
+  rw [map_pair_eq_pairThirdLaw, hsnd, hid] at h
+  exact h
+
+/--
+Swapped PMF form of the triple conditional-entropy chain rule:
+`H(A,B|C) = H(A|C) + H(B|A,C)`.
+-/
+theorem condEntropy_pairThirdLaw_chain_rule_swap
+    {alpha : Type u} {beta : Type v} {gamma : Type w}
+    [Fintype alpha] [Fintype beta] [Fintype gamma]
+    (p : PMF (alpha × beta × gamma)) :
+    condEntropy (pairThirdLaw p) =
+      condEntropy (fstThirdMarginal p) +
+        condEntropy (p.map fun z => (z.2.1, z.1, z.2.2)) := by
+  have hfst : p.map (fun z => (z.1, z.2.2)) = fstThirdMarginal p := by
+    rfl
+  have h :=
+    condEntropyOf_pair_chain_rule_swap
+      p (fun z => z.1) (fun z => z.2.1) (fun z => z.2.2)
+  unfold condEntropyOf at h
+  rw [map_pair_eq_pairThirdLaw, hfst] at h
+  exact h
+
+/-! ## Conditional mutual information fibers -/
 
 /--
 Conditional joint law of the first two coordinates given a nonzero third

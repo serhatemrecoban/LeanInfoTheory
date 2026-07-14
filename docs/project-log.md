@@ -1814,6 +1814,752 @@ all certificate demos and pressure tests, and examples; and the website,
 generated JSON, forbidden-placeholder, and diff-hygiene checks all passed. The
 root import remains unchanged.
 
+### 62. Project B Chunk 1 Contract and Proof Spikes
+
+On July 12, 2026, the first implementation phase of the Project B
+formalization map was fixed as a 14-step pair/triple Shannon theorem plan. The
+phase starts from zero entropy and support-cardinality bounds, passes through
+zero conditional entropy and support-wise functional dependence, then develops
+deterministic processing, MI/CMI identities, and their named textbook
+inequality consequences. Minimal base conversion and the milestone integration
+pass close the chunk.
+
+Step 1 is complete. Before any production theorem was added, temporary Lean
+proofs were compiled against the current semantic bridge. The scratch file was
+then removed. The proof spikes established all of the following without
+`sorry`, `admit`, new axioms, or new opaque constants:
+
+- for a finite PMF, a zero entropy sum forces every `Real.negMulLog` summand to
+  vanish, a support atom must therefore have mass one, and the PMF is pure;
+- `p.map f = PMF.pure b` is equivalent to `f a = b` for every
+  `a in p.support`, using the existing `PMF.support_map` theorem;
+- `condEntropy p = 0` forces every positive-mass conditional fiber to have zero
+  entropy and hence to be pure;
+- the pure-fiber witnesses assemble into a total function `f : beta -> alpha`;
+  a support atom of the joint PMF supplies the harmless default value on
+  zero-marginal fibers, so no extra `[Nonempty alpha]` assumption is needed;
+- conversely, support-wise equality `a = f b` makes every positive conditional
+  support a singleton and therefore makes expected conditional entropy zero;
+- the PMF theorem transfers to random variables exactly through
+  `PMF.support_map`, yielding equality only on the source PMF support.
+
+The public theorem contract is now support-aware. `entropy_eq_zero_iff` and
+`entropyOf_eq_zero_iff` will provide the zero-entropy API. The positive-fiber
+theorem will be
+`condEntropyFstGivenSnd_eq_zero_iff_of_sndMarginal_ne_zero`, while the global
+PMF and random-variable theorems will be
+`condEntropy_eq_zero_iff_exists_function` and
+`condEntropyOf_eq_zero_iff_exists_function`. A separate public
+functional-dependence predicate is not being introduced in this chunk; direct
+existential decoder statements fit the current theorem surface and avoid
+premature architecture for later certificate constraints.
+
+The deterministic-processing equality contract was also fixed. In the
+random-variable statement, `H(f(X)) = H(X)` will be characterized by
+`Set.InjOn f (p.map X).support`. Requiring `f comp X` to be injective on the
+source support would be incorrectly strong when `X` itself identifies source
+outcomes. The conditional equality theorem will instead say that `X` can be
+recovered from `(f(X), Z)` on the source support.
+
+Module ownership remains conservative:
+
+- zero entropy belongs in `Shannon/Entropy.lean`;
+- support-cardinality bounds belong in the separately importable
+  `Shannon/EntropyBounds.lean`;
+- algebraic MI/CMI and conditional-chain-rule identities belong in
+  `Shannon/InfoMeasures.lean`;
+- consequences requiring expected conditional laws or semantic
+  nonnegativity belong in `Shannon/SemanticBridge/Theorems.lean`;
+- base conversion will be a small opt-in module and will not replace the
+  canonical real-valued definitions measured in nats.
+
+The units module will expose change-of-base lemmas rather than duplicate
+entropy, conditional entropy, MI, and CMI definitions.
+
+The root import is unchanged. Step 1 changed only maintained project notes;
+production Lean work begins in step 2 with the zero-entropy characterization.
+
+### 63. Zero-Entropy Characterizations
+
+Step 2 of Project B Chunk 1 was completed on July 12, 2026. The lightweight
+finite entropy module now exposes two new public theorems:
+
+- `Shannon.entropy_eq_zero_iff` states
+  `entropy p = 0 <-> exists a, p = PMF.pure a`;
+- `Shannon.entropyOf_eq_zero_iff` states that `entropyOf p X = 0` exactly when
+  there is an output `a` such that `X omega = a` for every
+  `omega in p.support`.
+
+The PMF proof uses nonnegativity of every `Real.negMulLog` summand. If their
+finite sum is zero, every summand is zero; choosing a PMF support atom rules out
+zero mass there, so its mass is one and the PMF is pure. The random-variable
+proof transfers purity of `p.map X` to support-wise constancy using
+`PMF.support_map`.
+
+The implementation deliberately keeps the auxiliary singleton-support and
+constant-pushforward lemmas private. Step 2 has only one production consumer
+for the map-to-pure helper, so there is not yet enough pressure for a new
+public PMF support API. Step 5 can promote a generic lemma if the functional-
+dependence proofs create genuine reuse.
+
+No extra `[Nonempty alpha]` assumption is present: the existing
+`PMF.support_nonempty` theorem supplies the required witness. No existing
+theorem statement, root import, entropy definition, certificate module, or
+project architecture changed.
+
+Focused and downstream verification passed:
+
+- `lake build LeanInfoTheory.Shannon.Entropy`;
+- `lake build LeanInfoTheory`;
+- `lake build LeanInfoTheory.Shannon.EntropyBounds`;
+- `lake build LeanInfoTheory.Shannon.SemanticBridge`.
+
+The next active task is step 3, the support-cardinality entropy bound.
+
+### 64. Support-Cardinality Entropy Bounds
+
+Step 3 of Project B Chunk 1 was completed on July 12, 2026. The separately
+importable `Shannon/EntropyBounds.lean` module now proves:
+
+- `Shannon.entropy_le_log_support_ncard`:
+  `entropy p <= Real.log (p.support.ncard : Real)`;
+- `Shannon.entropyOf_le_log_support_ncard`:
+  `entropyOf p X <= Real.log ((p.map X).support.ncard : Real)`.
+
+The proof does not duplicate the Jensen argument in `entropy_le_log_card`.
+Instead, a private `Finset` collects exactly the atoms with nonzero PMF mass,
+a private PMF on that finite subtype reuses the original masses, and finite
+sum calculations prove that this support PMF has total mass one and the same
+entropy as the original law. The existing alphabet-cardinality theorem then
+applies to the support subtype, whose `Fintype.card` rewrites to
+`p.support.ncard`.
+
+Using a concrete support `Finset` was important for proof stability. An initial
+scratch formulation over the set subtype encountered competing `Fintype`
+enumerations in subtype sums. The `Finset` subtype has a canonical enumeration,
+and `Finset.univ_eq_attach` plus `Finset.sum_attach` provide direct sum bridges
+without changing the mathematical construction.
+
+As fixed in the Step 1 contract, neither theorem requires `[Nonempty alpha]`.
+`PMF.support_nonempty` constructs the nonempty instance needed only for the
+private support alphabet. All support constructions remain private, the root
+import remains unchanged, and the bounds module remains opt-in.
+
+Focused verification passed with
+`lake build LeanInfoTheory.Shannon.EntropyBounds`; the lightweight root and
+semantic bridge targets also passed together, confirming that the new analytic
+theorems did not enter their import surfaces.
+
+The next active task is step 4, zero entropy on positive conditional fibers.
+
+### 65. Positive Conditional-Fiber Zero Entropy
+
+Step 4 of Project B Chunk 1 was completed on July 12, 2026. The semantic
+theorem layer now exposes
+`Shannon.condEntropyFstGivenSnd_eq_zero_iff_of_sndMarginal_ne_zero`.
+For `hb : sndMarginal p b != 0`, it states
+
+```text
+condEntropyFstGivenSnd p b = 0
+  <-> exists a, condFstGivenSnd p b hb = PMF.pure a.
+```
+
+The proof deliberately reuses the existing API rather than inspecting the
+conditional PMF sum again. The theorem
+`condEntropyFstGivenSnd_of_sndMarginal_ne_zero` rewrites the numeric fiber
+quantity to `entropy (condFstGivenSnd p b hb)`, after which the Step 2 theorem
+`entropy_eq_zero_iff` gives the result directly.
+
+The zero-marginal convention is unchanged and remains covered by
+`condEntropyFstGivenSnd_of_sndMarginal_eq_zero`: such fibers contribute the
+number zero without manufacturing a conditional PMF. The new theorem is
+therefore intentionally parameterized by a nonzero-marginal proof and makes no
+claim about a canonical law on a null fiber.
+
+No new definition, helper representation, typeclass assumption, import, or
+root export was introduced. Focused verification passed for
+`LeanInfoTheory.Shannon.SemanticBridge.Theorems`; the aggregate semantic bridge
+and lightweight root targets also passed.
+
+The next active task is step 5, the global equivalence between zero conditional
+entropy and support-wise functional dependence.
+
+### 66. Zero Conditional Entropy and Functional Dependence
+
+Step 5 of Project B Chunk 1 was completed on July 12, 2026. The semantic
+theorem layer now contains the global PMF equivalence
+
+```text
+condEntropy p = 0
+  <-> exists f : beta -> alpha,
+        forall z in p.support, z.1 = f z.2
+```
+
+as `Shannon.condEntropy_eq_zero_iff_exists_function`. Its random-variable form,
+`Shannon.condEntropyOf_eq_zero_iff_exists_function`, states
+
+```text
+condEntropyOf p X Y = 0
+  <-> exists f : beta -> alpha,
+        forall omega in p.support, X omega = f (Y omega).
+```
+
+The forward PMF proof rewrites conditional entropy as the finite weighted sum
+of fiber entropies. Nonnegativity and a zero total force every positive-weight
+fiber entropy to be zero; Step 4 then makes each positive fiber pure. Classical
+choice assembles those pure-fiber atoms into a total decoder. A joint support
+atom supplies a default output on null fibers, so the statement needs no extra
+`[Nonempty alpha]` assumption.
+
+For the converse, support-wise functional dependence makes each positive
+conditional support the singleton `{f b}`. The conditional PMF is therefore
+pure, every fiber contribution is zero, and the expected conditional entropy
+vanishes. Null fibers continue to use the established numeric-zero branch.
+
+Step 5 also adds the expected textbook corollaries:
+
+- `Shannon.condEntropyOf_comp_eq_zero`: `H(f(Y)|Y) = 0`;
+- `Shannon.condEntropyOf_self_eq_zero`: `H(X|X) = 0`;
+- `Shannon.entropy_eq_entropy_sndMarginal_iff_exists_function`;
+- `Shannon.jointEntropyOf_eq_entropyOf_iff_exists_function`, expressing
+  `H(X,Y) = H(Y)` iff `X` is a support-wise function of `Y`.
+
+The singleton-support PMF argument from Step 2 now had a second production
+consumer, so it was promoted exactly once to the generic theorem
+`PMF.eq_pure_iff_support_eq_singleton` in `Probability/Finite.lean`. The former
+private duplicate in `Entropy.lean` was removed. The broader map-to-pure helper
+remains private because it still lacks comparable reuse pressure.
+
+No public functional-dependence predicate was introduced. These direct
+existential statements do not add functional-dependence assumptions to the
+certificate checker; that Project A extension remains in Future Work Note 11.
+No existing theorem statement, root import, or module boundary changed.
+
+Verification passed for `LeanInfoTheory.Shannon.Entropy`,
+`LeanInfoTheory.Shannon.SemanticBridge.Theorems`, the aggregate semantic bridge,
+the separately importable entropy bounds, and the lightweight root.
+
+The next active task is step 6, the remaining pair/triple conditional-entropy
+chain rules.
+
+### 67. Pair/Triple Conditional-Entropy Chain Rules
+
+Step 6 of Project B Chunk 1 was completed on July 12, 2026. The lightweight
+random-variable layer now exposes the conditioned-pair swap theorem
+
+- `Shannon.condEntropyOf_pair_swap`:
+  `H(Y,X|Z) = H(X,Y|Z)`;
+
+and both textbook triple conditional-entropy chain rules:
+
+- `Shannon.condEntropyOf_pair_chain_rule`:
+  `H(X,Y|Z) = H(Y|Z) + H(X|Y,Z)`;
+- `Shannon.condEntropyOf_pair_chain_rule_swap`:
+  `H(X,Y|Z) = H(X|Z) + H(Y|X,Z)`.
+
+The primary rule is an entropy-identity calculation using product
+reassociation. The swapped rule reuses conditioned-pair swap invariance and
+the primary rule rather than duplicating that algebra. These random-variable
+theorems live in `Shannon/InfoMeasures.lean` and are exported by the
+lightweight `InformationMeasures` compatibility module.
+
+The separately importable conditional semantic bridge adds the corresponding
+PMF-facing statements for a law `p : PMF (alpha × beta × gamma)`:
+
+- `Shannon.condEntropy_pairThirdLaw_chain_rule`;
+- `Shannon.condEntropy_pairThirdLaw_chain_rule_swap`.
+
+Here `pairThirdLaw p` views the triple as the conditioned pair `(A,B)` and
+conditioning variable `C`. The wrappers reuse the random-variable rules and
+the established first/second/third marginal maps, so no duplicate conditional
+entropy definition or new triple-law representation was introduced.
+
+Following Future Work Note 16, none of the chain-rule equalities is marked
+`[simp]`: both sides are useful normal forms, and automatic expansion would
+choose a direction before downstream theorem pressure has identified a stable
+canonical form. No existing theorem statement or root import changed.
+
+Focused verification passed for `LeanInfoTheory.Shannon.InfoMeasures` and
+`LeanInfoTheory.Shannon.SemanticBridge.Conditional`. Downstream verification
+also passed for the lightweight root, the separately importable entropy
+bounds, and the aggregate semantic bridge.
+
+The next active task is step 7, unconditional and conditional deterministic
+entropy processing with the support-aware equality cases fixed in Step 1.
+
+### 68. Deterministic Entropy Processing
+
+Step 7 of Project B Chunk 1 was completed on July 12, 2026. The semantic
+theorem layer now proves that deterministic post-processing cannot increase
+finite entropy:
+
+- `Shannon.entropy_map_le` for a PMF pushed forward by `f`;
+- `Shannon.entropyOf_comp_le` for a finite-valued random variable `f(X)`.
+
+The exact equality cases are:
+
+- `Shannon.entropy_map_eq_iff_injOn_support`;
+- `Shannon.entropyOf_comp_eq_iff_injOn_support`.
+
+As fixed in Step 1, the random-variable theorem states
+
+```text
+H(f(X)) = H(X) <-> Set.InjOn f (p.map X).support.
+```
+
+It does not require `f comp X` to be injective on the source outcome support.
+The proof decomposes `H(X)` as `H(f(X)) + H(X|f(X))`. Zero conditional entropy
+gives a support-wise left inverse, hence injectivity on the law support. In the
+reverse direction, mathlib's `Function.invFunOn` supplies a left inverse on
+that support. A support atom from the PMF provides the local `Nonempty`
+instance, so no artificial typeclass assumption enters the theorem statement.
+
+Conditional deterministic processing is built from the Step 6 chain rules.
+The new identity
+
+- `Shannon.condEntropyOf_deterministic_chain_rule`:
+  `H(X|Z) = H(f(X)|Z) + H(X|f(X),Z)`
+
+immediately yields `Shannon.condEntropyOf_comp_le`. Its equality theorem,
+`Shannon.condEntropyOf_comp_eq_iff_exists_recovery`, states
+
+```text
+H(f(X)|Z) = H(X|Z)
+  <-> exists g, forall omega in p.support,
+        X omega = g (f (X omega), Z omega).
+```
+
+The PMF-facing corollaries `Shannon.condEntropy_map_fst_le` and
+`Shannon.condEntropy_map_fst_eq_iff_exists_recovery` apply the same result to
+the first coordinate of a joint law. This is deterministic entropy processing,
+not the later stochastic-channel data-processing API; no channel or Markov
+abstraction was introduced.
+
+All nine public declarations live in the separately importable
+`Shannon/SemanticBridge/Theorems.lean` module because their proofs use semantic
+conditional-entropy nonnegativity and equality results. The root import and
+existing theorem statements remain unchanged.
+
+Focused verification passed for
+`LeanInfoTheory.Shannon.SemanticBridge.Theorems`. Downstream verification also
+passed for the lightweight root, the separately importable entropy bounds, and
+the aggregate semantic bridge.
+
+The next active task is step 8, the elementary mutual-information identity
+family.
+
+### 69. Elementary Mutual-Information Identities
+
+Step 8 of Project B Chunk 1 was completed on July 14, 2026. The lightweight
+finite information-measure layer now exposes both standard conditional-entropy
+forms of mutual information for a joint PMF:
+
+- `Shannon.mutualInfo_eq_entropy_fstMarginal_sub_condEntropy`:
+  `I(A;B) = H(A) - H(A|B)`;
+- `Shannon.mutualInfo_eq_entropy_sndMarginal_sub_condEntropy_swap`:
+  `I(A;B) = H(B) - H(B|A)`.
+
+The corresponding random-variable declarations are:
+
+- `Shannon.mutualInfoOf_eq_entropyOf_sub_condEntropyOf`;
+- `Shannon.mutualInfoOf_eq_entropyOf_sub_condEntropyOf_swap`.
+
+The same block also proves the textbook self-mutual-information identity
+through:
+
+- `Shannon.mutualInfo_map_diag`, stating that the diagonal law of `A` has
+  mutual information `H(A)`;
+- `Shannon.mutualInfoOf_self`, stating `I(X;X) = H(X)`.
+
+The difference identities are direct algebraic consequences of the existing
+entropy definitions and swap theorem. The diagonal result uses injectivity of
+`fun a => (a, a)` and entropy invariance under injective relabeling, so no semantic
+nonnegativity, KL divergence, or zero-conditional-entropy theorem is needed.
+
+All six declarations live in `Shannon/InfoMeasures.lean` and are exported by
+the explicit lightweight `InformationMeasures` compatibility module. They are
+kept as explicit rewrites rather than `[simp]` lemmas. Reverse-oriented
+restatements such as `H(X|Y) = H(X) - I(X;Y)` were not added preemptively;
+Step 9 can show whether those aliases improve actual inequality proofs.
+The six short identities fit the existing coherent module and do not yet
+justify splitting `InfoMeasures.lean`.
+
+No existing theorem statement, root import, semantic-bridge boundary, or
+certificate architecture changed. Focused verification passed for
+`LeanInfoTheory.Shannon.InfoMeasures` and
+`LeanInfoTheory.InformationMeasures`. Downstream verification passed for the
+lightweight root, the separately importable entropy bounds, and the aggregate
+semantic bridge.
+
+The next active task is step 9, pair-level entropy and mutual-information
+inequalities.
+
+### 70. Pair-Level Entropy and Mutual-Information Inequalities
+
+Step 9 of Project B Chunk 1 was completed on July 14, 2026. The separately
+importable semantic theorem layer now exposes the standard pair-level entropy
+inequalities for a finite joint PMF.
+
+Conditioning reduces entropy through
+`Shannon.condEntropy_le_entropy_fstMarginal`:
+
+```text
+H(A|B) <= H(A).
+```
+
+Mutual information is bounded by either marginal entropy through:
+
+- `Shannon.mutualInfo_le_entropy_fstMarginal`;
+- `Shannon.mutualInfo_le_entropy_sndMarginal`.
+
+The joint entropy lies between each marginal and their sum through:
+
+- `Shannon.entropy_fstMarginal_le_entropy`;
+- `Shannon.entropy_sndMarginal_le_entropy`;
+- `Shannon.entropy_le_entropy_fstMarginal_add_entropy_sndMarginal`.
+
+The six direct random-variable forms are:
+
+- `Shannon.condEntropyOf_le_entropyOf`;
+- `Shannon.mutualInfoOf_le_entropyOf_left`;
+- `Shannon.mutualInfoOf_le_entropyOf_right`;
+- `Shannon.entropyOf_le_jointEntropyOf`;
+- `Shannon.entropyOf_le_jointEntropyOf_swap`;
+- `Shannon.jointEntropyOf_le_entropyOf_add_entropyOf`.
+
+Together these state the familiar pair band
+
+```text
+H(X), H(Y) <= H(X,Y) <= H(X) + H(Y),
+I(X;Y) <= H(X), H(Y),
+H(X|Y) <= H(X).
+```
+
+The proofs reuse mutual-information and conditional-entropy nonnegativity,
+the Step 8 entropy-difference identities, and the existing pair chain rules.
+No reverse-oriented Step 8 aliases were needed, so none were added. The
+theorems belong in `Shannon/SemanticBridge/Theorems.lean`, not the lightweight
+root, because their proofs depend on semantic nonnegativity.
+
+As required by Future Work Note 18, this step proves inequalities only. It does
+not pull forward `I(X;Y) = 0` iff independence, equality in subadditivity, or
+`H(X|Y) = H(X)` iff independence; those require the later KL/equality API.
+
+No existing theorem statement, import boundary, or certificate architecture
+changed. Focused verification passed for
+`LeanInfoTheory.Shannon.SemanticBridge.Theorems`; downstream verification
+passed for the lightweight root, the separately importable entropy bounds, and
+the aggregate semantic bridge.
+
+### 71. Deterministic Mutual-Information Processing
+
+Step 10 of Project B Chunk 1 was completed on July 14, 2026. The semantic
+theorem layer now exposes the random-variable nonnegativity theorem
+`Shannon.condMutualInfoOf_nonneg` and the exact deterministic decomposition
+
+```text
+I(X;Y) = I(f(X);Y) + I(X;Y | f(X)).
+```
+
+This identity is available as
+`Shannon.mutualInfoOf_deterministic_chain_rule_left`. Conditional mutual
+information nonnegativity then gives the one-sided processing inequalities
+
+- `Shannon.mutualInfoOf_comp_left_le`;
+- `Shannon.mutualInfoOf_comp_right_le`;
+
+and `Shannon.mutualInfoOf_comp_le` handles deterministic maps of both
+variables:
+
+```text
+I(f(X);g(Y)) <= I(X;Y).
+```
+
+The PMF-facing coordinate forms are `Shannon.mutualInfo_map_fst_le`,
+`Shannon.mutualInfo_map_snd_le`, and `Shannon.mutualInfo_map_prod_le`.
+
+The proof first observes privately that adjoining a deterministic function to
+the variable it came from is an injective relabeling and therefore preserves
+the relevant marginal and joint entropies. The existing mutual-information
+chain rule then isolates the nonnegative conditional-MI remainder. This route
+did not use the private Step 7 decomposition
+`H(X) = H(f(X)) + H(X|f(X))`, so Future Work Note 19 keeps that identity private
+until a genuine public consumer appears.
+
+This step remains strictly deterministic. It does not introduce stochastic
+channels, Markov structure, conditional-independence characterizations, or the
+general data-processing inequality. The exact right-oriented chain identity
+was also not duplicated: the right processing inequality follows cleanly from
+symmetry, and the project continues to avoid adding symmetric rewrite variants
+without downstream pressure.
+
+The required naming audit added the long chain-rule name and the pressured
+`comp`/coordinate-map families to Future Work Note 14. No declarations were
+renamed during the active theorem phase.
+
+Focused verification passed for
+`LeanInfoTheory.Shannon.SemanticBridge.Theorems` (2693 jobs). Downstream
+verification passed for the lightweight root, the separately importable
+entropy bounds, and the aggregate semantic bridge (2709 jobs). The root import
+remains unchanged. The source-derived API index was regenerated with 391 public
+declarations, and the website, generated JSON, forbidden-placeholder, and diff
+hygiene checks all passed. The dependency blueprint was refreshed without an
+import-graph change.
+
+### 72. Conditional-Mutual-Information Identity Family
+
+Step 11 of Project B Chunk 1 was completed on July 14, 2026. The project already
+had the four-entropy expansion of conditional mutual information, the PMF form
+
+```text
+I(A;B|C) = H(A|C) + H(B|C) - H(A,B|C),
+```
+
+and the left-oriented PMF difference. This step filled only the missing parts
+instead of duplicating that API.
+
+The lightweight `Shannon/InfoMeasures.lean` layer now exposes three standard
+random-variable rewrites:
+
+- `Shannon.condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf`:
+  `I(X;Y|Z) = H(X|Z) - H(X|Y,Z)`;
+- `Shannon.condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf_swap`:
+  `I(X;Y|Z) = H(Y|Z) - H(Y|X,Z)`;
+- `Shannon.condMutualInfoOf_eq_condEntropyOf_add_condEntropyOf_sub_condEntropyOf_pair`:
+  `I(X;Y|Z) = H(X|Z) + H(Y|Z) - H(X,Y|Z)`.
+
+All three are included in the explicit `LeanInfoTheory.InformationMeasures`
+re-export. The semantic theorem layer adds the missing PMF orientation
+`Shannon.condMutualInfo_eq_condEntropy_sndThirdMarginal_sub_condEntropy_swap12`,
+which states `I(A;B|C) = H(B|C) - H(B|A,C)`.
+
+The RV proofs are algebraic consequences of the existing entropy expansion,
+product reassociation, and CMI symmetry. The PMF proof reuses
+`condMutualInfo_eq_condEntropy_marginals` and the existing swapped conditional-
+entropy chain rule. These are explicit rewrite theorems rather than `[simp]`
+rules; expanded and difference normal forms remain independently useful.
+
+The Step 11 audit found no genuine use for the deferred right-oriented exact
+deterministic identity `I(X;Y) = I(X;g(Y)) + I(X;Y|g(Y))`, and no proof repeated
+the private Step 10 augmentation argument. Consequently, no symmetric
+deterministic rewrite or injective-relabeling abstraction was added. Reverse
+ordinary-MI identities were also unnecessary. Future Work Notes 14 and 21 keep
+those decisions deferred to actual downstream pressure.
+
+The required naming audit added the long RV conditional-subadditivity form and
+the representation-heavy PMF `_sndThirdMarginal...swap12` form to Future Work
+Note 14, together with the two RV difference names so the family can be reviewed
+coherently in Step 13. No existing declaration was renamed.
+
+The focused build passed for `LeanInfoTheory.Shannon.InfoMeasures`,
+`LeanInfoTheory.InformationMeasures`, and
+`LeanInfoTheory.Shannon.SemanticBridge.Theorems` (2694 jobs). Downstream
+verification passed for the lightweight root, the separately importable
+entropy bounds, and the aggregate semantic bridge (2709 jobs). The root import
+remains unchanged. The source-derived API index was regenerated with 395 public
+declarations, and the website, generated JSON, forbidden-placeholder, and diff
+hygiene checks all passed. The dependency blueprint was refreshed without an
+import-graph change.
+
+### 73. Triple-Level Conditional Inequalities
+
+Step 12 of Project B Chunk 1 was completed on July 14, 2026. It is the
+conditional analogue of the Step 9 pair-level inequality block. Together with
+the existing conditioning-reduces theorem, the semantic API now exposes the
+full finite conditional band
+
+```text
+I(X;Y|Z) <= H(X|Z), H(Y|Z),
+H(X|Z), H(Y|Z) <= H(X,Y|Z) <= H(X|Z) + H(Y|Z).
+```
+
+The five PMF-facing declarations are:
+
+- `Shannon.condMutualInfo_le_condEntropy_fstThirdMarginal`;
+- `Shannon.condMutualInfo_le_condEntropy_sndThirdMarginal`;
+- `Shannon.condEntropy_fstThirdMarginal_le_condEntropy_pairThirdLaw`;
+- `Shannon.condEntropy_sndThirdMarginal_le_condEntropy_pairThirdLaw`;
+- `Shannon.condEntropy_pairThirdLaw_le_condEntropy_fstThirdMarginal_add_condEntropy_sndThirdMarginal`.
+
+Their five direct random-variable counterparts are:
+
+- `Shannon.condMutualInfoOf_le_condEntropyOf_left`;
+- `Shannon.condMutualInfoOf_le_condEntropyOf_right`;
+- `Shannon.condEntropyOf_le_condEntropyOf_pair`;
+- `Shannon.condEntropyOf_le_condEntropyOf_pair_swap`;
+- `Shannon.condEntropyOf_pair_le_condEntropyOf_add_condEntropyOf`.
+
+The CMI upper bounds subtract a nonnegative conditional entropy from the Step 11
+difference identities. The two conditional-marginal lower bounds use the
+Step 6 conditional chain rules and conditional-entropy nonnegativity.
+Conditional subadditivity is exactly the nonnegativity of the Step 11
+conditional-subadditivity gap. All ten results therefore remain in the
+separately importable semantic theorem layer.
+
+As required by Future Work Note 18, this step adds inequalities only. It does
+not add equality characterizations through conditional independence or zero
+CMI. The proofs did not consume the deferred right-oriented deterministic chain
+identity, reverse ordinary-MI rewrites, or the private Step 10 augmentation
+argument. Future Work Note 21 therefore still has only one genuine consumer.
+
+The Step 12 naming audit records all ten declarations in Future Work Note 14 so
+the PMF and RV families can be reviewed coherently. In particular, the PMF names
+expose `fstThirdMarginal`, `sndThirdMarginal`, and `pairThirdLaw`; the RV
+single-to-pair bounds use an asymmetric unsuffixed/`_swap` family; and both
+subadditivity names are long. No declaration was renamed during the active
+theorem phase.
+
+Focused verification passed for
+`LeanInfoTheory.Shannon.SemanticBridge.Theorems` (2693 jobs). Downstream
+verification passed for the lightweight root, the separately importable
+entropy bounds, and the aggregate semantic bridge (2709 jobs). The root import
+remains unchanged. The source-derived API index was regenerated with 405 public
+declarations, and the website, generated JSON, forbidden-placeholder, and diff
+hygiene checks all passed. The dependency blueprint was refreshed without an
+import-graph change.
+
+### 74. Opt-In Units and Pressured API Review
+
+Step 13 of Project B Chunk 1 was completed on July 14, 2026. The new
+`LeanInfoTheory.Shannon.Units` module is separately importable and leaves every
+canonical information measure real-valued and measured in nats. It exposes
+only four conversion theorems:
+
+- `Shannon.div_log_change_base`, the generic identity
+  `x / log c = log_c(b) * (x / log b)` for bases greater than one;
+- `Shannon.negMulLog_div_log`, converting one entropy summand to a
+  `Real.logb` expression;
+- `Shannon.entropy_div_log`, converting finite PMF entropy to the usual
+  `-sum_a p(a) log_b p(a)` formula;
+- `Shannon.entropyOf_div_log`, the corresponding pushforward-law formula for
+  a finite-valued random variable.
+
+There are no parallel base-indexed definitions of entropy, conditional
+entropy, mutual information, or conditional mutual information. The generic
+change-of-base theorem applies to any of their nat-valued real results. The
+project root does not import `Shannon.Units`; its documentation now points to
+the opt-in module.
+
+The Future Work Note 14 review retained every existing declaration and added
+compatibility-preserving aliases only where the left/right/both terminology is
+already stable. The lightweight chain-rule aliases are:
+
+- `entropy_chain_rule_right` and `entropy_chain_rule_left`;
+- `jointEntropyOf_chain_rule_right` and
+  `jointEntropyOf_chain_rule_left`.
+
+The pair-inequality aliases are:
+
+- `condEntropy_le_entropy_left`;
+- `mutualInfo_le_entropy_left` and `mutualInfo_le_entropy_right`;
+- `entropy_left_le_jointEntropy` and `entropy_right_le_jointEntropy`;
+- `jointEntropy_le_add_marginalEntropy`;
+- `entropyOf_left_le_jointEntropyOf` and
+  `entropyOf_right_le_jointEntropyOf`;
+- `jointEntropyOf_le_add_entropyOf`.
+
+The deterministic-processing aliases are:
+
+- `mutualInfoOf_comp_both_le`;
+- `mutualInfo_map_left_le`, `mutualInfo_map_right_le`, and
+  `mutualInfo_map_both_le`.
+
+The conditional-inequality aliases are:
+
+- `condMutualInfo_le_condEntropy_left` and
+  `condMutualInfo_le_condEntropy_right`;
+- `condEntropy_left_le_condEntropy_pair` and
+  `condEntropy_right_le_condEntropy_pair`;
+- `condEntropy_pair_le_add_condEntropy`;
+- `condEntropyOf_left_le_condEntropyOf_pair` and
+  `condEntropyOf_right_le_condEntropyOf_pair`;
+- `condEntropyOf_pair_le_add_condEntropyOf`.
+
+The review deliberately did not approve the provisional MI/CMI
+entropy-difference aliases, `jointCondEntropy` terminology, shorter fiber
+aliases, reverse elementary-MI identities, or a public injective-relabeling
+family. Those choices still lack either settled mathematical vocabulary or a
+second genuine proof consumer. It also did not add the right-oriented exact
+deterministic identity merely for symmetry. The descriptive declarations
+remain available as stable implementation-facing names.
+
+Following Future Work Notes 15 and 16, local simp probes were compiled against
+representative PMF, random-variable, symmetry, diagonal/self, and
+entropy-difference goals. Four strictly reducing rules were promoted:
+
+- `mutualInfo_map_swap` and `condMutualInfo_map_swap12` normalize explicit PMF
+  coordinate swaps;
+- `mutualInfo_map_diag` removes a diagonal PMF construction;
+- `mutualInfoOf_self` removes a random-variable self construction.
+
+Pure random-variable commutativity, entropy-difference identities, and all
+ordinary and conditional entropy chain rules remain explicit rewrites. This
+avoids arbitrary variable ordering, rewrite cycles, and premature selection
+of an expanded entropy normal form.
+
+Focused verification passed for `Shannon.InfoMeasures`, `Shannon.Units`, and
+`Shannon.SemanticBridge.Theorems` together (2696 jobs). A separate scratch
+probe compiled all four conversion theorems, the global simp behavior, and
+representative uses from each alias family; the scratch file was then removed.
+An intentionally root-only probe could not resolve `Shannon.entropy_div_log`,
+confirming that units remain outside the lightweight root. Downstream builds
+for the root, entropy bounds, and aggregate semantic bridge passed together
+(2709 jobs). After the final source-diff review, the touched semantic theorem
+module and its aggregate entry point were rebuilt once more (2693 and 2694
+jobs, respectively).
+
+The source-derived dependency graph and API index were regenerated. The units
+module is marked separately importable and not root-reachable, and the API
+index contains 434 public declarations, the expected increase of 25 aliases
+and four conversion theorems over Step 12. The website/generated-JSON check,
+forbidden-placeholder scan, and diff hygiene check all passed. This is still a
+targeted Step 13 verification record; Future Work Note 17 reserves the full
+certificate/examples/reference milestone suite for Step 14.
+
+The next active task is step 14: update the public status, regenerate all
+source-derived references, and run the full milestone verification suite.
+
+### 75. Project B Chunk 1 Milestone Integration
+
+Step 14 and Project B Chunk 1 were completed on July 14, 2026. A final review
+covered the accumulated Lean diff, public theorem surface, simp policy, and
+module-import boundaries. No corrective Lean edit or architecture change was
+needed. The review confirmed that the root-facing layer contains only the
+intended lightweight entropy and algebraic information-measure API, while
+entropy bounds, logarithm-base conversion, semantic consequences, reference
+anchors, and demonstrations remain separately importable.
+
+The complete milestone Lean suite passed sequentially:
+
+- `lake build LeanInfoTheory` (2240 jobs);
+- `lake build LeanInfoTheory.Shannon.EntropyBounds` (2650 jobs);
+- `lake build LeanInfoTheory.Shannon.Units` (2235 jobs);
+- `lake build LeanInfoTheory.Shannon.SemanticBridge` (2694 jobs);
+- `lake build LeanInfoTheory.MathlibFragments` (2700 jobs);
+- `lake build LeanInfoTheory.Certificate.Submodularity` (1076 jobs);
+- `lake build LeanInfoTheory.Certificate.Subadditivity` (1076 jobs);
+- `lake build LeanInfoTheory.Certificate.Monotonicity` (1076 jobs);
+- `lake build LeanInfoTheory.Certificate.ThreeWaySubadditivity` (1076 jobs);
+- `lake build LeanInfoTheory.Examples` (1076 jobs).
+
+The module dependency graph and source-derived API index were regenerated from
+the final Lean tree. The index contains 434 documented public declarations,
+and the curated theorem-page source anchors were synchronized with it.
+The graph records 11 root-reachable modules and 14 separately importable
+modules; `Shannon.Units` remains outside the root. The website check passed for
+12 HTML files and both generated JSON files. The forbidden-placeholder scan,
+root-import audit, scratch-artifact check, stale-status scan, and
+`git diff --check` also passed.
+
+Chunk 1 is therefore closed as a coherent milestone. It supplies the finite
+pair/triple entropy foundation, support-aware zero/equality contracts,
+deterministic processing, textbook MI/CMI identities and inequality bands,
+opt-in units, and the reviewed compatibility alias surface. The equality cases
+that require general finite KL, independence, or conditional independence stay
+deferred as intended, and stochastic channels, Markov structure, and general
+data processing remain later work. The next project action is to prepare the
+detailed Project B Chunk 2 implementation plan before editing Lean again.
+
 ## Near-Term Semantic Theorem API Plan
 
 The next focused Lean theorem phase is a nine-step plan. Its purpose is to
@@ -1997,18 +2743,25 @@ step-by-step history above. The near-term semantic bridge plan above is
 complete; this section records important later work, ongoing guardrails, and
 items that should wait for more theorem pressure.
 
-The near-term theorem/certificate plan above is now complete, and the next
-direction has been chosen explicitly: Project B will focus on finite textbook
-information-theory fundamentals before the project returns to Project A's
-certificate and converse program. The detailed Project B formalization map has
-not yet promoted individual backlog items into active implementation. Until it
-does, finite-family entropy, richer certificate assumptions, external
-certificate import, coding-theory layers, theorem-level blueprint work, and
-substantial mathlib PR preparation remain later work.
+The near-term theorem/certificate plan above is complete, and Project B is now
+active. Its first implementation chunk is the 14-step pair/triple Shannon plan
+recorded in section 62. All 14 steps are complete: the ordinary-entropy
+foundation, the support-wise zero-conditional-entropy/functional-dependence
+theorem family, the pair/triple conditional-entropy chain rules, and
+deterministic entropy processing, the elementary mutual-information identity
+family and pair-level inequality API, deterministic mutual-information
+processing, and the conditional-mutual-information identity family are now in
+place, together with the triple-level conditional inequality API, opt-in base
+conversion, and the pressured public-API review. The full Step 14 milestone
+suite also passed, so Chunk 1 is closed. Finite-family entropy, richer
+certificate assumptions, external certificate import, coding-theory layers,
+theorem-level blueprint work, and substantial mathlib PR preparation remain
+later work.
 
-1. Keep the finite-family entropy API delayed until the first Project B plan
-    and further pair/triple and semantic bridge theorem pressure clarify the
-    right representation. The main open question is whether the API should be
+1. Keep the finite-family entropy API delayed through Project B Chunk 1 and the
+    intervening KL/channel theorem pressure. Revisit it in the planned
+    finite-family chunk after the pair/triple API is stronger. The main open
+    question is whether the API should be
     indexed by `Fin n`, finite sets of variable names, dependent finite
     alphabets, vectors, or another mathlib-friendly structure.
 
@@ -2069,7 +2822,32 @@ substantial mathlib PR preparation remain later work.
     remains stable under a little more theorem pressure. Independence
     constraints, functional-dependence constraints, and Markov constraints are
     essential for network converses, but they should be introduced as explicit
-    extensions of the primitive certificate layer.
+    extensions of the primitive certificate layer. Project B Chunk 1 Step 5
+    proves the semantic finite-PMF theorem `H(X|Y) = 0` iff support-wise
+    functional dependence; that theorem is future mathematical input to this
+    constraint layer, not a reason to add the certificate extension yet.
+    Before adding a named semantic predicate, decide whether its primary form
+    should concern a joint PMF, finite-valued random variables over a source
+    PMF, or an almost-everywhere relation that can later bridge cleanly to
+    channels and measure-theoretic APIs. A likely random-variable contract is
+    a predicate packaging
+    `exists f, forall omega in p.support, X omega = f (Y omega)`; it must not
+    strengthen this to pointwise equality outside the source support or
+    silently identify the semantic predicate with the future certificate
+    constraint representation. Once concrete downstream users justify the
+    abstraction, connect it directly to
+    `condEntropyOf_eq_zero_iff_exists_function` rather than reproving the
+    zero-conditional-entropy theorem.
+
+    At the same time, consider adding the support-restricted decoder uniqueness
+    companion theorem. If `f` and `g` both recover `X` from `Y` on `p.support`,
+    then prove `f b = g b` only for
+    `b in (p.map Y).support` (equivalently, on the support of the `Y` law).
+    No uniqueness should be claimed outside that marginal support, where the
+    decoder values are observationally irrelevant. Provide the corresponding
+    joint-PMF formulation using `sndMarginal p` only if both forms have actual
+    consumers. This uniqueness result is useful API support, not a prerequisite
+    for the current direct existential theorem.
 
 12. Add primitive-recognition/autotagging only after the manually tagged
     certificate pipeline has been exercised on larger examples. The step 8
@@ -2089,34 +2867,234 @@ substantial mathlib PR preparation remain later work.
     certificate format is stable. The first parser should target a small,
     explicit external format and should never be part of the trusted kernel.
 
-14. Revisit public semantic theorem aliases after more theorem pressure. The
-    July 6 API polish pass deferred aliases for results like
-    `mutualInfo_chain_rule_fst` because the current names are descriptive and
-    the semantic theorem layer is still small. The July 8 theorem pass added
-    `mutualInfo_map_swap`, `mutualInfoOf_swap`,
-    `condMutualInfo_map_swap12`, and `condMutualInfoOf_swap`, but aliases
-    should still wait until we have several chain rules and downstream examples
-    that show which names users naturally reach for.
+14. Maintain a public theorem naming and alias watchlist, and revisit it after
+    real theorem pressure. Long descriptive names are acceptable while the API
+    is developing, but some expose implementation details such as named
+    marginals, coordinate swaps, `pairThirdLaw`, or fiber helper names that a
+    textbook-facing user should not always need to know. Do not rename these
+    declarations during ordinary theorem steps. Prefer concise compatibility-
+    preserving aliases while retaining descriptive names as stable
+    implementation-facing entry points unless an explicit migration is
+    justified.
 
-15. Revisit `[simp]` status for mutual-information and
-    conditional-mutual-information symmetry after the symmetry and chain-rule
-    API has more theorem pressure. The PMF-level swap-normalization theorem
-    `mutualInfo_map_swap`, whose left-hand side contains the visibly more
-    complicated expression `mutualInfo (p.map Prod.swap)`, is a plausible
-    future simp lemma because it rewrites an explicit coordinate swap back to
-    the canonical unswapped joint law. The CMI symmetry theorem
-    `condMutualInfo_map_swap12` should be evaluated similarly because it
-    normalizes an explicit `swap12` map to the canonical `I(A;B|C)`
-    orientation. In contrast,
-    pure random-variable commutativity statements such as
-    `mutualInfoOf p Y X = mutualInfoOf p X Y` need more care, because both
-    sides have the same syntactic shape and an automatic rewrite could choose
-    an arbitrary orientation or interact poorly with later chain-rule rewrites.
-    Before adding `[simp]`, test the candidate lemmas on the next few
-    chain-rule, CMI-symmetry, and conditioning-reduces-entropy proofs. Promote
-    only rewrites that reduce explicit coordinate maps or projections to a
-    canonical form, do not create rewrite loops, and make ordinary `simp`
-    calls more predictable.
+    Apply the following criteria during each review:
+
+    - Prefer names that communicate the mathematical identity before its PMF
+      representation details.
+    - Preserve the established PMF versus random-variable `...Of` distinction.
+    - Keep orientation visible when two symmetric forms would otherwise have
+      the same natural name, but avoid mentioning `Prod.swap` or a particular
+      marginal construction when a shorter mathematical suffix is enough.
+    - Treat newly suggested aliases as sketches until a recorded review checks
+      namespace collisions, theorem search, downstream proof readability, and
+      consistency with mathlib.
+    - Do not add both directions of every algebraic identity automatically.
+      Add reverse-oriented aliases only when real proofs repeatedly need them.
+
+    The planned Step 13 review was completed on July 14, 2026. It checked
+    namespace collisions, theorem search, PMF/RV consistency, and downstream
+    statement readability, then approved four coherent alias groups:
+
+    - pair chain rules use `entropy_chain_rule_left`/`..._right` and
+      `jointEntropyOf_chain_rule_left`/`..._right`;
+    - pair inequalities use left/right textbook names and the shorter
+      `jointEntropy_le_add_marginalEntropy`/
+      `jointEntropyOf_le_add_entropyOf` subadditivity pair;
+    - deterministic processing uses `mutualInfoOf_comp_both_le` and
+      `mutualInfo_map_left_le`/`..._right_le`/`..._both_le`;
+    - the conditional inequality band uses left/right/pair names without
+      exposing `fstThirdMarginal`, `sndThirdMarginal`, `pairThirdLaw`, or
+      `_swap` in the aliases.
+
+    All original declarations remain public. The review did not approve
+    speculative MI/CMI entropy-difference aliases, coined `jointCondEntropy`
+    terminology, shorter fiber aliases, reverse elementary-MI identities, the
+    right-oriented exact deterministic identity, or a public injective-
+    relabeling family. These remain deferred for the reasons recorded below.
+    The lists that follow preserve the historical pressure and rejected
+    sketches so later reviews can distinguish unresolved work from decisions
+    already made.
+
+    Initial high-priority theorem-facing review input:
+
+    - `mutualInfo_eq_entropy_fstMarginal_sub_condEntropy`;
+    - `mutualInfo_eq_entropy_sndMarginal_sub_condEntropy_swap`;
+    - `mutualInfoOf_eq_entropyOf_sub_condEntropyOf`;
+    - `mutualInfoOf_eq_entropyOf_sub_condEntropyOf_swap`;
+    - `entropy_eq_entropy_sndMarginal_add_condEntropy`;
+    - `entropy_eq_entropy_fstMarginal_add_condEntropy_swap`;
+    - `jointEntropyOf_eq_entropyOf_add_condEntropyOf_swap`;
+    - `entropy_le_entropy_fstMarginal_add_entropy_sndMarginal`;
+    - `condEntropyFstGivenSnd_eq_zero_iff_of_sndMarginal_ne_zero`;
+    - `entropy_eq_entropy_sndMarginal_iff_exists_function`;
+    - `condMutualInfo_eq_condEntropy_fstThirdMarginal_sub_condEntropy`.
+
+    Step 9 pair-inequality names reviewed together:
+
+    - `condEntropy_le_entropy_fstMarginal`;
+    - `mutualInfo_le_entropy_fstMarginal`;
+    - `mutualInfo_le_entropy_sndMarginal`;
+    - `entropy_fstMarginal_le_entropy`;
+    - `entropy_sndMarginal_le_entropy`;
+    - `entropyOf_le_jointEntropyOf`;
+    - `entropyOf_le_jointEntropyOf_swap`;
+    - `jointEntropyOf_le_entropyOf_add_entropyOf`.
+
+    The PMF names expose the chosen `fstMarginal`/`sndMarginal`
+    representation instead of leading with the textbook left/right entropy
+    bound. The random-variable pair uses an asymmetric unsuffixed/`_swap`
+    naming scheme even though the distinction is mathematically left versus
+    right, and the subadditivity name is difficult to scan because it spells
+    out every operand. The review considered these together with the already listed
+    `entropy_le_entropy_fstMarginal_add_entropy_sndMarginal`. Provisional alias
+    sketches include `condEntropy_le_entropy_left`,
+    `mutualInfo_le_entropy_left`/`mutualInfo_le_entropy_right`,
+    `entropy_left_le_jointEntropy`/`entropy_right_le_jointEntropy`,
+    `entropyOf_left_le_jointEntropyOf`/`entropyOf_right_le_jointEntropyOf`, and
+    a shorter joint-subadditivity family such as
+    `jointEntropy_le_add_marginalEntropy` and
+    `jointEntropyOf_le_add_entropyOf`. Step 13 approved all of these aliases
+    after the collision, consistency, and discoverability checks; the original
+    declarations remain available.
+
+    Step 10 deterministic-processing names reviewed together:
+
+    - `mutualInfoOf_deterministic_chain_rule_left`;
+    - `mutualInfoOf_comp_left_le`;
+    - `mutualInfoOf_comp_right_le`;
+    - `mutualInfoOf_comp_le`;
+    - `mutualInfo_map_fst_le`;
+    - `mutualInfo_map_snd_le`;
+    - `mutualInfo_map_prod_le`.
+
+    The chain-rule name is long but mathematically descriptive. The RV
+    inequality family is compact, although the unsuffixed `comp_le` denotes
+    processing both variables and should be checked for discoverability beside
+    the explicitly suffixed one-sided forms. The PMF names expose the selected
+    `fst`/`snd`/`prod` coordinate representation. Provisional alias sketches are
+    `mutualInfo_map_left_le`, `mutualInfo_map_right_le`, and
+    `mutualInfo_map_both_le`; for the RV family, consider whether
+    `mutualInfoOf_comp_both_le` is clearer than the current unsuffixed name.
+    Step 13 approved those four aliases and retained the original family. It
+    did not add the symmetric right-oriented chain identity because Steps 11
+    and 12 supplied no real rewrite pressure. `condMutualInfoOf_nonneg` is
+    short, conventional, and does not need watchlist treatment.
+
+    Step 11 conditional-mutual-information names reviewed together:
+
+    - `condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf`;
+    - `condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf_swap`;
+    - `condMutualInfoOf_eq_condEntropyOf_add_condEntropyOf_sub_condEntropyOf_pair`;
+    - `condMutualInfo_eq_condEntropy_sndThirdMarginal_sub_condEntropy_swap12`.
+
+    The two RV difference names are mathematically descriptive but long and use
+    an asymmetric unsuffixed/`_swap` orientation. The RV conditional-
+    subadditivity-gap name spells out every operand and is difficult to scan.
+    The PMF name exposes both `sndThirdMarginal` and the implementation-level
+    `swap12` map. Review these together with the existing
+    `condMutualInfo_eq_condEntropy_fstThirdMarginal_sub_condEntropy` and
+    `condMutualInfo_eq_condEntropy_marginals`. Provisional conceptual families
+    include `condMutualInfoOf_eq_condEntropy_diff_left`/`..._right`, a shorter
+    conditional-subadditivity-gap name, and analogous PMF left/right aliases.
+    Step 13 did not approve these sketches: `diff` is less discoverable than
+    the current entropy-expression names, and no stable short name emerged for
+    the conditional-subadditivity gap. Keep the descriptive names until later
+    proofs establish a better vocabulary.
+
+    Step 11 did not consume the right-oriented exact deterministic identity
+    `I(X;Y) = I(X;g(Y)) + I(X;Y|g(Y))`, despite strengthening the CMI API, so it
+    remained deferred through Steps 12 and 13 because no proof repeated the
+    symmetry argument. Step 11 also did not need reverse elementary-MI
+    rewrites, adding further evidence against introducing them now.
+
+    Step 12 triple-level inequality names reviewed together:
+
+    - `condMutualInfo_le_condEntropy_fstThirdMarginal`;
+    - `condMutualInfo_le_condEntropy_sndThirdMarginal`;
+    - `condEntropy_fstThirdMarginal_le_condEntropy_pairThirdLaw`;
+    - `condEntropy_sndThirdMarginal_le_condEntropy_pairThirdLaw`;
+    - `condEntropy_pairThirdLaw_le_condEntropy_fstThirdMarginal_add_condEntropy_sndThirdMarginal`;
+    - `condMutualInfoOf_le_condEntropyOf_left`;
+    - `condMutualInfoOf_le_condEntropyOf_right`;
+    - `condEntropyOf_le_condEntropyOf_pair`;
+    - `condEntropyOf_le_condEntropyOf_pair_swap`;
+    - `condEntropyOf_pair_le_condEntropyOf_add_condEntropyOf`.
+
+    The PMF family exposes the triple-law representation rather than the
+    textbook left/right conditional entropy band. The RV CMI-bound names are
+    already reasonably clear, but the unsuffixed/`_swap` single-to-pair names
+    are easy to confuse with the existing conditioning-reduces theorem
+    `condEntropyOf_pair_le_condEntropyOf`. Provisional alias sketches include
+    `condMutualInfo_le_condEntropy_left`/`..._right`,
+    `condEntropy_left_le_jointCondEntropy`/`..._right`,
+    `jointCondEntropy_le_add_condEntropy`, and corresponding `...Of` forms.
+    Step 13 rejected the coined `jointCondEntropy` vocabulary and instead
+    approved the coherent `condEntropy_left/right_le_condEntropy_pair` and
+    `condEntropy_pair_le_add_condEntropy` families, with corresponding `...Of`
+    aliases. It also approved the PMF
+    `condMutualInfo_le_condEntropy_left`/`..._right` pair. The descriptive
+    declarations remain available for compatibility.
+
+    Step 12 supplied no consumer for the right-oriented exact deterministic
+    identity or reverse elementary-MI identities. It also did not repeat the
+    augmentation proof. The active theorem phase is now complete through Step
+    12. Step 13 therefore left all of these deferred additions out rather than
+    introducing them merely for symmetry.
+
+    Longer semantic/fiber bridge names remain under future review, although
+    many may remain descriptive because they expose genuinely specialized
+    objects:
+
+    - `condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd`;
+    - `condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThird`;
+    - `condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThirdKL`;
+    - `condMutualInfoFstSndGivenThird_eq_entropy_fibers_of_ne_zero`;
+    - `condFstGivenSnd_pairThirdLaw_eq_condFstSndGivenThird`.
+
+    The short left/right `entropy_chain_rule` aliases were approved in Step 13.
+    A possible canonical `mutualInfo_eq_entropy_sub_condEntropy` family with an
+    explicit symmetric suffix, and an analogous `mutualInfoOf` family, remain
+    deferred because the review found no clearly better concise spelling.
+
+    Also keep the reverse elementary MI forms under review:
+
+    - `H(X|Y) = H(X) - I(X;Y)`;
+    - `H(Y|X) = H(Y) - I(X;Y)`;
+    - the corresponding PMF statements using the two marginals.
+
+    Step 9 derived the pair inequalities without needing public reverse-form
+    aliases, so there is currently evidence against adding them immediately.
+    Reconsider them only if Steps 10 through 12 or later examples repeatedly
+    reproduce the same algebraic rearrangement. If they are eventually added,
+    choose PMF and random-variable names as one coherent family and record why
+    the forward and reverse orientations both earn public API space.
+
+    The July 6 API polish pass first deferred aliases for results such as
+    `mutualInfo_chain_rule_fst`. Subsequent symmetry, conditional-chain-rule,
+    deterministic-processing, MI-identity, and inequality steps supplied the
+    evidence used by Step 13. Future theorem phases should continue recording
+    newly pressured names here and should schedule another coherent review
+    only after enough new examples accumulate.
+
+15. The Step 13 `[simp]` review for mutual information and conditional mutual
+    information was completed on July 14, 2026. Local attributes were tested
+    on representative PMF, random-variable, symmetry, diagonal/self, and
+    entropy-difference goals. Four strictly reducing rules were promoted:
+
+    - `mutualInfo_map_swap` normalizes an explicit `Prod.swap` map;
+    - `condMutualInfo_map_swap12` normalizes an explicit first-two-coordinate
+      swap;
+    - `mutualInfo_map_diag` removes a diagonal PMF construction;
+    - `mutualInfoOf_self` removes a random-variable self construction.
+
+    These rules select a visibly simpler construction-free normal form and did
+    not create rewrite cycles. Pure random-variable commutativity statements
+    such as `mutualInfoOf_swap` and `condMutualInfoOf_swap` remain explicit,
+    because both sides have the same syntactic shape and automatic rewriting
+    would choose an arbitrary variable order. The MI/CMI entropy-difference
+    identities also remain explicit so users retain control of the entropy
+    normal form. Revisit this policy only if later simp behavior supplies a
+    concrete regression or a new strictly reducing construction.
 
 16. Revisit `[simp]` status for conditional entropy chain-rule theorems after
     the chain-rule family has more downstream examples. The July 8 chain-rule
@@ -2127,11 +3105,21 @@ substantial mathlib PR preparation remain later work.
     These theorems rewrite between mathematically equivalent but differently
     useful normal forms, such as `H(A,B)` and `H(B) + H(A|B)`, so automatic
     simplification could make proofs noisier or choose a direction too early.
-    Reconsider this only after the mutual-information chain-rule variants,
-    conditioning-reduces-entropy theorem, and a few certificate or example
-    proofs show whether the library wants a canonical entropy-expanded normal
-    form. If a direction is promoted, prefer one that reliably reduces proof
-    search and does not fight later chain-rule rewrites.
+    Project B Chunk 1 Step 6 added
+    `condEntropyOf_pair_chain_rule`,
+    `condEntropyOf_pair_chain_rule_swap`, and their PMF-facing
+    `pairThirdLaw` forms as further explicit rewrites. This broadens the family
+    but still does not supply enough downstream use to choose a canonical
+    automatic orientation.
+    Step 7 then used those rules explicitly for deterministic conditional
+    entropy processing without needing new simp attributes. Step 9 likewise
+    used the pair chain rules explicitly for marginal-to-joint bounds.
+    The Step 13 review retained this policy. Deterministic processing, MI/CMI
+    identities, and the pair/triple inequality proofs all used chain rules
+    successfully as explicit rewrites, while no stable entropy-expanded normal
+    form emerged. None of the ordinary or conditional chain rules is `[simp]`.
+    Revisit only if later downstream proofs demonstrate that one orientation
+    reliably reduces proof search without fighting other entropy rewrites.
 
 17. Run the broader project build suite before release, commit, or milestone
     checkpoints, while keeping focused builds for small theorem iterations.
@@ -2143,6 +3131,7 @@ substantial mathlib PR preparation remain later work.
     publishing updated public status, run the full expected suite from the
     README/agent notes: `lake build LeanInfoTheory`,
     `lake build LeanInfoTheory.Shannon.EntropyBounds`,
+    `lake build LeanInfoTheory.Shannon.Units`,
     `lake build LeanInfoTheory.Shannon.SemanticBridge`,
     `lake build LeanInfoTheory.MathlibFragments`,
     `lake build LeanInfoTheory.Certificate.Submodularity`,
@@ -2151,3 +3140,125 @@ substantial mathlib PR preparation remain later work.
     `lake build LeanInfoTheory.Certificate.ThreeWaySubadditivity`, and
     `lake build LeanInfoTheory.Examples`, plus the website generators and
     checks when public declarations or imports changed.
+
+    Project B Chunk 1 followed this policy: targeted builds supported Steps 1
+    through 13, and Step 14 then ran the complete ten-target suite, regenerated
+    both source-derived reference sets, and passed the website and repository
+    hygiene checks. Section 75 records the exact results. Apply the same
+    targeted-development/full-milestone distinction to later chunks.
+
+18. Preserve the boundary between the completed pair/triple Chunk 1 and the later
+    Project B chunks. The full equality characterization for the
+    support-cardinality entropy bound, `I(X;Y) = 0` iff independence,
+    `H(X|Y) = H(X)` iff independence, and the corresponding conditional-
+    independence equality cases belong with the general finite KL/equality
+    work. Stochastic channels, Markov structure, and general data processing
+    remain later still. Chunk 1 Step 7 completed deterministic entropy
+    processing and its support/recovery equality cases from the existing zero-
+    conditional-entropy API without introducing the deferred infrastructure.
+    Chunk 1 Step 9 added the pair-level inequalities while deliberately
+    omitting their independence-based equality cases. Step 10 added only
+    deterministic mutual-information processing; stochastic channels and the
+    equality characterization through conditional independence remain in the
+    later layers. Step 11 completed only algebraic conditional-MI rewrites; it
+    did not add zero-CMI or conditional-independence characterizations. Step 12
+    completed the conditional inequality band while likewise deferring every
+    conditional-independence equality case.
+    When the support-cardinality equality work is resumed, also add a small
+    example of a PMF on a larger ambient alphabet with proper support, making
+    explicit that `entropy_le_log_support_ncard` is strictly sharper than the
+    alphabet-cardinality bound in that setting. Also include a small
+    conditional-fiber example that contrasts the two zero cases: a null fiber
+    contributes numeric zero by convention, while on a positive-mass fiber
+    zero conditional entropy characterizes a pure conditional PMF through
+    `condEntropyFstGivenSnd_eq_zero_iff_of_sndMarginal_ne_zero`. Add a separate
+    support-wise functional-dependence example for the Step 5 global theorem:
+    use a source PMF with proper support and variables `X` and `Y` for which
+    `X omega = f (Y omega)` holds on `p.support` but fails at an outcome outside
+    that support. The example should invoke
+    `condEntropyOf_eq_zero_iff_exists_function` and make explicit why replacing
+    support-wise equality with global pointwise equality would state a theorem
+    stronger than information theory requires.
+
+19. Revisit the Step 7 deterministic-entropy decomposition and add two
+    support-sensitive examples at the natural downstream pressure points; this
+    is not immediate work. Chunk 1 Step 10 checked whether deterministic
+    mutual-information processing needed the ordinary chain identity
+
+    `H(X) = H(f(X)) + H(X | f(X))`.
+
+    It did not: the compiled Step 10 proof uses injective deterministic
+    augmentation, the existing mutual-information chain rule, and conditional-
+    MI nonnegativity. The Step 7 PMF-oriented decomposition therefore remains a
+    private helper. Promote a public theorem only if a later step produces a
+    real consumer. Prefer a clean random-variable statement such as
+
+    `entropyOf p X = entropyOf p (fun omega => f (X omega)) +
+      condEntropyOf p X (fun omega => f (X omega))`,
+
+    then add a PMF-facing corollary only if it is also used. Do not expose the
+    current `id`-based helper merely to make the public theorem count larger.
+
+    Step 13 reviewed the theorem names and simp policy without needing these
+    examples. During a later separately importable example pass, add two small
+    examples that exercise the exact equality contracts:
+
+    - an ordinary example where `f` is not globally injective but is injective
+      on `(p.map X).support`, so `H(f(X)) = H(X)` still holds through
+      `entropyOf_comp_eq_iff_injOn_support`;
+    - a conditional example where `f` loses information about `X` by itself,
+      but `Z` disambiguates the collided values and a decoder recovers `X` from
+      `(f(X), Z)` on `p.support`, so
+      `H(f(X)|Z) = H(X|Z)` through
+      `condEntropyOf_comp_eq_iff_exists_recovery`.
+
+    Keep these examples outside the core theorem modules, and use them to test
+    theorem naming and discoverability before adding any specialized aliases
+    around these equality contracts. They should demonstrate why support-
+    restricted injectivity and recovery are the correct information-theoretic
+    contracts, not strengthen either statement to global pointwise conditions.
+
+20. The proposed separately importable elementary-MI usage example was closed
+    without adding a redundant module during Step 13. Step 9 supplied genuine
+    proof pressure for the Step 8 identities, and the Step 13 simp probes plus
+    generated theorem documentation were sufficient to review the final
+    aliases and self/diagonal simplification behavior.
+
+    A worthwhile example should exercise all three mathematical views rather
+    than simply restate theorem signatures:
+
+    - `I(X;Y) = H(X) - H(X|Y)`;
+    - `I(X;Y) = H(Y) - H(Y|X)`;
+    - `I(X;X) = H(X)` through `mutualInfoOf_self` or the diagonal PMF theorem.
+
+    If a later pedagogical examples pass independently needs this material,
+    prefer a small nontrivial finite law; avoid a pure-law example where every
+    quantity vanishes. Keep any such example outside the core Shannon modules
+    and out of the lightweight root. This note is no longer an active API task.
+
+21. Revisit mutual-information invariance under injective relabeling when a
+    second genuine consumer appears; this is not immediate work. The private
+    Step 10 helper proves the special case needed there by adjoining a
+    deterministic image to its source variable and using entropy invariance
+    under an injective map. If later deterministic-processing, sufficient-
+    statistic, or channel proofs repeat that argument, extract a coherent
+    public theorem family saying that injectively relabeling either random
+    variable preserves mutual information, together with PMF coordinate forms
+    only when they are used.
+
+    Before fixing statements, decide whether the main contract should assume a
+    global `Function.Injective` map or the sharper support-aware condition
+    `Set.InjOn f (p.map X).support`, and decide whether the lightweight
+    `InfoMeasures` layer can own the result or whether the support-aware proof
+    genuinely belongs in the semantic theorem layer. Do not promote the current
+    augmentation helper or add both orientations merely to enlarge the API;
+    let a repeated proof establish the abstraction and naming pressure first.
+
+    Step 11 did not repeat the augmentation argument: its new CMI identities
+    use entropy algebra, product reassociation, symmetry, and existing
+    conditional-entropy chain rules. There is therefore still only one genuine
+    consumer, and no public relabeling theorem family should be extracted yet.
+    Step 12 also avoided the argument: all ten inequalities follow from
+    nonnegativity, the Step 6 chain rules, and the Step 11 CMI identities. Step
+    13 added only aliases, simp attributes, and base conversion, so it supplied
+    no second consumer either. The public relabeling family remains deferred.

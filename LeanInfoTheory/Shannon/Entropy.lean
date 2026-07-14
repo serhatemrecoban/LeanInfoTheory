@@ -112,10 +112,93 @@ theorem entropy_pure {alpha : Type u} [Fintype alpha] (a : alpha) :
   · simp [PMF.pure_apply, hx]
   · simp [PMF.pure_apply, hx]
 
+private theorem negMulLog_eq_zero_iff_of_nonneg_of_le_one
+    {x : Real} (hx0 : 0 <= x) (hx1 : x <= 1) :
+    Real.negMulLog x = 0 ↔ x = 0 ∨ x = 1 := by
+  constructor
+  · intro hx
+    by_cases hzero : x = 0
+    · exact Or.inl hzero
+    · right
+      have hxpos : 0 < x := lt_of_le_of_ne hx0 (Ne.symm hzero)
+      by_contra hone
+      have hxlt : x < 1 := lt_of_le_of_ne hx1 hone
+      have hpos : 0 < Real.negMulLog x := by
+        simpa only [Real.negMulLog_eq_neg, neg_pos] using Real.mul_log_neg hxpos hxlt
+      exact hpos.ne' hx
+  · rintro (rfl | rfl) <;> simp
+
+/-- A finite PMF has entropy zero exactly when it is a pure law. -/
+theorem entropy_eq_zero_iff {alpha : Type u} [Fintype alpha] (p : PMF alpha) :
+    entropy p = 0 ↔ ∃ a, p = PMF.pure a := by
+  classical
+  constructor
+  · intro hp
+    have hterm : ∀ a, Real.negMulLog (p a).toReal = 0 := by
+      have hnonneg :
+          ∀ a : alpha, a ∈ (Finset.univ : Finset alpha) ->
+            0 <= Real.negMulLog (p a).toReal := by
+        intro a _ha
+        exact Real.negMulLog_nonneg (PMF.toReal_nonneg p a) (PMF.toReal_le_one p a)
+      have hsum : (∑ a : alpha, Real.negMulLog (p a).toReal) = 0 := by
+        simpa only [entropy_eq_sum] using hp
+      exact fun a =>
+        (Finset.sum_eq_zero_iff_of_nonneg hnonneg).1 hsum a (Finset.mem_univ a)
+    obtain ⟨a, ha⟩ := p.support_nonempty
+    have hreal_ne : (p a).toReal ≠ 0 :=
+      ENNReal.toReal_ne_zero.2 ⟨ha, p.apply_ne_top a⟩
+    have hreal_one : (p a).toReal = 1 := by
+      rcases
+          (negMulLog_eq_zero_iff_of_nonneg_of_le_one
+            (PMF.toReal_nonneg p a) (PMF.toReal_le_one p a)).1 (hterm a) with
+        hzero | hone
+      · exact False.elim (hreal_ne hzero)
+      · exact hone
+    have hpa : p a = 1 := (ENNReal.toReal_eq_one_iff (p a)).1 hreal_one
+    exact
+      ⟨a, (PMF.eq_pure_iff_support_eq_singleton p a).2 ((p.apply_eq_one_iff a).1 hpa)⟩
+  · rintro ⟨a, rfl⟩
+    exact entropy_pure a
+
 /-- Entropy of a finite-valued random variable under a discrete law. -/
 def entropyOf {omega : Type u} {alpha : Type v} [Fintype alpha]
     (p : PMF omega) (X : omega -> alpha) : Real :=
   entropy (p.map X)
+
+private theorem map_eq_pure_iff_eq_on_support
+    {omega : Type u} {alpha : Type v} (p : PMF omega) (X : omega -> alpha) (a : alpha) :
+    p.map X = PMF.pure a ↔ ∀ omega, omega ∈ p.support -> X omega = a := by
+  constructor
+  · intro hmap omega homega
+    have hX : X omega ∈ (p.map X).support := by
+      rw [PMF.support_map]
+      exact ⟨omega, homega, rfl⟩
+    rw [hmap, PMF.support_pure] at hX
+    exact Set.mem_singleton_iff.1 hX
+  · intro hX
+    have hsupp : (p.map X).support = {a} := by
+      rw [PMF.support_map]
+      apply Set.Subset.antisymm
+      · rintro _ ⟨omega, homega, rfl⟩
+        exact Set.mem_singleton_iff.2 (hX omega homega)
+      · intro x hx
+        have hxa : x = a := Set.mem_singleton_iff.1 hx
+        subst x
+        obtain ⟨omega, homega⟩ := p.support_nonempty
+        exact ⟨omega, homega, hX omega homega⟩
+    exact (PMF.eq_pure_iff_support_eq_singleton (p.map X) a).2 hsupp
+
+/--
+The entropy of a finite-valued random variable is zero exactly when the
+variable is constant on the support of the source PMF.
+-/
+theorem entropyOf_eq_zero_iff
+    {omega : Type u} {alpha : Type v} [Fintype alpha]
+    (p : PMF omega) (X : omega -> alpha) :
+    entropyOf p X = 0 ↔
+      ∃ a, ∀ omega, omega ∈ p.support -> X omega = a := by
+  rw [entropyOf, entropy_eq_zero_iff]
+  exact exists_congr fun a => map_eq_pure_iff_eq_on_support p X a
 
 /-- Entropy of the identity random variable is the entropy of the original law. -/
 @[simp]

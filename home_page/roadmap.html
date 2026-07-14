@@ -21,7 +21,7 @@
     </header>
     <main class="main-content" role="main">
       <p class="lead">
-        This roadmap separates completed Lean/site work from active polish,
+        This roadmap separates completed Lean/site work from active theorem planning,
         planned theorem work, and later infrastructure milestones. The labels
         are intentionally conservative: they describe the current repository,
         not aspirations.
@@ -40,17 +40,17 @@
           <tr>
             <td><span class="status-pill proved">Completed</span></td>
             <td>Checked Lean work or completed website/documentation work.</td>
-            <td>Finite PMF information measures, semantic/KL bridge theorems, submodularity certificate demo, generated reference artifacts, and website steps 1-6.</td>
+            <td>Project B Chunk 1 finite Shannon theorems, semantic/KL bridges, four checked certificate demos, generated reference artifacts, and website steps 1-6.</td>
           </tr>
           <tr>
             <td><span class="status-pill prototype">Active</span></td>
-            <td>Current near-term maintenance or presentation work.</td>
-            <td>Keeping theorem highlights, module guide, roadmap, and demo pages aligned with the Lean code.</td>
+            <td>Current near-term theorem planning and maintenance work.</td>
+            <td>Preparing Project B Chunk 2 and keeping public references aligned with the checked Lean code.</td>
           </tr>
           <tr>
             <td><span class="status-pill planned">Planned</span></td>
             <td>Next technical goals that are not yet formalized or generated.</td>
-            <td>More textbook inequalities, richer certificate assumptions, theorem-level blueprint, blueprint PDF, and full Lean doc-gen output.</td>
+            <td>Finite KL/equality and independence results, later channel/data-processing work, richer certificate assumptions, and fuller generated documentation.</td>
           </tr>
           <tr>
             <td><span class="status-pill separate">Later</span></td>
@@ -63,25 +63,25 @@
       <h2>Completed</h2>
       <ul class="roadmap-list">
         <li><span class="status-pill proved">Completed</span> Finite <code>PMF</code>-based entropy, conditional entropy, mutual information, and conditional mutual information.</li>
-        <li><span class="status-pill proved">Completed</span> Entropy relabeling, coordinate swap, reassociation, upper-bound, and uniform-law equality theorems.</li>
-        <li><span class="status-pill proved">Completed</span> Semantic bridge theorems for expected self-information, conditional laws, KL divergence, nonnegativity, and a first chain rule.</li>
-        <li><span class="status-pill demo">Completed demo</span> Submodularity from a Lean-validated conditional-mutual-information certificate.</li>
+        <li><span class="status-pill proved">Completed</span> Entropy relabeling, zero-entropy characterizations, coordinate reassociation, alphabet/support upper bounds, and uniform-law equality.</li>
+        <li><span class="status-pill proved">Completed</span> Project B Chunk 1: pair/triple chain rules, support-aware functional dependence, deterministic processing, MI/CMI identities, inequality bands, reviewed aliases, and opt-in units.</li>
+        <li><span class="status-pill proved">Completed</span> Semantic bridge theorems for expected self-information, conditional laws, KL divergence, fiber formulas, and nonnegativity.</li>
+        <li><span class="status-pill demo">Completed demos</span> Checked certificates for submodularity, subadditivity, monotonicity, and three-way subadditivity.</li>
         <li><span class="status-pill proved">Completed</span> Website dashboard, theorem highlights, module guide, source-derived declaration index, module dependency map, prior-art page, and trusted-flow demo diagram.</li>
       </ul>
 
       <h2>Active</h2>
       <ul class="roadmap-list">
-        <li><span class="status-pill prototype">Active</span> Keep public website pages aligned with the current Lean code and terminology.</li>
-        <li><span class="status-pill prototype">Active</span> Maintain project notes in the foundation conventions, project log, and website-task note.</li>
-        <li><span class="status-pill prototype">Active</span> Choose the next finite-information-theory theorem milestone after the completed semantic bridge plan.</li>
+        <li><span class="status-pill prototype">Active</span> Prepare the detailed Project B Chunk 2 implementation plan against the completed Chunk 1 API.</li>
+        <li><span class="status-pill prototype">Active</span> Keep public references and maintained project notes aligned with checked Lean declarations.</li>
       </ul>
 
       <h2>Planned</h2>
       <ul class="roadmap-list">
         <li><span class="status-pill planned">Planned</span> Extend the current module dependency map and source-derived declaration index toward theorem-level leanblueprint pages, a blueprint PDF, and full Lean doc-gen output.</li>
-        <li><span class="status-pill planned">Planned</span> Add more checked textbook entropy inequalities beyond the current submodularity demo.</li>
+        <li><span class="status-pill planned">Planned</span> Develop the finite KL/equality and independence infrastructure needed for the equality cases deferred from Chunk 1.</li>
         <li><span class="status-pill planned">Planned</span> Add richer certificate assumptions such as independence, functional dependence, and Markov constraints.</li>
-        <li><span class="status-pill planned">Planned</span> Develop more of the Cover-Thomas Chapter 2 theorem layer, such as data processing, Fano, and broader chain-rule APIs.</li>
+        <li><span class="status-pill planned">Planned</span> Continue the Cover-Thomas Chapter 2 layer with stochastic data processing, sufficient statistics, and Fano in later focused chunks.</li>
         <li><span class="status-pill planned">Planned</span> Prepare focused mathlib PRs for generic, stable finite-measure lemmas.</li>
       </ul>
 

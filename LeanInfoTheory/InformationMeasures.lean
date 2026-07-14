@@ -58,6 +58,19 @@ export Shannon
    entropy_eq_entropy_fstMarginal_add_condEntropy_swap
    jointEntropyOf_eq_entropyOf_add_condEntropyOf
    jointEntropyOf_eq_entropyOf_add_condEntropyOf_swap
-   condEntropyOf_eq mutualInfoOf_eq condMutualInfoOf_eq)
+   entropy_chain_rule_right entropy_chain_rule_left
+   jointEntropyOf_chain_rule_right jointEntropyOf_chain_rule_left
+   condEntropyOf_eq
+   condEntropyOf_pair_swap condEntropyOf_pair_chain_rule
+   condEntropyOf_pair_chain_rule_swap
+   mutualInfoOf_eq condMutualInfoOf_eq
+   condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf
+   condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf_swap
+   condMutualInfoOf_eq_condEntropyOf_add_condEntropyOf_sub_condEntropyOf_pair
+   mutualInfo_eq_entropy_fstMarginal_sub_condEntropy
+   mutualInfo_eq_entropy_sndMarginal_sub_condEntropy_swap
+   mutualInfoOf_eq_entropyOf_sub_condEntropyOf
+   mutualInfoOf_eq_entropyOf_sub_condEntropyOf_swap
+   mutualInfo_map_diag mutualInfoOf_self)
 
 end LeanInfoTheory

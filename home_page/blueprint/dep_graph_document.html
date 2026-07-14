@@ -32,10 +32,10 @@
       <section aria-labelledby="metrics-heading">
         <h2 id="metrics-heading">Current Graph</h2>
         <div class="metric-grid">
-          <div class="metric-card"><strong>24</strong><span>local modules</span></div>
-          <div class="metric-card"><strong>33</strong><span>local import edges</span></div>
+          <div class="metric-card"><strong>25</strong><span>local modules</span></div>
+          <div class="metric-card"><strong>34</strong><span>local import edges</span></div>
           <div class="metric-card"><strong>11</strong><span>root-reachable modules</span></div>
-          <div class="metric-card"><strong>13</strong><span>separate-import modules</span></div>
+          <div class="metric-card"><strong>14</strong><span>separate-import modules</span></div>
         </div>
       </section>
 
@@ -53,7 +53,7 @@
           <tbody>
 <tr><td>Root import</td><td>1</td><td>1</td><td>0</td></tr>
 <tr><td>Shared foundation</td><td>2</td><td>2</td><td>0</td></tr>
-<tr><td>Finite Shannon layer</td><td>4</td><td>3</td><td>1</td></tr>
+<tr><td>Finite Shannon layer</td><td>5</td><td>3</td><td>2</td></tr>
 <tr><td>Semantic bridge layer</td><td>6</td><td>0</td><td>6</td></tr>
 <tr><td>Certificate layer</td><td>10</td><td>5</td><td>5</td></tr>
 <tr><td>Reference anchors</td><td>1</td><td>0</td><td>1</td></tr>
@@ -81,6 +81,7 @@
 <tr><td><code>LeanInfoTheory.Shannon.Entropy</code></td><td>Finite Shannon layer</td><td><span class="status-pill proved">root reachable</span></td><td>Finite Shannon entropy, entropy of finite-valued random variables, and first entropy invariance theorems.</td><td><code>LeanInfoTheory/Shannon/Entropy.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.EntropyBounds</code></td><td>Finite Shannon layer</td><td><span class="status-pill separate">separate import</span></td><td>Jensen-based finite entropy upper bound and uniform-law equality theorem.</td><td><code>LeanInfoTheory/Shannon/EntropyBounds.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.InfoMeasures</code></td><td>Finite Shannon layer</td><td><span class="status-pill proved">root reachable</span></td><td>Marginals, conditional entropy, mutual information, conditional mutual information, and orientation lemmas.</td><td><code>LeanInfoTheory/Shannon/InfoMeasures.lean</code></td></tr>
+<tr><td><code>LeanInfoTheory.Shannon.Units</code></td><td>Finite Shannon layer</td><td><span class="status-pill separate">separate import</span></td><td>Opt-in logarithm-base conversion for canonical nat-valued finite information measures.</td><td><code>LeanInfoTheory/Shannon/Units.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge</code></td><td>Semantic bridge layer</td><td><span class="status-pill separate">separate import</span></td><td>Entry point for expected self-information, finite conditional laws, KL bridges, nonnegativity, and chain rules.</td><td><code>LeanInfoTheory/Shannon/SemanticBridge.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Conditional</code></td><td>Semantic bridge layer</td><td><span class="status-pill separate">separate import</span></td><td>Finite conditional-law API and expected conditional entropy / conditional mutual-information formulas.</td><td><code>LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.FiniteSums</code></td><td>Semantic bridge layer</td><td><span class="status-pill separate">separate import</span></td><td>Finite real-sum rewrites and mutual-information log-ratio formulas.</td><td><code>LeanInfoTheory/Shannon/SemanticBridge/FiniteSums.lean</code></td></tr>
@@ -120,6 +121,7 @@
 <tr><td><code>LeanInfoTheory.Shannon.Entropy</code></td><td><code>LeanInfoTheory.Probability.Finite</code></td><td>2</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.EntropyBounds</code></td><td><code>LeanInfoTheory.Shannon.Entropy</code></td><td>2</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.InfoMeasures</code></td><td><code>LeanInfoTheory.Shannon.Entropy</code></td><td>0</td></tr>
+<tr><td><code>LeanInfoTheory.Shannon.Units</code></td><td><code>LeanInfoTheory.Shannon.InfoMeasures</code></td><td>1</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge</code></td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td><td>1</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Conditional</code></td><td><code>LeanInfoTheory.Shannon.InfoMeasures</code></td><td>1</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.FiniteSums</code></td><td><code>LeanInfoTheory.Shannon.InfoMeasures</code></td><td>0</td></tr>

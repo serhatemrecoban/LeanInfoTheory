@@ -30,6 +30,7 @@ MODULE_SUMMARIES = {
     "LeanInfoTheory.Shannon.Entropy": "Finite Shannon entropy, entropy of finite-valued random variables, and first entropy invariance theorems.",
     "LeanInfoTheory.Shannon.EntropyBounds": "Jensen-based finite entropy upper bound and uniform-law equality theorem.",
     "LeanInfoTheory.Shannon.InfoMeasures": "Marginals, conditional entropy, mutual information, conditional mutual information, and orientation lemmas.",
+    "LeanInfoTheory.Shannon.Units": "Opt-in logarithm-base conversion for canonical nat-valued finite information measures.",
     "LeanInfoTheory.Shannon.SemanticBridge": "Entry point for expected self-information, finite conditional laws, KL bridges, nonnegativity, and chain rules.",
     "LeanInfoTheory.Shannon.SemanticBridge.Product": "Independent-product PMFs, product-measure semantics, support formulas, and absolute-continuity facts.",
     "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums": "Finite real-sum rewrites and mutual-information log-ratio formulas.",
