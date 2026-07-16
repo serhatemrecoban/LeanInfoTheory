@@ -120,8 +120,8 @@ when they stabilize.
   entropy aliases, retained the existing simp and module boundaries, and kept
   speculative fiber, uniform-law, relabeling, and KL-helper APIs deferred. The
   complete ten-target milestone suite, generated-reference pass, website
-  checks, and repository hygiene review all pass, and the chunk is ready as a
-  clean checkpoint for the next Project B phase.
+  checks, and repository hygiene review all pass. Commit `e5e9825` served as
+  the clean checkpoint for Chunk 3.
 - Project B Chunk 3 is complete. All 20 steps of its revised channel, Markov,
   and data-processing plan are finished. The separately importable
   `Probability.FiniteChannel` module keeps channels as raw PMF-valued functions
@@ -167,6 +167,9 @@ when they stabilize.
   milestone targets, regenerated both public reference sets, passed the website,
   root-isolation, consumer, and repository-hygiene checks, and left the
   lightweight root unchanged.
+- Future Work Note 29 is the next Project B mathematical planning anchor:
+  design a focused sufficient-statistics and recovery-equality phase first,
+  then plan Fano separately. No post-Chunk-3 theorem plan is active yet.
 
 ## Lean Modules
 
@@ -326,9 +329,10 @@ Import heavier or demonstrational modules explicitly:
 
 1. Preserve the completed Project B Chunk 3 finite stochastic-channel, Markov,
    MI/KL data-processing, invariant-law, and entropy-consequence APIs as a clean
-   milestone; select any next theorem phase separately.
-2. Continue toward sufficient statistics and Fano only after the channel and
-   data-processing foundations they consume are stable.
+   milestone while the next theorem phase is planned separately.
+2. Use Future Work Note 29 as the next Project B planning anchor: design the
+   sufficient-statistics and recovery-equality phase first, then plan Fano as
+   its own phase once that API is stable.
 3. Return to Project A by extending the checked-certificate path and certifying
    recognizable information-theoretic converse steps on top of that foundation.
 4. Add richer certificate assumptions such as independence, Markov, and

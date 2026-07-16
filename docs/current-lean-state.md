@@ -85,6 +85,11 @@ processing, the conditional-entropy inequality `H(X|Y) <= H(X|Z)`, and
   the complete build, website, consumer, root-isolation, and hygiene suites, and
   left the lightweight root unchanged.
 
+Future Work Note 29 is the next Project B mathematical planning anchor:
+sufficient-statistics and recovery-equality work should be designed first, and
+Fano should be planned separately after that API is stable. No post-Chunk-3
+theorem execution plan is active yet.
+
 This is a maintained status note for Lean-focused work. It summarizes the
 current architecture and the completed Chunk 3 theorem milestone.
 
@@ -435,9 +440,10 @@ future work.
 1. All 20 Chunk 3 steps are complete and integrated.
 2. The root import remains unchanged. Entropy bounds, semantic theorems, units,
    demos, and reference anchors remain separately importable where appropriate.
-3. Sufficient statistics, KL recovery equality, Fano, channel processes,
-   binary/q-ary bridges, and finite-family entropy remain in the future-work
-   notes; this milestone close does not select the next theorem phase.
+3. Sufficient statistics and KL recovery equality are the next mathematical
+   planning focus under Future Work Note 29; Fano follows in a separate phase.
+   Channel processes, binary/q-ary bridges, and finite-family entropy remain
+   later work. This status update does not activate a theorem plan.
 4. Continue using focused Lake builds during theorem development and the full
    suite at every milestone boundary.
 

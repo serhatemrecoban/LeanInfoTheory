@@ -4426,6 +4426,34 @@ helper crossed its proof-pressure threshold. This closes all 20 Chunk 3 steps
 and prepares the coherent `Complete Project B Chunk 3` checkpoint without
 selecting the next theorem phase.
 
+### 114. Post-Chunk 3 Cleanup Checkpoint
+
+The five-step post-Chunk-3 cleanup was completed on July 16, 2026, from the
+clean `a5cc9e9` Chunk 3 checkpoint. The read-only technical audit confirmed
+that the lightweight root, opt-in module boundaries, private-helper ownership,
+Step 19 aliases, and simp policy remain coherent. It found no concrete Lean
+cleanup worth applying, so the conditional technical-cleanup step was a
+deliberate no-op.
+
+The documentation pass normalized all 38 Future Work Notes without
+renumbering them or weakening their proof-pressure conditions. Note 26 is now
+classified as a standing module-boundary guardrail, Note 29 is the next Project
+B mathematical planning anchor, and Note 38 remains a later matrix and
+majorization milestone. The index records 37 active or standing notes and one
+closed historical note. `README.md`, `docs/current-lean-state.md`,
+`docs/roadmap.md`, and `docs/foundation-conventions.md` now consistently state
+that sufficient-statistics and recovery-equality work should be planned before
+Fano and that no post-Chunk-3 theorem execution plan is active yet.
+
+The website checker passes for 12 HTML files and two generated JSON files. The
+Future Work index contains 38 unique entries, the detailed notes remain ordered
+1 through 38, the cross-document status assertions pass, the forbidden-
+placeholder and diff-hygiene scans are clean, and no Lean, root-import, or
+website source file changed. Because this checkpoint changes only five Markdown
+status files, no Lake rebuild or website regeneration was required; Chunk 3
+Step 20 remains the governing full milestone build. No Chunk 4 planning or
+implementation was started during this cleanup.
+
 ## Near-Term Semantic Theorem API Plan
 
 The next focused Lean theorem phase is a nine-step plan. Its purpose is to
@@ -4634,24 +4662,32 @@ Its invariant-reference contraction and uniform-preserving and doubly
 stochastic entropy consequences are complete. The common-cause and stochastic
 examples and the scheduled API, simp, and module review are also complete. The
 final milestone build, reference, website, root-isolation, consumer, and hygiene
-suites pass. Finite-family entropy, richer
-certificate assumptions, external certificate import, coding-theory layers,
-theorem-level blueprint work, and substantial mathlib PR preparation remain
-later work.
+suites pass. Note 29 now anchors the next Project B planning sequence:
+sufficient statistics followed by Fano. This cleanup records that dependency
+direction without activating a new theorem phase. Finite-family entropy,
+richer certificate assumptions, external certificate import, coding-theory
+layers, theorem-level blueprint work, and substantial mathlib PR preparation
+remain later work.
 
 ### Status Index
 
 | Status | Notes | Meaning |
 | --- | --- | --- |
-| Standing guardrails | 2-4, 6-8, 14-18 | Apply these policies continuously; they do not create standalone cleanup tasks. |
-| Channel/Markov proof-pressure | 21, 25-27 | Revisit these only when concrete channel, Markov, or data-processing consumers reach their stated triggers. |
-| Proof-pressure deferred | 19, 22-24, 30-38 | Wait for the repeated proof or new statement pressure specified in each note. |
-| Later milestones | 1, 5, 9-13, 28-29 | Keep these outside the completed Chunk 3 scope and schedule them in their own later phases. |
+| Standing guardrails | 2-4, 6-8, 14-18, 26 | Apply these policies continuously; they do not create standalone cleanup tasks. |
+| Next Project B planning anchor | 29 | Use this dependency sequence when planning the post-Chunk-3 theorem phase; this cleanup does not itself start that phase. |
+| Channel/Markov proof-pressure | 21, 25, 27 | Revisit these only when concrete channel, Markov, or data-processing consumers reach their stated triggers. |
+| Proof-pressure deferred | 19, 22-24, 30-37 | Wait for the repeated proof or new statement pressure specified in each note. |
+| Later milestones | 1, 5, 9-13, 28, 38 | Schedule these in their own later mathematical, documentation, example, certificate, or coding phases. |
 | Closed/historical | 20 | Retained for numbered references and rationale; it is not an active backlog item. |
 
 This index is a navigation aid. It does not renumber the detailed notes, change
 their theorem-pressure conditions, or serve as the naming decision table
 requested by Note 14 for the next scheduled API review.
+The 38 numbered entries therefore comprise 37 active or standing notes and one
+closed historical note. Here, active includes guardrails, proof-pressure
+triggers, planning anchors, and later milestones; it does not mean immediate
+implementation. Earlier step-specific imperatives retained inside a note are
+historical trigger records when a later paragraph records their resolution.
 
 1. Keep the finite-family entropy API delayed through Project B Chunk 1 and the
     intervening KL/channel theorem pressure. Revisit it in the planned
@@ -5636,11 +5672,11 @@ requested by Note 14 for the next scheduled API review.
     quantity vanishes. Keep any such example outside the core Shannon modules
     and out of the lightweight root. This note is no longer an active API task.
 
-21. Chunk 3 watch item: revisit mutual-information invariance under injective
-    relabeling only when a second genuine consumer appears. This is not a
-    pre-Chunk-3 cleanup task. The private Step 10 helper proves the special case
-    needed there by adjoining a deterministic image to its source variable and
-    using entropy invariance under an injective map. If later deterministic-
+21. Mutual-information injective-relabeling proof-pressure note: revisit the
+    public theorem family only when a second genuine consumer appears. The
+    private Chunk 1 Step 10 helper proves the special case needed there by
+    adjoining a deterministic image to its source variable and using entropy
+    invariance under an injective map. If later deterministic-
     processing, sufficient-statistic, or channel proofs repeat that argument,
     extract a coherent public theorem family saying that injectively relabeling
     either random variable preserves mutual information, together with PMF
@@ -5865,9 +5901,9 @@ requested by Note 14 for the next scheduled API review.
     repeat strict Jensen. It therefore supplies no new pressure for either
     abstraction.
 
-25. Chunk 3 watch item: add ordinary-independence convenience theorems only
-    when concrete downstream proofs need them. This is not a pre-Chunk-3
-    cleanup task. The primary design remains PMF-first: `IsIndependent` is
+25. Ordinary-independence proof-pressure note: add convenience theorems only
+    when concrete downstream proofs need them. The primary design remains
+    PMF-first: `IsIndependent` is
     equality with the independent product of the marginals, and
     `IsIndependentOf` applies that predicate to the mapped joint law. Do not
     redefine either predicate through mathlib
@@ -5940,10 +5976,11 @@ requested by Note 14 for the next scheduled API review.
     mapped-law factorization or need closure, constant-variable, or degeneracy
     helpers, so no ordinary-independence convenience theorem is promoted.
 
-26. Chunk 3 module-boundary guardrail: do not split
-    `Shannon.SemanticBridge.Independence` preemptively. Step 17 reviewed its
-    size and import boundary and retained the current module. The file combines
-    elementary PMF and random-variable independence predicates with the mathlib
+26. Standing module-boundary guardrail: do not split
+    `Shannon.SemanticBridge.Independence` preemptively. Chunk 2 Step 17
+    reviewed its size and import boundary and retained the current module. The
+    file combines elementary PMF and random-variable independence predicates
+    with the mathlib
     `IndepFun` bridge, KL-based zero-MI equivalences, pair entropy equality cases,
     positive-fiber results, and conditional independence. This remains a
     coherent semantic independence layer, so file length alone does not
@@ -6148,18 +6185,13 @@ requested by Note 14 for the next scheduled API review.
     private `klDiv_channel_le_aux` wrapper was therefore inlined into the
     unchanged public `klDiv_channel_le`; no module move was made.
 
-27. Chunk 3 watch item: revisit conditional-independence ergonomics when the
-    first Markov-chain, stochastic-channel, or data-processing proofs create
-    concrete consumers. This is not a pre-Chunk-3 cleanup task. Add a small,
-    separately importable finite example in that phase, preferably a
-    nontrivial common-cause construction,
-    that exercises `IsCondIndependentOf`, the positive-fiber characterization,
-    and `condMutualInfoOf_eq_zero_iff_isCondIndependentOf`. The example should
-    clarify the mathematical contract rather than merely restate theorem
-    signatures. During the same pass, expand the doc comment on
-    `condMutualInfo_eq_zero_iff_isCondIndependent` to state explicitly that
-    null fibers require no chosen conditional law because the primary cross-
-    product predicate handles them directly.
+27. Conditional-independence ergonomics remains proof-pressure deferred after
+    the completed Chunk 3 review. That review added the separately importable
+    nontrivial common-cause example and expanded the zero-CMI doc comment to
+    explain the null-fiber contract. The remaining symmetry, closure,
+    right-oriented entropy-equality, conditional-marginal-helper, and
+    representation-convenience questions below should move only when their
+    concrete consumer triggers are met.
 
     Let theorem pressure determine the symmetry and closure API. Conditional
     independence is symmetric in its first two variables, and a PMF coordinate-
@@ -6373,10 +6405,11 @@ requested by Note 14 for the next scheduled API review.
     example builds, a fresh consumer import smoke test, and generated-reference
     checks if this cleanup is made.
 
-29. After Project B Chunk 3, develop sufficient statistics and Fano in their
-    own dependency-ordered phases rather than extending the active channel and
-    data-processing chunk indefinitely. The sufficient-statistic phase should
-    start from Chunk 3's equality case for mutual-information data processing
+29. The next dependency-ordered Project B sequence after the completed Chunk 3
+    is sufficient statistics followed by Fano, each in its own focused phase
+    rather than as an extension of the channel and data-processing chunk. The
+    sufficient-statistic phase should start from Chunk 3's equality case for
+    mutual-information data processing
     and then settle the representation of a statistic, parameter/prior law,
     reverse Markov condition, and recovery map or channel. Revisit a support-
     guarded equality characterization for KL data processing in that phase,
@@ -6846,9 +6879,9 @@ requested by Note 14 for the next scheduled API review.
     posterior remainder. No `[Finite]` posterior wrapper or weighted fiber-KL
     expansion is justified.
 
-38. Keep a matrix-facing doubly stochastic bridge out of the active Chunk 3
-    module unless the later majorization/Birkhoff phase creates a concrete
-    consumer. Step 18 deliberately states its finite textbook corollary for a
+38. Keep a matrix-facing doubly stochastic bridge deferred until the later
+    majorization/Birkhoff phase creates a concrete consumer. Chunk 3 Step 18
+    deliberately states its finite textbook corollary for a
     raw PMF-valued channel with the direct column condition
     `∀ b, ∑ a, W a b = 1`; the PMF codomain already provides normalized
     nonnegative rows. This proves the intended entropy result without a second

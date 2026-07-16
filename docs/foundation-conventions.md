@@ -360,7 +360,9 @@ The comparison with Rocq `infotheo` is recorded in `docs/project-log.md`.
 - Let concrete channel and Markov consumers determine whether independence
   predicates need a lighter module boundary and which closure or symmetry
   conveniences are justified.
-- Select sufficient-statistics and Fano work only through a separate focused
-  plan; the completed Chunk 3 close does not schedule that phase.
+- Use Future Work Note 29 as the next Project B planning anchor: design a
+  focused sufficient-statistics and recovery-equality phase first, then plan
+  Fano separately. Do not begin either phase until its execution plan is
+  explicitly locked.
 - Keep concrete finite semantics for abstract certificate assumptions and
   richer certificate examples in later Project A work.

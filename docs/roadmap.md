@@ -51,11 +51,9 @@ highlights, and module guide record what is implemented now.
   naming, simp, module, and future-work review is complete. The final milestone
   build, generated-reference, website, consumer, root-isolation, and repository-
   hygiene suites pass; the lightweight root remains unchanged.
-- Extend the current generated module dependency map and source-derived
-  declaration index toward a real theorem-level blueprint, full Lean doc-gen
-  output, and blueprint PDF.
-- Keep the public website's theorem highlights, module guide, and certificate
-  demo aligned with the Lean code as the API evolves.
+- Future Work Note 29 is the next Project B mathematical planning anchor:
+  sufficient-statistics and recovery-equality work comes first, followed by a
+  separately planned Fano phase. No post-Chunk-3 theorem plan is active yet.
 - Maintain project notes in the foundation conventions and project log.
 - Keep the lightweight finite API separated from heavier KL and coding imports.
 
@@ -68,8 +66,9 @@ highlights, and module guide record what is implemented now.
   orientation page.
 - Link generated docs and blueprint entries back to the curated theorem
   highlights and submodularity demo page.
-- Extend the Cover-Thomas Chapter 2 layer toward sufficient statistics and Fano
-  in a separately planned phase.
+- Extend the Cover-Thomas Chapter 2 layer through a focused sufficient-
+  statistics and recovery-equality phase, then plan Fano separately after that
+  API is stable.
 
 ## 6 Months
 
