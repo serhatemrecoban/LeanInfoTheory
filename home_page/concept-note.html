@@ -43,7 +43,9 @@
         <li>A public mathlib-based Lean repository with CI and a current module guide.</li>
         <li>A finite <code>PMF</code>-based Shannon layer with entropy, marginals, conditional entropy, mutual information, and conditional mutual information.</li>
         <li>Finite entropy sanity theorems for relabeling, coordinate swaps, reassociation, the logarithmic upper bound, and the uniform-law equality case.</li>
-        <li>Semantic bridge theorems proving finite entropy as expected self-information over <code>PMF.toMeasure</code>, mutual information as KL divergence, conditional entropy as expected fiber entropy, conditional mutual information as averaged fiber mutual information and averaged fiber KL, semantic nonnegativity, and a first mutual-information chain rule.</li>
+        <li>Semantic bridge theorems proving finite entropy as expected self-information over <code>PMF.toMeasure</code>, mutual information as KL divergence, conditional entropy as expected fiber entropy, conditional mutual information as averaged fiber mutual information and averaged fiber KL, semantic nonnegativity, and mutual-information chain rules.</li>
+        <li>Finite independence, conditional-independence, and Markov characterizations, including zero-MI/zero-CMI equality cases and canonical channel factorization.</li>
+        <li>Finite stochastic-channel data processing for mutual information and KL divergence, with deterministic, cascade, invariant-law, and doubly stochastic entropy consequences.</li>
         <li>A formal entropy-expression layer for rational linear combinations of entropy atoms.</li>
         <li>An abstract Shannon entropy-valuation layer for certificate-facing semantic assumptions.</li>
         <li>Primitive Shannon inequality expressions for empty entropy, conditional entropy, and conditional mutual information, with soundness theorems under abstract Shannon entropy valuations.</li>
@@ -56,7 +58,7 @@
 
       <h2>Current limitations</h2>
       <ul>
-        <li>The semantic bridge is still finite-PMF focused; general stochastic data processing, independence equality cases, Fano, AEP, and source/channel coding are future work.</li>
+        <li>The semantic bridge is still finite-PMF focused; sufficient statistics, Fano, AEP, and source/channel coding are future work.</li>
         <li>The certificate layer checks and validates certificates, but it does not yet search for certificates automatically.</li>
         <li>The certificate layer is not yet a full import pipeline for external certificate formats such as PSITIP/oXitip output.</li>
         <li>Independence, Markov, and functional-dependence constraints are not yet part of the checked certificate language.</li>

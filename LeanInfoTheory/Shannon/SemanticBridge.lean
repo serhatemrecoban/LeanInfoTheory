@@ -6,6 +6,8 @@ Authors: Serhat Emre Coban
 
 import LeanInfoTheory.Shannon.SemanticBridge.Theorems
 import LeanInfoTheory.Shannon.SemanticBridge.Independence
+import LeanInfoTheory.Shannon.SemanticBridge.Markov
+import LeanInfoTheory.Shannon.SemanticBridge.DataProcessing
 import Mathlib.Probability.ProbabilityMassFunction.Integrals
 
 /-!
@@ -30,12 +32,31 @@ textbook/measure-theoretic semantics.
 - `IsCondIndependent` and `IsCondIndependentOf` through proof-independent
   cross-product factorization, equivalent to independence of each positive-
   mass conditional joint law and to zero conditional mutual information, with
-  the resulting conditional-entropy equality cases;
+  first-two-variable symmetry and the resulting conditional-entropy equality
+  cases;
 - finite-sum formulas rewriting `mutualInfo` as
   `sum p(a,b) log (p(a,b) / (p_A(a) p_B(b)))`;
 - `mutualInfo` as KL divergence from the joint law to the product of its
   marginals;
 - `condFstGivenSnd`, the nonzero-mass conditional law `P_{A | B=b}`;
+- `condFstGivenSndChannel`, its total channel form with a documented null-fiber
+  fallback and pair-law reconstruction for Markov factorization;
+- `IsMarkovChain` and `IsMarkovChainOf`, the PMF and random-variable Markov
+  predicates with the orientation `X -> Y -> Z`, together with cross-product,
+  positive-fiber, zero-CMI, and reversal characterizations and the Markov law
+  for channel-generated triples, its canonical and existential channel-
+  factorization converses, and the exact mutual-information loss identity;
+- `pmfChannelKernel`, the mathlib Markov-kernel view of a countable PMF-valued
+  channel, with `channelJoint_toMeasure` identifying the induced PMF joint law
+  with the corresponding measure-kernel composition product;
+- `channelPosterior`, the total finite posterior of an input law and channel,
+  together with PMF joint reconstruction and the exact
+  `klDiv_channel_eq_add_posterior` decomposition;
+- finite KL data processing through a common stochastic channel, with
+  unconditional `ENNReal`, support-guarded real, deterministic-map, and
+  channel-cascade forms;
+- one-step KL contraction toward invariant reference laws and entropy growth
+  under uniform-preserving and finite doubly stochastic channels;
 - `condEntropy` as the expected entropy of these conditional laws;
 - `condMutualInfo` as expected fiber mutual information and as an averaged
   conditional KL divergence;

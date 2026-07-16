@@ -1,7 +1,7 @@
 # Current Lean State
 
-Last milestone checkpoint: July 14, 2026. Project B Chunk 1 was committed as
-`7ab3aa0`, and Project B Chunk 2 is now complete after passing its full
+Last milestone checkpoint: July 16, 2026. Project B Chunk 1 was committed as
+`7ab3aa0`, and Project B Chunk 2 was checkpointed as `e5e9825` after passing its full
 milestone build/check suite. All 18 Chunk 2 steps are finished. The chunk began
 from the clean Chunk 1 checkpoint, its new theorem contracts were validated by
 temporary
@@ -27,9 +27,66 @@ integration pass rebuilt all ten milestone targets, regenerated both public
 reference sets, passed the website and repository hygiene checks, and left the
 lightweight root unchanged.
 
-This is a handoff note for future Lean-focused work. It summarizes the current
-architecture and the next useful Lean tasks without changing theorem
-statements.
+Project B Chunk 3 is complete. All 20 steps of its revised plan are finished.
+Step 1 fixed the raw PMF-valued channel representation, total
+conditional-channel convention, Markov orientations, and MI proof route through
+a temporary no-placeholder spike. Step 2 added the separately importable
+`Probability.FiniteChannel` module with deterministic channels, channel
+composition, induced joint laws, and pair-to-triple channel extension. Step 3
+proved their type-generic atom, projection, algebra, deterministic-map, and
+support laws. Step 4 created the separately importable
+`SemanticBridge.Markov` module and defined its total conditional channel. The
+Step 5 theorem layer now proves positive and null branch reduction, arbitrary-
+fallback irrelevance on null fibers after weighting, all-fiber atom
+reconstruction, and reconstruction of the swapped pair law. Step 6 added the
+assumption-free `IsMarkovChain` and `IsMarkovChainOf` predicates together with
+PMF and random-variable symmetry of conditional independence in its first two
+variables. Step 7 characterized these predicates through the atomwise Markov
+cross-product law, independence of the endpoints on every positive middle
+fiber, zero `I(X;Z|Y)`, and reversal of the chain. Step 8 proved that
+`PMF.channelExtension p V` is Markov for every pair law `p` and channel `V`
+depending on its second coordinate. The lightweight root remains unchanged;
+Step 9 added PMF and random-variable forms of the exact loss identity
+`I(X;Y) = I(X;Z) + I(X;Y|Z)`. Step 10 derived mutual-information data
+processing, the conditional-entropy inequality `H(X|Y) <= H(X|Z)`, and
+  equality exactly under the reverse Markov condition `X -> Z -> Y`. Step 11
+  specialized this DPI to stochastic processing of either coordinate,
+  independently processing both coordinates, two-stage channel cascades, and
+  deterministic output maps. Step 12 completed the Markov/channel converse:
+  every finite Markov triple is reconstructed by the canonical total
+  middle-to-third conditional channel and, equivalently, is an extension of its
+  first-two marginal through some channel. Step 13 completed the second
+  no-placeholder feasibility checkpoint and selected the kernel-chain-rule
+  route for finite KL contraction. It validated the PMF-to-kernel and posterior
+  reconstruction bridges, finite KL invariance under equivalence, exact
+  posterior decomposition, unconditional `ENNReal` contraction, and the real
+  corollary under input support inclusion. No production declaration or root
+  import was added. Step 14 introduced the opt-in
+  `SemanticBridge.DataProcessing` module. Its `pmfChannelKernel` definition and
+  Markov-kernel instance give the measure-theoretic view of a raw PMF channel,
+  while `channelJoint_toMeasure` identifies the induced joint PMF measure with
+  mathlib's `compProd`. The semantic aggregate imports the new module; the
+  lightweight root remains unchanged. Step 15 added the total
+  `channelPosterior`, its assumption-light PMF reconstruction theorem, and the
+  exact `ENNReal` identity `klDiv_channel_eq_add_posterior`. The coordinate-
+  swap KL invariance and measurable posterior `compProd` bridge remain private.
+  Step 16 added the private `[Finite]` contraction engine by discarding that
+  identity's nonnegative posterior remainder. Step 17 now publishes the
+  unconditional `ENNReal` channel inequality, its input-support-guarded real
+  form, and deterministic-map and channel-cascade specializations. The cascade
+  surface keeps the original source alphabet type-generic. Step 18 derives
+  contraction toward an invariant reference law and assumption-light entropy
+  growth under uniform-preserving and finite doubly stochastic channels. Step
+  19 adds separately importable noisy common-cause and stochastic-channel
+  examples, approves five compatibility aliases after the scheduled review,
+  confirms the existing simp and module boundaries, and inlines the unused
+  private KL contraction wrapper into the unchanged public theorem. Step 20
+  integrated the milestone, regenerated the source-derived references, passed
+  the complete build, website, consumer, root-isolation, and hygiene suites, and
+  left the lightweight root unchanged.
+
+This is a maintained status note for Lean-focused work. It summarizes the
+current architecture and the completed Chunk 3 theorem milestone.
 
 ## Current Lean Architecture
 
@@ -41,6 +98,12 @@ statements.
   lemmas, including real-mass facts, the canonical finite `PMF.supportFinset`
   view, pointwise `PMF.map` formulas, and the singleton-support characterization
   `PMF.eq_pure_iff_support_eq_singleton`.
+- `LeanInfoTheory.Probability.FiniteChannel` is a separately importable,
+  type-generic PMF channel construction layer. Channels remain raw functions
+  `alpha -> PMF beta`; the module names deterministic channels, channel
+  composition, induced input-output joint laws, and pair-to-triple extension,
+  together with their pointwise, projection, algebra, deterministic, and
+  support laws.
 - `LeanInfoTheory.Shannon.Entropy` defines finite Shannon entropy in nats using
   mathlib `PMF`s and `Real.negMulLog`.
 - `LeanInfoTheory.Shannon.InfoMeasures` defines finite marginal laws,
@@ -59,6 +122,27 @@ statements.
   KL zero-equality case, support-aware uniform-reference identities, and the
   separately importable independence module, including its conditional-
   independence definitions and positive-fiber characterization.
+- `LeanInfoTheory.Shannon.SemanticBridge.Markov` is the new opt-in
+  channel-facing semantic module. It defines `IsMarkovChain` and
+  `IsMarkovChainOf` using conditional independence and also defines
+  `condFstGivenSndChannel`, which agrees by construction with
+  `condFstGivenSnd` on positive fibers and uses `fstMarginal p` on null fibers,
+  and proves its branch, weighted atom, and pair-law reconstruction properties.
+  The same module characterizes Markov structure by cross-product
+  factorization, positive conditional fibers, zero CMI, and chain reversal,
+  proves that `PMF.channelExtension` generates Markov triples, and exposes the
+  exact Markov mutual-information loss identity, data-processing inequality,
+  conditional-entropy consequence, and reverse-Markov equality case at PMF
+  and random-variable levels. Its channel-facing consequences cover left,
+  right, independently two-sided, cascade, and deterministic output
+  processing without adding another channel construction.
+- `LeanInfoTheory.Shannon.SemanticBridge.DataProcessing` is the new opt-in
+  kernel/KL-facing module. It currently converts countable PMF-valued channels
+  to mathlib Markov kernels and proves that `PMF.channelJoint` has the expected
+  measure-kernel `compProd` semantics. It also constructs the total finite
+  posterior, reconstructs the induced joint PMF in output-input order, and
+  proves the exact channel KL posterior decomposition. The module is imported
+  by the semantic aggregate but remains outside the lightweight root.
 - `LeanInfoTheory.EntropyExpr`, `LeanInfoTheory.EntropyVal`, and
   `LeanInfoTheory.PrimitiveIneq` form the abstract entropy-expression and
   primitive Shannon inequality layer.
@@ -70,8 +154,10 @@ statements.
   `LeanInfoTheory.Certificate.ThreeWaySubadditivity`, and
   `LeanInfoTheory.Examples` are separately importable demonstration and
   pressure-test modules. `LeanInfoTheory.Examples.SupportSensitive` and
-  `LeanInfoTheory.Examples.KLTop` can also be imported directly when only the
-  new semantic examples are wanted.
+  `LeanInfoTheory.Examples.KLTop`, together with the new
+  `LeanInfoTheory.Examples.CommonCause` and
+  `LeanInfoTheory.Examples.StochasticChannels`, can also be imported directly
+  when only one semantic example is wanted.
 - `LeanInfoTheory.MathlibFragments` is a separately importable anchor/checklist
   for mathlib APIs that the project expects to use later.
 
@@ -169,6 +255,18 @@ Implemented and building:
   through `Shannon.condEntropy_pair_eq_add_condEntropy_iff_isCondIndependent`
   and
   `Shannon.condEntropyOf_pair_eq_add_condEntropyOf_iff_isCondIndependentOf`;
+- Markov predicates `Shannon.IsMarkovChain` and `Shannon.IsMarkovChainOf`, with
+  atomwise cross-product, positive conditional-fiber, zero-CMI, and reversal
+  characterizations in `Shannon.SemanticBridge.Markov`, plus
+  `Shannon.isMarkovChain_channelExtension` for channel-generated triples and
+  `Shannon.mutualInfo_markov_chain_rule`/
+  `Shannon.mutualInfoOf_markov_chain_rule` for exact information loss;
+- `Shannon.pmfChannelKernel` and its Markov-kernel instance, together with
+  `Shannon.channelJoint_toMeasure` identifying the induced PMF joint law with
+  mathlib's measure-kernel composition product;
+- `Shannon.channelPosterior` and
+  `Shannon.channelPosterior_reconstructs_joint`, together with the exact
+  `Shannon.klDiv_channel_eq_add_posterior` identity;
 - absolute-continuity helpers from a joint finite law to the product of its
   marginals;
 - finite log-ratio formulas for mutual information;
@@ -210,6 +308,9 @@ Implemented and building:
 - deterministic mutual-information processing, including
   `I(X;Y) = I(f(X);Y) + I(X;Y|f(X))`, one-sided and two-sided random-variable
   inequalities, and PMF coordinate-map corollaries;
+- stochastic channel-facing mutual-information processing on either coordinate,
+  independent channels on both coordinates, channel cascades, and
+  deterministic maps of a channel output;
 - both PMF conditional-entropy difference forms for conditional mutual
   information;
 - triple-level conditional inequalities in PMF and random-variable forms:
@@ -329,22 +430,233 @@ future work.
   whether mathlib has added canonical finite PMF product, finite KL expansion,
   or averaged conditional-KL APIs.
 
-## Recommended Next Lean Tasks
+## Chunk 3 Milestone Close
 
-1. Review the Project B formalization map and live future-work notes, then fix
-   the scope and theorem contracts of the next focused chunk before editing
-   Lean.
-2. Keep the root import unchanged. Entropy bounds, semantic theorems, units,
+1. All 20 Chunk 3 steps are complete and integrated.
+2. The root import remains unchanged. Entropy bounds, semantic theorems, units,
    demos, and reference anchors remain separately importable where appropriate.
-3. Treat a stochastic-channel, Markov, and data-processing dependency layer as
-   the leading next-chunk candidate. Audit mathlib's finite-kernel contracts
-   and settle module ownership before choosing public definitions.
-4. Keep sufficient statistics, Fano, binary/q-ary bridges, and finite-family
-   entropy in later focused chunks unless the next planning pass establishes a
-   direct prerequisite.
-5. Continue updating the project log after each completed implementation step,
-   with focused Lake builds during development and a full suite at each
-   milestone boundary.
+3. Sufficient statistics, KL recovery equality, Fano, channel processes,
+   binary/q-ary bridges, and finite-family entropy remain in the future-work
+   notes; this milestone close does not select the next theorem phase.
+4. Continue using focused Lake builds during theorem development and the full
+   suite at every milestone boundary.
+
+## Completed Project B Chunk 3 Plan
+
+Current status: all 20 steps are complete.
+The chunk covers finite stochastic channels, Markov structure, MI and KL data
+processing, and their immediate one-step consequences.
+
+1. Completed on July 14, 2026: lock the contract through no-placeholder
+   channel/Markov/MI spikes and record the active plan and deferred work.
+2. Completed on July 15, 2026: introduce the opt-in finite-channel core using
+   raw PMF-valued functions and four repeated compound constructions.
+3. Completed on July 15, 2026: prove channel atom, projection, algebra,
+   deterministic-map, and support laws.
+4. Completed on July 15, 2026: construct a total conditional channel with a
+   documented null-fiber branch.
+5. Completed on July 15, 2026: prove positive-fiber agreement, null-fiber
+   irrelevance, weighted atom reconstruction, and pair-law reconstruction.
+6. Completed on July 15, 2026: introduce PMF/random-variable Markov predicates
+   and the required conditional-independence symmetry API.
+7. Completed on July 15, 2026: prove cross-product, positive-fiber, zero-CMI,
+   and reversal Markov characterizations.
+8. Completed on July 15, 2026: prove that channel-generated triples are
+   Markov.
+9. Completed on July 15, 2026: prove the exact PMF and random-variable mutual-
+   information loss identities.
+10. Completed on July 15, 2026: derive MI data processing, its conditional-
+    entropy consequence, and reverse-Markov equality case.
+11. Completed on July 15, 2026: add one-sided, independently two-sided,
+    cascade, and deterministic channel-facing MI processing.
+12. Completed on July 15, 2026: prove the canonical and existential Markov
+    channel-factorization converses using the total conditional channel.
+13. Completed on July 15, 2026: select the kernel/KL contraction route and lock
+    its support assumptions through a no-placeholder feasibility checkpoint.
+14. Completed on July 15, 2026: bridge finite PMF channels to mathlib Markov
+    kernels and identify their induced joint measures.
+15. Completed on July 15, 2026: construct the total channel posterior, prove
+    joint reconstruction, and establish the exact KL posterior decomposition.
+16. Completed on July 15, 2026: establish the private finite KL contraction
+    engine from the nonnegative posterior remainder.
+17. Completed on July 15, 2026: publish `ENNReal`, support-guarded real,
+    deterministic-map, and channel-cascade KL data processing.
+18. Completed on July 15, 2026: derive invariant-reference contraction and
+    uniform-preserving entropy growth, with a finite doubly-stochastic
+    corollary.
+19. Completed on July 16, 2026: add common-cause and stochastic examples and
+    complete the naming, simp, module, and future-work review.
+20. Completed on July 16, 2026: integrate, regenerate references, run the full
+    milestone suite, and create the clean checkpoint commit.
+
+### Locked Step 20 Integration
+
+- All ten milestone Lake targets pass. The semantic aggregate builds with 2715
+  jobs and the examples aggregate with 2725 jobs.
+- The generated declaration index contains 616 documented public declarations.
+  The module graph contains 33 modules and 52 local import edges: 11 modules are
+  root-reachable and 22 remain separately importable.
+- The website checker passes for 12 HTML files and both generated JSON files. A
+  temporary 2718-job Lake consumer exercised representative finite-channel,
+  Markov, data-processing, and example declarations and was deleted.
+- Source-derived isolation confirms that all five new Chunk 3 modules remain
+  outside the lightweight root. Placeholder, scratch, temporary-declaration,
+  diff-hygiene, and process checks pass.
+
+### Locked Step 19 Examples and Review
+
+- `Examples.CommonCause` constructs two noisy binary observations of a fair
+  cause and exercises `IsCondIndependentOf`, positive-fiber endpoint
+  independence, zero CMI, and canonical and existential Markov factorization.
+- `Examples.StochasticChannels` exercises both Step 18 entropy surfaces, proves
+  strict entropy growth from a pure input, contracts KL toward a nonuniform
+  invariant law, and separates source support from intermediate cascade
+  support.
+- The review added the compatibility aliases
+  `isMarkovChain_iff_fiberwise_endpoints_independent`,
+  `isMarkovChain_iff_canonical_channelExtension`,
+  `mutualInfo_channel_cascade_le`, `klDiv_channel_cascade_le`, and
+  `toReal_klDiv_channel_cascade_le`. Every original declaration remains public,
+  and no alias is a simp rule.
+- Representative simp goals still close with the existing policy. The semantic
+  modules remain separately importable and outside the lightweight root. The
+  duplicate private `klDiv_channel_le_aux` wrapper was inlined into
+  `klDiv_channel_le` without changing its statement.
+
+### Locked Step 18 Invariant-Law Consequences
+
+- `klDiv_channel_invariant_le` and
+  `toReal_klDiv_channel_invariant_le` specialize the Step 17 channel DPI to a
+  reference law `r` satisfying `r.bind W = r`. The primary theorem remains
+  unconditional and `ENNReal`-valued; the real form retains the input support
+  condition `p.support ⊆ r.support`.
+- `entropy_le_entropy_bind_of_uniform_invariant` rewrites real KL divergence
+  to the uniform law as `log |alpha| - H(P)`. Its discrete measurable structure
+  is local, so callers see only `[Fintype alpha]` and `[Nonempty alpha]`.
+- `entropy_le_entropy_bind_of_doublyStochastic` takes the finite column-sum
+  condition `∀ b, ∑ a, W a b = 1`; PMF-valued rows already provide row
+  stochasticity. The proof derives uniform preservation locally. No bundled
+  channel, matrix bridge, transition process, or public helper was introduced.
+- All four results remain explicit rather than `[simp]`. Future Work Note 14
+  records the Step 19 decision to retain the two descriptive entropy names
+  without `mono` or `nondecreasing` aliases. Future Work Note 38 defers a
+  mathlib doubly-stochastic-matrix bridge until the later majorization phase
+  creates a real consumer. The lightweight root is unchanged.
+
+### Locked Step 17 KL Data-Processing API
+
+- `klDiv_channel_le` is the primary unconditional `ENNReal` theorem, and
+  `toReal_klDiv_channel_le` requires only the input support inclusion
+  `p.support ⊆ q.support`. The real proof uses `ENNReal.toReal_mono`; it does
+  not repeat the top-branch elimination tracked by Future Work Note 22.
+- `klDiv_map_le` and `toReal_klDiv_map_le` specialize the common channel to a
+  deterministic map. `klDiv_channelComp_le` and
+  `toReal_klDiv_channelComp_le` contract the second stage of a channel cascade;
+  they require finite measurable-singleton structure only on the intermediate
+  and final alphabets, not on the original source type.
+- Support inclusion through the first channel is proved by one private helper
+  used only by the real cascade theorem. No support, recovery, equality, or KL-
+  relabeling theorem was promoted speculatively. All six inequalities remain
+  explicit rather than `[simp]`.
+- The cascade names follow the established `PMF.channelComp` and mutual-
+  information vocabulary. Step 19 retained those names and added the reviewed
+  `klDiv_channel_cascade_le` and `toReal_klDiv_channel_cascade_le`
+  compatibility aliases. The data-processing module stays opt-in and the
+  lightweight root is unchanged.
+
+### Locked Step 16 Contraction Engine
+
+- The private `klDiv_channel_le_aux` theorem already has the intended public
+  assumptions: `[Finite alpha]`, `[Finite beta]`, and explicit measurable-
+  singleton spaces, with no support-inclusion hypothesis.
+- Its proof installs only the input `Fintype`, rewrites with
+  `klDiv_channel_eq_add_posterior`, and drops the posterior KL remainder by
+  `ENNReal` nonnegativity. It introduces no second analytic argument.
+- Step 16 adds no public declaration, alias, simp theorem, posterior-equality
+  condition, support helper, or recovery API. Step 17 publishes the coherent
+  primary/real/deterministic/cascade theorem family above without exposing the
+  engine.
+
+### Locked Step 15 Posterior Decomposition
+
+- `channelPosterior p W` is exactly
+  `condFstGivenSndChannel (PMF.channelJoint p W)`. Its null-output fallback is
+  inherited from the established total conditional-channel convention and has
+  no independent probabilistic meaning.
+- `channelPosterior_reconstructs_joint` is deliberately PMF-first and requires
+  only `[Fintype alpha]`: sampling the posterior from `p.bind W` reconstructs
+  `PMF.channelJoint p W` in output-input order.
+- `klDiv_channel_eq_add_posterior` is an unconditional `ENNReal` identity. It
+  splits input KL into output KL plus the divergence between the two posterior
+  kernels over the first output law, using mathlib composition-product measures.
+- Finite KL invariance under equivalence and the measurable posterior
+  `compProd` reconstruction remain private implementation lemmas. The former
+  still has only the coordinate-swap consumer tracked by Future Work Note 35.
+- The proof composes existing channel-output and total-conditional-channel
+  reconstruction theorems. It repeats neither watched Step 12 middle-marginal
+  equality nor its null-fiber support transport, so no helper extraction or
+  stronger assumption is justified.
+
+### Locked Step 14 Kernel Bridge
+
+- `pmfChannelKernel W` is the semantic kernel view of the existing raw channel
+  `W : alpha -> PMF beta`; it uses `Kernel.ofFunOfCountable` and introduces no
+  bundled or competing channel representation.
+- Its global `IsMarkovKernel` instance follows pointwise from the probability-
+  measure instance of each `W a`. The `[simp]` evaluation theorem merely
+  reduces the bridge back to `(W a).toMeasure`.
+- `channelJoint_toMeasure` states that `(PMF.channelJoint p W).toMeasure` is
+  `p.toMeasure ⊗ₘ pmfChannelKernel W`. It is explicit rather than a simp rule,
+  and its countability and measurable-singleton assumptions are inferred from
+  the finite alphabets used by later KL theorems.
+- Step 14 adds no posterior definition, KL theorem, support helper, Step 12
+  alias, or stronger alphabet assumption. Those decisions remain owned by the
+  scheduled later steps and proof-pressure notes.
+
+### Locked Step 13 KL Contract
+
+- Raw `W : alpha -> PMF beta` channels are converted locally with mathlib's
+  `Kernel.ofFunOfCountable`; the project does not introduce a second channel
+  representation.
+- The proof route identifies kernel `compProd` with `PMF.channelJoint`, uses
+  `condFstGivenSndChannel` as a total finite posterior, and reconstructs the
+  swapped joint law through the existing weighted conditional-channel theorem.
+- Exact posterior decomposition is obtained from mathlib's
+  `klDiv_compProd_left` and `klDiv_compProd_eq_add`. A finite KL invariance
+  lemma for equivalence relabeling supplies only the required coordinate swap
+  and should remain private until another independent consumer justifies a
+  public theorem.
+- Finite channel KL contraction is primarily an unconditional `ENNReal`
+  theorem. Its real-valued corollary assumes only `p.support ⊆ q.support`;
+  channel output support inclusion follows automatically. Deterministic and
+  cascade forms are direct specializations, and the same original support
+  guard suffices for the real cascade theorem.
+- The direct finite log-sum route would duplicate analytic infrastructure not
+  currently exposed by mathlib. Mathlib's general posterior construction would
+  also impose unnecessary standard-Borel machinery, so neither route is used.
+- Steps 14-18 belong in a separately importable
+  `Shannon.SemanticBridge.DataProcessing` module. The lightweight root remains
+  unchanged.
+
+### Locked Step 1 Contract
+
+- A channel is represented directly by `W : alpha -> PMF beta`; no channel
+  structure or parallel probability theory is introduced.
+- Output, identity, deterministic, and composition semantics reuse `PMF.bind`,
+  `PMF.pure`, and `PMF.map`. Only repeated constructions receive local names.
+- The total conditional channel uses `fstMarginal p` on null second-marginal
+  fibers and `condFstGivenSnd` on positive fibers. Its public consequences are
+  support-aware, so the null convention is not given semantic significance.
+- `IsMarkovChainOf p X Y Z` means `IsCondIndependentOf p X Z Y`; the PMF form
+  applies this to the three coordinate projections.
+- Under that predicate, the existing MI chain rules prove
+  `I(X;Y) = I(X;Z) + I(X;Y|Z)`. CMI nonnegativity proves DPI, and zero CMI
+  characterizes its reverse-Markov equality case.
+- Generic channel mechanics belong in an opt-in
+  `Probability.FiniteChannel` module; Markov/MI and later kernel/KL work belong
+  in separate semantic-bridge submodules. The lightweight root stays unchanged.
+- Finiteness and measurability assumptions are introduced only by the layers
+  that consume them. The later KL theorem is primarily `ENNReal`-valued.
 
 ## Completed Project B Chunk 2 Plan
 

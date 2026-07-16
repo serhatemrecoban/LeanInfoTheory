@@ -7,7 +7,9 @@ Authors: Serhat Emre Coban
 import LeanInfoTheory.Certificate
 import LeanInfoTheory.Certificate.Checked
 import LeanInfoTheory.EntropyVal
+import LeanInfoTheory.Examples.CommonCause
 import LeanInfoTheory.Examples.KLTop
+import LeanInfoTheory.Examples.StochasticChannels
 import LeanInfoTheory.Examples.SupportSensitive
 import LeanInfoTheory.PrimitiveIneq
 
@@ -15,8 +17,8 @@ import LeanInfoTheory.PrimitiveIneq
 # Toy examples
 
 This aggregate contains the original small certificate examples and imports the
-separately usable `Examples.SupportSensitive` and `Examples.KLTop` semantic
-examples. It remains outside the lightweight root import.
+separately usable common-cause, stochastic-channel, support-sensitive, and
+infinite-KL semantic examples. It remains outside the lightweight root import.
 -/
 
 namespace LeanInfoTheory

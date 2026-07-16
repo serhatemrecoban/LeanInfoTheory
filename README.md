@@ -122,6 +122,51 @@ when they stabilize.
   complete ten-target milestone suite, generated-reference pass, website
   checks, and repository hygiene review all pass, and the chunk is ready as a
   clean checkpoint for the next Project B phase.
+- Project B Chunk 3 is complete. All 20 steps of its revised channel, Markov,
+  and data-processing plan are finished. The separately importable
+  `Probability.FiniteChannel` module keeps channels as raw PMF-valued functions
+  and now provides the basic atom, projection, algebra, deterministic-map, and
+  support laws for its four constructions. The new opt-in
+  `SemanticBridge.Markov` module adds the total conditional channel, proves its
+  branch and null-fiber irrelevance laws, and reconstructs the original pair
+  law in channel order. It now also defines `IsMarkovChain` and
+  `IsMarkovChainOf`; the independence layer supplies the required first-two-
+  variable conditional-independence symmetry. Markov structure is now
+  characterized by its atomwise cross-product law, positive conditional
+  fibers, zero conditional mutual information, and chain reversal. Extending
+  any pair law through a channel on its second coordinate now produces a
+  Markov triple. The PMF and random-variable APIs expose the exact Markov loss
+  identity `I(X;Y) = I(X;Z) + I(X;Y|Z)`, mutual-information data processing,
+  its conditional-entropy form, and equality exactly under the reverse chain
+  `X -> Z -> Y`. The channel-facing API now applies that theorem to left,
+  right, and independently two-sided processing, channel cascades, and
+  deterministic output maps. The converse is now complete: every finite Markov
+  triple is canonically reconstructed by extending its first-two marginal with
+  the total middle-to-third conditional channel, and equivalently factors
+  through some such channel. The Step 13 no-placeholder checkpoint selected a
+  finite kernel-chain-rule proof of KL contraction: bridge raw PMF channels to
+  mathlib kernels, reconstruct swapped joint laws with the existing total
+  posterior channel, and use mathlib's KL chain rule. The primary result is
+  unconditional and `ENNReal`-valued; its real corollary needs only input
+  support inclusion. The new opt-in `SemanticBridge.DataProcessing` module now
+  implements the PMF-to-kernel bridge and identifies `PMF.channelJoint` with
+  mathlib's measure-kernel composition product. It now also defines the total
+  `channelPosterior`, reconstructs the induced joint PMF from the output law
+  and posterior, and proves the exact `klDiv_channel_eq_add_posterior`
+  decomposition. Its nonnegative remainder yields the finite KL contraction
+  engine with no support assumption. The public API now includes primary
+  stochastic-channel, support-guarded real, deterministic-map, and channel-
+  cascade data-processing inequalities. It now also proves one-step KL
+  contraction toward invariant reference laws and entropy growth under
+  uniform-preserving and finite doubly stochastic channels. The new opt-in
+  common-cause and stochastic-channel examples exercise conditional
+  independence, zero CMI, Markov factorization, cascade contraction, and strict
+  entropy growth. The scheduled naming review added five compatibility aliases,
+  retained the existing simp and module boundaries, and inlined the unused
+  private KL contraction wrapper. The final integration pass rebuilt all ten
+  milestone targets, regenerated both public reference sets, passed the website,
+  root-isolation, consumer, and repository-hygiene checks, and left the
+  lightweight root unchanged.
 
 ## Lean Modules
 
@@ -134,6 +179,11 @@ when they stabilize.
   finite `PMF.supportFinset` view, and reusable pointwise `PMF.map` facts in the
   `PMF` namespace for finite Shannon sums and relabeling arguments, plus the
   pure-law/singleton-support equivalence.
+- `LeanInfoTheory.Probability.FiniteChannel`: opt-in, type-generic PMF channel
+  constructions and their elementary laws. It names deterministic channels,
+  channel composition, induced input-output joint laws, and pair-to-triple
+  extension without introducing a bundled channel type or heavier semantic
+  imports.
 - `LeanInfoTheory.Shannon.Entropy`: finite Shannon entropy in nats, with
   nonnegativity, zero-entropy characterizations, and relabeling-invariance
   theorems.
@@ -163,6 +213,30 @@ when they stabilize.
   positive-mass conditional law, together with the zero-conditional-mutual-
   information equivalences and conditional-entropy equality cases, with short
   `...additive_iff...` aliases for ordinary and conditional joint entropy.
+- `LeanInfoTheory.Shannon.SemanticBridge.Markov`: opt-in channel-facing
+  semantic layer. It defines the PMF and random-variable Markov predicates and
+  the total conditional channel
+  `condFstGivenSndChannel`, using the canonical conditional PMF on positive
+  fibers and the first marginal as a technically convenient null-fiber
+  fallback, and proves weighted atom and pair-law reconstruction. Its Markov
+  API includes cross-product, positive-fiber, zero-CMI, and reversal
+  characterizations, together with the fact that `PMF.channelExtension`
+  generates a Markov triple, the canonical and existential channel-
+  factorization converses, the exact PMF/random-variable information-loss chain
+  rules, data-processing and equality theorems, and one-sided, two-sided,
+  cascade, and deterministic channel-facing consequences.
+- `LeanInfoTheory.Shannon.SemanticBridge.DataProcessing`: opt-in bridge from
+  raw PMF-valued channels to mathlib Markov kernels. It provides
+  `pmfChannelKernel`, its Markov-kernel instance, and
+  `channelJoint_toMeasure`, which identifies the induced PMF joint law with
+  mathlib's measure-kernel composition product. It also provides the total
+  `channelPosterior`, PMF-level joint reconstruction, and the exact
+  `klDiv_channel_eq_add_posterior` identity. It exposes KL contraction through
+  a common channel in unconditional `ENNReal` and support-guarded real forms,
+  together with deterministic-map and channel-cascade specializations. It also
+  gives invariant-reference contraction and entropy growth under uniform-
+  preserving and doubly stochastic channels, without changing the lightweight
+  root.
 - `LeanInfoTheory.Shannon.SemanticBridge`: separated heavier bridge layer;
   contains finite entropy as expected self-information, finite conditional-law
   formulas, PMF support characterizations of absolute continuity and KL
@@ -176,9 +250,9 @@ when they stabilize.
   pair-level entropy and mutual-information inequalities, deterministic
   mutual-information processing, PMF-facing conditional-MI difference forms,
   triple-level conditional inequalities and subadditivity,
-  conditioning-reduces-entropy, the finite independence predicates, and the
-  cross-product/positive-fiber/zero-CMI conditional-independence bridge with
-  its entropy equality cases.
+  conditioning-reduces-entropy, the total conditional channel, the finite
+  independence predicates, and the cross-product/positive-fiber/zero-CMI
+  conditional-independence bridge with its entropy equality cases.
 - `LeanInfoTheory.InformationMeasures`: public re-export for finite information
   measures and their core rewrite lemmas. Binary and q-ary entropy remain mathlib names:
   `Real.binEntropy` and `Real.qaryEntropy`.
@@ -212,6 +286,12 @@ when they stabilize.
   recovery.
 - `LeanInfoTheory.Examples.KLTop`: opt-in disjoint-support example showing why
   real-valued KL zero theorems require a finiteness or support-inclusion guard.
+- `LeanInfoTheory.Examples.CommonCause`: opt-in noisy binary common-cause model
+  exercising conditional independence, zero conditional mutual information,
+  and canonical and existential Markov channel factorization.
+- `LeanInfoTheory.Examples.StochasticChannels`: opt-in reset-channel examples
+  exercising strict entropy growth, invariant-reference KL contraction, and
+  source-versus-intermediate support conditions for channel cascades.
 - `LeanInfoTheory.Examples`: aggregate for the semantic examples above and the
   original toy certificate examples.
 
@@ -239,15 +319,14 @@ Import heavier or demonstrational modules explicitly:
   `LeanInfoTheory.Certificate.Subadditivity`,
   `LeanInfoTheory.Certificate.Monotonicity`,
   `LeanInfoTheory.Certificate.ThreeWaySubadditivity`, and
-  `LeanInfoTheory.Examples` for demos and examples. The two semantic example
+  `LeanInfoTheory.Examples` for demos and examples. The four semantic example
   modules may also be imported individually.
 
 ## Roadmap
 
-1. Select and plan the next focused Project B chunk before editing Lean. The
-   leading candidate is the stochastic-channel, Markov, and data-processing
-   dependency layer, but its exact contracts and mathlib ownership should be
-   fixed during that planning pass.
+1. Preserve the completed Project B Chunk 3 finite stochastic-channel, Markov,
+   MI/KL data-processing, invariant-law, and entropy-consequence APIs as a clean
+   milestone; select any next theorem phase separately.
 2. Continue toward sufficient statistics and Fano only after the channel and
    data-processing foundations they consume are stable.
 3. Return to Project A by extending the checked-certificate path and certifying

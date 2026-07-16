@@ -32,10 +32,10 @@
       <section aria-labelledby="metrics-heading">
         <h2 id="metrics-heading">Current Graph</h2>
         <div class="metric-grid">
-          <div class="metric-card"><strong>28</strong><span>local modules</span></div>
-          <div class="metric-card"><strong>41</strong><span>local import edges</span></div>
+          <div class="metric-card"><strong>33</strong><span>local modules</span></div>
+          <div class="metric-card"><strong>52</strong><span>local import edges</span></div>
           <div class="metric-card"><strong>11</strong><span>root-reachable modules</span></div>
-          <div class="metric-card"><strong>17</strong><span>separate-import modules</span></div>
+          <div class="metric-card"><strong>22</strong><span>separate-import modules</span></div>
         </div>
       </section>
 
@@ -54,9 +54,9 @@
 <tr><td>Root import</td><td>1</td><td>1</td><td>0</td></tr>
 <tr><td>Shared foundation</td><td>2</td><td>2</td><td>0</td></tr>
 <tr><td>Finite Shannon layer</td><td>5</td><td>3</td><td>2</td></tr>
-<tr><td>Semantic bridge layer</td><td>7</td><td>0</td><td>7</td></tr>
-<tr><td>Certificate layer</td><td>9</td><td>5</td><td>4</td></tr>
-<tr><td>Reference anchors</td><td>4</td><td>0</td><td>4</td></tr>
+<tr><td>Semantic bridge layer</td><td>9</td><td>0</td><td>9</td></tr>
+<tr><td>Certificate layer</td><td>10</td><td>5</td><td>5</td></tr>
+<tr><td>Reference anchors</td><td>6</td><td>0</td><td>6</td></tr>
           </tbody>
         </table>
       </section>
@@ -82,13 +82,15 @@
 <tr><td><code>LeanInfoTheory.Shannon.EntropyBounds</code></td><td>Finite Shannon layer</td><td><span class="status-pill separate">separate import</span></td><td>Sharp alphabet/support entropy bounds and their uniform-law equality cases.</td><td><code>LeanInfoTheory/Shannon/EntropyBounds.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.InfoMeasures</code></td><td>Finite Shannon layer</td><td><span class="status-pill proved">root reachable</span></td><td>Marginals, conditional entropy, mutual information, conditional mutual information, and orientation lemmas.</td><td><code>LeanInfoTheory/Shannon/InfoMeasures.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.Units</code></td><td>Finite Shannon layer</td><td><span class="status-pill separate">separate import</span></td><td>Opt-in logarithm-base conversion for canonical nat-valued finite information measures.</td><td><code>LeanInfoTheory/Shannon/Units.lean</code></td></tr>
-<tr><td><code>LeanInfoTheory.Shannon.SemanticBridge</code></td><td>Semantic bridge layer</td><td><span class="status-pill separate">separate import</span></td><td>Aggregate entry point for finite semantic, KL, independence, and equality-case bridges.</td><td><code>LeanInfoTheory/Shannon/SemanticBridge.lean</code></td></tr>
+<tr><td><code>LeanInfoTheory.Shannon.SemanticBridge</code></td><td>Semantic bridge layer</td><td><span class="status-pill separate">separate import</span></td><td>Aggregate entry point for finite semantic, KL, independence, Markov, and data-processing bridges.</td><td><code>LeanInfoTheory/Shannon/SemanticBridge.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Conditional</code></td><td>Semantic bridge layer</td><td><span class="status-pill separate">separate import</span></td><td>Finite conditional-law API and expected conditional entropy / conditional mutual-information formulas.</td><td><code>LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean</code></td></tr>
+<tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.DataProcessing</code></td><td>Semantic bridge layer</td><td><span class="status-pill separate">separate import</span></td><td>Finite KL channel contraction, invariant-law consequences, and doubly stochastic entropy growth.</td><td><code>LeanInfoTheory/Shannon/SemanticBridge/DataProcessing.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.FiniteSums</code></td><td>Semantic bridge layer</td><td><span class="status-pill separate">separate import</span></td><td>Finite real-sum rewrites and mutual-information log-ratio formulas.</td><td><code>LeanInfoTheory/Shannon/SemanticBridge/FiniteSums.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Independence</code></td><td>Semantic bridge layer</td><td><span class="status-pill separate">separate import</span></td><td>PMF-first ordinary/conditional independence, zero MI/CMI, and entropy equality cases.</td><td><code>LeanInfoTheory/Shannon/SemanticBridge/Independence.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.KL</code></td><td>Semantic bridge layer</td><td><span class="status-pill separate">separate import</span></td><td>PMF support/KL finiteness and equality, uniform-reference identities, and MI/CMI KL bridges.</td><td><code>LeanInfoTheory/Shannon/SemanticBridge/KL.lean</code></td></tr>
+<tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Markov</code></td><td>Semantic bridge layer</td><td><span class="status-pill separate">separate import</span></td><td>Finite Markov characterizations, channel factorization, information loss, and mutual-information data processing.</td><td><code>LeanInfoTheory/Shannon/SemanticBridge/Markov.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Product</code></td><td>Semantic bridge layer</td><td><span class="status-pill separate">separate import</span></td><td>Independent-product PMFs, product-measure semantics, support formulas, and absolute-continuity facts.</td><td><code>LeanInfoTheory/Shannon/SemanticBridge/Product.lean</code></td></tr>
-<tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td><td>Semantic bridge layer</td><td><span class="status-pill separate">separate import</span></td><td>User-facing semantic nonnegativity and first mutual-information chain-rule theorems.</td><td><code>LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean</code></td></tr>
+<tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td><td>Semantic bridge layer</td><td><span class="status-pill separate">separate import</span></td><td>User-facing semantic nonnegativity, chain rules, deterministic processing, and information inequalities.</td><td><code>LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Certificate</code></td><td>Certificate layer</td><td><span class="status-pill proved">root reachable</span></td><td>Nonnegative-combination certificate soundness and exact decomposition matching.</td><td><code>LeanInfoTheory/Certificate.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Certificate.Checked</code></td><td>Certificate layer</td><td><span class="status-pill proved">root reachable</span></td><td>Raw/checked certificate split with a first validator.</td><td><code>LeanInfoTheory/Certificate/Checked.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Certificate.Monotonicity</code></td><td>Certificate layer</td><td><span class="status-pill separate">separate import</span></td><td>Checked certificate demo proving one-variable entropy monotonicity.</td><td><code>LeanInfoTheory/Certificate/Monotonicity.lean</code></td></tr>
@@ -98,8 +100,11 @@
 <tr><td><code>LeanInfoTheory.EntropyExpr</code></td><td>Certificate layer</td><td><span class="status-pill proved">root reachable</span></td><td>Formal rational entropy-expression algebra and empty-entropy convention interface.</td><td><code>LeanInfoTheory/EntropyExpr.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.EntropyVal</code></td><td>Certificate layer</td><td><span class="status-pill proved">root reachable</span></td><td>Abstract Shannon entropy valuations for certificate soundness.</td><td><code>LeanInfoTheory/EntropyVal.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.PrimitiveIneq</code></td><td>Certificate layer</td><td><span class="status-pill proved">root reachable</span></td><td>Primitive Shannon inequality expressions and soundness under abstract valuations.</td><td><code>LeanInfoTheory/PrimitiveIneq.lean</code></td></tr>
-<tr><td><code>LeanInfoTheory.Examples</code></td><td>Reference anchors</td><td><span class="status-pill separate">separate import</span></td><td>Opt-in aggregate for certificate and support-sensitive finite information examples.</td><td><code>LeanInfoTheory/Examples.lean</code></td></tr>
+<tr><td><code>LeanInfoTheory.Probability.FiniteChannel</code></td><td>Certificate layer</td><td><span class="status-pill separate">separate import</span></td><td>Type-generic PMF channel constructions and their elementary laws.</td><td><code>LeanInfoTheory/Probability/FiniteChannel.lean</code></td></tr>
+<tr><td><code>LeanInfoTheory.Examples</code></td><td>Reference anchors</td><td><span class="status-pill separate">separate import</span></td><td>Opt-in aggregate for certificate, support-sensitive, Markov, and stochastic-channel examples.</td><td><code>LeanInfoTheory/Examples.lean</code></td></tr>
+<tr><td><code>LeanInfoTheory.Examples.CommonCause</code></td><td>Reference anchors</td><td><span class="status-pill separate">separate import</span></td><td>Noisy binary common-cause example for conditional independence and Markov factorization.</td><td><code>LeanInfoTheory/Examples/CommonCause.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Examples.KLTop</code></td><td>Reference anchors</td><td><span class="status-pill separate">separate import</span></td><td>Disjoint-support PMF example exposing the infinite-KL toReal zero trap.</td><td><code>LeanInfoTheory/Examples/KLTop.lean</code></td></tr>
+<tr><td><code>LeanInfoTheory.Examples.StochasticChannels</code></td><td>Reference anchors</td><td><span class="status-pill separate">separate import</span></td><td>Finite stochastic-channel examples for KL contraction, cascade support, and entropy growth.</td><td><code>LeanInfoTheory/Examples/StochasticChannels.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Examples.SupportSensitive</code></td><td>Reference anchors</td><td><span class="status-pill separate">separate import</span></td><td>Support-aware entropy, conditional-fiber, functional-dependence, and recovery examples.</td><td><code>LeanInfoTheory/Examples/SupportSensitive.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.MathlibFragments</code></td><td>Reference anchors</td><td><span class="status-pill separate">separate import</span></td><td>Separately importable checklist of heavier mathlib information-theory and coding anchors.</td><td><code>LeanInfoTheory/MathlibFragments.lean</code></td></tr>
           </tbody>
@@ -125,11 +130,13 @@
 <tr><td><code>LeanInfoTheory.Shannon.EntropyBounds</code></td><td><code>LeanInfoTheory.Shannon.Entropy</code></td><td>2</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.InfoMeasures</code></td><td><code>LeanInfoTheory.Shannon.Entropy</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.Units</code></td><td><code>LeanInfoTheory.Shannon.InfoMeasures</code></td><td>1</td></tr>
-<tr><td><code>LeanInfoTheory.Shannon.SemanticBridge</code></td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Independence</code><br><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td><td>1</td></tr>
+<tr><td><code>LeanInfoTheory.Shannon.SemanticBridge</code></td><td><code>LeanInfoTheory.Shannon.SemanticBridge.DataProcessing</code><br><code>LeanInfoTheory.Shannon.SemanticBridge.Independence</code><br><code>LeanInfoTheory.Shannon.SemanticBridge.Markov</code><br><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td><td>1</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Conditional</code></td><td><code>LeanInfoTheory.Shannon.InfoMeasures</code></td><td>1</td></tr>
+<tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.DataProcessing</code></td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Markov</code></td><td>1</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.FiniteSums</code></td><td><code>LeanInfoTheory.Shannon.InfoMeasures</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Independence</code></td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td><td>1</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.KL</code></td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Conditional</code><br><code>LeanInfoTheory.Shannon.SemanticBridge.FiniteSums</code><br><code>LeanInfoTheory.Shannon.SemanticBridge.Product</code></td><td>3</td></tr>
+<tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Markov</code></td><td><code>LeanInfoTheory.Probability.FiniteChannel</code><br><code>LeanInfoTheory.Shannon.SemanticBridge.Independence</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Product</code></td><td><code>LeanInfoTheory.Shannon.InfoMeasures</code></td><td>2</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td><td><code>LeanInfoTheory.Shannon.SemanticBridge.KL</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Certificate</code></td><td><code>LeanInfoTheory.EntropyExpr</code></td><td>0</td></tr>
@@ -141,8 +148,11 @@
 <tr><td><code>LeanInfoTheory.EntropyExpr</code></td><td><span class="muted">none</span></td><td>5</td></tr>
 <tr><td><code>LeanInfoTheory.EntropyVal</code></td><td><code>LeanInfoTheory.EntropyExpr</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.PrimitiveIneq</code></td><td><code>LeanInfoTheory.EntropyVal</code></td><td>0</td></tr>
-<tr><td><code>LeanInfoTheory.Examples</code></td><td><code>LeanInfoTheory.Certificate</code><br><code>LeanInfoTheory.Certificate.Checked</code><br><code>LeanInfoTheory.EntropyVal</code><br><code>LeanInfoTheory.Examples.KLTop</code><br><code>LeanInfoTheory.Examples.SupportSensitive</code><br><code>LeanInfoTheory.PrimitiveIneq</code></td><td>0</td></tr>
+<tr><td><code>LeanInfoTheory.Probability.FiniteChannel</code></td><td><code>LeanInfoTheory.Probability.Finite</code></td><td>0</td></tr>
+<tr><td><code>LeanInfoTheory.Examples</code></td><td><code>LeanInfoTheory.Certificate</code><br><code>LeanInfoTheory.Certificate.Checked</code><br><code>LeanInfoTheory.EntropyVal</code><br><code>LeanInfoTheory.Examples.CommonCause</code><br><code>LeanInfoTheory.Examples.KLTop</code><br><code>LeanInfoTheory.Examples.StochasticChannels</code><br><code>LeanInfoTheory.Examples.SupportSensitive</code><br><code>LeanInfoTheory.PrimitiveIneq</code></td><td>0</td></tr>
+<tr><td><code>LeanInfoTheory.Examples.CommonCause</code></td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Markov</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Examples.KLTop</code></td><td><code>LeanInfoTheory.Shannon.SemanticBridge.KL</code></td><td>0</td></tr>
+<tr><td><code>LeanInfoTheory.Examples.StochasticChannels</code></td><td><code>LeanInfoTheory.Shannon.EntropyBounds</code><br><code>LeanInfoTheory.Shannon.SemanticBridge.DataProcessing</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Examples.SupportSensitive</code></td><td><code>LeanInfoTheory.Shannon.EntropyBounds</code><br><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.MathlibFragments</code></td><td><span class="muted">none</span></td><td>5</td></tr>
           </tbody>

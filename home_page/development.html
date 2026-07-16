@@ -53,7 +53,7 @@ python scripts/check_website.py</code></pre>
       <ul>
         <li>The CI build includes a strict placeholder scan for Lean source files.</li>
         <li>Core finite Shannon files keep imports light.</li>
-        <li>Heavier KL, conditional-law, and semantic theorem imports live in the semantic bridge layer.</li>
+        <li>Heavier KL, conditional-law, Markov, and data-processing imports live in the semantic bridge layer.</li>
         <li>Certificate examples are separately importable so the base finite API stays small.</li>
       </ul>
 
@@ -62,7 +62,9 @@ python scripts/check_website.py</code></pre>
         <li>Use <code>LeanInfoTheory.Shannon.Entropy</code> for finite entropy basics.</li>
         <li>Use <code>LeanInfoTheory.Shannon.InfoMeasures</code> for marginals, conditional entropy, mutual information, and conditional mutual information.</li>
         <li>Use <code>LeanInfoTheory.Shannon.EntropyBounds</code> when the Jensen-based upper bound or uniform equality theorem is needed.</li>
-        <li>Use <code>LeanInfoTheory.Shannon.SemanticBridge</code> for expected self-information, conditional-law, KL, nonnegativity, and chain-rule theorems.</li>
+        <li>Use <code>LeanInfoTheory.Probability.FiniteChannel</code> for type-generic raw PMF-valued channel constructions and their elementary laws.</li>
+        <li>Use <code>LeanInfoTheory.Shannon.SemanticBridge</code> for expected self-information, conditional-law, KL, independence, Markov, and data-processing theorems.</li>
+        <li>Use <code>LeanInfoTheory.Shannon.SemanticBridge.Markov</code> or <code>LeanInfoTheory.Shannon.SemanticBridge.DataProcessing</code> directly when only one heavy semantic surface is needed.</li>
         <li>Use <code>LeanInfoTheory.Certificate.Submodularity</code> for the first certificate-backed inequality demo.</li>
       </ul>
 

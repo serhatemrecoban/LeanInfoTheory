@@ -17,9 +17,40 @@ highlights, and module guide record what is implemented now.
   the current simp/module boundaries and added only four additive-entropy
   compatibility aliases. The complete milestone build, generated-reference,
   website, and repository hygiene suites pass.
-- Select and plan the next focused Project B chunk. The leading candidate is a
-  stochastic-channel, Markov, and data-processing dependency layer, with exact
-  contracts and mathlib ownership to be settled before implementation.
+- Project B Chunk 3 is complete. All 20 steps of its revised finite-channel,
+  Markov, and data-processing plan are finished. The opt-in
+  `Probability.FiniteChannel` core now names the four repeated PMF channel
+  constructions and proves their basic laws without changing the root or
+  introducing heavier semantics. The new opt-in `SemanticBridge.Markov` module
+  now defines the total conditional channel with its documented null-fiber
+  fallback and proves its weighted atom and pair-law reconstruction laws. It
+  also owns the PMF and random-variable Markov predicates, while the
+  independence layer now supplies the required first-two-variable conditional-
+  independence symmetry. Cross-product, positive-fiber, zero-CMI, and reversal
+  characterizations are complete, and arbitrary pair laws extended through a
+  channel on their second coordinate are now proved Markov. The exact identity
+  `I(X;Y) = I(X;Z) + I(X;Y|Z)`, MI data processing, its conditional-entropy
+  consequence, and its reverse-Markov equality case are available at PMF and
+  random-variable levels. One-sided, independently two-sided, cascade, and
+  deterministic output-map channel corollaries are also complete. The canonical
+  total-conditional-channel and existential channel-factorization converses are
+  now proved. The Step 13 no-placeholder checkpoint selected a finite kernel-
+  chain-rule route to KL contraction, validated its posterior reconstruction,
+  and locked an unconditional `ENNReal` theorem plus a real corollary guarded
+  only by input support inclusion. The new opt-in
+  `SemanticBridge.DataProcessing` module now supplies `pmfChannelKernel`, its
+  Markov-kernel instance, and the `channelJoint_toMeasure` bridge to mathlib's
+  measure-kernel composition product. It also supplies `channelPosterior`, its
+  PMF reconstruction law, and the exact `klDiv_channel_eq_add_posterior`
+  identity. The resulting public API now supplies unconditional `ENNReal` and
+  input-support-guarded real KL contraction through a common channel, together
+  with deterministic-map and channel-cascade forms. One-step contraction toward
+  invariant reference laws and entropy growth under uniform-preserving and
+  finite doubly stochastic channels are now complete. The common-cause and
+  stochastic-channel examples now exercise the new API, and the scheduled
+  naming, simp, module, and future-work review is complete. The final milestone
+  build, generated-reference, website, consumer, root-isolation, and repository-
+  hygiene suites pass; the lightweight root remains unchanged.
 - Extend the current generated module dependency map and source-derived
   declaration index toward a real theorem-level blueprint, full Lean doc-gen
   output, and blueprint PDF.
@@ -37,8 +68,8 @@ highlights, and module guide record what is implemented now.
   orientation page.
 - Link generated docs and blueprint entries back to the curated theorem
   highlights and submodularity demo page.
-- Extend the Cover-Thomas Chapter 2 layer toward stochastic data processing,
-  sufficient statistics, and Fano after the finite equality infrastructure.
+- Extend the Cover-Thomas Chapter 2 layer toward sufficient statistics and Fano
+  in a separately planned phase.
 
 ## 6 Months
 

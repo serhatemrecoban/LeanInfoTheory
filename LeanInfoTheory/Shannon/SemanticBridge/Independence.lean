@@ -68,6 +68,68 @@ def IsCondIndependentOf
     (Z : omega → gamma) : Prop :=
   IsCondIndependent (p.map fun omega => (X omega, Y omega, Z omega))
 
+/-- Swapping the first two coordinates of a triple law preserves conditional independence. -/
+@[simp]
+theorem isCondIndependent_map_swap12
+    {alpha : Type u} {beta : Type v} {gamma : Type w}
+    (p : PMF (alpha × beta × gamma)) :
+    IsCondIndependent (p.map fun x => (x.2.1, x.1, x.2.2)) ↔
+      IsCondIndependent p := by
+  let swap12 : alpha × beta × gamma → beta × alpha × gamma :=
+    fun x => (x.2.1, x.1, x.2.2)
+  have hswap12 : Function.Injective swap12 := by
+    intro x y hxy
+    apply Prod.ext
+    · exact congrArg (fun z => z.2.1) hxy
+    · apply Prod.ext
+      · exact congrArg (fun z => z.1) hxy
+      · exact congrArg (fun z => z.2.2) hxy
+  have hmass (a : alpha) (b : beta) (c : gamma) :
+      (p.map swap12) (b, a, c) = p (a, b, c) := by
+    simpa [swap12] using
+      PMF.map_apply_of_injective p hswap12 (a, b, c)
+  have hfst :
+      fstThirdMarginal (p.map swap12) = sndThirdMarginal p := by
+    change fstThirdMarginal (p.map fun x => (x.2.1, x.1, x.2.2)) =
+      sndThirdMarginal p
+    exact fstThirdMarginal_map_swap12 p
+  have hsnd :
+      sndThirdMarginal (p.map swap12) = fstThirdMarginal p := by
+    change sndThirdMarginal (p.map fun x => (x.2.1, x.1, x.2.2)) =
+      fstThirdMarginal p
+    exact sndThirdMarginal_map_swap12 p
+  have hthird :
+      thirdMarginal (p.map swap12) = thirdMarginal p := by
+    change thirdMarginal (p.map fun x => (x.2.1, x.1, x.2.2)) =
+      thirdMarginal p
+    exact thirdMarginal_map_swap12 p
+  change IsCondIndependent (p.map swap12) ↔ IsCondIndependent p
+  unfold IsCondIndependent
+  constructor
+  · intro hp a b c
+    have h := hp b a c
+    rw [hmass a b c, hthird, hfst, hsnd] at h
+    simpa [mul_comm] using h
+  · intro hp b a c
+    have h := hp a b c
+    rw [hmass a b c, hthird, hfst, hsnd]
+    simpa [mul_comm] using h
+
+/-- Conditional independence of random variables is symmetric in its first two variables. -/
+theorem isCondIndependentOf_swap
+    {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
+    (p : PMF omega) (X : omega → alpha) (Y : omega → beta)
+    (Z : omega → gamma) :
+    IsCondIndependentOf p Y X Z ↔ IsCondIndependentOf p X Y Z := by
+  have hmap :
+      p.map (fun omega => (Y omega, X omega, Z omega)) =
+        (p.map fun omega => (X omega, Y omega, Z omega)).map
+          (fun x => (x.2.1, x.1, x.2.2)) := by
+    rw [PMF.map_comp]
+    rfl
+  unfold IsCondIndependentOf
+  rw [hmap, isCondIndependent_map_swap12]
+
 /-- Independence is equivalent to pointwise factorization into marginal masses. -/
 theorem isIndependent_iff_apply_eq_mul_marginals
     {alpha : Type u} {beta : Type v} (p : PMF (alpha × beta)) :
@@ -444,6 +506,11 @@ theorem isCondIndependent_iff_isIndependent_condFstSndGivenThird
 /--
 Finite conditional mutual information is zero exactly when the first two
 coordinates are conditionally independent given the third.
+
+No conditional law needs to be chosen on null fibers. `IsCondIndependent`
+uses the cross-product identity on the original PMF, where those fibers satisfy
+the identity directly; conditional PMFs appear only for positive-mass fibers
+inside the proof.
 -/
 theorem condMutualInfo_eq_zero_iff_isCondIndependent
     {alpha : Type u} {beta : Type v} {gamma : Type w}

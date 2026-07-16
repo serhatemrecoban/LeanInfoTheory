@@ -30,15 +30,19 @@
       <ul>
         <li><code>LeanInfoTheory.Basic</code>: lightweight project namespace and shared status vocabulary.</li>
         <li><code>LeanInfoTheory.Probability.Finite</code>: real-mass bridge lemmas and pointwise <code>PMF.map</code> facts for finite <code>PMF</code> sums and relabeling arguments.</li>
+        <li><code>LeanInfoTheory.Probability.FiniteChannel</code>: opt-in, type-generic PMF-valued channel constructions and their atom, projection, composition, deterministic-map, and support laws.</li>
         <li><code>LeanInfoTheory.Shannon.Entropy</code>: finite Shannon entropy, random-variable entropy, zero-entropy characterizations, and relabeling invariance theorems.</li>
         <li><code>LeanInfoTheory.Shannon.EntropyBounds</code>: Jensen-based alphabet and support-cardinality upper bounds plus the uniform-law equality theorem. Import this module explicitly when those heavier analytic bounds are needed.</li>
         <li><code>LeanInfoTheory.Shannon.InfoMeasures</code>: marginals, conditional entropy, mutual information, conditional mutual information, chain rules, symmetry, and textbook entropy identities.</li>
         <li><code>LeanInfoTheory.Shannon.Units</code>: opt-in logarithm-base conversion; canonical information measures remain in nats.</li>
-        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: separated bridge entry point for expected self-information, finite conditional laws, KL formulas, semantic nonnegativity, support-aware functional dependence, deterministic processing, and pair/triple inequality theorems.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: separated bridge entry point for expected self-information, finite conditional laws, KL formulas, independence and Markov semantics, stochastic data processing, and pair/triple inequality theorems.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Product</code>: independent-product PMF infrastructure, product-measure bridge lemmas, and joint-law absolute-continuity facts.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.FiniteSums</code>: finite real-sum rewrites for marginals, entropy, and the log-ratio formula for mutual information.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Conditional</code>: finite conditional-law API and expected conditional entropy / conditional mutual information fiber formulas.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.KL</code>: finite KL expansion, mutual information as KL, and averaged conditional-KL bridge theorems.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge.Independence</code>: ordinary and conditional independence predicates, mathlib bridges, positive-fiber formulations, and zero-MI/zero-CMI characterizations.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge.Markov</code>: finite Markov predicates and characterizations, total conditional channels, canonical/existential channel factorization, exact information loss, and MI data processing.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge.DataProcessing</code>: PMF-channel-to-kernel and posterior bridges, exact KL decomposition, finite KL contraction, invariant-law consequences, and doubly stochastic entropy growth.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code>: user-facing semantic theorems, including nonnegativity, zero conditional entropy, deterministic entropy/MI processing, chain-rule variants, and ordinary/conditional inequality bands.</li>
         <li><code>LeanInfoTheory.InformationMeasures</code>: public convenience re-export for the finite information-measure API; theorem-oriented code should usually prefer the canonical <code>LeanInfoTheory.Shannon</code> names.</li>
         <li><code>LeanInfoTheory.EntropyExpr</code>: formal entropy-expression algebra and the empty-entropy convention interface.</li>
@@ -50,7 +54,9 @@
         <li><code>LeanInfoTheory.Certificate.Subadditivity</code>: separately importable checked certificate demo, proving entropy subadditivity from a two-step primitive certificate.</li>
         <li><code>LeanInfoTheory.Certificate.Monotonicity</code>: separately importable checked certificate demo, proving one-variable entropy monotonicity from a conditional-entropy primitive.</li>
         <li><code>LeanInfoTheory.Certificate.ThreeWaySubadditivity</code>: separately importable manual certificate pressure-test module, proving three-way entropy subadditivity from a four-step primitive certificate.</li>
-        <li><code>LeanInfoTheory.Examples</code>: separately importable closed toy examples for the certificate layers.</li>
+        <li><code>LeanInfoTheory.Examples.CommonCause</code>: opt-in noisy binary common-cause example exercising conditional independence, zero CMI, and Markov factorization.</li>
+        <li><code>LeanInfoTheory.Examples.StochasticChannels</code>: opt-in stochastic reset/cascade examples exercising KL contraction, support-sensitive real bounds, and strict entropy growth.</li>
+        <li><code>LeanInfoTheory.Examples</code>: aggregate import for the separately importable certificate and semantic examples.</li>
       </ul>
 
       <p>

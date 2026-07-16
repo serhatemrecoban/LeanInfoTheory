@@ -20,6 +20,67 @@ reference material only and is intentionally not part of the repository.
 
 - Finite distributions are mathlib `PMF`s. We do not introduce a project-local
   probability type.
+- A finite discrete channel is represented directly by a PMF-valued function
+  `W : alpha -> PMF beta`; alphabets are not bundled into a channel structure.
+  Output and identity remain mathlib's `p.bind W` and `PMF.pure`. The opt-in
+  `LeanInfoTheory.Probability.FiniteChannel` module names deterministic
+  channels, channel composition, induced joint laws, and pair-to-triple
+  extension, together with their elementary atom, projection, algebra,
+  deterministic-map, and support laws. It has no Shannon, kernel,
+  measurable-space, or KL dependency.
+- The total conditional channel lives in the opt-in
+  `LeanInfoTheory.Shannon.SemanticBridge.Markov` module. For a joint law `p`,
+  `condFstGivenSndChannel p` uses the canonical `condFstGivenSnd` on positive
+  second-coordinate fibers and `fstMarginal p` on null fibers. The fallback is
+  only a totality device; semantic consequences must make the null choice
+  irrelevant through weighting or support conditions. The established theorem
+  layer proves arbitrary-fallback irrelevance on null fibers, all-fiber atom
+  reconstruction, and reconstruction of `p.map Prod.swap` from
+  `sndMarginal p` and the total channel.
+- The same opt-in semantic module owns the Markov predicates.
+  `IsMarkovChainOf p X Y Z` means that `X` and `Z` are conditionally
+  independent given `Y`, and `IsMarkovChain p` applies that definition to the
+  three coordinate projections of a triple PMF. These predicates introduce no
+  finiteness or measurable-space assumptions. The PMF predicate is equivalent
+  to `p(a,b,c) p_B(b) = p_AB(a,b) p_BC(b,c)` and to independence of the
+  endpoints on every positive middle-coordinate fiber. For finite alphabets,
+  `IsMarkovChainOf p X Y Z` is equivalent to `I(X;Z|Y) = 0`. Reversing the
+  endpoint order preserves both Markov predicates. The assumption-free theorem
+  `isMarkovChain_channelExtension` states that extending any `(A,B)` law by a
+  channel depending only on `B` produces `A -> B -> C`. Conversely, when the
+  third alphabet is finite, every Markov triple is reconstructed from its
+  first-two marginal by the total conditional channel extracted from its
+  second-third marginal, and equivalently factors through some middle-to-third
+  channel. For finite alphabets,
+  `mutualInfo_markov_chain_rule` and `mutualInfoOf_markov_chain_rule` give the
+  exact loss identity `I(X;Y) = I(X;Z) + I(X;Y|Z)` under that Markov condition.
+  Its nonnegative remainder gives `I(X;Z) <= I(X;Y)` and the equivalent
+  conditional-entropy inequality `H(X|Y) <= H(X|Z)`; equality holds exactly
+  when the reverse chain `X -> Z -> Y` is also Markov. The channel-facing
+  corollaries process either coordinate, process both coordinates through
+  conditionally independent channels, contract two-stage channel cascades,
+  and recover deterministic output mapping as a specialization. The
+  independently two-sided output law is written directly with `PMF.bind` and
+  `indepProd`; no additional channel construction is introduced.
+- Finite KL data processing follows a separately importable kernel-chain-rule
+  bridge rather than a project-local log-sum engine. The opt-in
+  `Shannon.SemanticBridge.DataProcessing` module now converts a raw PMF channel
+  with `pmfChannelKernel`, built from `Kernel.ofFunOfCountable`, and
+  `channelJoint_toMeasure` identifies kernel `compProd` with
+  `PMF.channelJoint`. `channelPosterior` reuses the existing total conditional
+  channel, its PMF reconstruction theorem makes the null-output fallback
+  irrelevant, and `klDiv_channel_eq_add_posterior` supplies the exact finite
+  decomposition needed for contraction. The primary contraction theorem is
+  unconditional and `ENNReal`-valued. Its real corollary requires only input
+  support inclusion, which is preserved by `PMF.bind`. The public theorem
+  family now includes common stochastic channels, deterministic maps, and
+  channel cascades in both the applicable `ENNReal` and real-valued forms. The
+  one-step invariant-reference corollaries reuse that family directly.
+  Uniform-preserving channels increase entropy by the established full-
+  alphabet uniform KL identity, and a PMF channel with unit column sums gives
+  the finite doubly stochastic specialization. No matrix or process
+  representation is introduced. The module stays opt-in and does not change
+  the raw PMF-valued channel convention.
 - Entropy values live in `Real`.
 - The current entropy unit is the nat, because mathlib's logarithm is natural
   logarithm and mathlib's `Real.binEntropy` is documented in nats.
@@ -104,8 +165,8 @@ reference material only and is intentionally not part of the repository.
 - Conditionally,
   `H(X|Z) = H(f(X)|Z) + H(X|f(X),Z)`. Thus `H(f(X)|Z) <= H(X|Z)`, with equality
   exactly when `X` can be recovered from `(f(X), Z)` on `p.support`. This is a
-  deterministic theorem; stochastic channels and general data processing
-  remain later infrastructure.
+  deterministic theorem and remains distinct from the completed stochastic-
+  channel and general data-processing layer.
 - Mutual information is currently defined by the entropy identity
   `H(X) + H(Y) - H(X,Y)`. The semantic bridge now identifies it with finite KL
   divergence from the joint law to the product of marginals through
@@ -165,7 +226,10 @@ reference material only and is intentionally not part of the repository.
   independence, with PMF and random-variable forms in the same module. The
   `condEntropy_pair_additive_iff_isCondIndependent` and `...Of` declarations
   provide the reviewed short additive aliases without introducing
-  `jointCondEntropy` terminology.
+  `jointCondEntropy` terminology. Conditional independence is symmetric in its
+  first two variables through `isCondIndependent_map_swap12` and
+  `isCondIndependentOf_swap`; only the PMF coordinate-construction theorem is
+  a simp normalization rule.
 - The lightweight theorem API also exposes the equivalent textbook forms
   `I(X;Y) = H(X) - H(X|Y)` and `I(X;Y) = H(Y) - H(Y|X)`, plus
   `I(X;X) = H(X)`. These remain explicit rewrites. The completed inequality
@@ -179,8 +243,8 @@ reference material only and is intentionally not part of the repository.
 - Deterministic mutual-information processing follows the exact decomposition
   `I(X;Y) = I(f(X);Y) + I(X;Y|f(X))`. Consequently, applying deterministic
   maps to the left variable, the right variable, or both variables cannot
-  increase mutual information. This finite theorem does not introduce
-  stochastic channels or the later general data-processing infrastructure.
+  increase mutual information. This finite theorem remains distinct from the
+  separately importable stochastic-channel data-processing infrastructure.
 - Semantic nonnegativity yields the pair-level bounds
   `H(X|Y) <= H(X)`, `I(X;Y) <= H(X), H(Y)`, and
   `H(X), H(Y) <= H(X,Y) <= H(X) + H(Y)`. The independence-governed endpoints
@@ -223,6 +287,10 @@ uses them directly rather than wrapping them in new definitions:
   `PMF.sum_toReal`, `PMF.map_apply_of_injective`,
   `PMF.map_apply_eq_zero_of_notMem_range`, and `PMF.map_apply_equiv`,
   matching mathlib's convention for object-specific lemmas.
+- The local channel constructions likewise extend the `PMF` namespace as
+  `PMF.deterministicChannel`, `PMF.channelComp`, `PMF.channelJoint`, and
+  `PMF.channelExtension`; they do not wrap `PMF.bind` or `PMF.pure` under
+  parallel output or identity definitions.
 - `Real.negMulLog`, `Real.binEntropy`, and `Real.qaryEntropy`.
 - `InformationTheory.klDiv` and the measure-theoretic KL chain-rule
   infrastructure.
@@ -247,6 +315,9 @@ expect to connect to next.
   not demo modules, heavier analytic theorem modules, KL bridge modules,
   coding anchors, or generated-reference material.
 - Import `LeanInfoTheory.Shannon.EntropyBounds`,
+  `LeanInfoTheory.Probability.FiniteChannel`,
+  `LeanInfoTheory.Shannon.SemanticBridge.Markov`,
+  `LeanInfoTheory.Shannon.SemanticBridge.DataProcessing`,
   `LeanInfoTheory.Shannon.SemanticBridge`,
   `LeanInfoTheory.MathlibFragments`,
   `LeanInfoTheory.Certificate.Submodularity`, and
@@ -282,17 +353,14 @@ semantic bridge imports.
 
 The comparison with Rocq `infotheo` is recorded in `docs/project-log.md`.
 
-## Near-Term Theorem Targets
+## Post-Chunk-3 Guardrails
 
-- Select and lock a focused finite stochastic-channel and Markov
-  representation after auditing mathlib's current kernel and PMF APIs and
-  deciding module ownership.
-- Prove finite stochastic data processing and its Markov-chain forms on top of
-  the completed deterministic-processing and conditional-independence layers.
+- The common-cause and genuinely stochastic examples and the scheduled naming,
+  simp, module-boundary, and future-work review are complete.
 - Let concrete channel and Markov consumers determine whether independence
   predicates need a lighter module boundary and which closure or symmetry
   conveniences are justified.
-- Extend toward sufficient statistics and Fano only after the channel and
-  data-processing contracts are stable.
+- Select sufficient-statistics and Fano work only through a separate focused
+  plan; the completed Chunk 3 close does not schedule that phase.
 - Keep concrete finite semantics for abstract certificate assumptions and
   richer certificate examples in later Project A work.

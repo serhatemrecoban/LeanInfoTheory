@@ -47,8 +47,9 @@
         </p>
         <p>
           Current milestone: finite PMF entropy and information measures,
-          semantic bridges to conditional laws and KL divergence, and checked
-          certificate demos for entropy inequalities.
+          conditional laws and independence, finite stochastic channels,
+          Markov structure, MI/KL data processing, and checked certificate
+          demos for entropy inequalities.
         </p>
       </section>
 
@@ -59,10 +60,11 @@
           information-theory library and a trusted entropy-inequality
           certificate checker. The current formalization covers entropy,
           conditional entropy, mutual information, conditional mutual
-          information, semantic bridges to conditional laws and KL divergence,
-          and checked Shannon-inequality demos; the longer-term goal is a
-          textbook-scale library with importable external certificates for
-          network-information-theory converses.
+          information, independence and Markov characterizations, finite
+          stochastic-channel data processing, and checked Shannon-inequality
+          demos; the longer-term goal is a textbook-scale library with
+          importable external certificates for network-information-theory
+          converses.
         </p>
       </section>
 
@@ -84,8 +86,9 @@
             <h3>Semantic and KL Bridge</h3>
             <p>
               The finite definitions are connected to expected self-information,
-              conditional laws, KL divergence, averaged conditional KL,
-              nonnegativity, chain rules, and conditioning-reduces-entropy.
+              conditional laws, KL divergence, independence and Markov
+              characterizations, MI/KL data processing, entropy growth under
+              doubly stochastic channels, and conditioning-reduces-entropy.
             </p>
             <a href="theorems.html">See bridge statements</a>
           </article>
@@ -133,8 +136,9 @@
             <h3>Semantic Bridge</h3>
             <p>
               Entropy as expected self-information, finite conditional laws,
-              mutual information as KL, averaged conditional-KL, semantic
-              nonnegativity, MI chain rules, and conditioning-reduces-entropy.
+              mutual information as KL, independence and Markov equivalences,
+              averaged conditional-KL, stochastic MI/KL data processing, and
+              invariant-law and entropy-growth consequences.
             </p>
           </article>
           <article class="info-card">
@@ -289,12 +293,12 @@
       </section>
 
       <section aria-labelledby="next-heading">
-        <h2 id="next-heading">Planned Next</h2>
+        <h2 id="next-heading">Project Direction</h2>
         <ul class="roadmap-list">
-          <li><span class="status-pill prototype">Active</span> Prepare the detailed Project B Chunk 2 plan on top of the completed finite pair/triple Chunk 1 API.</li>
-          <li><span class="status-pill planned">Planned</span> Finite KL/equality and independence characterizations needed by the equality cases deferred from Chunk 1.</li>
+          <li><span class="status-pill proved">Completed</span> Project B Chunks 1-3 now cover finite pair/triple identities, KL equality and independence, Markov structure, and stochastic MI/KL data processing.</li>
+          <li><span class="status-pill separate">Unscheduled</span> No theorem chunk after the completed Chunk 3 milestone has been selected yet.</li>
           <li><span class="status-pill planned">Planned</span> Theorem-level leanblueprint pages, full Lean doc-gen output, and blueprint PDF on top of the current module dependency map and source-derived declaration index.</li>
-          <li><span class="status-pill planned">Planned</span> Later stochastic data processing, sufficient-statistics, Fano, and richer certificate-assumption layers.</li>
+          <li><span class="status-pill planned">Planned</span> Later sufficient-statistics, Fano, and richer certificate-assumption layers.</li>
           <li><span class="status-pill separate">Later</span> PSITIP/oXitip-style import into untrusted raw certificate data and non-toy network-information-theory converse examples.</li>
         </ul>
       </section>

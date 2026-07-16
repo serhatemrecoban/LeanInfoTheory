@@ -7,8 +7,8 @@
     "Certificate layer",
     "Reference anchors"
   ],
-  "local_edge_count": 41,
-  "module_count": 28,
+  "local_edge_count": 52,
+  "module_count": 33,
   "modules": [
     {
       "external_imports": [],
@@ -120,13 +120,15 @@
       ],
       "layer": "Semantic bridge layer",
       "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
         "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+        "LeanInfoTheory.Shannon.SemanticBridge.Markov",
         "LeanInfoTheory.Shannon.SemanticBridge.Theorems"
       ],
       "name": "LeanInfoTheory.Shannon.SemanticBridge",
       "path": "LeanInfoTheory/Shannon/SemanticBridge.lean",
       "root_reachable": false,
-      "summary": "Aggregate entry point for finite semantic, KL, independence, and equality-case bridges."
+      "summary": "Aggregate entry point for finite semantic, KL, independence, Markov, and data-processing bridges."
     },
     {
       "external_imports": [
@@ -140,6 +142,19 @@
       "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
       "root_reachable": false,
       "summary": "Finite conditional-law API and expected conditional entropy / conditional mutual-information formulas."
+    },
+    {
+      "external_imports": [
+        "Mathlib.InformationTheory.KullbackLeibler.ChainRule"
+      ],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.Markov"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/DataProcessing.lean",
+      "root_reachable": false,
+      "summary": "Finite KL channel contraction, invariant-law consequences, and doubly stochastic entropy growth."
     },
     {
       "external_imports": [],
@@ -183,6 +198,18 @@
       "summary": "PMF support/KL finiteness and equality, uniform-reference identities, and MI/CMI KL bridges."
     },
     {
+      "external_imports": [],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Probability.FiniteChannel",
+        "LeanInfoTheory.Shannon.SemanticBridge.Independence"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Markov.lean",
+      "root_reachable": false,
+      "summary": "Finite Markov characterizations, channel factorization, information loss, and mutual-information data processing."
+    },
+    {
       "external_imports": [
         "Mathlib.MeasureTheory.Measure.Prod",
         "Mathlib.Probability.ProbabilityMassFunction.Constructions"
@@ -205,7 +232,7 @@
       "name": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
       "path": "LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean",
       "root_reachable": false,
-      "summary": "User-facing semantic nonnegativity and first mutual-information chain-rule theorems."
+      "summary": "User-facing semantic nonnegativity, chain rules, deterministic processing, and information inequalities."
     },
     {
       "external_imports": [],
@@ -315,19 +342,43 @@
     },
     {
       "external_imports": [],
+      "layer": "Certificate layer",
+      "local_imports": [
+        "LeanInfoTheory.Probability.Finite"
+      ],
+      "name": "LeanInfoTheory.Probability.FiniteChannel",
+      "path": "LeanInfoTheory/Probability/FiniteChannel.lean",
+      "root_reachable": false,
+      "summary": "Type-generic PMF channel constructions and their elementary laws."
+    },
+    {
+      "external_imports": [],
       "layer": "Reference anchors",
       "local_imports": [
         "LeanInfoTheory.Certificate",
         "LeanInfoTheory.Certificate.Checked",
         "LeanInfoTheory.EntropyVal",
+        "LeanInfoTheory.Examples.CommonCause",
         "LeanInfoTheory.Examples.KLTop",
+        "LeanInfoTheory.Examples.StochasticChannels",
         "LeanInfoTheory.Examples.SupportSensitive",
         "LeanInfoTheory.PrimitiveIneq"
       ],
       "name": "LeanInfoTheory.Examples",
       "path": "LeanInfoTheory/Examples.lean",
       "root_reachable": false,
-      "summary": "Opt-in aggregate for certificate and support-sensitive finite information examples."
+      "summary": "Opt-in aggregate for certificate, support-sensitive, Markov, and stochastic-channel examples."
+    },
+    {
+      "external_imports": [],
+      "layer": "Reference anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.Markov"
+      ],
+      "name": "LeanInfoTheory.Examples.CommonCause",
+      "path": "LeanInfoTheory/Examples/CommonCause.lean",
+      "root_reachable": false,
+      "summary": "Noisy binary common-cause example for conditional independence and Markov factorization."
     },
     {
       "external_imports": [],
@@ -339,6 +390,18 @@
       "path": "LeanInfoTheory/Examples/KLTop.lean",
       "root_reachable": false,
       "summary": "Disjoint-support PMF example exposing the infinite-KL toReal zero trap."
+    },
+    {
+      "external_imports": [],
+      "layer": "Reference anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.EntropyBounds",
+        "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing"
+      ],
+      "name": "LeanInfoTheory.Examples.StochasticChannels",
+      "path": "LeanInfoTheory/Examples/StochasticChannels.lean",
+      "root_reachable": false,
+      "summary": "Finite stochastic-channel examples for KL contraction, cascade support, and entropy growth."
     },
     {
       "external_imports": [],
@@ -371,5 +434,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 11,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 17
+  "separate_import_count": 22
 }
