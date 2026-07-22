@@ -340,6 +340,16 @@ theorem channelJoint_deterministicChannel
   simp_rw [PMF.pure_map]
   rfl
 
+/-- Extending a pair law through a deterministic channel is its graph pushforward. -/
+theorem channelExtension_deterministicChannel
+    {alpha : Type u} {beta : Type v} {gamma : Type w}
+    (p : PMF (alpha × beta)) (f : beta -> gamma) :
+    channelExtension p (deterministicChannel f) =
+      p.map fun ab => (ab.1, ab.2, f ab.2) := by
+  unfold channelExtension deterministicChannel
+  simp_rw [PMF.pure_map]
+  rfl
+
 /-! ## Support laws -/
 
 /-- An output lies in a composite channel's support through a supported intermediate atom. -/
@@ -358,6 +368,38 @@ theorem mem_support_channelJoint_iff {alpha : Type u} {beta : Type v}
     (a, b) ∈ (channelJoint p W).support ↔
       a ∈ p.support ∧ b ∈ (W a).support := by
   simp [PMF.mem_support_iff]
+
+/--
+Two channels induce the same joint law from an input PMF exactly when they
+agree on every supported input atom. Their values away from the input support
+are irrelevant.
+-/
+theorem channelJoint_eq_iff_eq_on_support
+    {alpha : Type u} {beta : Type v}
+    (p : PMF alpha) (W V : alpha -> PMF beta) :
+    channelJoint p W = channelJoint p V ↔
+      ∀ a, a ∈ p.support -> W a = V a := by
+  constructor
+  · intro h a ha
+    apply PMF.ext
+    intro b
+    have hmass := congrArg (fun q : PMF (alpha × beta) => q (a, b)) h
+    change channelJoint p W (a, b) = channelJoint p V (a, b) at hmass
+    rw [channelJoint_apply, channelJoint_apply] at hmass
+    have hpa : p a ≠ 0 := (p.mem_support_iff a).1 ha
+    have htop : p a ≠ ⊤ := p.apply_ne_top a
+    have hcancel := congrArg (fun x : ENNReal => (p a)⁻¹ * x) hmass
+    simpa only [ENNReal.inv_mul_cancel_left hpa htop] using hcancel
+  · intro h
+    apply PMF.ext
+    rintro ⟨a, b⟩
+    rw [channelJoint_apply, channelJoint_apply]
+    by_cases ha : a ∈ p.support
+    · rw [h a ha]
+    · have hzero : p a = 0 := by
+        by_contra hne
+        exact ha ((p.mem_support_iff a).2 hne)
+      rw [hzero, zero_mul, zero_mul]
 
 /-- A triple is supported by an extension exactly when its pair and new output are supported. -/
 @[simp]

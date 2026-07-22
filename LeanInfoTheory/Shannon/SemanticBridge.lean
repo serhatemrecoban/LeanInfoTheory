@@ -7,7 +7,9 @@ Authors: Serhat Emre Coban
 import LeanInfoTheory.Shannon.SemanticBridge.Theorems
 import LeanInfoTheory.Shannon.SemanticBridge.Independence
 import LeanInfoTheory.Shannon.SemanticBridge.Markov
+import LeanInfoTheory.Shannon.SemanticBridge.Sufficiency
 import LeanInfoTheory.Shannon.SemanticBridge.DataProcessing
+import LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL
 import Mathlib.Probability.ProbabilityMassFunction.Integrals
 
 /-!
@@ -46,15 +48,32 @@ textbook/measure-theoretic semantics.
   positive-fiber, zero-CMI, and reversal characterizations and the Markov law
   for channel-generated triples, its canonical and existential channel-
   factorization converses, and the exact mutual-information loss identity;
+- `IsSufficientStatisticOf`, the fixed-prior reverse-Markov sufficiency
+  predicate, together with `statisticTripleLawOf`, its induced parameter-
+  statistic-observation law, its information-preservation characterizations,
+  and its exact full-joint recovery equivalence;
+- `IsSufficientChannel` and `IsSufficientStatistic`, the family-level channel
+  predicate with one common recovery channel and its deterministic-channel
+  specialization, together with reverse Markov, zero-CMI, mutual-information,
+  and conditional-entropy consequences for every parameter prior and the
+  converse full-support/all-prior characterizations, plus the finite Fisher-
+  Neyman factorization theorem for deterministic statistics;
 - `pmfChannelKernel`, the mathlib Markov-kernel view of a countable PMF-valued
   channel, with `channelJoint_toMeasure` identifying the induced PMF joint law
   with the corresponding measure-kernel composition product;
 - `channelPosterior`, the total finite posterior of an input law and channel,
-  together with PMF joint reconstruction and the exact
+  together with PMF joint reconstruction, the supported common-posterior
+  characterization of family sufficiency, and the exact
   `klDiv_channel_eq_add_posterior` decomposition;
 - finite KL data processing through a common stochastic channel, with
   unconditional `ENNReal`, support-guarded real, deterministic-map, and
   channel-cascade forms;
+- exact preservation of pairwise `ENNReal` KL divergence through a channel
+  admitting one common exact recovery channel for both input laws, together
+  with support-guarded `ENNReal`/real converses and deterministic-map forms;
+- pairwise `ENNReal` KL preservation for sufficient model-family channels and
+  statistics, with guarded converse characterizations for Boolean-indexed
+  two-law families;
 - one-step KL contraction toward invariant reference laws and entropy growth
   under uniform-preserving and finite doubly stochastic channels;
 - `condEntropy` as the expected entropy of these conditional laws;

@@ -85,13 +85,51 @@ processing, the conditional-entropy inequality `H(X|Y) <= H(X|Z)`, and
   the complete build, website, consumer, root-isolation, and hygiene suites, and
   left the lightweight root unchanged.
 
-Future Work Note 29 is the next Project B mathematical planning anchor:
-sufficient-statistics and recovery-equality work should be designed first, and
-Fano should be planned separately after that API is stable. No post-Chunk-3
-theorem execution plan is active yet.
+The revised 20-step Project B Chunk 4 plan governed by Future Work Note 29 is
+complete. It develops finite sufficient statistics, exact recovery, and guarded
+equality in KL data processing.
+`isMarkovChainOf_comp` supplies the type-generic deterministic forward chain,
+and `condEntropyOf_dataProcessing_eq_iff` gives the entropy-facing equality
+characterization, with `condEntropy_dataProcessing_eq_iff` now supplying the
+direct PMF form. The new opt-in `SemanticBridge.Sufficiency` core now owns the
+fixed-prior predicate, induced triple law, and reverse-Markov/zero-CMI/MI/
+conditional-entropy equivalence band, together with exact full-joint recovery
+and its one-way marginal consequence. It now also defines family sufficiency
+through one common exact recovery channel and deterministic statistics as its
+specialization. Family sufficiency is now equivalent to agreement with one
+common posterior on every supported output fiber; null fibers remain
+unconstrained. The identity statistic is sufficient for every model family,
+and common family recovery now yields reverse Markov, zero-CMI, MI-preservation,
+and conditional-entropy-preservation consequences under every parameter prior.
+One full-support prior now supplies the converse with only a finite model-input
+alphabet, while finite nonempty parameter alphabets give channel and
+deterministic-statistic characterizations quantified over every prior. The
+permanent opt-in `Examples.SufficientStatistics` module validates the genuinely
+noninjective sufficient, non-sufficient constant, and marginal-only cases and
+exercises the fixed-prior, family, recovery, all-prior, Fisher-Neyman, and KL-
+equality surfaces. The finite Fisher-Neyman iff now characterizes
+deterministic family sufficiency by finite `ENNReal` factors through the
+statistic, with all fiber normalization private. The downstream
+`DataProcessing` owner now retains
+`klDiv_channel_eq_iff_posterior_ae_eq` as the lower-level measure bridge and
+supplies `klDiv_channel_eq_iff_posterior_eq_on_support` plus its guarded real
+companion as the primary finite-facing equality family. The new downstream
+`SemanticBridge.Sufficiency.KL` module now proves pairwise `ENNReal` KL
+preservation from one channel that exactly recovers both complete output-input
+joint laws. Under input support inclusion it now also characterizes `ENNReal`
+and real KL equality by existence of one common exact recovery channel, with
+deterministic-map forms. Sufficient family channels and deterministic
+statistics now preserve `ENNReal` KL divergence between every pair of model
+laws. Under directed support inclusion, either family predicate is equivalent
+to that equality for a Boolean-indexed two-law model. The lightweight
+sufficiency core and root remain unchanged. The complete ten-target build,
+guarded consumer, axiom, generated-reference, website, and hygiene suites pass.
+Fano is the next separately planned Project B phase, while
+canonical/minimal sufficiency and larger iid examples are deferred by Future
+Work Note 39.
 
 This is a maintained status note for Lean-focused work. It summarizes the
-current architecture and the completed Chunk 3 theorem milestone.
+current architecture and the completed Chunk 3 and Chunk 4 theorem milestones.
 
 ## Current Lean Architecture
 
@@ -141,13 +179,38 @@ current architecture and the completed Chunk 3 theorem milestone.
   and random-variable levels. Its channel-facing consequences cover left,
   right, independently two-sided, cascade, and deterministic output
   processing without adding another channel construction.
+- `LeanInfoTheory.Shannon.SemanticBridge.Sufficiency` is the lightweight opt-in
+  sufficient-statistics core. It imports `Markov` but not `DataProcessing`,
+  defines `IsSufficientStatisticOf` by the reverse chain
+  `Theta -> T(X) -> X`, and records the induced complete law as
+  `statisticTripleLawOf p Theta X T`. Its first theorem band characterizes the
+  predicate by reverse Markov structure, zero CMI, mutual-information
+  preservation, conditional-entropy preservation, and exact reconstruction of
+  the complete induced law by one recovery channel. Observation-marginal
+  recovery is exposed only as a one-way consequence. It is imported by the
+  semantic aggregate but remains outside the lightweight root. The same module
+  defines `IsSufficientChannel` for raw model families by one common exact
+  recovery channel and `IsSufficientStatistic` as the deterministic-channel
+  specialization, without introducing a bundled experiment structure. It also
+  proves the assumption-free identity-statistic sanity law and derives reverse
+  Markov structure plus zero-CMI, MI, and conditional-entropy preservation for
+  every parameter prior. The hierarchical prior/model/channel law remains
+  inline rather than becoming another public constructor.
 - `LeanInfoTheory.Shannon.SemanticBridge.DataProcessing` is the new opt-in
   kernel/KL-facing module. It currently converts countable PMF-valued channels
   to mathlib Markov kernels and proves that `PMF.channelJoint` has the expected
   measure-kernel `compProd` semantics. It also constructs the total finite
   posterior, reconstructs the induced joint PMF in output-input order, and
-  proves the exact channel KL posterior decomposition. The module is imported
-  by the semantic aggregate but remains outside the lightweight root.
+  characterizes family sufficiency by one common posterior on supported output
+  fibers before proving the exact channel KL posterior decomposition. It now
+  imports the lightweight sufficiency core directly, is imported by the
+  semantic aggregate, and remains outside the lightweight root.
+- `LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL` is the downstream
+  exact-recovery/KL integration module. It imports `DataProcessing`, leaves the
+  lightweight sufficiency core free of kernel and KL imports, and proves
+  pairwise `ENNReal` KL preservation under one common exact recovery channel,
+  together with support-guarded `ENNReal`/real converses and deterministic-map
+  specializations.
 - `LeanInfoTheory.EntropyExpr`, `LeanInfoTheory.EntropyVal`, and
   `LeanInfoTheory.PrimitiveIneq` form the abstract entropy-expression and
   primitive Shannon inequality layer.
@@ -161,7 +224,8 @@ current architecture and the completed Chunk 3 theorem milestone.
   pressure-test modules. `LeanInfoTheory.Examples.SupportSensitive` and
   `LeanInfoTheory.Examples.KLTop`, together with the new
   `LeanInfoTheory.Examples.CommonCause` and
-  `LeanInfoTheory.Examples.StochasticChannels`, can also be imported directly
+  `LeanInfoTheory.Examples.StochasticChannels` and
+  `LeanInfoTheory.Examples.SufficientStatistics`, can also be imported directly
   when only one semantic example is wanted.
 - `LeanInfoTheory.MathlibFragments` is a separately importable anchor/checklist
   for mathlib APIs that the project expects to use later.
@@ -440,12 +504,470 @@ future work.
 1. All 20 Chunk 3 steps are complete and integrated.
 2. The root import remains unchanged. Entropy bounds, semantic theorems, units,
    demos, and reference anchors remain separately importable where appropriate.
-3. Sufficient statistics and KL recovery equality are the next mathematical
-   planning focus under Future Work Note 29; Fano follows in a separate phase.
-   Channel processes, binary/q-ary bridges, and finite-family entropy remain
-   later work. This status update does not activate a theorem plan.
+3. Sufficient statistics and KL recovery equality are complete under Future
+   Work Note 29. Fano is the next separately planned Project B phase. Channel
+   processes, binary/q-ary bridges, canonical/minimal sufficiency, and finite-
+   family entropy remain later work.
 4. Continue using focused Lake builds during theorem development and the full
    suite at every milestone boundary.
+
+## Completed Project B Chunk 4 Plan
+
+Current status: all 20 steps are complete. The lightweight sufficiency core
+contains the fixed-prior predicate, induced triple
+law, its first textbook equivalence band, and exact full-joint recovery,
+together with the family channel predicate and deterministic specialization,
+plus every-prior reverse-Markov and information-preservation consequences and
+their full-support/all-prior converses. It remains upstream of the supported
+posterior characterization and guarded measure-level equality engine in data
+processing. The downstream `Sufficiency.KL` layer now contains the forward
+pairwise exact-recovery theorem and its support-guarded `ENNReal`/real
+converses, including deterministic-map forms, family pairwise preservation,
+and the guarded Boolean-family converse. Permanent examples now exercise the
+  completed surface without changing the root.
+
+1. Completed on July 16, 2026: validated every contract with clean temporary
+   no-placeholder proofs, including the marginal-recovery false-positive test.
+2. Completed on July 17, 2026: proved deterministic forward Markov structure
+   for arbitrary statistics as `isMarkovChainOf_comp`.
+3. Completed on July 17, 2026: added the directly consumed conditional-entropy
+   DPI equality case `condEntropyOf_dataProcessing_eq_iff` from Future Work
+   Note 33.
+4. Completed on July 17, 2026: introduced the lightweight opt-in sufficiency
+   core, upstream of the DataProcessing and planned Sufficiency.KL layers, with
+   positive and negative root-isolation checks.
+5. Completed on July 17, 2026: proved the fixed-prior reverse-Markov, zero-CMI,
+   MI-preservation, and conditional-entropy-preservation equivalences.
+6. Completed on July 17, 2026: characterized fixed-prior sufficiency by exact
+   full-joint recovery and derived marginal recovery only as a one-way
+   consequence.
+7. Completed on July 17, 2026: defined family sufficient channels through one
+   common exact recovery channel and deterministic sufficient statistics as
+   their specialization.
+8. Completed on July 17, 2026: characterized family sufficiency by one common
+   posterior on every supported output fiber and added the identity-statistic
+   sanity law.
+9. Completed on July 17, 2026: derived reverse Markov, zero-CMI, MI-preservation,
+   and conditional-entropy-preservation consequences for every parameter prior
+   from one common family recovery channel, and added the directly consumed
+   PMF conditional-entropy equality characterization from Note 33.
+10. Completed on July 17, 2026: proved the finite full-support-prior converse,
+    the all-priors channel and deterministic-statistic equivalences, and the
+    pressure-justified deterministic channel-extension graph law.
+11. Completed on July 17, 2026: ran the midpoint contract, example, module,
+    naming, null-fiber, and root-isolation test with temporary public consumers.
+12. Completed on July 17, 2026: proved the finite Fisher-Neyman factorization
+    iff with finite `ENNReal` factors and private fiber normalization.
+13. Completed on July 17, 2026: derived the guarded measure-level KL posterior-
+    equality engine from the exact decomposition and mathlib's finite kernel
+    composition-product equality theorem.
+14. Completed on July 17, 2026: published the finite support-pointwise
+    posterior equality theorem and its guarded real-valued companion.
+15. Completed on July 17, 2026: added the downstream, separately importable
+    `Shannon.SemanticBridge.Sufficiency.KL` module and proved unconditional
+    pairwise `ENNReal` KL preservation from one common exact recovery channel.
+16. Completed on July 21, 2026: proved guarded `ENNReal` and real KL equality
+    iff common exact recovery, together with deterministic-map variants, and
+    promoted the required channel-joint support-identifiability theorem.
+17. Completed on July 22, 2026: integrated family sufficiency with pairwise
+    `ENNReal` KL preservation and its support-guarded Boolean-family converse,
+    including deterministic-statistic forms.
+18. Completed on July 22, 2026: added permanent, separately importable
+    sufficient-statistics examples covering the positive noninjective model,
+    the negative constant statistic, the marginal-only false positive, and the
+    fixed-prior, family, recovery, all-prior, Fisher-Neyman, and KL surfaces.
+19. Completed on July 22, 2026: retained the current naming, simp, and module
+    surfaces after the scheduled review, completed the source documentation
+    checklist, and rechecked downstream imports and negative root reachability.
+20. Completed on July 22, 2026: updated documentation and references, passed
+    the full ten-target milestone suite plus guarded consumers, axiom, website,
+    root-isolation, and hygiene checks, and prepared the checkpoint commit.
+
+The detailed contracts, gates, and deferred boundaries are recorded in the
+completed Chunk 4 section of `docs/project-log.md`.
+
+### Locked Step 1 Contract
+
+- Fixed-prior sufficiency is the reverse chain `Theta -> T(X) -> X`;
+  `Theta -> X -> T(X)` is automatic and type-generic.
+- Family sufficiency requires one channel that reconstructs every complete
+  swapped input-output joint law. Recovering only each input marginal is
+  formally too weak.
+- One full-support prior suffices for the family converse. Once that prior is
+  supplied, the compiled argument needs only `[Finite alpha]` for the recovered
+  observation alphabet; a canonical uniform prior later adds finite nonempty
+  parameter assumptions.
+- Guarded KL equality cancels the exact posterior decomposition and uses
+  `Kernel.compProd_eq_iff` to obtain almost-everywhere posterior-kernel
+  equality. The engine remains owned by `SemanticBridge.DataProcessing`.
+- Fisher-Neyman uses finite `ENNReal` factors and a private positive-fiber
+  normalization argument; zero-total fibers use an observationally irrelevant
+  fallback.
+- The temporary 2747-job target built cleanly, then its source and generated
+  artifacts were deleted. The root and production module graph are unchanged.
+
+### Completed Chunk 4 Step 2
+
+- `isMarkovChainOf_comp` proves `X -> Y -> f(Y)` for arbitrary source and
+  variable types, with no finite, measurable, injective, or support assumptions.
+- Its proof identifies the mapped triple law with a deterministic channel
+  extension and reuses `isMarkovChain_channelExtension`; the identification is
+  local, and no PMF wrapper or helper API was added.
+- The theorem remains explicit, its concise name needs no Future Work Note 14
+  watch entry, and the lightweight root/import boundary is unchanged.
+- The owning module, a temporary standalone consumer, and the semantic/root
+  aggregate passed with 2701, 2702, and 2724 jobs respectively. The consumer
+  source and artifacts were deleted. Generated references now record 617
+  declarations and the unchanged 33-module graph; the website checker passes.
+
+### Completed Chunk 4 Step 3
+
+- `condEntropyOf_dataProcessing_eq_iff` characterizes
+  `H(X|Y) = H(X|Z)` under `X -> Y -> Z` exactly by the reverse chain
+  `X -> Z -> Y`.
+- The proof is a direct corollary of the canonical MI equality theorem and the
+  existing MI/conditional-entropy identity. It remains explicit and adds no
+  PMF wrapper or strict-loss companion.
+- A temporary consumer combined Steps 2 and 3 to validate
+  `H(Theta|X) = H(Theta|T(X))` iff `Theta -> T(X) -> X`; it and its artifacts
+  were deleted after a 2702-job build.
+- The owning module and semantic/root aggregate passed with 2701 and 2724 jobs.
+  Generated references now record 618 declarations and the unchanged
+  33-module graph; the website checker passes.
+
+### Completed Chunk 4 Step 4
+
+- The new `Shannon.SemanticBridge.Sufficiency` module imports only `Markov` and
+  is included by the semantic aggregate, not the lightweight root.
+- `statisticTripleLawOf` records `(Theta, T(X), X)`, and
+  `IsSufficientStatisticOf` is exactly the reverse Markov condition. Both
+  definitions are assumption-free; no recovery, family, theorem, or simp API
+  was added early.
+- The module, boundary consumers, and semantic/root aggregate passed with 2702,
+  2712, and 2725 jobs. All temporary sources and artifacts were deleted.
+- Generated references now record 620 declarations and a 34-module, 54-edge
+  graph with the root-reachable count unchanged at 11; the website checker
+  passes.
+
+### Completed Chunk 4 Step 5
+
+- Four predicate-first theorems characterize `IsSufficientStatisticOf` by the
+  reverse chain, `I(Theta;X|T(X)) = 0`, preservation of `I(Theta;X)`, and
+  preservation of `H(Theta|X)`.
+- The MI and entropy proofs explicitly reuse the deterministic forward chain
+  and existing data-processing equality results; no DPI or zero-CMI proof is
+  duplicated.
+- The owning module, a temporary all-four-surfaces consumer, the semantic
+  aggregate, and root passed with 2702, 2703, 2716, and 2240 jobs. The consumer
+  and artifacts were deleted.
+- Generated references now record 624 declarations. The 34-module graph and
+  root-isolation boundary are unchanged; the website checker passes.
+
+### Completed Chunk 4 Step 6
+
+- `isSufficientStatisticOf_iff_exists_recovery` characterizes fixed-prior
+  sufficiency by one channel `R : beta -> PMF alpha` that reconstructs the
+  complete `(Theta, T(X), X)` law from its parameter-statistic pair law.
+- The theorem needs only `[Finite alpha]`; the source, parameter, and statistic
+  value types remain unrestricted. Two representation equalities used by the
+  proof remain private to the owning module.
+- `exists_marginal_recovery_of_isSufficientStatisticOf` projects the same
+  witness to `p.map X = (p.map fun omega => T (X omega)).bind R`. Its theorem name and
+  documentation make the implication one-way because the converse is false.
+- The owning module, a temporary three-surface consumer, the semantic
+  aggregate, and the lightweight root all pass. Generated references now
+  record 626 declarations; the 34-module, 54-edge graph remains unchanged with
+  11 root-reachable and 23 separately importable modules.
+
+### Completed Chunk 4 Step 7
+
+- `IsSufficientChannel model W` requires one shared recovery channel
+  `R : beta -> PMF alpha` whose recovered output-input joint law equals the
+  swapped forward joint law for every parameter value.
+- `IsSufficientStatistic model T` is definitionally
+  `IsSufficientChannel model (PMF.deterministicChannel T)`. Both definitions
+  are assumption-free, and no bundled statistical-experiment structure or
+  auxiliary family-law definition was introduced.
+- A temporary consumer checked witness introduction and elimination and the
+  deterministic specialization using only the sufficiency import. The owning
+  module, semantic aggregate, and unchanged root pass with 2702, 2716, and
+  2240 jobs; all scratch files were deleted.
+- Generated references now record 628 declarations, 626 documented. The
+  34-module, 54-edge graph remains unchanged with 11 root-reachable and 23
+  separately importable modules.
+
+### Completed Chunk 4 Step 8
+
+- `isSufficientChannel_iff_exists_common_posterior` states that a finite-input
+  family channel is sufficient exactly when one posterior channel agrees with
+  every model posterior on each supported output atom. It needs only
+  `[Fintype alpha]`; parameter and output types remain unrestricted.
+- The support premise deliberately imposes no equality on null output fibers,
+  so `channelPosterior`'s documented fallback remains observationally
+  irrelevant. A generic channel-joint identifiability lemma is private to the
+  owning data-processing module.
+- `isSufficientStatistic_id` proves without assumptions that the identity
+  statistic is sufficient for every model family. No additional identity,
+  constant, or injective-statistic convenience theorem was added.
+- The sufficiency core, data-processing owner, public consumer, semantic
+  aggregate, and unchanged root all pass. Generated references now record 630
+  declarations, 628 documented; the graph remains at 34 modules with 55 edges,
+  11 root-reachable and 23 separately importable modules.
+
+### Completed Chunk 4 Step 9
+
+- `isMarkovChainOf_of_isSufficientChannel` proves without finiteness assumptions
+  that every parameter prior gives the reverse chain
+  `parameter -> output -> input` in the generated hierarchical law.
+- The finite corollaries
+  `condMutualInfo_eq_zero_of_isSufficientChannel`,
+  `mutualInfo_eq_of_isSufficientChannel`, and
+  `condEntropy_eq_of_isSufficientChannel` expose zero CMI and exact preservation
+  of parameter mutual information and conditional entropy for arbitrary priors.
+- The first independent PMF consumer anticipated by Future Work Note 33 adds
+  `condEntropy_dataProcessing_eq_iff` beside the existing random-variable
+  equality characterization; the family entropy corollary reuses this direct
+  law-level surface.
+- The prior/model/channel law is written inline in theorem statements and kept
+  in local proof abbreviations. One atomwise reverse-factorization helper stays
+  private; no public experiment-law constructor or additional recovery API was
+  introduced.
+- The Markov and sufficiency owners and a standalone five-surface consumer
+  pass. Generated references now record 635 declarations, 633 documented; the
+  34-module, 55-edge graph and its 11 root-reachable/23 separate-import counts
+  are unchanged.
+
+### Completed Chunk 4 Step 10
+
+- `isSufficientChannel_iff_isMarkovChainOf_of_support_eq_univ` proves that one
+  supplied full-support prior characterizes family sufficiency with only
+  `[Finite alpha]`; neither the parameter nor output type must be finite.
+- `isSufficientChannel_iff_forall_isMarkovChainOf` derives the standard
+  all-priors channel form under `[Finite theta] [Nonempty theta] [Finite alpha]`
+  by using a locally installed uniform prior for the converse.
+- The corresponding deterministic-statistic theorems
+  `isSufficientStatistic_iff_isSufficientStatisticOf_of_support_eq_univ` and
+  `isSufficientStatistic_iff_forall_isSufficientStatisticOf` connect the family
+  predicate directly to the existing fixed-prior `...Of` predicate.
+- The type-generic explicit law `PMF.channelExtension_deterministicChannel` was
+  promoted after its second production consumer and now supplies the private
+  deterministic representation bridge shared by the Markov/sufficiency layer.
+  A simp probe rejected an attribute because it preempted the established
+  generated-Markov constructor rule.
+- The converse factors the swapped generated law through one recovery channel
+  and cancels the positive prior atomwise. The generated law and coordinate
+  helpers remain private; no bundled experiment or stronger finiteness
+  assumption was introduced.
+- The finite-channel, Markov, sufficiency, data-processing, semantic aggregate,
+  lightweight root, and standalone public consumer checks all pass.
+- Generated references record 640 declarations, 638 documented; the
+  34-module, 55-edge graph and its root-isolation counts remain unchanged.
+
+### Completed Chunk 4 Step 11
+
+- A temporary core-only consumer proves that the genuinely noninjective
+  statistic projecting `(parameter, fairBit)` to its first coordinate is
+  sufficient. It exercises exact common recovery and both full-support/all-
+  priors statistic characterizations while retaining a null output fiber in
+  every model.
+- A constant statistic on the two Boolean point-mass models is not sufficient:
+  one recovery mass would have to be both zero and one. A separate fair-law
+  reset recovers the observation marginal but reconstructs the wrong joint law,
+  confirming that marginal recovery cannot characterize sufficiency.
+- A temporary `DataProcessing` consumer exercises the common-posterior theorem
+  and proves its support guard necessary: an individual model's null-fiber
+  fallback differs from the common posterior fixed by the opposite model.
+- The core remains Markov-only, the posterior/KL layer remains downstream, and
+  a root-only probe rejects `IsSufficientChannel` as expected. No production
+  Lean declaration, alias, simp rule, helper, import edge, or root import was
+  added; all probes were deleted.
+- Focused builds pass for `Sufficiency` and `DataProcessing` with 2702 and 2715
+  jobs, and the semantic aggregate/root build passes with 2725 jobs. Generated
+  reference and graph counts remain unchanged.
+
+### Completed Chunk 4 Step 12
+
+- `isSufficientStatistic_iff_exists_fisherNeymanFactorization` characterizes
+  deterministic family sufficiency by finite factors
+  `model t a = g t (T a) * h a`, where `h` is parameter-independent.
+- The public assumptions are only `[Finite alpha] [Nonempty alpha]`; parameter
+  and statistic alphabets remain unrestricted, and the selected observation
+  enumeration is local to the proof.
+- Exact recovery gives the forward factors directly. Conversely, positive
+  statistic fibers normalize `h` with `PMF.normalize`, while zero-total fibers
+  have zero model mass and use an irrelevant pure fallback. All normalization,
+  fiber, finiteness, and output-mass helpers remain private.
+- A temporary core-only consumer exercised both directions on the genuinely
+  noninjective model `indepProd (PMF.pure t) fairBit` with statistic `Prod.fst`,
+  then was deleted. No KL import, public factorization predicate, normalization
+  API, bundled experiment, or simp rule was added.
+- Builds pass for `Sufficiency`, `DataProcessing`, the semantic aggregate, and
+  the lightweight root with 2702, 2715, 2716, and 2240 jobs. Generated
+  references now record 641 declarations, 639 documented; the 34-module,
+  55-edge graph and root-isolation counts remain unchanged.
+
+### Completed Chunk 4 Step 13
+
+- `klDiv_channel_eq_iff_posterior_ae_eq` states, under
+  `p.support ⊆ q.support`, that equality in finite KL channel data processing
+  is equivalent to almost-everywhere equality of the two posterior kernels
+  under `(p.bind W).toMeasure`.
+- A private helper isolates the only `ENNReal` cancellation step behind the
+  explicit guard `klDiv p.toMeasure q.toMeasure ≠ ⊤`. The public theorem
+  obtains that guard from the existing finite support characterization, then
+  uses `InformationTheory.klDiv_eq_zero_iff` and `Kernel.compProd_eq_iff`.
+- The new focused `Mathlib.Probability.Kernel.CompProdEqIff` import stays in
+  `SemanticBridge.DataProcessing`. No posterior implementation, KL dependency,
+  or measure-theoretic API moved into the lightweight sufficiency core or root.
+- The owning module and a temporary standalone consumer exercising both iff
+  directions pass; the consumer was deleted. Generated references now record
+  642 declarations, 640 documented. The 34-module, 55-edge graph and its root-
+  isolation counts remain unchanged.
+
+### Completed Chunk 4 Step 14
+
+- `klDiv_channel_eq_iff_posterior_eq_on_support` is now the primary finite-
+  facing equality theorem. Under `p.support ⊆ q.support`, it characterizes
+  equality in KL channel data processing by
+  `channelPosterior p W b = channelPosterior q W b` for every
+  `b ∈ (p.bind W).support`.
+- The proof deliberately factors through Step 13's public almost-everywhere
+  theorem, converts kernel equality back to equality of PMF joint laws, and
+  reuses the private supported-channel identifiability lemma. Null output
+  fibers remain unconstrained.
+- `toReal_klDiv_channel_eq_iff_posterior_eq_on_support` gives the identical
+  pointwise criterion for real-valued KL equality. Channel DPI makes the output
+  divergence finite from the input support guard, so
+  `ENNReal.toReal_eq_toReal_iff'` introduces no top-branch ambiguity.
+- The owning module, a standalone consumer exercising both directions of both
+  theorems, the semantic aggregate, and the lightweight root pass. Generated
+  references now record 644 declarations, 642 documented; the 34-module,
+  55-edge graph and root-isolation counts remain unchanged.
+
+### Completed Chunk 4 Step 15
+
+- The new separately importable
+  `LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL` module is downstream
+  of `DataProcessing`; the lightweight sufficiency core retains its Markov-only
+  import boundary.
+- `klDiv_channel_eq_of_common_recovery` takes two input laws and one recovery
+  channel that reconstructs both complete swapped input-output joint laws. It
+  proves equality in `ENNReal` KL data processing without support inclusion,
+  so the statement remains valid in the infinite-divergence case.
+- A private helper projects full-joint recovery to input-marginal recovery.
+  Applying `klDiv_channel_le` through the forward channel and then through the
+  recovery channel gives the two inequalities; no posterior, kernel equality,
+  relabeling, or real-valued top-branch proof is repeated.
+- The focused module, standalone positive consumer, semantic aggregate, and
+  lightweight root builds pass. Core-only and root-only probes reject the new
+  theorem as intended. Generated references now record 645 declarations, 643
+  documented; the graph records 35 modules and 57 local edges, with 11 root-
+  reachable and 24 separately importable modules.
+
+### Completed Chunk 4 Step 16
+
+- `klDiv_channel_eq_iff_exists_common_recovery` characterizes equality in
+  finite `ENNReal` channel data processing by one channel that reconstructs
+  both complete output-input joint laws. Input support inclusion is used only
+  for the converse and excludes the uninformative `top = top` case.
+- `toReal_klDiv_channel_eq_iff_exists_common_recovery` gives the same exact-
+  recovery criterion for real KL equality. The two map-facing companions state
+  the deterministic-statistic cases with graph pushforwards rather than an
+  exposed `deterministicChannel` implementation.
+- The converse chooses one input law's posterior as the recovery channel and
+  uses supported posterior equality to reconstruct the other law. The generic
+  `PMF.channelJoint_eq_iff_eq_on_support` theorem was therefore promoted from a
+  private data-processing helper to the opt-in finite-channel owner instead of
+  duplicating its atomwise cancellation proof downstream.
+- The finite-channel, data-processing, sufficiency-KL, semantic aggregate, and
+  root builds pass. A standalone consumer exercises both directions and all
+  four names; data-processing-only and root-only probes reject the downstream
+  API. Generated references record 650 declarations, 648 documented; the graph
+  remains at 35 modules and 57 local edges, with 11 root-reachable and 24
+  separately importable modules.
+
+### Completed Chunk 4 Step 17
+
+- `klDiv_eq_of_isSufficientChannel` proves that one recovery channel shared by
+  a model family preserves `ENNReal` KL divergence between every pair of model
+  laws. `klDiv_eq_of_isSufficientStatistic` gives the deterministic-statistic
+  specialization.
+- `isSufficientChannel_iff_klDiv_eq_bool` and
+  `isSufficientStatistic_iff_klDiv_eq_bool` give the guarded converse for a
+  Boolean-indexed two-law model when the `false` law's support is contained in
+  the `true` law's support. Step 16 supplies one recovery witness for those two
+  laws, which exhaust the family.
+- No larger-family converse from independently chosen pairwise witnesses is
+  claimed. No real wrapper, posterior helper, simp rule, alias, import edge, or
+  marginal-recovery theorem was added.
+- The focused module and semantic aggregate/root build command pass. A
+  standalone consumer exercises both forward theorems and both directions of
+  the binary iff family; data-processing-only and root-only probes reject the
+  downstream declarations as intended. Generated references now record 654
+  declarations, 652 documented; the graph remains at 35 modules and 57 local
+  edges, with 11 root-reachable and 24 separately importable modules.
+
+### Completed Chunk 4 Step 18
+
+- `LeanInfoTheory.Examples.SufficientStatistics` is a separately importable
+  finite example module downstream of `Sufficiency.KL`. Its ancillary-noise
+  experiment has a statistic that is globally noninjective and collides on two
+  supported observations for every parameter, yet is sufficient by one common
+  exact recovery channel.
+- Public declarations exercise the fixed-prior predicate and MI equality, family
+  sufficiency, exact recovery, every-prior characterization, finite Fisher-
+  Neyman factorization, pairwise KL preservation, and both Boolean KL converse
+  surfaces. A proper-support disposable probe confirms that the opposite
+  Boolean orientation is handled cleanly by `Bool.not` reindexing.
+- The same module proves that a constant statistic is not sufficient for two
+  separated point masses and that a reset channel can recover a marginal while
+  failing to reconstruct the complete identity graph law. No theorem, helper,
+  alias, or simp rule was added to a core semantic module.
+- The focused example build passes with 2,749 jobs, the examples aggregate with
+  2,760 jobs, and the semantic aggregate/root command with 2,758 jobs. Positive
+  opt-in and negative root-only consumers behave as intended. Generated
+  references record 686 declarations, 684 documented; the graph records 36
+  modules and 59 local edges, with 11 root-reachable and 25 separately
+  importable modules. The website checker passes.
+
+### Completed Chunk 4 Step 19
+
+- The scheduled public API review declined all ten provisional alias families.
+  Existing names preserve meaningful witness, support, prior, fixed-law/family,
+  full-joint/marginal, and `ENNReal`/real distinctions; no declaration was
+  renamed or duplicated.
+- No sufficiency, recovery, posterior, Fisher-Neyman, or KL equality theorem
+  became a simp rule. Controlled predicates and semantic equivalences remain
+  explicit, while the lower finite-channel layer retains the canonical
+  constructor-reducing rules.
+- Source comments now explain coordinate order, shared recovery quantifiers,
+  null fibers, full-support cancellation, common supported posteriors, and the
+  separate Fisher-Neyman finiteness roles. No theorem statement, proof,
+  definition, import, attribute, or public name changed.
+- The measured review retains `Sufficiency` as the Markov-only core,
+  `DataProcessing` as the posterior/kernel equality engine, and
+  `Sufficiency.KL` as the downstream recovery/KL integration layer. All remain
+  outside the lightweight root.
+- Focused builds of those three modules and `Examples.SufficientStatistics`
+  pass. A downstream consumer resolves every watched name, a root-only consumer
+  rejects the sufficiency API as intended, and all disposable files are gone.
+
+### Completed Chunk 4 Step 20
+
+- All ten required milestone Lake targets pass, including the 2,749-job
+  semantic aggregate and 2,760-job examples aggregate.
+- Guarded root, core-only, and data-processing-only consumers confirm the
+  intended non-leakage boundaries. Downstream KL and example consumers exercise
+  the completed API, and representative axiom reports contain no `sorryAx`.
+- Both source-derived generators are idempotent. The API index records 686
+  public declarations, 684 documented; the graph records 36 modules and 59
+  local edges, with 11 root-reachable and 25 separately importable modules.
+- The website, placeholder, temporary-file, process, root-import, and diff-
+  hygiene checks pass. `LeanInfoTheory.lean` remains unchanged, and the three
+  new Chunk 4 modules remain outside the lightweight root.
+- Step 20 adds no declaration, alias, simp rule, helper, import edge, or Future
+  Work trigger. All 20 Chunk 4 steps are complete and ready for the coherent
+  checkpoint.
 
 ## Completed Project B Chunk 3 Plan
 

@@ -81,6 +81,13 @@ reference material only and is intentionally not part of the repository.
   the finite doubly stochastic specialization. No matrix or process
   representation is introduced. The module stays opt-in and does not change
   the raw PMF-valued channel convention.
+- Exact-recovery/KL integration lives one layer farther downstream in
+  `Shannon.SemanticBridge.Sufficiency.KL`. Its first theorem applies data
+  processing through the forward and common recovery channels to prove
+  pairwise `ENNReal` KL preservation. Under input support inclusion, the same
+  module characterizes `ENNReal` and real equality by existence of one common
+  exact recovery channel and supplies deterministic-map specializations. The
+  lightweight sufficiency core retains no kernel or KL import.
 - Entropy values live in `Real`.
 - The current entropy unit is the nat, because mathlib's logarithm is natural
   logarithm and mathlib's `Real.binEntropy` is documented in nats.
@@ -317,7 +324,9 @@ expect to connect to next.
 - Import `LeanInfoTheory.Shannon.EntropyBounds`,
   `LeanInfoTheory.Probability.FiniteChannel`,
   `LeanInfoTheory.Shannon.SemanticBridge.Markov`,
+  `LeanInfoTheory.Shannon.SemanticBridge.Sufficiency`,
   `LeanInfoTheory.Shannon.SemanticBridge.DataProcessing`,
+  `LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL`,
   `LeanInfoTheory.Shannon.SemanticBridge`,
   `LeanInfoTheory.MathlibFragments`,
   `LeanInfoTheory.Certificate.Submodularity`, and
@@ -326,8 +335,9 @@ expect to connect to next.
   `LeanInfoTheory.Examples.SupportSensitive` for support-aware entropy,
   conditional-fiber, functional-dependence, and recovery examples, or
   `LeanInfoTheory.Examples.KLTop` for the disjoint-support real-KL trap. The
-  `LeanInfoTheory.Examples` aggregate imports both, but the project root imports
-  neither.
+  common-cause, stochastic-channel, and sufficient-statistics examples also
+  remain separately importable. `LeanInfoTheory.Examples` aggregates all five
+  semantic example modules, but the project root imports none of them.
 - Certificate-demo theorems stay in their descriptive namespaces, such as
   `Certificate.Submodularity.entropy_submodularity`, until enough examples
   exist to justify a separate polished theorem-facing alias layer.
@@ -360,9 +370,62 @@ The comparison with Rocq `infotheo` is recorded in `docs/project-log.md`.
 - Let concrete channel and Markov consumers determine whether independence
   predicates need a lighter module boundary and which closure or symmetry
   conveniences are justified.
-- Use Future Work Note 29 as the next Project B planning anchor: design a
-  focused sufficient-statistics and recovery-equality phase first, then plan
-  Fano separately. Do not begin either phase until its execution plan is
-  explicitly locked.
+- The revised 20-step Project B Chunk 4 plan governed by Future Work Note 29 is
+  complete. Keep exact full-joint recovery, not marginal recovery, as the
+  family sufficiency contract; keep the core sufficiency module upstream of
+  the separate KL integration layer. Plan Fano as a separate next phase.
+- The fixed-prior core now lives in the opt-in
+  `Shannon.SemanticBridge.Sufficiency` module and imports only `Markov`.
+  Its reverse-Markov, zero-CMI, MI-preservation, and conditional-entropy-
+  preservation characterizations are complete. Its exact full-joint recovery
+  equivalence is also complete, with marginal recovery exposed only as a
+  one-way consequence. Family sufficiency now means one common recovery
+  channel for every raw model law, with deterministic statistics defined by
+  specialization and no bundled experiment structure. The existing
+  `DataProcessing` posterior owner now characterizes this contract on supported
+  output fibers, while null fibers remain unconstrained and the sufficiency
+  core stays lightweight. One common recovery channel now yields reverse
+  Markov structure, zero conditional mutual information, mutual-information
+  preservation, and conditional-entropy preservation for every parameter
+  prior. The first independent PMF entropy consumer also justifies the direct
+  `condEntropy_dataProcessing_eq_iff` companion in `Markov`. The generated
+  hierarchical law remains local to the core. A supplied full-support prior
+  now characterizes family sufficiency with only `[Finite alpha]`; finite
+  nonempty parameter alphabets use a local uniform prior to obtain the all-
+  priors channel and statistic forms. Step 18's permanent, separately importable
+  examples now retain the positive noninjective, negative constant, and
+  marginal-only midpoint tests while exercising fixed-prior, family, recovery,
+  all-prior, Fisher-Neyman, and KL-equality surfaces. Step 12 adds the finite
+  `ENNReal` factors, `[Finite alpha] [Nonempty alpha]`, and private fiber
+  normalization. Step 13 now adds the guarded measure-level theorem
+  `klDiv_channel_eq_iff_posterior_ae_eq` in the downstream data-processing
+  module: input support inclusion excludes infinite KL, and equality is exactly
+  almost-everywhere posterior-kernel agreement. Step 14 now keeps that theorem
+  as the lower-level bridge and exposes
+  `klDiv_channel_eq_iff_posterior_eq_on_support` plus its guarded real companion
+  as the primary finite-facing API. Both pointwise conclusions range only over
+  the first output law's support, preserving null-fiber irrelevance and the
+  lightweight core. Step 15 now adds the separate downstream
+  `Sufficiency.KL` module and proves pairwise `ENNReal` KL preservation from one
+  common exact recovery channel; neither the sufficiency core nor the root
+  gains an analytic import. Step 16 adds the support-guarded `ENNReal`/real
+  converse and deterministic-map forms in that downstream module. The generic
+  channel-joint support-identifiability lemma moves to the opt-in finite-channel
+  core only after this downstream consumer triggers its promotion. Step 17 now
+  derives pairwise `ENNReal` KL preservation for every sufficient family
+  channel and deterministic statistic. Its support-guarded converse is limited
+  to Boolean-indexed two-law families, where the Step 16 witness necessarily
+  covers the entire family; unrelated pairwise witnesses in a larger family
+  are not combined. Step 18 keeps those examples downstream in
+  `Examples.SufficientStatistics`, adds no core simp rule or alias, and leaves
+  the lightweight root unchanged. Step 19 retains every public name, simp
+  rule, and module boundary after measured ownership and consumer checks, and
+  completes the source documentation without changing any declaration or
+  import. Step 20 passes the complete milestone build, guarded consumer,
+  root-isolation, axiom, generated-reference, website, and hygiene suites; all
+  three new modules remain outside the lightweight root.
+- Keep canonical/minimal sufficiency, general measurable sufficiency, and the
+  larger iid count-statistic example deferred under Future Work Note 39 rather
+  than expanding the active recovery phase.
 - Keep concrete finite semantics for abstract certificate assumptions and
   richer certificate examples in later Project A work.

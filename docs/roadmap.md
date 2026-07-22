@@ -51,9 +51,46 @@ highlights, and module guide record what is implemented now.
   naming, simp, module, and future-work review is complete. The final milestone
   build, generated-reference, website, consumer, root-isolation, and repository-
   hygiene suites pass; the lightweight root remains unchanged.
-- Future Work Note 29 is the next Project B mathematical planning anchor:
-  sufficient-statistics and recovery-equality work comes first, followed by a
-  separately planned Fano phase. No post-Chunk-3 theorem plan is active yet.
+- The revised 20-step Project B Chunk 4 plan under Future Work Note 29 is
+  complete. It develops finite sufficient statistics, exact full-joint recovery,
+  every-prior characterizations, finite Fisher-Neyman factorization, and
+  guarded KL data-processing equality while keeping the core sufficiency
+  module upstream of heavier KL imports. All 20 steps are complete, and
+  the opt-in sufficiency core now owns the fixed-prior predicate, induced law,
+  first equivalence band, exact full-joint recovery characterization, and the
+  family channel predicate with its deterministic specialization. Common
+  family recovery now gives every-prior reverse Markov structure, zero
+  conditional mutual information, mutual-information preservation, and
+  conditional-entropy preservation. One full-support prior now gives the
+  converse, and finite nonempty parameter alphabets have the standard all-
+  priors channel/statistic characterizations. The data-processing layer gives
+  the supported common-posterior characterization, while marginal recovery
+  remains only a one-way consequence. The midpoint consumers validate the
+  noninjective sufficient, non-sufficient, marginal-only, null-fiber, module,
+  naming, and root-isolation contracts. The finite Fisher-Neyman iff now gives
+  the textbook factorization through a deterministic statistic with private
+  fiber normalization. The downstream data-processing layer retains the
+  almost-everywhere posterior theorem as a measure bridge and now gives the
+  primary finite pointwise posterior criterion for both `ENNReal` and guarded
+  real KL equality. The downstream `Sufficiency.KL` module now proves pairwise
+  `ENNReal` KL preservation from one common exact recovery channel and, under
+  input support inclusion, the guarded `ENNReal`/real converse with
+  deterministic-map forms. Sufficient family channels and deterministic
+  statistics now preserve `ENNReal` KL divergence between every pair of model
+  laws. A directed support guard makes the converse exact for Boolean-indexed
+  two-law families, without asserting a global witness from unrelated
+  pairwise equalities in a larger family. The permanent opt-in
+  `Examples.SufficientStatistics` module now exercises that full surface with a
+  genuinely noninjective sufficient model, a non-sufficient constant statistic,
+  and a marginal-only recovery false positive. The scheduled Step 19 review
+  retained every current name, simp rule, and module boundary and completed
+  the source documentation checklist. Step 20 passed the full ten-target build,
+  guarded consumer, root-isolation, axiom, generated-reference, website, and
+  hygiene suites.
+- Fano is the next separately planned Project B phase after Chunk 4. Future
+  Work Note 39 defers canonical/minimal sufficiency, general measurable
+  sufficiency, and a larger iid count-statistic development until a later
+  focused milestone.
 - Maintain project notes in the foundation conventions and project log.
 - Keep the lightweight finite API separated from heavier KL and coding imports.
 
@@ -66,9 +103,9 @@ highlights, and module guide record what is implemented now.
   orientation page.
 - Link generated docs and blueprint entries back to the curated theorem
   highlights and submodularity demo page.
-- Extend the Cover-Thomas Chapter 2 layer through a focused sufficient-
-  statistics and recovery-equality phase, then plan Fano separately after that
-  API is stable.
+- Plan the focused finite Fano phase on top of the completed sufficient-
+  statistics and recovery-equality API, without folding in a full coding
+  theorem.
 
 ## 6 Months
 

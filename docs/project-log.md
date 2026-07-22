@@ -4435,7 +4435,8 @@ Step 19 aliases, and simp policy remain coherent. It found no concrete Lean
 cleanup worth applying, so the conditional technical-cleanup step was a
 deliberate no-op.
 
-The documentation pass normalized all 38 Future Work Notes without
+At that cleanup checkpoint, the documentation pass normalized the then-current
+38 Future Work Notes without
 renumbering them or weakening their proof-pressure conditions. Note 26 is now
 classified as a standing module-boundary guardrail, Note 29 is the next Project
 B mathematical planning anchor, and Note 38 remains a later matrix and
@@ -4443,16 +4444,1212 @@ majorization milestone. The index records 37 active or standing notes and one
 closed historical note. `README.md`, `docs/current-lean-state.md`,
 `docs/roadmap.md`, and `docs/foundation-conventions.md` now consistently state
 that sufficient-statistics and recovery-equality work should be planned before
-Fano and that no post-Chunk-3 theorem execution plan is active yet.
+Fano. The cleanup itself deliberately stopped before activating that work.
 
-The website checker passes for 12 HTML files and two generated JSON files. The
-Future Work index contains 38 unique entries, the detailed notes remain ordered
-1 through 38, the cross-document status assertions pass, the forbidden-
-placeholder and diff-hygiene scans are clean, and no Lean, root-import, or
-website source file changed. Because this checkpoint changes only five Markdown
-status files, no Lake rebuild or website regeneration was required; Chunk 3
-Step 20 remains the governing full milestone build. No Chunk 4 planning or
-implementation was started during this cleanup.
+The website checker passes for 12 HTML files and two generated JSON files. At
+that checkpoint, the Future Work index contained 38 unique entries, the
+detailed notes remained ordered 1 through 38, the cross-document status
+assertions passed, the forbidden-placeholder and diff-hygiene scans were clean,
+and no Lean, root-import, or website source file changed. Because this checkpoint
+changed only five Markdown status files, no Lake rebuild or website regeneration
+was required; Chunk 3 Step 20 remains the governing full milestone build. No
+Chunk 4 planning or implementation was started during this cleanup.
+
+### 115. Project B Chunk 4 Contract and Proof Spikes
+
+Step 1 of the revised 20-step Project B Chunk 4 plan was completed on July 16,
+2026. One temporary `LeanInfoTheory.Chunk4ContractSpikes` module imported
+`SemanticBridge.DataProcessing` and mathlib's `Probability.Kernel.CompProdEqIff`.
+Its clean 2747-job build validated every planned implication without
+placeholders, and both the source file and all generated scratch artifacts were
+then deleted.
+
+The fixed-prior statistic contract is the reverse Markov condition
+`Theta -> T(X) -> X`. The independent deterministic-forward spike proves
+`Theta -> X -> T(X)` with no finiteness, injectivity, or support assumptions.
+Applying the existing finite Markov factorization converse to the mapped
+`(Theta, T(X), X)` law gives exactly one recovery channel from statistic values
+to observations and reconstructs the complete triple law. This route needs
+only `[Finite alpha]` for the recovered observation alphabet; it does not need
+the statistic or parameter alphabet to be finite.
+
+The family contract is now locked for raw
+`model : theta -> PMF alpha` and `W : alpha -> PMF beta`: one common
+`R : beta -> PMF alpha` must satisfy, for every parameter `t`,
+
+```lean
+PMF.channelJoint ((model t).bind W) R =
+  (PMF.channelJoint (model t) W).map Prod.swap
+```
+
+This is exact full-joint recovery, not merely recovery of the input marginal.
+The temporary hierarchical law sampled the parameter and then the swapped
+output-input joint law. It was proved equal to the forward parameter-input-
+output channel extension with its last two coordinates swapped. If that law is
+Markov under any prior whose every parameter atom has positive mass, the
+existing factorization theorem and finite `ENNReal` cancellation produce one
+common `R` satisfying the displayed family contract. The proof again needs
+only `[Finite alpha]` once the prior is supplied. Later use of the canonical
+uniform full-support prior introduces `[Fintype theta] [Nonempty theta]` only
+at the all-prior converse, not in the family definition.
+
+The KL equality route is also locked. Under `p.support subset q.support`, the
+input divergence is not `top`; KL data processing makes the output divergence
+finite as well. The exact posterior decomposition can therefore cancel its
+output term, mathlib's `klDiv_eq_zero_iff` turns the posterior remainder into
+equality of composition-product measures, and `Kernel.compProd_eq_iff` yields
+almost-everywhere equality of the two posterior kernels under
+`(p.bind W).toMeasure`. The measure-level engine belongs in
+`SemanticBridge.DataProcessing`, which may add the focused mathlib import.
+The common-recovery/KL interpretation belongs in the later downstream
+`Shannon.SemanticBridge.Sufficiency.KL` module. With the current posterior
+definition, the spike uses `[Fintype alpha]`, `[Finite beta]`, and measurable
+singletons. Future Work Note 37's possible `[Finite]` posterior wrapper has not
+gained a production consumer and remains deferred.
+
+For Fisher-Neyman, the textbook factorization will use finite `ENNReal`
+factors: parameter/statistic factors `g t b`, one parameter-independent factor
+`h a`, explicit `!= top` conditions, and
+`model t a = g t (T a) * h a`. On each positive fiber, `PMF.normalize` produces
+the common recovery law and the compiled spike proves the weighted
+reconstruction identity after finite-sum cancellation. A zero-total fiber uses
+an arbitrary fallback and has zero weight for every model law. Keep this
+normalization machinery private unless another theorem independently needs it.
+
+The negative Boolean probe used a fair input, the identity deterministic
+channel, and a recovery channel that resets to the fair law. The two-stage
+input marginal is exactly the original fair law, but the reconstructed joint
+assigns positive mass to `(false, true)` while the original identity joint
+assigns zero. This formally rules out marginal recovery as the public
+sufficiency definition.
+
+Step 1 introduced no production declaration, alias, simp rule, import edge, or
+root reachability change, so Future Work Note 14 gains no naming entry. It did
+not repeat the real-KL top-branch pattern, KL relabeling, injective MI
+relabeling, or total-conditional-channel null-fiber arguments tracked by Notes
+21, 22, 30, and 35. This closed the contract checkpoint without starting a
+production declaration.
+
+### 116. Project B Chunk 4 Deterministic Forward Markov Foundation
+
+Step 2 of the revised 20-step Project B Chunk 4 plan was completed on July 17,
+2026. `Shannon.SemanticBridge.Markov` now exports the type-generic theorem
+`isMarkovChainOf_comp`: for any PMF `p`, variables `X` and `Y`, and function
+`f`, the variables `X -> Y -> f(Y)` form a Markov chain. The statement needs no
+finite-alphabet, measurable-space, injectivity, or support assumption.
+
+The proof maps the source law to the triple `(X,Y,f(Y))`, identifies that law
+with a `PMF.channelExtension` through `PMF.deterministicChannel f`, and applies
+`isMarkovChain_channelExtension`. The deterministic channel-extension identity
+is local to the proof. No PMF wrapper, helper declaration, alias, new import,
+or bundled statistic object was added because Step 2 has only the direct
+random-variable consumer needed by the next sufficiency steps.
+
+The public name follows the established deterministic `...Of_comp` vocabulary,
+is short and discoverable, and exposes no marginal, coordinate-swap, channel-
+extension, or proof-helper detail. It therefore needs no Future Work Note 14
+watch entry. The theorem remains explicit rather than `[simp]`: Step 5 can
+invoke it directly, while Note 15 continues to reserve automatic Markov
+normalization for the visibly constructor-headed
+`isMarkovChain_channelExtension` rule.
+
+The owning `Markov` module built with 2701 jobs. A temporary 2702-job consumer
+imported only that module and applied `isMarkovChainOf_comp` over arbitrary
+types; its source and generated artifacts were then deleted. The semantic
+aggregate and lightweight root build passed with 2724 jobs. The root import and
+module boundaries are unchanged. The source-derived references were refreshed:
+the declaration index now contains 617 declarations, while the module graph
+remains at 33 modules and 52 local edges with 11 root-reachable and 22
+separately importable modules. The website checker passes for all 12 HTML files
+and both generated JSON files. This completed the deterministic-forward
+foundation before the entropy equality corollary was added.
+
+### 117. Project B Chunk 4 Conditional-Entropy DPI Equality
+
+Step 3 of the revised 20-step Project B Chunk 4 plan was completed on July 17,
+2026. `Shannon.SemanticBridge.Markov` now exports
+`condEntropyOf_dataProcessing_eq_iff`. Under a finite forward Markov chain
+`X -> Y -> Z`, it states
+
+```lean
+condEntropyOf p X Y = condEntropyOf p X Z ↔
+  IsMarkovChainOf p X Z Y
+```
+
+so equality in conditional-entropy data processing holds exactly when the
+reverse chain is also Markov. The proof is the planned direct corollary of
+`mutualInfoOf_dataProcessing_eq_iff`: both mutual-information terms are
+rewritten as `H(X) - H(X | ·)`, and additive-group cancellation reverses the
+conditional-entropy equality orientation. It does not duplicate the CMI or
+Markov equality proof.
+
+A temporary consumer combined `isMarkovChainOf_comp` with the new theorem to
+derive the intended statistic specialization
+
+```lean
+H(Theta | X) = H(Theta | T(X)) ↔ Theta -> T(X) -> X.
+```
+
+This confirms the exact orientation needed by the fixed-prior sufficiency band
+in Step 5. The consumer imported only `SemanticBridge.Markov`, built with 2702
+jobs, and was deleted together with all generated artifacts.
+
+The theorem name coherently extends the existing
+`condEntropyOf_dataProcessing` and `mutualInfoOf_dataProcessing_eq_iff` family,
+is discoverable, and exposes no marginal, coordinate-map, or helper detail, so
+Future Work Note 14 gains no watch entry. It remains explicit under Note 15.
+No PMF companion or strict-loss theorem was added: Future Work Note 33 keeps
+those branches consumer-deferred.
+
+The owning `Markov` module built with 2701 jobs, and the semantic aggregate and
+lightweight root passed with 2724 jobs. Generated references now contain 618
+declarations; the unchanged graph has 33 modules and 52 local edges, with 11
+root-reachable and 22 separately importable modules. The website checker passes
+for all 12 HTML files and both generated JSON files. This closed the theorem
+prerequisites before introducing the sufficiency module.
+
+### 118. Project B Chunk 4 Lightweight Sufficiency Core
+
+Step 4 of the revised 20-step Project B Chunk 4 plan was completed on July 17,
+2026. The new separately importable
+`LeanInfoTheory.Shannon.SemanticBridge.Sufficiency` module imports only
+`SemanticBridge.Markov`. It is included by the opt-in semantic aggregate but
+not by `LeanInfoTheory.lean`, and it has no direct dependency on
+`SemanticBridge.DataProcessing`, kernels, or the downstream KL sufficiency
+layer.
+
+The module introduces exactly two assumption-free definitions:
+
+- `statisticTripleLawOf p Theta X T` is the induced PMF of
+  `(Theta, T(X), X)` in parameter-statistic-observation order;
+- `IsSufficientStatisticOf p Theta X T` is the fixed-prior textbook contract
+  `IsMarkovChainOf p Theta (T ∘ X) X`, namely the reverse chain
+  `Theta -> T(X) -> X`.
+
+No finite-alphabet, measurable-space, support, injectivity, bundled experiment,
+family-level, recovery, theorem, alias, or simp surface was added. The triple
+law is the single induced construction retained because Step 6 and later
+examples need the complete law rather than only a recovered marginal.
+
+Before promotion, a temporary 2702-job contract module showed that the new
+predicate reduces directly to the planned Step 5 mutual-information and
+conditional-entropy preservation statements using Steps 2 and 3. An additional
+premature re-elaboration of the Step 6 recovery equivalence exceeded the local
+timeout, first with broad simplification and then with a targeted map bridge;
+it emitted no Lean error and was removed rather than being treated as a result.
+Step 1's clean recovery spike remains the governing feasibility proof. Step 6
+should use an explicit intermediate law or directional applications of the
+factorization theorem rather than a broad polymorphic `rw`. All temporary
+sources and generated artifacts were deleted.
+
+The production module built with 2702 jobs. Temporary positive and negative
+consumers then built together with 2712 jobs: the positive file imported only
+`SemanticBridge.Sufficiency` and unfolded both declarations, while the
+root-only file inspected Lean's environment and verified that neither name was
+reachable from `LeanInfoTheory`. The updated semantic aggregate and lightweight
+root passed with 2725 jobs.
+
+A later combined three-target post-edit check hit its command timeout without a
+Lean diagnostic and left only that command's Lake/Lean children running. Their
+command lines were verified, the exact process tree was terminated, and the
+targets were rerun separately: `Sufficiency` passed with 2702 jobs, the semantic
+aggregate with 2716 jobs, and the lightweight root with 2240 jobs. No source
+repair was needed, and the final process check found no remaining Lean or Lake
+process.
+
+The two names are concise, textbook-facing, and expose only the mathematically
+necessary induced triple law, so Future Work Note 14 gains no watch entry. No
+simp attribute or existing policy changed. The generated declaration index now
+contains 620 declarations, while the module graph contains 34 modules and 54
+local edges with the root-reachable count unchanged at 11 and 23 modules
+separately importable. The generator now gives the new node a factual summary;
+the website checker passes for all 12 HTML files and both generated JSON files.
+This completed the definitions-only module step before its first theorem band.
+
+### 119. Project B Chunk 4 Fixed-Prior Equivalence Band
+
+Step 5 of the revised 20-step Project B Chunk 4 plan was completed on July 17,
+2026. `Shannon.SemanticBridge.Sufficiency` now exposes four predicate-first
+characterizations of fixed-prior sufficiency:
+
+- `isSufficientStatisticOf_iff_isMarkovChainOf` restates the assumption-free
+  reverse chain `Theta -> T(X) -> X`;
+- `isSufficientStatisticOf_iff_condMutualInfoOf_eq_zero` states
+  `I(Theta;X | T(X)) = 0`;
+- `isSufficientStatisticOf_iff_mutualInfoOf_eq` states
+  `I(Theta;T(X)) = I(Theta;X)`;
+- `isSufficientStatisticOf_iff_condEntropyOf_eq` states
+  `H(Theta|X) = H(Theta|T(X))`.
+
+The last three theorems use finite parameter, observation, and statistic value
+types because the existing information quantities and equality theorems use
+`Fintype`; the source type remains arbitrary. No support, measurability,
+injectivity, or nonempty assumption was added.
+
+The zero-CMI theorem delegates directly to
+`condMutualInfoOf_eq_zero_iff_isMarkovChainOf`. The MI and conditional-entropy
+theorems first invoke Step 2's assumption-free deterministic forward chain
+`Theta -> X -> T(X)`, then use the canonical data-processing equality theorem
+and Step 3's entropy corollary respectively. Thus the sufficiency layer does not
+reprove data processing, CMI nonnegativity, or the reverse-chain equality case.
+
+A temporary consumer imported only `SemanticBridge.Sufficiency` and used one
+`IsSufficientStatisticOf` hypothesis to derive all four public consequences in
+their intended `.mp` direction. Its 2703-job build passed, and its source and
+all generated artifacts were deleted. The owning module passed with 2702 jobs,
+the semantic aggregate with 2716, and the unchanged lightweight root with 2240.
+
+The four names form a coherent, discoverable predicate-first family but are
+long enough to be recorded as `watching` in Future Work Note 14. No declaration
+was renamed or aliased. Note 15 records that all four remain explicit semantic
+equivalences rather than simp rules. Step 5 added no PMF wrapper, recovery
+channel, family-level predicate, import edge, or new induced law.
+
+Generated references now contain 624 declarations. The module graph remains at
+34 modules and 54 local edges, with 11 root-reachable and 23 separately
+importable modules. The website checker passes for all 12 HTML files and both
+generated JSON files. Step 6 is next.
+
+A July 21, 2026 documentation and ergonomics follow-up expanded the
+fixed-prior-characterization section comment into one four-view equivalence
+band: reverse Markov structure, zero conditional mutual information, mutual-
+information preservation, and conditional-entropy preservation. A disposable
+consumer then exercised every theorem in the reverse `.mpr` direction,
+including construction of `IsSufficientStatisticOf` from each of the three
+information equalities. It passed with `lake env lean` and was deleted. No
+declaration, statement, proof, import, attribute, alias, or module boundary
+changed, so this follow-up leaves no deferred Future Work item.
+
+### 120. Project B Chunk 4 Fixed-Prior Exact Recovery
+
+Step 6 of the revised 20-step Project B Chunk 4 plan was completed on July 17,
+2026. `Shannon.SemanticBridge.Sufficiency` now exposes the exact recovery
+characterization
+`isSufficientStatisticOf_iff_exists_recovery`. Its witness is one channel
+`R : beta -> PMF alpha`, independent of the parameter value, and its equation
+reconstructs the complete `(Theta, T(X), X)` law from the induced
+parameter-statistic pair law. The theorem needs only `[Finite alpha]`; the
+source, parameter, and statistic-value types remain unrestricted.
+
+The proof applies `isMarkovChain_iff_exists_channelExtension` directionally to
+the explicitly named induced triple law. Two representation facts connect that
+law to `IsSufficientStatisticOf` and identify its first-two marginal; both are
+private to the sufficiency module. This avoids exposing marginal machinery and
+also avoids the broad polymorphic rewrite that timed out during the Step 4
+probe.
+
+The one-way corollary
+`exists_marginal_recovery_of_isSufficientStatisticOf` maps the complete-law
+equation to the observation coordinate and reuses
+`PMF.channelExtension_map_output`. It concludes
+`p.map X = (p.map fun omega => T (X omega)).bind R`. Its documentation states
+that the converse is false, so the formally rejected marginal-only contract
+cannot be mistaken for the definition of sufficiency.
+
+A temporary consumer imported only `SemanticBridge.Sufficiency` and exercised
+the full-law theorem in both directions and the marginal consequence using only
+`[Finite alpha]`. It passed and was deleted with all scratch artifacts. The
+owning module passed with 2702 jobs, the semantic aggregate with 2716, and the
+unchanged lightweight root with 2240.
+
+The two public names are retained unchanged during active theorem work and are
+recorded as `watching` in Future Work Note 14 for the scheduled Step 19 review.
+Future Work Note 15 records that both remain explicit rather than simp rules.
+No public helper, PMF wrapper, canonical recovery theorem, family predicate,
+new import edge, or KL dependency was added.
+
+Generated references now contain 626 declarations, 624 with documentation.
+The module graph remains at 34 modules and 54 local edges, with 11
+root-reachable and 23 separately importable modules. The website checker passes
+for all 12 HTML files and both generated JSON files. Step 7 is next.
+
+### 121. Project B Chunk 4 Family Sufficiency Predicates
+
+Step 7 of the revised 20-step Project B Chunk 4 plan was completed on July 17,
+2026. `Shannon.SemanticBridge.Sufficiency` now defines the assumption-free
+family predicate `IsSufficientChannel model W`. Its contract is exactly the
+one locked in Step 1:
+
+```lean
+∃ R : beta -> PMF alpha, ∀ t,
+  PMF.channelJoint ((model t).bind W) R =
+    (PMF.channelJoint (model t) W).map Prod.swap
+```
+
+The existential recovery channel precedes the parameter quantifier, so the
+same `R` must reconstruct every complete output-input joint law in the model
+family. This is full-joint recovery rather than marginal recovery. The
+definition adds no finiteness, support, measurability, or nonempty assumptions.
+
+`IsSufficientStatistic model T` is definitionally
+`IsSufficientChannel model (PMF.deterministicChannel T)`. It therefore makes a
+deterministic statistic a literal specialization of the channel contract
+rather than a second notion requiring later equivalence maintenance. No
+bundled statistical-experiment structure, family-law constructor, or helper
+predicate was introduced.
+
+A temporary consumer imported only `SemanticBridge.Sufficiency`, introduced
+and eliminated the common recovery witness, and checked the deterministic
+specialization by `Iff.rfl`. It passed without typeclass assumptions and was
+deleted with all scratch artifacts. The owning module passed with 2702 jobs,
+the semantic aggregate with 2716, and the unchanged lightweight root with
+2240.
+
+The names `IsSufficientChannel` and `IsSufficientStatistic` are concise,
+textbook-facing, and expose neither `Prod.swap` nor joint-law implementation
+details, so Future Work Note 14 gains no watch entry. Future Work Note 15
+records that neither controlled definition unfolds globally. No theorem, simp
+rule, recovery constructor, import edge, or KL dependency was added.
+
+Generated references now contain 628 declarations, 626 with documentation.
+The module graph remains at 34 modules and 54 local edges, with 11
+root-reachable and 23 separately importable modules. The website checker passes
+for all 12 HTML files and both generated JSON files. Step 8 is next.
+
+### 122. Project B Chunk 4 Supported Common Posteriors
+
+Step 8 of the revised 20-step Project B Chunk 4 plan was completed on July 17,
+2026. The existing posterior owner `Shannon.SemanticBridge.DataProcessing` now
+imports the lightweight sufficiency core directly and exposes
+`isSufficientChannel_iff_exists_common_posterior`. For `[Fintype alpha]`, it
+states
+
+```lean
+IsSufficientChannel model W ↔
+  ∃ R : beta -> PMF alpha, ∀ t b,
+    b ∈ ((model t).bind W).support →
+      channelPosterior (model t) W b = R b
+```
+
+Thus one posterior channel must agree with every model posterior wherever that
+model's output law is positive. The theorem imposes no condition on null
+output fibers, so the documented fallback chosen by the total
+`channelPosterior` receives no conditional-probability meaning. The parameter
+and output alphabets remain unrestricted, and no support, measurability, or
+nonempty assumption beyond the displayed support guard is added.
+
+The proof compares the exact recovery law with
+`channelPosterior_reconstructs_joint`. A private generic lemma identifies two
+channels from equality of their induced joint laws exactly on the input law's
+support; its forward direction cancels one finite nonzero PMF mass and its
+reverse direction makes null input atoms vanish. The helper has one production
+consumer and remains private rather than expanding the finite-channel or
+total-conditional-channel API.
+
+The lightweight core separately adds the only requested sanity law,
+`isSufficientStatistic_id`: the identity statistic is sufficient for every
+model family without assumptions. Its proof uses the deterministic identity
+channel as the common recovery channel. No constant, injective, bijective, or
+second identity-channel convenience theorem was added.
+
+A temporary proof spike compiled the complete support characterization and
+identity theorem, then was deleted. A public consumer exercised both directions
+of the iff and the identity theorem. Its first run exceeded the 124-second
+shell timeout; the exact orphaned Lean/Lake process tree was terminated, and a
+clean retry passed. The consumer and all scratch artifacts were then deleted.
+The sufficiency core passed with 2702 jobs, the data-processing owner with
+2715, the semantic aggregate with 2716, and the unchanged lightweight root
+with 2240.
+
+Future Work Note 14 records the descriptive common-posterior theorem as
+`watching` for Step 19 while retaining its current name; the identity theorem
+is concise and needs no watch entry. Note 15 keeps both theorems explicit.
+Note 30 records the one-consumer private support-identifiability helper, and
+Note 37 records that this first production sufficiency consumer works directly
+with the existing `[Fintype alpha]` posterior API. No new posterior wrapper,
+null-fiber law, averaged fiber-KL formula, public helper, simp rule, or module
+was added.
+
+Generated references now contain 630 declarations, 628 with documentation.
+The module graph remains at 34 modules and now has 55 local edges because
+`DataProcessing` directly imports `Sufficiency`; root reachability remains 11
+with 23 modules separately importable. The website checker passes for all 12
+HTML files and both generated JSON files. Step 9 is next.
+
+### 123. Project B Chunk 4 Every-Prior Sufficiency Consequences
+
+Step 9 of the revised 20-step Project B Chunk 4 plan was completed on July 17,
+2026. `Shannon.SemanticBridge.Sufficiency` now proves that one common family
+recovery channel has the expected consequences under every parameter prior.
+The assumption-free theorem `isMarkovChainOf_of_isSufficientChannel` gives the
+reverse chain `parameter -> output -> input` in the generated hierarchical
+law. For finite parameter, input, and output alphabets, the same hypothesis
+also yields:
+
+- `condMutualInfo_eq_zero_of_isSufficientChannel`;
+- `mutualInfo_eq_of_isSufficientChannel`;
+- `condEntropy_eq_of_isSufficientChannel`.
+
+The proof keeps the prior/model/channel law inline rather than publishing a
+second statistical-experiment constructor. One private theorem swaps the
+input and output coordinates in that law, uses the common recovery equation
+atomwise, and identifies the result as a channel extension through the shared
+recovery channel. The existing generated-chain theorem then supplies the
+reverse Markov property. The zero-CMI corollary delegates to the established
+Markov characterization, while the mutual-information and conditional-entropy
+corollaries combine the forward channel-extension chain with the existing
+data-processing equality characterizations. No analytic proof, posterior
+argument, KL dependency, or stronger support assumption is duplicated.
+
+This conditional-entropy corollary is the first independent PMF consumer
+anticipated by Future Work Note 33, so `Markov` now also exposes the direct
+law-level theorem `condEntropy_dataProcessing_eq_iff` beside its existing
+random-variable counterpart. The new PMF theorem is a thin specialization of
+that counterpart and lets the sufficiency proof remain at the law level. The
+zero-CMI proof instead reuses the existing
+`condMutualInfo_eq_zero_iff_isCondIndependent`; it does not create a second
+consumer for Future Work Note 27's deferred Markov-specific PMF wrapper.
+
+A temporary standalone consumer imported only `SemanticBridge.Sufficiency`
+and exercised the PMF bridge plus all four family consequences; it passed and
+was deleted with its artifacts. The Markov owner, sufficiency core, downstream
+data-processing layer, semantic aggregate, and lightweight root pass with
+2701, 2702, 2715, 2716, and 2240 jobs respectively. The website checker passes
+for all 12 HTML files and both generated JSON files.
+
+All five declarations remain explicit rather than `[simp]`. The four family-
+consequence names are preserved during active theorem development and recorded
+as `watching` in Future Work Note 14. In particular,
+`isMarkovChainOf_of_isSufficientChannel` has an awkward repeated `Of_of`, while
+the three equality names do not make their preserved endpoints explicit.
+Conceptual implication/preservation aliases remain unapproved until the Step
+19 examples test discovery and proof readability. The private coordinate-swap
+helper creates no public naming or abstraction commitment. The direct PMF
+conditional-entropy name coherently mirrors
+`condEntropyOf_dataProcessing_eq_iff` and needs no separate watch entry.
+
+Generated references now contain 635 declarations, 633 with documentation.
+The module graph remains at 34 modules and 55 local edges, with 11
+root-reachable and 23 separately importable modules. Step 10 is next.
+
+### 124. Project B Chunk 4 Full-Support and All-Prior Characterizations
+
+Step 10 of the revised 20-step Project B Chunk 4 plan was completed on July 17,
+2026. The lightweight sufficiency core now exposes the finite converse to Step
+9 and the standard all-priors characterizations.
+
+The weakest public channel theorem is
+`isSufficientChannel_iff_isMarkovChainOf_of_support_eq_univ`. Given one
+supplied prior whose support is all of the parameter type, it characterizes
+`IsSufficientChannel model W` by the reverse Markov condition in the generated
+parameter-input-output law. Its only typeclass assumption is `[Finite alpha]`
+for the recovered model-input alphabet; the parameter and output alphabets
+remain unrestricted.
+
+For `[Finite theta] [Nonempty theta] [Finite alpha]`,
+`isSufficientChannel_iff_forall_isMarkovChainOf` gives the familiar statement
+quantified over every parameter prior. The converse installs
+`Fintype.ofFinite theta` only inside the proof and applies the full-support
+theorem to `PMF.uniformOfFintype theta`. Thus the public theorem does not
+require a chosen finite enumeration.
+
+The deterministic specialization is available at both levels:
+
+- `isSufficientStatistic_iff_isSufficientStatisticOf_of_support_eq_univ` says
+  that family sufficiency is equivalent to the existing fixed-prior
+  `IsSufficientStatisticOf` predicate under one full-support prior;
+- `isSufficientStatistic_iff_forall_isSufficientStatisticOf` gives the
+  textbook all-priors characterization on a finite nonempty parameter type.
+
+The converse proof swaps the last two coordinates of the generated law,
+applies the existing existential Markov channel-factorization theorem, and
+identifies its first-two marginal with the parameter-output law. Evaluating the
+factorization at `(t,b,a)` and cancelling the finite nonzero prior mass yields
+one recovery channel valid for every parameter value. The generated law,
+coordinate-swap injectivity, and deterministic representation bridge remain
+private; no bundled experiment law or public marginal helper was introduced.
+
+The exact deterministic representation acquired a second production consumer,
+so the type-generic explicit theorem
+`PMF.channelExtension_deterministicChannel` now lives beside the existing
+deterministic laws in `Probability.FiniteChannel`. Step 2's local proof was
+replaced by this shared constructor reduction. The four sufficiency iff
+theorems remain explicit, and no metric-by-metric all-priors iff family was
+added merely to mirror the Step 9 consequences.
+
+A temporary consumer imported only `SemanticBridge.Sufficiency` and exercised
+the deterministic-extension law and all four public characterizations. It
+passed and was deleted with its artifacts. Focused builds pass for
+`Probability.FiniteChannel`, `SemanticBridge.Markov`, and
+`SemanticBridge.Sufficiency`, `SemanticBridge.DataProcessing`, the semantic
+aggregate, and the lightweight root with 1698, 2701, 2702, 2715, 2716, and
+2240 jobs respectively. The website checker passes for all 12 HTML files and
+both generated JSON files.
+
+Future Work Note 14 records the four long iff names as `watching` for Step 19;
+the deterministic-extension name is concise and coherent with
+`channelJoint_deterministicChannel`. Note 15 records the failed simp probe and
+keeps the constructor reduction and all four semantic equivalences explicit.
+Notes 26, 27, 29, 30, and 39 retain the existing module and scope boundaries.
+
+Generated references contain 640 declarations, 638 with
+documentation. The module graph remains at 34 modules and 55 local edges, with
+11 root-reachable and 23 separately importable modules. Step 11 is next.
+
+### 125. Project B Chunk 4 Midpoint Contract Review
+
+Step 11 of the revised 20-step Project B Chunk 4 plan was completed on July 17,
+2026. Two temporary positive consumers and one negative root-isolation probe
+tested the completed recovery API before the analytic layer begins; all three
+sources were deleted after the review.
+
+The core-only consumer imported `SemanticBridge.Sufficiency` and used the model
+that fixes an observation's first Boolean coordinate to the parameter while
+leaving its second coordinate uniform. Projection to the first coordinate is
+genuinely noninjective on two positive-mass observations for each parameter,
+yet the parameter-indexed copy of that same model is one exact common recovery
+channel. The consumer proved family sufficiency, exercised both the full-
+support-prior and all-priors deterministic-statistic characterizations, and
+confirmed that the opposite statistic value is a null output fiber for each
+individual model.
+
+The same consumer separated two negative contracts. Point-mass models at
+`false` and `true` admit no common recovery through the constant `Unit`
+statistic: evaluating a hypothetical recovered joint law at `((), true)`
+would force the same recovery mass to be both zero and one. Separately, a fair
+Boolean law passed through the identity statistic and then reset to the fair
+law recovers its input marginal, but its reconstructed joint assigns positive
+mass to `(false, true)` while the identity graph law assigns zero. Thus the
+public exact full-joint recovery contract rejects the intended marginal-
+recovery false positive.
+
+The second consumer imported `SemanticBridge.DataProcessing` and exercised
+`isSufficientChannel_iff_exists_common_posterior`. It verified the positive and
+null output supports explicitly. More sharply, on a null output the documented
+total-posterior fallback equals the current model law, while the common
+posterior value at that output is fixed by the opposite model, for which the
+same output is supported. Those PMFs differ. The support guard is therefore
+mathematically necessary rather than defensive syntax, and no null-fiber
+equality, helper, or stronger assumption should be added.
+
+The import review confirmed that the core still imports only `Markov`, while
+the posterior theorem remains downstream in `DataProcessing` with the kernel
+and KL imports. A root-only probe failed with the expected unknown identifier
+for `IsSufficientChannel`; the lightweight root remains isolated. The Step 10
+full-support/all-priors names were usable in the examples and remain `watching`
+for the scheduled Step 19 review, but the midpoint supplies no reason to add an
+alias or rename a declaration now. No new public declaration, simp rule,
+private production helper, module edge, or root import was added.
+
+The temporary core and posterior consumers compiled cleanly. Focused builds
+passed for `SemanticBridge.Sufficiency` and
+`SemanticBridge.DataProcessing` with 2702 and 2715 jobs, and the combined
+semantic aggregate/lightweight-root build passed with 2725 jobs. Generated
+references therefore remain at 640 declarations, 638 documented; the graph
+remains at 34 modules and 55 local edges with 11 root-reachable and 23
+separately importable modules. Step 12, finite Fisher-Neyman factorization, is
+next.
+
+### 126. Project B Chunk 4 Finite Fisher-Neyman Factorization
+
+Step 12 of the revised 20-step Project B Chunk 4 plan was completed on July 17,
+2026. The lightweight `SemanticBridge.Sufficiency` core now exports
+`isSufficientStatistic_iff_exists_fisherNeymanFactorization`. For
+`[Finite alpha] [Nonempty alpha]`, it characterizes
+`IsSufficientStatistic model T` by the existence of finite `ENNReal` factors
+
+```lean
+g : theta -> beta -> ENNReal
+h : alpha -> ENNReal
+```
+
+such that `model t a = g t (T a) * h a` for every parameter and observation.
+Neither the parameter nor statistic alphabet must be finite, and no selected
+enumeration of the observation alphabet appears in the public theorem.
+
+For the forward implication, an exact common recovery channel `R` supplies
+`g t b = (model t).map T b` and `h a = R (T a) a`. Both are finite because
+they are PMF atoms. Evaluating the common full-joint recovery equation at
+`(T a, a)` gives the required factorization directly. Thus this direction
+reuses the established recovery contract rather than deriving the factors
+through ratios or support cases.
+
+For the converse, the proof forms the parameter-independent weight `h a` on
+each fiber `T a = b`. A local `Fintype.ofFinite alpha` proves that the fiber's
+total weight is finite. On a positive-total fiber, `PMF.normalize` gives the
+recovery row; the channel-output mass factors as `g t b` times the fiber total,
+and finite nonzero `ENNReal` cancellation proves exact joint recovery. On a
+zero-total fiber every corresponding `h a`, and hence every model atom in that
+fiber, is zero, so an arbitrary pure fallback is observationally irrelevant.
+
+The fiber weight, fiber total, recovery construction, finiteness proof, and
+pointwise output-mass identity are all private to the sufficiency module. No
+general PMF normalization theorem, public factorization predicate, bundled
+experiment, stronger alphabet assumption, KL import, or simp rule was added.
+The semantic aggregate's API overview now mentions the theorem, while the
+lightweight root remains unchanged.
+
+A temporary standalone consumer imported only `SemanticBridge.Sufficiency`.
+It supplied explicit Fisher-Neyman factors for the genuinely noninjective model
+`pure t` independently paired with a fair bit and the statistic `Prod.fst`,
+used the theorem to prove sufficiency, then extracted factors back from that
+sufficiency proof. A generic factorization-to-sufficiency invocation also
+compiled. The consumer and the complete proof spike were deleted afterward.
+
+The public theorem name is textbook-facing and exposes no implementation
+helper, but it is unusually long; Future Work Note 14 records it as `watching`
+for the scheduled Step 19 API review. The focused `Sufficiency` build passed
+with 2702 jobs, `DataProcessing` passed with 2715, the semantic aggregate
+passed with 2716, and the lightweight root passed with 2240. Generated
+references now contain 641 declarations, 639 documented. The graph remains at
+34 modules and 55 local edges, with 11 root-reachable and 23 separately
+importable modules. Step 13's guarded measure-level KL equality engine is next.
+
+### 127. Project B Chunk 4 Guarded KL Equality Engine
+
+Step 13 of the revised 20-step Project B Chunk 4 plan was completed on July 17,
+2026. `Shannon.SemanticBridge.DataProcessing` now exports
+`klDiv_channel_eq_iff_posterior_ae_eq`. For `[Fintype alpha] [Finite beta]`
+and `p.support ⊆ q.support`, it states
+
+```lean
+InformationTheory.klDiv (p.bind W).toMeasure (q.bind W).toMeasure =
+    InformationTheory.klDiv p.toMeasure q.toMeasure ↔
+  pmfChannelKernel (channelPosterior p W) =ᵐ[(p.bind W).toMeasure]
+    pmfChannelKernel (channelPosterior q W)
+```
+
+Thus the guarded equality case of finite KL data processing is exactly almost-
+everywhere agreement of the two posterior kernels under the first output law.
+The support hypothesis excludes the uninformative infinite-divergence branch;
+no separate output-support hypothesis is exposed.
+
+The proof isolates `ENNReal` cancellation in one private helper with the
+explicit hypothesis
+`InformationTheory.klDiv p.toMeasure q.toMeasure ≠ ⊤`. The exact
+`klDiv_channel_eq_add_posterior` decomposition reduces channel-DPI equality to
+zero posterior remainder. Mathlib's `InformationTheory.klDiv_eq_zero_iff`
+then identifies the two composition-product measures, and the focused
+`Kernel.compProd_eq_iff` theorem converts that equality to almost-everywhere
+kernel equality. The public wrapper obtains KL finiteness from
+`klDiv_pmf_ne_top_iff_support_subset`.
+
+`DataProcessing` now directly imports
+`Mathlib.Probability.Kernel.CompProdEqIff`; no kernel or KL dependency moved
+into the lightweight `Sufficiency` core or root. Step 13 deliberately adds no
+pointwise supported-output theorem, real-valued equality theorem, recovery
+channel, posterior wrapper, fiberwise KL expansion, alias, or simp rule. Those
+finite-facing forms remain Step 14 work.
+
+A temporary standalone consumer imported only `SemanticBridge.DataProcessing`
+and exercised both directions of the public iff, then was deleted with its
+generated artifacts. The owning module passed with 2747 jobs, the semantic
+aggregate with 2748, and the unchanged lightweight root with 2240. Generated
+references now contain 642 declarations, 640 documented. The local graph
+remains at 34 modules and 55 edges, with 11 root-reachable and 23 separately
+importable modules. Step 14's pointwise posterior and guarded real-valued forms
+are next.
+
+### 128. Project B Chunk 4 Finite Posterior Equality API
+
+Step 14 of the revised 20-step Project B Chunk 4 plan was completed on July 17,
+2026. `Shannon.SemanticBridge.DataProcessing` now exports the primary finite-
+facing theorem `klDiv_channel_eq_iff_posterior_eq_on_support`. Under
+`[Fintype alpha] [Finite beta]` and `p.support ⊆ q.support`, it states
+
+```lean
+InformationTheory.klDiv (p.bind W).toMeasure (q.bind W).toMeasure =
+    InformationTheory.klDiv p.toMeasure q.toMeasure ↔
+  ∀ b, b ∈ (p.bind W).support →
+    channelPosterior p W b = channelPosterior q W b
+```
+
+The relevant outputs are exactly those reached by the first law. No condition
+is imposed on null outputs, where the total posterior's fallback is arbitrary.
+The input support guard excludes the infinite-divergence equality branch and
+is unchanged from Step 13.
+
+The proof deliberately consumes
+`klDiv_channel_eq_iff_posterior_ae_eq` rather than reproving KL cancellation.
+Mathlib's `Kernel.compProd_eq_iff` converts almost-everywhere kernel agreement
+back to equality of composition products; `channelJoint_toMeasure` and
+`PMF.toMeasure_inj` then recover equality of PMF joint laws. The existing
+private `channelJoint_eq_iff_eq_on_support` helper supplies exactly the final
+supported-output pointwise characterization. Its cancellation proof is reused,
+not duplicated, and it remains private because callers now have the intended
+posterior theorem.
+
+The companion
+`toReal_klDiv_channel_eq_iff_posterior_eq_on_support` gives the same pointwise
+criterion for equality of the two real-valued KL divergences. Input support
+inclusion makes the input divergence finite, and `klDiv_channel_le` transfers
+that finiteness to the output divergence. Consequently
+`ENNReal.toReal_eq_toReal_iff'` reduces the real equality exactly to the
+`ENNReal` theorem without inspecting a top branch.
+
+Step 14 adds no new definition, private helper, import edge, recovery theorem,
+deterministic specialization, posterior wrapper, fiberwise KL expansion,
+alias, or simp rule. The Step 13 almost-everywhere theorem remains public and
+unchanged as the lower-level measure bridge. A temporary consumer imported
+only `SemanticBridge.DataProcessing` and exercised both directions of both new
+iff theorems, then was deleted with its artifacts.
+
+The owning module passed with 2747 jobs, the semantic aggregate with 2748, and
+the unchanged lightweight root with 2240. Generated references now contain 644
+declarations, 642 documented. The local graph remains at 34 modules and 55
+edges, with 11 root-reachable and 23 separately importable modules. Step 15's
+downstream `Shannon.SemanticBridge.Sufficiency.KL` module is next.
+
+### 129. Project B Chunk 4 Pairwise KL Preservation by Exact Recovery
+
+Step 15 of the revised 20-step Project B Chunk 4 plan was completed on July 17,
+2026. The new separately importable
+`Shannon.SemanticBridge.Sufficiency.KL` module imports only
+`SemanticBridge.DataProcessing`, which already depends on the lightweight
+sufficiency core. The semantic aggregate imports the new module explicitly,
+while `Shannon.SemanticBridge.Sufficiency` and `LeanInfoTheory.lean` remain
+unchanged.
+
+The module exports `klDiv_channel_eq_of_common_recovery`. For two finite input
+laws `p` and `q`, a forward channel `W`, and one recovery channel `R`, it assumes
+that `R` exactly reconstructs each complete output-input joint law:
+
+```lean
+PMF.channelJoint (p.bind W) R = (PMF.channelJoint p W).map Prod.swap
+PMF.channelJoint (q.bind W) R = (PMF.channelJoint q W).map Prod.swap
+```
+
+It concludes equality between the output and input `ENNReal` KL divergences.
+No support inclusion or explicit-finiteness hypothesis is needed: the theorem
+remains valid when both sides are infinite.
+
+A private helper projects one full-joint recovery equation along `Prod.snd` to
+obtain `(p.bind W).bind R = p`. The public proof applies
+`klDiv_channel_le` first through `W` and then through `R`; the two recovered
+marginals make the reverse inequality exactly the input divergence. Thus the
+result introduces no second analytic proof, posterior expansion, kernel
+equality argument, KL relabeling, support transport, or real-valued top-branch
+elimination. The helper stays private because callers need the exact-recovery
+theorem rather than a weaker marginal-recovery surface.
+
+This step deliberately stops at the two-law forward implication. It does not
+add the guarded converse or deterministic variants assigned to Step 16, and it
+does not add the model-family `IsSufficientChannel` wrapper assigned to Step
+17. The public name is conceptual, discoverable beside the KL channel family,
+and exposes no marginal, coordinate-swap, posterior, or kernel implementation
+detail, so Future Work Note 14 gains no watch entry. The theorem remains
+explicit rather than `[simp]`.
+
+The focused module passed with 2748 jobs, the semantic aggregate with 2749,
+and the unchanged lightweight root with 2240. A standalone positive consumer
+exercised the exported theorem. Core-only and root-only probes both failed with
+the expected unknown-identifier error. An initial concurrent validation batch
+hit its shell timeout; its exact Lake/Lean process tree was terminated, and all
+checks then passed sequentially. Every temporary source was deleted.
+
+Generated references now contain 645 declarations, 643 documented. The graph
+now records 35 modules and 57 local edges, with 11 root-reachable and 24
+separately importable modules. Step 16's guarded common-recovery converse and
+deterministic specializations are next.
+
+### 130. Project B Chunk 4 Guarded KL Equality by Common Recovery
+
+Step 16 of the revised 20-step Project B Chunk 4 plan was completed on July 21,
+2026. `Shannon.SemanticBridge.Sufficiency.KL` now exports the four-theorem
+guarded equality family:
+
+- `klDiv_channel_eq_iff_exists_common_recovery`;
+- `toReal_klDiv_channel_eq_iff_exists_common_recovery`;
+- `klDiv_map_eq_iff_exists_common_recovery`;
+- `toReal_klDiv_map_eq_iff_exists_common_recovery`.
+
+For two input laws `p` and `q`, the channel forms state that equality in KL data
+processing is equivalent to the existence of one `R : beta -> PMF alpha` that
+exactly reconstructs both complete output-input joint laws. The common input
+support condition `p.support ⊆ q.support` is used only for the equality-to-
+recovery direction. It makes the input divergence finite and therefore rules
+out the uninformative equality `top = top`; the reverse implication delegates
+to Step 15's unconditional `klDiv_channel_eq_of_common_recovery`.
+
+The converse applies
+`klDiv_channel_eq_iff_posterior_eq_on_support`, chooses
+`channelPosterior q W` as the common recovery channel, and reconstructs the
+`q` law canonically. Supported posterior equality identifies that channel with
+`channelPosterior p W` on `(p.bind W).support`, so the same channel reconstructs
+the `p` law. The proof starts from public `[Finite]` assumptions and installs
+one local `Fintype.ofFinite alpha` only to construct this existential posterior
+witness; no `Fintype` instance appears in the theorem statement.
+
+This proof created the first downstream need for the generic theorem saying
+that two channels induce the same joint law from `p` exactly when they agree on
+`p.support`. The former private data-processing helper is therefore now the
+documented public theorem `PMF.channelJoint_eq_iff_eq_on_support` in the opt-in
+`Probability.FiniteChannel` owner. `DataProcessing` reuses that theorem for its
+existing common-posterior and finite posterior-equality results, so the
+positive-mass cancellation argument is not duplicated and no analytic import
+moves into the finite-channel module.
+
+The deterministic forms specialize the channel iff theorems through
+`PMF.deterministicChannel` and simplify their public statements to `PMF.map`
+and the graph law `p.map fun a => (a, T a)`. The real forms use input KL
+finiteness and channel data processing with
+`ENNReal.toReal_eq_toReal_iff'`; they do not manually eliminate a zero/top
+branch. Step 16 adds no family-level `IsSufficientChannel` theorem and makes no
+claim that unrelated pairwise equality witnesses combine into one global
+recovery channel; that integration remains Step 17 work.
+
+All five new declarations remain explicit rather than `[simp]`. The generic
+helper and the four long recovery-iff names are recorded for the scheduled
+Future Work Note 14 review, with no declaration renamed or aliased during the
+active theorem phase. The helper promotion closes its specific private/public
+trigger in Future Work Note 30 without broadening the remaining null-fiber
+convenience work.
+
+The finite-channel module passed with 1698 jobs, `DataProcessing` with 2747,
+`Sufficiency.KL` with 2748, the semantic aggregate with 2749, and the unchanged
+lightweight root with 2240. A standalone consumer checked all five names and
+exercised both implication directions. `DataProcessing`-only and root-only
+probes both failed with the expected unknown identifier for the downstream iff
+theorem. The first full scratch run reached its shell timeout; its exact
+Lake/Lean process tree was stopped, and an isolated longer retry passed before
+production edits. All temporary files were deleted.
+
+Generated references now contain 650 declarations, 648 documented. The graph
+remains at 35 modules and 57 local edges, with 11 root-reachable and 24
+separately importable modules. Step 17's family-level KL integration is next.
+
+### 131. Project B Chunk 4 Family KL Integration
+
+Step 17 of the revised 20-step Project B Chunk 4 plan was completed on July 22,
+2026. `Shannon.SemanticBridge.Sufficiency.KL` now exports four family-facing
+theorems:
+
+- `klDiv_eq_of_isSufficientChannel`;
+- `klDiv_eq_of_isSufficientStatistic`;
+- `isSufficientChannel_iff_klDiv_eq_bool`;
+- `isSufficientStatistic_iff_klDiv_eq_bool`.
+
+The two forward theorems state that a sufficient family channel, or its
+deterministic-statistic specialization, preserves `ENNReal` KL divergence
+between every pair of model laws. The proof extracts the one recovery channel
+already shared by the whole family and applies Step 15's unconditional two-law
+theorem. The parameter type remains unrestricted, no support inclusion is
+needed, and the statement remains valid when the divergence is `top`.
+
+The two iff theorems provide precisely the guarded binary converse justified
+by Step 16. For a model indexed by `Bool` and
+`(model false).support subset (model true).support`, preservation of the
+directed KL divergence from the `false` law to the `true` law produces one
+recovery channel for both laws. Those two cases exhaust the Boolean family, so
+the witness proves `IsSufficientChannel`; unfolding the deterministic channel
+gives the statistic form. No theorem combines independently chosen pairwise
+witnesses for a larger family.
+
+Step 17 deliberately adds no real-valued wrapper. Its canonical forward result
+is an exact `ENNReal` equality, while Step 16 already owns the support-guarded
+real two-law recovery criterion. Applying `ENNReal.toReal` to the forward
+equality is immediate but gives little information in the `top = top` case, so
+no duplicate public declaration is justified without a consumer.
+
+All four declarations remain explicit rather than `[simp]`. The two forward
+names are concise and align with the existing
+`..._of_isSufficientChannel` consequence band. The Boolean iff names are
+accurate but their trailing `_bool` is slightly awkward to parse, so Future
+Work Note 14 records them as `watching` for the scheduled Step 19 example-
+informed review; no declaration was renamed or aliased during the theorem
+step. The results remain in the downstream KL module, add no import edge, and
+leave both the lightweight sufficiency core and root unchanged.
+
+The production `Sufficiency.KL` build passed with 2748 jobs, and the semantic
+aggregate/root command passed with 2758 jobs. A standalone consumer exercised
+both forward declarations and both directions across the binary iff family.
+Data-processing-only and root-only probes failed with the expected unknown-
+identifier error. The first scratch elaboration reached its short shell
+timeout; its exact Lake/Lean process tree was stopped, and a longer isolated
+retry passed before the production edit. All temporary files were deleted.
+
+Generated references now contain 654 declarations, 652 documented. The graph
+remains at 35 modules and 57 local edges, with 11 root-reachable and 24
+separately importable modules. Step 18's permanent sufficient-statistics
+examples are next.
+
+### 132. Project B Chunk 4 Permanent Sufficient-Statistics Examples
+
+Step 18 of the revised 20-step Project B Chunk 4 plan was completed on July 22,
+2026. The new separately importable
+`LeanInfoTheory.Examples.SufficientStatistics` module imports only the
+downstream `Shannon.SemanticBridge.Sufficiency.KL` owner. The examples aggregate
+imports the module, while `LeanInfoTheory.lean` remains unchanged.
+
+The positive experiment attaches an independent fair nuisance bit to a binary
+signal and retains only the signal coordinate. The statistic is globally
+noninjective and, for every parameter in the midpoint model, maps two distinct
+positive-support observations to the same value. One explicit recovery channel
+resamples the discarded nuisance bit, proving family sufficiency without
+pretending that sufficiency means injectivity.
+
+Public declarations exercise the fixed-prior predicate and mutual-information
+equality, exact fixed-prior recovery, family sufficiency, the every-prior
+characterization, finite Fisher-Neyman factorization, and pairwise KL
+preservation. A second overlapping-support model exercises both the channel and
+deterministic-statistic Boolean KL converses. A disposable consumer used both
+directions of both iff declarations. A further proper-support probe relabeled a
+pair through `Bool.not` and confirmed that the opposite support orientation is
+handled by a short reindexing proof; it creates no need for a reverse-oriented
+or orientation-neutral duplicate theorem.
+
+The two negative examples preserve the midpoint contract. A constant statistic
+cannot be sufficient for two separated point-mass laws. Separately, the
+identity statistic followed by a reset-to-fair recovery channel reproduces the
+observation marginal but not the complete identity graph law. This keeps the
+distinction between marginal recovery and the project's exact full-joint
+sufficiency contract visible in production Lean.
+
+All 32 new public declarations are documented and live under descriptive
+example namespaces. None exposes a private marginal, coordinate-swap, fiber, or
+normalization helper, so the Step 18 naming audit adds no new Note 14 watch
+entry. The examples add no simp declaration, compatibility alias, core theorem,
+posterior wrapper, KL relabeling result, support-bind helper, or marginal-
+recovery KL theorem. Existing compatibility and ownership decisions remain
+reserved for Step 19.
+
+`lake build LeanInfoTheory.Examples.SufficientStatistics` passed with 2749 jobs,
+the examples aggregate passed with 2760 jobs, and the semantic aggregate/root
+command passed with 2758 jobs. A positive consumer imported only the new module
+and checked the representative public surface; a root-only consumer failed with
+the expected unknown identifier. All disposable files were deleted. Generated
+references now contain 686 declarations, 684 documented. The graph records 36
+modules and 59 local edges, with 11 root-reachable and 25 separately importable
+modules. The website checker passed without a redesign.
+
+### 133. Project B Chunk 4 API, Documentation, and Module Review
+
+Step 19 of the revised 20-step Project B Chunk 4 plan was completed on July 22,
+2026. The scheduled naming review exercised every watched family through the
+permanent sufficient-statistics examples and a disposable downstream API
+consumer. It approved no new compatibility alias. The existing names are long
+where their statements carry genuine distinctions: fixed-prior versus family
+sufficiency, full-joint versus marginal recovery, one existential witness,
+full-support versus all-prior hypotheses, finite support guards, and `ENNReal`
+versus real KL. Shortening those names would hide more contract than it would
+improve discovery. All existing declarations remain unchanged, and Future Work
+Note 14 now records the ten declined families in its decision table.
+
+The simp review likewise made no change. Sufficiency definitions and semantic
+equivalences remain controlled, explicit views; recovery, posterior, Fisher-
+Neyman, and KL equality theorems are not constructor-reducing normalizations.
+The existing lower-level channel constructor and projection rules remain the
+canonical simp surface. In particular, `isSufficientStatistic_id` still has no
+repeated automatic-closure pressure.
+
+The documentation-only Lean pass now explains the intentional
+`(parameter, statistic, observation)` order, the fixed-prior versus family
+distinction, full-joint recovery and its null-fiber convention, the quantifier
+order `exists R, forall t`, common supported posteriors, generated-law
+coordinates, full-support prior cancellation, and the separate roles of the
+two finite Fisher-Neyman factors. No theorem statement, proof, definition,
+import, attribute, or public name changed.
+
+The measured ownership review retained all three boundaries. After the comment
+pass, `Sufficiency` has 778 source lines, 20 public and 11 private declarations,
+imports only `Markov`, and is imported directly by `DataProcessing` and the
+semantic aggregate. `DataProcessing` has 611 lines, 23 public and four private
+declarations, directly imports `Markov`, `Sufficiency`, and its two focused
+mathlib KL/kernel modules, and is imported by `Sufficiency.KL`,
+`Examples.StochasticChannels`, and the aggregate. `Sufficiency.KL` has 308
+lines, nine public and two private declarations, imports only `DataProcessing`,
+and is imported by `Examples.SufficientStatistics` and the aggregate. None is
+root-reachable. Source-triggered focused builds reported 40, 38, and 36 seconds
+respectively; cached invocations were about eight seconds each. The consumers
+show a stable lightweight-core/posterior-engine/KL-integration ownership split,
+with no repeated cross-boundary proof or light consumer justifying a move.
+
+Focused builds passed with 2702 jobs for `Sufficiency`, 2747 for
+`DataProcessing`, 2748 for `Sufficiency.KL`, and 2749 for
+`Examples.SufficientStatistics`; follow-up semantic aggregate and lightweight
+root builds passed with 2749 and 2240 jobs. A disposable consumer resolved all
+watched names through the downstream import. A guarded root-only consumer
+compiled successfully while asserting the expected unknown-identifier
+diagnostic, and a source scan confirmed that the sufficiency and example
+modules add no simp declaration. Both temporary files were
+deleted. A representative `#print axioms` audit of the fixed-prior recovery,
+common-posterior, Fisher-Neyman, recovery/KL, and Boolean-converse families
+reported only `propext`, `Classical.choice`, and `Quot.sound`, with no
+`sorryAx`. Regenerated references remain at 686 declarations, 684 documented,
+and 36 modules with 59 local edges, 11 root-reachable and 25 separately
+importable; the website checker passes. Notes 21, 22, 27, 30, 33-37, 39, and
+40 retain their evidence-based triggers; Step 19 creates no second production
+consumer for any deferred helper or wrapper. Step 20 remains the full milestone
+integration, generated-
+reference, website, ten-target build, hygiene, and checkpoint step.
+
+### 134. Project B Chunk 4 Milestone Integration
+
+Step 20 of the revised 20-step Project B Chunk 4 plan was completed on July 22,
+2026. The final scope review confirmed that the finite-channel, Markov,
+sufficiency, posterior/KL equality, example, documentation, generator, and
+generated-reference changes all belong to the planned milestone.
+`LeanInfoTheory.lean` has no diff. The new `SemanticBridge.Sufficiency`,
+`SemanticBridge.Sufficiency.KL`, and `Examples.SufficientStatistics` modules
+remain separately importable outside the lightweight root.
+
+The complete milestone build suite passed without requiring a cold rebuild:
+
+- `lake build LeanInfoTheory` (2240 jobs);
+- `lake build LeanInfoTheory.Shannon.EntropyBounds` (2650 jobs);
+- `lake build LeanInfoTheory.Shannon.Units` (2235 jobs);
+- `lake build LeanInfoTheory.Shannon.SemanticBridge` (2749 jobs);
+- `lake build LeanInfoTheory.MathlibFragments` (2700 jobs);
+- each of `Certificate.Submodularity`, `Certificate.Subadditivity`,
+  `Certificate.Monotonicity`, and `Certificate.ThreeWaySubadditivity` (1076
+  jobs each);
+- `lake build LeanInfoTheory.Examples` (2760 jobs).
+
+Guarded temporary consumers checked the architecture at each intended boundary.
+The lightweight root does not expose `IsSufficientStatistic`; the core
+`Sufficiency` import does not expose recovery/KL integration; and
+`DataProcessing` does not expose the downstream common-recovery theorem. A
+`Sufficiency.KL` consumer exercised the principal recovery and family-KL
+declarations, while an example-only consumer exercised the positive
+noninjective model, Fisher-Neyman and KL results, constant negative example,
+and marginal-only false positive. All probes passed and were deleted.
+Representative `#print axioms` checks reported only `propext`,
+`Classical.choice`, and `Quot.sound`, with no `sorryAx`.
+
+Both source-derived generators are byte-for-byte idempotent. The declaration
+index contains 686 public declarations, 684 documented. The dependency graph
+contains 36 modules and 59 local edges: 11 modules are root-reachable and 25
+remain separately importable. All three new Chunk 4 modules are explicitly
+non-root-reachable. The website checker passed for 12 HTML files and both
+generated JSON files without a redesign.
+
+The forbidden-placeholder, scratch/temporary-file, stale-process,
+root-import, untracked-file-scope, and `git diff --check` audits passed. Step 20
+adds no public Lean declaration, alias, simp rule, helper, import edge, or
+Future Work trigger. Future Work Note 14 therefore remains exactly the Step 19
+decision table, and the proof-pressure notes retain their existing thresholds.
+This closes all 20 Chunk 4 steps and forms the coherent
+`Complete Project B Chunk 4` checkpoint without starting Fano or any later
+sufficiency extension.
+
+## Completed Project B Chunk 4 Plan
+
+This completed theorem phase is a revised 20-step plan for finite sufficient
+statistics, exact recovery, and equality in data processing. It follows
+Cover-Thomas Section 2.10 and the finite statistical-experiment formulation in
+Polyanskiy-Wu while reusing the project's raw PMF channels, Markov predicates,
+total posteriors, and KL decomposition. Current status: all 20 steps are
+complete. The lightweight sufficiency core now owns the
+fixed-prior predicate, induced triple law, reverse-Markov/zero-CMI/MI/
+conditional-entropy equivalence band, exact fixed-prior recovery, and the
+family channel predicate with its deterministic specialization, every-prior
+consequence band, and full-support/all-prior converses. The downstream data-
+processing owner now supplies the supported common-posterior characterization
+and both the lower-level almost-everywhere and primary support-pointwise KL
+posterior-equality characterizations. The new downstream `Sufficiency.KL`
+module now contains the two-law forward exact-recovery theorem, its guarded
+`ENNReal`/real converses, deterministic-map forms, and the family-level
+pairwise preservation and guarded Boolean converse bands.
+
+1. Completed on July 16, 2026: locked the exact contracts with clean temporary
+   proofs of deterministic forward Markov structure, fixed-prior recovery, the
+   finite full-support-prior converse, KL equality and posterior-kernel
+   equality, finite Fisher-Neyman normalization, and the marginal-recovery
+   counterexample. Deleted the scratch source and generated artifacts after
+   recording assumptions, ownership, and deferred branches.
+2. Completed on July 17, 2026: proved the deterministic-statistic Markov
+   foundation `isMarkovChainOf_comp`, showing for arbitrary source variables
+   that `Theta -> X -> T(X)` holds without finiteness, measurability,
+   injectivity, or support assumptions. No PMF-facing wrapper was needed.
+3. Completed on July 17, 2026: added Future Work Note 33's random-variable
+   conditional-entropy DPI equality characterization as
+   `condEntropyOf_dataProcessing_eq_iff`, derived from the canonical mutual-
+   information theorem. A statistic-oriented consumer validated the intended
+   orientation; no PMF wrapper or simp rule was added.
+4. Completed on July 17, 2026: introduced the lightweight, separately
+   importable `Shannon.SemanticBridge.Sufficiency` core with only
+   `statisticTripleLawOf` and `IsSufficientStatisticOf`. It imports Markov but
+   not DataProcessing or the planned Sufficiency.KL layer; positive opt-in and
+   negative root-only consumers both passed.
+5. Completed on July 17, 2026: proved the fixed-prior textbook equivalence band
+   through reverse Markov structure, zero conditional mutual information,
+   preservation of mutual information, and preservation of the corresponding
+   conditional entropy. Every result is oriented around `T(X)` and reuses the
+   deterministic forward chain from Step 2.
+6. Completed on July 17, 2026: proved the fixed-prior exact recovery and
+   factorization characterization with one parameter-independent channel from
+   statistic values back to observations. Its contract reconstructs the
+   complete parameter-statistic-observation law; marginal recovery is exposed
+   only as a one-way consequence.
+7. Completed on July 17, 2026: defined family-level sufficiency for a raw model
+   and channel by one common recovery channel that reconstructs every swapped
+   input-output joint law exactly. Defined deterministic sufficient statistics
+   as the specialization to `PMF.deterministicChannel T`, with no bundled
+   statistical-experiment structure.
+8. Completed on July 17, 2026: characterized family sufficiency through one
+   common posterior on every supported output fiber, left null-output fallback
+   values unconstrained, and added only the identity-statistic sanity law.
+9. Completed on July 17, 2026: proved that one common family recovery channel
+   yields reverse Markov, zero conditional mutual information, mutual-
+   information preservation, and conditional-entropy preservation for every
+   prior on the parameter. The prior/model/channel law and its coordinate-swap
+   identification remain private to the lightweight sufficiency core. The
+   first independent PMF entropy consumer also completed Note 33's direct
+   `condEntropy_dataProcessing_eq_iff` branch.
+10. Completed on July 17, 2026: proved the finite converse from one supplied
+    full-support prior to a common recovery channel with only `[Finite alpha]`,
+    then derived the all-priors channel and deterministic-statistic
+    equivalences for finite nonempty parameter types. Promoted the pressured
+    deterministic channel-extension graph law in the finite-channel core.
+11. Completed on July 17, 2026: ran the midpoint contract and consumer review
+    with a genuinely noninjective sufficient statistic, a non-sufficient
+    constant statistic, and the marginal-recovery false positive. The probes
+    validated the supported-output posterior guard, assumptions, naming,
+    core/KL import separation, and negative root isolation, then were deleted.
+12. Completed on July 17, 2026: proved the finite Fisher-Neyman factorization
+    iff for deterministic statistics with finite `ENNReal` factors and only
+    `[Finite alpha] [Nonempty alpha]`. Positive-fiber normalization and the
+    zero-fiber fallback remain private; no general PMF-normalization API was
+    exposed.
+13. Completed on July 17, 2026: in `SemanticBridge.DataProcessing`, derived the
+    guarded KL equality engine
+    `klDiv_channel_eq_iff_posterior_ae_eq` from the exact posterior
+    decomposition. A private explicit-finiteness cancellation helper, mathlib's
+    zero-KL characterization, and `Kernel.compProd_eq_iff` identify equality in
+    channel DPI with almost-everywhere posterior-kernel agreement under input
+    support inclusion.
+14. Completed on July 17, 2026: converted the measure-level equality engine
+    into the primary finite supported-output theorem
+    `klDiv_channel_eq_iff_posterior_eq_on_support` and its guarded real-valued
+    companion. The Step 13 kernel almost-everywhere theorem remains the lower-
+    level bridge.
+15. Completed on July 17, 2026: added the separately importable
+    `Shannon.SemanticBridge.Sufficiency.KL` module downstream of both the
+    lightweight sufficiency core and `DataProcessing`, and proved that one
+    common exact recovery channel preserves pairwise `ENNReal` KL divergence
+    without importing KL machinery into the core module.
+16. Completed on July 21, 2026: proved the finite support-guarded `ENNReal` and
+    real KL equality iff common exact recovery, specialized both to
+    deterministic statistics, and promoted the pressured generic channel-joint
+    support-identifiability theorem without admitting the uninformative
+    `top = top` case.
+17. Completed on July 22, 2026: integrated the family and KL views. A
+    sufficient family channel or deterministic statistic now preserves
+    `ENNReal` KL divergence for every pair of model laws. Under directed
+    support inclusion, preservation for the two laws of a Boolean-indexed
+    model is also equivalent to family sufficiency. No larger-family converse
+    from unrelated pairwise witnesses is claimed.
+18. Completed on July 22, 2026: added the separately importable
+    `Examples.SufficientStatistics` module. It preserves the compact
+    noninjective sufficient, non-sufficient constant, and marginal-only
+    counterexamples and exercises fixed-prior, family, recovery, all-prior,
+    Fisher-Neyman, and KL-equality surfaces through public declarations. The
+    lightweight root remains unchanged.
+19. Completed on July 22, 2026: performed the scheduled API, naming, simp,
+    ownership, documentation, and Future Work review. Retained every current
+    name and module boundary, added no alias or simp rule, completed Note 29's
+    source-comment checklist, and rechecked positive downstream imports and
+    negative root reachability.
+20. Completed on July 22, 2026: integrated the milestone, regenerated and
+    checked both source-derived reference sets, ran the complete ten-target
+    Lake suite, passed guarded consumer, root-isolation, axiom, website, and
+    repository-hygiene checks, and prepared the coherent Chunk 4 checkpoint.
+
+The completed chunk deliberately excludes Fano, canonical/minimal sufficient
+statistics, a general measurable statistical-experiment layer, and a general
+`n`-sample iid/count-statistic development. Fano remains sequenced by Future
+Work Note 29. The other sufficiency extensions are now recorded in Future Work
+Note 39 so they can be planned after the finite recovery API has proved stable.
 
 ## Near-Term Semantic Theorem API Plan
 
@@ -4662,31 +5859,40 @@ Its invariant-reference contraction and uniform-preserving and doubly
 stochastic entropy consequences are complete. The common-cause and stochastic
 examples and the scheduled API, simp, and module review are also complete. The
 final milestone build, reference, website, root-isolation, consumer, and hygiene
-suites pass. Note 29 now anchors the next Project B planning sequence:
-sufficient statistics followed by Fano. This cleanup records that dependency
-direction without activating a new theorem phase. Finite-family entropy,
-richer certificate assumptions, external certificate import, coding-theory
-layers, theorem-level blueprint work, and substantial mathlib PR preparation
-remain later work.
+suites pass. Note 29 anchors the Project B sequence from sufficient statistics
+to Fano. The revised 20-step Chunk 4 finite sufficient-statistics,
+exact-recovery, and KL-equality phase is now complete. The guarded
+measure-level bridge and primary finite pointwise posterior equality family are
+public in `DataProcessing`, while the downstream `Sufficiency.KL` module now
+contains the pairwise forward theorem, guarded recovery converses, and
+deterministic-map forms, together with family-level pairwise preservation and
+the guarded Boolean-family converse. The new opt-in
+`Examples.SufficientStatistics` module exercises the completed surface while
+preserving root isolation. The complete build, generated-reference, website,
+consumer, root-isolation, axiom, and hygiene suites pass, and the milestone is
+ready for its coherent checkpoint. Fano remains the next separately planned
+mathematical phase under Note 29. Finite-family entropy, richer certificate
+assumptions, external certificate import, coding-theory layers, theorem-level
+blueprint work, and substantial mathlib PR preparation remain later work.
 
 ### Status Index
 
 | Status | Notes | Meaning |
 | --- | --- | --- |
 | Standing guardrails | 2-4, 6-8, 14-18, 26 | Apply these policies continuously; they do not create standalone cleanup tasks. |
-| Next Project B planning anchor | 29 | Use this dependency sequence when planning the post-Chunk-3 theorem phase; this cleanup does not itself start that phase. |
+| Project B sequence | 29 | Chunk 4 sufficient statistics and recovery are complete; Fano is the next separately planned mathematical phase. |
 | Channel/Markov proof-pressure | 21, 25, 27 | Revisit these only when concrete channel, Markov, or data-processing consumers reach their stated triggers. |
-| Proof-pressure deferred | 19, 22-24, 30-37 | Wait for the repeated proof or new statement pressure specified in each note. |
-| Later milestones | 1, 5, 9-13, 28, 38 | Schedule these in their own later mathematical, documentation, example, certificate, or coding phases. |
+| Proof-pressure deferred | 19, 22-24, 30-37, 40 | Wait for the repeated proof or new statement pressure specified in each note. |
+| Later milestones | 1, 5, 9-13, 28, 38-39 | Schedule these in their own later mathematical, documentation, example, certificate, or coding phases. |
 | Closed/historical | 20 | Retained for numbered references and rationale; it is not an active backlog item. |
 
 This index is a navigation aid. It does not renumber the detailed notes, change
 their theorem-pressure conditions, or serve as the naming decision table
 requested by Note 14 for the next scheduled API review.
-The 38 numbered entries therefore comprise 37 active or standing notes and one
+The 40 numbered entries therefore comprise 39 active or standing notes and one
 closed historical note. Here, active includes guardrails, proof-pressure
-triggers, planning anchors, and later milestones; it does not mean immediate
-implementation. Earlier step-specific imperatives retained inside a note are
+triggers, the Project B sequence anchor, and later milestones; it does not mean
+immediate implementation. Earlier step-specific imperatives retained inside a note are
 historical trigger records when a later paragraph records their resolution.
 
 1. Keep the finite-family entropy API delayed through Project B Chunk 1 and the
@@ -4874,6 +6080,23 @@ historical trigger records when a later paragraph records their resolution.
     | canonical Markov channel factorization | approved | Added `isMarkovChain_iff_canonical_channelExtension`; rejected the broader `...channel_factorization` spelling because it is ambiguous beside the existential theorem. |
     | KL channel cascade | approved | Added `klDiv_channel_cascade_le` and `toReal_klDiv_channel_cascade_le` as a coherent pair; both original `channelComp` names remain public. |
     | uniform-invariant and doubly-stochastic entropy growth | declined | Keep the descriptive `_le_...bind...` names; `mono` suggests monotonicity in an ordered input argument and `nondecreasing` hides the bind operation. |
+
+    Chunk 4 Step 19 completed the next scheduled review. All current
+    declarations remain public and unchanged; the compact table below records
+    the compatibility-alias decisions supported by the permanent examples.
+
+    | Watched family | Status | Decision and rationale |
+    | --- | --- | --- |
+    | fixed-prior sufficiency equivalences | declined | Keep the coherent predicate-first names; `markov`, `zero_cmi`, and `preserved` sketches are less precise than the actual theorem targets. |
+    | fixed-prior full and marginal recovery | declined | The existing names preserve the existential full-law characterization and one-way marginal consequence; shorter sketches blur the false marginal converse. |
+    | common supported posterior | declined | Keep `isSufficientChannel_iff_exists_common_posterior`; dropping `exists` or adding `on_support` does not improve discovery enough to hide the witness shape. |
+    | every-prior sufficiency consequences | declined | The current `_of_isSufficientChannel` family is Lean-idiomatic and states the exact premise; `imp` and `preserved` sketches are broader and less conventional. |
+    | full-support and all-prior characterizations | declined | The long names make the exact support hypothesis and family/fixed-prior distinction visible; every shorter sketch loses one of those contracts. |
+    | finite Fisher-Neyman factorization | declined | The textbook term and existential witness are both discoverable in the current name; generic `factorization` is ambiguous beside Markov and recovery factorizations. |
+    | pointwise posterior KL equality | declined | Retain `_on_support`; the support restriction is mathematically essential and shorter forms would suggest total posterior equality on null fibers. |
+    | common-recovery KL equality | declined | The channel/map and `ENNReal`/real matrix is systematic, and `exists` accurately advertises the witness returned by each iff theorem. |
+    | channel-joint support identifiability | declined | `PMF.channelJoint_eq_iff_eq_on_support` is slightly repetitive but precise; the proposed alternative is longer and no downstream call site benefits. |
+    | Boolean KL characterizations | declined | The trailing `_bool` remains readable in the two-law API, and the orientation probe showed that `Bool.not` reindexing handles the opposite support direction without another spelling. |
 
     The same pass audited the public declarations inside the two example
     namespaces. Names such as
@@ -5374,6 +6597,244 @@ historical trigger records when a later paragraph records their resolution.
     theorem steps should continue appending awkward names and reasons to the
     detailed watchlist under the standing `AGENTS.md` policy.
 
+    Chunk 4 Step 2 added `isMarkovChainOf_comp`. The name is concise, follows
+    the established random-variable deterministic-composition family, and
+    exposes none of the local deterministic-channel or channel-extension proof
+    representation. It needs no watch entry or provisional compatibility
+    alias. No PMF-facing companion was added without an independent consumer.
+
+    Chunk 4 Step 3 added `condEntropyOf_dataProcessing_eq_iff`. Although the
+    name is descriptive, it is the direct and discoverable extension of the
+    established `condEntropyOf_dataProcessing` and
+    `mutualInfoOf_dataProcessing_eq_iff` vocabulary. It exposes no marginal,
+    coordinate, mapped-law, or helper representation, so it needs no watch
+    entry or provisional alias. A PMF companion remains deferred until it has
+    an independent consumer.
+
+    Chunk 4 Step 4 added the definitions `statisticTripleLawOf` and
+    `IsSufficientStatisticOf`. Both names are concise and discoverable from
+    textbook statistic vocabulary. The first makes the mathematically relevant
+    three-coordinate law explicit without exposing marginals, coordinate swaps,
+    or proof helpers; the second follows the established random-variable `Of`
+    convention. Neither needs a watch entry or provisional alias.
+
+    Chunk 4 Step 5 added
+    `isSufficientStatisticOf_iff_isMarkovChainOf`,
+    `isSufficientStatisticOf_iff_condMutualInfoOf_eq_zero`,
+    `isSufficientStatisticOf_iff_mutualInfoOf_eq`, and
+    `isSufficientStatisticOf_iff_condEntropyOf_eq`. The predicate-first family
+    is coherent and discoverable as a block, and none of the names exposes
+    marginals, coordinate maps, or proof helpers. The names are nevertheless
+    long enough to mark the family as `watching` for the scheduled Step 19
+    review. Preserve all four declarations. At that review, use the permanent
+    examples to test conceptual alias sketches along
+    `..._iff_markov`, `..._iff_zero_cmi`,
+    `..._iff_mutualInfo_preserved`, and
+    `..._iff_condEntropy_preserved`; these are not approved vocabulary, and the
+    acronym/`preserved` forms may be less precise than the current names.
+
+    Chunk 4 Step 6 added
+    `isSufficientStatisticOf_iff_exists_recovery` and
+    `exists_marginal_recovery_of_isSufficientStatisticOf`. The first follows
+    the established `..._iff_exists_recovery` vocabulary and its statement
+    makes the complete-law contract precise, but the name is long and the word
+    `recovery` alone does not advertise full-joint reconstruction. The second
+    is deliberately consequence-first and says `marginal`, but is unusually
+    long because it must not resemble an iff characterization. Mark both as
+    `watching` for Step 19 and preserve them during active theorem work. Test
+    only provisional conceptual patterns such as
+    `..._iff_exists_full_recovery` and
+    `marginal_recovery_of_sufficiency`; neither is approved, and the examples
+    must determine whether either improves discovery without blurring the
+    existential witness or the false marginal converse.
+
+    Chunk 4 Step 7 added the definitions `IsSufficientChannel` and
+    `IsSufficientStatistic`. Both names are concise textbook vocabulary and
+    hide the internal swapped-joint-law representation. The unqualified
+    statistic name denotes model-family sufficiency, while the established
+    `IsSufficientStatisticOf` retains the random-variable fixed-prior `Of`
+    convention. This distinction is coherent and discoverable, so neither new
+    definition needs a watch entry or provisional alias.
+
+    Chunk 4 Step 8 added
+    `isSufficientChannel_iff_exists_common_posterior` and
+    `isSufficientStatistic_id`. The identity name is short and canonical, so
+    it needs no watch entry. The common-posterior theorem is discoverable and
+    hides the private support-cancellation machinery, but its predicate-first
+    name is long and does not itself advertise that agreement is support-
+    guarded. Mark it `watching` for Step 19 and preserve it during active
+    theorem work. Test only provisional conceptual patterns such as
+    `..._iff_common_posterior_on_support`; that form is not approved and may be
+    no clearer because it suppresses the existential witness.
+
+    Chunk 4 Step 9 added
+    `isMarkovChainOf_of_isSufficientChannel`,
+    `condMutualInfo_eq_zero_of_isSufficientChannel`,
+    `mutualInfo_eq_of_isSufficientChannel`, and
+    `condEntropy_eq_of_isSufficientChannel`. Mark the full family as `watching`
+    for Step 19 and preserve every current declaration. The first name has an
+    awkward `Of_of` stutter, while the latter three are broad enough that a
+    search result does not immediately reveal the prior/model channel laws
+    being compared. The statements nevertheless expose no private coordinate-
+    swap or hierarchical-law helper. Use the permanent examples to test only
+    conceptual patterns such as `isSufficientChannel_imp_markov`,
+    `..._imp_zero_cmi`, `..._imp_mutualInfo_preserved`, and
+    `..._imp_condEntropy_preserved`. These sketches are not approved: `imp` and
+    `preserved` may be less idiomatic or less precise than the current names.
+
+    The same step adds `condEntropy_dataProcessing_eq_iff` after Future Work
+    Note 33's PMF-consumer trigger was met. Its name is the exact PMF companion
+    to `condEntropyOf_dataProcessing_eq_iff`, follows the established `Of`
+    distinction, and exposes no representation helper, so it needs no watch
+    entry or provisional alias.
+
+    Chunk 4 Step 10 added
+    `isSufficientChannel_iff_isMarkovChainOf_of_support_eq_univ`,
+    `isSufficientChannel_iff_forall_isMarkovChainOf`,
+    `isSufficientStatistic_iff_isSufficientStatisticOf_of_support_eq_univ`,
+    and `isSufficientStatistic_iff_forall_isSufficientStatisticOf`. Mark all
+    four as `watching` for Step 19 and preserve their current names. The two
+    full-support names are especially long and the statistic form repeats the
+    `SufficientStatistic`/`SufficientStatisticOf` vocabulary, but the exact
+    support hypothesis and PMF/`...Of` distinction are mathematically useful.
+    Test only provisional conceptual patterns such as
+    `..._iff_markov_of_fullSupportPrior`, `..._iff_markov_forall_prior`,
+    `..._iff_fixedPrior_of_fullSupport`, and
+    `..._iff_fixedPrior_forall`; these are not approved and may hide either the
+    exact support contract or the family/fixed-prior distinction. The new
+    `PMF.channelExtension_deterministicChannel` name is concise, follows the
+    existing `channelJoint_deterministicChannel` family, and needs no watch
+    entry.
+
+    Chunk 4 Step 11 exercised all four Step 10 iff names in the genuinely
+    noninjective sufficient-statistic consumer. The names are long but their
+    exact full-support versus all-priors and family versus fixed-prior
+    distinctions remained understandable at the call sites. Keep all four
+    entries `watching` for the scheduled Step 19 API review; the midpoint
+    justifies neither an early compatibility alias nor a rename. Step 11 added
+    no public declaration and therefore adds no new watchlist entry.
+
+    Chunk 4 Step 12 added
+    `isSufficientStatistic_iff_exists_fisherNeymanFactorization`. Mark it
+    `watching` for Step 19 and preserve the current name during theorem
+    development. It is unusually long, but it is textbook-facing, begins with
+    the established predicate family, states the existential shape, and
+    exposes no fiber-normalization helper. Test only provisional compatibility
+    patterns such as `isSufficientStatistic_iff_fisherNeymanFactorization` or
+    `isSufficientStatistic_iff_exists_factorization`; neither is approved, and
+    the shorter generic spelling may be ambiguous beside recovery and Markov
+    factorizations.
+
+    Chunk 4 Step 13 added `klDiv_channel_eq_iff_posterior_ae_eq`. The name is
+    concise, begins with the established KL channel-equality family, and uses
+    `posterior_ae_eq` to make its intentionally lower-level contract visible
+    without exposing `pmfChannelKernel`, composition-product measures, or the
+    private cancellation helper. It is discoverable beside
+    `klDiv_channel_eq_add_posterior` and does not need a watch entry or
+    provisional alias. At that checkpoint, its pointwise and real-valued names
+    were assigned to Step 14 for review as one finite-facing family.
+
+    Chunk 4 Step 14 added
+    `klDiv_channel_eq_iff_posterior_eq_on_support` and
+    `toReal_klDiv_channel_eq_iff_posterior_eq_on_support`. Mark the pair as
+    `watching` for Step 19 and preserve both names during active theorem work.
+    They are long, especially the real form, but coherently extend the Step 13
+    name and make the mathematically essential null-fiber support restriction
+    visible without exposing kernels, composition products, or joint-law
+    helpers. A shorter sketch such as `..._iff_posterior_eq` is not approved
+    because it hides that total posterior equality is required only on the
+    first output law's support. Let Steps 16-18 test discovery before any
+    compatibility alias is considered.
+
+    Chunk 4 Step 15 added `klDiv_channel_eq_of_common_recovery`. Its name is
+    concise, follows the established KL channel-equality family, and states the
+    conceptual hypothesis without exposing the private marginal projection,
+    `Prod.swap`, posterior, or kernel machinery. It needs no watch entry or
+    provisional alias. Review the Step 16 iff and deterministic names together
+    when that coherent family exists; preserve this declaration during active
+    theorem work.
+
+    Chunk 4 Step 16 added
+    `klDiv_channel_eq_iff_exists_common_recovery`,
+    `toReal_klDiv_channel_eq_iff_exists_common_recovery`,
+    `klDiv_map_eq_iff_exists_common_recovery`, and
+    `toReal_klDiv_map_eq_iff_exists_common_recovery`. Mark the four-name family
+    as `watching` for Step 19 and preserve every declaration during active
+    theorem work. The names are long, especially the real channel form, but
+    align with the established channel/map and `toReal` families and make the
+    existential common witness explicit. Test only provisional patterns that
+    drop `exists`, such as `..._iff_common_recovery`; they are not approved and
+    may hide the theorem's witness shape.
+
+    The same step promoted `PMF.channelJoint_eq_iff_eq_on_support`. Mark it
+    `watching` because the repeated `eq_iff_eq` is awkward, although the name
+    accurately exposes the essential support restriction and hides the
+    positive-mass cancellation proof. A sketch such as
+    `channelJoint_eq_iff_channels_eq_on_support` is longer and not approved.
+    Let downstream use and the Step 19 ownership review determine whether any
+    compatibility alias materially improves discovery.
+
+    Chunk 4 Step 17 added `klDiv_eq_of_isSufficientChannel`,
+    `klDiv_eq_of_isSufficientStatistic`,
+    `isSufficientChannel_iff_klDiv_eq_bool`, and
+    `isSufficientStatistic_iff_klDiv_eq_bool`. The two forward names are
+    concise, conceptual, and align with the existing every-prior consequence
+    vocabulary, so they need no watch entry. Mark the two Boolean iff names as
+    `watching` for Step 19: their contracts are honest about the concrete
+    two-law index, but the trailing `_bool` is slightly awkward to parse and
+    does not advertise the fixed `false`-to-`true` orientation. Preserve both
+    declarations during active theorem work. Test only provisional
+    compatibility patterns such as
+    `isSufficientChannel_bool_iff_klDiv_eq` and
+    `isSufficientStatistic_bool_iff_klDiv_eq`; neither is approved, and the
+    permanent examples should determine whether moving the index qualifier
+    materially improves discovery.
+
+    During the Step 18 example work or, at latest, the Step 19 API review, run
+    one focused orientation probe in addition to the ordinary binary consumer.
+    First exercise both directions of each iff theorem on a concrete model with
+    `(model false).support subset (model true).support`. Then relabel the same
+    mathematical pair through `Bool.not`, so the convenient support inclusion
+    is opposite relative to the original labels, and check whether the current
+    theorem can be reused with a short, readable reindexing proof. This second
+    probe may remain disposable unless it has independent pedagogical value.
+    Do not add a duplicate reverse-oriented theorem merely for symmetry. If
+    reindexing is painless, retain the current statements and decide only the
+    compatibility-alias question above. Consider an orientation-neutral
+    theorem with two explicitly chosen distinct Boolean indices only if the
+    permanent example demonstrates material proof friction; audit its
+    assumptions and name separately before adding it.
+
+    Chunk 4 Step 18 completed both requested probes. The overlapping-support
+    permanent model exercised both directions of the channel and statistic iff
+    declarations. A disposable proper-support model then reversed the two laws
+    through `Bool.not`; unfolding only the family quantifier and reordering the
+    two Boolean cases reused the current theorem cleanly. No reverse-oriented or
+    orientation-neutral theorem is justified. The 32 example declarations are
+    concise within descriptive namespaces and expose no private implementation
+    machinery, so they add no watch entry. Keep the two `_bool` declarations
+    unchanged and settle only their existing compatibility-alias question in
+    Step 19.
+
+    Chunk 4 Step 19 declined every remaining provisional alias. The permanent
+    examples and downstream API probe found the current fixed-prior, family,
+    posterior, recovery, Fisher-Neyman, KL, support, and Boolean names
+    discoverable as coherent theorem families. In each case the length records
+    a real contract distinction, while the shorter sketches either suppress an
+    existential witness, support guard, prior quantifier, fixed-prior/family
+    boundary, full-joint/marginal distinction, or codomain. Namespace and
+    mathlib searches found no collision, but no alias cleared the stronger
+    downstream-readability test. All ten table entries are therefore
+    `declined`, not `deferred` or `watching`; mere name length is not a reason
+    to reopen them. Reconsider an individual family only if a later production
+    consumer demonstrates a new concrete discovery or readability problem.
+
+    Chunk 4 Step 20 adds no public Lean declaration or compatibility alias.
+    The milestone consumers confirmed the reviewed names at the core,
+    data-processing, downstream KL, and example boundaries. The Chunk 4
+    decision table therefore remains unchanged and no naming item is reopened
+    merely by the integration commit.
+
 15. The Step 13 `[simp]` review for mutual information and conditional mutual
     information was completed on July 14, 2026. Local attributes were tested
     on representative PMF, random-variable, symmetry, diagonal/self, and
@@ -5478,6 +6939,130 @@ historical trigger records when a later paragraph records their resolution.
     and reversed-coordinate goals during the Step 19 simp review. Do not remove
     the attribute merely because the same theorem can be invoked explicitly.
 
+    Chunk 4 Step 2 keeps `isMarkovChainOf_comp` explicit. Although its conclusion
+    contains a deterministic composition, unfolding a random-variable Markov
+    predicate is not needed for simplification, and the planned sufficiency
+    proofs can invoke the theorem directly. This preserves
+    `isMarkovChain_channelExtension` as the sole Markov-specific simp theorem
+    until concrete downstream simplifier pressure justifies another rule.
+
+    Chunk 4 Step 3 keeps `condEntropyOf_dataProcessing_eq_iff` explicit, as
+    required by Future Work Note 33. The equivalence selects a semantic reverse-
+    Markov characterization rather than reducing a constructor or normalizing
+    an entropy expression, so it is not a simp rule. No existing simp attribute
+    changed.
+
+    Chunk 4 Step 4 adds only two controlled definitions and no theorem or simp
+    attribute. In particular, `IsSufficientStatisticOf` does not unfold
+    automatically to its reverse-Markov representation, and
+    `statisticTripleLawOf` is unfolded explicitly by consumers. Revisit only if
+    the Step 5-6 theorem API reveals a genuinely reducing public normalization.
+
+    Chunk 4 Step 5 keeps all four fixed-prior equivalences explicit. The Markov
+    theorem is a caller-selected view of the controlled predicate, while the
+    zero-CMI, MI, and conditional-entropy theorems choose semantic
+    characterizations rather than construction-free simplifier normal forms.
+    No definition unfolds globally and no existing simp attribute changed.
+
+    Chunk 4 Step 6 keeps both recovery declarations explicit. The full-law iff
+    selects an existential semantic characterization rather than a canonical
+    normal form, while the marginal theorem consumes a sufficiency hypothesis
+    and produces a witness. Neither is a reducing simp rule, the two private
+    representation bridges remain untagged, and no existing simp attribute
+    changed.
+
+    Chunk 4 Step 7 adds only the controlled definitions
+    `IsSufficientChannel` and `IsSufficientStatistic`. Neither receives a simp
+    attribute or a global unfolding rule. The deterministic specialization is
+    available by explicit unfolding or definitional equality, and no theorem
+    or existing simp attribute changed.
+
+    Chunk 4 Step 8 keeps the supported common-posterior equivalence and the
+    identity-statistic theorem explicit. The iff selects a semantic
+    characterization with an existential witness, while the identity theorem
+    is a direct proposition that current consumers can invoke by name. Do not
+    add a simp attribute during the active phase; let the Step 18 examples and
+    scheduled Step 19 review determine whether identity-statistic goals recur
+    enough to justify automatic closure. The private support-identifiability
+    lemma is untagged, and no existing simp attribute changed.
+
+    Chunk 4 Step 9 keeps all four every-prior consequences and the new PMF
+    `condEntropy_dataProcessing_eq_iff` bridge explicit. The
+    reverse-Markov theorem consumes a sufficiency hypothesis, the zero-CMI
+    theorem chooses a semantic equality, and the MI and conditional-entropy
+    theorems orient exact preservation identities; none is a strictly reducing
+    constructor normalization. The PMF bridge is a caller-selected semantic
+    equivalence rather than a normalization rule. The private hierarchical-law
+    identification is untagged, and no existing simp attribute changed.
+
+    Chunk 4 Step 10 keeps all five new theorems explicit. A direct simp probe
+    showed that tagging `PMF.channelExtension_deterministicChannel` rewrites the
+    constructor inside `IsMarkovChain` before
+    `[simp] isMarkovChain_channelExtension` can close the goal, leaving a mapped-
+    law proposition. The attribute was therefore removed. The four full-
+    support/all-prior iff theorems are caller-selected semantic views, and the
+    private coordinate and deterministic representation bridges are untagged.
+
+    Chunk 4 Step 11 used the explicit deterministic channel-extension and
+    sufficiency equivalence surfaces without requesting automatic rewriting.
+    The temporary examples exposed no loop, stuck constructor goal, or repeated
+    normalization boilerplate, so the Step 10 simp decision remains unchanged
+    and no new simp rule is justified.
+
+    Chunk 4 Step 12 keeps the Fisher-Neyman iff explicit. Rewriting a
+    sufficiency predicate into two existential factor functions is a caller-
+    selected semantic view, not a reducing normalization, while the private
+    fiber weights, totals, and recovery construction are implementation
+    details. The public consumer needed no automatic rewrite, so no simp
+    attribute or change to the existing policy is justified.
+
+    Chunk 4 Step 13 keeps the posterior-kernel equality iff explicit. It
+    selects a semantic equality characterization and rewrites KL divergence
+    through composition-product measures, so it is not a constructor-reducing
+    normal form. The private cancellation helper is untagged, and no existing
+    simp attribute changed.
+
+    Chunk 4 Step 14 keeps both support-pointwise equality iff theorems
+    explicit. Rewriting KL equality into a universally quantified posterior
+    condition is a caller-selected semantic view, not a reducing constructor
+    rule. The reused private support-identifiability theorem remains untagged,
+    and no existing simp attribute changed.
+
+    Chunk 4 Step 15 keeps `klDiv_channel_eq_of_common_recovery` explicit. It is
+    a semantic implication from two full-joint recovery equations to KL
+    equality, not a constructor-reducing normalization. The private marginal-
+    recovery projection is also untagged, and no existing simp attribute
+    changed.
+
+    Chunk 4 Step 16 keeps all four recovery iff theorems and
+    `PMF.channelJoint_eq_iff_eq_on_support` explicit. Each iff selects a
+    semantic support-aware recovery view rather than a constructor-reducing
+    normal form. The deterministic proofs use existing simp laws locally, but
+    no new or existing declaration receives a simp attribute.
+
+    Chunk 4 Step 17 keeps both preservation implications and both guarded
+    Boolean iff theorems explicit. They select semantic KL consequences or
+    characterizations of controlled sufficiency predicates rather than
+    reducing a visible constructor. The deterministic proofs use existing
+    channel/map simplification only locally; no declaration or definition gains
+    a simp attribute.
+
+    Chunk 4 Step 18 adds no simp declaration. An initially convenient
+    example-only attribute on `fairPrior_support` was removed after the first
+    generated-index pass because no proof consumed it and Step 19 has not yet
+    selected a global normal form. The marginal-only use of `id` does not invoke
+    `isSufficientStatistic_id`, so that theorem still has no repeated simp
+    pressure.
+
+    Chunk 4 Step 19 retained that decision. A source audit found no simp
+    declaration in `Sufficiency`, `Sufficiency.KL`, or
+    `Examples.SufficientStatistics`, and the permanent examples needed no
+    automatic unfolding of the controlled predicates or semantic iff
+    theorems. Recovery, posterior equality, Fisher-Neyman factorization, and KL
+    equality remain caller-selected views. No new attribute, duplicate alias
+    rule, or change to the existing constructor-reducing simp surface is
+    justified.
+
 16. Revisit `[simp]` status for conditional entropy chain-rule theorems after
     the chain-rule family has more downstream examples. The July 8 chain-rule
     step deliberately kept
@@ -5576,6 +7161,32 @@ historical trigger records when a later paragraph records their resolution.
     generated source-derived import graph that all five new modules remain
     unreachable from the root. Section 113 records the exact job and reference
     counts. This milestone-level verification item is closed.
+
+    Chunk 4 Step 4 applied the same opt-in boundary policy immediately to the
+    new sufficiency core. A positive consumer imported only
+    `SemanticBridge.Sufficiency` and exercised both definitions; a root-only
+    consumer inspected Lean's environment and confirmed that neither declaration
+    was reachable. Both temporary files and artifacts were deleted. The
+    generated graph independently records the module as non-root-reachable.
+
+    Chunk 4 Step 17 repeated that contract at the downstream KL boundary. A
+    standalone `Sufficiency.KL` consumer exercised all four family declarations,
+    while data-processing-only and root-only probes both rejected the new names.
+    Focused module and aggregate/root builds pass; the broader ten-target suite
+    remains assigned to Step 20 rather than this local theorem step.
+
+    Chunk 4 Step 18 applies the same policy to
+    `Examples.SufficientStatistics`. A positive consumer imported only the new
+    module and checked the representative public surface; a root-only consumer
+    rejected it. Focused example, aggregate, and semantic/root builds pass, and
+    generated reachability keeps the module outside the root. The complete ten-
+    target milestone suite remains assigned to Step 20.
+
+    Chunk 4 Step 20 completed that assignment. All ten required Lake targets
+    passed, guarded consumers confirmed the root/core/data-processing/downstream
+    boundaries, and the source-derived graph records all three new modules as
+    non-root-reachable. Both generators and the website checker passed. This
+    milestone-level verification item is closed without a cold rebuild.
 
 18. Standing architecture guardrail: preserve the boundary between the
     completed pair/triple Chunk 1, the completed equality/independence Chunk 2,
@@ -5728,6 +7339,28 @@ historical trigger records when a later paragraph records their resolution.
     injective relabeling, so the production count remains one and the global-
     versus support-injective contract stays deferred.
 
+    Chunk 4 Step 9 performs one private coordinate swap while identifying a
+    recovered hierarchical PMF atomwise. It does not prove mutual-information
+    invariance under relabeling and derives preservation from the existing
+    forward/reverse Markov equality theorem. The tracked MI relabeling family
+    therefore still has one genuine consumer and remains deferred.
+
+    Chunk 4 Step 10 again swaps only a generated PMF law and cancels prior
+    masses before applying any information measure. It does not establish or
+    consume mutual-information relabeling invariance, so the tracked public MI
+    family remains at one genuine consumer.
+
+    Chunk 4 Step 18's noninjective example obtains fixed-prior mutual-
+    information preservation from the public sufficiency equivalence. It does
+    not prove or consume invariance under an injective relabeling, so the tracked
+    augmentation argument still has one genuine production consumer.
+
+    Chunk 4 Step 19 adds only documentation and API checks. Its disposable
+    consumer invokes the existing declarations by name and repeats no
+    augmentation or relabeling proof. The production count remains one, so the
+    global-injective versus support-aware statement and module owner remain
+    deliberately unresolved.
+
 22. Revisit a general explicit-finiteness form of the real-valued PMF KL zero
     theorem only after a second production proof repeats the pattern; this is
     not immediate work. The existing finite-PMF-facing theorem
@@ -5840,6 +7473,56 @@ historical trigger records when a later paragraph records their resolution.
     `toReal_klDiv_channel_le`; it does not characterize KL zero or eliminate a
     top branch. The production count remains exactly one, so the proposed
     explicit-finiteness zero theorem is still unjustified.
+
+    Chunk 4 Step 9 uses no KL theorem and never inspects `ENNReal.toReal`.
+    The tracked branch-elimination pattern therefore remains at one production
+    proof, and `toReal_klDiv_pmf_eq_zero_iff_of_ne_top` is still unjustified.
+
+    Chunk 4 Step 10 also uses no KL or real-valued divergence theorem. Its
+    cancellation is directly in finite PMF atoms, so the explicit-finiteness
+    `ENNReal.toReal` branch-elimination count remains one.
+
+    Chunk 4 Step 13 is entirely `ENNReal`- and measure-valued. Its private
+    helper assumes KL is not top only to cancel a finite addend; the proof never
+    calls `ENNReal.toReal_eq_zero_iff` or eliminates a real-KL top branch. The
+    tracked production count therefore remains exactly one, and the proposed
+    `toReal_klDiv_pmf_eq_zero_iff_of_ne_top` theorem remained unjustified
+    entering Step 14.
+
+    Chunk 4 Step 14's real equality theorem uses
+    `ENNReal.toReal_eq_toReal_iff'` after proving both divergences are not top
+    from the existing support guard and KL data processing. It does not call
+    `ENNReal.toReal_eq_zero_iff` or manually eliminate its top branch. The
+    tracked production count therefore remains exactly one, so the proposed
+    general zero theorem is still unjustified.
+
+    Chunk 4 Step 15 is entirely `ENNReal`-valued. Its proof sandwiches KL with
+    data processing through the forward and recovery channels and never calls
+    `ENNReal.toReal_eq_zero_iff` or eliminates a real-KL top branch. The tracked
+    production count remains exactly one, so the proposed explicit-finiteness
+    zero theorem is still unjustified.
+
+    Chunk 4 Step 16's two real recovery theorems use
+    `ENNReal.toReal_eq_toReal_iff'` after deriving input and output KL
+    finiteness from support inclusion and channel data processing. Neither
+    proof calls `ENNReal.toReal_eq_zero_iff` or manually eliminates its top
+    branch. The tracked production count remains one, so the proposed general
+    zero theorem is still unjustified.
+
+    Chunk 4 Step 17 is entirely `ENNReal`-valued. It reuses the exact Step 15
+    equality and Step 16 recovery iff without introducing any `toReal` proof,
+    calling `ENNReal.toReal_eq_zero_iff`, or eliminating a top branch. The
+    tracked production count remains one.
+
+    Chunk 4 Step 18 also stays entirely in the public `ENNReal` KL surface. Its
+    examples neither call `ENNReal.toReal_eq_zero_iff` nor eliminate a top
+    branch, so the proposed explicit-finiteness zero theorem remains
+    unjustified with one production occurrence.
+
+    Chunk 4 Step 19 changes no proof and introduces no real-KL consumer. The
+    manual `ENNReal.toReal_eq_zero_iff` top-branch elimination count therefore
+    remains one, and `toReal_klDiv_pmf_eq_zero_iff_of_ne_top` is still not
+    justified.
 
 23. Revisit the uniform-reference KL identity on a possibly infinite ambient
     alphabet when finite-support theorem pressure appears; this is not
@@ -6185,6 +7868,129 @@ historical trigger records when a later paragraph records their resolution.
     private `klDiv_channel_le_aux` wrapper was therefore inlined into the
     unchanged public `klDiv_channel_le`; no module move was made.
 
+    Chunk 4 Step 4 adds a coherent downstream boundary rather than splitting
+    any existing module. `SemanticBridge.Sufficiency` imports only `Markov`,
+    owns the fixed-prior predicate and its induced triple law, and remains
+    upstream of `DataProcessing` and the planned `Sufficiency.KL` layer. The
+    semantic aggregate imports it while the lightweight root does not. This
+    creates no pressure to split `Independence` or `Markov`; reassess the new
+    core's size and ownership only during the scheduled Chunk 4 Step 19 review.
+
+    Chunk 4 Step 5 adds four short proofs in the same sufficiency owner and no
+    import edge. Each theorem delegates to the existing Markov equality API;
+    no independence or data-processing proof is duplicated across the boundary.
+    The new core remains upstream of `DataProcessing` and the planned
+    `Sufficiency.KL` module.
+
+    Chunk 4 Step 8 makes `DataProcessing` a direct importer of `Sufficiency` so
+    the existing posterior owner can state the supported common-posterior
+    characterization without pulling kernel/KL imports into the core. It keeps
+    the existing direct `Markov` import because the file independently consumes
+    Markov and finite-channel declarations. This adds one local graph edge but
+    no module, split, moved declaration, duplicated posterior, or root import.
+    The core remains independently importable and upstream; reassess the direct
+    dependency and measured elaboration cost during Chunk 4 Step 19 rather than
+    creating a speculative posterior submodule now.
+
+    Chunk 4 Step 9 adds one private hierarchical-law identification and four
+    short public consequences to the existing sufficiency core. All four
+    public proofs reuse the Markov API already owned upstream, and the file
+    still imports only `Markov`; no posterior, kernel, KL, or data-processing
+    implementation moves into the core. This is coherent growth rather than a
+    new ownership boundary. Reassess size and measured import pressure at Step
+    19 as planned, without splitting the module now. The separate one-theorem
+    PMF conditional-entropy bridge belongs beside its random-variable theorem
+    in `Markov` and creates no split pressure there either.
+
+    Chunk 4 Step 10 adds four public characterizations and two private proof
+    bridges to the existing sufficiency core, which still imports only
+    `Markov`. The converse uses the already-owned Markov factorization theorem
+    and atomwise PMF cancellation; no posterior, kernel, or KL dependency moves
+    upstream. The pressured deterministic graph law belongs in the type-
+    generic finite-channel core and replaces Step 2's duplicated local proof.
+    This remains a coherent boundary; defer any split or move until Step 19's
+    measured review.
+
+    Chunk 4 Step 11 compiled one consumer importing only `Sufficiency` and a
+    second importing `DataProcessing`. The core consumer could state and prove
+    exact recovery, non-recovery, and every-prior facts without kernel or KL
+    dependencies; only the posterior-support test needed the downstream
+    module. A root-only negative probe still rejected the sufficiency API.
+    These concrete consumers support the present ownership boundary and create
+    no reason to split or move declarations before Step 19.
+
+    Chunk 4 Step 12 keeps Fisher-Neyman factorization in the same lightweight
+    sufficiency owner. Its proof uses only PMF atoms, finite sums,
+    `PMF.normalize`, and the existing exact recovery definition; all fiber
+    machinery is private and the module still imports only `Markov`. The
+    standalone consumer needs no `DataProcessing` or KL import. This is
+    coherent core growth, not pressure for a new normalization module or an
+    early split; retain the boundary until Step 19's measured review.
+
+    Chunk 4 Step 13 adds the focused external
+    `Mathlib.Probability.Kernel.CompProdEqIff` import only to the existing
+    `DataProcessing` owner. The measure-level equality theorem reuses that
+    module's posterior and exact KL decomposition, while `Sufficiency` still
+    imports only `Markov` and the root remains unchanged. This is the planned
+    downstream analytic boundary, not evidence for a split or module move;
+    it was retained for Step 14, with measured costs still assigned to Step 19.
+
+    Chunk 4 Step 14 adds two short wrappers in the same `DataProcessing` owner
+    and no import edge. Both consume the existing measure-level theorem and
+    PMF joint bridge; no kernel or KL dependency moves into `Sufficiency` or
+    the root. The planned downstream boundary remains coherent for Step 15.
+
+    Chunk 4 Step 15 creates the planned downstream
+    `SemanticBridge.Sufficiency.KL` boundary. The new module imports only
+    `DataProcessing`, contributes one public recovery/KL theorem and one
+    private projection helper, and is imported by the semantic aggregate but
+    not by the sufficiency core or root. This cleanly isolates analytic
+    integration rather than creating pressure to split `Sufficiency`,
+    `DataProcessing`, `Markov`, or `Independence`; retain the measured review
+    for Step 19.
+
+    Chunk 4 Step 16 keeps all analytic equality/recovery results in
+    `Sufficiency.KL`. The only ownership change is the pressure-justified
+    promotion of the assumption-free
+    `PMF.channelJoint_eq_iff_eq_on_support` theorem from a private
+    `DataProcessing` helper to `Probability.FiniteChannel`, where its raw PMF
+    contract belongs. `DataProcessing` and the downstream KL module now share
+    that lightweight theorem without duplicating cancellation. No new import
+    edge or root reachability appears, so the broader module boundaries remain
+    coherent pending Step 19's measured review.
+
+    Chunk 4 Step 17 adds four short family wrappers in the existing
+    `Sufficiency.KL` owner and no import edge. The proofs compose the lightweight
+    family predicates with the downstream Step 15-16 recovery theorems; no KL
+    declaration moves into `Sufficiency`, and no posterior or kernel machinery
+    is duplicated. The current module boundary remains coherent for the Step
+    18 consumers and scheduled Step 19 review.
+
+    Chunk 4 Step 18 adds one downstream example module importing
+    `Sufficiency.KL` and one aggregate import edge. It places no example,
+    recovery proof, KL theorem, posterior construction, or normalization helper
+    in the core modules. The positive and root-isolation consumers support the
+    existing ownership boundary; measured final review remains Step 19 work.
+
+    Chunk 4 Step 19 completed that measured review and retained every boundary.
+    `Sufficiency` now has 778 source lines, 20 public and 11 private
+    declarations, imports only `Markov`, and has direct importers
+    `DataProcessing` and the semantic aggregate. `DataProcessing` has 611
+    lines, 23 public and four private declarations, directly imports `Markov`,
+    `Sufficiency`, and two focused external KL/kernel modules, and has direct
+    importers `Sufficiency.KL`, `Examples.StochasticChannels`, and the
+    aggregate. `Sufficiency.KL` has 308 lines, nine public and two private
+    declarations, imports only `DataProcessing`, and has direct importers
+    `Examples.SufficientStatistics` and the aggregate. None is root-reachable.
+
+    Source-triggered focused builds reported 40, 38, and 36 seconds for the
+    three modules, while cached invocations were about eight seconds. More
+    importantly, a core-only consumer needs no posterior or KL import, the
+    posterior and measure equality engine has one coherent owner, and the
+    downstream recovery/KL layer adds no duplicate proof. No light consumer,
+    repeated cross-boundary argument, or measured iteration cost identifies a
+    useful compatibility split or declaration move.
+
 27. Conditional-independence ergonomics remains proof-pressure deferred after
     the completed Chunk 3 review. That review added the separately importable
     nontrivial common-cause example and expanded the zero-CMI doc comment to
@@ -6374,6 +8180,42 @@ historical trigger records when a later paragraph records their resolution.
     random-variable coupling layer. The common-cause example itself is now
     complete; those narrower consumer-triggered questions remain deferred.
 
+    Chunk 4 Step 9's family zero-CMI corollary does not provide the second
+    consumer for the deferred Markov-specific PMF wrapper. Its reverse-chain
+    hypothesis unfolds to ordinary conditional independence of the generated
+    law, so the proof calls the existing
+    `condMutualInfo_eq_zero_iff_isCondIndependent` directly. No endpoint-law
+    map or repeated Markov coordinate specialization remains in the production
+    proof, and this note's wrapper trigger is still unmet.
+
+    Chunk 4 Step 10 uses the existential Markov factorization theorem directly
+    on a privately swapped generated law. The new public deterministic-
+    extension theorem reduces a channel constructor to its graph pushforward;
+    it is not a named deterministic Markov specialization, endpoint-law
+    abstraction, PMF zero-CMI wrapper, or random-variable coupling layer. None
+    of this note's remaining convenience triggers is met.
+
+    Chunk 4 Step 11 exercised the public sufficiency and posterior contracts
+    directly. Its temporary proofs needed no new conditional-independence
+    symmetry, closure, endpoint-law wrapper, deterministic Markov
+    specialization, or random-variable/channel coupling theorem. The probes
+    were deleted, so this note remains proof-pressure deferred unchanged.
+
+    Chunk 4 Step 12 derives Fisher-Neyman factorization directly from exact
+    recovery and reconstructs recovery from normalized factors. It does not
+    invoke conditional independence, mapped endpoint laws, or Markov closure,
+    and therefore creates none of this note's deferred convenience pressure.
+
+    Chunk 4 Step 18 consumes the sufficiency characterizations as finished
+    public APIs. Its examples need no new conditional-independence symmetry,
+    closure, endpoint-law wrapper, deterministic Markov specialization, or
+    random-variable/channel coupling theorem, so this note remains deferred.
+
+    Chunk 4 Step 19's API consumer and documentation review likewise use the
+    existing public surfaces directly. They reveal no repeated unfolding,
+    endpoint-law, closure, deterministic-Markov, or coupling friction, so every
+    remaining convenience in this note stays proof-pressure deferred.
+
 28. Strengthen the pedagogy of the Step 16 side-information example during a
     later example-polish pass; this is not immediate work, and the current
     `recoveryLaw` example is correct. Preserve its public declarations rather
@@ -6416,6 +8258,320 @@ historical trigger records when a later paragraph records their resolution.
     where posterior equality and recovery have genuine consumers; do not force
     that API into Chunk 3 merely because its KL proof may expose posterior
     bookkeeping.
+
+    The revised 20-step Chunk 4 plan was locked on July 16, 2026. It uses exact
+    full-joint recovery as the family-level contract, treats deterministic
+    statistics as special channels, and connects one common recovery channel
+    to every-prior reverse Markov, zero-CMI, mutual-information preservation,
+    and conditional-entropy preservation. The lightweight sufficiency core is
+    kept upstream of a separate KL integration module. A midpoint consumer
+    review must reject marginal-only recovery as too weak before the Fisher-
+    Neyman and guarded KL-equality layers are accepted. Fano remains a separate
+    later phase after this recovery API is stable.
+
+    Chunk 4 Step 1 has now validated that contract in temporary Lean. The
+    family law uses one common channel reconstructing every complete swapped
+    input-output joint law. A full-support prior and the existing Markov
+    factorization converse recover that common channel after positive prior-
+    mass cancellation. The same checkpoint validated the support-guarded KL
+    posterior-equality route and finite Fisher normalization, while the Boolean
+    counterexample formally rejected marginal-only recovery. No production
+    sufficiency declaration was introduced before Step 2.
+
+    Chunk 4 Step 2 now supplies the type-generic deterministic forward chain
+    `Theta -> X -> T(X)` as `isMarkovChainOf_comp`. It adds no finiteness,
+    support, or measurability assumptions and no PMF wrapper. This establishes
+    the forward half that the fixed-prior equivalence band will reuse; the
+    reverse-chain sufficiency and recovery contracts remain assigned to later
+    Chunk 4 steps.
+
+    Chunk 4 Step 3 now supplies the entropy-facing equality corollary
+    `condEntropyOf_dataProcessing_eq_iff`. Combined with Step 2, its temporary
+    consumer proves exactly that `H(Theta|X) = H(Theta|T(X))` iff
+    `Theta -> T(X) -> X`. This closes the prerequisite for the fixed-prior
+    entropy equivalence in Step 5 without defining sufficiency early; the core
+    predicate and module remain Step 4 work.
+
+    Chunk 4 Step 4 now defines that core as the Markov-only opt-in module
+    `SemanticBridge.Sufficiency`, with `IsSufficientStatisticOf` and the single
+    induced law `statisticTripleLawOf`. The Step 5 MI and entropy contracts were
+    validated in a temporary consumer. A premature direct `rw` formulation of
+    the Step 6 recovery equivalence exceeded the local timeout, so Step 6 should
+    use an explicit intermediate triple law or directional factorization
+    applications; Step 1's clean spike still validates the theorem contract.
+    No recovery or family definition was added early.
+
+    Chunk 4 Step 5 completes the fixed-prior equivalence band inside that core.
+    Zero CMI is inherited from the reverse Markov condition; MI and conditional
+    entropy preservation reuse the deterministic forward chain and the existing
+    equality theorems. No support condition, recovery witness, family-level
+    predicate, or KL-facing API was introduced. The complete-law recovery
+    characterization remains precisely Step 6 work.
+
+    Chunk 4 Step 6 now proves that complete-law recovery characterization. One
+    channel from statistic values to observations reconstructs the entire
+    parameter-statistic-observation law exactly, and only `[Finite alpha]` is
+    required. Projecting that equation yields observation-marginal recovery in
+    the sufficient-to-recover direction only; the false converse remains
+    rejected. The induced-law and first-two-marginal bridges remain private,
+    preserving the lightweight core's public representation boundary. Family-
+    level common recovery remains precisely Step 7 work.
+
+    Chunk 4 Step 7 now fixes that family-level contract as
+    `IsSufficientChannel`: one recovery channel is shared across every model
+    parameter and reconstructs each complete swapped input-output joint law.
+    `IsSufficientStatistic` is exactly the deterministic-channel specialization.
+    Both definitions are assumption-free and introduce no bundled experiment
+    or auxiliary family law. The supported-output common-posterior
+    characterization remains precisely Step 8 work.
+
+    Chunk 4 Step 8 now supplies that characterization in the existing
+    `DataProcessing` posterior owner. One common posterior agrees pointwise
+    with every model posterior only on that model's supported output atoms;
+    total-posterior null-fiber fallbacks remain unconstrained. The theorem uses
+    `[Fintype alpha]` and no parameter/output finiteness, while a private
+    support-identifiability lemma prevents representation machinery from
+    entering the public API. The core adds only the identity-statistic sanity
+    law. Deriving every-prior Markov and information-preservation consequences
+    from common family recovery remains precisely Step 9 work.
+
+    Chunk 4 Step 9 now derives those every-prior consequences. A private
+    atomwise identification turns the generated parameter-input-output law,
+    after swapping its last two coordinates, into a channel extension through
+    the common recovery channel. Existing Markov and equality APIs then give
+    reverse Markov structure without finiteness and zero CMI, mutual-
+    information preservation, and conditional-entropy preservation for finite
+    alphabets. No public experiment-law constructor, posterior theorem, or KL
+    dependency was added. The conditional-entropy corollary supplies the first
+    independent PMF consumer requested by Note 33, so the direct PMF equality
+    characterization now lives beside its random-variable counterpart. The
+    finite full-support-prior converse remains precisely Step 10 work.
+
+    Chunk 4 Step 10 now completes that converse. One full-support prior and the
+    existing existential Markov factorization produce a common recovery
+    channel after atomwise cancellation; only `[Finite alpha]` is needed. A
+    locally enumerated uniform prior then yields channel and deterministic-
+    statistic characterizations quantified over every prior under
+    `[Finite theta] [Nonempty theta]`. The generated experiment law remains
+    inline/private, and no metric-by-metric all-priors iff family or bundled
+    statistical experiment was added.
+
+    Chunk 4 Step 11 now completes the required midpoint gate. Temporary public-
+    API consumers prove a genuinely noninjective statistic sufficient, a
+    constant statistic non-sufficient, and marginal recovery insufficient for
+    full-joint recovery. The posterior consumer shows that the supported-output
+    guard is essential: the total posterior on an individual model's null
+    output can disagree with the common posterior fixed by another model. Core
+    versus KL ownership and negative root isolation remain intact, all probes
+    were deleted, and no production API was changed. The recovery contract is
+    therefore stable enough for Step 12's finite Fisher-Neyman factorization.
+
+    Chunk 4 Step 12 now completes that factorization. Exact common recovery
+    yields finite `ENNReal` factors directly, and finite fiber normalization
+    reconstructs one common recovery channel in the converse. The public
+    theorem needs only `[Finite alpha] [Nonempty alpha]`; all normalizer and
+    zero-fiber fallback machinery remains private in the lightweight core. A
+    noninjective standalone consumer validates both directions. Step 13 can now
+    begin the separately owned measure-level KL equality engine without
+    changing the sufficiency representation.
+
+    Chunk 4 Step 13 now supplies that measure-level engine as
+    `klDiv_channel_eq_iff_posterior_ae_eq`. Under input support inclusion, the
+    exact posterior remainder vanishes exactly when the two posterior kernels
+    agree almost everywhere under the first output law. The theorem remains in
+    `DataProcessing`, adds no recovery interpretation to the lightweight core,
+    and leaves the finite pointwise and real-valued contracts for Step 14.
+
+    Chunk 4 Step 14 now completes those finite-facing contracts. The primary
+    theorem states equality of posterior PMFs exactly on
+    `(p.bind W).support`, and the guarded real theorem has the same criterion.
+    The lower-level almost-everywhere theorem remains public and unchanged.
+    Recovery-channel interpretation is still reserved for the downstream
+    `Sufficiency.KL` work in Steps 15-17.
+
+    Chunk 4 Step 15 now supplies the forward two-law recovery interpretation:
+    one common exact recovery channel preserves `ENNReal` KL divergence by
+    applying data processing in both directions. It adds neither a converse
+    nor the model-family wrapper. The support-guarded converse remains Step 16,
+    and Step 17 still owns the careful passage from pairwise laws to
+    `IsSufficientChannel` without claiming a global recovery channel from
+    unrelated pairwise equalities.
+
+    Chunk 4 Step 16 now completes the guarded two-law equality theorem for
+    channels and deterministic statistics in both `ENNReal` and real forms.
+    Input support inclusion excludes `top = top`, posterior equality constructs
+    one shared exact recovery witness, and the unconditional Step 15 theorem
+    supplies the reverse implication. The result remains pairwise: Step 17 must
+    derive family consequences from an already common family recovery channel
+    and must not infer one global witness from independently chosen pairwise
+    witnesses.
+
+    Chunk 4 Step 17 now performs that integration without crossing the stated
+    boundary. One recovery channel already shared by an
+    `IsSufficientChannel` family preserves `ENNReal` KL divergence for every
+    pair of its laws, with a deterministic-statistic specialization. Conversely,
+    one support-guarded equality characterizes a `Bool`-indexed family because
+    the Step 16 witness recovers both possible laws and therefore the entire
+    family. No assertion is made that separate equality witnesses for pairs in
+    a larger family can be chosen coherently. The canonical family result stays
+    `ENNReal`-valued; real wrappers remain consumer-deferred.
+
+    Chunk 4 Step 18 now makes the midpoint tests permanent in the opt-in
+    `Examples.SufficientStatistics` module. The ancillary-noise model is
+    genuinely noninjective on positive support yet sufficient; the constant
+    statistic is not sufficient; and the reset channel recovers only a marginal,
+    not the complete graph law. The module also consumes the fixed-prior,
+    family, exact-recovery, all-prior, Fisher-Neyman, and KL-equality APIs. It
+    introduces no canonical/minimal statistic, iid model, measurable extension,
+    Fano theorem, or alternative recovery contract. The examples therefore
+    validate the planned finite boundary and leave Step 19 as the scheduled API
+    and documentation review.
+
+    During the scheduled Chunk 4 Step 19 API and documentation review, perform
+    a documentation-only polish pass over the Step 4 core definitions and the
+    Step 6-8 recovery and posterior sections unless their comments have already
+    been improved:
+
+    - expand `statisticTripleLawOf` to explain that the
+      `(parameter, statistic, observation)` coordinate order is intentional and
+      supports later recovery from statistic values to observations and the
+      associated channel-factorization statements;
+    - expand `IsSufficientStatisticOf` to state explicitly that the reverse
+      chain means `Theta ⟂ X | T(X)`, and distinguish this fixed-source-law or
+      fixed-prior predicate from the later model-family/all-priors notion
+      `IsSufficientStatistic`.
+
+    For the Step 6 `## Fixed-prior recovery` section and
+    `isSufficientStatisticOf_iff_exists_recovery`, add a compact textbook-facing
+    explanation with `S = T(X)` that records all of the following:
+
+    - the complete-law equation is the channel factorization
+      `P_(Theta,S,X) = P_(Theta,S) R`, atomwise
+      `P(theta,s,x) = P(theta,s) * R s x`;
+    - one `R : beta -> PMF alpha` is shared across parameter values and cannot
+      inspect `theta`, although it may depend on the fixed joint law
+      `(p, Theta, X, T)`;
+    - values of `R s` on null statistic fibers are unconstrained because the
+      parameter-statistic law gives those fibers zero weight;
+    - full-joint reconstruction preserves the parameter-observation coupling
+      and is strictly stronger than the one-way marginal consequence
+      `P_X = P_S R`, whose converse is false.
+
+    For the Step 7 `## Family-level sufficiency` section and the controlled
+    definitions `IsSufficientChannel` and `IsSufficientStatistic`, add a
+    documentation-only family-level explanation informed by the already
+    completed Steps 8 and 16:
+
+    - writing `P_t = model t`, state the atomwise full-joint recovery equation
+      `((P_t.bind W) b) * R b a = P_t a * W a b`;
+    - emphasize the quantifier order `exists R, forall t`: one recovery channel
+      is shared by the whole model family, rather than choosing a separate
+      witness for each parameter value;
+    - contrast this prior-free model-family notion with the fixed-prior
+      predicate `IsSufficientStatisticOf`;
+    - explain that full-joint recovery preserves the actual input-output
+      coupling and is stronger than recovery of the input marginal alone;
+    - using Step 8's supported-posterior theorem, explain that a null output for
+      one model imposes no constraint on `R b` from that model, while another
+      model supporting the same output may constrain that same recovery row;
+    - explain that `IsSufficientStatistic` is exactly the deterministic-channel
+      specialization of `IsSufficientChannel`, not a second sufficiency notion.
+
+    For the Step 8 theorem
+    `isSufficientChannel_iff_exists_common_posterior` in `DataProcessing`, expand
+    its documentation without changing its contract:
+
+    - writing `Q_t = (model t).bind W`, state that one parameter-independent
+      posterior channel `R` satisfies
+      `channelPosterior (model t) W b = R b` whenever `Q_t b != 0`;
+    - spell out the overlapping-support consequence: if the same output `b` is
+      supported under two model parameters, their posterior input laws at `b`
+      coincide because both equal the same `R b`;
+    - distinguish an output that is null for one model from an output that is
+      null for the entire family: the former model imposes no condition at that
+      fiber, although another supporting model may still determine `R b`, while
+      the latter leaves `R b` wholly unconstrained;
+    - explain that the support guard prevents the arbitrary total-posterior
+      fallback on a null fiber from acquiring conditional-probability meaning;
+    - retain `[Fintype alpha]` as the existing `channelPosterior` construction's
+      contract and do not add parameter- or output-alphabet finiteness.
+
+    For the Step 9 every-prior consequence band, use the permanent Step 18
+    examples during the Step 19 documentation review to decide whether one
+    concise section or theorem comment should identify the generated law
+    `PMF.channelExtension (PMF.channelJoint prior model) W` as having coordinate
+    order `(parameter, input, output)`. If added, spell out only the reader-facing
+    projection convention `z.1 = parameter`, `z.2.1 = input`, and
+    `z.2.2 = output`, so the reverse-chain statement can be read as
+    `parameter -> output -> input`. Keep this documentary and do not expose the
+    private coordinate-swap helper, introduce a second experiment-law
+    constructor, or change any Step 9 theorem statement. Omit the extra comment
+    if the improved Step 7 family-level documentation and permanent examples
+    already make the coordinate convention unambiguous.
+
+    For the Step 10 full-support and all-priors characterization band, use the
+    Step 18 examples during the Step 19 documentation review to decide whether
+    a compact section comment should expose the converse's textbook
+    cancellation argument. If useful, state that reverse-Markov factorization
+    under a full-support prior gives
+    `prior t * (P_t a * W a b) = prior t * (Q_t b * R b a)`, and that
+    `prior t != 0` permits cancellation to obtain one recovery equation for
+    every parameter value. Explain that full support is substantive: a
+    zero-prior parameter is invisible to the generated joint law and therefore
+    cannot be constrained by its Markov property. Also mention that the finite
+    nonempty all-priors converse needs only the canonical uniform prior from
+    the universal hypothesis. Keep this documentary; do not change the four
+    Step 10 theorem statements, introduce a new full-support predicate or
+    experiment-law wrapper, add metric-by-metric all-priors equivalences, or
+    alter the explicit simp policy. Omit a separate Step 10 comment if the
+    improved family-level documentation already communicates these points
+    clearly without duplication.
+
+    For the Step 12 Fisher-Neyman theorem, use its permanent Step 18 consumer
+    during the Step 19 documentation review to clarify the two finite-factor
+    conditions without changing the theorem. State that pointwise finiteness of
+    the parameter-independent factor `h` makes each finite fiber mass
+    `sum_{a : T a = b} h a` finite and therefore permits normalization on a
+    positive fiber. State separately that pointwise finiteness of `g` rules out
+    pathological `top`-valued factor witnesses and matches the canonical
+    forward witness `g t b = (model t).map T b`, whose values are PMF atoms;
+    it is not the condition used to normalize the recovery row. Preserve the
+    current finite-`g` contract even though the converse proof's normalization
+    calculation principally consumes finiteness of `h`. Do not add a weaker
+    companion theorem, real-valued duplicate, public factorization predicate,
+    or public fiber-normalization helper without later consumer pressure. Keep
+    the theorem explicit, and leave its compatibility-alias decision to Future
+    Work Note 14 after the permanent example tests discovery.
+
+    Keep this pass strictly documentary: preserve the Step 4, Step 6, and Step 7
+    definitions, their names, the Step 8 theorem contract, all recovery theorem
+    statements and proofs, module ownership, and import boundary. Do not replace
+    exact recovery with a posterior-equality, marginal-recovery, or all-priors
+    definition, and do not add an alias, wrapper, bundled experiment, recovery
+    predicate, canonical posterior/recovery channel, public marginal helper, or
+    posterior dependency. The Step 8 naming question remains owned by Future
+    Work Note 14 rather than this documentation checklist. If the comments are
+    improved before Step 19, close the corresponding items as completed rather
+    than carrying stale documentation tasks forward.
+
+    Chunk 4 Step 19 completed this documentation checklist in the source.
+    `statisticTripleLawOf` and `IsSufficientStatisticOf` now explain coordinate
+    order and fixed-prior scope; the recovery and family sections explain the
+    complete-law equations, shared-witness quantifiers, null fibers, and the
+    strict gap from marginal recovery; the common-posterior theorem explains
+    supported overlap and total-posterior fallbacks; and the every-prior,
+    full-support, and Fisher-Neyman sections record their reader-facing
+    coordinate, cancellation, and finiteness conventions. No declaration,
+    proof, definition, import, attribute, alias, or ownership boundary changed.
+    The checklist is complete and should not be carried into Step 20.
+
+    Chunk 4 Step 20 closes the sufficient-statistics and recovery phase after
+    the full milestone suite, guarded boundary consumers, axiom audit,
+    generated-reference checks, and repository hygiene all passed. The
+    statistic/recovery layer is now stable enough to satisfy this note's
+    sequencing gate for Fano. No Fano declaration or execution plan is added
+    during integration; that theorem phase remains the next separately planned
+    Project B work.
 
     Chunk 3 Step 15 now exposes an exact posterior decomposition, but proves no
     equality characterization for its nonnegative remainder and introduces no
@@ -6553,6 +8709,92 @@ historical trigger records when a later paragraph records their resolution.
     theorems without repeating null-fiber transport or requesting the opposite
     reconstruction orientation. No new conditional-channel helper is added.
 
+    Chunk 4 Step 8 proves the supported common-posterior characterization with
+    one private generic lemma: equality of two channel-induced joint laws is
+    equivalent to equality of their channels on the input-law support. Its
+    forward direction performs one positive-mass cancellation and its reverse
+    direction makes null input atoms vanish. The lemma has exactly one
+    production consumer, is not specific to the total conditional channel, and
+    remains private in `DataProcessing`. This does not meet the two-proof
+    trigger for a public weighted-channel or null-fiber abstraction; reassess
+    only if later recovery/KL proofs repeat the same argument.
+
+    Chunk 4 Step 9 uses only the family recovery equation, atomwise PMF laws,
+    and existing channel-extension projections. Its private coordinate-swap
+    identification does not invoke the total conditional channel, repeat the
+    Step 8 support-identifiability proof, or transport a null-fiber fallback.
+    The trigger for a public weighted-channel or null-fiber abstraction remains
+    unmet.
+
+    Chunk 4 Step 10 applies the public existential Markov factorization as a
+    black box and cancels the full-support prior mass directly. It does not
+    unfold `condFstGivenSndChannel`, repeat weighted null-fiber extensionality,
+    use the Step 8 support-identifiability helper, or request the opposite
+    reconstruction orientation. No conditional-channel helper trigger is met.
+
+    Chunk 4 Step 11 deliberately tested the null branch through the public
+    posterior API. In the noninjective model, an unsupported output uses the
+    documented first-marginal fallback and differs from the common posterior
+    fixed by the model for which that output is supported. This validates the
+    existing support guard and null-fiber semantics. The temporary proof reused
+    the public branch and reconstruction laws without repeating production
+    weighted extensionality, so no generic null-fiber helper or opposite
+    reconstruction theorem is justified.
+
+    Chunk 4 Step 12 has a separate zero-total branch for the finite
+    Fisher-Neyman factor `h`. It proves every model atom on that statistic fiber
+    zero and chooses a private pure recovery fallback. This is finite
+    normalization bookkeeping, not a repeated use of the total conditional
+    channel or weighted extensionality argument, so it does not meet this
+    note's abstraction trigger.
+
+    Chunk 4 Step 13 treats null output fibers through almost-everywhere kernel
+    equality under `(p.bind W).toMeasure`; it neither unfolds the total
+    conditional channel nor repeats weighted null-fiber extensionality. The
+    existing measure automatically ignores null fibers, so no generic weighted
+    channel or null-fiber helper is justified.
+
+    Chunk 4 Step 14 reuses the existing private
+    `channelJoint_eq_iff_eq_on_support` theorem to convert almost-everywhere
+    posterior equality into the public support-pointwise statement. This gives
+    the helper a second internal consumer but does not repeat its weighted
+    cancellation proof or expose a direct caller need. Keep it private; reopen
+    public promotion only if downstream code itself needs the generic channel-
+    joint equivalence rather than the new posterior theorem.
+
+    Chunk 4 Step 15 projects an assumed full-joint recovery equation to the
+    recovered input marginal with ordinary `PMF.channelJoint` projection laws.
+    It never unfolds `condFstGivenSndChannel`, reasons about a null fiber, or
+    repeats weighted extensionality. No generic null-fiber or conditional-
+    channel helper is justified.
+
+    Chunk 4 Step 16 fires the narrower public-promotion trigger recorded after
+    Step 14: the downstream recovery converse itself needs equality of induced
+    joint laws from support-wise channel equality. The generic theorem is now
+    `PMF.channelJoint_eq_iff_eq_on_support` in
+    `Probability.FiniteChannel`, and the former private copy in
+    `DataProcessing` is removed. This closes that identifiability subtask. It
+    does not create a weighted-measure, kernel, opposite-reconstruction, or
+    broader total-conditional-channel theorem, so the remaining null-fiber
+    conveniences in this note stay proof-pressure deferred.
+
+    Chunk 4 Step 17 treats the Step 15-16 recovery theorems as black boxes. It
+    neither mentions a posterior nor repeats support-wise channel-joint
+    extensionality or null-fiber reasoning. No remaining total-conditional-
+    channel convenience reaches its promotion trigger.
+
+    Chunk 4 Step 18's private atomwise recovery proof uses ordinary
+    `PMF.channelJoint` laws for one concrete example. It does not unfold
+    `condFstGivenSndChannel`, repeat the generic support-identifiability proof,
+    or transport a total-posterior null fallback. No remaining helper or
+    opposite-reconstruction trigger is met.
+
+    Chunk 4 Step 19 changes comments and tests public names only. It repeats no
+    weighted extensionality, null-fiber transport, or opposite reconstruction,
+    and the already promoted `PMF.channelJoint_eq_iff_eq_on_support` remains the
+    only pressure-justified generic addition. All other conveniences in this
+    note stay deferred.
+
 31. Keep the finite-channel core at its four current compound constructions
     until a second production consumer needs a named independent product of
     two channels. Chunk 3 Step 11's two-sided MI theorem currently states its
@@ -6682,6 +8924,38 @@ historical trigger records when a later paragraph records their resolution.
     strict MI-loss characterization. Both remain deferred to a direct entropy
     or sufficient-statistic consumer.
 
+    Chunk 4 Step 3 completed the directly consumed random-variable theorem as
+    `condEntropyOf_dataProcessing_eq_iff`, deriving it from the canonical MI
+    equality characterization and validating it on the intended statistic
+    specialization. No PMF wrapper is added because no independent PMF
+    consumer appeared, and no strict-loss result is justified. Those two
+    branches remain deferred under this note rather than blocking Step 4.
+
+    Chunk 4 Step 5 is the first production sufficiency theorem to consume that
+    random-variable entropy equality result. It confirms the chosen orientation
+    `H(Theta|X) = H(Theta|T(X))` and still creates no independent PMF consumer or
+    strict-loss argument. The random-variable branch is complete; the PMF and
+    strict-loss branches remain deferred under their original triggers.
+
+    Chunk 4 Step 9 supplies the independent law-level consumer: preservation
+    of parameter conditional entropy under a sufficient family channel. The
+    new `condEntropy_dataProcessing_eq_iff` is the direct PMF specialization of
+    the existing `...Of` theorem and is used by that production corollary. It
+    remains explicit, and its coherent PMF/RV name needs no compatibility
+    alias. The conditional-entropy equality branch of this note is now
+    complete; no proof or example reasons about strict information loss, so
+    the strict-loss branch remains deferred.
+
+    Chunk 4 Step 18 exercises the fixed-prior mutual-information equality and
+    the already completed family APIs. It does not introduce another
+    conditional-entropy wrapper or reason about strict information loss, so the
+    remaining strict-loss trigger stays unmet.
+
+    Chunk 4 Step 19 retains both completed conditional-entropy equality
+    theorems as explicit canonical surfaces. Neither the documentation pass nor
+    the API probe reasons about strict information loss, so only that separate
+    strictness branch remains deferred.
+
 34. Keep the Step 11 stochastic-channel processing API PMF-first until
     downstream applications establish a natural random-variable coupling
     contract. A deterministic function of a random variable remains on the
@@ -6736,6 +9010,17 @@ historical trigger records when a later paragraph records their resolution.
     `...Of` channel wrapper, coupling object, or channel-facing conditional-
     entropy corollary.
 
+    Chunk 4 Step 18 is likewise an honest PMF experiment module. It uses raw
+    model laws, deterministic channels, and explicit generated joint laws; no
+    nominal stochastic-output variable, coupling object, or channel-facing
+    `...Of` wrapper is introduced.
+
+    Chunk 4 Step 19 confirms that this PMF-first surface is readable in the
+    permanent experiment and downstream API probe. No repeated source-variable
+    pushforward or entropy-channel specialization appears, so neither a
+    stochastic `...Of` coupling wrapper nor a channel-facing conditional-
+    entropy convenience is justified.
+
 35. Keep the finite KL equivalence-relabeling theorem used by the Step 13
     posterior-decomposition spike private when it first enters production in
     Step 15. Its current sole purpose is to show that swapping the coordinates
@@ -6785,6 +9070,50 @@ historical trigger records when a later paragraph records their resolution.
 
     Chunk 3 Step 19 performs no KL relabeling. The private `klDiv_map_equiv`
     theorem still has its single `Prod.swap` consumer and remains private.
+
+    Chunk 4 Step 9's private coordinate swap proves equality of two PMF laws
+    atomwise before any information measure is applied. It neither calls nor
+    repeats the KL equivalence-invariance proof, so `klDiv_map_equiv` still has
+    one production consumer and remains private.
+
+    Chunk 4 Step 10's last-coordinate swap is likewise a direct PMF-law
+    calculation. It neither calls nor reproduces finite KL equivalence
+    invariance, so `klDiv_map_equiv` remains private with one consumer.
+
+    Chunk 4 Step 13 consumes the public posterior decomposition as a black box
+    and performs no relabeling. It neither calls nor repeats `klDiv_map_equiv`,
+    whose sole production consumer remains the coordinate swap inside
+    `klDiv_channel_eq_add_posterior`; public promotion is still unjustified.
+
+    Chunk 4 Step 14 performs no KL relabeling. It converts the Step 13 kernel
+    statement back through composition products and PMF joint laws on the same
+    alphabets, so `klDiv_map_equiv` remains private with its single consumer.
+
+    Chunk 4 Step 15 assumes swapped full-joint recovery equations but proves KL
+    equality only by projecting them to marginals and applying channel data
+    processing twice. It neither calls nor repeats `klDiv_map_equiv`, whose
+    production-consumer count remains one.
+
+    Chunk 4 Step 16 uses the existing posterior equality theorem and PMF joint-
+    law reconstruction. Its deterministic forms simplify an already proved
+    channel theorem through graph pushforwards; they do not prove KL invariance
+    under relabeling. `klDiv_map_equiv` therefore remains private with its one
+    coordinate-swap consumer.
+
+    Chunk 4 Step 17 invokes the public common-recovery theorem directly and
+    obtains its deterministic family form by simplifying
+    `PMF.deterministicChannel`. It neither calls nor repeats
+    `klDiv_map_equiv`; the relabeling theorem still has one production consumer
+    and remains private.
+
+    Chunk 4 Step 18's concrete recovery calculation swaps PMF coordinates
+    before any information measure is applied. Its Boolean orientation probe
+    reindexes the model parameter, not either KL alphabet. Neither argument
+    calls nor repeats `klDiv_map_equiv`, whose production count remains one.
+
+    Chunk 4 Step 19 adds no theorem proof or KL relabeling consumer. The private
+    equivalence helper remains used once for `Prod.swap`, so its public
+    equivalence/injective/support-aware contract and ownership stay deferred.
 
 36. Keep the type-generic bind-support monotonicity lemma introduced privately
     in Chunk 3 Step 17 out of the public API until a second production proof
@@ -6843,6 +9172,35 @@ historical trigger records when a later paragraph records their resolution.
     the private one-consumer `support_bind_mono` remain unchanged; only the
     reviewed `...channel_cascade_le` compatibility alias family was added.
 
+    Chunk 4 Step 14 proves output-divergence finiteness directly from
+    `klDiv_channel_le` and input KL finiteness. It neither calls nor repeats the
+    atomwise proof of `support_bind_mono`, whose production-consumer count
+    remains one and whose public promotion trigger is still unmet.
+
+    Chunk 4 Step 15 needs no support hypothesis and never inspects the support
+    of a bind. It does not call or repeat `support_bind_mono`; that helper still
+    has one production consumer and remains private.
+
+    Chunk 4 Step 16 assumes input support inclusion only to invoke the guarded
+    posterior equality theorem and prove KL finiteness. It never transports
+    support through `PMF.bind` and neither calls nor repeats
+    `support_bind_mono`. That helper remains private with one production
+    consumer.
+
+    Chunk 4 Step 17 passes the input-law support guard directly to Step 16 in
+    the Boolean converse and needs no output-support statement. It neither
+    calls nor repeats `support_bind_mono`, whose production-consumer count
+    remains one.
+
+    Chunk 4 Step 18 proves its concrete support inclusion directly from the
+    finite atoms of the example laws. It does not transport support through an
+    arbitrary bind or repeat `support_bind_mono`; that helper remains private
+    with one production consumer.
+
+    Chunk 4 Step 19 introduces no support proof. The private type-generic
+    `support_bind_mono` helper therefore still has one production consumer, and
+    neither public promotion nor a weaker real cascade theorem is justified.
+
 37. Keep the Step 15 posterior API and exact composition-product KL
     decomposition unchanged unless later consumers create pressure for one of
     two textbook-facing conveniences. These are possible follow-ups, not work
@@ -6878,6 +9236,80 @@ historical trigger records when a later paragraph records their resolution.
     Chunk 3 Step 19 consumes neither posterior reconstruction nor the exact
     posterior remainder. No `[Finite]` posterior wrapper or weighted fiber-KL
     expansion is justified.
+
+    Chunk 4 Step 1 is the first temporary sufficiency proof to expose the
+    current `[Fintype alpha]` posterior contract. The guarded KL equality spike
+    compiled cleanly with that existing assumption and did not need an
+    averaged fiber-KL expansion. A deleted proof spike is not a production
+    consumer, so neither possible convenience has crossed this note's trigger;
+    Steps 13-18 should reassess only if repeated production use appears.
+
+    Chunk 4 Step 8 is the first production sufficiency consumer of
+    `channelPosterior`. Its supported common-posterior theorem naturally states
+    `[Fintype alpha]`, exactly matching the existing posterior construction; it
+    does not begin from a `[Finite]`-only API and install a local instance.
+    Consequently it creates no pressure for a compatibility wrapper. The proof
+    uses only PMF reconstruction and support cancellation, not the posterior KL
+    remainder, so it also creates no need for an output-weighted fiber-KL
+    expansion. Both possible conveniences remain deferred.
+
+    Chunk 4 Step 11's posterior consumer again uses the existing
+    `[Fintype alpha]` contract naturally. It tests supported and unsupported
+    output fibers but never installs a local enumeration from `[Finite]` and
+    never expands the KL remainder into fiber divergences. The stronger null-
+    fiber disagreement example confirms the present support-aware contract;
+    neither deferred posterior convenience gains production pressure.
+
+    Chunk 4 Step 12 does not use `channelPosterior` or the KL posterior
+    remainder. Its private normalization is applied to the Fisher-Neyman factor
+    on a finite observation fiber and is not a `[Finite]` wrapper around the
+    posterior API or a weighted fiber-KL expansion. Both conveniences remain
+    deferred for the actual equality consumers in Steps 13-17.
+
+    Chunk 4 Step 13 is the first production KL-equality consumer of
+    `channelPosterior`. Its natural theorem contract already uses
+    `[Fintype alpha]`, so it installs no local enumeration and creates no
+    pressure for a `[Finite]` compatibility wrapper. The proof cancels the
+    composition-product remainder as a whole and never expands it into
+    output-weighted fiber divergences. Both textbook-facing conveniences remain
+    deferred entering Step 14 and the later recovery consumers.
+
+    Chunk 4 Step 14 again uses the existing `[Fintype alpha]` posterior
+    contract directly in both public theorems; no local enumeration is
+    installed. Its pointwise support conclusion is derived from the whole
+    composition-product equality and does not expand KL into a weighted sum of
+    fiber divergences. Neither deferred convenience gains new proof pressure;
+    reassess only if Steps 15-17 encounter a genuinely different consumer.
+
+    Chunk 4 Step 15 is not a posterior consumer. It starts with `[Finite]`
+    alphabets, uses the public channel DPI in both directions, and neither
+    installs a `Fintype` merely to mention `channelPosterior` nor expands the
+    composition-product remainder. Neither deferred posterior convenience
+    gains proof pressure.
+
+    Chunk 4 Step 16 is the first production theorem whose public contract uses
+    only `[Finite alpha]` but whose proof installs one local
+    `Fintype.ofFinite alpha` to choose a posterior as an existential recovery
+    witness. The selected posterior does not appear in the theorem statement,
+    and no caller must manage the instance. One internal consumer does not meet
+    this note's repeated-API-pressure threshold, so no `[Finite]` posterior
+    wrapper is added. The proof also treats posterior equality as a black box
+    and never expands the KL remainder into fiberwise divergences.
+
+    Chunk 4 Step 17 uses only the public recovery theorems and never mentions
+    `channelPosterior`, installs a local `Fintype`, or expands the KL remainder.
+    Neither the `[Finite]` posterior wrapper nor the weighted fiber-divergence
+    formula gains a new production consumer.
+
+    Chunk 4 Step 18 also consumes recovery and KL characterizations as black
+    boxes. Its private example witness is an elementary PMF channel and never
+    mentions `channelPosterior` or expands a fiberwise KL remainder. Neither
+    deferred posterior convenience gains pressure.
+
+    Chunk 4 Step 19's documentation and API checks add no posterior consumer.
+    The `[Finite]` theorem that internally installs one `Fintype` remains the
+    sole wrapper-pressure occurrence, and no proof requests a weighted
+    fiberwise KL expansion. Both conveniences stay deferred.
 
 38. Keep a matrix-facing doubly stochastic bridge deferred until the later
     majorization/Birkhoff phase creates a concrete consumer. Chunk 3 Step 18
@@ -6934,3 +9366,191 @@ historical trigger records when a later paragraph records their resolution.
     publish a uniform-preservation theorem. The entropy alias probes were
     declined in Future Work Note 14 because the existing names proved clearer
     than either the `mono` or `nondecreasing` alternatives.
+
+39. Keep canonical and minimal sufficient statistics outside the active Chunk
+    4 recovery phase. Chunk 4 should establish the finite fixed-prior and
+    family sufficiency contracts, common recovery, every-prior equivalences,
+    finite Fisher-Neyman factorization, and guarded KL equality without also
+    committing to a comparison order or canonical quotient construction.
+
+    In a later focused phase, define one statistic as no more informative than
+    another by support-wise factorization on the union of the model family's
+    supports. Do not require the factorization globally away from that union.
+    Then formulate minimal sufficiency, prove uniqueness up to support-aware
+    relabeling, and investigate a canonical finite statistic based on equal
+    likelihood vectors or a zero-safe cross-product relation rather than
+    unguarded likelihood ratios. Reuse Chunk 4's Fisher-Neyman and recovery
+    theorems instead of creating a second notion of sufficiency.
+
+    Also defer a general `n`-sample iid statistical-experiment construction and
+    the textbook count-statistic example until product-family notation and its
+    support laws have independent consumers. Chunk 4 may use a compact finite
+    noninjective example, but it should not build an iid-process hierarchy for
+    one demonstration. A general measurable sufficient-statistic theory is a
+    still later bridge to mathlib kernels and almost-everywhere factorization;
+    it must not weaken or silently replace the exact finite PMF API.
+
+    Revisit this note only after the Chunk 4 API and examples make the
+    statistic-comparison orientation, support convention, and quotient needs
+    concrete. Keep the resulting modules opt-in, audit every public name under
+    Future Work Note 14, and decide separately whether this phase belongs
+    before or after Fano; neither development depends on the other.
+
+    Chunk 4 Step 1 validates only the common-recovery, full-support-prior, KL
+    equality, and finite factor-normalization foundations. It introduces no
+    statistic-comparison order, support-union construction, quotient, or iid
+    product model, so the boundary of this note remains unchanged.
+
+    Chunk 4 Step 4 adds only fixed-prior sufficiency and its induced triple law.
+    It introduces no comparison order, minimality predicate, canonical quotient,
+    support-union relation, iid model, or measurable sufficiency layer, so this
+    note remains deferred unchanged.
+
+    Chunk 4 Step 10 closes only the full-support and all-priors equivalences for
+    the existing finite recovery predicates. It introduces no statistic
+    comparison relation, minimality notion, quotient, support-union model, iid
+    construction, or measurable sufficiency layer. The later boundary of this
+    note remains unchanged.
+
+    Chunk 4 Step 11 uses a compact two-bit noninjective statistic solely as a
+    temporary contract test. It introduces no statistic order, support-union
+    quotient, canonical representative, iid family, or measurable extension.
+    The example is suitable to reconsider for Step 18, but it creates no reason
+    to begin canonical or minimal sufficiency before the current chunk closes.
+
+    Chunk 4 Step 12 supplies the finite Fisher-Neyman theorem that this later
+    phase should reuse. It keeps factor functions explicit and introduces no
+    statistic-comparison order, minimality predicate, support-union relation,
+    quotient, iid model, or measurable factorization layer. Completing this
+    prerequisite does not move the deferred canonical/minimal work into the
+    active chunk.
+
+    Chunk 4 Step 16 characterizes pairwise KL equality through an existential
+    common recovery channel for two supplied laws. It introduces no statistic
+    comparison order, canonical quotient, support-union construction, iid
+    family, or measurable experiment layer. The deterministic graph forms are
+    equality criteria, not a minimal-sufficiency construction, so this later
+    phase remains deferred.
+
+    Chunk 4 Step 17 derives KL consequences of the existing family predicates
+    and closes only a support-guarded Boolean two-law converse. It adds no
+    statistic-comparison order, support-union relation, canonical quotient,
+    minimality predicate, iid model, or measurable extension. This later phase
+    remains deferred unchanged.
+
+    Chunk 4 Step 18 makes the planned compact noninjective example permanent,
+    but compares no two statistics and constructs no quotient, support-union
+    relation, iid family, count statistic, or measurable extension. The example
+    confirms that the finite API is expressive without moving canonical or
+    minimal sufficiency into the active chunk; this note remains deferred for a
+    separately planned phase.
+
+    Chunk 4 Step 19 confirms that the finite recovery API and its module
+    boundary are stable, but it still supplies no statistic-comparison order,
+    support-union quotient, canonical representative, iid family, or measurable
+    extension. This later phase is now better grounded, not immediate; retain
+    it for separate planning after the current milestone closes.
+
+    Chunk 4 Step 20 closes the finite recovery milestone without adding any of
+    these later structures. The stable API now provides the intended foundation
+    for a future canonical/minimal-sufficiency plan, but Fano and other already
+    sequenced Chapter 2 work may proceed independently. This note remains a
+    later focused milestone, not immediate integration cleanup.
+
+40. Keep a general common-marginal-recovery KL preservation theorem out of the
+    public API until a consumer independent of statistical sufficiency needs
+    it. The current public theorem
+    `klDiv_channel_eq_of_common_recovery` assumes that one channel `R` exactly
+    reconstructs both complete output-input joint laws. Its proof privately
+    projects those equations to
+
+    ```lean
+    (p.bind W).bind R = p
+    (q.bind W).bind R = q
+    ```
+
+    and then sandwiches KL divergence between data processing through `W` and
+    data processing through the same `R`. Consequently, the KL implication is
+    mathematically valid under these two marginal equations alone and remains
+    valid when the divergences are `top`. The use of one common `R` is
+    essential; independently chosen reverse channels do not supply one channel
+    through which the pair of output laws can be processed together.
+
+    Do not weaken or replace `klDiv_channel_eq_of_common_recovery`. Its full-
+    joint hypotheses are the correct sufficiency-facing contract and preserve
+    the input-output coupling that marginal recovery forgets. Step 11 already
+    demonstrated that marginal recovery alone is too weak to characterize a
+    sufficient statistic. A later generic theorem must therefore be presented
+    as a KL retraction or common-left-inverse result, not as an alternative
+    definition or characterization of sufficiency.
+
+    Reopen this question only if a second production consumer starts directly
+    from the two bind-recovery equations and would otherwise repeat the same
+    two-DPI proof, or if a later channel-equivalence, experiment-comparison, or
+    stochastic-retraction development naturally exposes that contract. At
+    that point, decide whether the generic theorem belongs in
+    `SemanticBridge.DataProcessing` or a focused downstream channel-equivalence
+    module. If it is added, retain the existing exact-recovery theorem as the
+    sufficiency-facing corollary, avoid promoting the private joint-to-marginal
+    projection helper merely to support it, and audit the new name under Future
+    Work Note 14. A provisional conceptual family might use
+    `klDiv_channel_eq_of_common_bind_recovery` or
+    `klDiv_channel_eq_of_common_leftInverse`; neither name is approved.
+
+    Do not add a real-valued companion automatically. Such a theorem needs an
+    explicit support or finiteness contract so that `ENNReal.toReal` does not
+    identify an infinite divergence with zero. Do not add separate-recovery,
+    posterior, deterministic-map, or iff variants without their own consumer
+    pressure. Through Chunk 4 Step 16, the Step 15 proof is the sole production
+    occurrence of this marginal-recovery DPI sandwich, so the trigger remains
+    unmet.
+
+    Track one distinct deterministic convenience under the same pressure rule.
+    Exact recovery of both graph laws for `T : alpha -> beta` implies the
+    support-free `ENNReal` equality
+
+    ```lean
+    InformationTheory.klDiv (p.map T).toMeasure (q.map T).toMeasure =
+      InformationTheory.klDiv p.toMeasure q.toMeasure
+    ```
+
+    by specializing `klDiv_channel_eq_of_common_recovery` to
+    `PMF.deterministicChannel T`. The guarded Step 16 iff theorem already gives
+    the finite-support-facing characterization, while a caller with recovery
+    hypotheses but no `p.support subset q.support` can currently invoke and
+    simplify the channel theorem directly. Add a public theorem provisionally
+    shaped like `klDiv_map_eq_of_common_recovery` only if a later consumer
+    repeats that specialization or finds the channel-facing invocation
+    materially awkward. Keep it in `Sufficiency.KL`, preserve the existing iff
+    family, and audit the final name under Note 14. Do not automatically add a
+    `toReal` companion: applying `toReal` to the `ENNReal` equality is formally
+    valid, but without a finiteness guard an equality arising from `top = top`
+    has little real-valued information-theoretic content.
+
+    Chunk 4 Step 17 does not trigger either promotion. Its family-channel proof
+    starts from `IsSufficientChannel`'s full-joint recovery equations and calls
+    `klDiv_channel_eq_of_common_recovery`; it does not restate or repeat the
+    private marginal-recovery DPI sandwich. The deterministic theorem starts
+    from the public family predicate `IsSufficientStatistic`, as required by
+    the active integration plan, rather than exposing a new pairwise
+    `klDiv_map_eq_of_common_recovery` convenience. No generic marginal theorem,
+    pairwise deterministic-recovery wrapper, or real companion is added, so
+    both proof-pressure triggers remain unmet.
+
+    Chunk 4 Step 18 deliberately separates the two contracts in examples. The
+    positive KL declaration starts from public family sufficiency, while the
+    marginal-only counterexample proves no KL equality and supplies no generic
+    common bind-recovery consumer. It also does not specialize the Step 15
+    theorem directly from pairwise graph-recovery hypotheses. Neither the
+    generic marginal-recovery theorem nor the deterministic convenience is
+    justified.
+
+    Chunk 4 Step 19's call-site review found no independent common-bind-
+    recovery consumer and no repeated deterministic specialization. The
+    sufficiency-facing full-joint theorem remains the correct public surface;
+    both generic convenience triggers stay unmet.
+
+    Chunk 4 Step 20 adds no theorem proof or independent recovery consumer.
+    The full milestone consumers use the existing sufficiency-facing surface,
+    so neither the generic marginal-recovery theorem nor the deterministic
+    convenience crosses its promotion threshold.

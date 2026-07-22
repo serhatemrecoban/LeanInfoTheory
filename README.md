@@ -167,9 +167,61 @@ when they stabilize.
   milestone targets, regenerated both public reference sets, passed the website,
   root-isolation, consumer, and repository-hygiene checks, and left the
   lightweight root unchanged.
-- Future Work Note 29 is the next Project B mathematical planning anchor:
-  design a focused sufficient-statistics and recovery-equality phase first,
-  then plan Fano separately. No post-Chunk-3 theorem plan is active yet.
+- The revised 20-step Project B Chunk 4 plan governed by Future Work Note 29 is
+  complete. It develops finite sufficient statistics, exact recovery, and
+  guarded KL equality.
+  `isMarkovChainOf_comp` gives the type-generic
+  deterministic forward chain, while `condEntropyOf_dataProcessing_eq_iff`
+  supplies its entropy-facing equality characterization and
+  `condEntropy_dataProcessing_eq_iff` is the pressure-justified PMF companion.
+  The new opt-in
+  `SemanticBridge.Sufficiency` core now defines the fixed-prior predicate and
+  induced triple law and characterizes it through reverse Markov, zero CMI, MI
+  preservation, conditional-entropy preservation, and one-channel full-joint
+  recovery. Marginal recovery is exposed only as a one-way consequence. The
+  family-level `IsSufficientChannel` predicate now requires one common recovery
+  channel for every model law, and `IsSufficientStatistic` is its deterministic
+  specialization. Family sufficiency is now characterized by one common
+  posterior on every supported output fiber, with null fibers unconstrained;
+  the identity statistic is sufficient for every model family. One common
+  recovery channel now yields reverse Markov structure, zero CMI, mutual-
+  information preservation, and conditional-entropy preservation under every
+  parameter prior. Conversely, reverse Markov structure under one full-support
+  prior already characterizes family sufficiency; finite nonempty parameter
+  alphabets therefore admit the standard all-priors channel and deterministic-
+  statistic equivalences. The permanent opt-in
+  `Examples.SufficientStatistics` module now validates a genuinely noninjective
+  sufficient statistic, a non-sufficient constant statistic, and the marginal-
+  recovery false positive while exercising the fixed-prior, family, exact-
+  recovery, all-prior, Fisher-Neyman, and KL-equality surfaces. The finite
+  Fisher-Neyman theorem now characterizes
+  deterministic family sufficiency by a parameter/statistic factor and one
+  parameter-independent observation factor, using finite `ENNReal` values and
+  private fiber normalization. The downstream data-processing layer retains
+  `klDiv_channel_eq_iff_posterior_ae_eq` as its measure-level bridge and now
+  exposes `klDiv_channel_eq_iff_posterior_eq_on_support` as the primary finite
+  form: equality in KL data processing is exactly equality of posterior PMFs
+  on every output atom reached by the first law. Its guarded real-valued
+  companion has the same pointwise criterion. The new downstream
+  `SemanticBridge.Sufficiency.KL` module proves
+  `klDiv_channel_eq_of_common_recovery`: one channel that exactly recovers the
+  complete output-input joint laws for two inputs preserves their `ENNReal` KL
+  divergence, with no support guard. Under input support inclusion, the same
+  module now characterizes both `ENNReal` and real KL equality by existence of
+  one such recovery channel, with map-facing deterministic-statistic forms.
+  Family sufficiency now preserves `ENNReal` KL divergence between every pair
+  of model laws, with a direct deterministic-statistic specialization. For a
+  Boolean-indexed two-law model under directed support inclusion, that one KL
+  equality also characterizes channel or statistic sufficiency; no larger-
+  family converse from unrelated pairwise witnesses is claimed.
+  Step 19 retained every public name, simp rule, and module boundary after the
+  permanent examples and import probes, and completed the textbook-facing
+  source documentation. Step 20 passed the complete ten-target build suite,
+  guarded boundary consumers, representative axiom checks, both source-derived
+  generators, the website checker, and repository hygiene. The lightweight
+  sufficiency core and root remain unchanged. Fano is the next separately
+  planned Project B phase, and Future Work Note 39 defers canonical/minimal
+  sufficiency and larger iid examples.
 
 ## Lean Modules
 
@@ -228,18 +280,43 @@ when they stabilize.
   factorization converses, the exact PMF/random-variable information-loss chain
   rules, data-processing and equality theorems, and one-sided, two-sided,
   cascade, and deterministic channel-facing consequences.
+- `LeanInfoTheory.Shannon.SemanticBridge.Sufficiency`: lightweight opt-in
+  sufficient-statistics core. It imports the Markov layer but not the
+  kernel/KL data-processing layer, defines fixed-prior sufficiency through
+  `IsSufficientStatisticOf`, and records the complete induced
+  parameter-statistic-observation law as `statisticTripleLawOf`. The predicate
+  is characterized equivalently by reverse Markov structure, zero conditional
+  mutual information, mutual-information preservation, and conditional-
+  entropy preservation. It is also equivalent to exact reconstruction of the
+  complete induced law by one channel from statistic values to observations;
+  observation-marginal recovery is retained only as a consequence. At model-
+  family level, `IsSufficientChannel` asks one shared recovery channel to
+  reconstruct every complete output-input joint law, while
+  `IsSufficientStatistic` specializes this contract to deterministic channels.
+  The identity statistic is sufficient for every model family. Common family
+  recovery also implies reverse Markov structure, zero CMI, mutual-information
+  preservation, and conditional-entropy preservation for every parameter
+  prior.
 - `LeanInfoTheory.Shannon.SemanticBridge.DataProcessing`: opt-in bridge from
   raw PMF-valued channels to mathlib Markov kernels. It provides
   `pmfChannelKernel`, its Markov-kernel instance, and
   `channelJoint_toMeasure`, which identifies the induced PMF joint law with
   mathlib's measure-kernel composition product. It also provides the total
-  `channelPosterior`, PMF-level joint reconstruction, and the exact
+  `channelPosterior`, PMF-level joint reconstruction, the supported common-
+  posterior characterization of `IsSufficientChannel`, and the exact
   `klDiv_channel_eq_add_posterior` identity. It exposes KL contraction through
   a common channel in unconditional `ENNReal` and support-guarded real forms,
   together with deterministic-map and channel-cascade specializations. It also
   gives invariant-reference contraction and entropy growth under uniform-
   preserving and doubly stochastic channels, without changing the lightweight
   root.
+- `LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL`: downstream opt-in KL
+  integration for exact recovery. It imports `DataProcessing`, leaves the
+  lightweight sufficiency core untouched, and proves pairwise `ENNReal` KL
+  preservation from one channel that exactly recovers both complete output-
+  input joint laws. Under input support inclusion it gives the converse for
+  `ENNReal` and real KL equality, plus deterministic-map specializations stated
+  with graph pushforwards.
 - `LeanInfoTheory.Shannon.SemanticBridge`: separated heavier bridge layer;
   contains finite entropy as expected self-information, finite conditional-law
   formulas, PMF support characterizations of absolute continuity and KL
@@ -295,6 +372,9 @@ when they stabilize.
 - `LeanInfoTheory.Examples.StochasticChannels`: opt-in reset-channel examples
   exercising strict entropy growth, invariant-reference KL contraction, and
   source-versus-intermediate support conditions for channel cascades.
+- `LeanInfoTheory.Examples.SufficientStatistics`: opt-in finite experiments
+  exercising fixed-prior and family sufficiency, exact recovery, all-prior and
+  Fisher-Neyman characterizations, KL preservation, and recovery failure modes.
 - `LeanInfoTheory.Examples`: aggregate for the semantic examples above and the
   original toy certificate examples.
 
@@ -322,17 +402,18 @@ Import heavier or demonstrational modules explicitly:
   `LeanInfoTheory.Certificate.Subadditivity`,
   `LeanInfoTheory.Certificate.Monotonicity`,
   `LeanInfoTheory.Certificate.ThreeWaySubadditivity`, and
-  `LeanInfoTheory.Examples` for demos and examples. The four semantic example
+  `LeanInfoTheory.Examples` for demos and examples. The five semantic example
   modules may also be imported individually.
 
 ## Roadmap
 
-1. Preserve the completed Project B Chunk 3 finite stochastic-channel, Markov,
-   MI/KL data-processing, invariant-law, and entropy-consequence APIs as a clean
-   milestone while the next theorem phase is planned separately.
-2. Use Future Work Note 29 as the next Project B planning anchor: design the
-   sufficient-statistics and recovery-equality phase first, then plan Fano as
-   its own phase once that API is stable.
+1. Plan the focused finite Fano phase from Future Work Note 29 on top of the
+   completed sufficient-statistics, exact-recovery, and guarded KL-equality
+   layer, without folding in a full coding theorem.
+2. Keep the sufficiency core lightweight and place KL integration downstream;
+   retain exact full-joint recovery as the contract established by the
+   completed midpoint tests, including rejection of marginal-only false
+   positives and unguarded null-fiber posterior equality.
 3. Return to Project A by extending the checked-certificate path and certifying
    recognizable information-theoretic converse steps on top of that foundation.
 4. Add richer certificate assumptions such as independence, Markov, and

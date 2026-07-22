@@ -7,8 +7,8 @@
     "Certificate layer",
     "Reference anchors"
   ],
-  "local_edge_count": 52,
-  "module_count": 33,
+  "local_edge_count": 59,
+  "module_count": 36,
   "modules": [
     {
       "external_imports": [],
@@ -123,12 +123,14 @@
         "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
         "LeanInfoTheory.Shannon.SemanticBridge.Independence",
         "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+        "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+        "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
         "LeanInfoTheory.Shannon.SemanticBridge.Theorems"
       ],
       "name": "LeanInfoTheory.Shannon.SemanticBridge",
       "path": "LeanInfoTheory/Shannon/SemanticBridge.lean",
       "root_reachable": false,
-      "summary": "Aggregate entry point for finite semantic, KL, independence, Markov, and data-processing bridges."
+      "summary": "Aggregate entry point for finite semantic, KL, independence, Markov, sufficiency, data-processing, and recovery bridges."
     },
     {
       "external_imports": [
@@ -145,16 +147,18 @@
     },
     {
       "external_imports": [
-        "Mathlib.InformationTheory.KullbackLeibler.ChainRule"
+        "Mathlib.InformationTheory.KullbackLeibler.ChainRule",
+        "Mathlib.Probability.Kernel.CompProdEqIff"
       ],
       "layer": "Semantic bridge layer",
       "local_imports": [
-        "LeanInfoTheory.Shannon.SemanticBridge.Markov"
+        "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+        "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency"
       ],
       "name": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
       "path": "LeanInfoTheory/Shannon/SemanticBridge/DataProcessing.lean",
       "root_reachable": false,
-      "summary": "Finite KL channel contraction, invariant-law consequences, and doubly stochastic entropy growth."
+      "summary": "Finite channel posteriors, supported sufficiency, KL data processing and equality, and entropy-growth consequences."
     },
     {
       "external_imports": [],
@@ -222,6 +226,28 @@
       "path": "LeanInfoTheory/Shannon/SemanticBridge/Product.lean",
       "root_reachable": false,
       "summary": "Independent-product PMFs, product-measure semantics, support formulas, and absolute-continuity facts."
+    },
+    {
+      "external_imports": [],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.Markov"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Sufficiency.lean",
+      "root_reachable": false,
+      "summary": "Fixed-prior and model-family sufficiency, common recovery, and full-support/all-prior characterizations."
+    },
+    {
+      "external_imports": [],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Sufficiency/KL.lean",
+      "root_reachable": false,
+      "summary": "Pairwise KL preservation and guarded equality characterizations through common exact recovery."
     },
     {
       "external_imports": [],
@@ -361,6 +387,7 @@
         "LeanInfoTheory.Examples.CommonCause",
         "LeanInfoTheory.Examples.KLTop",
         "LeanInfoTheory.Examples.StochasticChannels",
+        "LeanInfoTheory.Examples.SufficientStatistics",
         "LeanInfoTheory.Examples.SupportSensitive",
         "LeanInfoTheory.PrimitiveIneq"
       ],
@@ -407,6 +434,17 @@
       "external_imports": [],
       "layer": "Reference anchors",
       "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL"
+      ],
+      "name": "LeanInfoTheory.Examples.SufficientStatistics",
+      "path": "LeanInfoTheory/Examples/SufficientStatistics.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Reference anchors",
+      "local_imports": [
         "LeanInfoTheory.Shannon.EntropyBounds",
         "LeanInfoTheory.Shannon.SemanticBridge.Theorems"
       ],
@@ -434,5 +472,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 11,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 22
+  "separate_import_count": 25
 }

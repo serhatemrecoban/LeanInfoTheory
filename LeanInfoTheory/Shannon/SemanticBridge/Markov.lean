@@ -294,6 +294,33 @@ theorem isMarkovChain_channelExtension
   ac_rfl
 
 /--
+Deterministic post-processing of the middle variable always gives the forward
+Markov chain `X → Y → f(Y)`.
+
+Equivalently, `X` and `f(Y)` are conditionally independent given `Y`:
+`X ⟂ f(Y) | Y`.
+-/
+theorem isMarkovChainOf_comp
+    {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
+    (p : PMF omega) (X : omega → alpha) (Y : omega → beta)
+    (f : beta → gamma) :
+    IsMarkovChainOf p X Y (fun omega => f (Y omega)) := by
+  let q : PMF (alpha × beta) := p.map fun omega => (X omega, Y omega)
+  have htriple :
+      p.map (fun omega => (X omega, Y omega, f (Y omega))) =
+        PMF.channelExtension q (PMF.deterministicChannel f) := by
+    rw [PMF.channelExtension_deterministicChannel]
+    dsimp [q]
+    rw [PMF.map_comp]
+    rfl
+  have hmarkov :
+      IsMarkovChain (p.map fun omega => (X omega, Y omega, f (Y omega))) := by
+    rw [htriple]
+    exact isMarkovChain_channelExtension _ _
+  simpa [IsMarkovChain, IsMarkovChainOf, IsCondIndependentOf,
+    PMF.map_comp, Function.comp_def] using hmarkov
+
+/--
 A finite triple law is Markov exactly when its first-two marginal, extended by
 the total conditional channel `P_{C | B}` extracted from its second-third
 marginal, reconstructs the original law.
@@ -556,6 +583,42 @@ theorem mutualInfo_dataProcessing_eq_iff
   change mutualInfoOf p (fun x => x.1) (fun x => x.2.2) =
       mutualInfoOf p (fun x => x.1) (fun x => x.2.1) ↔ _
   exact mutualInfoOf_dataProcessing_eq_iff p _ _ _ hp
+
+/--
+Under the forward chain `X -> Y -> Z`, equality in conditional-entropy data
+processing holds exactly when the reverse chain `X -> Z -> Y` is also Markov.
+Equivalently, `X` and `Y` are conditionally independent given `Z`,
+`X ⟂ Y | Z`; in this sense, `Z` retains all information about `X` carried by
+`Y`.
+-/
+theorem condEntropyOf_dataProcessing_eq_iff
+    {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
+    [Fintype alpha] [Fintype beta] [Fintype gamma]
+    (p : PMF omega) (X : omega → alpha) (Y : omega → beta)
+    (Z : omega → gamma) (hp : IsMarkovChainOf p X Y Z) :
+    condEntropyOf p X Y = condEntropyOf p X Z ↔
+      IsMarkovChainOf p X Z Y := by
+  rw [← mutualInfoOf_dataProcessing_eq_iff p X Y Z hp,
+    mutualInfoOf_eq_entropyOf_sub_condEntropyOf,
+    mutualInfoOf_eq_entropyOf_sub_condEntropyOf,
+    sub_right_inj]
+  exact eq_comm
+
+/--
+For a Markov triple law, equality in conditional-entropy data processing holds
+exactly when its first, third, and second coordinate variables form the reverse
+Markov chain.
+-/
+theorem condEntropy_dataProcessing_eq_iff
+    {alpha : Type u} {beta : Type v} {gamma : Type w}
+    [Fintype alpha] [Fintype beta] [Fintype gamma]
+    (p : PMF (alpha × beta × gamma)) (hp : IsMarkovChain p) :
+    condEntropy (fstSndMarginal p) = condEntropy (fstThirdMarginal p) ↔
+      IsMarkovChainOf p (fun x => x.1) (fun x => x.2.2)
+        (fun x => x.2.1) := by
+  change condEntropyOf p (fun x => x.1) (fun x => x.2.1) =
+      condEntropyOf p (fun x => x.1) (fun x => x.2.2) ↔ _
+  exact condEntropyOf_dataProcessing_eq_iff p _ _ _ hp
 
 /-! ## Channel-facing mutual-information processing -/
 
