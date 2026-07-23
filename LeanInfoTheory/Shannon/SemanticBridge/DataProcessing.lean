@@ -57,6 +57,7 @@ def pmfChannelKernel
     (W : alpha -> PMF beta) : Kernel alpha beta :=
   Kernel.ofFunOfCountable fun a => (W a).toMeasure
 
+/-- A PMF-valued channel induces a Markov kernel through `pmfChannelKernel`. -/
 instance pmfChannelKernel.instIsMarkovKernel
     {alpha : Type u} {beta : Type v}
     [MeasurableSpace alpha] [Countable alpha] [MeasurableSingletonClass alpha]

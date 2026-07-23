@@ -125,7 +125,7 @@ theorem klDiv_cascade_contracts :
         (rightLaw.bind averagingChannel).toMeasure :=
   klDiv_channel_cascade_le leftLaw rightLaw averagingChannel biasedReset
 
-/-
+/--
 The one-stage theorem gives the weaker intermediate-support real cascade
 contract directly, without requiring another public cascade declaration.
 -/

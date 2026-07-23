@@ -5522,6 +5522,49 @@ This closes all 20 Chunk 4 steps and forms the coherent
 `Complete Project B Chunk 4` checkpoint without starting Fano or any later
 sufficiency extension.
 
+### 135. Post-Chunk 4 Handoff Cleanup
+
+Step 3 of the four-step post-Chunk 4 cleanup was completed on July 23, 2026.
+The maintained current-state header now records the Chunk 3 and Chunk 4
+checkpoint commits alongside the earlier milestones. Its new Chunk 5 handoff
+identifies the focused finite Fano phase governed by Future Work Note 29,
+including the intended error-event, binary/q-ary entropy, conditional-entropy,
+and uniform-message surfaces and the explicit later-work boundary. This is a
+scope handoff, not a locked execution plan, and no Fano declaration or module
+has been started.
+
+The two documentation gaps recorded at the Chunk 4 checkpoint were closed at
+their source declarations:
+`LeanInfoTheory.Shannon.pmfChannelKernel.instIsMarkovKernel` and
+`LeanInfoTheory.Examples.StochasticChannels.toReal_klDiv_cascade_contracts_from_intermediate`.
+Only doc comments changed; no declaration, theorem statement, proof, public
+name, alias, attribute, import, or module boundary changed. Regenerating the
+API index now reports 686 public declarations, all 686 documented, and the
+website checker passes for 12 HTML files and both generated JSON files.
+
+The focused builds for
+`LeanInfoTheory.Shannon.SemanticBridge.DataProcessing` (2747 jobs) and
+`LeanInfoTheory.Examples.StochasticChannels` (2749 jobs) pass. The complete
+ten-target milestone suite, final generator-idempotence and hygiene checks, and
+the cleanup checkpoint commit and push remained assigned to Step 4 at the end
+of this documentation step.
+
+The handoff review reconfirmed the standing Future Work boundaries. Note 14
+receives no new naming candidate or compatibility decision; Note 17 governs the
+remaining full verification; Note 29 remains active as the next mathematical
+phase; and Note 39 remains deferred to a later canonical/minimal-sufficiency
+milestone. No numbered Future Work item is opened or closed by this cleanup.
+
+Step 4 completed the assignment on July 23. Both source-derived generators are
+byte-for-byte idempotent, and the website checker passes for 12 HTML files and
+both generated JSON files. All ten Lake targets required by `AGENTS.md` pass:
+the lightweight root, entropy bounds, units, the semantic bridge aggregate,
+mathlib fragments, all four certificate references, and the examples
+aggregate. The final forbidden-placeholder, root-import, untracked-file,
+scratch/artifact, stale-process, generated-reference, and diff-hygiene audits
+also pass. This completes the cleanup and forms the coherent
+`Prepare Chunk 5 handoff` checkpoint.
+
 ## Completed Project B Chunk 4 Plan
 
 This completed theorem phase is a revised 20-step plan for finite sufficient
@@ -6835,6 +6878,11 @@ historical trigger records when a later paragraph records their resolution.
     decision table therefore remains unchanged and no naming item is reopened
     merely by the integration commit.
 
+    The July 23 post-Chunk 4 cleanup changes only maintained status text and
+    source doc comments. It adds no public declaration, name, or alias. The API
+    index now documents all 686 declarations, while the Step 19 decision table
+    and its evidence-based reopening rule remain unchanged.
+
 15. The Step 13 `[simp]` review for mutual information and conditional mutual
     information was completed on July 14, 2026. Local attributes were tested
     on representative PMF, random-variable, symmetry, diagonal/self, and
@@ -7187,6 +7235,18 @@ historical trigger records when a later paragraph records their resolution.
     boundaries, and the source-derived graph records all three new modules as
     non-root-reachable. Both generators and the website checker passed. This
     milestone-level verification item is closed without a cold rebuild.
+
+    During the July 23 post-Chunk 4 cleanup, the two touched-module builds and
+    the website checker passed. The complete ten-target suite, final generator
+    idempotence and hygiene checks, and checkpoint remained assigned to cleanup
+    Step 4 at the end of Step 3. This note continues to govern milestone
+    verification.
+
+    Cleanup Step 4 completed that assignment. Both generators are byte-for-byte
+    idempotent, the website checker passes, all ten required Lake targets pass,
+    and the final source, architecture, artifact, process, and diff-hygiene
+    audits pass. This closes the current checkpoint assignment while preserving
+    this note as the standing milestone-verification policy.
 
 18. Standing architecture guardrail: preserve the boundary between the
     completed pair/triple Chunk 1, the completed equality/independence Chunk 2,
@@ -8616,6 +8676,15 @@ historical trigger records when a later paragraph records their resolution.
     statistic and Fano phases remain the next downstream mathematical work
     after Chunk 3 integration.
 
+    The July 23 post-Chunk 4 handoff now identifies finite Fano as Chunk 5 and
+    records the intended error-event, binary/q-ary entropy,
+    conditional-entropy, weaker finite-alphabet, and uniform-message surfaces.
+    It also preserves the boundary against coding theorems, channel capacity,
+    stochastic-process infrastructure, finite-family certificate semantics,
+    and canonical/minimal sufficiency. No detailed execution plan is locked and
+    no Fano declaration or module has been started, so this note remains active
+    for the next planning phase.
+
 30. Keep the Step 5 total conditional-channel law surface minimal until later
     proofs create a concrete need for a more abstract null-fiber theorem. The
     current atomwise result
@@ -9456,6 +9525,12 @@ historical trigger records when a later paragraph records their resolution.
     for a future canonical/minimal-sufficiency plan, but Fano and other already
     sequenced Chapter 2 work may proceed independently. This note remains a
     later focused milestone, not immediate integration cleanup.
+
+    The July 23 handoff review does not activate this work. It introduces no
+    statistic-comparison order, support-union quotient, canonical
+    representative, iid/count-statistic family, or measurable extension.
+    Canonical and minimal sufficiency remain deferred to their own later
+    milestone while Chunk 5 proceeds with finite Fano.
 
 40. Keep a general common-marginal-recovery KL preservation theorem out of the
     public API until a consumer independent of statistical sufficiency needs

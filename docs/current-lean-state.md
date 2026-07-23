@@ -1,8 +1,10 @@
 # Current Lean State
 
-Last milestone checkpoint: July 16, 2026. Project B Chunk 1 was committed as
-`7ab3aa0`, and Project B Chunk 2 was checkpointed as `e5e9825` after passing its full
-milestone build/check suite. All 18 Chunk 2 steps are finished. The chunk began
+Last milestone checkpoint: July 22, 2026. Project B Chunk 1 was committed as
+`7ab3aa0`, Chunk 2 as `e5e9825`, Chunk 3 as `a5cc9e9`, and Chunk 4 as
+`f990f2e`. Each completed chunk passed its full milestone build/check suite.
+
+Project B Chunk 2 is complete. All 18 steps are finished. The chunk began
 from the clean Chunk 1 checkpoint, its new theorem contracts were validated by
 temporary
 no-placeholder Lean proofs, and the finite KL support, equality, and
@@ -127,6 +129,24 @@ guarded consumer, axiom, generated-reference, website, and hygiene suites pass.
 Fano is the next separately planned Project B phase, while
 canonical/minimal sufficiency and larger iid examples are deferred by Future
 Work Note 39.
+
+## Next Project B Phase: Chunk 5
+
+Chunk 5 is the focused finite Fano phase sequenced by Future Work Note 29. Its
+detailed execution plan has not yet been locked. The intended mathematical
+surface is:
+
+- a finite decoder or estimator and its error event or indicator;
+- the binary- and q-ary-entropy bridges needed by the proof;
+- the standard conditional-entropy form of Fano's inequality in nats and its
+  weaker finite-alphabet corollary;
+- the uniform-message error lower bound used by later converse arguments.
+
+This phase should reuse the completed conditional-entropy, Markov,
+data-processing, sufficiency, and recovery APIs. It should not expand into a
+full source- or channel-coding theorem, channel capacity, iterated or stationary
+channel processes, entropy rates, AEP or typicality, finite-family certificate
+semantics, or canonical/minimal sufficiency.
 
 This is a maintained status note for Lean-focused work. It summarizes the
 current architecture and the completed Chunk 3 and Chunk 4 theorem milestones.
