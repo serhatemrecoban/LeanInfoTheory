@@ -72,6 +72,12 @@ a:hover {
   color: rgba(255, 255, 255, 0.82);
 }
 
+.project-authors a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+}
+
 .project-links {
   display: block;
 }
