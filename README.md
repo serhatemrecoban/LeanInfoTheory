@@ -219,9 +219,9 @@ when they stabilize.
   source documentation. Step 20 passed the complete ten-target build suite,
   guarded boundary consumers, representative axiom checks, both source-derived
   generators, the website checker, and repository hygiene. The lightweight
-  sufficiency core and root remain unchanged. Fano is the next separately
-  planned Project B phase, and Future Work Note 39 defers canonical/minimal
-  sufficiency and larger iid examples.
+  sufficiency core and root remain unchanged. The approved 20-step finite-Fano
+  plan is the next Project B phase, with implementation not started; Future
+  Work Note 39 defers canonical/minimal sufficiency and larger iid examples.
 
 ## Lean Modules
 
@@ -407,9 +407,10 @@ Import heavier or demonstrational modules explicitly:
 
 ## Roadmap
 
-1. Plan the focused finite Fano phase from Future Work Note 29 on top of the
-   completed sufficient-statistics, exact-recovery, and guarded KL-equality
-   layer, without folding in a full coding theorem.
+1. Implement the [approved 20-step finite-Fano plan](docs/plans/chapter2-chunk-05.md)
+   one explicitly authorized step at a time on top of the completed
+   sufficient-statistics and recovery-equality layer, without folding in a full
+   coding theorem.
 2. Keep the sufficiency core lightweight and place KL integration downstream;
    retain exact full-joint recovery as the contract established by the
    completed midpoint tests, including rejection of marginal-only false

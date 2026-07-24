@@ -126,15 +126,15 @@ laws. Under directed support inclusion, either family predicate is equivalent
 to that equality for a Boolean-indexed two-law model. The lightweight
 sufficiency core and root remain unchanged. The complete ten-target build,
 guarded consumer, axiom, generated-reference, website, and hygiene suites pass.
-Fano is the next separately planned Project B phase, while
-canonical/minimal sufficiency and larger iid examples are deferred by Future
-Work Note 39.
+The approved 20-step finite-Fano plan is the next Project B phase, with all
+steps not started. Canonical/minimal sufficiency and larger iid examples are
+deferred by Future Work Note 39.
 
 ## Next Project B Phase: Chunk 5
 
 Chunk 5 is the focused finite Fano phase sequenced by Future Work Note 29. Its
-detailed execution plan has not yet been locked. The intended mathematical
-surface is:
+approved 20-step execution plan is `docs/plans/chapter2-chunk-05.md`; all steps
+remain not started. The intended mathematical surface is:
 
 - a finite decoder or estimator and its error event or indicator;
 - the binary- and q-ary-entropy bridges needed by the proof;
@@ -226,11 +226,13 @@ current architecture and the completed Chunk 3 and Chunk 4 theorem milestones.
   imports the lightweight sufficiency core directly, is imported by the
   semantic aggregate, and remains outside the lightweight root.
 - `LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL` is the downstream
-  exact-recovery/KL integration module. It imports `DataProcessing`, leaves the
-  lightweight sufficiency core free of kernel and KL imports, and proves
-  pairwise `ENNReal` KL preservation under one common exact recovery channel,
-  together with support-guarded `ENNReal`/real converses and deterministic-map
-  specializations.
+  exact-recovery/KL integration module. It imports `DataProcessing`, keeps the
+  posterior/kernel equality engine and recovery/KL theorems downstream of the
+  sufficiency core, and proves pairwise `ENNReal` KL preservation under one
+  common exact recovery channel, together with support-guarded `ENNReal`/real
+  converses and deterministic-map specializations. The core directly imports
+  only `Markov`, although that module's dependency closure already reaches the
+  generic `SemanticBridge.KL` layer.
 - `LeanInfoTheory.EntropyExpr`, `LeanInfoTheory.EntropyVal`, and
   `LeanInfoTheory.PrimitiveIneq` form the abstract entropy-expression and
   primitive Shannon inequality layer.
@@ -525,9 +527,9 @@ future work.
 2. The root import remains unchanged. Entropy bounds, semantic theorems, units,
    demos, and reference anchors remain separately importable where appropriate.
 3. Sufficient statistics and KL recovery equality are complete under Future
-   Work Note 29. Fano is the next separately planned Project B phase. Channel
-   processes, binary/q-ary bridges, canonical/minimal sufficiency, and finite-
-   family entropy remain later work.
+   Work Note 29. Fano has an approved 20-step plan and is the next Project B
+   phase, with implementation not started. Channel processes,
+   canonical/minimal sufficiency, and finite-family entropy remain later work.
 4. Continue using focused Lake builds during theorem development and the full
    suite at every milestone boundary.
 
@@ -797,10 +799,11 @@ completed Chunk 4 section of `docs/project-log.md`.
 - A temporary `DataProcessing` consumer exercises the common-posterior theorem
   and proves its support guard necessary: an individual model's null-fiber
   fallback differs from the common posterior fixed by the opposite model.
-- The core remains Markov-only, the posterior/KL layer remains downstream, and
-  a root-only probe rejects `IsSufficientChannel` as expected. No production
-  Lean declaration, alias, simp rule, helper, import edge, or root import was
-  added; all probes were deleted.
+- The core retains `Markov` as its only direct project import, the posterior/KL
+  layer remains downstream, and a root-only probe rejects
+  `IsSufficientChannel` as expected. No production Lean declaration, alias,
+  simp rule, helper, import edge, or root import was added; all probes were
+  deleted.
 - Focused builds pass for `Sufficiency` and `DataProcessing` with 2702 and 2715
   jobs, and the semantic aggregate/root build passes with 2725 jobs. Generated
   reference and graph counts remain unchanged.
@@ -868,8 +871,8 @@ completed Chunk 4 section of `docs/project-log.md`.
 
 - The new separately importable
   `LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL` module is downstream
-  of `DataProcessing`; the lightweight sufficiency core retains its Markov-only
-  import boundary.
+  of `DataProcessing`; the sufficiency core retains `Markov` as its only direct
+  project import.
 - `klDiv_channel_eq_of_common_recovery` takes two input laws and one recovery
   channel that reconstructs both complete swapped input-output joint laws. It
   proves equality in `ENNReal` KL data processing without support inclusion,
@@ -964,8 +967,8 @@ completed Chunk 4 section of `docs/project-log.md`.
   null fibers, full-support cancellation, common supported posteriors, and the
   separate Fisher-Neyman finiteness roles. No theorem statement, proof,
   definition, import, attribute, or public name changed.
-- The measured review retains `Sufficiency` as the Markov-only core,
-  `DataProcessing` as the posterior/kernel equality engine, and
+- The measured review retains `Markov` as `Sufficiency`'s only direct project
+  import, `DataProcessing` as the posterior/kernel equality engine, and
   `Sufficiency.KL` as the downstream recovery/KL integration layer. All remain
   outside the lightweight root.
 - Focused builds of those three modules and `Examples.SufficientStatistics`

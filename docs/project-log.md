@@ -5,117 +5,29 @@ detail. It is not meant to list every small command or proof attempt. It should
 help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
-## Current File Organization
+## Current Organization and Entry Points
 
-- `LeanInfoTheory.lean`: lightweight public library entry point. It imports
-  the stable finite-Shannon definitions and core certificate/checker modules,
-  but not examples, certificate demos, heavier analytic bounds, KL/coding
-  anchor files, or semantic bridge modules.
-- `LeanInfoTheory/Basic.lean`: small project-level definitions used by
-  documentation and examples.
-- `LeanInfoTheory/EntropyExpr.lean`: algebraic entropy-expression syntax for
-  certificate-style reasoning, with evaluation implemented through real
-  coefficient linear combinations.
-- `LeanInfoTheory/EntropyVal.lean`: abstract Shannon entropy valuations used
-  to state certificate-facing semantic assumptions independently of concrete
-  probability models.
-- `LeanInfoTheory/PrimitiveIneq.lean`: primitive Shannon inequality
-  expressions and their soundness theorems under abstract valuations.
-- `LeanInfoTheory/Certificate.lean`: certificate primitives, exact
-  decomposition matching, and soundness scaffolding for entropy inequalities.
-- `LeanInfoTheory/Certificate/Checked.lean`: raw certificates, a first
-  raw-to-checked validator, and proof-carrying checked certificates for
-  primitive Shannon ingredients using nonnegative rational coefficients and
-  exact decomposition equality.
-- `LeanInfoTheory/Certificate/Submodularity.lean`: separately importable first
-  non-toy certificate demonstration, proving entropy submodularity from a
-  validated conditional-mutual-information certificate.
-- `LeanInfoTheory/Certificate/Subadditivity.lean`: separately importable
-  checked certificate demonstration, proving entropy subadditivity through a
-  two-step primitive certificate.
-- `LeanInfoTheory/Certificate/Monotonicity.lean`: separately importable
-  checked certificate demonstration, proving one-variable entropy monotonicity
-  from the conditional-entropy primitive.
-- `LeanInfoTheory/Certificate/ThreeWaySubadditivity.lean`: separately
-  importable manual certificate pressure-test module for a larger
-  entropy-subadditivity example.
-- `LeanInfoTheory/Examples.lean`: separately importable small examples that
-  exercise the current API.
-- `LeanInfoTheory/InformationMeasures.lean`: compatibility/re-export module for
-  the finite Shannon definitions.
-- `LeanInfoTheory/MathlibFragments.lean`: heavier mathlib anchors we expect to
-  connect to later, such as KL divergence, KL chain rules, binary/q-ary
-  entropy, and Kraft-McMillan. This module is separately importable and should
-  not be treated as part of the lightweight foundation import surface.
-- `LeanInfoTheory/Probability/Finite.lean`: finite `PMF` real-mass bridge
-  lemmas and reusable pointwise `PMF.map` facts, kept in the `PMF` namespace
-  and deliberately small.
-- `LeanInfoTheory/Shannon/Entropy.lean`: finite Shannon entropy, entropy of
-  finite-valued random variables via `PMF.map`, and first entropy sanity
-  theorems such as relabeling invariance.
-- `LeanInfoTheory/Shannon/EntropyBounds.lean`: Jensen-based finite entropy
-  upper bounds. This imports convexity/Jensen tools separately so the core
-  entropy definition file remains lightweight.
-- `LeanInfoTheory/Shannon/InfoMeasures.lean`: marginals, conditional entropy,
-  mutual information, conditional mutual information, and basic rewrite lemmas.
-- `LeanInfoTheory/Shannon/SemanticBridge.lean`: heavier bridge entry point for
-  self-information, KL-divergence, finite conditional laws, averaged
-  conditional-KL, semantic nonnegativity, and chain-rule theorems. It proves
-  the entropy/self-information bridge over `PMF.toMeasure` and imports the
-  semantic bridge subfiles.
-- `LeanInfoTheory/Shannon/SemanticBridge/Product.lean`: independent-product
-  PMF infrastructure, product-measure semantics, marginal recovery, support
-  formulas, and joint-law absolute-continuity facts.
-- `LeanInfoTheory/Shannon/SemanticBridge/FiniteSums.lean`: reusable finite
-  real-sum rewrites for marginals, entropy, and the log-ratio formula
-  `I(A;B) = sum p(a,b) log (p(a,b)/(p_A(a)p_B(b)))`.
-- `LeanInfoTheory/Shannon/SemanticBridge/KL.lean`: finite PMF density and KL
-  bridge theorems, including
-  `mutualInfo_eq_toReal_klDiv_joint_indepProd` and the product-measure form
-  `mutualInfo_eq_toReal_klDiv_joint_prod_marginals`. It also contains the
-  averaged conditional-KL bridge for finite conditional mutual information.
-- `LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean`: finite
-  conditional-law API. It defines `condFstGivenSnd p b hb`, the conditional
-  PMF `P_{A | B=b}` on nonzero conditioning atoms, plus factorization and
-  support lemmas. It also proves
-  `condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd`, identifying
-  finite `condEntropy` with expected entropy of the conditional fibers, and
-  `condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThird`,
-  identifying finite `condMutualInfo` with expected fiber mutual information.
-- `LeanInfoTheory/Shannon/SemanticBridge/Theorems.lean`: user-facing semantic
-  theorem API built from the bridge layer, including nonnegativity,
-  mutual-information chain-rule variants, random-variable forms, and
-  conditioning-reduces-entropy.
-- `LeanInfoTheory/Shannon/SemanticBridge/Independence.lean`: separately
-  importable PMF and random-variable independence predicates, their mathlib
-  bridge and equality characterizations, together with the positive-fiber
-  zero-MI extraction, proof-independent conditional-independence predicates,
-  and their positive-fiber conditional-law characterization.
-- `blueprint/`: project-map notes for theorem dependencies and future
-  generated blueprint pages.
-- `docs/`: human-facing design notes, roadmap notes, foundation conventions,
-  external review notes, and this project log.
-- `home_page/`: static website files for the project site, including the
-  homepage dashboard, theorem highlights, module guide, submodularity demo,
-  development guide, prior-art note, roadmap, documentation landing page, and
-  generated module-level blueprint/dependency pages.
-- `scripts/generate_website_blueprint.py`: stdlib-only generator for the
-  website module-dependency map. It parses local Lean `import` lines, computes
-  the current module dependency map, and writes
-  `home_page/blueprint/dep_graph_document.html` plus
-  `home_page/blueprint/module_graph.json`.
-- `scripts/generate_website_api_index.py`: stdlib-only generator for the
-  source-derived declaration index. It scans public declaration starters and
-  nearby Lean doc comments, then writes `home_page/docs/api-index.html` plus
-  `home_page/docs/declaration_index.json`.
-- `scripts/check_website.py`: stdlib-only static website checker. It validates
-  the generated JSON files and local links under `home_page/`.
-- `.github/workflows/`: CI, docs, release, and update workflows. The Lean CI
-  checks that the generated module-dependency map is current, builds the
-  lightweight root, and explicitly builds separately importable
-  theorem/demo/reference modules.
-- `tmp/`, `.lake/`, and `info theory e-books/`: local working/reference
-  material that should remain outside the repository.
+The canonical current module and API architecture is maintained in
+[Section 7 of the living summary](lean-info-theory-living-summary.md#7-current-lean-module-and-api-architecture).
+Use the current Lean imports and successful builds to resolve implementation
+facts; this chronological log should not duplicate a full module inventory.
+
+Stable entry points are:
+
+- `LeanInfoTheory.lean`: the lightweight root for finite Shannon definitions
+  and the core certificate/checker layer;
+- `LeanInfoTheory.InformationMeasures`: the finite information-measure
+  convenience re-export;
+- `LeanInfoTheory.Shannon.SemanticBridge`: the opt-in semantic aggregate, with
+  focused submodules remaining separately importable;
+- `LeanInfoTheory.Examples`: the opt-in example aggregate, while certificate
+  demonstrations and `MathlibFragments` remain separate imports.
+
+For source-derived current inventories, consult the
+[module graph](../home_page/blueprint/module_graph.json) and
+[declaration index](../home_page/docs/declaration_index.json). The repository
+layout, validation commands, and local-reference policy are summarized in
+`AGENTS.md` and the living summary.
 
 ## Step-by-Step Summary
 
@@ -5565,6 +5477,37 @@ scratch/artifact, stale-process, generated-reference, and diff-hygiene audits
 also pass. This completes the cleanup and forms the coherent
 `Prepare Chunk 5 handoff` checkpoint.
 
+### 136. Project-Memory Consolidation
+
+On July 23, 2026, the pre-roadmap and Project B Chunks 1-4 histories were
+reconciled against the current Lean source, successful builds, Git history,
+maintained documentation, generated indexes, and inherited handoff reports.
+The resulting canonical cross-thread context is
+`docs/lean-info-theory-living-summary.md`; it records current coverage,
+architecture, rationale, validation state, and a normalized future-work
+register that distinguishes immediate, standing, deferred, partially
+discharged, and closed items without rewriting the underlying numbered notes.
+
+The root `AGENTS.md` now directs future assistant threads to that canonical
+context and records stable startup, authority, architecture, proof-integrity,
+chunk-workflow, ownership, targeted-reading, and validation rules. This
+consolidation changes no Lean declaration or theorem status and does not begin
+Fano. The repository is ready for a separately reviewed Chapter 2 Chunk 5
+planning phase.
+
+A July 24 adversarial follow-up corrected import-boundary wording, removed
+duplicated architecture and coverage accounting, normalized future-work
+classification, and hardened the PowerShell placeholder check. Its independent
+closeout passed the current-facing declaration/path audits, generated-reference
+idempotence and website checks, the strict placeholder scan, and the maintained
+ten-target build with 2,776 jobs. It changed no Lean source or theorem status;
+`217e35c` remains the validated Lean/source baseline for this documentation
+checkpoint.
+
+The approved 20-step Chunk 5 plan now lives at
+`docs/plans/chapter2-chunk-05.md`; every step remains not started. Recording
+that plan here does not begin Fano implementation.
+
 ## Completed Project B Chunk 4 Plan
 
 This completed theorem phase is a revised 20-step plan for finite sufficient
@@ -5913,8 +5856,9 @@ the guarded Boolean-family converse. The new opt-in
 `Examples.SufficientStatistics` module exercises the completed surface while
 preserving root isolation. The complete build, generated-reference, website,
 consumer, root-isolation, axiom, and hygiene suites pass, and the milestone is
-ready for its coherent checkpoint. Fano remains the next separately planned
-mathematical phase under Note 29. Finite-family entropy, richer certificate
+ready for its coherent checkpoint. The approved 20-step finite-Fano plan is
+the next mathematical phase under Note 29, with every step not started.
+Finite-family entropy, richer certificate
 assumptions, external certificate import, coding-theory layers, theorem-level
 blueprint work, and substantial mathlib PR preparation remain later work.
 
@@ -5923,7 +5867,7 @@ blueprint work, and substantial mathlib PR preparation remain later work.
 | Status | Notes | Meaning |
 | --- | --- | --- |
 | Standing guardrails | 2-4, 6-8, 14-18, 26 | Apply these policies continuously; they do not create standalone cleanup tasks. |
-| Project B sequence | 29 | Chunk 4 sufficient statistics and recovery are complete; Fano is the next separately planned mathematical phase. |
+| Project B sequence | 29 | Chunk 4 sufficient statistics and recovery are complete; the approved 20-step Fano plan is next, with every step not started. |
 | Channel/Markov proof-pressure | 21, 25, 27 | Revisit these only when concrete channel, Markov, or data-processing consumers reach their stated triggers. |
 | Proof-pressure deferred | 19, 22-24, 30-37, 40 | Wait for the repeated proof or new statement pressure specified in each note. |
 | Later milestones | 1, 5, 9-13, 28, 38-39 | Schedule these in their own later mathematical, documentation, example, certificate, or coding phases. |
@@ -8684,6 +8628,11 @@ historical trigger records when a later paragraph records their resolution.
     and canonical/minimal sufficiency. No detailed execution plan is locked and
     no Fano declaration or module has been started, so this note remains active
     for the next planning phase.
+
+    On July 24, 2026, the decision-complete 20-step plan was approved at
+    `docs/plans/chapter2-chunk-05.md`. This supersedes only the planning-status
+    sentence above: all earlier scope boundaries remain active, every plan step
+    is not started, and no Fano declaration or module exists.
 
 30. Keep the Step 5 total conditional-channel law surface minimal until later
     proofs create a concrete need for a more abstract null-fiber theorem. The

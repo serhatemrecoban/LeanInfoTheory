@@ -54,11 +54,11 @@ highlights, and module guide record what is implemented now.
 - The revised 20-step Project B Chunk 4 plan under Future Work Note 29 is
   complete. It develops finite sufficient statistics, exact full-joint recovery,
   every-prior characterizations, finite Fisher-Neyman factorization, and
-  guarded KL data-processing equality while keeping the core sufficiency
-  module upstream of heavier KL imports. All 20 steps are complete, and
-  the opt-in sufficiency core now owns the fixed-prior predicate, induced law,
-  first equivalence band, exact full-joint recovery characterization, and the
-  family channel predicate with its deterministic specialization. Common
+  guarded KL data-processing equality while keeping posterior/kernel equality
+  and recovery/KL integration in downstream modules. All 20 steps are complete,
+  and the opt-in sufficiency core now owns the fixed-prior predicate, induced
+  law, first equivalence band, exact full-joint recovery characterization, and
+  the family channel predicate with its deterministic specialization. Common
   family recovery now gives every-prior reverse Markov structure, zero
   conditional mutual information, mutual-information preservation, and
   conditional-entropy preservation. One full-support prior now gives the
@@ -87,10 +87,10 @@ highlights, and module guide record what is implemented now.
   the source documentation checklist. Step 20 passed the full ten-target build,
   guarded consumer, root-isolation, axiom, generated-reference, website, and
   hygiene suites.
-- Fano is the next separately planned Project B phase after Chunk 4. Future
-  Work Note 39 defers canonical/minimal sufficiency, general measurable
-  sufficiency, and a larger iid count-statistic development until a later
-  focused milestone.
+- The approved 20-step [finite-Fano plan](plans/chapter2-chunk-05.md) is the
+  next Project B phase after Chunk 4; all steps remain not started. Future Work
+  Note 39 defers canonical/minimal sufficiency, general measurable sufficiency,
+  and a larger iid count-statistic development until a later focused milestone.
 - Maintain project notes in the foundation conventions and project log.
 - Keep the lightweight finite API separated from heavier KL and coding imports.
 
@@ -103,9 +103,9 @@ highlights, and module guide record what is implemented now.
   orientation page.
 - Link generated docs and blueprint entries back to the curated theorem
   highlights and submodularity demo page.
-- Plan the focused finite Fano phase on top of the completed sufficient-
-  statistics and recovery-equality API, without folding in a full coding
-  theorem.
+- Implement the approved finite-Fano plan one explicitly authorized step at a
+  time on top of the completed sufficient-statistics and recovery-equality API,
+  without folding in a full coding theorem.
 
 ## 6 Months
 
