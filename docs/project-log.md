@@ -5508,6 +5508,19 @@ The approved 20-step Chunk 5 plan now lives at
 `docs/plans/chapter2-chunk-05.md`; every step remains not started. Recording
 that plan here does not begin Fano implementation.
 
+### 137. Shared Living-Summary Ownership
+
+On July 24, 2026, the project adopted shared edit ownership for
+`docs/lean-info-theory-living-summary.md`. Any project thread may update the
+living summary when its work materially changes canonical project context;
+separate authorization from the General Assistant is not required. The editing
+thread must reconcile affected claims against source, builds, approved plans,
+relevant project-log entries, and Git history. The General Assistant remains a
+periodic cross-thread reconciler, not the exclusive editor or an approval gate.
+This policy change updates `AGENTS.md`, the living summary, and the approved
+Chunk 5 plan but changes no Lean source, theorem status, or active Chunk 5
+step.
+
 ## Completed Project B Chunk 4 Plan
 
 This completed theorem phase is a revised 20-step plan for finite sufficient

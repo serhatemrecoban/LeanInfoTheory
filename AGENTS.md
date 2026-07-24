@@ -127,16 +127,19 @@ to an approved plan.
 
 ## Canonical-document ownership
 
-- The General Assistant is the normal editor of
-  `docs/lean-info-theory-living-summary.md`; the project lead remains the
-  decision authority.
-- Implementation threads must not edit the living summary unless explicitly
-  authorized.
-- Implementation threads should write structured handoff reports under the
+- `docs/lean-info-theory-living-summary.md` is shared canonical context. Any
+  project thread may edit it when that thread's work materially changes
+  canonical project context; separate authorization from the General Assistant
+  is not required. The project lead remains the decision authority.
+- A thread editing the living summary must reconcile the affected sections
+  against source, builds, approved plans, relevant project-log entries, and Git
+  history rather than merely copying its own progress report.
+- Threads that materially change canonical context but do not update the
+  living summary directly should write structured handoff reports under the
   ignored `tmp/codex-handoffs/` directory. Verify that the temporary path is
   ignored before writing.
-- The General Assistant reconciles handoffs against source, builds, current
-  documentation, and Git history before updating canonical context.
+- The General Assistant performs periodic cross-thread reconciliation but is
+  neither the exclusive editor nor an approval gate for living-summary changes.
 - Update `docs/project-log.md` at meaningful theorem steps, decisions,
   reviews, and milestones, not after every trivial helper lemma.
 - Change `AGENTS.md` only when a stable operating rule, convention, or

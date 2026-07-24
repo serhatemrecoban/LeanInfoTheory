@@ -802,9 +802,10 @@ renaming declarations silently.
 
 **Status:** not started
 
-**Objective:** Update the canonical project memory in this Chunk 5 thread so
-the repository itself accurately records the implemented theorem surface,
-scope decisions, validation state, limitations, and future work.
+**Objective:** Under the shared canonical-document ownership policy, update
+the canonical project memory directly in this Chunk 5 thread so the repository
+itself accurately records the implemented theorem surface, scope decisions,
+validation state, limitations, and future work.
 
 **Prerequisites:** `C5.17` API review is complete and the final public theorem
 surface is known.
@@ -829,9 +830,11 @@ additional scope before editing.
 1. Add a dated Chunk 5 project-log entry covering the mathematical results,
    public declarations, module/import decisions, examples, validation
    commands, deviations from the approved plan, and unresolved concerns.
-2. Update the living summary's Chapter 2 coverage matrix, current active work,
-   module/API inventory, active future-work register, known limitations, and
-   validation/build state.
+2. Update the living summary directly under its shared-ownership policy,
+   reconciling the Chapter 2 coverage matrix, current active work, module/API
+   inventory, active future-work register, known limitations, and
+   validation/build state against source, builds, this approved plan, relevant
+   project-log entries, and Git history.
 3. Reconcile relevant Future Work Notes, especially Notes 1--6, 8, 14, 17,
    18, 29, 30, and 39. Close, narrow, supersede, or retain each item only when
    the implementation evidence warrants it; preserve historical meaning.
@@ -856,14 +859,16 @@ actual Chunk 5 code and validation evidence; future-work statuses are
 evidence-based; source comments are accurate; no unrelated documentation is
 rewritten.
 
-**Downstream effect:** Makes the local repository authoritative for Chunk 5
-closeout and removes the need for the General Assistant to perform a second,
-potentially divergent documentation pass.
+**Downstream effect:** Publishes the verified Chunk 5 context directly for all
+project threads. The General Assistant may later perform its normal periodic
+cross-thread reconciliation, but that review is neither an approval gate nor
+an exclusive editing step.
 
-**Documentation implications:** This step is the documentation update. The
-General Assistant should subsequently treat these edits as authoritative,
-review them for consistency, and avoid duplicating or overwriting the Chunk 5
-history.
+**Documentation implications:** This step is the canonical documentation
+update, not a handoff request. This thread owns its materially justified edits,
+and later project threads may maintain the living summary under the same
+shared policy. Any later reconciliation must preserve verified Chunk 5 history
+and coordinate with the current repository state.
 
 ### C5.19 - Generated References And Public-documentation Consistency
 

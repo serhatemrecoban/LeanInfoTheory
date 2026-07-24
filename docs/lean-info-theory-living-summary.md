@@ -101,7 +101,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 | Lean baseline | Lean `v4.30.0`, commit `d024af099ca4bf2c86f649261ebf59565dc8c622` |
 | mathlib baseline | mathlib input revision `v4.30.0`, manifest commit `c5ea00351c28e24afc9f0f84379aa41082b1188f` |
 | Current phase | Project B, Chunk 5 plan approved; implementation not started |
-| Document owner | General Assistant, with the project lead as decision authority |
+| Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
 project state, mathematical coverage, architecture, rationale, open questions,
@@ -123,19 +123,24 @@ link to the project log instead of reproducing its chronology.
 
 **Update policy.**
 
-1. Advance the validated Lean/source baseline after a coherent Lean checkpoint
+1. Any project thread may edit this file when its work materially changes
+   canonical project context. Separate authorization from the General
+   Assistant is not required; the editing thread must reconcile affected
+   sections against the governing source, builds, approved plans, project-log
+   entries, and Git history.
+2. Advance the validated Lean/source baseline after a coherent Lean checkpoint
    or source-changing merge. Documentation-only checkpoints do not redefine it.
-2. Update Sections 0, 5, 6, 8, 12, 13, and 16 after each major mathematical
+3. Update Sections 0, 5, 6, 8, 12, 13, and 16 after each major mathematical
    chunk.
-3. Update Sections 3, 7, 9, and 10 only when a convention, module boundary, or
+4. Update Sections 3, 7, 9, and 10 only when a convention, module boundary, or
    design decision actually changes.
-4. Preserve completed rationale in Sections 8, 10, and 14 rather than silently
+5. Preserve completed rationale in Sections 8, 10, and 14 rather than silently
    deleting it.
-5. Mark unresolved claims as **[Uncertain]**. Do not convert a conversation
+6. Mark unresolved claims as **[Uncertain]**. Do not convert a conversation
    proposal into an approved plan without repository or user confirmation.
-6. Verify every public declaration and module path named here against current
+7. Verify every public declaration and module path named here against current
    source or the generated declaration index.
-7. Keep this file readable as an onboarding document. Detailed step logs stay
+8. Keep this file readable as an onboarding document. Detailed step logs stay
    in `docs/project-log.md`.
 
 ## 2. Project Mission and Scope
@@ -1139,7 +1144,9 @@ ending normalization. The public site is:
 1. Read Sections 0-4, 8, 11-14, and 16.
 2. Check current Git status, `origin/master`, current CI, and any new project
    log entries.
-3. Reconcile this file after each chunk or architectural checkpoint.
+3. Perform periodic cross-thread reconciliation after chunks or architectural
+   checkpoints without treating this role as exclusive ownership or a
+   prerequisite for other project threads' materially justified edits.
 4. Keep future-work status separate from immediate work.
 5. Do not silently rewrite history or promote an uncertain plan.
 
