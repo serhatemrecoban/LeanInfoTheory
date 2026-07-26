@@ -48,14 +48,14 @@ certificates. Its two long-term branches are:
   network-information-theory converse proofs.
 
 **[Current] Mathematical phase.** Project B is active. Cover-Thomas Chapter 2
-Chunks 1-4 are checkpointed, and all 20 steps of Chunk 5's finite
-deterministic-decoder Fano phase are complete in the working tree. Its
-mathematics, examples, API review, canonical memory, generated references,
-full milestone suite, trust checks, and final hygiene review all pass. The
-approved plan is
-[`docs/plans/chapter2-chunk-05.md`](plans/chapter2-chunk-05.md). The milestone
-is checkpoint-ready but remains uncommitted; no next theorem phase has been
-selected or authorized.
+Chunks 1-5 are checkpointed. Chunk 5's finite deterministic-decoder Fano phase
+is commit `ec78829`; its mathematics, examples, API review, canonical memory,
+generated references, full milestone suite, trust checks, and final hygiene
+review all pass. The approved plan is
+[`docs/plans/chapter2-chunk-05.md`](plans/chapter2-chunk-05.md). The next task is
+planning the finite-family entropy phase provisionally called Chunk 6 under
+Future Work Note 1. No representation, detailed plan, or Lean implementation
+has been approved.
 
 **[Decision] Architectural rules that must be preserved.**
 
@@ -88,7 +88,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Task | Read next |
 | --- | --- |
-| Chunk 5 review or checkpointing | The approved [Chunk 5 plan](plans/chapter2-chunk-05.md); Sections 3, 6, 7, 9, 11, 12, 15, and 16; Future Work Note 29 in the project log |
+| Chunk 6 planning | Sections 3, 6, 7, 9, 11-13, 15, and 16; Future Work Notes 1, 2, 14, 17, 18, and 29; the finite entropy, information-measure, and certificate-semantic source boundaries |
 | Review of an existing Lean theorem | Sections 3, 7, 9, and 16; the owning source module and its direct imports |
 | API or module review | Sections 7, 9, 10, 11, and Future Work Notes 2-4, 14-16, 18, and 26 |
 | Certificate work | Sections 2, 5, 7, 11, and 13; `EntropyExpr`, `EntropyVal`, `PrimitiveIneq`, and `Certificate.Checked` |
@@ -100,12 +100,12 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-07-25 |
-| Last fully validated committed Lean/source baseline | `217e35cf9f1a76354b6f82a3fb0209818b32bab7` |
-| Checked-in repository head at this reconciliation | `2413cb18aafc7c43e276089bd1bdae7bb389719c` (`master` and `origin/master`) |
+| Last updated | 2026-07-26 |
+| Last fully validated committed Lean/source baseline | `ec78829707c548e7e1c866ebaafe52c25e910fc4` |
+| Checked-in repository head at this reconciliation | `ec78829707c548e7e1c866ebaafe52c25e910fc4` (`master` and `origin/master`) |
 | Lean baseline | Lean `v4.30.0`, commit `d024af099ca4bf2c86f649261ebf59565dc8c622` |
 | mathlib baseline | mathlib input revision `v4.30.0`, manifest commit `c5ea00351c28e24afc9f0f84379aa41082b1188f` |
-| Current phase | Project B, Chunk 5 complete through `C5.20`, fully validated, and checkpoint-ready; the next theorem phase is unselected |
+| Current phase | Project B, Chunk 5 checkpointed; finite-family Chunk 6 planning is next, with no approved representation, plan, or implementation |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -362,11 +362,6 @@ Use this order when claims disagree:
   stochastic data processing and independence equality cases are future work.
   Current source completed those in Chunks 2-4. Treat that limitation paragraph
   as stale historical positioning.
-- **[Current CI gap]** `AGENTS.md` and the local milestone suite explicitly
-  build `LeanInfoTheory.Shannon.Units`; `.github/workflows/lean_action_ci.yml`
-  does not list `Units` among its separately importable targets. Current local
-  validation includes it, but a future CI cleanup should decide whether to add
-  the missing explicit target.
 - **[Superseded planning]** The original eight-chunk topic boundaries were
   revised by implementation. Conditional independence moved into Chunk 2;
   channels, DPI, and one-step doubly stochastic entropy growth moved into
@@ -686,24 +681,25 @@ additive and preserved inherited public names.
 | 2 | `e5e9825` | Finite KL support semantics and independence | Support/finiteness/top KL, KL zero, uniform reference, sharp entropy equality, ordinary and conditional independence, zero MI/CMI |
 | 3 | `a5cc9e9` | Channels, Markov chains, and data processing | Raw PMF channels, total conditional channel, Markov factorization, MI DPI, PMF-kernel bridge, KL DPI, invariant contraction, entropy growth |
 | 4 | `f990f2e` | Finite sufficient statistics and equality in data processing | Fixed-prior/family sufficiency, exact recovery, common posteriors, all-prior and Fisher-Neyman results, guarded KL equality |
-| 5 | Working tree; validation complete, checkpoint pending | Finite Fano and estimation error | Boolean entropy bridge, type-generic deterministic error, exact/q-ary/weak Fano, error and uniform-source corollaries, permanent examples, API freeze |
+| 5 | `ec78829` | Finite Fano and estimation error | Boolean entropy bridge, type-generic deterministic error, exact/q-ary/weak Fano, error and uniform-source corollaries, permanent examples, API freeze |
 
 Cleanup checkpoints `e72e68c`, `7de8ff5`, and `11e071c` reconciled
 post-chunk documentation and prepared the Chunk 5 handoff. Commits `cb8eb6b`
 and `2413cb1` consolidated project memory, approved the detailed Chunk 5 plan,
 and adopted shared living-summary ownership without changing Lean source.
 
-### Current Chunk 5 implementation
+### Checkpointed Chunk 5 implementation
 
 **[Current]** The approved plan has completed `C5.01` through `C5.20`.
 `Shannon.BinaryEntropy`, `Shannon.Fano`, and `Examples.Fano` now exist in the
-working tree, with 25 core public declarations and six example declarations.
+checkpointed source, with 25 core public declarations and six example
+declarations.
 `C5.17` froze their names, simp policy, and import boundaries without adding an
 alias. C5.19 regenerated and checked the source-derived references and
 reconciled the hand-written finite-Fano status prose. C5.20 then passed the
 focused and complete milestone builds, guarded boundary consumers, axiom and
 placeholder audits, repeated generated-reference checks, website checker, and
-final repository hygiene. The uncommitted milestone is checkpoint-ready.
+final repository hygiene. Commit `ec78829` is the coherent Chunk 5 checkpoint.
 
 ## 9. Stable Design Decisions and Rationale
 
@@ -862,15 +858,17 @@ These are intentional current contracts, not claims of maximal generality.
 
 ### Current phase status
 
-**Project B Chunk 5: finite Fano complete and checkpoint-ready.**
+**Project B transition: Chunk 5 checkpointed; Chunk 6 planning next.**
 
 The approved execution plan is
 [`docs/plans/chapter2-chunk-05.md`](plans/chapter2-chunk-05.md). Its 20 stable
-steps required separate user authorization and are now all complete. The
-working tree has passed the final milestone checks but has not yet been
-committed. No next theorem chunk is selected or authorized.
+steps required separate user authorization, are all complete, and were
+checkpointed as commit `ec78829`. The next task is planning the finite-family
+entropy phase provisionally called Chunk 6 under Future Work Note 1. No
+representation or execution plan is approved, and implementation has not
+started.
 
-### Approved scope
+### Completed Chunk 5 scope
 
 - a finite decoder or estimator and its error event or indicator;
 - bridges from project entropy to mathlib `Real.binEntropy` and
@@ -879,7 +877,7 @@ committed. No next theorem chunk is selected or authorized.
 - a weaker finite-alphabet corollary;
 - the uniform-message error lower bound used in later converse arguments.
 
-### Explicit non-scope
+### Chunk 5 non-scope
 
 - no source- or channel-coding theorem;
 - no channel capacity;
@@ -889,7 +887,7 @@ committed. No next theorem chunk is selected or authorized.
 - no canonical/minimal sufficiency;
 - no unrelated log-sum/convexity milestone.
 
-### Current implementation status
+### Checkpointed implementation status
 
 - the mathematical theorem surface is complete and API-frozen;
 - `Shannon.BinaryEntropy` supplies `entropy_bool`;
@@ -910,14 +908,15 @@ committed. No next theorem chunk is selected or authorized.
 
 ### Next repository action
 
-Review and checkpoint the coherent completed Chunk 5 working tree. Selection
-and planning of the next theorem phase remain separate decisions; this
-closeout does not authorize implementation beyond Chunk 5.
+Perform bounded Chunk 6 onboarding, compare the finite-family representation
+choices recorded by Future Work Note 1 against the current entropy,
+information-measure, and certificate-semantic APIs, and produce a separately
+approved plan before editing Lean.
 
 ### Next review point
 
-The next review point is the checkpoint decision and then an explicit choice
-of the next theorem phase. No later chunk should begin from this summary alone.
+The next review point is the Chunk 6 readiness report and representation
+decision. No Chunk 6 Lean implementation should begin from this summary alone.
 
 ## 13. Future-Work Register
 
@@ -932,7 +931,8 @@ again.
 
 | Note | Work |
 | --- | --- |
-| 29 | **Finite-Fano phase complete.** All 20 steps and final validation are complete; the working tree is checkpoint-ready, while downstream sequencing and evidence-based Fano follow-ups remain open. |
+| 1 | **Next planning input.** Choose the finite-family entropy representation and module boundary for the provisional Chunk 6 before approving implementation. |
+| 29 | **Finite-Fano phase checkpointed.** Commit `ec78829` completes the approved phase; its evidence-based Fano follow-ups remain open and deferred. |
 
 Note 29 also preserves proof-pressure triggers from `C5.08`-`C5.11` and
 `C5.13`, together with the `C5.16` pedagogy/sharpness follow-ups. They are
@@ -952,7 +952,6 @@ later work, not reasons to expand the frozen Chunk 5 API retroactively.
 
 | Note | Work |
 | --- | --- |
-| 1 | Choose and implement the finite-family entropy representation; later connect it to certificates. |
 | 38 | **Partially discharged later milestone.** Permanent stochastic examples exercise the PMF-facing results; add a matrix bridge only when majorization/Birkhoff consumers exist. |
 | 39 | Plan canonical/minimal sufficiency, support-aware statistic comparison, and later iid/count-statistic or measurable extensions. |
 | Unnumbered | Assign standalone log-sum, KL convexity, entropy concavity, Pinsker, tensorization, topology, and continuity to later chunks before implementation. |
@@ -1117,12 +1116,11 @@ not reproduce textbook prose or proofs.
 - mathlib input revision: `v4.30.0`
 - mathlib manifest commit:
   `c5ea00351c28e24afc9f0f84379aa41082b1188f`
-- last fully validated committed Lean/source baseline: `217e35c`
-- current checked-in head: `2413cb1`; `master` and `origin/master` are
+- last fully validated committed Lean/source baseline: `ec78829`
+- current checked-in head: `ec78829`; `master` and `origin/master` are
   synchronized
-- current Chunk 5 Lean source is an uncommitted working-tree development based
-  on that head and is fully validated through `C5.20`; it is checkpoint-ready
-  but is not yet a committed milestone
+- current Chunk 5 Lean source is the committed milestone at that head and is
+  fully validated through `C5.20`
 
 ### Most recent local validation
 
@@ -1197,7 +1195,7 @@ milestone assignment.
 1. regenerates and checks the website module/declaration artifacts;
 2. runs the strict Lean placeholder scan;
 3. invokes `leanprover/lean-action@v1` for the default project build;
-4. explicitly builds entropy bounds, the semantic aggregate,
+4. explicitly builds entropy bounds, units, the semantic aggregate,
    `MathlibFragments`, four certificate demos, and `Examples`.
 
 The GitHub Actions run for validated source baseline `217e35c` completed on
@@ -1208,8 +1206,10 @@ The GitHub Actions run for validated source baseline `217e35c` completed on
 - website deployment:
   `https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/30012026200`.
 
-**Open CI discrepancy:** the workflow's explicit opt-in list omits
-`Shannon.Units`, although the local milestone suite includes it.
+The July 26 post-checkpoint handoff adds `Shannon.Units` to that explicit
+workflow list. The final cleanup requires a successful remote workflow run
+after push; that operational result does not redefine the validated Lean/source
+baseline.
 
 ### Generated documentation and website checks
 
@@ -1230,8 +1230,9 @@ Current generated working-tree and working-source parser state:
 The C5.19 structured comparison found exactly the three new opt-in Chunk 5
 modules, six new local edges, and 31 new declarations, with no removals and no
 unexpected metadata changes. The local hand-written status pages now describe
-finite Fano as complete and validated through C5.20. Deployment of these
-uncommitted local updates is not claimed. The public site is:
+finite Fano as complete, validated, and checkpointed. Deployment status for
+the handoff is checked from the Pages workflow after push rather than inferred
+from local content. The public site is:
 `https://serhatemrecoban.github.io/LeanInfoTheory/`.
 
 ### Placeholder and trust restrictions
@@ -1331,10 +1332,8 @@ uncommitted local updates is not claimed. The public site is:
 - Chunk 3: `a5cc9e9`
 - Chunk 4: `f990f2e`
 - Chunk 5 handoff cleanup: `11e071c`
-- Validated Lean/source baseline: `217e35c`
 - Shared canonical-memory policy: `2413cb1`
-- Chunk 5 implementation: fully validated working tree through `C5.20`;
-  checkpoint commit pending
+- Chunk 5 implementation and validated Lean/source baseline: `ec78829`
 
 ### Temporary historical inputs
 

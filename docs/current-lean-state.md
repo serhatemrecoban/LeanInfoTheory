@@ -129,15 +129,15 @@ guarded consumer, axiom, generated-reference, website, and hygiene suites pass.
 The approved 20-step finite-Fano plan is complete through C5.20: the
 mathematics, examples, API review, canonical memory, generated references,
 public status documentation, full milestone suite, boundary consumers, trust
-audit, and final hygiene checks are current. The uncommitted milestone is
-checkpoint-ready. Canonical/minimal sufficiency and larger iid examples are
+audit, and final hygiene checks are current. The milestone is checkpointed as
+commit `ec78829`. Canonical/minimal sufficiency and larger iid examples are
 deferred by Future Work Note 39.
 
-## Current Project B Phase: Chunk 5 Complete
+## Current Project B Boundary: Chunk 5 Checkpointed
 
 Chunk 5 is the focused finite Fano phase sequenced by Future Work Note 29. Its
 approved 20-step execution plan is `docs/plans/chapter2-chunk-05.md`; all 20
-steps are complete and the working tree is validated and checkpoint-ready.
+steps are complete and checkpointed as commit `ec78829`.
 The implemented mathematical surface is:
 
 - a finite decoder or estimator and its error event or indicator;
@@ -152,8 +152,13 @@ full source- or channel-coding theorem, channel capacity, iterated or stationary
 channel processes, entropy rates, AEP or typicality, finite-family certificate
 semantics, or canonical/minimal sufficiency.
 
+The next Project B task is planning the finite-family entropy phase
+provisionally called Chunk 6 under Future Work Note 1. No representation,
+detailed plan, or Lean implementation has yet been approved.
+
 This is a maintained status note for Lean-focused work. It summarizes the
-current architecture and the completed Chunk 3 and Chunk 4 theorem milestones.
+current architecture and the completed Chunk 3, Chunk 4, and Chunk 5 theorem
+milestones.
 
 ## Current Lean Architecture
 

@@ -1,7 +1,8 @@
 # Chapter 2 Chunk 5: Finite Fano
 
-**Plan status:** Implementation complete; checkpoint pending
+**Plan status:** Complete; checkpointed
 **Baseline commit:** `217e35cf9f1a76354b6f82a3fb0209818b32bab7`
+**Checkpoint commit:** `ec78829707c548e7e1c866ebaafe52c25e910fc4`
 **Plan path:** `docs/plans/chapter2-chunk-05.md`
 **Number of steps:** 20
 
@@ -1265,9 +1266,9 @@ process, textbook-file, and whitespace hygiene checks found no unexplained
 artifact or scope change. The only live Lean processes were the editor
 language server and its worker.
 
-Canonical and public status documents now describe the milestone as fully
-validated but still uncommitted. Chunk 5 is therefore checkpoint-ready; no
-later theorem chunk is selected or authorized by this closeout.
+At C5.20, canonical and public status documents described the fully validated
+milestone as still uncommitted. It was checkpointed on July 26, 2026 as commit
+`ec78829`. No later theorem implementation was authorized by this closeout.
 
 **Objective:** Validate the complete Chunk 5 implementation and establish a
 clean handoff boundary.

@@ -91,9 +91,11 @@ highlights, and module guide record what is implemented now.
   completed C5.01-C5.20: its deterministic-decoder mathematics, permanent
   examples, API review, canonical memory, generated references, full
   milestone suite, trust checks, and final hygiene review are current. The
-  uncommitted milestone is checkpoint-ready. Future Work Note 39 defers
-  canonical/minimal sufficiency, general measurable sufficiency, and a larger
-  iid count-statistic development until a later focused milestone.
+  milestone is checkpointed as commit `ec78829`. Future Work Note 1 owns
+  planning for the finite-family entropy phase provisionally called Chunk 6;
+  no representation or implementation plan is approved yet. Future Work Note
+  39 defers canonical/minimal sufficiency, general measurable sufficiency, and
+  a larger iid count-statistic development until a later focused milestone.
 - Maintain project notes in the foundation conventions and project log.
 - Keep the lightweight finite API separated from heavier KL and coding imports.
 

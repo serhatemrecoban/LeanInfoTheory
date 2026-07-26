@@ -5666,6 +5666,46 @@ does not select or authorize the next theorem chunk. Future Work Note 29
 retains all five evidence-based proof-pressure and pedagogy/sharpness groups,
 the optional theorem-highlights curation, and downstream sequencing.
 
+### 141. Project B Chunk 5 Checkpoint And Chunk 6 Handoff Cleanup
+
+On July 26, 2026, the five-step post-Chunk-5 cleanup began from the validated
+C5.20 working tree. Cleanup Step 1 completed the narrow Future Work Note 9
+metadata pass: the generated `Shannon.BinaryEntropy` summary now names
+`Real.binEntropy`, `Examples.SufficientStatistics` has a source-verified
+curated summary, and no generated module row retains the generic fallback.
+Both reference generators were byte-for-byte idempotent on a second pass, the
+website checker passed, and all generated counts remained unchanged.
+
+Cleanup Step 2 reconciled the complete diff against the approved plan and
+C5.20. Exactly the expected 22 paths were present, all 20 plan statuses were
+complete, the three new modules remained opt-in, the 31 declarations remained
+documented, and the placeholder, stale-status, whitespace, scratch,
+textbook-file, process, and boundary checks passed. No Lean source changed
+after C5.20, so its build and trust evidence remained current.
+
+Cleanup Step 3 committed and pushed the coherent mathematical milestone as
+`ec78829707c548e7e1c866ebaafe52c25e910fc4` with subject
+`Complete Project B Chunk 5`. Local `HEAD`, `origin/master`, and the remote
+`master` reference agreed, and the worktree was clean.
+
+Cleanup Step 4 reconciled the plan, project memory, public status pages, and
+Future Work register against that actual checkpoint. It also added
+`LeanInfoTheory.Shannon.Units` to the explicit GitHub Actions target list,
+resolving the concrete CI discrepancy recorded by Future Work Note 17 without
+changing the lightweight root or adding a validation driver. Future Work Note
+1 now owns planning for the finite-family entropy phase provisionally called
+Chunk 6. No representation, detailed plan, or Lean implementation is approved
+by this handoff.
+
+Cleanup Step 5 completed the local handoff gate without changing Lean source.
+Both reference generators reproduced the checked-in artifacts, the website
+checker passed for 12 HTML files and two generated JSON files, the strict
+placeholder and stale-status scans were clean, the workflow target-order and
+diff-hygiene checks passed, and no generated artifact changed. The resulting
+documentation/CI-only handoff commit has subject
+`Prepare Project B Chunk 6 handoff`. The build and Pages workflows must pass
+after push before this cleanup is reported complete.
+
 ## Completed Project B Chunk 4 Plan
 
 This completed theorem phase is a revised 20-step plan for finite sufficient
@@ -6014,25 +6054,26 @@ the guarded Boolean-family converse. The new opt-in
 `Examples.SufficientStatistics` module exercises the completed surface while
 preserving root isolation. The complete build, generated-reference, website,
 consumer, root-isolation, axiom, and hygiene suites pass, and the milestone is
-ready for its coherent checkpoint. The approved 20-step finite-Fano plan is
+checkpointed as commit `f990f2e`. The approved 20-step finite-Fano plan is
 now complete through `C5.20`: its mathematical API, permanent examples, API
 freeze, canonical-memory reconciliation, generated references, public status
 documentation, full milestone suite, boundary consumers, trust audit, and
-final hygiene checks all pass. The uncommitted milestone is checkpoint-ready;
-the next theorem phase has not been selected or authorized. Finite-family
-entropy, richer certificate assumptions, external certificate import,
-coding-theory layers, theorem-level blueprint work, and substantial mathlib PR
-preparation remain later work.
+final hygiene checks all pass. Commit `ec78829` is the coherent Chunk 5
+checkpoint. The next task is planning the finite-family entropy phase
+provisionally called Chunk 6 under Note 1; no representation, detailed plan, or
+Lean implementation is approved. Richer certificate assumptions, external
+certificate import, coding-theory layers, theorem-level blueprint work, and
+substantial mathlib PR preparation remain later work.
 
 ### Status Index
 
 | Status | Notes | Meaning |
 | --- | --- | --- |
 | Standing guardrails | 2-4, 6-8, 14-18, 26 | Apply these policies continuously; they do not create standalone cleanup tasks. |
-| Project B sequence | 29 | Chunk 5 finite Fano is complete through `C5.20` and checkpoint-ready; the next theorem phase remains unselected and requires separate planning and authorization. |
+| Project B sequence | 1, 29 | Chunk 5 finite Fano is checkpointed as `ec78829`; Note 1 owns the next finite-family planning phase, while Note 29 retains deferred Fano follow-ups. |
 | Channel/Markov proof-pressure | 21, 25, 27 | Revisit these only when concrete channel, Markov, or data-processing consumers reach their stated triggers. |
 | Proof-pressure deferred | 19, 22-24, 30-37, 40 | Wait for the repeated proof or new statement pressure specified in each note. |
-| Later milestones | 1, 5, 9-13, 28, 38-39 | Schedule these in their own later mathematical, documentation, example, certificate, or coding phases. |
+| Later milestones | 5, 9-13, 28, 38-39 | Schedule these in their own later mathematical, documentation, example, certificate, or coding phases. |
 | Closed/historical | 20 | Retained for numbered references and rationale; it is not an active backlog item. |
 
 This index is a navigation aid. It does not renumber the detailed notes, change
@@ -6050,6 +6091,14 @@ historical trigger records when a later paragraph records their resolution.
     question is whether the API should be
     indexed by `Fin n`, finite sets of variable names, dependent finite
     alphabets, vectors, or another mathlib-friendly structure.
+
+    The July 26, 2026 Chunk 5 checkpoint satisfies this note's timing gate.
+    This note is now the primary input to planning the finite-family entropy
+    phase provisionally called Chunk 6. Planning must compare the candidate
+    representations against the current pair/triple API, finite PMF
+    conventions, import boundaries, and the later concrete
+    `ShannonEntropyVal` bridge. No representation, module architecture,
+    detailed plan, or Lean implementation is approved by this activation.
 
 2. Split `LeanInfoTheory/Shannon/InfoMeasures.lean` only when the file becomes
     too large or theorem pressure makes the boundaries clear. The July 6 API
@@ -6178,6 +6227,17 @@ historical trigger records when a later paragraph records their resolution.
     available local browser path permits it, but do not weaken the existing
     source, link, JSON, and idempotence checks if visual automation is
     unavailable.
+
+    The July 26, 2026 post-Chunk-5 cleanup partially discharges the first
+    generator-metadata refinement above. `Shannon.BinaryEntropy` now names
+    `Real.binEntropy` exactly, `Examples.SufficientStatistics` has a
+    source-verified curated summary, and the generated graph contains no
+    generic `"Local LeanInfoTheory module."` fallback. Both reference
+    generators were run twice with byte-identical second-pass hashes; the
+    website checker, semantic counts, duplicate-name check, and diff-hygiene
+    check passed. Full doc-gen, theorem-level blueprinting, structured shared
+    status generation, persistent checksum reports, and Fano theorem-highlight
+    curation remain deferred under their existing pressure rules.
 
 10. Add a minimal contributor surface before inviting broader collaboration:
     `CONTRIBUTING.md`, beginner-friendly tasks, issue labels, and a short note
@@ -7525,6 +7585,16 @@ historical trigger records when a later paragraph records their resolution.
     validation contract. Revisit the automation as one coherent maintenance
     task instead of adding a new script piecemeal during an unrelated theorem
     step.
+
+    The July 26, 2026 post-checkpoint handoff resolves the concrete CI target
+    discrepancy above by adding `LeanInfoTheory.Shannon.Units` to the explicit
+    GitHub Actions build list. The workflow continues to build
+    `LeanInfoTheory.Examples`, which reaches the new Chunk 5 modules
+    transitively; no additional direct BinaryEntropy/Fano target is added
+    without a separate CI-duration or boundary-testing reason. This partially
+    discharges only the target-alignment item. The reusable validation driver,
+    maintained boundary/axiom harness, shared target manifest, and cold-release
+    policy remain deferred exactly as recorded.
 
 18. Standing architecture guardrail: preserve the boundary between the
     completed pair/triple Chunk 1, the completed equality/independence Chunk 2,
@@ -9131,6 +9201,15 @@ historical trigger records when a later paragraph records their resolution.
     proof-pressure or pedagogy/sharpness groups and the optional curated Fano
     theorem-highlights pass remain deferred unchanged; none is incomplete
     Chunk 5 work.
+
+    On July 26, 2026, the validated phase was committed and pushed as
+    `ec78829707c548e7e1c866ebaafe52c25e910fc4` (`Complete Project B Chunk 5`).
+    This closes Note 29's checkpoint-sequencing role. The note remains active
+    only as the owner of its five evidence-based Fano follow-up groups and the
+    optional theorem-highlights curation. Future Work Note 1 now owns planning
+    for the finite-family entropy phase provisionally called Chunk 6; neither
+    note authorizes a representation choice or Lean implementation without a
+    separately approved plan.
 
 30. Keep the Step 5 total conditional-channel law surface minimal until later
     proofs create a concrete need for a more abstract null-fiber theorem. The

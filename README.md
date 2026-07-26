@@ -225,9 +225,11 @@ when they stabilize.
   corollaries, permanent examples, API freeze, and generated references. Its
   focused and full milestone builds, guarded boundary consumers, axiom and
   placeholder audits, website checks, and final hygiene review all pass. The
-  uncommitted milestone is checkpoint-ready. Future Work Note 29 retains Fano
-  sharpness, randomized/list decoding, and coding applications; Note 39 defers
-  canonical/minimal sufficiency and larger iid examples.
+  milestone is checkpointed as commit `ec78829`. Future Work Note 1 now owns
+  planning for the finite-family entropy phase provisionally called Chunk 6;
+  no representation or implementation plan is approved yet. Future Work Note
+  29 retains Fano sharpness, randomized/list decoding, and coding applications;
+  Note 39 defers canonical/minimal sufficiency and larger iid examples.
 
 ## Lean Modules
 
@@ -425,10 +427,9 @@ Import heavier or demonstrational modules explicitly:
 
 ## Roadmap
 
-1. Review and checkpoint the completed
-   [20-step finite-Fano milestone](docs/plans/chapter2-chunk-05.md), then choose
-   and plan the next theorem phase separately without folding a coding theorem
-   into Chunk 5.
+1. Plan the finite-family entropy phase provisionally called Chunk 6 under
+   Future Work Note 1, choosing its representation and module boundary before
+   approving implementation.
 2. Keep the sufficiency core lightweight and place KL integration downstream;
    retain exact full-joint recovery as the contract established by the
    completed midpoint tests, including rejection of marginal-only false
