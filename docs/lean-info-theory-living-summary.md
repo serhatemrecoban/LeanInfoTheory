@@ -48,10 +48,14 @@ certificates. Its two long-term branches are:
   network-information-theory converse proofs.
 
 **[Current] Mathematical phase.** Project B is active. Cover-Thomas Chapter 2
-Chunks 1-4 are complete. The next phase is **Chunk 5: finite Fano's
-inequality and estimation error**. Its approved 20-step plan exists at
-[`docs/plans/chapter2-chunk-05.md`](plans/chapter2-chunk-05.md), with every step
-not started. No Chunk 5 Lean module or declaration exists yet.
+Chunks 1-4 are checkpointed, and all 20 steps of Chunk 5's finite
+deterministic-decoder Fano phase are complete in the working tree. Its
+mathematics, examples, API review, canonical memory, generated references,
+full milestone suite, trust checks, and final hygiene review all pass. The
+approved plan is
+[`docs/plans/chapter2-chunk-05.md`](plans/chapter2-chunk-05.md). The milestone
+is checkpoint-ready but remains uncommitted; no next theorem phase has been
+selected or authorized.
 
 **[Decision] Architectural rules that must be preserved.**
 
@@ -84,7 +88,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Task | Read next |
 | --- | --- |
-| Chunk 5 planning or implementation | The approved [Chunk 5 plan](plans/chapter2-chunk-05.md); Sections 3, 6, 7, 9, 11, 12, 15, and 16; Future Work Note 29 in the project log |
+| Chunk 5 review or checkpointing | The approved [Chunk 5 plan](plans/chapter2-chunk-05.md); Sections 3, 6, 7, 9, 11, 12, 15, and 16; Future Work Note 29 in the project log |
 | Review of an existing Lean theorem | Sections 3, 7, 9, and 16; the owning source module and its direct imports |
 | API or module review | Sections 7, 9, 10, 11, and Future Work Notes 2-4, 14-16, 18, and 26 |
 | Certificate work | Sections 2, 5, 7, 11, and 13; `EntropyExpr`, `EntropyVal`, `PrimitiveIneq`, and `Certificate.Checked` |
@@ -96,11 +100,12 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-07-24 |
-| Validated Lean/source baseline | `217e35cf9f1a76354b6f82a3fb0209818b32bab7` (`master` and `origin/master` when validated) |
+| Last updated | 2026-07-25 |
+| Last fully validated committed Lean/source baseline | `217e35cf9f1a76354b6f82a3fb0209818b32bab7` |
+| Checked-in repository head at this reconciliation | `2413cb18aafc7c43e276089bd1bdae7bb389719c` (`master` and `origin/master`) |
 | Lean baseline | Lean `v4.30.0`, commit `d024af099ca4bf2c86f649261ebf59565dc8c622` |
 | mathlib baseline | mathlib input revision `v4.30.0`, manifest commit `c5ea00351c28e24afc9f0f84379aa41082b1188f` |
-| Current phase | Project B, Chunk 5 plan approved; implementation not started |
+| Current phase | Project B, Chunk 5 complete through `C5.20`, fully validated, and checkpoint-ready; the next theorem phase is unselected |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -367,9 +372,11 @@ Use this order when claims disagree:
   channels, DPI, and one-step doubly stochastic entropy growth moved into
   Chunk 3; sufficiency became Chunk 4. Use current source and Note 29, not the
   original labels, to assign ownership.
-- **[Historical count only]** Older log paragraphs mention fewer documented
-  declarations. The current generated index is authoritative at this baseline:
-  686 public declarations, all 686 documented.
+- **[Current generated-reference state]** C5.19 regenerated the tracked
+  working-tree artifacts from the working source. They now report 39 modules,
+  65 local edges, 11 root-reachable modules, 28 separate-import modules, and
+  717 documented public declarations. A second generator pass was
+  byte-for-byte identical, and the website checker passed.
 
 ## 5. Current Mathematical Coverage
 
@@ -461,6 +468,29 @@ integration remain downstream in `SemanticBridge.DataProcessing` and
 already in the core's transitive dependency closure through `Markov`,
 `Independence`, and `Theorems`.
 
+### Finite Fano and estimation error
+
+**[Current]** The opt-in finite Fano layer includes:
+
+- `entropy_bool`, identifying project entropy on `PMF Bool` with mathlib
+  `Real.binEntropy`;
+- type-generic deterministic decoding-error indicator and probability
+  definitions on joint PMFs and random variables;
+- a finite-sum error formula, probability range bounds, and entropy identities
+  for the Boolean error indicator;
+- exact expanded and `Real.qaryEntropy` Fano inequalities on PMF and
+  random-variable surfaces;
+- the conventional weak finite-alphabet inequality;
+- generic decoding-error lower bounds; and
+- mutual-information and normalized-error lower bounds under a uniform source
+  law.
+
+The exact and weak entropy forms include singleton source alphabets. The
+cardinality hypothesis `2 <= Fintype.card alpha` appears only in the
+corollaries that divide by `log |alpha|`. The owners are
+`Shannon.BinaryEntropy` and `Shannon.Fano`; both remain outside the lightweight
+root and semantic-bridge aggregate.
+
 ### Certificate layer
 
 **[Current]** The trusted checking path includes:
@@ -486,7 +516,10 @@ This is validation, not certificate generation or search.
 - a noisy common-cause Markov model;
 - genuinely stochastic contraction and strict entropy growth;
 - noninjective sufficient statistics, non-sufficiency, and the failure of
-  marginal-only recovery.
+  marginal-only recovery;
+- a perfect decoder, a singleton source alphabet, and a fair Boolean source
+  with a concrete nonzero decoding-error probability exercising the finite
+  Fano API.
 
 The website has a hand-written module guide, theorem highlights, certificate
 demo, generated module dependency map, and source-derived declaration index.
@@ -499,8 +532,8 @@ claim a general measure-theoretic formalization of the whole subject.
 
 | Topic | Status and provenance | Representative declarations | Owner and layer | Limitations, downstream use, and remaining work |
 | --- | --- | --- | --- | --- |
-| **2.1 Entropy** | **Substantially complete.** Core predates the eight-chunk programme; zero/equality and units were strengthened in Chunk 1. | `entropy`, `entropyOf`, `entropy_nonneg`, `entropy_eq_zero_iff`, `entropyOf_eq_zero_iff`, `entropy_eq_integral_selfInfo`, `entropy_div_log` | `Shannon.Entropy` is lightweight; semantic expectation and units are opt-in. | Nats are canonical. No maintained theorem yet identifies a Bernoulli PMF entropy with `Real.binEntropy`; that bridge is expected when Fano needs it. |
-| **2.2 Joint and conditional entropy** | **Substantially complete for pairs and triples.** Core and expected-fiber semantics predate the programme; functional dependence is Chunk 1; equality cases use Chunk 2 independence. Chain-rule work is catalogued under 2.5. | `jointEntropyOf`, `condEntropy`, `condEntropyOf`, `condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd`, `condEntropyOf_eq_zero_iff_exists_function` | Algebraic definitions in lightweight `InfoMeasures`; conditional PMFs and equality consequences in semantic modules. | Pair/triple chain-rule coverage is catalogued under 2.5; no n-variable family representation or general chain rule exists. Null fibers use explicit zero or totality conventions. Feeds Fano, sufficiency, and certificates. |
+| **2.1 Entropy** | **Substantially complete.** Core predates the eight-chunk programme; zero/equality and units were strengthened in Chunk 1; the maintained Boolean bridge is Chunk 5. | `entropy`, `entropyOf`, `entropy_nonneg`, `entropy_eq_zero_iff`, `entropyOf_eq_zero_iff`, `entropy_eq_integral_selfInfo`, `entropy_div_log`, `entropy_bool` | `Shannon.Entropy` is lightweight; semantic expectation, units, and `Shannon.BinaryEntropy` are opt-in. | Nats are canonical. The Boolean bridge reuses mathlib `Real.binEntropy`; no parallel binary-entropy definition is maintained. |
+| **2.2 Joint and conditional entropy** | **Substantially complete for pairs and triples.** Core and expected-fiber semantics predate the programme; functional dependence is Chunk 1; equality cases use Chunk 2 independence. Chain-rule work is catalogued under 2.5. | `jointEntropyOf`, `condEntropy`, `condEntropyOf`, `condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd`, `condEntropyOf_eq_zero_iff_exists_function` | Algebraic definitions in lightweight `InfoMeasures`; conditional PMFs and equality consequences in semantic modules. | Pair/triple chain-rule coverage is catalogued under 2.5; no n-variable family representation or general chain rule exists. Null fibers use explicit zero or totality conventions. The current pair API supports Fano, sufficiency, and certificates. |
 | **2.3 Relative entropy and mutual information** | **Substantially complete at finite PMF level.** MI/KL bridges predate the programme; support/finiteness, equality, and uniform-reference results are Chunk 2; channel KL is Chunks 3-4. | `mutualInfo`, `mutualInfo_eq_toReal_klDiv_joint_prod_marginals`, `toMeasure_absolutelyContinuous_iff_support_subset`, `klDiv_pmf_ne_top_iff_support_subset`, `klDiv_pmf_eq_zero_iff`, `toReal_klDiv_pmf_uniformOfFinset` | `InfoMeasures` plus heavy `SemanticBridge.KL` and `DataProcessing`; KL itself is mathlib's `InformationTheory.klDiv`. | Real KL requires guards. No project-local generic conditional-relative-entropy object or general KL convexity theorem. |
 | **2.4 Entropy/MI relationships** | **Complete for the finite pair surface.** Symmetry predates the programme; full identity and self-information family is Chunk 1. | `mutualInfoOf_eq_entropyOf_sub_condEntropyOf`, its swapped form, `mutualInfoOf_eq`, `mutualInfoOf_swap`, `mutualInfoOf_self` | Lightweight `Shannon.InfoMeasures`. | Rewrites remain explicit. Reverse-oriented aliases are intentionally not generated without proof pressure. Used throughout DPI and sufficiency. |
 | **2.5 Chain rules** | **Partial.** Pair/triple entropy and MI chain rules predate or belong to Chunk 1; mathlib's KL chain rule is reused in Chunk 3. | `entropy_chain_rule_left`, `entropy_chain_rule_right`, `condEntropyOf_pair_chain_rule`, `mutualInfoOf_chain_rule_fst`, `mutualInfoOf_chain_rule_snd`, `klDiv_channel_eq_add_posterior` | Lightweight algebraic rules plus heavy semantic/KL decomposition. | No finite-family n-variable entropy/MI chain rule and no local standalone relative-entropy chain-rule family. Planned finite-family work must choose a representation first. |
@@ -509,7 +542,7 @@ claim a general measure-theoretic formalization of the whole subject.
 | **2.8 Data processing** | **Substantially complete for finite PMFs and finite-valued random variables.** Deterministic processing is Chunk 1; Markov and stochastic MI/KL DPI are Chunk 3; KL equality/recovery is Chunk 4. | `IsMarkovChainOf`, `mutualInfoOf_markov_chain_rule`, `mutualInfoOf_dataProcessing`, `mutualInfoOf_dataProcessing_eq_iff`, `klDiv_channel_le`, `toReal_klDiv_channel_le` | `SemanticBridge.Markov` and `DataProcessing` are opt-in; the raw channel core is lighter but still outside root. | No general measurable stochastic-variable coupling API. Strict-loss variants and some symmetric forms remain proof-pressure deferred. |
 | **2.9 Second law / stochastic entropy growth** | **Partial.** One-step finite consequences are Chunk 3. | `klDiv_channel_invariant_le`, `toReal_klDiv_channel_invariant_le`, `entropy_le_entropy_bind_of_uniform_invariant`, `entropy_le_entropy_bind_of_doublyStochastic` | Heavy `SemanticBridge.DataProcessing`; examples in `Examples.StochasticChannels`. | No iterated channel powers, stationary-process object, entropy rate, matrix bridge, or Birkhoff/majorization theory. A matrix-facing bridge is deferred by Note 38. |
 | **2.10 Sufficient statistics** | **Substantially complete for finite fixed-prior and finite family recovery.** Chunk 4. | `IsSufficientStatisticOf`, `IsSufficientChannel`, `IsSufficientStatistic`, `isSufficientStatisticOf_iff_exists_recovery`, `isSufficientChannel_iff_exists_common_posterior`, `isSufficientStatistic_iff_exists_fisherNeymanFactorization`, `klDiv_channel_eq_iff_exists_common_recovery` | Lightweight `Sufficiency`; posterior/KL statements in downstream heavy modules. | Canonical/minimal statistics, iid count-statistic infrastructure, and general measurable sufficiency are deferred. Larger-family pairwise KL equality does not yield a global witness. |
-| **2.11 Fano's inequality** | **Planned, not started.** The approved 20-step Chunk 5 plan has no completed step. | No project Fano declaration; no maintained binary/q-ary bridge theorem. Mathlib anchors are `Real.binEntropy` and `Real.qaryEntropy`. | The approved plan assigns opt-in `Shannon.BinaryEntropy` and `Shannon.Fano` modules plus `Examples.Fano`; none exists yet. | The deterministic-decoder, Boolean-error, exact/weak Fano, error-lower-bound, and uniform-message contracts are approved. Names remain tentative until the planned API review. Coding theorems remain out of scope. |
+| **2.11 Fano's inequality** | **Substantially complete for finite deterministic decoding.** Chunk 5 through `C5.20`. | `decodingErrorIndicator`, `decodingErrorProbability`, `entropy_decodingErrorIndicator`, `condEntropy_fano`, `condEntropy_fano_qary`, `condEntropyOf_fano`, `condEntropy_fano_weak`, `decodingErrorProbability_fano_lower_bound`, `mutualInfo_fano_lower_bound_of_uniform_source` and their `...Of` companions | Opt-in `Shannon.BinaryEntropy` and `Shannon.Fano`; permanent consumers in `Examples.Fano`. | Exact and weak entropy forms include singleton alphabets; normalized error bounds require `2 <= |alpha|`. Equality/sharpness, randomized estimators, list decoding, and coding theorems remain later work. |
 
 ## 7. Current Lean Module and API Architecture
 
@@ -529,9 +562,9 @@ claim a general measure-theoretic formalization of the whole subject.
 | `LeanInfoTheory.Certificate.Checked` | Raw/checked certificates and validator | Yes |
 | `LeanInfoTheory` | Lightweight public aggregate only | Root |
 
-At the current generated dependency baseline, 11 of 36 modules are
-root-reachable. The root does not import bounds, units, semantic bridges,
-channel modules, demos, examples, or mathlib coding anchors.
+At the current generated dependency baseline, 11 of 39 modules are
+root-reachable and 28 are opt-in. The root does not import bounds, units,
+semantic bridges, channel modules, demos, examples, or mathlib coding anchors.
 
 ### Opt-in finite and semantic layers
 
@@ -539,6 +572,8 @@ channel modules, demos, examples, or mathlib coding anchors.
 | --- | --- |
 | `LeanInfoTheory.Shannon.EntropyBounds` | Jensen-based alphabet/support bounds and exact uniform equality |
 | `LeanInfoTheory.Shannon.Units` | Logarithm-base conversion |
+| `LeanInfoTheory.Shannon.BinaryEntropy` | Boolean-PMF entropy bridge to mathlib `Real.binEntropy` |
+| `LeanInfoTheory.Shannon.Fano` | Type-generic decoding error and finite exact/weak Fano inequalities and corollaries |
 | `LeanInfoTheory.Probability.FiniteChannel` | Raw PMF channel constructions and elementary laws, with no Shannon/KL dependency |
 | `LeanInfoTheory.Shannon.SemanticBridge.Product` | Independent product PMFs and product-measure bridges |
 | `LeanInfoTheory.Shannon.SemanticBridge.FiniteSums` | Finite real-mass and log-ratio expansions |
@@ -560,6 +595,8 @@ Product + FiniteSums + Conditional -> KL -> Theorems -> Independence
 FiniteChannel + Independence -> Markov -> Sufficiency
 Markov + Sufficiency + focused mathlib KL/kernel
     -> DataProcessing -> Sufficiency.KL
+Entropy + mathlib binary entropy -> BinaryEntropy
+BinaryEntropy + EntropyBounds + Theorems -> Fano
 ```
 
 The exact file graph is generated in
@@ -572,7 +609,8 @@ justify it.
 - `Certificate.Submodularity`, `Subadditivity`, `Monotonicity`, and
   `ThreeWaySubadditivity` are opt-in checked-certificate demonstrations.
 - `Examples.SupportSensitive`, `KLTop`, `CommonCause`,
-  `StochasticChannels`, and `SufficientStatistics` are separately importable.
+  `StochasticChannels`, `SufficientStatistics`, and `Fano` are separately
+  importable.
 - `Examples` aggregates the semantic examples and original certificate toys.
 - `MathlibFragments` is an opt-in import checklist for binary/q-ary entropy,
   KL, KL chain rules, PMF constructions, and Kraft-McMillan. It intentionally
@@ -607,10 +645,14 @@ produce or validate:
 - HTML views of those artifacts;
 - internal website links and JSON structure.
 
-At this baseline:
+For the current working source, read-only use of the generator parsers reports:
 
-- module graph: 36 modules, 59 local edges, 11 root-reachable, 25 opt-in;
-- declaration index: 686 public declarations, all documented.
+- module graph input: 39 modules, 65 local edges, 11 root-reachable, 28 opt-in;
+- declaration-index input: 717 public declarations, all documented.
+
+The generated working-tree JSON and HTML now carry the same counts. C5.19
+confirmed byte-for-byte generator idempotence and passed the website checker
+after the refresh.
 
 These artifacts are not theorem-level dependency data and not full Lean
 doc-gen.
@@ -644,16 +686,24 @@ additive and preserved inherited public names.
 | 2 | `e5e9825` | Finite KL support semantics and independence | Support/finiteness/top KL, KL zero, uniform reference, sharp entropy equality, ordinary and conditional independence, zero MI/CMI |
 | 3 | `a5cc9e9` | Channels, Markov chains, and data processing | Raw PMF channels, total conditional channel, Markov factorization, MI DPI, PMF-kernel bridge, KL DPI, invariant contraction, entropy growth |
 | 4 | `f990f2e` | Finite sufficient statistics and equality in data processing | Fixed-prior/family sufficiency, exact recovery, common posteriors, all-prior and Fisher-Neyman results, guarded KL equality |
+| 5 | Working tree; validation complete, checkpoint pending | Finite Fano and estimation error | Boolean entropy bridge, type-generic deterministic error, exact/q-ary/weak Fano, error and uniform-source corollaries, permanent examples, API freeze |
 
 Cleanup checkpoints `e72e68c`, `7de8ff5`, and `11e071c` reconciled
-post-chunk documentation and prepared the current Chunk 5 handoff.
+post-chunk documentation and prepared the Chunk 5 handoff. Commits `cb8eb6b`
+and `2413cb1` consolidated project memory, approved the detailed Chunk 5 plan,
+and adopted shared living-summary ownership without changing Lean source.
 
-### Current preparation for Chunk 5
+### Current Chunk 5 implementation
 
-**[Current]** Commit `11e071c` records the Fano handoff and `217e35c` is a
-website-only author-profile link on top of it. The approved plan at
-`docs/plans/chapter2-chunk-05.md` has 20 not-started steps. No Fano source file
-or theorem has been created.
+**[Current]** The approved plan has completed `C5.01` through `C5.20`.
+`Shannon.BinaryEntropy`, `Shannon.Fano`, and `Examples.Fano` now exist in the
+working tree, with 25 core public declarations and six example declarations.
+`C5.17` froze their names, simp policy, and import boundaries without adding an
+alias. C5.19 regenerated and checked the source-derived references and
+reconciled the hand-written finite-Fano status prose. C5.20 then passed the
+focused and complete milestone builds, guarded boundary consumers, axiom and
+placeholder audits, repeated generated-reference checks, website checker, and
+final repository hygiene. The uncommitted milestone is checkpoint-ready.
 
 ## 9. Stable Design Decisions and Rationale
 
@@ -662,6 +712,8 @@ or theorem has been created.
 | Use mathlib `PMF` | Enforces probability laws, integrates with measures/kernels, and avoids a mathematically inadequate rational toy model |
 | PMF-first finite API | Makes finite sums, examples, pushforwards, and textbook statements tractable while retaining measure semantics downstream |
 | Entropy in `Real`, nats first | Matches `Real.negMulLog`, `Real.log`, and mathlib binary/q-ary entropy; base conversion needs no duplicate hierarchy |
+| Type-generic decoding-error definitions | Equality is chosen internally; finiteness belongs only on finite sums and entropy theorems that need enumeration |
+| Singleton-inclusive exact Fano | The exact and weak entropy bounds need no artificial `2 <= |alpha|`; that hypothesis appears only when division by `log |alpha|` requires positivity |
 | Pushforward definition of random-variable quantities | Keeps laws distributional and makes relabeling/marginals compositional |
 | Algebraic core, semantic bridge | Supports certificate algebra without losing textbook expected-fiber and KL meanings |
 | Lightweight root | Prevents Jensen, KL, kernels, examples, and coding imports from burdening ordinary finite-entropy users |
@@ -723,8 +775,9 @@ review.
 
 ### Mathematical gaps
 
-- **Immediate:** finite Fano's inequality, including maintained binary/q-ary
-  entropy bridges and error-probability corollaries.
+- Equality conditions and sharpness for finite Fano, randomized-estimator and
+  list-decoding variants, and coding-theorem applications of the completed
+  deterministic-decoder inequality.
 - N-variable entropy/MI chain rules and concrete finite-family semantics.
 - Standalone log-sum, KL joint convexity, entropy concavity, and MI
   concavity/convexity.
@@ -741,8 +794,6 @@ review.
 
 ### API gaps and unsettled contracts
 
-- **[Uncertain]** Exact Chunk 5 theorem surface, module ownership, decoder
-  representation, singleton-alphabet behavior, and binary/q-ary bridge names.
 - **[Uncertain]** Finite-family representation: `Fin n`, named finite sets,
   vectors, dependent alphabets, or another structure.
 - Whether `Shannon.InfoMeasures` should eventually split; it is currently
@@ -785,17 +836,16 @@ review.
   full-support prior.
 - Real KL equality and contraction theorems use support inclusion to exclude
   `top`.
+- Fano's exact and weak entropy forms require finite source and observation
+  value alphabets but no cardinality lower bound. Error bounds that divide by
+  `log |alpha|` require `2 <= Fintype.card alpha`; uniform-source statements
+  use the existing `PMF.uniformOfFintype` contract and therefore expose
+  `[Nonempty alpha]`.
 
 These are intentional current contracts, not claims of maximal generality.
 
 ### Documentation gaps
 
-- `docs/concept-note.md` has stale limitations for results completed in
-  Chunks 2-4.
-- `docs/roadmap.md` is accurate that Fano is next but its "Now" section is
-  dominated by completed chunk narratives and begins with Chunk 2. The living
-  summary should be the cross-thread orientation until the roadmap is
-  streamlined.
 - Full Lean doc-gen, theorem-level dependency data, and a blueprint PDF remain
   absent.
 - A minimal contributor guide and beginner issue surface remain absent.
@@ -810,13 +860,15 @@ These are intentional current contracts, not claims of maximal generality.
 
 ## 12. Active Work
 
-### Current active chunk
+### Current phase status
 
-**Project B Chunk 5: finite Fano.**
+**Project B Chunk 5: finite Fano complete and checkpoint-ready.**
 
 The approved execution plan is
 [`docs/plans/chapter2-chunk-05.md`](plans/chapter2-chunk-05.md). Its 20 stable
-steps are all not started, and each requires separate user authorization.
+steps required separate user authorization and are now all complete. The
+working tree has passed the final milestone checks but has not yet been
+committed. No next theorem chunk is selected or authorized.
 
 ### Approved scope
 
@@ -839,28 +891,33 @@ steps are all not started, and each requires separate user authorization.
 
 ### Current implementation status
 
-- the detailed 20-step plan is approved, but no step has started;
-- no Fano module or declaration exists;
-- no maintained Bernoulli/q-ary entropy bridge exists;
-- the existing conditional-entropy, entropy-bound, deterministic-processing,
-  Markov, DPI, and sufficiency APIs are available foundations;
-- an old ignored smoke proof reportedly related Bernoulli PMF entropy to
-  `Real.binEntropy`, but it is not a tracked API and must not be treated as
-  current evidence.
+- the mathematical theorem surface is complete and API-frozen;
+- `Shannon.BinaryEntropy` supplies `entropy_bool`;
+- `Shannon.Fano` supplies type-generic decoding-error definitions, exact
+  expanded/q-ary Fano, random-variable wrappers, weak bounds, generic
+  error-probability bounds, and uniform-source MI/error corollaries;
+- `Examples.Fano` permanently exercises perfect decoding, a singleton source,
+  and a fair Boolean constant-observation law;
+- all three modules remain opt-in, and root/private-helper isolation has been
+  checked;
+- canonical project memory and public status prose are reconciled through
+  `C5.20`;
+- generated references now match the 39-module, 65-edge, 717-declaration
+  working source;
+- the complete milestone build/check suite, boundary consumers, axiom and
+  placeholder audits, repeated generator checks, website checker, and final
+  hygiene review all pass.
 
-### First approved step
+### Next repository action
 
-`C5.01` is a disposable contract and proof-feasibility spike with no tracked
-source edit or production declaration. It tests the deterministic-decoder
-contract, Boolean error convention, conditional-fiber route, and empty,
-singleton, endpoint-error, and null-fiber cases. Any contract failure requires
-a plan-health review before production work.
+Review and checkpoint the coherent completed Chunk 5 working tree. Selection
+and planning of the next theorem phase remain separate decisions; this
+closeout does not authorize implementation beyond Chunk 5.
 
 ### Next review point
 
-The next review point is the result of `C5.01`; passing it does not authorize
-`C5.02` automatically. Naming, simp, module, and proof-pressure reviews remain
-scheduled inside the approved chunk.
+The next review point is the checkpoint decision and then an explicit choice
+of the next theorem phase. No later chunk should begin from this summary alone.
 
 ## 13. Future-Work Register
 
@@ -875,7 +932,11 @@ again.
 
 | Note | Work |
 | --- | --- |
-| 29 | **Partially completed Project B sequence.** Sufficiency is complete; the approved 20-step finite-Fano plan is the only immediate mathematical phase, and all of its steps remain not started. |
+| 29 | **Finite-Fano phase complete.** All 20 steps and final validation are complete; the working tree is checkpoint-ready, while downstream sequencing and evidence-based Fano follow-ups remain open. |
+
+Note 29 also preserves proof-pressure triggers from `C5.08`-`C5.11` and
+`C5.13`, together with the `C5.16` pedagogy/sharpness follow-ups. They are
+later work, not reasons to expand the frozen Chunk 5 API retroactively.
 
 ### Standing architecture and maintenance guardrails
 
@@ -906,10 +967,10 @@ boundaries are **[Uncertain]** planning context, not approved execution plans.
 | --- | --- |
 | 5 | Add Kraft-McMillan and other coding material in a later coding layer. |
 
-The active finite-Fano phase excludes channel powers, stationary processes,
-entropy rates, capacity, AEP, typicality, method of types, source/channel
-coding, and nontrivial network converses. These remain later roadmap work
-rather than hidden parts of Chunks 5-8.
+The completed finite-Fano theorem layer excludes channel powers, stationary
+processes, entropy rates, capacity, AEP, typicality, method of types,
+source/channel coding, and nontrivial network converses. These remain later
+roadmap work rather than hidden parts of Chunks 5-8.
 
 ### Certificate work
 
@@ -963,12 +1024,13 @@ actual joint random variables instantiate `ShannonEntropyVal`.
 
 | Note | Work |
 | --- | --- |
-| 9 | Add full Lean doc-gen, theorem-level leanblueprint, and eventually a blueprint PDF. |
+| 9 | Add full Lean doc-gen, theorem-level leanblueprint, and eventually a blueprint PDF; later consider a structured source for repeated status fragments and complete verified module-summary metadata. |
 | 10 | Add `CONTRIBUTING.md`, beginner tasks, issue labels, and upstream guidance before broad contributor outreach. |
 | 28 | Later improve the side-information example pedagogy without changing existing declarations. |
 
 Routine website redesign is not current work. Existing pages should be kept
 accurate and regenerated after public Lean declarations or imports change.
+C5.19 completed the required Chunk 5 refresh without redesigning the site.
 
 ### Speculative research directions
 
@@ -1055,14 +1117,58 @@ not reproduce textbook prose or proofs.
 - mathlib input revision: `v4.30.0`
 - mathlib manifest commit:
   `c5ea00351c28e24afc9f0f84379aa41082b1188f`
-- validated Lean/source commit: `217e35c`; `master` and `origin/master` were
-  synchronized when validation ran
+- last fully validated committed Lean/source baseline: `217e35c`
+- current checked-in head: `2413cb1`; `master` and `origin/master` are
+  synchronized
+- current Chunk 5 Lean source is an uncommitted working-tree development based
+  on that head and is fully validated through `C5.20`; it is checkpoint-ready
+  but is not yet a committed milestone
 
 ### Most recent local validation
 
-On 2026-07-24, with the current worktree's Lean source unchanged from that
-validated source commit, the maintained ten-target command completed
-successfully with 2,776 jobs:
+On 2026-07-25, C5.20 passed the focused builds for
+`Shannon.BinaryEntropy` (2,233 jobs), `Shannon.Fano` (2,702 jobs),
+`Examples.Fano` (2,703 jobs), `Examples` (2,764 jobs), and the lightweight
+root (2,240 jobs). The complete ten-target milestone suite passed with 2,779
+jobs, and the default `lake build` passed with 2,240 jobs.
+
+Disposable positive consumers exercised all 31 Chunk 5 declarations. Guarded
+negative consumers confirmed the BinaryEntropy/Fano, Fano/examples,
+private-helper, and lightweight-root boundaries. Axiom output for all 31
+declarations contained only `propext`, `Classical.choice`, and `Quot.sound`.
+The strict project-source placeholder scan was clean. All temporary consumers
+were deleted.
+
+Both generators were run again and reproduced all four artifact hashes byte
+for byte. The website checker passed for 12 HTML files and two generated JSON
+files. Final source, import, diff, temporary-file, process, textbook-file, and
+whitespace hygiene checks found no unexplained artifact.
+
+On 2026-07-25, C5.19 regenerated both source-derived reference sets twice with
+byte-identical results. The website checker passed for 12 HTML files and two
+generated JSON files, and the scoped diff-hygiene check passed.
+
+On 2026-07-24, the `C5.18` documentation-only source rebuild completed
+successfully with 2,764 jobs:
+
+```powershell
+lake build LeanInfoTheory.Shannon.Fano `
+  LeanInfoTheory.Examples.Fano `
+  LeanInfoTheory.Examples
+```
+
+The preceding `C5.17` API-freeze build completed successfully with 2,768 jobs:
+
+```powershell
+lake build LeanInfoTheory.Shannon.BinaryEntropy `
+  LeanInfoTheory.Shannon.Fano `
+  LeanInfoTheory.Examples.Fano `
+  LeanInfoTheory.Examples `
+  LeanInfoTheory
+```
+
+The current complete ten-target milestone suite was run on the final Chunk 5
+working tree and completed with 2,779 jobs:
 
 ```powershell
 lake build LeanInfoTheory `
@@ -1077,14 +1183,12 @@ lake build LeanInfoTheory `
   LeanInfoTheory.Examples
 ```
 
-The Lean-source placeholder scan found no `sorry`, `admit`, `axiom`,
-`opaque`, or `undefined`.
-
 ### Focused build policy
 
 During theorem work, build the touched module and its important downstream
 aggregate. Before a milestone, run the full suite above. The maintained
-individual commands are listed in `AGENTS.md`.
+individual commands are listed in `AGENTS.md`; C5.20 has completed the Chunk 5
+milestone assignment.
 
 ### CI expectations and remote state
 
@@ -1117,15 +1221,17 @@ python scripts/generate_website_api_index.py
 python scripts/check_website.py
 ```
 
-Current generated state:
+Current generated working-tree and working-source parser state:
 
-- 36 modules and 59 local import edges;
-- 11 root-reachable and 25 separately importable modules;
-- 686 public declarations and 0 undocumented declarations.
+- 39 modules and 65 local import edges;
+- 11 root-reachable and 28 separately importable modules;
+- 717 public declarations and 0 undocumented declarations.
 
-The deployed homepage, roadmap, module guide, and generated API-index HTML were
-checked against their local `home_page/` files and matched exactly after line
-ending normalization. The public site is:
+The C5.19 structured comparison found exactly the three new opt-in Chunk 5
+modules, six new local edges, and 31 new declarations, with no removals and no
+unexpected metadata changes. The local hand-written status pages now describe
+finite Fano as complete and validated through C5.20. Deployment of these
+uncommitted local updates is not claimed. The public site is:
 `https://serhatemrecoban.github.io/LeanInfoTheory/`.
 
 ### Placeholder and trust restrictions
@@ -1202,6 +1308,8 @@ ending normalization. The public site is:
 - [Foundation conventions](foundation-conventions.md): stable mathematical and
   import conventions.
 - [Roadmap](roadmap.md): public near-, medium-, and long-term milestones.
+- [Chunk 5 plan](plans/chapter2-chunk-05.md): approved step contracts and
+  implementation outcomes for the completed finite-Fano phase.
 - [Semantic bridge design](semantic-bridge-design.md): original bridge design
   and conditional-law choices.
 - [Semantic bridge API audit](semantic-bridge-api-audit.md): audited mathlib
@@ -1224,6 +1332,9 @@ ending normalization. The public site is:
 - Chunk 4: `f990f2e`
 - Chunk 5 handoff cleanup: `11e071c`
 - Validated Lean/source baseline: `217e35c`
+- Shared canonical-memory policy: `2413cb1`
+- Chunk 5 implementation: fully validated working tree through `C5.20`;
+  checkpoint commit pending
 
 ### Temporary historical inputs
 

@@ -7,8 +7,8 @@
     "Certificate layer",
     "Reference anchors"
   ],
-  "local_edge_count": 59,
-  "module_count": 36,
+  "local_edge_count": 65,
+  "module_count": 39,
   "modules": [
     {
       "external_imports": [],
@@ -64,6 +64,19 @@
     },
     {
       "external_imports": [
+        "Mathlib.Analysis.SpecialFunctions.BinaryEntropy"
+      ],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.Entropy"
+      ],
+      "name": "LeanInfoTheory.Shannon.BinaryEntropy",
+      "path": "LeanInfoTheory/Shannon/BinaryEntropy.lean",
+      "root_reachable": false,
+      "summary": "Boolean-PMF entropy bridge to mathlib's Real.binEntropy."
+    },
+    {
+      "external_imports": [
         "Mathlib.Analysis.SpecialFunctions.Log.NegMulLog",
         "Mathlib.Probability.ProbabilityMassFunction.Constructions"
       ],
@@ -89,6 +102,19 @@
       "path": "LeanInfoTheory/Shannon/EntropyBounds.lean",
       "root_reachable": false,
       "summary": "Sharp alphabet/support entropy bounds and their uniform-law equality cases."
+    },
+    {
+      "external_imports": [],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.BinaryEntropy",
+        "LeanInfoTheory.Shannon.EntropyBounds",
+        "LeanInfoTheory.Shannon.SemanticBridge.Theorems"
+      ],
+      "name": "LeanInfoTheory.Shannon.Fano",
+      "path": "LeanInfoTheory/Shannon/Fano.lean",
+      "root_reachable": false,
+      "summary": "Deterministic decoding error, exact and weak finite Fano inequalities, and converse-facing corollaries."
     },
     {
       "external_imports": [],
@@ -385,6 +411,7 @@
         "LeanInfoTheory.Certificate.Checked",
         "LeanInfoTheory.EntropyVal",
         "LeanInfoTheory.Examples.CommonCause",
+        "LeanInfoTheory.Examples.Fano",
         "LeanInfoTheory.Examples.KLTop",
         "LeanInfoTheory.Examples.StochasticChannels",
         "LeanInfoTheory.Examples.SufficientStatistics",
@@ -394,7 +421,7 @@
       "name": "LeanInfoTheory.Examples",
       "path": "LeanInfoTheory/Examples.lean",
       "root_reachable": false,
-      "summary": "Opt-in aggregate for certificate, support-sensitive, Markov, and stochastic-channel examples."
+      "summary": "Opt-in aggregate for certificate, support-sensitive, Markov, channel, sufficiency, and Fano examples."
     },
     {
       "external_imports": [],
@@ -406,6 +433,17 @@
       "path": "LeanInfoTheory/Examples/CommonCause.lean",
       "root_reachable": false,
       "summary": "Noisy binary common-cause example for conditional independence and Markov factorization."
+    },
+    {
+      "external_imports": [],
+      "layer": "Reference anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.Fano"
+      ],
+      "name": "LeanInfoTheory.Examples.Fano",
+      "path": "LeanInfoTheory/Examples/Fano.lean",
+      "root_reachable": false,
+      "summary": "Perfect-decoder, singleton-source, and nonzero-error examples for the finite Fano API."
     },
     {
       "external_imports": [],
@@ -439,7 +477,7 @@
       "name": "LeanInfoTheory.Examples.SufficientStatistics",
       "path": "LeanInfoTheory/Examples/SufficientStatistics.lean",
       "root_reachable": false,
-      "summary": "Local LeanInfoTheory module."
+      "summary": "Finite sufficient-statistics examples covering noninjective sufficiency, constant-statistic failure, and recovery/posterior/KL boundaries."
     },
     {
       "external_imports": [],
@@ -472,5 +510,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 11,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 25
+  "separate_import_count": 28
 }

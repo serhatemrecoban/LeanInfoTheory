@@ -126,15 +126,19 @@ laws. Under directed support inclusion, either family predicate is equivalent
 to that equality for a Boolean-indexed two-law model. The lightweight
 sufficiency core and root remain unchanged. The complete ten-target build,
 guarded consumer, axiom, generated-reference, website, and hygiene suites pass.
-The approved 20-step finite-Fano plan is the next Project B phase, with all
-steps not started. Canonical/minimal sufficiency and larger iid examples are
+The approved 20-step finite-Fano plan is complete through C5.20: the
+mathematics, examples, API review, canonical memory, generated references,
+public status documentation, full milestone suite, boundary consumers, trust
+audit, and final hygiene checks are current. The uncommitted milestone is
+checkpoint-ready. Canonical/minimal sufficiency and larger iid examples are
 deferred by Future Work Note 39.
 
-## Next Project B Phase: Chunk 5
+## Current Project B Phase: Chunk 5 Complete
 
 Chunk 5 is the focused finite Fano phase sequenced by Future Work Note 29. Its
-approved 20-step execution plan is `docs/plans/chapter2-chunk-05.md`; all steps
-remain not started. The intended mathematical surface is:
+approved 20-step execution plan is `docs/plans/chapter2-chunk-05.md`; all 20
+steps are complete and the working tree is validated and checkpoint-ready.
+The implemented mathematical surface is:
 
 - a finite decoder or estimator and its error event or indicator;
 - the binary- and q-ary-entropy bridges needed by the proof;
@@ -142,7 +146,7 @@ remain not started. The intended mathematical surface is:
   weaker finite-alphabet corollary;
 - the uniform-message error lower bound used by later converse arguments.
 
-This phase should reuse the completed conditional-entropy, Markov,
+This phase reuses the completed conditional-entropy, Markov,
 data-processing, sufficiency, and recovery APIs. It should not expand into a
 full source- or channel-coding theorem, channel capacity, iterated or stationary
 channel processes, entropy rates, AEP or typicality, finite-family certificate
@@ -527,9 +531,9 @@ future work.
 2. The root import remains unchanged. Entropy bounds, semantic theorems, units,
    demos, and reference anchors remain separately importable where appropriate.
 3. Sufficient statistics and KL recovery equality are complete under Future
-   Work Note 29. Fano has an approved 20-step plan and is the next Project B
-   phase, with implementation not started. Channel processes,
-   canonical/minimal sufficiency, and finite-family entropy remain later work.
+   Work Note 29. Finite Fano is complete and fully validated through C5.20;
+   its checkpoint commit is pending. Channel processes, canonical/minimal
+   sufficiency, and finite-family entropy remain later work.
 4. Continue using focused Lake builds during theorem development and the full
    suite at every milestone boundary.
 

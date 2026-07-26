@@ -219,9 +219,15 @@ when they stabilize.
   source documentation. Step 20 passed the complete ten-target build suite,
   guarded boundary consumers, representative axiom checks, both source-derived
   generators, the website checker, and repository hygiene. The lightweight
-  sufficiency core and root remain unchanged. The approved 20-step finite-Fano
-  plan is the next Project B phase, with implementation not started; Future
-  Work Note 39 defers canonical/minimal sufficiency and larger iid examples.
+  sufficiency core and root remain unchanged. Chunk 5's opt-in finite-Fano
+  layer is complete through C5.20, including deterministic decoding error,
+  exact/q-ary/weak PMF and random-variable inequalities, converse-facing
+  corollaries, permanent examples, API freeze, and generated references. Its
+  focused and full milestone builds, guarded boundary consumers, axiom and
+  placeholder audits, website checks, and final hygiene review all pass. The
+  uncommitted milestone is checkpoint-ready. Future Work Note 29 retains Fano
+  sharpness, randomized/list decoding, and coding applications; Note 39 defers
+  canonical/minimal sufficiency and larger iid examples.
 
 ## Lean Modules
 
@@ -248,6 +254,11 @@ when they stabilize.
   equality as uniformity on the alphabet or support. It stays separate from the
   lightweight entropy definition because it imports convexity/Jensen tools.
   Import this module explicitly when using these bounds.
+- `LeanInfoTheory.Shannon.BinaryEntropy`: opt-in Boolean-PMF bridge identifying
+  the local finite entropy with mathlib's `Real.binEntropy`.
+- `LeanInfoTheory.Shannon.Fano`: opt-in deterministic-decoder error API, exact
+  and q-ary finite Fano inequalities, weak forms, random-variable wrappers, and
+  converse-facing corollaries.
 - `LeanInfoTheory.Shannon.InfoMeasures`: conditional entropy, mutual
   information, conditional mutual information, named marginals, and
   random-variable versions, including both triple conditional-entropy chain
@@ -375,6 +386,9 @@ when they stabilize.
 - `LeanInfoTheory.Examples.SufficientStatistics`: opt-in finite experiments
   exercising fixed-prior and family sufficiency, exact recovery, all-prior and
   Fisher-Neyman characterizations, KL preservation, and recovery failure modes.
+- `LeanInfoTheory.Examples.Fano`: opt-in examples exercising perfect decoding,
+  the singleton-source edge case, and a fair Boolean source with a constant
+  observation.
 - `LeanInfoTheory.Examples`: aggregate for the semantic examples above and the
   original toy certificate examples.
 
@@ -393,6 +407,10 @@ the main finite-measure names into `LeanInfoTheory` as convenience aliases.
 Import heavier or demonstrational modules explicitly:
 
 - `LeanInfoTheory.Shannon.EntropyBounds` for Jensen-based entropy bounds.
+- `LeanInfoTheory.Shannon.BinaryEntropy` for the Boolean-PMF bridge to
+  `Real.binEntropy`.
+- `LeanInfoTheory.Shannon.Fano` for deterministic decoding-error definitions
+  and finite Fano inequalities.
 - `LeanInfoTheory.Shannon.Units` for logarithm-base conversion.
 - `LeanInfoTheory.Shannon.SemanticBridge` for self-information,
   conditional-law, KL, averaged conditional-KL, nonnegativity, and chain-rule
@@ -402,15 +420,15 @@ Import heavier or demonstrational modules explicitly:
   `LeanInfoTheory.Certificate.Subadditivity`,
   `LeanInfoTheory.Certificate.Monotonicity`,
   `LeanInfoTheory.Certificate.ThreeWaySubadditivity`, and
-  `LeanInfoTheory.Examples` for demos and examples. The five semantic example
+  `LeanInfoTheory.Examples` for demos and examples. The six semantic example
   modules may also be imported individually.
 
 ## Roadmap
 
-1. Implement the [approved 20-step finite-Fano plan](docs/plans/chapter2-chunk-05.md)
-   one explicitly authorized step at a time on top of the completed
-   sufficient-statistics and recovery-equality layer, without folding in a full
-   coding theorem.
+1. Review and checkpoint the completed
+   [20-step finite-Fano milestone](docs/plans/chapter2-chunk-05.md), then choose
+   and plan the next theorem phase separately without folding a coding theorem
+   into Chunk 5.
 2. Keep the sufficiency core lightweight and place KL integration downstream;
    retain exact full-joint recovery as the contract established by the
    completed midpoint tests, including rejection of marginal-only false

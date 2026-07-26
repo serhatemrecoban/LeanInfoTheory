@@ -87,10 +87,13 @@ highlights, and module guide record what is implemented now.
   the source documentation checklist. Step 20 passed the full ten-target build,
   guarded consumer, root-isolation, axiom, generated-reference, website, and
   hygiene suites.
-- The approved 20-step [finite-Fano plan](plans/chapter2-chunk-05.md) is the
-  next Project B phase after Chunk 4; all steps remain not started. Future Work
-  Note 39 defers canonical/minimal sufficiency, general measurable sufficiency,
-  and a larger iid count-statistic development until a later focused milestone.
+- The approved 20-step [finite-Fano plan](plans/chapter2-chunk-05.md) has
+  completed C5.01-C5.20: its deterministic-decoder mathematics, permanent
+  examples, API review, canonical memory, generated references, full
+  milestone suite, trust checks, and final hygiene review are current. The
+  uncommitted milestone is checkpoint-ready. Future Work Note 39 defers
+  canonical/minimal sufficiency, general measurable sufficiency, and a larger
+  iid count-statistic development until a later focused milestone.
 - Maintain project notes in the foundation conventions and project log.
 - Keep the lightweight finite API separated from heavier KL and coding imports.
 
@@ -103,9 +106,9 @@ highlights, and module guide record what is implemented now.
   orientation page.
 - Link generated docs and blueprint entries back to the curated theorem
   highlights and submodularity demo page.
-- Implement the approved finite-Fano plan one explicitly authorized step at a
-  time on top of the completed sufficient-statistics and recovery-equality API,
-  without folding in a full coding theorem.
+- Checkpoint the validated finite-Fano milestone, then plan the next
+  Cover-Thomas Chapter 2 phase separately without folding a full coding theorem
+  into Chunk 5.
 
 ## 6 Months
 

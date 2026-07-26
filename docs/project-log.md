@@ -5521,6 +5521,151 @@ This policy change updates `AGENTS.md`, the living summary, and the approved
 Chunk 5 plan but changes no Lean source, theorem status, or active Chunk 5
 step.
 
+### 138. Project B Chunk 5 Finite Fano Through Canonical Reconciliation
+
+On July 24, 2026, `C5.01` through `C5.18` of the approved 20-step Chapter 2
+Chunk 5 plan were completed in the working tree. The mathematical phase
+formalizes finite deterministic-decoder Fano inequalities without introducing
+a coding theorem, channel capacity, randomized-estimator architecture,
+finite-family entropy representation, or a second binary/q-ary entropy
+definition.
+
+The new opt-in `LeanInfoTheory.Shannon.BinaryEntropy` module publishes
+`entropy_bool`, identifying project entropy on `PMF Bool` with mathlib
+`Real.binEntropy`. The new opt-in `LeanInfoTheory.Shannon.Fano` module publishes
+the type-generic definitions `decodingErrorIndicator`,
+`decodingErrorProbability`, and `decodingErrorProbabilityOf`; their Boolean,
+finite-sum, range, and entropy semantics; exact expanded and
+`Real.qaryEntropy` Fano inequalities on PMF and random-variable surfaces; weak
+finite-alphabet forms; generic error-probability lower bounds; and
+mutual-information and normalized-error corollaries under a uniform source.
+The exact and weak entropy forms include singleton source alphabets. Only
+results that divide by `Real.log (Fintype.card alpha)` require
+`2 <= Fintype.card alpha`.
+
+The exact proof engine remains private. It compares the two existing
+conditional pair-chain rules, proves zero entropy on no-error fibers, excludes
+the decoder output from positive-error support, bounds those fibers by
+`log (card alpha - 1)`, and identifies the total true-error weight structurally
+in `ENNReal` before one finite `toReal` conversion. The local q-ary
+normalization bridge handles zero and singleton cardinalities without exposing
+Nat/Int implementation detail. No private augmented-law, fiber, support, or
+normalization helper was promoted.
+
+The new `LeanInfoTheory.Examples.Fano` module permanently exercises a perfect
+decoder, a singleton `Unit` source, and a fair Boolean source observed through
+a constant. The latter computes `Pe = 1/2` and consumes the expanded
+random-variable, uniform-source mutual-information, and normalized-error
+surfaces. `LeanInfoTheory.Examples` imports this module, while the lightweight
+root, semantic aggregate, and `BinaryEntropy` module do not import Fano or its
+examples.
+
+`C5.17` audited all 25 core declarations and six example declarations. It
+retained every public name and the PMF/`...Of` pair structure, added no alias,
+and kept only the two Boolean indicator characterizations as `[simp]`
+theorems. In particular, the four long C5.15 names retain
+`_of_uniform_source`: that suffix records a substantive hypothesis and
+distinguishes their conclusions from the generic Fano error bounds. Shorter
+sketches hid that contract or did not materially improve discovery.
+
+The implementation made only contract-preserving refinements to the approved
+plan. Core declarations use the established `LeanInfoTheory.Shannon`
+namespace; error definitions remain type-generic; the private chain identity
+uses the two existing pair-chain rules; the residual-weight calculation is
+performed in `ENNReal`; and the singleton example uses the fixed singleton type
+`Unit` after polymorphic `PUnit` produced an irrelevant universe mismatch. A
+small private C5.15 helper factors the repeated uniform-source identity. No
+public theorem was weakened, renamed, or materially redirected.
+
+The latest API-freeze command
+
+`lake build LeanInfoTheory.Shannon.BinaryEntropy
+LeanInfoTheory.Shannon.Fano LeanInfoTheory.Examples.Fano
+LeanInfoTheory.Examples LeanInfoTheory`
+
+passed with 2,768 jobs. Direct-import consumers, all-public-signature checks,
+the six permanent examples, and representative axiom audits passed; the axiom
+output contained only `propext`, `Classical.choice`, and `Quot.sound`.
+Negative consumers confirmed the BinaryEntropy/Fano, Fano/examples,
+private-helper, and root boundaries. The Chunk 5 source placeholder scan is
+clean. Read-only use of the source-derived parsers reports 39 modules, 65 local
+edges, 11 root-reachable modules, and 717 documented public declarations.
+The checked-in generated artifacts still contain the pre-Chunk 5
+36-module/59-edge/686-declaration state.
+
+`C5.18` reconciles this implementation into the project log and shared living
+summary and improves only the `Shannon.Fano` module comment. It does not
+regenerate references or claim a full milestone build. `C5.19` owns generated
+references and existing-public-documentation consistency; `C5.20` owns the
+complete ten-target milestone suite, final hygiene, and checkpoint closeout.
+The comment-touched build
+`lake build LeanInfoTheory.Shannon.Fano LeanInfoTheory.Examples.Fano
+LeanInfoTheory.Examples` passes with 2,764 jobs. The existing website checker
+also passes for 12 HTML files and two generated JSON files; this validates
+their current internal consistency but does not replace C5.19's required
+source regeneration.
+
+The Future Work review leaves Notes 1, 2, 4, 6, 8, 30, and 39 unchanged,
+confirms the coding boundary in Note 5 and the opt-in boundaries in Notes 3
+and 18, records the C5.17 naming decision in Note 14, preserves the milestone
+gate in Note 17, and advances Note 29 to Chunk 5 closeout. Note 29's existing
+C5.08-C5.11 and C5.13 proof-pressure triggers and C5.16 pedagogy and sharpness
+follow-ups remain later work and are not reopened as C5 implementation tasks.
+
+### 139. Project B Chunk 5 Generated References And Public Status
+
+On July 25, 2026, C5.19 regenerated the source-derived module graph and public
+declaration index from the frozen Chunk 5 working tree. The generated artifacts
+now report 39 local modules, 65 local import edges, 11 root-reachable modules,
+28 separate-import modules, and 717 public declarations, all documented.
+Structured comparison with the previous artifacts found exactly the three new
+Chunk 5 modules, six new local edges, and 31 new declarations, with no removal
+or unexplained existing-declaration change. A second generator pass reproduced
+all four artifact hashes byte for byte, the website checker passed for 12 HTML
+files and two generated JSON files, and the scoped diff-hygiene check passed.
+
+An explicitly approved C5.19 follow-up added curated blueprint summaries for
+`Shannon.BinaryEntropy`, `Shannon.Fano`, and `Examples.Fano`, refreshed the
+aggregate example summary, and corrected hand-written README, roadmap,
+concept-note, theorem-page, homepage, and blueprint status prose that still
+described sufficiency or finite Fano as future work. These are factual status
+and discoverability corrections, not a website redesign. The project log and
+shared living summary now record C5.19 as complete while preserving C5.20 as
+the unstarted full milestone-validation, hygiene, and checkpoint gate. No Lean
+source, theorem, declaration, import, name, attribute, or proof changed in
+C5.19.
+
+### 140. Project B Chunk 5 Final Validation And Closeout
+
+On July 25, 2026, C5.20 completed the approved 20-step finite-Fano plan. The
+focused builds passed for `Shannon.BinaryEntropy` (2,233 jobs),
+`Shannon.Fano` (2,702 jobs), `Examples.Fano` (2,703 jobs), `Examples` (2,764
+jobs), and the lightweight root (2,240 jobs). The complete maintained
+ten-target milestone suite passed with 2,779 jobs, and the default
+`lake build` passed with 2,240 jobs.
+
+Disposable positive consumers exercised all 31 public Chunk 5 declarations.
+Guarded negative consumers confirmed the lightweight-root,
+BinaryEntropy/Fano, Fano/examples, and private-helper boundaries. Axiom
+inspection of all 31 declarations reported only `propext`,
+`Classical.choice`, and `Quot.sound`, and the strict project-source placeholder
+scan was clean. All temporary consumers were deleted.
+
+Both source-derived generators reproduced all four artifact hashes byte for
+byte. The final generated state remains 39 modules, 65 local import edges, 11
+root-reachable modules, 28 opt-in modules, and 717 documented declarations.
+The website checker passed for 12 HTML files and two generated JSON files.
+Final source, diff, temporary-file, process, import-boundary, textbook-file,
+and whitespace hygiene checks found no unexplained change.
+
+C5.20 changed no Lean source, theorem, definition, proof, import, public name,
+attribute, or assumption. The accumulated Chunk 5 working tree is fully
+validated and ready for a coherent checkpoint commit, but this entry does not
+claim that the uncommitted milestone has already been checkpointed. It also
+does not select or authorize the next theorem chunk. Future Work Note 29
+retains all five evidence-based proof-pressure and pedagogy/sharpness groups,
+the optional theorem-highlights curation, and downstream sequencing.
+
 ## Completed Project B Chunk 4 Plan
 
 This completed theorem phase is a revised 20-step plan for finite sufficient
@@ -5870,17 +6015,21 @@ the guarded Boolean-family converse. The new opt-in
 preserving root isolation. The complete build, generated-reference, website,
 consumer, root-isolation, axiom, and hygiene suites pass, and the milestone is
 ready for its coherent checkpoint. The approved 20-step finite-Fano plan is
-the next mathematical phase under Note 29, with every step not started.
-Finite-family entropy, richer certificate
-assumptions, external certificate import, coding-theory layers, theorem-level
-blueprint work, and substantial mathlib PR preparation remain later work.
+now complete through `C5.20`: its mathematical API, permanent examples, API
+freeze, canonical-memory reconciliation, generated references, public status
+documentation, full milestone suite, boundary consumers, trust audit, and
+final hygiene checks all pass. The uncommitted milestone is checkpoint-ready;
+the next theorem phase has not been selected or authorized. Finite-family
+entropy, richer certificate assumptions, external certificate import,
+coding-theory layers, theorem-level blueprint work, and substantial mathlib PR
+preparation remain later work.
 
 ### Status Index
 
 | Status | Notes | Meaning |
 | --- | --- | --- |
 | Standing guardrails | 2-4, 6-8, 14-18, 26 | Apply these policies continuously; they do not create standalone cleanup tasks. |
-| Project B sequence | 29 | Chunk 4 sufficient statistics and recovery are complete; the approved 20-step Fano plan is next, with every step not started. |
+| Project B sequence | 29 | Chunk 5 finite Fano is complete through `C5.20` and checkpoint-ready; the next theorem phase remains unselected and requires separate planning and authorization. |
 | Channel/Markov proof-pressure | 21, 25, 27 | Revisit these only when concrete channel, Markov, or data-processing consumers reach their stated triggers. |
 | Proof-pressure deferred | 19, 22-24, 30-37, 40 | Wait for the repeated proof or new statement pressure specified in each note. |
 | Later milestones | 1, 5, 9-13, 28, 38-39 | Schedule these in their own later mathematical, documentation, example, certificate, or coding phases. |
@@ -5929,12 +6078,24 @@ historical trigger records when a later paragraph records their resolution.
     edge, the aggregate semantic bridge remains opt-in, and the lightweight
     root remains unchanged.
 
+    Chunk 5's C5.17 review confirms the same guardrail for the finite Fano
+    layer. `Shannon.BinaryEntropy`, `Shannon.Fano`, and `Examples.Fano` are
+    separately importable; `Fano` depends on the binary bridge, entropy bounds,
+    and the established semantic theorems, while neither the lightweight root
+    nor the semantic aggregate imports it. The examples aggregate imports the
+    permanent Fano examples without changing root reachability.
+
 4. Treat `LeanInfoTheory/MathlibFragments.lean` as a separately importable
     anchor and checklist for upstream APIs, not as part of the lightweight
     public import surface.
 
 5. Add coding-theory material, including Kraft-McMillan connections, in a
     later coding-oriented layer rather than in the finite Shannon foundation.
+
+    Chunk 5 completes the finite deterministic-decoder Fano inequalities and
+    their estimation-error corollaries without adding a source/channel coding
+    theorem, capacity, Kraft-McMillan use, or converse architecture. This note
+    remains open unchanged for a later coding-focused phase.
 
 6. Upstream conservatively to mathlib. Small generic lemmas can go earlier,
     but substantial `InformationTheory` definitions should wait until local
@@ -5962,6 +6123,61 @@ historical trigger records when a later paragraph records their resolution.
     map, and declaration index directly to rendered declaration pages. A
     blueprint PDF should be added after the theorem-level blueprint source is
     real enough to be worth rendering.
+
+    A July 25, 2026 post-C5.19 review records three lower-priority refinements
+    under this existing documentation owner. They are not prerequisites for
+    C5.20 and should not trigger a standalone website redesign:
+
+    - On the next blueprint-generator metadata pass, make the
+      `Shannon.BinaryEntropy` summary name the exact reused mathlib declaration
+      `Real.binEntropy` rather than only saying "mathlib's binary entropy."
+      In the same pass, audit modules still receiving the generic
+      `"Local LeanInfoTheory module."` fallback, beginning with the pre-existing
+      `Examples.SufficientStatistics` row. A plausible summary for that module
+      is "Finite sufficient-statistics examples covering noninjective
+      sufficiency, failure of a constant statistic, and recovery/posterior/KL
+      boundaries." Verify every description against current source rather than
+      mechanically eliminating the fallback.
+
+    - Repeated phase-status facts currently appear in `README.md`,
+      `docs/current-lean-state.md`, `docs/roadmap.md`, the living summary, and
+      several hand-written website pages. During a later documentation-tooling
+      phase, consider one small structured status source for short repeated
+      facts such as the active chunk, completed step boundary, generated
+      counts, and next validation gate. Generate only the repeated fragments or
+      website data that clearly benefit from synchronization. Do not generate
+      or overwrite the historical project log, and do not flatten the living
+      summary's mathematical narrative into a status manifest. The design must
+      distinguish committed `HEAD`, uncommitted working-tree state, and
+      deployed-site state so that "checked in," "generated locally," and
+      "deployed" cannot be conflated.
+
+    - Future Fano curation on the hand-written theorem-highlights page is owned
+      by Note 29 below. Note 9 owns only the eventual rendered-declaration and
+      cross-linking infrastructure; do not duplicate the same editorial task
+      under both notes.
+
+    - Treat exact generated-artifact hashes as validation output rather than
+      another hand-maintained canonical status surface. The current
+      byte-for-byte second-pass comparison is enough to establish generator
+      idempotence. If a later reproducible-build, cache, release, or remote
+      verification consumer genuinely needs persistent checksums, have the
+      generator or the milestone-validation driver from Note 17 emit one
+      machine-readable report containing the source commit or explicit dirty
+      working-tree state, artifact paths, hashes, and semantic module/edge/
+      declaration counts. Prefer a CI artifact or clearly generated file over
+      copying checksum values into the README, living summary, roadmap, and
+      project log. Keep three claims distinct: a generator can be idempotent,
+      its output can differ intentionally from checked-in `HEAD`, and the
+      deployed website can still reflect an older commit.
+
+    When any of these generator-facing refinements is implemented, regenerate
+    both reference sets twice, compare hashes for idempotence, run
+    `scripts/check_website.py`, inspect the semantic JSON delta, and run
+    `git diff --check`. Add a desktop/mobile rendered smoke test when the
+    available local browser path permits it, but do not weaken the existing
+    source, link, JSON, and idempotence checks if visual automation is
+    unavailable.
 
 10. Add a minimal contributor surface before inviting broader collaboration:
     `CONTRIBUTING.md`, beginner-friendly tasks, issue labels, and a short note
@@ -6840,6 +7056,28 @@ historical trigger records when a later paragraph records their resolution.
     index now documents all 686 declarations, while the Step 19 decision table
     and its evidence-based reopening rule remain unchanged.
 
+    Chunk 5 C5.17 completed the scheduled Fano naming review. It audited all 25
+    public declarations in `Shannon.BinaryEntropy` and `Shannon.Fano` and the
+    six declarations in `Examples.Fano`. Every existing name remains public and
+    unchanged; no compatibility alias was added. The PMF/`...Of` pairs,
+    expanded/`_qary`/`_weak` distinctions, decoder argument order, and
+    error-probability names form coherent discoverable families. None exposes
+    the private augmented law, conditional fibers, coordinate maps, marginal
+    conversion, or Nat/Int normalization machinery.
+
+    The four longest reviewed names are
+    `mutualInfo_fano_lower_bound_of_uniform_source`,
+    `mutualInfoOf_fano_lower_bound_of_uniform_source`,
+    `decodingErrorProbability_fano_lower_bound_of_uniform_source`, and
+    `decodingErrorProbabilityOf_fano_lower_bound_of_uniform_source`. Retain
+    them. The `_of_uniform_source` suffix advertises a substantive hypothesis
+    and distinguishes the MI and normalized-error forms from the generic Fano
+    error lower bounds. Shorter sketches that drop or compress the suffix hide
+    that contract or provide no material theorem-search/readability gain. This
+    is a completed `declined` alias decision, not an open watch item; reopen one
+    of these names only if a later production consumer demonstrates concrete
+    discovery pressure.
+
 15. The Step 13 `[simp]` review for mutual information and conditional mutual
     information was completed on July 14, 2026. Local attributes were tested
     on representative PMF, random-variable, symmetry, diagonal/self, and
@@ -7205,6 +7443,89 @@ historical trigger records when a later paragraph records their resolution.
     audits pass. This closes the current checkpoint assignment while preserving
     this note as the standing milestone-verification policy.
 
+    Chunk 5 followed the focused side of this policy through C5.17. Each theorem
+    stage built `Shannon.Fano` and the relevant root or downstream targets; the
+    API freeze then passed the combined BinaryEntropy, Fano, Fano-examples,
+    examples-aggregate, and root build with 2,768 jobs, together with positive
+    public consumers, negative boundary consumers, axiom checks, and the
+    placeholder scan. This is not the final milestone suite. C5.19 owns the
+    generated-reference and website checks, and C5.20 must run the complete
+    ten-target suite and final hygiene checks before a Chunk 5 checkpoint.
+
+    Chunk 5 C5.20 completed that assignment. The five focused targets, the
+    complete ten-target suite, and the default build all passed. Positive and
+    guarded negative consumers verified the intended opt-in boundaries; all
+    31 declarations passed the axiom audit with only Lean's standard
+    `propext`, `Classical.choice`, and `Quot.sound`; and the strict placeholder
+    scan was clean. Both generators were byte-for-byte idempotent, the website
+    checker passed, and final repository hygiene found no unexplained artifact.
+    This closes the Chunk 5 milestone-verification assignment while retaining
+    this note as the standing policy for future checkpoints.
+
+    A July 25, 2026 post-C5.20 critical review records four maintenance
+    improvements that may not arise naturally during theorem development.
+    They are future validation-infrastructure work, not defects in C5.20 and
+    not prerequisites for the Chunk 5 checkpoint:
+
+    - Consider one reusable milestone-validation driver after another
+      substantial chunk repeats this orchestration, or earlier if CI is being
+      revised anyway. Prefer a cross-platform Python, Lake, or similarly
+      repository-native entry point over a Windows-only shell script. It
+      should draw the maintained build-target list from one source of truth;
+      support the complete milestone suite and any explicitly supplied focused
+      opt-in targets; run the strict Lean placeholder scan; regenerate both
+      reference sets twice and compare their hashes; run the website checker;
+      verify semantic JSON invariants such as declaration documentation,
+      duplicate names, and root reachability; and finish with diff and scratch
+      hygiene. It must report failures with the exact subcommand, preserve an
+      intentionally dirty working tree, never revert generated changes, and
+      distinguish "validated working tree" from "committed checkpoint." Local
+      process inspection is useful as an optional desktop check but should not
+      be a mandatory portable CI contract.
+
+    - Consider a maintained import-boundary and axiom-audit harness for
+      milestones that add opt-in public modules. The positive side should
+      import each owning module directly and elaborate either an explicit
+      reviewed declaration manifest or the freshly regenerated declaration
+      index. The negative side should inspect Lean's environment, or use
+      another deliberately checked diagnostic, to assert that root-only and
+      intermediate imports do not expose the new names; do not treat an
+      unstructured failing command as success. The trust side should run
+      `#print axioms` over the reviewed public surface and reject dependencies
+      outside the project's accepted Lean foundations, currently `propext`,
+      `Classical.choice`, and `Quot.sound`. The harness should also check that
+      designated private proof-engine names are absent from the public index.
+      Use stdin or an isolated temporary directory where practical, delete all
+      probes, and retain permanent mathematical examples as the primary
+      positive consumer rather than replacing them with generated smoke tests.
+
+    - Align GitHub Actions with the maintained local milestone contract when
+      the workflow is next edited. In particular, resolve the current
+      discrepancy that the explicit CI target list omits
+      `LeanInfoTheory.Shannon.Units`, and decide whether newly introduced
+      opt-in milestone modules should be named directly even when
+      `LeanInfoTheory.Examples` reaches them transitively. Prefer invoking the
+      shared driver or shared target manifest if one exists, while retaining
+      the default project build, strict placeholder scan, generated-reference
+      consistency check, and example/certificate coverage. CI alignment must
+      not be achieved by importing heavy opt-in modules into
+      `LeanInfoTheory.lean`.
+
+    - Keep cold clean builds as explicit release hardening rather than the
+      default end of every theorem chunk. Use one before a tagged release,
+      after a Lean/mathlib upgrade, when stale artifacts are suspected, or
+      when a fresh CI checkout disagrees with local incremental builds.
+      Prefer a fresh checkout or isolated build environment over deleting a
+      contributor's active local cache. Record whether a milestone used
+      incremental or cold validation, but do not downgrade a successful full
+      maintained suite merely because the optional cold pass was not run.
+
+    Note 9 owns any machine-readable artifact/checksum report and shared status
+    fragments that grow out of this driver. This note owns the executable
+    validation contract. Revisit the automation as one coherent maintenance
+    task instead of adding a new script piecemeal during an unrelated theorem
+    step.
+
 18. Standing architecture guardrail: preserve the boundary between the
     completed pair/triple Chunk 1, the completed equality/independence Chunk 2,
     and later Project B chunks. The full equality characterization for the
@@ -7242,6 +7563,14 @@ historical trigger records when a later paragraph records their resolution.
     without adding stochastic-channel or Markov definitions. Those topics
     remain a later focused dependency layer rather than an extension of the
     completed equality/independence chunk.
+
+    Chunk 5 preserves the same ownership boundary. Its new BinaryEntropy and
+    Fano modules reuse the completed finite entropy, entropy-bound, and semantic
+    theorem APIs without moving decoding error, Fano inequalities, examples, or
+    coding material into Chunks 1-4, the semantic aggregate, or the lightweight
+    root. The deterministic-decoder Fano layer is separately importable and
+    does not reopen the completed channel, independence, or sufficiency module
+    boundaries.
 
 19. Keep the Step 7 deterministic-entropy decomposition private unless a later
     theorem creates a genuine consumer. The two planned support-sensitive
@@ -8646,6 +8975,162 @@ historical trigger records when a later paragraph records their resolution.
     `docs/plans/chapter2-chunk-05.md`. This supersedes only the planning-status
     sentence above: all earlier scope boundaries remain active, every plan step
     is not started, and no Fano declaration or module exists.
+
+    A July 24, 2026 implementation review after completion of `C5.01` through
+    `C5.16`, with `C5.17` not yet started, records five evidence-based follow-up
+    triggers. These are not tasks for the remaining active theorem steps and
+    should not prompt speculative public API additions:
+
+    - The private `C5.08` support exclusion and `C5.09` true-error fiber
+      entropy bound are appropriately decoder-specific for the current Fano
+      proof. If a second independent production consumer needs the same
+      mathematics, first investigate a generic theorem that bounds the entropy
+      of a finite PMF whose support lies in the complement of one atom, or a
+      coherent conditional-fiber support/cardinality theorem. Decide then
+      whether it belongs in `Shannon.EntropyBounds` or the owning conditional
+      semantic layer. Do not publish the current decoder/fiber helper names
+      merely to expose their proofs. Preserve the total null-fiber convention,
+      explicit Nat subtraction in `card alpha - 1`, and the absence of an
+      unnecessary `2 <= card alpha` or `Nonempty alpha` assumption.
+
+    - `C5.10` identifies the total true-error conditional weight with `Pe`
+      structurally in `ENNReal`, through the augmented law and marginal APIs,
+      before making exactly one finite-sum `ENNReal.toReal_sum` conversion.
+      Keep this calculation local while it has one production consumer. If a
+      later Fano, list-decoding, or decision-theoretic proof repeats both the
+      marginal identity and the `toReal` finiteness argument, extract a
+      coherent private helper in `Shannon.Fano` first. Consider a public
+      theorem only after multiple downstream consumers establish whether the
+      useful surface is the PMF error law, the random-variable wrapper, or a
+      more general event-fiber identity. Retain the structural proof rather
+      than replacing it with broad `PMF.map_apply` simplification.
+
+    - `C5.11` uses the private bridge
+      `qaryEntropy_eq_binEntropy_add_mul_log_nat_sub_one` to reconcile the
+      project's Nat-cardinality expression with mathlib's integer-cast
+      implementation of `Real.qaryEntropy`. It currently has one production
+      consumer and should remain private in `Shannon.Fano`. If another
+      independent q-ary entropy theorem repeats this normalization, consider
+      moving the bridge to `Shannon.BinaryEntropy` and reviewing a public,
+      mathematically named statement there. Such a bridge should continue to
+      handle `q = 0` and `q = 1` without adding a convenient but unnecessary
+      cardinality lower bound, and any public name must avoid exposing Nat/Int
+      proof machinery and be audited under Future Work Note 14.
+
+    - `C5.13` locally proves
+      `Real.log ((Fintype.card alpha - 1 : Nat) : Real) <=
+      Real.log (Fintype.card alpha : Real)` after deriving positive source
+      cardinality from the supplied joint PMF and treating the singleton branch
+      explicitly. Keep this comparison local while the weak Fano theorem is
+      its only production consumer. If a second independent list-decoding,
+      support-extremization, or coding-converse proof repeats the same
+      positive-cardinality and logarithm argument, first extract a generic
+      private lemma at the narrowest common owner. Promote it only if multiple
+      modules need the statement, and then prefer a Nat-parameterized
+      mathematical contract with `0 < n` over a PMF-specific theorem. Preserve
+      truncated Nat subtraction and the valid `n = 1` case; do not strengthen
+      the contract to `2 <= n` merely to avoid the explicit singleton branch.
+      Decide module ownership from the consumers, with
+      `Shannon.EntropyBounds` a plausible home for an entropy-facing bridge,
+      and audit any public name under Future Work Note 14.
+
+    - `C5.16` deliberately uses a fair Boolean source with a constant
+      observation as its compact nonzero-error and uniform-source API example.
+      It computes `Pe = 1/2` and exercises the expanded, mutual-information,
+      and normalized error surfaces, but the weak binary uniform-source
+      corollaries are not numerically forceful: the displayed MI lower bound
+      has a negative left side and the normalized error lower bound is
+      trivial. Keep this example because it is small, transparent, and useful
+      for API ergonomics. In a later pedagogical or coding-converse phase,
+      consider an additional larger-alphabet, partially informative example
+      only if it produces a visibly positive MI lower bound or otherwise
+      demonstrates mathematical force not present here. Coordinate such an
+      example with the existing coding future-work owner rather than expanding
+      the current finite-Fano chunk retroactively.
+
+      The same binary constant-observation law is also a natural candidate for
+      a later exact-Fano attainment example: mathematically its conditional
+      entropy and `Real.binEntropy (1/2)` coincide, while the
+      `Pe * log (2 - 1)` term vanishes. Equality and sharpness remain explicitly
+      deferred. Revisit this only in a focused sharpness phase that decides
+      whether to prove isolated attainment examples, characterize equality
+      conditions, or do both. Do not add an equality theorem merely as another
+      C5.16 API smoke test.
+
+    The local projection normalization
+    `decodingErrorProbabilityOf p Prod.fst Prod.snd decoder =
+    decodingErrorProbability p decoder`, local abbreviations for the augmented
+    law, the `C5.13` extraction of an inhabited source atom from
+    `p.support_nonempty`, and the already-corrected explicit cast annotations
+    are routine proof engineering rather than deferred mathematical work. Do
+    not create public declarations or separate future-work items for them
+    unless repeated production use demonstrates actual friction. The
+    `C5.13` weak-Fano names remain governed by the already scheduled `C5.17`
+    API review rather than a separate future-work item. The two local C5.16
+    proofs that mapping the uniform law by `id` leaves it unchanged are
+    intentionally explicit one-line uses of `PMF.map_id`; do not extract an
+    example helper for them.
+
+    Chunk 5 C5.17 has now completed the scheduled API freeze. All current names,
+    theorem statements, argument orders, simp attributes, and module boundaries
+    were retained. Future Work Note 14 records the completed decision to keep
+    the four `_of_uniform_source` names without aliases. No pressure item in
+    this note was promoted merely because the review occurred.
+
+    C5.18 completes the canonical project-memory reconciliation. The finite
+    deterministic-decoder Fano mathematics, permanent examples, and API review
+    are complete through this step. The five evidence-based follow-up groups
+    above remain intact: generic complement-of-one-atom entropy pressure,
+    repeated ENNReal error-weight extraction, repeated q-ary normalization,
+    repeated positive-cardinality logarithm comparison, and the C5.16
+    pedagogy/sharpness possibilities. They remain later proof-pressure or
+    pedagogical work, not incomplete Chunk 5 theorems.
+
+    Note 29 remains active only for Chunk 5 closeout and downstream sequencing.
+    C5.19 must regenerate and check the source-derived references and existing
+    public documentation; C5.20 must run the full milestone suite and final
+    hygiene checks. Coding theorems, randomized estimators, list decoding,
+    equality-condition theory, and exact-Fano sharpness remain outside this
+    finite deterministic-decoder chunk.
+
+    On July 25, C5.19 completed that generated-reference and
+    public-documentation assignment. The four source-derived artifacts now
+    match the 39-module, 65-edge, 717-declaration working source, both
+    generators are byte-for-byte idempotent, and the website checker passes.
+    The approved follow-up also replaced obsolete finite-Fano status prose and
+    added curated blueprint summaries without redesigning the website. Note 29
+    therefore remains active only for C5.20's unstarted full milestone suite,
+    hygiene, checkpoint closeout, and later downstream sequencing. All five
+    evidence-based proof-pressure or pedagogical follow-up groups remain
+    deferred unchanged.
+
+    A subsequent C5.19 editorial review records one additional low-priority
+    public-documentation candidate. The generated API index already exposes all
+    31 Chunk 5 declarations, so the absence of Fano rows from the hand-written
+    theorem-highlights table is not an API or completeness defect. During the
+    next deliberate theorem-highlights content pass, or during a later
+    Fano-sharpness/coding-converse phase, consider adding a small representative
+    selection rather than duplicating the entire PMF/`...Of` family. Useful
+    coverage candidates are `entropy_bool`, one exact conditional-entropy Fano
+    form, one decoding-error lower bound, and one uniform-source
+    mutual-information or normalized-error corollary. Each row should state the
+    nats convention, decoder orientation, and any cardinality hypothesis
+    accurately, link to the generated declaration anchor, and avoid suggesting
+    that equality conditions, randomized estimators, list decoding, or coding
+    theorems are already formalized. This is editorial curation, not unfinished
+    Chunk 5 mathematics, and it is neither required before C5.20 nor a reason
+    to change any declaration, import, root boundary, or theorem statement.
+
+    C5.20 now closes the approved finite deterministic-decoder Fano phase. The
+    complete focused and milestone build suites, import-boundary consumers,
+    axiom and placeholder audits, generated-reference checks, website checker,
+    and repository-hygiene review all pass. The working tree is
+    checkpoint-ready but remains uncommitted, and no next theorem phase is
+    selected or authorized by this closeout. This note remains active as the
+    downstream Project B sequencing anchor. Its five evidence-based
+    proof-pressure or pedagogy/sharpness groups and the optional curated Fano
+    theorem-highlights pass remain deferred unchanged; none is incomplete
+    Chunk 5 work.
 
 30. Keep the Step 5 total conditional-channel law surface minimal until later
     proofs create a concrete need for a more abstract null-fiber theorem. The

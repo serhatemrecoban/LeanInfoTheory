@@ -48,9 +48,9 @@ network-information-theory converse proofs.
 
 ## Current Limitations
 
-- The semantic bridge is still finite-PMF focused; general stochastic data
-  processing, independence equality cases, Fano, AEP, and source/channel
-  coding are future work.
+- The semantic and Fano layers remain finite-PMF/finite-alphabet focused.
+  General measurable extensions, exact Fano equality and sharpness,
+  randomized/list decoding, AEP, and source/channel coding remain future work.
 - The certificate layer checks and validates certificates, but it does not yet
   search for certificates automatically.
 - The certificate layer is not yet a full import pipeline for external

@@ -1,6 +1,6 @@
 # Chapter 2 Chunk 5: Finite Fano
 
-**Plan status:** Approved for implementation
+**Plan status:** Implementation complete; checkpoint pending
 **Baseline commit:** `217e35cf9f1a76354b6f82a3fb0209818b32bab7`
 **Plan path:** `docs/plans/chapter2-chunk-05.md`
 **Number of steps:** 20
@@ -163,9 +163,15 @@ public PMF/random-variable corollaries. Fano must remain opt-in:
 - do not import it from `LeanInfoTheory.Shannon.SemanticBridge`;
 - do not move general semantic-bridge declarations into this module.
 
+All core declarations in `BinaryEntropy.lean` and `Fano.lean` belong to the
+existing `LeanInfoTheory.Shannon` namespace. Fano examples belong to
+`LeanInfoTheory.Examples.Fano`, following the established examples layout.
+
 The implementation may use classical equality internally. Public definitions
 and theorem statements should not expose `[DecidableEq alpha]` merely to
-compute whether decoding was correct.
+compute whether decoding was correct. The error indicator and error-probability
+definitions are type-generic and should not require finite alphabets;
+finiteness belongs on the sum and entropy theorems that genuinely need it.
 
 ### Examples
 
@@ -207,7 +213,16 @@ mathlib's internal integer-cast representation of `qaryEntropy`.
 
 ### C5.01 - Contract And Proof-Feasibility Spike
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** A disposable ignored spike compiled and was
+deleted with no tracked diff. It validated the broad exact-theorem contract,
+the `p`-then-`decoder` PMF argument order, `true = error`, hidden classical
+equality, singleton and Boolean endpoint behavior, total zero-mass fibers,
+the Nat/Int q-ary bridge, the conditional chain identity, decoder-output
+support exclusion, the `card alpha - 1` fiber bound, and the structural
+true-error weight identity. It also established the namespace and proof
+strategy corrections recorded in the later steps below.
 
 **Objective:** Verify the exact broad theorem contract, the intended decoder
 argument order, the Boolean error convention, and the viability of the
@@ -220,8 +235,8 @@ entropy, and conditional-fiber APIs are available.
 prototype the expanded Fano statement.
 
 **Target files and namespaces:** An ignored disposable file under
-`tmp/codex-handoffs/`; namespace `LeanInfoTheory` or a private test namespace.
-No tracked source file changes.
+`tmp/codex-handoffs/`; private test namespace
+`LeanInfoTheory.Shannon.Chunk5ContractSpike`. No tracked source file changes.
 
 **Strategy:** Instantiate the likely PMF theorem signature, test singleton and
 binary alphabets, locate exact card/support lemmas, and confirm that classical
@@ -244,7 +259,14 @@ unless the spike forces a plan revision.
 
 ### C5.02 - Boolean PMF Entropy Bridge
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** Added the opt-in
+`LeanInfoTheory.Shannon.BinaryEntropy` module and the public theorem
+`entropy_bool`. The focused module build, direct-import consumer, pure-`true`
+and pure-`false` endpoint checks, and root build passed. A root-only negative
+consumer confirmed that `entropy_bool` remains unavailable without importing
+the new module. No root or semantic-bridge import changed.
 
 **Objective:** Relate project entropy on `PMF Bool` to mathlib binary entropy.
 
@@ -256,7 +278,8 @@ normalization.
 `entropy p = Real.binEntropy (p true).toReal`.
 
 **Target files and namespaces:**
-`LeanInfoTheory/Shannon/BinaryEntropy.lean`, namespace `LeanInfoTheory`.
+`LeanInfoTheory/Shannon/BinaryEntropy.lean`, namespace
+`LeanInfoTheory.Shannon`.
 
 **Strategy:** Expand the Boolean finite sum, rewrite the false mass as
 `1 - (p true).toReal`, and close using the mathlib binary-entropy identity.
@@ -276,10 +299,20 @@ the bridge and nats convention.
 
 ### C5.03 - Deterministic Decoding-Error Definitions
 
-**Status:** not started
+**Status:** complete (2026-07-24)
 
-**Objective:** Define the Boolean error event and its probability for joint
-PMFs and random variables.
+**Implementation outcome:** Added the opt-in
+`LeanInfoTheory.Shannon.Fano` module with the type-generic definitions
+`decodingErrorIndicator`, `decodingErrorProbability`, and
+`decodingErrorProbabilityOf`, together with the `true`/`false`
+characterization theorems for the indicator. Classical equality is hidden
+inside the indicator; no public `Fintype` or `DecidableEq` assumption was
+introduced. The focused module build, arbitrary-type direct consumer,
+success/failure endpoint checks, root-isolation check, and root build passed.
+No root or semantic-bridge import changed.
+
+**Objective:** Define the type-generic Boolean error event and its probability
+for joint PMFs and random variables.
 
 **Prerequisites:** `PMF.map`, project random-variable conventions, and the
 contract confirmed in `C5.01`.
@@ -290,15 +323,19 @@ contract confirmed in `C5.01`.
 `decodingErrorIndicator_eq_false_iff` (all tentative).
 
 **Target files and namespaces:** `LeanInfoTheory/Shannon/Fano.lean`, namespace
-`LeanInfoTheory`.
+`LeanInfoTheory.Shannon`.
 
 **Strategy:** Use a Boolean indicator with `true` exactly when
-`decoder y != x`. Define error probability from the `true` mass of the mapped
-Boolean PMF. Define the random-variable wrapper by mapping the source PMF to
-the joint law, following existing `...Of` conventions.
+`decoder y ≠ x`. Define error probability from the `true` mass of the mapped
+Boolean PMF. Use argument order `p`, then `decoder`, on the PMF surface and
+`p`, `X`, `Y`, then `decoder`, on the random-variable surface. Define the
+random-variable wrapper by mapping the source PMF to the joint law, following
+existing `...Of` conventions. Do not add `Fintype` assumptions to these three
+definitions.
 
 **Edge cases:** Hide classical decidable equality internally; avoid public
-`DecidableEq` assumptions; preserve the declared `true = error` convention.
+`DecidableEq` and `Fintype` assumptions on the definitions; preserve the
+declared `true = error` convention.
 
 **Focused validation:** `lake build LeanInfoTheory.Shannon.Fano`
 
@@ -313,7 +350,17 @@ Boolean convention explicitly.
 
 ### C5.04 - Error-Probability Semantics And Range
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** Added the public finite-sum elimination theorem
+`decodingErrorProbability_eq_sum` and the PMF/random-variable range theorem
+pairs `decodingErrorProbability_nonneg`/`decodingErrorProbability_le_one` and
+`decodingErrorProbabilityOf_nonneg`/`decodingErrorProbabilityOf_le_one`.
+Only the sum theorem requires finite alphabets; all four range theorems remain
+type-generic. The focused module build, arbitrary-type direct consumer,
+empty-product formula, singleton and Boolean endpoint checks, forward
+finite-sum rewrite, axiom audit, and root build passed. No root or
+semantic-bridge import changed.
 
 **Objective:** Give a usable finite-sum meaning to decoding error and prove it
 is a probability.
@@ -326,10 +373,12 @@ random-variable nonnegativity and upper-bound theorems. Exact range theorem
 names are tentative.
 
 **Target files and namespaces:** `LeanInfoTheory/Shannon/Fano.lean`, namespace
-`LeanInfoTheory`.
+`LeanInfoTheory.Shannon`.
 
 **Strategy:** Expand the mapped PMF at `true`, rewrite the preimage as decoder
-mismatch, and derive `0 <= Pe` and `Pe <= 1` from the PMF mass.
+mismatch, and derive `0 <= Pe` and `Pe <= 1` from the PMF mass. Keep the range
+theorems type-generic; place finite-alphabet assumptions only on the explicit
+finite-sum theorem.
 
 **Edge cases:** The sum theorem should correctly handle empty index types and
 duplicate no mass. Its statement should be convenient for concrete examples
@@ -348,7 +397,17 @@ event-probability elimination theorem.
 
 ### C5.05 - Entropy Of The Error Indicator And Import Checkpoint
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** Added the public identities
+`entropy_decodingErrorIndicator` and
+`entropyOf_decodingErrorIndicator`. Both identify the entropy, in nats, of
+the Boolean error indicator with `Real.binEntropy` of the corresponding
+decoding-error probability, without finite source, observation, or sample
+types. The approved three-target build, arbitrary-type direct consumer,
+perfect-decoder and always-error endpoint checks, axiom audit, and root-only
+negative consumer passed. Fano remains opt-in, and no root or semantic-bridge
+import changed. This completes the first Chunk 5 integration checkpoint.
 
 **Objective:** Identify the entropy of the decoding-error indicator with
 `Real.binEntropy Pe`.
@@ -359,7 +418,7 @@ event-probability elimination theorem.
 `entropyOf_decodingErrorIndicator` (tentative).
 
 **Target files and namespaces:** `LeanInfoTheory/Shannon/Fano.lean`, namespace
-`LeanInfoTheory`.
+`LeanInfoTheory.Shannon`.
 
 **Strategy:** Reduce the error law to a Boolean mapped PMF, apply
 `entropy_bool`, and use map composition for the random-variable wrapper.
@@ -382,23 +441,34 @@ the plan status when implemented.
 
 ### C5.06 - Private Conditional Chain Identity
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** Added the private helper
+`condEntropyOf_eq_error_add_residual` and the approved opt-in
+`LeanInfoTheory.Shannon.SemanticBridge.Theorems` import to `Fano.lean`. The
+proof compares the two existing expansions of `H(E,X|Y)` and eliminates
+`H(E|X,Y)` with `condEntropyOf_comp_eq_zero`. It requires only finite source
+and observation alphabets, with no nonemptiness or decidable-equality
+assumption. The focused build, broad-contract smoke theorem, axiom audit,
+private-name isolation check, and root build passed. No public declaration or
+root/semantic-bridge aggregator import changed.
 
 **Objective:** Establish the proof-engine identity
 `H(X | Y) = H(E | Y) + H(X | E,Y)` for deterministic error `E`.
 
 **Prerequisites:** `C5.03`, `condEntropyOf_pair_chain_rule`,
-`condEntropyOf_deterministic_chain_rule`, and
-`condEntropyOf_comp_eq_zero`.
+`condEntropyOf_pair_chain_rule_swap`, and `condEntropyOf_comp_eq_zero`.
 
 **Proposed declarations:** A private helper only; no public name is approved.
 
 **Target files and namespaces:** `LeanInfoTheory/Shannon/Fano.lean`, private
-section in namespace `LeanInfoTheory`.
+section in namespace `LeanInfoTheory.Shannon`.
 
-**Strategy:** Apply the deterministic conditional chain rule in both
-directions to the pair `(E, X)` conditioned on `Y`, then simplify the
-deterministic conditional-entropy term.
+**Strategy:** Compare the two existing pair-chain-rule expansions of
+`H(E,X | Y)`. The right-oriented expansion is
+`H(X | Y) + H(E | X,Y)`; eliminate its last term with
+`condEntropyOf_comp_eq_zero`. The swapped expansion is
+`H(E | Y) + H(X | E,Y)`. Equate the expansions and close the real arithmetic.
 
 **Edge cases:** Ensure tuple orientation agrees with the established
 `condEntropyOf_pair_chain_rule` API; do not expose pair projections or
@@ -417,7 +487,20 @@ if tuple bookkeeping is otherwise difficult to read.
 
 ### C5.07 - No-error Fiber Entropy
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** Added the private augmented-law abbreviation
+`decodingErrorAugmentedLaw` and the private theorem
+`condEntropyFstGivenSnd_decodingError_false_eq_zero`. The proof handles a
+zero-mass `(false,y)` conditioning atom with the project's explicit numeric
+zero branch. On a nonzero fiber, it transports conditional support to the
+augmented joint support, uses decoder success to identify every source symbol
+with `decoder y`, proves the conditional PMF is pure there, and concludes
+zero entropy. Only the source alphabet requires `Fintype`; no observation
+finiteness, nonemptiness, or decidable-equality assumption was added. The
+focused build, null- and positive-fiber smoke examples, axiom audit,
+private-name isolation check, and root build passed. No public declaration or
+import boundary changed.
 
 **Objective:** Show that conditioned on `E = false` and an observation `y`,
 the source symbol is determined by `decoder y`, so the corresponding
@@ -429,7 +512,7 @@ zero-entropy characterizations.
 **Proposed declarations:** Private helper(s) only.
 
 **Target files and namespaces:** `LeanInfoTheory/Shannon/Fano.lean`, private
-section.
+section in namespace `LeanInfoTheory.Shannon`.
 
 **Strategy:** Separate zero-mass and nonzero-mass conditioning fibers. On a
 nonzero fiber, use the error-indicator characterization to show support is a
@@ -450,7 +533,18 @@ as a new public convention.
 
 ### C5.08 - Positive-error Fiber Support Exclusion
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** Added the private theorem
+`decodingError_true_fiber_support_subset`. For every positive-mass
+`(true,y)` conditioning atom, it transports conditional support membership
+through the augmented joint law, uses the `true = error` characterization,
+and proves that the conditional source support is contained in
+`({decoder y} : Set alpha)ᶜ`. Only the source alphabet requires `Fintype`;
+zero-mass true fibers remain assigned to the total conditional-entropy branch
+in the next step. The focused build, concrete positive-error fiber exclusion,
+axiom audit, private-name isolation check, and root build passed. No public
+declaration or import boundary changed.
 
 **Objective:** Show that a positive-mass true-error conditional fiber cannot
 contain the decoder output.
@@ -461,7 +555,7 @@ project's conditional-law support transport.
 **Proposed declarations:** Private support inclusion/exclusion helper(s).
 
 **Target files and namespaces:** `LeanInfoTheory/Shannon/Fano.lean`, private
-section.
+section in namespace `LeanInfoTheory.Shannon`.
 
 **Strategy:** Translate nonzero conditional mass to nonzero joint mass, unfold
 the true-error event, and derive membership in the complement of the singleton
@@ -482,7 +576,21 @@ downstream consumer demonstrates genuine API pressure.
 
 ### C5.09 - True-error Fiber Entropy Bound
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** Added the private theorem
+`decodingError_true_fiber_entropy_le` and the approved opt-in
+`LeanInfoTheory.Shannon.EntropyBounds` import to `Fano.lean`. The theorem
+handles zero-mass true fibers with the total numeric-zero branch. On a
+positive fiber it applies `entropy_le_log_support_ncard`, uses the Step 8
+support inclusion, computes the decoder-output complement with
+`Set.ncard_compl`, and applies logarithm monotonicity. The statement
+explicitly performs `Fintype.card alpha - 1` in `Nat` before coercing to
+`Real`, avoiding an ambiguous real-subtraction interpretation. Only the
+source alphabet requires `Fintype`; no nonemptiness or decidable-equality
+assumption was added. The focused build, singleton and Boolean fiber bounds,
+axiom audit, private-name isolation check, and root build passed. No public
+declaration or aggregator import changed.
 
 **Objective:** Bound each true-error conditional entropy by
 `Real.log (Fintype.card alpha - 1)`.
@@ -493,7 +601,7 @@ lemmas for erasing the decoder output.
 **Proposed declarations:** Private fiber-bound helper(s).
 
 **Target files and namespaces:** `LeanInfoTheory/Shannon/Fano.lean`, private
-section.
+section in namespace `LeanInfoTheory.Shannon`.
 
 **Strategy:** Apply the support-cardinality entropy bound, prove support is
 contained in the erased alphabet, compare `Set.ncard` with
@@ -515,23 +623,40 @@ why no public nondegeneracy hypothesis is needed.
 
 ### C5.10 - Residual Conditional-Entropy Bound
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** Added the private theorem
+`condEntropyOf_decodingError_residual_le`. It expands the residual conditional
+entropy over the Boolean error fibers, eliminates the false-error contribution
+with `C5.07`, and applies the pointwise true-error bound from `C5.09`. The
+total true-error weight is identified structurally in `ENNReal` through the
+augmented law and marginal APIs, followed by exactly one finite-sum
+`ENNReal.toReal_sum` conversion with explicit finiteness facts. The proof
+avoids broad `PMF.map_apply` simplification and requires only finite source and
+observation alphabets. The focused build, independent generic weight-identity
+consumer, axiom audit, private-name isolation check, and root build passed.
+No public declaration or import boundary changed. This completes the second
+Chunk 5 integration checkpoint.
 
 **Objective:** Prove
 `H(X | E,Y) <= Pe * log(card alpha - 1)`.
 
-**Prerequisites:** `C5.04`, `C5.07`, `C5.09`, and
-`condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd`.
+**Prerequisites:** `C5.04`, `C5.07`, `C5.09`,
+`condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd`,
+`sndMarginal_map_pair`, `fstMarginal_apply`, and `ENNReal.toReal_sum`.
 
 **Proposed declarations:** A private residual-bound theorem.
 
 **Target files and namespaces:** `LeanInfoTheory/Shannon/Fano.lean`, private
-section.
+section in namespace `LeanInfoTheory.Shannon`.
 
 **Strategy:** Expand conditional entropy as a weighted sum of conditional
 fiber entropies, split the Boolean error coordinate, eliminate the no-error
-term, apply the true-error pointwise bound, and identify the sum of true-error
-weights with `Pe`.
+term, and apply the true-error pointwise bound. Identify the sum of true-error
+weights structurally in `ENNReal` using the augmented law,
+`sndMarginal_map_pair`, and `fstMarginal_apply`; only then convert the finite
+sum to `Real` once with `ENNReal.toReal_sum` and explicit PMF
+`apply_ne_top` facts. Avoid broad simplification through `PMF.map_apply`.
 
 **Edge cases:** Nonnegative weights, multiplication by a potentially
 zero-valued log term for singleton alphabets, sum rearrangement, and null
@@ -550,7 +675,22 @@ checkpoint after implementation.
 
 ### C5.11 - Exact PMF Fano Theorems
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** Published the primary expanded theorem
+`condEntropy_fano` and the equivalent mathlib-facing theorem
+`condEntropy_fano_qary`. The expanded proof combines the private deterministic
+error chain identity, conditioning-reduces-entropy, the Boolean error-entropy
+identity, and the `C5.10` residual bound. A private normalization lemma
+reconciles the project's explicit Nat subtraction with the integer-cast
+subtraction inside `Real.qaryEntropy`, including the zero-cardinality
+normalization, so the q-ary theorem is a direct corollary. Both public
+theorems require only finite source and observation alphabets and impose no
+cardinality lower bound. The focused build, arbitrary singleton consumers,
+Boolean expanded/q-ary consumers, concrete `Pe = 0` and `Pe = 1` endpoint
+checks, axiom audits, root-isolation check, and root build passed. The public
+names are concise and textbook-facing, so the naming audit requires no Future
+Work Note 14 entry. No import boundary changed.
 
 **Objective:** Publish the exact finite deterministic-decoder Fano inequality
 for joint PMFs in expanded and q-ary forms.
@@ -562,7 +702,7 @@ for joint PMFs in expanded and q-ary forms.
 `condEntropy_fano_qary` (tentative).
 
 **Target files and namespaces:** `LeanInfoTheory/Shannon/Fano.lean`, namespace
-`LeanInfoTheory`.
+`LeanInfoTheory.Shannon`.
 
 **Strategy:** Combine the private chain identity, conditioning-reduces-entropy
 for `E`, the Boolean entropy identity, and the residual bound. For the q-ary
@@ -585,7 +725,20 @@ decoder direction, error convention, and edge-case contract.
 
 ### C5.12 - Exact Random-variable Fano Wrappers
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** Published `condEntropyOf_fano` and
+`condEntropyOf_fano_qary` as the random-variable counterparts of the two
+`C5.11` PMF theorems. Each wrapper applies the corresponding theorem to the
+joint pushforward law of `(X,Y)` and normalizes only `condEntropyOf` and
+`decodingErrorProbabilityOf`; no tuple-support or map-composition helper is
+needed. The source sample space remains unrestricted, while only the source
+and observation value alphabets require `Fintype`. The focused build, generic
+unrestricted-source consumers, concrete `PMF Nat` consumers, singleton and
+Boolean reductions, pure-law `Pe = 0` and `Pe = 1` endpoint checks, axiom
+audits, root-isolation check, and root build passed. The names preserve the
+established PMF/`...Of` distinction and require no Future Work Note 14 entry.
+No import boundary changed.
 
 **Objective:** Expose the exact Fano theorem for a finite source PMF and random
 variables `X` and `Y`.
@@ -597,7 +750,7 @@ wrapping conventions.
 `condEntropyOf_fano_qary` (tentative).
 
 **Target files and namespaces:** `LeanInfoTheory/Shannon/Fano.lean`, namespace
-`LeanInfoTheory`.
+`LeanInfoTheory.Shannon`.
 
 **Strategy:** Apply the PMF theorem to the joint mapped law of `(X,Y)`, then
 normalize the error-probability and conditional-entropy definitions.
@@ -618,7 +771,22 @@ duplicating its mathematical explanation.
 
 ### C5.13 - Weak Finite-alphabet Fano Corollaries
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** Published `condEntropy_fano_weak` and
+`condEntropyOf_fano_weak`, proving the conventional
+`H(X | Y) <= log 2 + Pe * log |alpha|` bound in nats. The PMF proof derives
+source-alphabet nonemptiness internally from the supplied joint PMF, handles
+the singleton cardinality branch explicitly, applies
+`Real.binEntropy_le_log_two`, compares the two logarithms, and multiplies by
+the nonnegative error probability. The random-variable theorem is a direct
+joint-law wrapper and does not require a finite source sample space. Neither
+theorem adds `Nonempty` or a cardinality lower bound. The focused build,
+singleton and Boolean consumers, unrestricted `PMF Nat` consumers, pure-law
+`Pe = 0` and `Pe = 1` endpoint checks, axiom audits, root-isolation check, and
+root build passed. The provisional names remain inputs to the scheduled
+`C5.17` API review but are concise enough that no Future Work Note 14 entry is
+needed now. No import boundary changed.
 
 **Objective:** Derive the familiar weaker form
 `H(X | Y) <= log 2 + Pe * log(card alpha)`.
@@ -630,7 +798,7 @@ duplicating its mathematical explanation.
 names are tentative and must be reviewed in `C5.17`.
 
 **Target files and namespaces:** `LeanInfoTheory/Shannon/Fano.lean`, namespace
-`LeanInfoTheory`.
+`LeanInfoTheory.Shannon`.
 
 **Strategy:** Bound binary entropy by `log 2`; compare
 `log(card alpha - 1)` with `log(card alpha)`; multiply by nonnegative `Pe`;
@@ -652,7 +820,22 @@ one-bit textbook constant expressed in nats.
 
 ### C5.14 - Generic Error-probability Lower Bounds
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** Published
+`decodingErrorProbability_fano_lower_bound` and
+`decodingErrorProbabilityOf_fano_lower_bound`, proving
+`(H(X | Y) - log 2) / log |alpha| <= Pe` on the PMF and random-variable
+surfaces. Both theorems require exactly `2 <= Fintype.card alpha`, the first
+cardinality restriction in the Fano API. The PMF proof converts that hypothesis
+to strict positivity of the real logarithmic denominator, applies
+`div_le_iff₀`, and rearranges `C5.13`; the random-variable theorem is a direct
+joint-law wrapper and leaves the source sample space unrestricted. The focused
+build, binary and ternary consumers, unrestricted `PMF Nat` consumer,
+singleton-exclusion check, `Pe = 0` and `Pe = 1` endpoint checks, axiom audits,
+root-isolation check, and root build passed. The systematic provisional names
+remain inputs to `C5.17` but expose no implementation detail and require no
+Future Work Note 14 entry. No import boundary changed.
 
 **Objective:** Rearrange weak Fano into a lower bound on decoding-error
 probability.
@@ -665,7 +848,7 @@ tentatively of the form
 `(H - log 2) / log(card alpha) <= Pe`.
 
 **Target files and namespaces:** `LeanInfoTheory/Shannon/Fano.lean`, namespace
-`LeanInfoTheory`.
+`LeanInfoTheory.Shannon`.
 
 **Strategy:** Use the weak inequality, prove the denominator positive from the
 cardinality hypothesis, and apply ordered-field division lemmas.
@@ -687,7 +870,37 @@ here but not in the exact theorem.
 
 ### C5.15 - Uniform-message Mutual-information Corollaries
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** Published the PMF/random-variable pairs
+`mutualInfo_fano_lower_bound_of_uniform_source` and
+`mutualInfoOf_fano_lower_bound_of_uniform_source`, together with
+`decodingErrorProbability_fano_lower_bound_of_uniform_source` and
+`decodingErrorProbabilityOf_fano_lower_bound_of_uniform_source`. The MI pair
+proves `log |alpha| - log 2 - Pe * log |alpha| <= I(X;Y)` without a
+cardinality lower bound. The error pair proves the standard normalized form
+`1 - (I(X;Y) + log 2) / log |alpha| <= Pe` under exactly
+`2 <= Fintype.card alpha`. Uniformity is stated through the existing equality
+of the first marginal, or `p.map X`, with `PMF.uniformOfFintype`; the required
+`Nonempty alpha` instance comes from that existing representation rather than
+a new abstraction. The proofs reuse the elementary MI identity,
+`entropy_uniformOfFintype`, `C5.13`, and `C5.14`; both random-variable results
+are direct joint-law wrappers. The warning-free focused build, generic
+consumers, singleton and binary uniform diagonal laws, unrestricted
+`PMF Nat` wrappers, axiom audits, root-isolation check, and root build passed.
+The four explicit provisional names are mandatory `C5.17` review inputs; no
+declaration was renamed during the active theorem phase. No import boundary
+changed. This completes the third Chunk 5 integration checkpoint.
+
+A narrow post-step cleanup extracted the duplicated identity
+`mutualInfo p = log |alpha| - condEntropy p` under the uniform-first-marginal
+hypothesis into the private helper
+`mutualInfo_eq_log_card_sub_condEntropy_of_uniform_source`. Both C5.15 PMF
+proofs now reuse that helper while retaining their original mathematical
+routes. All public statements, names, assumptions, imports, and proof
+directions are unchanged. The warning-free focused build, public
+signature/axiom audit, private-name isolation check, and root build passed
+after the refactor.
 
 **Objective:** Combine Fano with uniform source entropy to derive
 mutual-information and error lower bounds for uniform messages.
@@ -701,7 +914,7 @@ mutual-information lower bounds, plus the corresponding error-probability
 forms. Names remain tentative.
 
 **Target files and namespaces:** `LeanInfoTheory/Shannon/Fano.lean`, namespace
-`LeanInfoTheory`.
+`LeanInfoTheory.Shannon`.
 
 **Strategy:** Rewrite mutual information as source entropy minus conditional
 entropy, rewrite uniform entropy as `log(card alpha)`, apply weak Fano, and
@@ -724,7 +937,22 @@ identify coding-theorem use as deferred.
 
 ### C5.16 - Permanent Fano Examples
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** Added the opt-in example module
+`LeanInfoTheory.Examples.Fano` and imported it from the separately usable
+`LeanInfoTheory.Examples` aggregate. The module publishes six scenario-scoped
+example theorems: a diagonal Boolean law with a perfect decoder; a genuinely
+singleton `Unit` source handled by the q-ary theorem without a cardinality
+lower bound; and a fair Boolean source with a constant observation, where the
+error probability is computed as `1/2` and then used through the expanded
+random-variable, uniform-source mutual-information, and normalized
+error-probability surfaces. The examples use only public declarations and add
+no core helper or alias. The focused module/aggregate build, a direct-import
+consumer with axiom audits for all six declarations, the expected negative
+root-isolation consumer, and the lightweight root build passed. The examples
+provide concrete ergonomic evidence for `C5.17`; no new Future Work item is
+justified by this step.
 
 **Objective:** Exercise the public API in representative finite cases.
 
@@ -760,7 +988,35 @@ examples aggregate without changing the root import.
 
 ### C5.17 - API, Naming, Simp, And Import Review
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** Completed the scheduled review without changing
+any production Lean declaration, proof, attribute, alias, or import. The audit
+covered all 25 public declarations in `Shannon.BinaryEntropy` and
+`Shannon.Fano`, together with all six permanent Fano examples. The established
+PMF/`...Of` pairs, argument order, rewrite directions, and expanded/q-ary/weak
+theorem distinctions are coherent. The four long uniform-source declarations
+from `C5.15` retain their existing names: the suffix
+`_of_uniform_source` communicates a substantive hypothesis and distinguishes
+the mutual-information and normalized-error conclusions from the generic Fano
+error bounds; the shorter alias sketches either hide that contract or offer no
+material discovery improvement. No other name exposes the private augmented
+law, conditional fibers, marginal conversion, coordinate maps, or Nat/Int
+normalization machinery.
+
+The simp review retained exactly the two Boolean-indicator characterization
+theorems as the intended local simplification surface. `entropy_bool`, the
+error definitions, and the map-based bridge identities remain explicit, so no
+new unfolding or map-rewrite loop is introduced. Direct-import consumers,
+all-public-signature and axiom audits, and the permanent examples passed.
+Negative consumers confirmed that `BinaryEntropy` does not expose Fano,
+`Fano` does not expose examples or private proof helpers, and the lightweight
+root exposes none of the Chunk 5 modules. The focused five-target build passed.
+`C5.18` should record the reviewed retention of the uniform-source names in
+Future Work Note 14 as a completed decision, not as a new open alias task, and
+must preserve the existing C5 implementation-pressure and pedagogy entries in
+Future Work Note 29. This completes the fourth Chunk 5 integration checkpoint
+and freezes the public API for closeout.
 
 **Objective:** Review the completed public surface as a reusable library API
 before documentation closeout.
@@ -772,8 +1028,9 @@ naming policy, and Future Work Note 14.
 Compatibility-preserving aliases or narrowly justified bridge lemmas may be
 proposed only when actual use demonstrates pressure.
 
-**Target files and namespaces:** Chunk 5 Lean modules and examples only;
-namespace `LeanInfoTheory`.
+**Target files and namespaces:** Chunk 5 Lean modules and examples only; core
+namespace `LeanInfoTheory.Shannon` and example namespace
+`LeanInfoTheory.Examples.Fano`.
 
 **Strategy:** Audit declaration length, discoverability, argument order,
 implementation leakage, rewrite orientation, simp safety, duplicate theorem
@@ -800,7 +1057,40 @@ renaming declarations silently.
 
 ### C5.18 - Canonical Documentation And Project-memory Update
 
-**Status:** not started
+**Status:** complete (2026-07-24)
+
+**Implementation outcome:** Reconciled the implemented Chunk 5 theorem surface,
+scope, architecture, examples, limitations, future-work status, and focused
+validation into both canonical project-memory documents under the shared
+ownership policy. `docs/project-log.md` now contains dated Section 138,
+advances the Future Work status index and Note 29 to Chunk 5 closeout, records
+the completed C5.17 uniform-source naming decision in Note 14, and updates the
+standing import, coding-boundary, milestone-validation, and chunk-ownership
+evidence in Notes 3, 5, 17, and 18. Notes 1, 2, 4, 6, 8, 30, and 39 remain
+unchanged after explicit review. All existing C5.08-C5.11 and C5.13
+implementation-pressure triggers and both C5.16 pedagogy/sharpness follow-ups
+remain intact.
+
+`docs/lean-info-theory-living-summary.md` now records finite Fano as
+substantially complete for deterministic decoding, inventories the
+`BinaryEntropy`, `Fano`, and `Examples.Fano` modules and their 31 declarations,
+replaces the obsolete not-started status, narrows the known gaps to genuinely
+deferred work, and identifies `C5.19` and `C5.20` as the remaining closeout
+steps. It distinguishes the last fully validated committed Lean baseline, the
+focused-validated current working tree, and the pre-Chunk 5 generated
+artifacts. Read-only use of the source-derived parsers reports 39 modules, 65
+local edges, 11 root-reachable modules, and 717 documented public
+declarations; regeneration remains explicitly assigned to `C5.19`.
+
+The `Shannon.Fano` module comment now summarizes the exact/q-ary/weak,
+random-variable, error-bound, and uniform-source surfaces, the nats convention,
+singleton behavior, and coding/sharpness boundary. No declaration, theorem
+statement, proof, name, alias, attribute, or import changed. The
+comment-touched Fano/example build passed with 2,764 jobs. Declaration/path and
+working-source count checks passed, the current website checker passed for 12
+HTML files and two generated JSON files, the placeholder scan was clean, and
+the canonical-document diff check reported no whitespace error. Neither
+`AGENTS.md`, `docs/current-lean-state.md`, nor `docs/roadmap.md` was edited.
 
 **Objective:** Under the shared canonical-document ownership policy, update
 the canonical project memory directly in this Chunk 5 thread so the repository
@@ -872,7 +1162,47 @@ and coordinate with the current repository state.
 
 ### C5.19 - Generated References And Public-documentation Consistency
 
-**Status:** not started
+**Status:** complete (2026-07-25)
+
+**Implementation outcome:** Regenerated all four script-owned module-graph and
+API-index artifacts. The module graph now reports 39 local modules, 65 local
+import edges, 11 root-reachable modules, and 28 separate-import modules. It
+adds exactly `LeanInfoTheory.Shannon.BinaryEntropy`,
+`LeanInfoTheory.Shannon.Fano`, and `LeanInfoTheory.Examples.Fano`, together
+with their six new local import edges; the lightweight-root count is
+unchanged.
+
+The declaration index now reports 717 public declarations, all 717 documented.
+Structured comparison with the checked-in index found exactly the 31 Chunk 5
+declarations recorded by C5.18 (one in `Shannon.BinaryEntropy`, 24 in
+`Shannon.Fano`, and six in `Examples.Fano`), no removed declaration, and no
+changed existing declaration metadata except the expected one-line source
+shift for the 15 declarations in `Examples.lean` after its new Fano-example
+import.
+
+Both generators completed successfully, a second generation pass reproduced
+all four artifact hashes byte for byte, the website checker passed for 12 HTML
+files and two generated JSON files, and the generated-artifact diff check was
+clean. These results exactly confirm C5.18's source-derived counts, so no
+factual correction to that entry was necessary.
+
+The approved bounded prose audit also found older hand-written status text that
+still described finite Fano as future or not started, plus generic fallback
+summaries for the three new modules. After the initial C5.19 report, the user
+explicitly approved handling both follow-ups without beginning C5.20. The
+follow-up added curated generator summaries for `Shannon.BinaryEntropy`,
+`Shannon.Fano`, and `Examples.Fano`, refreshed the aggregate example summary,
+and corrected the affected README, concept-note, current-state, roadmap,
+homepage, theorem-page, blueprint, living-summary, and project-log status
+prose. The corrections distinguish the implemented finite deterministic
+decoder API from genuinely deferred sharpness, randomized/list-decoding,
+coding, and network-converse work.
+
+After the follow-up, both generators again produced byte-identical second-pass
+artifacts and the website checker still passed. This was an explicitly approved
+status/discoverability extension to the original generated-artifact target, not
+a website redesign. No Lean source, declaration, theorem, proof, import, name,
+attribute, or assumption changed, and C5.20 remains not started.
 
 **Objective:** Regenerate derived API references and verify public
 documentation consistency without redesigning the website.
@@ -908,7 +1238,36 @@ final Chunk 5 report and, if necessary, append factual corrections to the
 
 ### C5.20 - Final Chunk Validation And Closeout
 
-**Status:** not started
+**Status:** complete (2026-07-25)
+
+**Implementation outcome:** Validated the final Chunk 5 working tree without
+changing Lean source. The focused builds passed for
+`Shannon.BinaryEntropy` (2,233 jobs), `Shannon.Fano` (2,702 jobs),
+`Examples.Fano` (2,703 jobs), `Examples` (2,764 jobs), and the lightweight
+root (2,240 jobs). The complete maintained ten-target milestone suite passed
+with 2,779 jobs, and the default `lake build` passed with 2,240 jobs.
+
+Disposable positive consumers exercised all 31 public Chunk 5 declarations.
+Guarded negative consumers confirmed that the lightweight root exposes none
+of the Chunk 5 API, `Shannon.BinaryEntropy` does not expose Fano,
+`Shannon.Fano` does not expose `Examples.Fano`, and the private proof engine
+remains inaccessible. The consumers were deleted after use. Axiom inspection
+of all 31 declarations reported only `propext`, `Classical.choice`, and
+`Quot.sound`; the strict project-source scan found no `sorry`, `admit`,
+`axiom`, `opaque`, or `undefined`.
+
+Both source-derived generators completed successfully and reproduced all four
+artifact hashes byte for byte. The generated state remains 39 modules, 65
+local import edges, 11 root-reachable modules, 28 opt-in modules, and 717
+documented public declarations. The website checker passed for 12 HTML files
+and two generated JSON files. Final diff, import-boundary, temporary-file,
+process, textbook-file, and whitespace hygiene checks found no unexplained
+artifact or scope change. The only live Lean processes were the editor
+language server and its worker.
+
+Canonical and public status documents now describe the milestone as fully
+validated but still uncommitted. Chunk 5 is therefore checkpoint-ready; no
+later theorem chunk is selected or authorized by this closeout.
 
 **Objective:** Validate the complete Chunk 5 implementation and establish a
 clean handoff boundary.
@@ -957,16 +1316,16 @@ completion.
 
 ## Integration Checkpoints
 
-1. **After C5.05:** Boolean/error API compiles; Fano is opt-in; root isolation
-   is tested.
-2. **After C5.10:** The private conditional-fiber proof engine compiles under
-   the broad theorem contract.
-3. **After C5.15:** The complete mathematical API compiles on PMF and
-   random-variable surfaces.
-4. **After C5.17:** Public names, imports, simp behavior, and examples are
-   reviewed and frozen.
-5. **After C5.20:** Full build, documentation, generated references, and
-   project-memory closeout agree.
+1. **After C5.05 (complete 2026-07-24):** Boolean/error API compiles; Fano is
+   opt-in; root isolation is tested.
+2. **After C5.10 (complete 2026-07-24):** The private conditional-fiber proof
+   engine compiles under the broad theorem contract.
+3. **After C5.15 (complete 2026-07-24):** The complete mathematical API
+   compiles on PMF and random-variable surfaces.
+4. **After C5.17 (complete 2026-07-24):** Public names, imports, simp behavior,
+   and examples are reviewed and frozen.
+5. **After C5.20 (complete 2026-07-25):** Full build, documentation, generated
+   references, and project-memory closeout agree.
 
 No later step begins without explicit user approval, even at an integration
 checkpoint.
