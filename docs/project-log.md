@@ -5868,6 +5868,39 @@ yet committed: checked-in head `b8012ef` remains the current handoff head and
 This closeout discharges Future Work Note 1 and the current Note 17 milestone
 assignment. It does not authorize a later chunk or any deferred follow-up.
 
+### 146. Project B Chunk 6 Checkpoint And Chunk 7 Transition
+
+On July 28, 2026, the post-Chunk-6 transition began from the independently
+validated `C6.24` working tree. The cleanup decision gate found exactly the 26
+approved Chunk 6 paths, an unchanged lightweight root, four opt-in new modules,
+24 completed plan entries, no placeholder or conflict marker, and no Lean,
+API, trust-boundary, or architectural defect. Deferred Future Work Notes 9, 14,
+and 17 were not implemented merely to reopen a validated milestone.
+
+The final pre-commit pass rebuilt the six focused Chunk 6 targets with 2,770
+jobs, the maintained ten-target milestone suite with 2,783 jobs, and the
+default project with 2,240 jobs. The website checker passed for 12 HTML files
+and two generated JSON files; the 834-declaration index retained no duplicate,
+undocumented, or false parser entry; and the placeholder, root-import,
+tracked-file, whitespace, and repository-hygiene checks remained clean.
+
+The coherent mathematical milestone was then committed as
+`7b5f0db83f188bf65454f5aa7dcd2fe8ee221146` with subject
+`Complete Project B Chunk 6`. The commit contains the complete four-module
+finite-family implementation, examples, approved plan, canonical memory,
+generated references, and public status at the validated C6.24 boundary. No
+Lean source changed after that checkpoint.
+
+This documentation-only reconciliation records the actual checkpoint across
+the plan, canonical project memory, roadmap, README, and hand-written public
+status pages. It authorizes only a bounded Chunk 7 context intake and planning
+discussion; no Chunk 7 mathematical scope, detailed plan, representation
+choice, or Lean implementation is approved. The resulting local handoff commit
+has subject `Prepare Project B Chunk 7 handoff` and changes no Lean source.
+The remaining transition work is to push both commits, require successful
+remote build/placeholder and Pages workflows, and then prepare the ignored
+Chunk 6 handoff report.
+
 ## Completed Project B Chunk 4 Plan
 
 This completed theorem phase is a revised 20-step plan for finite sufficient
@@ -6221,13 +6254,14 @@ now complete through `C5.20`: its mathematical API, permanent examples, API
 freeze, canonical-memory reconciliation, generated references, public status
 documentation, full milestone suite, boundary consumers, trust audit, and
 final hygiene checks all pass. Commit `ec78829` is the coherent Chunk 5
-checkpoint. Future Work Note 1's representation gate is now discharged, the
-approved 24-step finite-family Chunk 6 plan is now complete in the validated
-working tree. Its 68-declaration lightweight core, 30-declaration semantic
+checkpoint. Future Work Note 1's representation gate is discharged, and the
+approved 24-step finite-family Chunk 6 plan is complete and checkpointed as
+`7b5f0db`. Its 68-declaration lightweight core, 30-declaration semantic
 layer, concrete `ShannonEntropyVal`, single checked-certificate adapter, 18
 example declarations, API freeze, canonical reconciliation, generated
-references, and independent milestone gate all pass. Chunk 6 is ready for a
-coherent checkpoint but is not yet committed. Richer certificate assumptions,
+references, and independent milestone gate all pass. Bounded Chunk 7 context
+intake and planning may proceed separately, but no theorem scope or
+implementation is approved. Richer certificate assumptions,
 external certificate import, coding-theory layers, theorem-level blueprint
 work, and substantial mathlib PR preparation remain later work.
 
@@ -6236,7 +6270,7 @@ work, and substantial mathlib PR preparation remain later work.
 | Status | Notes | Meaning |
 | --- | --- | --- |
 | Standing guardrails | 2-4, 6-8, 14-18, 26 | Apply these policies continuously; they do not create standalone cleanup tasks. |
-| Project B sequence | 29 | Chunk 5 finite Fano is checkpointed as `ec78829`; Chunk 6 is complete and independently validated in the working tree, while Note 29 retains deferred Fano follow-ups and remains the broader Chapter 2 sequence anchor. |
+| Project B sequence | 29 | Chunks 5 and 6 are checkpointed as `ec78829` and `7b5f0db`; bounded Chunk 7 intake and planning are next, while Note 29 retains deferred Fano follow-ups and remains the broader Chapter 2 sequence anchor. |
 | Channel/Markov proof-pressure | 21, 25, 27 | Revisit these only when concrete channel, Markov, or data-processing consumers reach their stated triggers. |
 | Proof-pressure deferred | 19, 22-24, 30-37, 40 | Wait for the repeated proof or new statement pressure specified in each note. |
 | Later milestones | 5, 9-13, 28, 38-39 | Schedule these in their own later mathematical, documentation, example, certificate, or coding phases. |
@@ -6824,8 +6858,8 @@ historical trigger records when a later paragraph records their resolution.
     certificate bridge are therefore implemented and independently validated.
     Note 1 is closed as of July 28, 2026. Preserve it as the representation and
     architecture rationale for the completed Chunk 6 milestone; do not use it
-    to authorize a later chunk. The validated working tree is checkpoint-ready
-    but not yet committed.
+    to authorize a later chunk. The validated milestone is checkpointed as
+    `7b5f0db83f188bf65454f5aa7dcd2fe8ee221146` (`Complete Project B Chunk 6`).
 
 2. Split `LeanInfoTheory/Shannon/InfoMeasures.lean` only when the file becomes
     too large or theorem pressure makes the boundaries clear. The July 6 API

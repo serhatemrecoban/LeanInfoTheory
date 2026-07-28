@@ -48,18 +48,17 @@ certificates. Its two long-term branches are:
   network-information-theory converse proofs.
 
 **[Current] Mathematical phase.** Project B is active. Cover-Thomas Chapter 2
-Chunks 1-5 are checkpointed. Chunk 5's finite deterministic-decoder Fano phase
-is commit `ec78829`; its mathematics, examples, API review, canonical memory,
-generated references, full milestone suite, trust checks, and final hygiene
-review all pass. The completed Chunk 6 execution plan is
+Chunks 1-6 are checkpointed. Chunk 5's finite deterministic-decoder Fano phase
+is commit `ec78829`. The completed Chunk 6 execution plan is
 [`docs/plans/chapter2-chunk-06.md`](plans/chapter2-chunk-06.md). Its
 finite-family representation, scope, and module architecture are approved,
-and all 24 steps are complete in the current working tree. The finite-family
+and all 24 steps are complete in checkpointed source. The finite-family
 core, semantic inequalities, concrete valuation, certificate adapter,
 permanent examples, API review, generated references, full milestone suite,
-trust checks, and final hygiene review all pass. This state is ready for a
-coherent checkpoint but is not yet committed; `ec78829` remains the last fully
-validated committed Lean/source checkpoint.
+trust checks, and final hygiene review all pass. Commit `7b5f0db` is the
+coherent Chunk 6 Lean/source checkpoint. The next authorized activity is a
+bounded Chunk 7 context intake and planning discussion; no Chunk 7 scope,
+detailed plan, or Lean implementation is approved by this transition.
 
 **[Decision] Architectural rules that must be preserved.**
 
@@ -105,11 +104,11 @@ temporary handoffs. See Section 4 for the conflict protocol.
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-07-28 |
-| Last fully validated committed Lean/source baseline | `ec78829707c548e7e1c866ebaafe52c25e910fc4` |
-| Checked-in repository head at this reconciliation | `b8012ef6dbcb69b56e8a9e896ba312b5c24b1b60` (`master` and `origin/master`) |
+| Last fully validated committed Lean/source baseline | `7b5f0db83f188bf65454f5aa7dcd2fe8ee221146` |
+| Repository transition state | The documentation-only `Prepare Project B Chunk 7 handoff` commit follows checkpoint `7b5f0db`; `origin/master` remains at `b8012ef6dbcb69b56e8a9e896ba312b5c24b1b60` pending the transition push |
 | Lean baseline | Lean `v4.30.0`, commit `d024af099ca4bf2c86f649261ebf59565dc8c622` |
 | mathlib baseline | mathlib input revision `v4.30.0`, manifest commit `c5ea00351c28e24afc9f0f84379aa41082b1188f` |
-| Current phase | Project B, Chunk 5 checkpointed; Chunk 6 complete and independently validated in the uncommitted working tree, with no later chunk yet authorized |
+| Current phase | Project B, Chunks 1-6 checkpointed; bounded Chunk 7 context intake and planning may proceed, but no Chunk 7 scope or implementation is approved |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -701,7 +700,7 @@ additive and preserved inherited public names.
 | 3 | `a5cc9e9` | Channels, Markov chains, and data processing | Raw PMF channels, total conditional channel, Markov factorization, MI DPI, PMF-kernel bridge, KL DPI, invariant contraction, entropy growth |
 | 4 | `f990f2e` | Finite sufficient statistics and equality in data processing | Fixed-prior/family sufficiency, exact recovery, common posteriors, all-prior and Fisher-Neyman results, guarded KL equality |
 | 5 | `ec78829` | Finite Fano and estimation error | Boolean entropy bridge, type-generic deterministic error, exact/q-ary/weak Fano, error and uniform-source corollaries, permanent examples, API freeze |
-| 6 | Working tree, not yet committed | Finite families and concrete entropy valuations | Complete and independently validated: dependent finite-atom entropy/MI/CMI, binary and ordered chain rules, Shannon inequalities, concrete valuation, certificate adapter, permanent examples, generated references, and full milestone closeout |
+| 6 | `7b5f0db` | Finite families and concrete entropy valuations | Complete and independently validated: dependent finite-atom entropy/MI/CMI, binary and ordered chain rules, Shannon inequalities, concrete valuation, certificate adapter, permanent examples, generated references, and full milestone closeout |
 
 Cleanup checkpoints `e72e68c`, `7de8ff5`, and `11e071c` reconciled
 post-chunk documentation and prepared the Chunk 5 handoff. Commits `cb8eb6b`
@@ -721,7 +720,7 @@ focused and complete milestone builds, guarded boundary consumers, axiom and
 placeholder audits, repeated generated-reference checks, website checker, and
 final repository hygiene. Commit `ec78829` is the coherent Chunk 5 checkpoint.
 
-### Completed Chunk 6 working tree
+### Checkpointed Chunk 6 implementation
 
 **[Current]** The approved 24-step plan has completed `C6.01` through
 `C6.24`. `Shannon.FiniteFamily` provides the 68-declaration lightweight
@@ -735,9 +734,8 @@ certificate paths.
 `C6.21` froze names, simp policy, helper visibility, and import boundaries.
 `C6.22` reconciled canonical project memory, `C6.23` regenerated and checked
 the public references, and `C6.24` passed the focused, ten-target, default-
-build, consumer, axiom, placeholder, website, and hygiene gates. The chunk is
-complete and checkpoint-ready in the working tree, but no Chunk 6 checkpoint
-commit exists yet.
+build, consumer, axiom, placeholder, website, and hygiene gates. Commit
+`7b5f0db` is the coherent Chunk 6 Lean/source checkpoint.
 
 ## 9. Stable Design Decisions and Rationale
 
@@ -904,14 +902,16 @@ These are intentional current contracts, not claims of maximal generality.
 
 ### Current phase status
 
-**Project B Chunk 6 is complete and independently validated in the working
-tree.**
+**Project B Chunk 6 is complete, independently validated, and checkpointed as
+commit `7b5f0db`.**
 
 Chunk 5's finite-Fano phase remains checkpointed as commit `ec78829`. The
 completed Chunk 6 execution plan is
 [`docs/plans/chapter2-chunk-06.md`](plans/chapter2-chunk-06.md), with 24 stable
 steps whose implementation history and final evidence are preserved there.
-The checked-in head remains `b8012ef`; no Chunk 6 checkpoint commit is claimed.
+The substantive Lean/source checkpoint is `7b5f0db`; the documentation-only
+handoff commit above it changes no Lean source, and `origin/master` remains at
+`b8012ef` until the transition push.
 
 ### Validated Chunk 6 implementation
 
@@ -941,17 +941,17 @@ The checked-in head remains `b8012ef`; no Chunk 6 checkpoint commit is claimed.
 
 ### Next repository action
 
-The coherent Chunk 6 working tree is ready for checkpoint review and commit
-when explicitly requested. Preserve the distinction between this validated
-working tree, checked-in handoff head `b8012ef`, and last validated committed
-source checkpoint `ec78829`. Do not infer or begin a later Chunk 7 plan from
-this closeout.
+Prepare the documentation-only Chunk 7 handoff, push the two-transition-commit
+sequence, and require successful remote build/placeholder and Pages workflows
+before treating the handoff as complete. The subsequent Chunk 7 task may
+perform bounded context intake and planning, but must not infer a theorem scope
+or begin implementation from this closeout.
 
 ### Next review point
 
-The next review point is the coherent Chunk 6 checkpoint operation or an
-explicitly authorized new planning phase. Deferred work remains governed by
-the Future Work Notes rather than becoming automatic cleanup.
+The next review point is the remote-validated Chunk 7 handoff or an explicitly
+authorized Chunk 7 planning phase. Deferred work remains governed by the Future
+Work Notes rather than becoming automatic cleanup.
 
 ## 13. Future-Work Register
 
@@ -990,10 +990,10 @@ later work, not reasons to expand the frozen Chunk 5 API retroactively.
 | 39 | Plan canonical/minimal sufficiency, support-aware statistic comparison, and later iid/count-statistic or measurable extensions. |
 | Unnumbered | Assign standalone log-sum, KL convexity, entropy concavity, Pinsker, tensorization, topology, and continuity to later chunks before implementation. |
 
-The finite-family phase is complete and independently validated in the
-uncommitted Chunk 6 working tree. The inherited rough assignments of topology
-and continuity to Chunk 7 and selected extended fundamentals to Chunk 8 remain
-**[Uncertain]** planning context rather than approved execution plans.
+The finite-family phase is complete, independently validated, and checkpointed
+as `7b5f0db`. The inherited rough assignments of topology and continuity to
+Chunk 7 and selected extended fundamentals to Chunk 8 remain **[Uncertain]**
+planning context rather than approved execution plans.
 
 ### Broader information-theory work
 
@@ -1159,13 +1159,10 @@ not reproduce textbook prose or proofs.
 - mathlib input revision: `v4.30.0`
 - mathlib manifest commit:
   `c5ea00351c28e24afc9f0f84379aa41082b1188f`
-- last fully validated committed Lean/source baseline: `ec78829`
-- current checked-in head: `b8012ef`; `master` and `origin/master` are
-  synchronized
-- `ec78829` remains the last fully validated committed milestone;
-  `b8012ef` is the later documentation/CI handoff commit and changes no Lean
-  source; the uncommitted Chunk 6 working tree has passed the complete
-  independent `C6.24` milestone gate but is not yet a checkpoint commit
+- last fully validated committed Lean/source baseline: `7b5f0db`
+- the documentation-only `Prepare Project B Chunk 7 handoff` commit sits above
+  that checkpoint without changing the validated Lean/source baseline;
+  `origin/master` remains at `b8012ef` pending the transition push
 
 ### Most recent local validation
 
@@ -1421,6 +1418,7 @@ inferred from local content. The public site is:
 - Chunk 5 handoff cleanup: `11e071c`
 - Shared canonical-memory policy: `2413cb1`
 - Chunk 5 implementation and validated Lean/source baseline: `ec78829`
+- Chunk 6 implementation and validated Lean/source baseline: `7b5f0db`
 
 ### Temporary historical inputs
 

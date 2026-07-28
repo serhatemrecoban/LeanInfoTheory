@@ -1,8 +1,9 @@
 # Chapter 2 Chunk 6: Finite Families And Concrete Entropy Valuations
 
-**Plan status:** Implementation complete; checkpoint pending
+**Plan status:** Complete; checkpointed
 **Baseline commit:** `b8012ef6dbcb69b56e8a9e896ba312b5c24b1b60`
-**Last fully validated Lean/source checkpoint:** `ec78829707c548e7e1c866ebaafe52c25e910fc4`
+**Checkpoint commit:** `7b5f0db83f188bf65454f5aa7dcd2fe8ee221146`
+**Prior fully validated Lean/source checkpoint:** `ec78829707c548e7e1c866ebaafe52c25e910fc4`
 **Plan path:** `docs/plans/chapter2-chunk-06.md`
 **Number of steps:** 24
 
@@ -2520,17 +2521,19 @@ The lightweight root is unchanged. Import, root-reachability, placeholder,
 axiom, tracked-textbook, scratch-file, generated-artifact, whitespace, and
 complete-diff audits are clean. Validation was incremental rather than a cold
 cache rebuild, consistent with Future Work Note 17's release-hardening policy.
-The checked-in head remains `b8012ef`; `ec78829` remains the last fully
-validated committed Lean/source checkpoint. This complete and independently
-validated Chunk 6 state is still an uncommitted working tree, so no checkpoint
-commit is claimed.
+At `C6.24`, checked-in head `b8012ef` and prior validated source checkpoint
+`ec78829` remained unchanged, so that closeout correctly claimed only a
+validated working tree. The complete milestone was subsequently checkpointed
+on July 28, 2026 as commit `7b5f0db` (`Complete Project B Chunk 6`).
 
 The approved target list named only this plan, the project log, and living
 summary for final evidence. Completion also made the existing current-facing
 README, current-state, roadmap, site-home, and site-roadmap lines factually
-stale. Those status lines were therefore updated narrowly to say that Chunk 6
-is complete and validated in the working tree but not yet checkpointed. No
-later chunk or deferred work is authorized by this closeout.
+stale. At closeout, those status lines were therefore updated narrowly to say
+that Chunk 6 was complete and validated but not yet checkpointed. The
+post-chunk transition reconciliation now records the actual checkpoint without
+changing this step's historical evidence. No later chunk or deferred work was
+authorized by the closeout.
 
 A post-closeout critical review found no mathematical, architectural, trust,
 or documentation defect and does not reopen this step. It expanded existing

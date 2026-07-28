@@ -96,16 +96,17 @@ highlights, and module guide record what is implemented now.
   follow-ups.
 - The approved 24-step
   [finite-family plan](plans/chapter2-chunk-06.md) is complete through
-  `C6.24` in the current working tree.
-  The working tree now contains the lightweight dependent-family entropy/MI/
+  `C6.24` and checkpointed as commit `7b5f0db`.
+  The checkpoint contains the lightweight dependent-family entropy/MI/
   CMI core, pair/triple compatibility, binary and ordered chain rules,
   semantic Shannon inequalities, concrete `ShannonEntropyVal` constructors,
   one checked-certificate adapter, permanent homogeneous/heterogeneous
   examples, and the completed API/simp/import review. All four new modules
   remain opt-in and the certificate trust boundary is unchanged. The
   generated/public references, independent full build, trust, boundary,
-  placeholder, website, and hygiene gates all pass. The milestone is ready for
-  a coherent checkpoint but is not yet committed. Future Work Note 39
+  placeholder, website, and hygiene gates all pass. Bounded Chunk 7 context
+  intake and planning may proceed separately, but no theorem scope or
+  implementation is approved. Future Work Note 39
   continues to defer canonical/minimal sufficiency, general measurable
   sufficiency, and a larger iid count-statistic development.
 - Maintain project notes in the foundation conventions and project log.
@@ -120,8 +121,8 @@ highlights, and module guide record what is implemented now.
   orientation page.
 - Link generated docs and blueprint entries back to the curated theorem
   highlights and submodularity demo page.
-- Checkpoint the completed Chunk 6 milestone, then plan the next Cover-Thomas
-  Chapter 2 phase separately.
+- Use checkpoint `7b5f0db` for bounded Chunk 7 context intake, then approve the
+  next Cover-Thomas Chapter 2 scope and implementation plan separately.
 
 ## 6 Months
 

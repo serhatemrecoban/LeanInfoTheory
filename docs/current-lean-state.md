@@ -3,11 +3,13 @@
 Chunk 5's final validation completed on July 25, 2026, and its checkpoint
 commit `ec78829` was created on July 26. Project B Chunk 1 was committed as
 `7ab3aa0`, Chunk 2 as `e5e9825`, Chunk 3 as `a5cc9e9`, and Chunk 4 as
-`f990f2e`; each passed its full milestone build/check suite. The current
-checked-in head is the later documentation/CI handoff `b8012ef`. On July 28,
-the uncommitted Chunk 6 working tree completed all 24 steps and passed its
-generated-reference, independent validation, trust, boundary, website, and
-hygiene gates. It is checkpoint-ready but not yet committed.
+`f990f2e`; each passed its full milestone build/check suite. On July 28,
+Chunk 6 completed all 24 steps and passed its generated-reference, independent
+validation, trust, boundary, website, and hygiene gates. It was checkpointed
+as commit `7b5f0db` (`Complete Project B Chunk 6`). The documentation-only
+`Prepare Project B Chunk 7 handoff` commit above it changes no Lean source;
+`origin/master` remains at the earlier handoff `b8012ef` until the transition
+push.
 
 Project B Chunk 2 is complete. All 18 steps are finished. The chunk began
 from the clean Chunk 1 checkpoint, its new theorem contracts were validated by
@@ -138,12 +140,12 @@ audit, and final hygiene checks are current. The milestone is checkpointed as
 commit `ec78829`. Canonical/minimal sufficiency and larger iid examples are
 deferred by Future Work Note 39.
 
-## Current Project B Boundary: Chunk 6 Complete In The Working Tree
+## Current Project B Boundary: Chunk 6 Checkpointed
 
 Chunk 6 is the approved 24-step finite-family and concrete-valuation phase
 sequenced by Future Work Note 1. Its plan is
-`docs/plans/chapter2-chunk-06.md`; `C6.01`--`C6.24` are complete in the
-working tree.
+`docs/plans/chapter2-chunk-06.md`; `C6.01`--`C6.24` are complete in
+checkpointed source.
 
 The implemented mathematical surface is:
 
@@ -174,12 +176,12 @@ reference sets, and passed idempotence and website checks. `C6.24` passed the
 six-target focused build with 2,770 jobs, the maintained ten-target suite with
 2,783 jobs, default `lake build` with 2,240 jobs, positive and guarded negative
 consumers, the strict placeholder scan, all 89 new-theorem axiom checks, and
-final repository hygiene. Chunk 6 is complete and ready for a coherent
-checkpoint, but no checkpoint commit is claimed yet.
+final repository hygiene. Commit `7b5f0db` is the coherent, fully validated
+Chunk 6 Lean/source checkpoint.
 
 This is a maintained status note for Lean-focused work. It summarizes the
-current architecture, the completed Chunk 3--5 theorem milestones, and the
-completed but uncommitted Chunk 6 working tree.
+current architecture and the completed, checkpointed Chunk 3--6 theorem
+milestones.
 
 ## Current Lean Architecture
 
@@ -612,8 +614,8 @@ checker all pass.
    demos, and reference anchors remain separately importable where appropriate.
 3. Sufficient statistics and KL recovery equality are complete under Future
    Work Note 29. Finite Fano is complete and fully validated through C5.20;
-   its checkpoint is `ec78829`. The finite-family phase is implemented and
-   fully validated through C6.24 in the uncommitted working tree, while channel
+   its checkpoint is `ec78829`. The finite-family phase is implemented, fully
+   validated through C6.24, and checkpointed as `7b5f0db`, while channel
    processes and canonical/minimal sufficiency remain later work.
 4. Continue using focused Lake builds during theorem development and the full
    suite at every milestone boundary.

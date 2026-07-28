@@ -228,7 +228,8 @@ when they stabilize.
   milestone is checkpointed as commit `ec78829`. Future Work Note 29 retains
   Fano sharpness, randomized/list decoding, and coding applications; Note 39
   defers canonical/minimal sufficiency and larger iid examples.
-- Project B Chunk 6 is complete through `C6.24` in the current working tree.
+- Project B Chunk 6 is complete through `C6.24` and checkpointed as commit
+  `7b5f0db`.
   Its four new opt-in modules
   implement a dependent finite-family entropy/MI/CMI core, pair/triple
   compatibility, binary and ordered chain rules, semantic Shannon
@@ -240,8 +241,8 @@ when they stabilize.
   remain explicit. The lightweight root and certificate trust boundary are
   unchanged. The generated references now cover 43 modules and 834 documented
   source declarations. The focused, maintained ten-target, default-build,
-  consumer, trust, website, and hygiene gates all pass. Chunk 6 is ready for a
-  coherent checkpoint but is not yet committed.
+  consumer, trust, website, and hygiene gates all pass. Commit `7b5f0db` is
+  the coherent Chunk 6 Lean/source checkpoint.
 
 ## Lean Modules
 
@@ -459,9 +460,9 @@ Import heavier or demonstrational modules explicitly:
 
 ## Roadmap
 
-1. Checkpoint the complete and independently validated Chunk 6 finite-family
-   working tree when explicitly requested, then plan the next Chapter 2 phase
-   separately.
+1. Use the complete and independently validated Chunk 6 checkpoint `7b5f0db`
+   as the baseline for bounded Chunk 7 context intake; approve the next
+   Chapter 2 scope and implementation plan separately.
 2. Keep the sufficiency core lightweight and place KL integration downstream;
    retain exact full-joint recovery as the contract established by the
    completed midpoint tests, including rejection of marginal-only false
