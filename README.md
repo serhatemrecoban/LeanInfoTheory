@@ -225,11 +225,23 @@ when they stabilize.
   corollaries, permanent examples, API freeze, and generated references. Its
   focused and full milestone builds, guarded boundary consumers, axiom and
   placeholder audits, website checks, and final hygiene review all pass. The
-  milestone is checkpointed as commit `ec78829`. Future Work Note 1 now owns
-  planning for the finite-family entropy phase provisionally called Chunk 6;
-  no representation or implementation plan is approved yet. Future Work Note
-  29 retains Fano sharpness, randomized/list decoding, and coding applications;
-  Note 39 defers canonical/minimal sufficiency and larger iid examples.
+  milestone is checkpointed as commit `ec78829`. Future Work Note 29 retains
+  Fano sharpness, randomized/list decoding, and coding applications; Note 39
+  defers canonical/minimal sufficiency and larger iid examples.
+- Project B Chunk 6 is complete through `C6.24` in the current working tree.
+  Its four new opt-in modules
+  implement a dependent finite-family entropy/MI/CMI core, pair/triple
+  compatibility, binary and ordered chain rules, semantic Shannon
+  inequalities, concrete `ShannonEntropyVal` constructors, one checked-
+  certificate adapter, and permanent homogeneous and heterogeneous examples.
+  The API review retained 68 lightweight-core, 30 semantic, one certificate-
+  adapter, and 18 explicit example declarations; exactly eight reducing
+  empty/self rules are `[simp]`, while chain and representation-changing rules
+  remain explicit. The lightweight root and certificate trust boundary are
+  unchanged. The generated references now cover 43 modules and 834 documented
+  source declarations. The focused, maintained ten-target, default-build,
+  consumer, trust, website, and hygiene gates all pass. Chunk 6 is ready for a
+  coherent checkpoint but is not yet committed.
 
 ## Lean Modules
 
@@ -261,6 +273,11 @@ when they stabilize.
 - `LeanInfoTheory.Shannon.Fano`: opt-in deterministic-decoder error API, exact
   and q-ary finite Fano inequalities, weak forms, random-variable wrappers, and
   converse-facing corollaries.
+- `LeanInfoTheory.Shannon.FiniteFamily`: opt-in lightweight dependent-family
+  layer. It restricts a full joint family law to finite `Finset` atoms before
+  taking entropy and provides PMF/source family entropy, conditional entropy,
+  MI, CMI, pair/triple compatibility, and binary plus duplicate-tolerant
+  ordered chain rules without requiring `[Fintype Var]`.
 - `LeanInfoTheory.Shannon.InfoMeasures`: conditional entropy, mutual
   information, conditional mutual information, named marginals, and
   random-variable versions, including both triple conditional-entropy chain
@@ -346,6 +363,10 @@ when they stabilize.
   conditioning-reduces-entropy, the total conditional channel, the finite
   independence predicates, and the cross-product/positive-fiber/zero-CMI
   conditional-independence bridge with its entropy equality cases.
+- `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily`: opt-in family semantic
+  layer proving monotonicity, nonnegativity, submodularity, MI bounds,
+  conditioning reduction, binary/n-way subadditivity, and constructing
+  `finiteFamilyEntropyVal` and `finiteFamilyEntropyValOf`.
 - `LeanInfoTheory.InformationMeasures`: public re-export for finite information
   measures and their core rewrite lemmas. Binary and q-ary entropy remain mathlib names:
   `Real.binEntropy` and `Real.qaryEntropy`.
@@ -362,6 +383,9 @@ when they stabilize.
   raw-to-checked validator, and proof-carrying checked certificate structures
   for primitive Shannon-inequality ingredients, using nonnegative rational
   coefficients and exact decomposition equality.
+- `LeanInfoTheory.Certificate.FiniteFamily`: opt-in leaf adapter exposing
+  `Certificate.CheckedCert.sound_finiteFamily`; it applies existing checked
+  soundness to concrete family entropy and adds no validation path.
 - `LeanInfoTheory.Certificate.Submodularity`: separately importable first
   non-toy certificate demo, proving entropy submodularity from a validated CMI
   certificate.
@@ -391,6 +415,9 @@ when they stabilize.
 - `LeanInfoTheory.Examples.Fano`: opt-in examples exercising perfect decoding,
   the singleton-source edge case, and a fair Boolean source with a constant
   observation.
+- `LeanInfoTheory.Examples.FiniteFamily`: opt-in homogeneous Boolean and
+  dependent Boolean/`Fin 3` family examples exercising ordered chains,
+  overlap, empty entropy, and distinct checked/raw certificate paths.
 - `LeanInfoTheory.Examples`: aggregate for the semantic examples above and the
   original toy certificate examples.
 
@@ -413,23 +440,28 @@ Import heavier or demonstrational modules explicitly:
   `Real.binEntropy`.
 - `LeanInfoTheory.Shannon.Fano` for deterministic decoding-error definitions
   and finite Fano inequalities.
+- `LeanInfoTheory.Shannon.FiniteFamily` for the lightweight finite-atom family
+  algebra and ordered chain rules.
 - `LeanInfoTheory.Shannon.Units` for logarithm-base conversion.
 - `LeanInfoTheory.Shannon.SemanticBridge` for self-information,
   conditional-law, KL, averaged conditional-KL, nonnegativity, and chain-rule
-  bridge theorems.
+  bridge theorems, including the semantic finite-family layer and concrete
+  entropy valuations.
+- `LeanInfoTheory.Certificate.FiniteFamily` for checked-certificate soundness
+  under concrete finite-family entropy.
 - `LeanInfoTheory.MathlibFragments` for heavy mathlib/coding anchors.
 - `LeanInfoTheory.Certificate.Submodularity`,
   `LeanInfoTheory.Certificate.Subadditivity`,
   `LeanInfoTheory.Certificate.Monotonicity`,
   `LeanInfoTheory.Certificate.ThreeWaySubadditivity`, and
-  `LeanInfoTheory.Examples` for demos and examples. The six semantic example
+  `LeanInfoTheory.Examples` for demos and examples. The seven semantic example
   modules may also be imported individually.
 
 ## Roadmap
 
-1. Plan the finite-family entropy phase provisionally called Chunk 6 under
-   Future Work Note 1, choosing its representation and module boundary before
-   approving implementation.
+1. Checkpoint the complete and independently validated Chunk 6 finite-family
+   working tree when explicitly requested, then plan the next Chapter 2 phase
+   separately.
 2. Keep the sufficiency core lightweight and place KL integration downstream;
    retain exact full-joint recovery as the contract established by the
    completed midpoint tests, including rejection of marginal-only false
@@ -446,6 +478,10 @@ Import heavier or demonstrational modules explicitly:
 ```powershell
 lake exe cache get
 lake build
+lake build LeanInfoTheory.Shannon.FiniteFamily
+lake build LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily
+lake build LeanInfoTheory.Certificate.FiniteFamily
+lake build LeanInfoTheory.Examples.FiniteFamily
 lake build LeanInfoTheory.Shannon.EntropyBounds
 lake build LeanInfoTheory.Shannon.Units
 lake build LeanInfoTheory.Shannon.SemanticBridge

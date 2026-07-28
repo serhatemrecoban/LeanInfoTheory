@@ -16,8 +16,9 @@ The intended use is:
 
 - the certificate layer can first prove inequalities for any
   `ShannonEntropyVal`;
-- later finite-`PMF` semantics should prove that concrete entropy assignments
-  give examples of this structure.
+- the opt-in finite-family semantic bridge supplies concrete `PMF` examples
+  through `Shannon.finiteFamilyEntropyVal` and
+  `Shannon.finiteFamilyEntropyValOf`.
 -/
 
 namespace LeanInfoTheory
@@ -29,7 +30,9 @@ An abstract Shannon entropy valuation assigns a real value to every entropy
 atom and records the basic Shannon-type facts needed by the certificate layer.
 
 The fields are intentionally semantic assumptions rather than proved facts:
-concrete finite-probability models should instantiate this structure later.
+concrete finite-probability models instantiate this structure by proving the
+three required Shannon properties. The opt-in finite-family semantic bridge
+provides such models.
 -/
 structure ShannonEntropyVal (Var : Type u) [DecidableEq Var] where
   /-- The real value assigned to each entropy atom. -/

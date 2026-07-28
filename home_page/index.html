@@ -50,10 +50,10 @@
           </a>
         </p>
         <p>
-          Current milestone: finite PMF entropy and information measures,
-          conditional laws and independence, finite stochastic channels,
-          Markov structure, MI/KL data processing, and checked certificate
-          demos for entropy inequalities.
+          Current milestone: finite PMF and dependent finite-family information
+          measures, conditional laws and independence, finite stochastic
+          channels, Markov structure, MI/KL data processing, concrete Shannon
+          entropy valuations, and checked certificate demos.
         </p>
       </section>
 
@@ -65,10 +65,11 @@
           certificate checker. The current formalization covers entropy,
           conditional entropy, mutual information, conditional mutual
           information, independence and Markov characterizations, finite
-          stochastic-channel data processing, and checked Shannon-inequality
-          demos; the longer-term goal is a textbook-scale library with
-          importable external certificates for network-information-theory
-          converses.
+          stochastic-channel data processing, deterministic-decoder Fano,
+          dependent finite-family entropy, and checked Shannon-inequality
+          demos over a concrete entropy valuation; the longer-term goal is a
+          textbook-scale library with importable external certificates for
+          network-information-theory converses.
         </p>
       </section>
 
@@ -77,11 +78,12 @@
         <div class="dashboard-grid">
           <article class="dashboard-item">
             <span class="status-pill proved">Proved</span>
-            <h3>Finite PMF Information Measures</h3>
+            <h3>Finite PMF And Family Measures</h3>
             <p>
               Entropy, conditional entropy, mutual information, conditional
               mutual information, relabeling invariance, and finite entropy
-              upper-bound results are checked in Lean.
+              upper-bound results are checked in Lean, together with dependent
+              finite-subfamily measures and ordered family chain rules.
             </p>
             <a href="theorems.html">See theorem highlights</a>
           </article>
@@ -142,7 +144,8 @@
               Entropy as expected self-information, finite conditional laws,
               mutual information as KL, independence and Markov equivalences,
               averaged conditional-KL, stochastic MI/KL data processing, and
-              invariant-law and entropy-growth consequences.
+              invariant-law, entropy-growth, and finite-family Shannon
+              inequalities, including concrete entropy valuations.
             </p>
           </article>
           <article class="info-card">
@@ -151,7 +154,8 @@
             <p>
               Entropy expressions, abstract Shannon valuations, primitive
               inequalities, raw-to-checked validation, and exact rational
-              decomposition matching.
+              decomposition matching, plus an opt-in adapter to actual
+              finite-family Shannon entropy.
             </p>
           </article>
           <article class="info-card">
@@ -301,7 +305,7 @@
         <ul class="roadmap-list">
           <li><span class="status-pill proved">Completed</span> Project B Chunks 1-4 cover finite pair/triple identities, KL equality and independence, Markov structure, stochastic MI/KL data processing, and finite sufficient statistics.</li>
           <li><span class="status-pill proved">Completed</span> Chunk 5 finite deterministic-decoder Fano is checkpointed as commit <code>ec78829</code> after passing the full milestone validation suite.</li>
-          <li><span class="status-pill planned">Planning</span> Future Work Note 1 owns the finite-family entropy phase provisionally called Chunk 6; no representation or implementation plan is approved yet.</li>
+          <li><span class="status-pill proved">Completed</span> Chunk 6 adds the dependent finite-family core, semantic Shannon inequalities, concrete entropy valuation, checked-certificate adapter, examples, API review, generated references, and full independent milestone validation. The working tree is checkpoint-ready but not yet committed.</li>
           <li><span class="status-pill planned">Planned</span> Theorem-level leanblueprint pages, full Lean doc-gen output, and blueprint PDF on top of the current module dependency map and source-derived declaration index.</li>
           <li><span class="status-pill separate">Later</span> Exact Fano sharpness, randomized/list decoding, coding-theorem applications, and richer certificate-assumption layers.</li>
           <li><span class="status-pill separate">Later</span> PSITIP/oXitip-style import into untrusted raw certificate data and non-toy network-information-theory converse examples.</li>

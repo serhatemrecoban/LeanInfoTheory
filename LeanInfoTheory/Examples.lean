@@ -9,6 +9,7 @@ import LeanInfoTheory.Certificate.Checked
 import LeanInfoTheory.EntropyVal
 import LeanInfoTheory.Examples.CommonCause
 import LeanInfoTheory.Examples.Fano
+import LeanInfoTheory.Examples.FiniteFamily
 import LeanInfoTheory.Examples.KLTop
 import LeanInfoTheory.Examples.StochasticChannels
 import LeanInfoTheory.Examples.SufficientStatistics
@@ -19,9 +20,9 @@ import LeanInfoTheory.PrimitiveIneq
 # Toy examples
 
 This aggregate contains the original small certificate examples and imports the
-separately usable common-cause, Fano, stochastic-channel, support-sensitive,
-and sufficient-statistics semantic examples, as well as the infinite-KL
-example. It remains outside the lightweight root import.
+separately usable common-cause, Fano, finite-family, stochastic-channel,
+support-sensitive, and sufficient-statistics semantic examples, as well as the
+infinite-KL example. It remains outside the lightweight root import.
 -/
 
 namespace LeanInfoTheory

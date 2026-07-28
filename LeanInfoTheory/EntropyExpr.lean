@@ -65,8 +65,9 @@ An interpretation of entropy atoms respects the empty-entropy convention if it
 assigns value `0` to `H(∅)`.
 
 This is deliberately a separate predicate rather than a property of every
-function `EntropyAtom Var -> Real`: the next certificate layer can require this
-assumption, and the later concrete finite-family semantics should prove it.
+function `EntropyAtom Var -> Real`: the certificate layer can require this
+assumption, while concrete interpretations prove it. The opt-in finite-family
+semantic bridge does so through `Shannon.finiteFamilyEntropyVal`.
 -/
 def RespectsEmpty (value : EntropyAtom Var -> Real) : Prop :=
   value (EntropyAtom.empty Var) = 0

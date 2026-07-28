@@ -91,11 +91,23 @@ highlights, and module guide record what is implemented now.
   completed C5.01-C5.20: its deterministic-decoder mathematics, permanent
   examples, API review, canonical memory, generated references, full
   milestone suite, trust checks, and final hygiene review are current. The
-  milestone is checkpointed as commit `ec78829`. Future Work Note 1 owns
-  planning for the finite-family entropy phase provisionally called Chunk 6;
-  no representation or implementation plan is approved yet. Future Work Note
-  39 defers canonical/minimal sufficiency, general measurable sufficiency, and
-  a larger iid count-statistic development until a later focused milestone.
+  milestone is checkpointed as commit `ec78829`. Future Work Note 29 retains
+  only evidence-driven Fano sharpness, randomized/list-decoding, and coding
+  follow-ups.
+- The approved 24-step
+  [finite-family plan](plans/chapter2-chunk-06.md) is complete through
+  `C6.24` in the current working tree.
+  The working tree now contains the lightweight dependent-family entropy/MI/
+  CMI core, pair/triple compatibility, binary and ordered chain rules,
+  semantic Shannon inequalities, concrete `ShannonEntropyVal` constructors,
+  one checked-certificate adapter, permanent homogeneous/heterogeneous
+  examples, and the completed API/simp/import review. All four new modules
+  remain opt-in and the certificate trust boundary is unchanged. The
+  generated/public references, independent full build, trust, boundary,
+  placeholder, website, and hygiene gates all pass. The milestone is ready for
+  a coherent checkpoint but is not yet committed. Future Work Note 39
+  continues to defer canonical/minimal sufficiency, general measurable
+  sufficiency, and a larger iid count-statistic development.
 - Maintain project notes in the foundation conventions and project log.
 - Keep the lightweight finite API separated from heavier KL and coding imports.
 
@@ -108,9 +120,8 @@ highlights, and module guide record what is implemented now.
   orientation page.
 - Link generated docs and blueprint entries back to the curated theorem
   highlights and submodularity demo page.
-- Checkpoint the validated finite-Fano milestone, then plan the next
-  Cover-Thomas Chapter 2 phase separately without folding a full coding theorem
-  into Chunk 5.
+- Checkpoint the completed Chunk 6 milestone, then plan the next Cover-Thomas
+  Chapter 2 phase separately.
 
 ## 6 Months
 

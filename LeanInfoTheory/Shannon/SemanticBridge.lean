@@ -5,6 +5,7 @@ Authors: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.SemanticBridge.Theorems
+import LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily
 import LeanInfoTheory.Shannon.SemanticBridge.Independence
 import LeanInfoTheory.Shannon.SemanticBridge.Markov
 import LeanInfoTheory.Shannon.SemanticBridge.Sufficiency
@@ -81,6 +82,8 @@ textbook/measure-theoretic semantics.
   conditional KL divergence;
 - semantic theorem API: `0 <= I(A;B)`, `0 <= I(A;B|C)`, and the chain rule
   `I(A;B,C) = I(A;C) + I(A;B|C)`.
+- finite-family entropy monotonicity, nonnegative conditional entropy and CMI,
+  and entropy submodularity, without requiring a finite family index.
 
 Keeping this file separate prevents KL divergence, kernels, and related
 measure-theoretic imports from becoming dependencies of the lightweight finite

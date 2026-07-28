@@ -5706,6 +5706,168 @@ documentation/CI-only handoff commit has subject
 `Prepare Project B Chunk 6 handoff`. The build and Pages workflows must pass
 after push before this cleanup is reported complete.
 
+### 142. Project B Chunk 6 Contract Activation And Feasibility Check
+
+On July 27, 2026, Chunk 6 Step `C6.01` verified the handoff baseline
+`b8012ef6dbcb69b56e8a9e896ba312b5c24b1b60` and activated the approved
+24-step plan in
+`docs/plans/chapter2-chunk-06.md`. The representation gate in Future Work
+Note 1 is discharged: the semantic layer will use an arbitrary decidable
+variable-name type, dependent component alphabets, a full joint `PMF` on the
+dependent function type, and `Finset` atoms. It will not assume the variable
+index type itself is finite, and it will take entropy only after restricting
+to a finite atom. The approved module split keeps lightweight family
+definitions and algebra in `Shannon.FiniteFamily`, heavier Shannon
+inequalities and the concrete `ShannonEntropyVal` bridge in
+`Shannon.SemanticBridge.FiniteFamily`, the checked-certificate adapter in
+`Certificate.FiniteFamily`, and permanent consumers in
+`Examples.FiniteFamily`.
+
+An ignored disposable Lean spike compiled and was deleted. It elaborated the
+core signatures with `Var := Nat`, heterogeneous alphabets `Fin (i + 1)`, a
+pure full-family law without `[Fintype Nat]`, empty and singleton atoms,
+overlapping pair/triple restrictions, repeated list indices, an empty index
+type, and the exact empty/monotonicity/CMI theorem shapes needed to construct a
+`ShannonEntropyVal`. The spike found only two expected implementation details:
+PMF-map and entropy definitions are `noncomputable`, and an empty-index
+consumer must supply its vacuous dependent `Fintype` family explicitly.
+Neither changes the approved contract. No production Lean source, public
+declaration, import, theorem statement, assumption, or root boundary changed.
+`C6.02` remains separately approval-gated.
+
+### 143. Project B Chunk 6 Lightweight Finite-Family Core Checkpoint
+
+On July 27, 2026, Chunk 6 Steps `C6.02` through `C6.12` completed the
+lightweight finite-family core in the separately importable
+`LeanInfoTheory.Shannon.FiniteFamily` module. Its 68 public declarations cover
+the dependent finite-restriction representation, PMF and source-family entropy
+and information measures, restriction and union bridges, compatibility with
+the established pair/triple API, elementary identities, binary set chain
+rules, ordered prefix sums, and ordered entropy and mutual-information chain
+rules. The module still imports only `Shannon.InfoMeasures`,
+`Mathlib.Data.Finset.Pi`, and `Mathlib.Data.Fintype.Pi`; neither the semantic
+bridge nor the lightweight root imports it.
+
+Step `C6.12` added the duplicate-tolerant all-list theorems
+`familyMutualInfo_eq_mutualInfoChain` and
+`familyMutualInfoOf_eq_mutualInfoChain`, together with the direct finite-sum
+textbook corollaries `familyMutualInfo_chain_rule_of_nodup` and
+`familyMutualInfoOf_chain_rule_of_nodup`. A private seen-atom accumulator
+identifies the public positional sum and telescopes it through
+`familyMutualInfo_union_chain_rule`. The empty initial term follows from
+mutual-information symmetry and `familyMutualInfo_empty_right`. Repeated list
+indices, overlap with the comparison atom, and `b = empty` require no special
+hypothesis; only the textbook corollaries carry `List.Nodup`.
+
+The focused `LeanInfoTheory.Shannon.FiniteFamily` build passed with 2,232 jobs,
+and the unchanged lightweight root passed with 2,240 jobs. A complete
+direct-import consumer resolved all 68 public declarations. Separate consumers
+compiled the new chain rules for an infinite `Nat` index with heterogeneous
+alphabets `Fin (i + 1)`, repeated names, overlapping atoms, the empty
+comparison atom, arbitrary source types, and an actually empty index type.
+Guarded negative consumers confirmed root isolation and the privacy of all
+entropy- and mutual-information-chain accumulator declarations. Imports,
+attributes, assumptions, placeholders, and temporary-file hygiene were clean.
+Axiom inspection of all four C6.12 declarations reported only `propext`,
+`Classical.choice`, and `Quot.sound`. Future Work Note 14 records the required
+naming audit; no compatibility alias was added during the active theorem
+phase. Step `C6.13` remains separately approval-gated and begins the opt-in
+semantic layer.
+
+### 144. Project B Chunk 6 Semantic, Certificate, And API-Freeze Checkpoint
+
+On July 28, 2026, Chunk 6 Steps `C6.13` through `C6.21` completed the
+semantic finite-family layer, concrete entropy valuation, checked-certificate
+adapter, permanent examples, and scheduled API review. The implementation
+remains split across four opt-in modules:
+
+- `LeanInfoTheory.Shannon.FiniteFamily`, with 68 reviewed lightweight-core
+  declarations;
+- `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily`, with 30 reviewed
+  semantic and concrete-valuation declarations;
+- `LeanInfoTheory.Certificate.FiniteFamily`, with the single
+  `Certificate.CheckedCert.sound_finiteFamily` adapter;
+- `LeanInfoTheory.Examples.FiniteFamily`, with 18 explicit maintained
+  declarations across homogeneous Boolean and heterogeneous Boolean/ternary
+  models.
+
+The semantic layer proves finite-atom monotonicity, conditional-entropy and
+conditional-mutual-information nonnegativity, submodularity, mutual-
+information bounds, conditioning reduction, binary and n-way
+subadditivity, and their source-family forms. It then constructs
+`finiteFamilyEntropyVal` and `finiteFamilyEntropyValOf`, showing directly that
+actual finite-family Shannon entropy satisfies the existing
+`ShannonEntropyVal` contract. The certificate adapter applies the unchanged
+`CheckedCert.sound` theorem to that valuation; it adds no validation path,
+primitive, assumption, or trusted component.
+
+The permanent examples exercise duplicate-tolerant ordered chain rules,
+dependent alphabets without `[Fintype Var]`, overlapping entropy atoms, the
+empty-family convention, and both checked and raw certificate soundness
+paths. The raw path still passes through
+`RawCert.sound_of_toCheckedCert?_isSome`; no external data or unchecked
+certificate is trusted.
+
+Step `C6.21` froze the public API without renaming declarations or adding
+aliases. It promoted exactly eight strictly reducing empty/self
+normalizations to `[simp]`, kept chain rules, symmetry, compatibility bridges,
+and entropy-difference identities explicit, and extracted only the private
+`union_cons_toFinset` helper from two repeated telescoping proofs. The core,
+semantic, certificate, and example import boundaries all passed positive and
+guarded negative consumers. The six-target focused build passed with 2,770
+jobs, and representative axiom checks reported only `propext`,
+`Classical.choice`, and `Quot.sound`.
+
+Step `C6.22` reconciled the plan, project log, living summary, current Lean
+state, roadmap, and README against that API-frozen working tree. It did not
+claim final Chunk 6 completion. Generated reference refresh remains assigned
+to `C6.23`, and the complete milestone build, trust, boundary, placeholder,
+website, and repository-hygiene gate remains assigned to `C6.24`. A read-only
+source-parser check found 43 modules, 75 local import edges, 11 root-reachable
+modules, and 32 opt-in modules. It also found that the declaration-index
+parser currently mistakes the module-doc line beginning "theorem to actual"
+in `Certificate.FiniteFamily` for a declaration. That immediate generated-
+reference issue belongs to `C6.23`; the reviewed source surface itself remains
+117 new public declarations and no undocumented declaration.
+
+### 145. Project B Chunk 6 Generated References And Final Validation
+
+On July 28, 2026, Steps `C6.23` and `C6.24` completed the 24-step finite-
+family milestone in the current working tree. `C6.23` corrected the
+source-declaration parser so that it skips nested ordinary Lean block comments,
+then regenerated and checked the module graph and declaration index. The
+generated state now records 43 modules, 75 local import edges, 11 root-
+reachable modules, 32 opt-in modules, and 834 documented source declarations.
+The exact Chunk 6 declaration counts are 68 lightweight-core, 30 semantic,
+one certificate-adapter, and 18 example declarations. Both generators are
+byte-idempotent, all new source links and declaration anchors validate, no
+generic module-summary fallback remains, and the website checker passes for
+12 HTML files and two generated JSON files.
+
+`C6.24` then independently rebuilt the six focused Chunk 6 and aggregate
+targets with 2,770 jobs, the maintained ten-target milestone suite with 2,783
+jobs, and the default project with 2,240 jobs. Positive consumers exercised
+the core, semantic, certificate, and example surfaces over infinite and empty
+index types, dependent heterogeneous alphabets, empty and singleton atoms,
+overlapping atoms, duplicate list entries, arbitrary sources, concrete
+`ShannonEntropyVal` evaluation, and both checked and raw certificate paths.
+Guarded negative consumers confirmed the root, core, semantic, certificate,
+private-helper, and example-instance boundaries.
+
+The strict placeholder scan is clean. A mechanical `#print axioms` pass over
+all 89 new public theorems reported only `propext`, `Classical.choice`, and
+`Quot.sound`. The lightweight root remains unchanged, no textbook or scratch
+file is tracked, all disposable consumers were deleted, and generated,
+whitespace, import, trust, status, and full-diff hygiene checks pass. The first
+ignored positive fixture used an opaque local alphabet alias and was corrected
+to an `abbrev`; no production declaration or proof changed.
+
+Chunk 6 is therefore complete and ready for a coherent checkpoint. It is not
+yet committed: checked-in head `b8012ef` remains the current handoff head and
+`ec78829` remains the last fully validated committed Lean/source checkpoint.
+This closeout discharges Future Work Note 1 and the current Note 17 milestone
+assignment. It does not authorize a later chunk or any deferred follow-up.
+
 ## Completed Project B Chunk 4 Plan
 
 This completed theorem phase is a revised 20-step plan for finite sufficient
@@ -6059,28 +6221,32 @@ now complete through `C5.20`: its mathematical API, permanent examples, API
 freeze, canonical-memory reconciliation, generated references, public status
 documentation, full milestone suite, boundary consumers, trust audit, and
 final hygiene checks all pass. Commit `ec78829` is the coherent Chunk 5
-checkpoint. The next task is planning the finite-family entropy phase
-provisionally called Chunk 6 under Note 1; no representation, detailed plan, or
-Lean implementation is approved. Richer certificate assumptions, external
-certificate import, coding-theory layers, theorem-level blueprint work, and
-substantial mathlib PR preparation remain later work.
+checkpoint. Future Work Note 1's representation gate is now discharged, the
+approved 24-step finite-family Chunk 6 plan is now complete in the validated
+working tree. Its 68-declaration lightweight core, 30-declaration semantic
+layer, concrete `ShannonEntropyVal`, single checked-certificate adapter, 18
+example declarations, API freeze, canonical reconciliation, generated
+references, and independent milestone gate all pass. Chunk 6 is ready for a
+coherent checkpoint but is not yet committed. Richer certificate assumptions,
+external certificate import, coding-theory layers, theorem-level blueprint
+work, and substantial mathlib PR preparation remain later work.
 
 ### Status Index
 
 | Status | Notes | Meaning |
 | --- | --- | --- |
 | Standing guardrails | 2-4, 6-8, 14-18, 26 | Apply these policies continuously; they do not create standalone cleanup tasks. |
-| Project B sequence | 1, 29 | Chunk 5 finite Fano is checkpointed as `ec78829`; Note 1 owns the next finite-family planning phase, while Note 29 retains deferred Fano follow-ups. |
+| Project B sequence | 29 | Chunk 5 finite Fano is checkpointed as `ec78829`; Chunk 6 is complete and independently validated in the working tree, while Note 29 retains deferred Fano follow-ups and remains the broader Chapter 2 sequence anchor. |
 | Channel/Markov proof-pressure | 21, 25, 27 | Revisit these only when concrete channel, Markov, or data-processing consumers reach their stated triggers. |
 | Proof-pressure deferred | 19, 22-24, 30-37, 40 | Wait for the repeated proof or new statement pressure specified in each note. |
 | Later milestones | 5, 9-13, 28, 38-39 | Schedule these in their own later mathematical, documentation, example, certificate, or coding phases. |
-| Closed/historical | 20 | Retained for numbered references and rationale; it is not an active backlog item. |
+| Closed/historical | 1, 20 | Note 1's finite-family representation and implementation assignment is complete; both entries remain only for numbered references and rationale. |
 
 This index is a navigation aid. It does not renumber the detailed notes, change
 their theorem-pressure conditions, or serve as the naming decision table
 requested by Note 14 for the next scheduled API review.
-The 40 numbered entries therefore comprise 39 active or standing notes and one
-closed historical note. Here, active includes guardrails, proof-pressure
+The 40 numbered entries therefore comprise 38 active or standing notes and two
+closed historical notes. Here, active includes guardrails, proof-pressure
 triggers, the Project B sequence anchor, and later milestones; it does not mean
 immediate implementation. Earlier step-specific imperatives retained inside a note are
 historical trigger records when a later paragraph records their resolution.
@@ -6100,6 +6266,567 @@ historical trigger records when a later paragraph records their resolution.
     `ShannonEntropyVal` bridge. No representation, module architecture,
     detailed plan, or Lean implementation is approved by this activation.
 
+    On July 27, 2026, the project lead approved the representation, scope,
+    architecture, and 24-step execution plan recorded in
+    `docs/plans/chapter2-chunk-06.md`. Step `C6.01` discharged this note's
+    representation gate with a clean disposable elaboration check. The
+    approved representation uses an arbitrary decidable variable-name type,
+    dependent pointwise-finite alphabets, a full joint `PMF` on the dependent
+    function type, and finite `Finset` atoms; it requires no `[Fintype Var]`
+    and never applies finite entropy directly to the full law. The lightweight
+    core, semantic bridge, certificate adapter, and examples remain separate
+    modules as specified by the plan. This activation authorizes only the
+    separately approved plan sequence: it does not claim that production
+    finite-family Lean declarations already exist, and each later `C6.xx`
+    step still requires separate user approval.
+
+    Later on July 27, Steps `C6.02`--`C6.12` completed and validated the
+    lightweight `Shannon.FiniteFamily` core with 68 public declarations. The
+    accepted representation now has production PMF/source-family entropy,
+    conditional entropy, mutual information, conditional mutual information,
+    pair/triple compatibility, and binary and ordered chain-rule surfaces.
+    Root isolation and the no-global-`Fintype Var` contract remain intact.
+    This discharges Note 1's lightweight-core phase without closing the note:
+    `C6.13` begins the separately importable semantic properties needed for the
+    concrete `ShannonEntropyVal`, and every later step remains separately
+    approval-gated.
+
+    The July 28, 2026 review of Step `C6.03` also records three non-immediate
+    proof-pressure follow-ups. First, the current `familyEntropyOf_congr`
+    deliberately uses global agreement on the selected coordinates: for every
+    source point and every `i : s`, the two source families agree. If a later
+    production proof needs invariance under changes away from `p.support`,
+    consider a compatibility-preserving support-aware corollary whose
+    hypothesis is agreement on the selected coordinates only at source points
+    in `p.support`. Do not weaken or replace the existing theorem, and do not
+    add the corollary merely because it is mathematically more general.
+
+    Second, if a downstream consumer needs equality of the selected
+    pushforward laws themselves rather than immediately taking entropy,
+    consider a PMF-level congruence theorem for
+    `familyMarginal (familyLawOf p X) s`. Decide from the motivating proof
+    whether its useful contract is global pointwise agreement or agreement
+    only on `p.support`; do not add both variants automatically. Prefer making
+    the PMF equality the primitive and deriving the corresponding scalar
+    entropy result from it only when that organization removes real
+    duplication or supports multiple consumers. Any theorem names remain
+    provisional and must be audited under Future Work Note 14.
+
+    Third, keep using mathlib's exact `Finset.restrict₂` projection in
+    `familyMarginal_restrict` for now. Consider a public finite-family
+    projection wrapper only if at least two independent production statements
+    repeatedly spell the projection or dependent proof-witness machinery, or
+    if transporting such witnesses becomes a recurring consumer ergonomics
+    problem. A promoted wrapper should live in `Shannon.FiniteFamily`, use
+    mathematical projection vocabulary rather than expose casts or subset
+    proof details, preserve `familyMarginal_restrict`, and receive the standing
+    public-name audit. None of these follow-ups identifies a current defect or
+    changes the approved Chunk 6 implementation sequence.
+
+    The July 28, 2026 review of Step `C6.04`, performed after `C6.15` was
+    complete and while `C6.16` was active, records a second non-immediate
+    base-case watchlist. The six current empty, singleton, and nonnegativity
+    theorems are mathematically complete for their approved scalar-entropy
+    scope and should remain unchanged.
+
+    If later support, independence, KL, channel, or distribution-level proofs
+    need the selected law itself, consider PMF-level descriptions of the empty
+    and singleton marginals. The empty law should state that
+    `familyMarginal q empty` is concentrated at the unique empty-family
+    outcome. The singleton law should identify
+    `familyMarginal q {i}`, after the canonical coordinate evaluation, with
+    the ordinary coordinate pushforward `q.map (fun x => x i)`; a source-family
+    form should be added only if a consumer cannot use
+    `familyMarginal_familyLawOf` cleanly. Exact theorem names and the choice
+    between equality through an evaluator, an equivalence, or a mapped-law
+    statement remain deliberately open. Promote only the forms consumed before
+    entropy is taken, rather than adding a symmetric theorem family in
+    anticipation.
+
+    The private implementation fallback is likewise pressure-driven. An
+    equivalence between `FamilyOutcome alpha empty` and `PUnit`, or between
+    `FamilyOutcome alpha {i}` and `alpha i`, may simplify a future PMF-level
+    law or repeated dependent-index transport. Do not replace the current
+    explicit empty-outcome proof or private injective singleton evaluator merely
+    for abstraction; first reuse mathlib's existing dependent-Pi equivalences
+    where they fit, keep a one-proof helper private, and consider a public
+    equivalence only after multiple independent consumers need it.
+
+    Finally, `familyEntropy_empty` and `familyEntropyOf_empty` are legitimate
+    strictly reducing empty-normalization candidates for the scheduled
+    `C6.21` API/simp review under Future Work Note 15. Test both on
+    representative family, valuation, certificate, and chain-rule goals before
+    adding `[simp]`; retain them as explicit rewrites if they introduce a
+    cycle, an unstable normal form, or no demonstrated ergonomic improvement.
+    This watchlist does not alter active `C6.16` and does not reopen completed
+    Steps `C6.01`--`C6.15`.
+
+    The corresponding July 28 review of Step `C6.05` preserves all four
+    pair/triple union-entropy bridges and their private split maps unchanged.
+    A useful conceptual detail for any later documentation pass is that the
+    split from an `A union B` outcome to its `A`- and `B`-restrictions is
+    injective but, when the atoms overlap, generally not surjective onto the
+    whole product: its image consists of pairs that agree on `A inter B`.
+    The same compatibility condition holds pairwise for the three restrictions
+    in the triple bridge. This is why injective entropy invariance is the right
+    proof principle and why replacing the maps with unrestricted product
+    equivalences would be mathematically wrong. Add a short source comment only
+    if later readers or generated documentation would materially benefit; the
+    existing theorem statements already record that overlap is permitted.
+
+    If later support, KL, channel, or distribution-level arguments need more
+    than the scalar entropy identities, consider a PMF-level union-marginal
+    bridge identifying the law of the union restriction, after splitting, with
+    the joint law of the component restrictions. Let the first production
+    consumer determine whether the stable public statement should use an
+    explicit restriction map, a compatible-tuples subtype, or another
+    representation-independent equality. Do not expose the current private
+    `splitUnion` or `splitTripleUnion` names, dependent subset witnesses, or
+    cast machinery merely to state such a theorem. Add pair and triple forms
+    only when each has a consumer, and preserve the existing entropy bridges
+    as compatibility declarations.
+
+    A general finite or list-indexed many-way split should remain deferred.
+    The ordered chain-rule API already handles the current many-variable scalar
+    entropy use cases without constructing a heterogeneous tuple of grouped
+    restrictions. Reconsider a many-way law only if at least two independent
+    consumers need the grouped PMF itself or repeatedly reconstruct pair/triple
+    splitting. Any design must support heterogeneous alphabets, overlapping
+    atoms, repeated list entries where applicable, empty groups, and an
+    infinite variable-name type without `[Fintype Var]`; it should use a
+    dependent finite product rather than commit the public API to nested binary
+    products.
+
+    Finally, if later source-family bridge proofs repeat the direct
+    injectivity argument or drift from their PMF counterparts, first test
+    deriving the `...Of` forms from the PMF theorems through `familyLawOf` and
+    `PMF.map_comp`. Refactor only when that route is shorter and more stable
+    than the current transparent proofs. This is a private proof-maintenance
+    option, not a proposed theorem or a reason to rewrite completed C6.05.
+
+    The July 28 review of Step `C6.06` confirms that its direct entropy
+    formulas are the permanent canonical definitions:
+    `H(A | B) = H(A union B) - H(B)`,
+    `I(A ; B) = H(A) + H(B) - H(A union B)`, and
+    `I(A ; B | C) = H(A union C) + H(B union C) -
+    H(A union B union C) - H(C)`. Do not reopen the choice among these
+    definitions, the pair/triple information-measure views, or the equivalent
+    entropy-difference identities. Keep the latter presentations as proved
+    rewrite theorems, so the atom-native core retains one normal form aligned
+    with `EntropyExpr`, `ShannonEntropyVal`, and checked certificates.
+
+    As optional documentation polish during the scheduled `C6.21` API review
+    or `C6.23` public-documentation pass, consider displaying the formulas in
+    the source section comment and explaining that overlapping atoms are
+    intentional: union counts a shared coordinate once, while the resulting
+    quantities agree with mutual information and conditional information of
+    the corresponding restriction-valued random variables. Make that prose
+    change only if it improves generated or source-level discoverability; no
+    theorem, definition, notation, import, or simp attribute is requested.
+    This note does not alter active `C6.16` or reopen completed Steps
+    `C6.01`--`C6.15`.
+
+    The July 28 review of Step `C6.07` confirms that its twelve compatibility
+    declarations should remain explicit semantic conversions from the
+    atom-native family API to the established restriction-valued
+    `condEntropyOf`, `mutualInfoOf`, and `condMutualInfoOf` API. Both sides are
+    useful mathematical views; the rewrite does not merely eliminate a
+    constructor or select a universally simpler syntax. Therefore do not mark
+    these bridge theorems `[simp]` or add reverse-orientation aliases unless
+    the scheduled `C6.21` representative tests demonstrate a strictly
+    terminating normal form and concrete consumer pressure. This decision is
+    governed by Future Work Note 15.
+
+    During `C6.21` or the `C6.23` source/public-documentation pass, consider a
+    short section comment explaining that bridge direction and why invocation
+    is caller-controlled. Add the comment only if permanent examples show that
+    users otherwise mistake the family measures for a parallel semantics or
+    expect automatic simplification. Future Work Note 14 already records the
+    discoverability watch for
+    `familyCondMutualInfoOf_eq_condMutualInfoOf`; preserve the current name and
+    do not duplicate that entry or introduce an alias before the scheduled
+    consumer review. No C6.07 theorem or private singleton-relabeling helper
+    needs to be reopened; Steps `C6.01`--`C6.15` are complete and `C6.16`
+    remains active.
+
+    The July 28 review of Step `C6.08` preserves its controlled
+    fourteen-theorem elementary identity surface. One plausible later
+    convenience theorem is `H(A | A) = 0`, provisionally in the
+    `familyCondEntropy_self` family. Add the PMF-facing theorem only when a
+    production consumer repeats its union-idempotence calculation or a
+    permanent example demonstrates a real discovery gap. Add a source-family
+    counterpart only when that surface is itself consumed; derive it through
+    `familyLawOf`, retain the current definitions, and audit every eventual
+    name under Future Work Note 14.
+
+    More generally, use the permanent C6.20 examples and scheduled C6.21 API
+    review to test whether direct source-family forms of the existing empty and
+    self reductions materially improve proofs. Do not mirror every elementary
+    PMF theorem merely for symmetry: prefer the current PMF theorem plus
+    definitional reduction through `familyLawOf` until repeated source-facing
+    use demonstrates pressure.
+
+    At C6.21, test the strictly reducing PMF rules
+    `familyCondEntropy_empty_right`, `familyCondEntropy_empty_left`,
+    `familyMutualInfo_empty_right`,
+    `familyCondMutualInfo_empty_right`,
+    `familyCondMutualInfo_empty_conditioning`, and
+    `familyMutualInfo_self` on representative chain-rule, semantic-bridge,
+    valuation, certificate, and example goals. Add `[simp]` only where the
+    result selects a stable terminating normal form and improves actual
+    consumers. Keep symmetry and entropy-difference identities explicit,
+    retain caller control over expansion, and do not introduce left-empty or
+    reverse-orientation aliases to manufacture simplifier coverage.
+
+    The binary conditional-MI union chain rule also remains deferred rather
+    than missing from C6.08 or C6.09. Its likely mathematical shape is
+    `I(A union B; C | D) = I(A; C | D) + I(B; C | A union D)`.
+    Reconsider it only when a later ordered conditional-MI development or at
+    least two production proofs repeat this decomposition. Start with one
+    orientation, use existing CMI symmetry for the other argument when
+    adequate, and add PMF/source forms only according to consumers. The long
+    entropy-difference names are already watched under Future Work Note 14;
+    do not duplicate that naming entry. None of these items alters active
+    `C6.16` or reopens completed Steps `C6.01`--`C6.15`.
+
+    The July 28 review of Step `C6.09` likewise preserves its six binary set
+    chain rules unchanged. Keep the one-off equality that normalizes
+    `(B union C) union A` to `(A union B) union C` local to the MI proof. If the
+    same nontrivial normalization recurs in at least two later production
+    proofs and materially obscures their mathematics, first extract a private
+    helper in `Shannon.FiniteFamily`; promote no public finite-set equality
+    unless downstream callers consume that equality as mathematics rather than
+    as proof plumbing.
+
+    The alternate decomposition
+    `I(A union B; C) = I(B; C) + I(A; C | B)` is already obtainable from
+    `familyMutualInfo_union_chain_rule` by swapping `A` and `B` and normalizing
+    the union. Add a named PMF or source-family orientation only if permanent
+    examples repeatedly require that exact presentation and the two-rewrite
+    derivation harms readability. Do not add both orientations merely for
+    symmetry. The conditional-MI union chain rule remains governed by the
+    C6.08 trigger immediately above.
+
+    During C6.21 or C6.23, consider adding one sentence to the binary-chain
+    section comments that disjointness and freshness are not required:
+    overlapping coordinates contribute only their conditional additional
+    information. Add the prose only when it improves source or generated
+    documentation. Keep all six chain rules explicit under Future Work Note
+    16; do not route their proofs through the pair/triple semantic bridge or
+    add `[simp]` attributes merely to select an entropy-expanded normal form.
+    This review does not alter active `C6.16` or reopen completed Steps
+    `C6.01`--`C6.15`.
+
+    The July 28 review of Step `C6.10` preserves
+    `familyEntropyChain` and `familyMutualInfoChain` as the two public direct
+    textbook sums. If permanent examples or later induction proofs repeatedly
+    need small computations, first test whether ordinary unfolding and `simp`
+    already discharge them. Only then consider narrowly scoped empty- and
+    singleton-list lemmas, provisionally in the
+    `familyEntropyChain_empty`/`familyEntropyChain_singleton` and
+    `familyMutualInfoChain_empty`/`familyMutualInfoChain_singleton` families.
+    For singleton lists, let the motivating consumer choose whether the stable
+    right side is the raw conditional term with empty prefix or its simplified
+    entropy/MI form; do not publish both presentations automatically.
+
+    Do not add a misleading simple cons equation for the current definitions.
+    In the tail of `i :: l`, every term is conditioned on `{i}` in addition to
+    its prefix in `l`, so the tail is not definitionally the existing chain on
+    `l`. If at least two independent public induction consumers need that
+    recurrence, consider a mathematically presented chain-from-an-initial-atom
+    API, with provisional names such as `familyEntropyChainFrom` and
+    `familyMutualInfoChainFrom`. Its public definition should remain a direct
+    positional sum conditioned on the initial atom union each prefix; the
+    existing recursive `...Aux` declarations remain private proof machinery
+    and must not be exposed or renamed into the API.
+
+    Any such generalized chain must retain duplicate tolerance, overlapping
+    conditioning atoms, empty lists and initial atoms, heterogeneous dependent
+    alphabets, and no `[Fintype Var]` or `List.Nodup` requirement. Add
+    source-family wrappers only when consumed, audit provisional names under
+    Future Work Note 14, and add `[simp]` to computation lemmas only when they
+    strictly reduce and pass the scheduled C6.21 representative tests. No
+    current consumer justifies these additions, and this watchlist neither
+    alters active `C6.16` nor reopens completed Steps `C6.01`--`C6.15`.
+
+    The July 28 review of Step `C6.11` preserves its four public entropy-chain
+    theorems unchanged. In particular, keep the duplicate-tolerant all-list
+    theorem as the primary contract and retain the `List.Nodup` corollary as an
+    intentionally textbook-facing statement even though its proof does not use
+    the hypothesis. Do not move `Nodup` into the stronger theorem, replace the
+    direct positional sum with recursion, expose any `...Aux` declaration, or
+    add a chain-rule simp orientation; the generalized initial-seen API and
+    simplifier policy remain governed by the C6.10 watchlist and Future Work
+    Note 16.
+
+    One concrete private-cleanup candidate now has demonstrated repetition:
+    both the C6.11 entropy and C6.12 MI telescoping inductions prove
+    `s union (i :: l).toFinset = (s union {i}) union l.toFinset` locally.
+    During C6.21, test whether one small private finite-set lemma materially
+    shortens and clarifies both proofs. Extract it only if its statement and
+    use are simpler than the two transparent local calculations; otherwise
+    leave the duplication in place. Keep the helper independent of entropy and
+    MI, give it no public attribute, do not expose it through the API or Future
+    Work Note 14, and avoid introducing a broad finite-set normalization layer
+    for this single equality. This cleanup does not alter active `C6.16` or
+    reopen completed Steps `C6.01`--`C6.15`.
+
+    C6.21 resolved this private-cleanup trigger by extracting
+    `union_cons_toFinset`. Its one generic finite-set statement replaces both
+    local extensionality blocks with one-line rewrites, remains private and
+    attribute-free, and leaves the entropy and MI theorem statements
+    unchanged. Keep its explicit membership normalization and `tauto` proof:
+    shortening that proof with broader `simp` is not future work by itself.
+    Reconsider the helper's shape only if a third independent proof needs a
+    genuinely more general list/Finset identity; do not promote it publicly or
+    build a set-normalization layer around the current two uses.
+
+    The July 28 review of Step `C6.12` preserves its four ordered MI-chain
+    declarations and the completed 68-name lightweight-core checkpoint. A
+    possible second-argument presentation,
+    `I(B; l.toFinset) = sum k, I(B; {l[k]} | prefix k)`, is already derivable
+    from `familyMutualInfo_eq_mutualInfoChain`, outer MI symmetry, and
+    termwise CMI symmetry. Consider a direct theorem only if at least two
+    permanent consumers repeatedly need that orientation and the required
+    finite-sum congruence materially harms readability. Let those consumers
+    determine whether only an outer-symmetric statement with the existing
+    summand orientation suffices or whether every CMI summand should also be
+    swapped. Add the PMF form first, add a source-family counterpart only when
+    consumed, and audit any eventual first/second or left/right naming family
+    under Future Work Note 14 without renaming the existing theorem.
+
+    Do not publish the recursive MI accumulator, generalize the entropy and MI
+    proofs into an abstract telescoping framework, or add a separate `Fin n`
+    interface merely because those representations are available internally.
+    The accepted public interface remains arbitrary named variables plus an
+    ordered list, with private proof recursion. Likewise, do not add a direct
+    left-empty MI theorem solely to shorten C6.12's one base-case derivation;
+    reconsider it only under independent consumer pressure already covered by
+    the C6.08 empty-form review. Chain rules remain explicit under Future Work
+    Note 16, the shared private finite-set cleanup remains owned by the C6.11
+    paragraph, and an ordered conditional-MI chain remains governed by the
+    C6.08 trigger. This review neither alters active `C6.16` nor reopens
+    completed Steps `C6.01`--`C6.15`.
+
+    The July 28 review of Step `C6.15`, performed after `C6.16` completed and
+    while `C6.17` was active, preserves all eight family-MI nonnegativity,
+    left/right entropy-bound, and conditioning-reduction declarations
+    unchanged. Their proof organization is deliberate: family MI
+    nonnegativity uses the established restriction-valued semantic bridge,
+    the left bound uses family conditional-entropy nonnegativity, the right
+    bound uses family MI symmetry, and `H(A | B) <= H(A)` follows from MI
+    nonnegativity. Do not replace these proofs with longer derivations through
+    empty-conditioned CMI or submodularity merely to make the semantic layer
+    use one route uniformly.
+
+    The meaningful deferred extension is a coherent finite-family
+    independence and equality-case API, already outside Chunk 6 under this
+    plan's deferred n-way independence/equality phase. When that phase begins,
+    first decide whether direct statements using the existing predicate
+    `IsIndependentOf q a.restrict b.restrict` are sufficiently discoverable,
+    or whether repeated consumers justify a family-facing independence
+    predicate. The basic binary bridge should reuse
+    `familyMutualInfo_eq_mutualInfoOf` and
+    `mutualInfoOf_eq_zero_iff_isIndependentOf`; do not reprove the underlying
+    KL equality theorem.
+
+    Overlapping atoms require an explicit API decision rather than an
+    automatic disjointness hypothesis. Independence of the two restriction-
+    valued variables remains mathematically meaningful when `a` and `b`
+    overlap, but it forces their shared coordinates to be deterministic. Let
+    later consumers determine whether the primary theorem should retain this
+    general overlap-aware contract, whether a disjoint textbook corollary is
+    also useful, and whether the result belongs in a separate opt-in
+    finite-family independence module. In particular, do not make the current
+    semantic finite-family module import
+    `Shannon.SemanticBridge.Independence` merely for an unconsumed wrapper.
+
+    Do not automatically publish every equivalent equality surface
+    (`I(A;B) = 0`, `H(A | B) = H(A)`, and
+    `H(A union B) = H(A) + H(B)`) or the convenience bound
+    `I(A;B) <= min (H(A)) (H(B))`. Add a coherent PMF/source subset only when
+    permanent consumers show which forms improve proofs; the minimum bound is
+    already one line from the current left/right theorems. Audit any eventual
+    predicate, theorem, or alias names under Future Work Note 14. This
+    follow-up records no C6.15 defect, does not change the approved Chunk 6
+    sequence, and does not reopen completed Steps `C6.01`--`C6.16` or alter
+    active `C6.17`.
+
+    The July 28 review of Step `C6.16`, performed while `C6.17` was active,
+    preserves its four additional-conditioning and binary-subadditivity
+    declarations unchanged. The atom-native proof of
+    `H(A | B union C) <= H(A | C)` through CMI nonnegativity and the textbook
+    chain-rule proof of `H(A union B) <= H(A) + H(B)` are both preferable to
+    indirect rewrites through submodularity or MI arithmetic. The initial
+    `add_le_add_left` orientation mismatch was corrected to
+    `add_le_add_right` before completion; it and the transient slow import are
+    resolved validation history, not future work.
+
+    A subset-oriented conditioning theorem is a legitimate proof-pressure
+    candidate. If at least two independent production consumers begin with
+    `c subset d` and repeatedly convert that hypothesis into
+    `H(A | d) <= H(A | c)` by instantiating
+    `familyCondEntropy_union_le_condEntropy` and normalizing `d union c = d`,
+    consider adding one PMF-facing antitonicity theorem in
+    `Shannon.SemanticBridge.FiniteFamily`. Preserve the existing union theorem
+    as the primitive additional-conditioning statement, retain overlapping
+    atoms and the no-`Fintype Var` contract, add a source-family counterpart
+    only when consumed, and keep the theorem explicit rather than `[simp]`.
+    Let actual call sites determine the name and argument order, then audit
+    them under Future Work Note 14.
+
+    The equality case
+    `H(A | B union C) = H(A | C)` belongs to the same later finite-family
+    independence/equality phase recorded by the C6.15 follow-up. If consumers
+    need it, derive it through
+    `familyCondMutualInfo_eq_condMutualInfoOf` and the existing
+    `condMutualInfoOf_eq_zero_iff_isCondIndependentOf` or
+    `condEntropyOf_eq_condEntropyOf_iff_isCondIndependentOf`; do not reprove
+    conditional-independence semantics. Decide there whether direct
+    restriction-valued `IsCondIndependentOf` statements are adequate or a
+    family-facing predicate and separate opt-in independence module have
+    demonstrated value. Binary-subadditivity equality remains owned by the
+    C6.15/n-way independence follow-up, so do not duplicate it here. This
+    review records no C6.16 defect, does not change the approved sequence, and
+    does not reopen completed Steps `C6.01`--`C6.16` or alter active `C6.17`.
+
+    The July 28 review of Step `C6.17`, performed after `C6.19` completed and
+    while `C6.20` was active, preserves its four n-way entropy-subadditivity
+    declarations unchanged. Keep
+    `familyEntropy_le_sum_singletons` as the primary order-independent Finset
+    theorem and the two `...subadditivity_of_nodup` declarations as explicit
+    textbook-facing ordered corollaries. Their distinct proof routes are
+    intentional: Finset induction exposes binary union subadditivity, while
+    the list proof exercises the ordered entropy chain rule and bounds each
+    conditional term separately. Do not refactor either proof through the
+    other merely to force one implementation pattern.
+
+    Do not remove the list theorem's `Nodup` hypothesis merely because the
+    weaker occurrence-counting inequality remains true with duplicate names.
+    Repeated singleton terms obscure the intended distinct-variable statement
+    and its later equality semantics; duplicate lists already have a canonical
+    deduplicated theorem through `List.toFinset` and the primary Finset API.
+    Add an arbitrary-list occurrence bound only if a concrete downstream
+    calculation genuinely needs multiplicities rather than selected-variable
+    entropy.
+
+    A broader finite-union theorem is a legitimate but representation-sensitive
+    proof-pressure candidate:
+    the entropy of a finite union of atoms should be at most the sum of their
+    entropies. Before publishing it, require at least two independent
+    production consumers and decide from them whether the useful input is an
+    indexed Finset of atoms, a `Finset (Finset Var)`, or an ordered list.
+    Preserve overlapping and repeated atoms, the empty collection, dependent
+    alphabets, and the no-`Fintype Var` contract. Prove the PMF form by finite
+    induction from `familyEntropy_union_le_add`, add a source-family form only
+    when consumed, and do not rewrite the existing singleton theorem around
+    the abstraction unless that removes genuine duplication. Keep the result
+    explicit rather than `[simp]` and audit any eventual names under Future
+    Work Note 14.
+
+    The equality case
+    `H(S) = sum i in S, H({i})` belongs to the explicitly deferred n-way
+    independence phase. That development must characterize mutual
+    independence of the selected coordinate family, not merely pairwise
+    independence. It should compare a mathlib indexed-independence predicate
+    with factorization of `familyMarginal q s` on the heterogeneous dependent
+    product, preserve empty and singleton cases, and avoid requiring the full
+    index type to be finite. The ordered proof may use equality of every
+    chain-rule term `H(X_i | X_{<i}) = H(X_i)`, but the public contract and
+    module ownership should be chosen from consumers; keep any independence
+    layer opt-in rather than adding it to the current semantic finite-family
+    module. The binary case and overlap policy remain owned by the C6.15
+    follow-up. This review records no C6.17 defect, does not change the
+    approved Chunk 6 sequence, and does not reopen completed Steps
+    `C6.01`--`C6.19` or alter active `C6.20`.
+
+    The July 28 critical review of Step `C6.20`, performed while the permanent
+    examples were being integrated, records no mathematical, certificate,
+    representation, import-boundary, or public-API defect. Preserve the
+    compact two-model organization: the homogeneous Boolean model exercises
+    law-level mutual-information chaining and overlapping-atom checked/raw
+    submodularity, while the dependent Boolean/ternary model exercises the
+    source-level entropy chain rule and empty-family convention. Keep the
+    checked proof routed through `CheckedCert.sound_finiteFamily` and the raw
+    proof visibly routed through
+    `Submodularity.rawCert_toCheckedCert?_isSome` and
+    `RawCert.sound_of_toCheckedCert?_isSome`; do not merge the two paths or
+    replace the raw proof with a manually reconstructed checked certificate.
+
+    During the scheduled `C6.21` API review or the later project-memory
+    reconciliation, describe these examples as representative end-to-end
+    consumers of the finite-family surface, not as literal tests of every
+    public declaration. The phrase "complete public surface" in the original
+    step objective means completion of the planned model, chain-rule, and two
+    certificate paths; it should not be used as pressure to add one example
+    per theorem. Preserve completed plan history and add a clarification
+    rather than rewriting the original objective misleadingly. This wording
+    review does not itself authorize `C6.21`.
+
+    Three narrowly conditional example improvements remain worth retaining.
+    First, if a documentation or permanent consumer shows that the current
+    `EntropyExpr.eval (familyEntropy law)` certificate conclusions hide the
+    recognizable four-entropy submodularity inequality, consider one
+    textbook-facing explicit corollary. Derive it by reducing the existing
+    submodularity target; preserve both current certificate-path theorems and
+    do not add parallel checked and raw expanded corollaries merely for
+    symmetry. The generic `familyEntropy_submodular` theorem already supplies
+    the mathematical inequality, so the example corollary is justified only
+    by demonstrated pedagogical or discoverability value.
+
+    Second, consider a heterogeneous singleton-entropy sanity theorem only if
+    a later consumer needs a maintained nonempty projection example or finds
+    the dependent alphabet difficult to exercise. Reuse
+    `familyEntropyOf_singleton`; do not add numerical entropy calculations or
+    a new projection API. The current heterogeneous chain rule already
+    exercises both nonempty fibers, while its empty theorem checks the base
+    case required by the concrete `ShannonEntropyVal`, so no singleton theorem
+    is currently missing.
+
+    Third, split semantic model examples from certificate examples only after
+    at least two independent direct-import consumers need the Boolean or
+    heterogeneous models without the certificate dependencies. Any later
+    split should preserve the current descriptive namespaces and the opt-in
+    `Examples` aggregate, and it must not move example-specific models into
+    the Shannon core. Until that pressure exists, one small opt-in module is
+    the clearer architecture.
+
+    Do not schedule symmetric source/law chain examples, a public name for the
+    private dependent-alphabet `Fintype` instance, removal of the conventional
+    `Repr` derivations, or permanent overlap/target-equality audit theorems.
+    The current examples deliberately exercise one source-facing and one
+    law-facing chain rule; downstream typeclass synthesis through the private
+    alphabet instance has been checked; and the overlapping atoms and equal
+    checked/raw targets were verified by disposable consumers. Revisit any of
+    these declined cleanups only under new production pressure. No new name is
+    proposed now, so Future Work Note 14 needs no additional entry. This
+    follow-up does not change or extend `C6.20`, alter the approved Chunk 6
+    sequence, or begin `C6.21`.
+
+    Steps `C6.13`--`C6.21` subsequently completed the semantic and
+    certificate-facing purpose for which this note activated Chunk 6. The
+    separate semantic module now proves the finite-family Shannon inequality
+    band and constructs `finiteFamilyEntropyVal` and
+    `finiteFamilyEntropyValOf`; the separate certificate module supplies only
+    `CheckedCert.sound_finiteFamily`; and the permanent examples exercise
+    homogeneous, heterogeneous, overlapping-atom, empty-family, checked, and
+    raw-validation consumers. The scheduled review retained the 68 core, 30
+    semantic, one certificate-adapter, and 18 explicit example declarations,
+    added no alias, preserved root isolation, and made only the eight reviewed
+    empty/self normalization theorems simp rules.
+
+    Step `C6.22` reconciled canonical project memory with that API-frozen
+    implementation. `C6.23` then corrected the nested-comment declaration
+    parser and regenerated the complete 43-module, 834-declaration public
+    reference state. `C6.24` passed the focused, maintained-suite, default-
+    build, consumer, trust, placeholder, website, and hygiene gates. The
+    accepted representation and the concrete `ShannonEntropyVal` and checked-
+    certificate bridge are therefore implemented and independently validated.
+    Note 1 is closed as of July 28, 2026. Preserve it as the representation and
+    architecture rationale for the completed Chunk 6 milestone; do not use it
+    to authorize a later chunk. The validated working tree is checkpoint-ready
+    but not yet committed.
+
 2. Split `LeanInfoTheory/Shannon/InfoMeasures.lean` only when the file becomes
     too large or theorem pressure makes the boundaries clear. The July 6 API
     polish pass decided not to split it yet: the file is around the watchlist
@@ -6118,6 +6845,18 @@ historical trigger records when a later paragraph records their resolution.
     made. Prefer new modules for the later channel, Markov, and data-processing
     layers, and revisit an internal split only when those developments create
     a real dependency boundary or repeated maintenance cost.
+
+    Chunk 6 Step C6.21 separately reviewed the roughly 1,200-line,
+    68-declaration `Shannon.FiniteFamily` core. Its size alone does not justify
+    a split: definitions, finite-set identities, pair/triple compatibility,
+    and ordered chain rules share one lightweight dependency level, while
+    semantic inequalities, certificate interpretation, and examples already
+    live in separate opt-in modules. Revisit a possible chain-rule submodule
+    only if at least two downstream modules need the foundational family API
+    without ordered-chain declarations, or repeated focused builds and reviews
+    demonstrate a measurable maintenance cost. Any eventual split should
+    preserve the `LeanInfoTheory.Shannon` namespace and import compatibility;
+    do not split merely to reduce line count.
 
 3. Keep imports light in the core finite Shannon files. Heavy bridge files can
     import KL divergence, kernels, conditional probability, and coding theory
@@ -6238,6 +6977,124 @@ historical trigger records when a later paragraph records their resolution.
     check passed. Full doc-gen, theorem-level blueprinting, structured shared
     status generation, persistent checksum reports, and Fano theorem-highlight
     curation remain deferred under their existing pressure rules.
+
+    The July 28, 2026 Chunk 6 `C6.22` reconciliation supplies additional
+    concrete pressure for the structured-status refinement, but does not by
+    itself authorize building it. Six current-facing documents needed the same
+    active-step boundary, generated-reference state, next validation gate, and
+    module/declaration counts. If another chunk repeats that coordinated
+    update, or if those values drift independently before then, treat the
+    trigger for a small shared status source as satisfied. Keep the generated
+    fragment deliberately narrow: current chunk, completed step boundary,
+    committed head, last fully validated source checkpoint, generated-artifact
+    baseline, and source-derived module/edge/declaration counts are plausible
+    fields; mathematical coverage, rationale, Future Work prose, and historical
+    chronology must remain hand-maintained.
+
+    Any future count surface must label what it actually inventories. The
+    present API index counts explicit source declarations and is not a complete
+    enumeration of every Lean environment name, generated constructor, or
+    declaration produced by elaboration. Prefer wording such as "reviewed
+    source-declared public declarations" when that distinction matters, and
+    keep full Lean doc-gen counts separate if doc-gen is later introduced.
+    Likewise, never combine checked-in generated counts with a newer dirty
+    working-tree parser count without naming both states.
+
+    `C6.22` also exposed one immediate declaration-parser false positive from
+    prose inside a module documentation block. That defect remains owned by
+    the already-approved `C6.23` generated-reference step and is not deferred
+    by this note. Prefer making the parser lexically ignore comments over
+    rewriting mathematically useful prose to avoid declaration-looking line
+    prefixes. The broader shared-status and full-doc-gen work remains later
+    even after that immediate parser correction.
+
+    The July 28, 2026 post-`C6.23` critical review resolves that immediate
+    defect and records the remaining generator/documentation improvements
+    under this existing owner. The declaration parser now skips possibly
+    nested ordinary Lean block comments, the false
+    `Certificate.FiniteFamily.to` entry is absent, all four Chunk 6 modules
+    have curated summaries, and the regenerated index contains 834 documented
+    source declarations with no generic module-summary fallback. These
+    follow-ups are resilience and editorial work, not defects in `C6.23` and
+    not prerequisites for `C6.24`:
+
+    - When the Python documentation tooling next gains a maintained test
+      surface, or before another nontrivial declaration-parser change, add
+      focused regression fixtures for ordinary module comments, nested block
+      comments, doc-comment association across attributes, private
+      declarations, and declarations following a same-line block-comment
+      close. An unterminated block comment should fail loudly rather than
+      silently consume the remainder of a source file. Keep fixtures isolated
+      from production Lean modules and test parser output structurally instead
+      of matching one milestone's generated HTML.
+
+    - Move stable generated-reference invariants into
+      `scripts/check_website.py` or a small companion checker when that
+      validation-tooling pass occurs. Useful invariant classes include JSON
+      count self-consistency, unique declaration names and HTML anchors,
+      declaration modules appearing in the module graph, existing source
+      paths and credible source lines, absence of unintended generic module
+      summaries, and validity of local fragment targets. Do not hard-code
+      transient totals such as 43 modules or 834 declarations. Future Work
+      Note 17's eventual milestone driver should invoke this checker rather
+      than reimplementing the same assertions.
+
+    - Do not replace the current bounded comment skipper with a hand-written
+      full Lean lexer speculatively. Revisit lexical coverage if project source
+      begins placing declarations after same-line block comments, another
+      comment-related false positive or false negative appears, or declaration
+      syntax evolves beyond the lightweight parser's reliable subset. First
+      prefer a small token-aware comment pass; if syntax coverage becomes
+      broad, the full doc-gen migration already owned by this note is the
+      better long-term replacement.
+
+    - `C6.23` repeated the same active-step boundary, generated counts, and
+      next-gate facts across six hand-written public pages after `C6.22` had
+      reconciled six canonical documents. This reinforces the structured-
+      status pressure above but occurs within the same chunk, so it does not
+      change the existing trigger: another chunk must repeat the coordinated
+      update, or independent drift must occur, before building a shared status
+      source.
+
+    - If newcomer or public-documentation use shows that the generated
+      117-declaration Chunk 6 surface is difficult to navigate, add a small
+      curated finite-family section to `home_page/theorems.html`. Candidate
+      anchors are `familyEntropy_eq_entropyChain`,
+      `familyMutualInfo_eq_mutualInfoChain`,
+      `familyEntropy_submodular`, `finiteFamilyEntropyVal`, and
+      `Certificate.CheckedCert.sound_finiteFamily`. Verify the shortlist
+      against current source at implementation time and do not turn the
+      hand-written page into a duplicate declaration index.
+
+    - The existing rendered-smoke-test reminder now has one concrete Chunk 6
+      target: check desktop and mobile wrapping of the API metric labeled
+      "source-declared public declarations," together with the longer active-
+      status prose on the home page and roadmap. Run that visual pass during a
+      later text-heavy website change or documentation release when the local
+      browser path is available. It is not a substitute for link, JSON,
+      source-line, and idempotence checks, and its omission is not a current
+      C6.23 correctness issue.
+
+    The July 28, 2026 post-`C6.24` critical review adds one more piece of
+    evidence for the existing structured-status proposal. Final validation
+    changed the state from "implemented with the independent gate pending" to
+    "fully validated in the working tree but not yet committed." Keeping that
+    distinction accurate required another coordinated update across the plan,
+    project log, living summary, README, current-state document, roadmap, site
+    home, and site roadmap. This is still one chunk's closeout, so it does not
+    independently satisfy the existing next-chunk-or-drift trigger. It does
+    refine the eventual status schema: validation state and checkpoint state
+    must be separate fields, alongside checked-in head, last validated
+    committed source, current step boundary, and generated counts. A generated
+    status fragment must never turn "validated working tree" into "committed"
+    or "deployed," and must not overwrite historical prose.
+
+    The same review does not justify persisting exact C6.24 artifact hashes in
+    hand-written documents. If a future reproducibility consumer needs them,
+    use the machine-readable report already described above and have the Note
+    17 validation driver produce or consume it. This keeps source-status
+    synchronization, artifact checksums, and executable validation related but
+    separately owned.
 
 10. Add a minimal contributor surface before inviting broader collaboration:
     `CONTRIBUTING.md`, beginner-friendly tasks, issue labels, and a short note
@@ -7138,6 +7995,47 @@ historical trigger records when a later paragraph records their resolution.
     of these names only if a later production consumer demonstrates concrete
     discovery pressure.
 
+    Chunk 6 C6.12 completed the required naming audit of all 68 public
+    declarations in the `C6.02`--`C6.12` lightweight finite-family core. The
+    representation, marginal, base-case, union, singleton, symmetry,
+    empty-atom, binary-chain, and ordered-chain families are coherent and
+    discoverable. In particular, `familyEntropy_eq_entropyChain`/
+    `familyMutualInfo_eq_mutualInfoChain` distinguish the stronger arbitrary-
+    list equality from the explicit-sum
+    `familyEntropy_chain_rule_of_nodup`/
+    `familyMutualInfo_chain_rule_of_nodup` textbook corollaries. Their
+    source-family `...Of` counterparts follow the established project
+    convention. None exposes the private recursive accumulators, so these
+    names need no compatibility alias or watch entry.
+
+    Preserve two evidenced groups for the scheduled C6.21 consumer review and
+    C6.22 reconciliation. First, the compatibility bridge family is
+    mechanically repetitive where both the family measure and the established
+    random-variable measure carry `Of`, especially
+    `familyCondMutualInfoOf_eq_condMutualInfoOf`. Second, the four
+    entropy-difference declarations
+    `familyMutualInfo_eq_entropy_sub_condEntropy`,
+    `familyMutualInfoOf_eq_entropyOf_sub_condEntropyOf`,
+    `familyCondMutualInfo_eq_condEntropy_sub_condEntropy`, and
+    `familyCondMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf` are long.
+    Both groups remain mathematically precise, preserve the PMF/source
+    distinction, and expose no implementation detail. Mark them `watching`,
+    retain every current name, and add no alias until permanent consumers
+    demonstrate a concrete discovery or readability problem.
+
+    C6.21 completed that consumer review and declined compatibility aliases
+    for both groups. A direct consumer used
+    `familyCondMutualInfoOf_eq_condMutualInfoOf` and the four entropy-
+    difference declarations without search, argument-order, or readability
+    friction. Their repetition follows the established family/`...Of`
+    distinction, while shorter sketches would create competing vocabulary
+    without hiding any implementation detail. Retain every current name and
+    reopen this decision only when a production consumer demonstrates a
+    concrete discovery failure or repeatedly needs a materially clearer
+    spelling. C6.21 added no public declaration: its only source changes were
+    simp attributes on existing theorems and one private helper, so no new
+    naming-watch entry is required.
+
 15. The Step 13 `[simp]` review for mutual information and conditional mutual
     information was completed on July 14, 2026. Local attributes were tested
     on representative PMF, random-variable, symmetry, diagonal/self, and
@@ -7366,6 +8264,43 @@ historical trigger records when a later paragraph records their resolution.
     rule, or change to the existing constructor-reducing simp surface is
     justified.
 
+    Chunk 6 Step C6.21 promoted exactly eight existing finite-family
+    normalizations:
+    `familyEntropy_empty`, `familyEntropyOf_empty`,
+    `familyCondEntropy_empty_right`, `familyCondEntropy_empty_left`,
+    `familyMutualInfo_empty_right`,
+    `familyCondMutualInfo_empty_right`,
+    `familyCondMutualInfo_empty_conditioning`, and
+    `familyMutualInfo_self`. The old global simp set made no progress on the
+    representative goals. Local-attribute and exported-attribute probes then
+    checked PMF/source empty entropy, overlapping empty critical pairs, self
+    MI, concrete valuation evaluation, one-element entropy and MI chains, and
+    an infinite `Nat` index with dependent alphabets `Fin (i + 1)`. Every goal
+    terminated at the intended smaller constructor; no rewrite cycle or
+    competing normal form appeared. Retain all eight rules together unless a
+    concrete simplifier regression is reported rather than paring the set back
+    to the two base entropy rules merely for conservatism.
+
+    The remaining left-empty asymmetry is deliberate. `I(A; empty)` and
+    `I(A; empty | C)` simplify directly, while the corresponding first-argument
+    forms still use explicit MI/CMI symmetry. Do not mark the symmetry
+    theorems `[simp]`, because they do not select a structural ordering. Add a
+    direct PMF-facing left-empty theorem only if at least two production
+    consumers repeatedly need `simp` to close that orientation or a concrete
+    simplifier regression demonstrates that the current asymmetry is harmful;
+    evaluate ordinary MI and conditional MI separately, and add source-family
+    mirrors only when independently consumed.
+
+    A permanent simp-regression layer is also conditional future work. If the
+    project later introduces a dedicated non-public Lean test layer, or if an
+    attribute is accidentally removed or begins looping, preserve focused
+    checks for the critical pairs, explicit symmetry boundary, small-chain
+    computations, concrete valuation, and infinite-index dependent-family
+    case there. Do not add public example theorems solely to test attributes;
+    until such a test layer exists, the reviewed source attributes, maintained
+    mathematical examples, focused builds, and disposable API-review probes
+    are the appropriate validation mechanism.
+
 16. Revisit `[simp]` status for conditional entropy chain-rule theorems after
     the chain-rule family has more downstream examples. The July 8 chain-rule
     step deliberately kept
@@ -7395,6 +8330,29 @@ historical trigger records when a later paragraph records their resolution.
     produced a stable automatic chain-rule direction. The Step 17 review
     therefore retained every ordinary and conditional entropy chain rule as an
     explicit rewrite.
+
+    Chunk 6 Step C6.09 supplies further evidence for this policy. Its left and
+    right entropy-union rules and MI-union rule, together with their
+    source-family forms, were used explicitly by the completed ordered
+    chain-rule development in C6.11--C6.12. Rewriting a compact union entropy or
+    mutual information into an additive expression is mathematically useful
+    but not an unconditionally simpler syntactic normal form, and repeated
+    automatic expansion can enlarge goals. Preserve all six declarations as
+    explicit rewrites through active theorem development. At C6.21, change an
+    attribute only if representative permanent consumers show that one
+    orientation terminates, consistently reduces proof search, and does not
+    fight the elementary identities or the other chain-rule orientation.
+
+    C6.21 completed that test and retained every union, binary, and ordered
+    entropy/MI chain rule as an explicit rewrite. Review consumers explicitly
+    verified that plain `simp` does not expand a generic union-chain identity
+    or an MI entropy-difference identity, while unfolding the finite chain
+    definitions still lets the new empty normalizations reduce empty and
+    singleton lists. This is the intended division: `[simp]` removes empty or
+    repeated constructors, and named chain rules choose an additive
+    information-theoretic representation only when the caller requests it.
+    Reopen the chain-rule attribute decision only after a production proof
+    supplies a stable, demonstrably reducing orientation.
 
 17. Run the broader project build suite before release, commit, or milestone
     checkpoints, while keeping focused builds for small theorem iterations.
@@ -7596,6 +8554,107 @@ historical trigger records when a later paragraph records their resolution.
     maintained boundary/axiom harness, shared target manifest, and cold-release
     policy remain deferred exactly as recorded.
 
+    Chunk 6 followed the focused side of this policy through `C6.21`.
+    The API-freeze command built `Shannon.FiniteFamily`,
+    `Shannon.SemanticBridge.FiniteFamily`, `Certificate.FiniteFamily`,
+    `Examples.FiniteFamily`, the semantic aggregate, and the examples
+    aggregate together with 2,770 jobs. Positive and guarded negative
+    consumers checked the intended root, core, semantic, certificate, and
+    example boundaries, and representative axiom output contained only
+    `propext`, `Classical.choice`, and `Quot.sound`.
+
+    Chunk 6 `C6.24` completed the independent milestone assignment on July 28,
+    2026. The same six focused targets passed with 2,770 jobs, the maintained
+    ten-target suite passed with 2,783 jobs, and default `lake build` passed
+    with 2,240 jobs. Positive consumers covered infinite and empty index
+    types, dependent heterogeneous alphabets, empty/singleton/overlapping
+    atoms, duplicate list entries, arbitrary sources, concrete entropy
+    valuation, and both certificate paths. Six guarded negative consumers
+    checked the root and intermediate aggregate boundaries, private helper
+    visibility, and absence of a global example `Fintype` instance. The strict
+    placeholder scan was clean; all 89 new public theorems reported only
+    `propext`, `Classical.choice`, and `Quot.sound`; both generators were byte-
+    idempotent; the website checker passed; and final source, generated,
+    textbook, scratch, whitespace, and full-diff hygiene checks passed. This
+    closes the current Chunk 6 assignment while retaining Note 17 as the
+    standing validation policy. The pass was incremental, not a cold release
+    build, and validates an uncommitted checkpoint-ready working tree.
+
+    The `C6.22` documentation pass also showed a narrower auditability issue:
+    when a step begins on top of a large, intentionally dirty milestone
+    working tree, a final diff against `HEAD` mixes the current documentation
+    edits with all earlier theorem work. For future multi-document
+    reconciliation or closeout steps, capture a read-only scoped baseline
+    before editing, such as `git status --short` plus a path-scoped diff or
+    hashes of the assigned documents. Compare the final scoped state against
+    that baseline as well as against `HEAD`. Do not require a clean tree, use
+    `git stash`, create an artificial checkpoint commit, or overwrite other
+    threads' changes merely to simplify the audit. This extra snapshot is
+    useful for substantial reconciliation passes, not a mandatory ritual for
+    every small theorem or prose edit.
+
+    Validation reporting should also distinguish the date a mathematical
+    suite passed, the timestamp of the resulting checkpoint commit, and the
+    date or identity of a later handoff head. The Chunk 5 record is the
+    concrete example: final C5.20 validation occurred on July 25, 2026, while
+    checkpoint commit `ec78829` was created on July 26. Future canonical
+    wording should state both facts when a bare "milestone checkpoint date"
+    would be ambiguous. This is a documentation-precision rule, not a reason
+    to rerun Lean or reopen a validated theorem phase.
+
+    A July 28, 2026 post-`C6.24` critical review confirms that the completed
+    milestone is sound while sharpening the deferred validation-infrastructure
+    work. These are not C6.24 defects, do not reopen Chunk 6, and do not
+    authorize a later theorem phase:
+
+    - The reusable-driver pressure trigger recorded after C5.20 is now
+      satisfied. C6.24 again orchestrated focused and maintained builds,
+      default build, positive and guarded-negative consumers, a strict
+      placeholder scan, all-theorem axiom output, repeated generators, semantic
+      JSON assertions, website checks, and repository hygiene by hand. Schedule
+      one dedicated cross-platform driver before or alongside the next major
+      milestone closeout or the next material CI refactor. Do not retrofit it
+      into the already validated Chunk 6 tree merely to replace successful
+      evidence.
+
+    - The future boundary/trust harness should not use the source-derived
+      website declaration parser as its only theorem inventory. C6.24
+      mechanically obtained the 89-theorem axiom manifest from that index,
+      which was acceptable because C6.21 had independently reviewed the source
+      surface and C6.23 had checked every new source line. A maintained harness
+      should instead enumerate module-owned declarations from Lean's
+      environment, use a reviewed explicit manifest, or cross-check two
+      independent inventories before running `#print axioms`. This prevents one
+      parser omission from hiding the same theorem from both API counting and
+      trust auditing.
+
+    - Preserve the successful C6.24 boundary matrix as requirements for that
+      harness: direct core, semantic, certificate, and example imports on the
+      positive side; root, core-to-semantic, semantic-to-certificate,
+      certificate-aggregate, private-helper, and unintended-instance
+      exclusions on the negative side. Negative checks must assert a specific
+      diagnostic or inspect the environment; a nonzero process exit by itself
+      is not a passing test. Keep permanent mathematical examples as the main
+      positive usage surface and use generated probes only for architecture
+      regression.
+
+    - Keep the cold-build policy unchanged. C6.24 explicitly used the
+      incremental cache and passed every maintained gate. Run an isolated or
+      fresh-checkout build before a tagged release, after a Lean/mathlib
+      upgrade, when stale artifacts are suspected, or when fresh CI disagrees
+      with local validation. The eventual driver may expose a cold mode, but
+      it should not clear a contributor's active cache by default.
+
+    - For future closeout steps on an accumulated dirty milestone tree, take
+      the scoped pre-edit snapshot already described above and compare the
+      final assigned paths against it. If successful validation makes
+      additional current-facing status pages factually stale, explain the
+      target-list expansion and amend the approved plan before editing those
+      extra paths. Do not leave stale status merely to obey an incomplete list,
+      and do not broaden the list silently. C6.24 explained and recorded its
+      narrow expansion, so this is a cleaner future procedure rather than a
+      retrospective correction.
+
 18. Standing architecture guardrail: preserve the boundary between the
     completed pair/triple Chunk 1, the completed equality/independence Chunk 2,
     and later Project B chunks. The full equality characterization for the
@@ -7641,6 +8700,20 @@ historical trigger records when a later paragraph records their resolution.
     root. The deterministic-decoder Fano layer is separately importable and
     does not reopen the completed channel, independence, or sufficiency module
     boundaries.
+
+    Chunk 6 preserves and extends this boundary rather than folding
+    multivariable entropy into the pair/triple core or certificate checker.
+    `Shannon.FiniteFamily` owns only lightweight finite-atom representation,
+    algebra, pair/triple compatibility, and ordered chain rules;
+    `Shannon.SemanticBridge.FiniteFamily` owns Shannon inequalities and the
+    concrete valuation; `Certificate.FiniteFamily` owns the single adapter to
+    existing checked soundness; and `Examples.FiniteFamily` owns maintained
+    consumers. None is imported by `LeanInfoTheory.lean`, and the abstract
+    `ShannonEntropyVal`, `EntropyExpr`, primitive inequalities, validator, and
+    trust model remain unchanged. Later n-way independence/equality,
+    conditional-MI chain, topology, coding, and richer certificate-constraint
+    work must remain separately planned rather than being retroactively
+    attributed to this chunk.
 
 19. Keep the Step 7 deterministic-entropy decomposition private unless a later
     theorem creates a genuine consumer. The two planned support-sensitive

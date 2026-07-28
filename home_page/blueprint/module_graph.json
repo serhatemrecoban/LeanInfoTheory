@@ -7,8 +7,8 @@
     "Certificate layer",
     "Reference anchors"
   ],
-  "local_edge_count": 65,
-  "module_count": 39,
+  "local_edge_count": 75,
+  "module_count": 43,
   "modules": [
     {
       "external_imports": [],
@@ -117,6 +117,20 @@
       "summary": "Deterministic decoding error, exact and weak finite Fano inequalities, and converse-facing corollaries."
     },
     {
+      "external_imports": [
+        "Mathlib.Data.Finset.Pi",
+        "Mathlib.Data.Fintype.Pi"
+      ],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.InfoMeasures"
+      ],
+      "name": "LeanInfoTheory.Shannon.FiniteFamily",
+      "path": "LeanInfoTheory/Shannon/FiniteFamily.lean",
+      "root_reachable": false,
+      "summary": "Dependent finite-family laws, finite marginals, family entropy/MI/CMI algebra, pair/triple bridges, and ordered chain rules."
+    },
+    {
       "external_imports": [],
       "layer": "Finite Shannon layer",
       "local_imports": [
@@ -147,6 +161,7 @@
       "layer": "Semantic bridge layer",
       "local_imports": [
         "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+        "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
         "LeanInfoTheory.Shannon.SemanticBridge.Independence",
         "LeanInfoTheory.Shannon.SemanticBridge.Markov",
         "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
@@ -156,7 +171,7 @@
       "name": "LeanInfoTheory.Shannon.SemanticBridge",
       "path": "LeanInfoTheory/Shannon/SemanticBridge.lean",
       "root_reachable": false,
-      "summary": "Aggregate entry point for finite semantic, KL, independence, Markov, sufficiency, data-processing, and recovery bridges."
+      "summary": "Aggregate entry point for finite semantic, KL, independence, Markov, sufficiency, data-processing, recovery, and finite-family bridges."
     },
     {
       "external_imports": [
@@ -185,6 +200,19 @@
       "path": "LeanInfoTheory/Shannon/SemanticBridge/DataProcessing.lean",
       "root_reachable": false,
       "summary": "Finite channel posteriors, supported sufficiency, KL data processing and equality, and entropy-growth consequences."
+    },
+    {
+      "external_imports": [],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.EntropyVal",
+        "LeanInfoTheory.Shannon.FiniteFamily",
+        "LeanInfoTheory.Shannon.SemanticBridge.Theorems"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteFamily.lean",
+      "root_reachable": false,
+      "summary": "Finite-family Shannon inequalities and concrete ShannonEntropyVal constructions."
     },
     {
       "external_imports": [],
@@ -315,6 +343,18 @@
       "external_imports": [],
       "layer": "Certificate layer",
       "local_imports": [
+        "LeanInfoTheory.Certificate.Checked",
+        "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily"
+      ],
+      "name": "LeanInfoTheory.Certificate.FiniteFamily",
+      "path": "LeanInfoTheory/Certificate/FiniteFamily.lean",
+      "root_reachable": false,
+      "summary": "Leaf adapter from checked-certificate soundness to concrete finite-family Shannon entropy."
+    },
+    {
+      "external_imports": [],
+      "layer": "Certificate layer",
+      "local_imports": [
         "LeanInfoTheory.Certificate.Checked"
       ],
       "name": "LeanInfoTheory.Certificate.Monotonicity",
@@ -412,6 +452,7 @@
         "LeanInfoTheory.EntropyVal",
         "LeanInfoTheory.Examples.CommonCause",
         "LeanInfoTheory.Examples.Fano",
+        "LeanInfoTheory.Examples.FiniteFamily",
         "LeanInfoTheory.Examples.KLTop",
         "LeanInfoTheory.Examples.StochasticChannels",
         "LeanInfoTheory.Examples.SufficientStatistics",
@@ -421,7 +462,7 @@
       "name": "LeanInfoTheory.Examples",
       "path": "LeanInfoTheory/Examples.lean",
       "root_reachable": false,
-      "summary": "Opt-in aggregate for certificate, support-sensitive, Markov, channel, sufficiency, and Fano examples."
+      "summary": "Opt-in aggregate for certificate, finite-family, support-sensitive, Markov, channel, sufficiency, and Fano examples."
     },
     {
       "external_imports": [],
@@ -444,6 +485,18 @@
       "path": "LeanInfoTheory/Examples/Fano.lean",
       "root_reachable": false,
       "summary": "Perfect-decoder, singleton-source, and nonzero-error examples for the finite Fano API."
+    },
+    {
+      "external_imports": [],
+      "layer": "Reference anchors",
+      "local_imports": [
+        "LeanInfoTheory.Certificate.FiniteFamily",
+        "LeanInfoTheory.Certificate.Submodularity"
+      ],
+      "name": "LeanInfoTheory.Examples.FiniteFamily",
+      "path": "LeanInfoTheory/Examples/FiniteFamily.lean",
+      "root_reachable": false,
+      "summary": "Homogeneous and dependent-alphabet finite-family examples with checked and raw certificate paths."
     },
     {
       "external_imports": [],
@@ -510,5 +563,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 11,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 28
+  "separate_import_count": 32
 }

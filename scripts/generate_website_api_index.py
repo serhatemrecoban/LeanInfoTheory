@@ -97,6 +97,32 @@ def collect_doc(lines: list[str], start_index: int) -> tuple[str, int]:
     return doc, index
 
 
+def skip_block_comment(lines: list[str], start_index: int) -> int:
+    """Return the final line of a possibly nested Lean block comment."""
+    depth = 0
+    index = start_index
+
+    while index < len(lines):
+        line = lines[index]
+        cursor = 0
+        while cursor + 1 < len(line):
+            token = line[cursor : cursor + 2]
+            if token == "/-":
+                depth += 1
+                cursor += 2
+                continue
+            if token == "-/" and depth > 0:
+                depth -= 1
+                cursor += 2
+                if depth == 0:
+                    return index
+                continue
+            cursor += 1
+        index += 1
+
+    return len(lines) - 1
+
+
 def qualified_name(namespace_stack: list[str], short_name: str) -> str:
     if "." in short_name:
         prefix = ".".join(namespace_stack)
@@ -122,6 +148,11 @@ def parse_declarations(path: Path) -> list[Declaration]:
         if stripped.startswith("/--"):
             pending_doc, index = collect_doc(lines, index)
             index += 1
+            continue
+
+        if stripped.startswith("/-"):
+            pending_doc = ""
+            index = skip_block_comment(lines, index) + 1
             continue
 
         if stripped.startswith("namespace "):
@@ -233,7 +264,7 @@ def metric_cards(declarations: list[Declaration]) -> str:
     definition_count = counts.get("Definition", 0)
     return f"""
         <div class="metric-grid">
-          <div class="metric-card"><strong>{len(declarations)}</strong><span>public declarations</span></div>
+          <div class="metric-card"><strong>{len(declarations)}</strong><span>source-declared public declarations</span></div>
           <div class="metric-card"><strong>{modules}</strong><span>modules with declarations</span></div>
           <div class="metric-card"><strong>{theorem_count}</strong><span>theorems and lemmas</span></div>
           <div class="metric-card"><strong>{definition_count}</strong><span>definitions and abbrevs</span></div>
