@@ -105,7 +105,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 | --- | --- |
 | Last updated | 2026-07-28 |
 | Last fully validated committed Lean/source baseline | `7b5f0db83f188bf65454f5aa7dcd2fe8ee221146` |
-| Repository transition state | The documentation-only `Prepare Project B Chunk 7 handoff` commit follows checkpoint `7b5f0db`; `origin/master` remains at `b8012ef6dbcb69b56e8a9e896ba312b5c24b1b60` pending the transition push |
+| Repository transition state | Handoff commit `72f9f875b8da62b858b995a051337c55536cdce6` follows checkpoint `7b5f0db`; at the completed handoff gate all local/remote master refs agreed there and both required workflows succeeded |
 | Lean baseline | Lean `v4.30.0`, commit `d024af099ca4bf2c86f649261ebf59565dc8c622` |
 | mathlib baseline | mathlib input revision `v4.30.0`, manifest commit `c5ea00351c28e24afc9f0f84379aa41082b1188f` |
 | Current phase | Project B, Chunks 1-6 checkpointed; bounded Chunk 7 context intake and planning may proceed, but no Chunk 7 scope or implementation is approved |
@@ -909,9 +909,10 @@ Chunk 5's finite-Fano phase remains checkpointed as commit `ec78829`. The
 completed Chunk 6 execution plan is
 [`docs/plans/chapter2-chunk-06.md`](plans/chapter2-chunk-06.md), with 24 stable
 steps whose implementation history and final evidence are preserved there.
-The substantive Lean/source checkpoint is `7b5f0db`; the documentation-only
-handoff commit above it changes no Lean source, and `origin/master` remains at
-`b8012ef` until the transition push.
+The substantive Lean/source checkpoint is `7b5f0db`; documentation-only
+handoff commit `72f9f87` above it changes no Lean source. At the completed
+handoff gate, local and remote master refs agreed at `72f9f87` and both
+required workflows succeeded.
 
 ### Validated Chunk 6 implementation
 
@@ -941,17 +942,16 @@ handoff commit above it changes no Lean source, and `origin/master` remains at
 
 ### Next repository action
 
-Prepare the documentation-only Chunk 7 handoff, push the two-transition-commit
-sequence, and require successful remote build/placeholder and Pages workflows
-before treating the handoff as complete. The subsequent Chunk 7 task may
-perform bounded context intake and planning, but must not infer a theorem scope
-or begin implementation from this closeout.
+After the post-push canonical reconciliation, create the ignored Step 8 Chunk 6
+handoff report from checkpoint `7b5f0db` and handoff commit `72f9f87`. The
+subsequent Chunk 7 task may perform bounded context intake and planning, but
+must not infer a theorem scope or begin implementation from this closeout.
 
 ### Next review point
 
-The next review point is the remote-validated Chunk 7 handoff or an explicitly
-authorized Chunk 7 planning phase. Deferred work remains governed by the Future
-Work Notes rather than becoming automatic cleanup.
+The next review point is the ignored Step 8 handoff report and then an
+explicitly authorized Chunk 7 planning phase. Deferred work remains governed
+by the Future Work Notes rather than becoming automatic cleanup.
 
 ## 13. Future-Work Register
 
@@ -1160,9 +1160,10 @@ not reproduce textbook prose or proofs.
 - mathlib manifest commit:
   `c5ea00351c28e24afc9f0f84379aa41082b1188f`
 - last fully validated committed Lean/source baseline: `7b5f0db`
-- the documentation-only `Prepare Project B Chunk 7 handoff` commit sits above
-  that checkpoint without changing the validated Lean/source baseline;
-  `origin/master` remains at `b8012ef` pending the transition push
+- documentation-only handoff commit `72f9f87` sits above that checkpoint
+  without changing the validated Lean/source baseline
+- at the completed handoff gate, local and remote master refs agreed at
+  `72f9f87`; the Lean build/placeholder and Pages workflows both succeeded
 
 ### Most recent local validation
 

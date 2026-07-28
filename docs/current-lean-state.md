@@ -7,9 +7,10 @@ commit `ec78829` was created on July 26. Project B Chunk 1 was committed as
 Chunk 6 completed all 24 steps and passed its generated-reference, independent
 validation, trust, boundary, website, and hygiene gates. It was checkpointed
 as commit `7b5f0db` (`Complete Project B Chunk 6`). The documentation-only
-`Prepare Project B Chunk 7 handoff` commit above it changes no Lean source;
-`origin/master` remains at the earlier handoff `b8012ef` until the transition
-push.
+handoff commit `72f9f87` (`Prepare Project B Chunk 7 handoff`) above it changes
+no Lean source. At the completed handoff gate, local `HEAD`, `master`,
+`origin/master`, and remote `master` agreed at `72f9f87`; the Lean
+build/placeholder and Pages deployment workflows both succeeded.
 
 Project B Chunk 2 is complete. All 18 steps are finished. The chunk began
 from the clean Chunk 1 checkpoint, its new theorem contracts were validated by

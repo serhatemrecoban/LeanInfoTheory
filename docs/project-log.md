@@ -5896,10 +5896,16 @@ the plan, canonical project memory, roadmap, README, and hand-written public
 status pages. It authorizes only a bounded Chunk 7 context intake and planning
 discussion; no Chunk 7 mathematical scope, detailed plan, representation
 choice, or Lean implementation is approved. The resulting local handoff commit
-has subject `Prepare Project B Chunk 7 handoff` and changes no Lean source.
-The remaining transition work is to push both commits, require successful
-remote build/placeholder and Pages workflows, and then prepare the ignored
-Chunk 6 handoff report.
+is `72f9f875b8da62b858b995a051337c55536cdce6` with subject
+`Prepare Project B Chunk 7 handoff`; it changes no Lean source. The two-commit
+transition was pushed to `master`, and at the completed handoff gate local
+`HEAD`, `master`, `origin/master`, and remote `master` all agreed at
+`72f9f87`. The
+[Lean build and placeholder check](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/30398847212)
+and
+[Pages deployment](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/30398847176)
+both completed successfully. After the post-push canonical reconciliation, the
+only remaining transition task is the ignored Step 8 Chunk 6 handoff report.
 
 ## Completed Project B Chunk 4 Plan
 
@@ -6270,7 +6276,8 @@ work, and substantial mathlib PR preparation remain later work.
 | Status | Notes | Meaning |
 | --- | --- | --- |
 | Standing guardrails | 2-4, 6-8, 14-18, 26 | Apply these policies continuously; they do not create standalone cleanup tasks. |
-| Project B sequence | 29 | Chunks 5 and 6 are checkpointed as `ec78829` and `7b5f0db`; bounded Chunk 7 intake and planning are next, while Note 29 retains deferred Fano follow-ups and remains the broader Chapter 2 sequence anchor. |
+| Current Project B transition | Unnumbered | Chunks 5 and 6 are checkpointed as `ec78829` and `7b5f0db`; bounded Chunk 7 intake and planning are next, but no numbered note owns or authorizes its mathematical scope yet. |
+| Fano follow-ups | 29 | Retain the five evidence-based proof-pressure or pedagogy/sharpness groups and optional theorem-highlights curation; Note 29 no longer owns downstream chunk sequencing. |
 | Channel/Markov proof-pressure | 21, 25, 27 | Revisit these only when concrete channel, Markov, or data-processing consumers reach their stated triggers. |
 | Proof-pressure deferred | 19, 22-24, 30-37, 40 | Wait for the repeated proof or new statement pressure specified in each note. |
 | Later milestones | 5, 9-13, 28, 38-39 | Schedule these in their own later mathematical, documentation, example, certificate, or coding phases. |
@@ -6281,9 +6288,11 @@ their theorem-pressure conditions, or serve as the naming decision table
 requested by Note 14 for the next scheduled API review.
 The 40 numbered entries therefore comprise 38 active or standing notes and two
 closed historical notes. Here, active includes guardrails, proof-pressure
-triggers, the Project B sequence anchor, and later milestones; it does not mean
-immediate implementation. Earlier step-specific imperatives retained inside a note are
-historical trigger records when a later paragraph records their resolution.
+triggers, Fano follow-ups, and later milestones; it does not mean immediate
+implementation. The unnumbered current-transition row is navigation context,
+not a 41st Future Work item. Earlier step-specific imperatives retained inside
+a note are historical trigger records when a later paragraph records their
+resolution.
 
 1. Keep the finite-family entropy API delayed through Project B Chunk 1 and the
     intervening KL/channel theorem pressure. Revisit it in the planned
@@ -7129,6 +7138,22 @@ historical trigger records when a later paragraph records their resolution.
     17 validation driver produce or consume it. This keeps source-status
     synchronization, artifact checksums, and executable validation related but
     separately owned.
+
+    The July 28, 2026 post-push Chunk 7 handoff now satisfies the independent-
+    drift branch of the structured-status trigger above. The tracked canonical
+    documents correctly described `origin/master` and both workflows as
+    pending when handoff commit `72f9f87` was created, but those current-facing
+    passages became stale after the remote push and successful Actions runs.
+    The narrow post-push reconciliation corrects that state without changing
+    Lean source.
+
+    A small shared status source is therefore eligible for a dedicated
+    documentation-tooling phase. Do not implement it inside this cleanup or
+    make it a prerequisite for the ignored handoff report or bounded Chunk 7
+    intake. When scheduled, it must represent the substantive Lean/source
+    checkpoint, documentation-only handoff head, local/remote synchronization,
+    validation state, and deployment state separately, while leaving
+    mathematical narrative and historical chronology hand-maintained.
 
 10. Add a minimal contributor surface before inviting broader collaboration:
     `CONTRIBUTING.md`, beginner-friendly tasks, issue labels, and a short note
@@ -8688,6 +8713,18 @@ historical trigger records when a later paragraph records their resolution.
       and do not broaden the list silently. C6.24 explained and recorded its
       narrow expansion, so this is a cleaner future procedure rather than a
       retrospective correction.
+
+    The July 28, 2026 remote handoff gate provides fresh-checkout confirmation
+    for commit `72f9f87`. The
+    [Lean build and placeholder check](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/30398847212)
+    completed successfully and agreed with the local Chunk 6 milestone
+    evidence; the separately scoped
+    [Pages deployment](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/30398847176)
+    also succeeded. This agreement gives no reason for an additional cold local
+    build now and does not discharge the already-triggered reusable-driver or
+    maintained boundary/trust-harness work. Keep that infrastructure scheduled
+    before or alongside the next major milestone closeout or material CI
+    refactor, not as a prerequisite for bounded Chunk 7 intake.
 
 18. Standing architecture guardrail: preserve the boundary between the
     completed pair/triple Chunk 1, the completed equality/independence Chunk 2,
@@ -10317,6 +10354,15 @@ historical trigger records when a later paragraph records their resolution.
     for the finite-family entropy phase provisionally called Chunk 6; neither
     note authorizes a representation choice or Lean implementation without a
     separately approved plan.
+
+    The July 28, 2026 Chunk 6 checkpoint and Chunk 7 handoff do not reactivate
+    Note 29's sequencing role. Future Work Note 1 is now closed with the
+    finite-family milestone, and the bounded Chunk 7 context intake is
+    authorized by the transition record rather than by a numbered Future Work
+    item. Note 29 remains active only for its five Fano follow-up groups and
+    optional theorem-highlights curation. Once Chunk 7 has an approved
+    mathematical scope, record its ownership explicitly instead of reading
+    that scope into this note.
 
 30. Keep the Step 5 total conditional-channel law surface minimal until later
     proofs create a concrete need for a more abstract null-fiber theorem. The
