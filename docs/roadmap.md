@@ -2,8 +2,8 @@
 
 This roadmap records planned technical milestones. The homepage, theorem
 highlights, module guide, and generated references now describe the validated
-but uncommitted Chunk 7 working tree. Remote publication remains a separate
-post-commit operation.
+and checkpointed Chunk 7 source. Remote publication remains a separate
+transition operation.
 
 ## Now
 
@@ -112,7 +112,8 @@ post-commit operation.
   sufficiency, and a larger iid count-statistic development.
 - The approved 22-step
   [finite log-sum and convexity plan](plans/chapter2-chunk-07.md) is complete
-  through `C7.22`. The implementation and API review provide the finite
+  through `C7.22` and checkpointed as commit `5e616d8`. The implementation and
+  API review provide the finite
   Cover--Thomas Section 2.7 package: a zero-safe `EReal` log-sum theorem and
   support-guarded Real family, binary and general-selector PMF mixtures,
   entropy concavity with binary interior-weight equality, `ENNReal` and
@@ -121,12 +122,12 @@ post-commit operation.
   concavity in the input law plus convexity in the channel. The four production
   modules and `Examples.Convexity` remain opt-in; the root-visible addition is
   only the general finite bind-to-Real mass bridge in the already imported
-  `Probability.Finite` module. The validated working tree has 28 new public
+  `Probability.Finite` module. The checkpoint has 28 new public
   source declarations and 46 maintained private examples. Generated
   references, public documentation, direct and milestone builds, boundary and
-  trust audits, and repository hygiene all pass. Chunk 7 is complete and ready
-  for a coherent checkpoint, but remains uncommitted and is not yet
-  checkpointed or deployed.
+  trust audits, and repository hygiene all pass. After the remote handoff,
+  bounded Chunk 8 context intake and planning may proceed separately, but no
+  mathematical scope or Lean implementation is approved by this transition.
 - Maintain project notes in the foundation conventions and project log.
 - Keep the lightweight finite API separated from heavier KL and coding imports.
 
@@ -139,9 +140,9 @@ post-commit operation.
   orientation page.
 - Link generated docs and blueprint entries back to the curated theorem
   highlights and submodularity demo page.
-- Checkpoint the validated Chunk 7 working tree coherently, then choose the next
-  focused Chapter 2 or certificate-development phase through a separate
-  readiness and approval process.
+- Complete the remote handoff, then use checkpoint `5e616d8` for bounded
+  Chunk 8 context intake and approve its focused mathematical scope and
+  implementation plan through a separate readiness process.
 
 ## 6 Months
 

@@ -1,7 +1,8 @@
 # Chapter 2 Chunk 7: Finite Log-Sum And Convexity
 
-**Plan status:** Approved for implementation
+**Plan status:** Complete; checkpointed
 **Baseline commit:** `9aa3bb1258206fb24a3645115955be8501ea3e5e`
+**Checkpoint commit:** `5e616d805649f6aa39c380f55e14a5d933fb6b2f`
 **Preceding Chunk 6 Lean/source checkpoint:** `7b5f0db83f188bf65454f5aa7dcd2fe8ee221146`
 **Plan path:** `docs/plans/chapter2-chunk-07.md`
 **Number of steps:** 22
@@ -3024,6 +3025,16 @@ no C7 disposable source or Lake artifact remains, and pre-existing ignored
 Canonical and public status now describe Chunk 7 as complete and validated but
 uncommitted, never checkpointed or deployed. No later chunk or deferred task
 is authorized by this closeout, and no new Future Work item is justified.
+
+At `C7.22`, checked-in head `9aa3bb1` and the preceding validated source
+checkpoint `7b5f0db` remained unchanged, so that outcome correctly recorded a
+validated but uncommitted working tree. After the separately approved
+post-chunk cleanup and evidence-lock gates, the complete milestone was
+checkpointed on July 30, 2026 as commit `5e616d8`
+(`Complete Project B Chunk 7`). This post-plan transition record preserves the
+historical closeout state; it does not alter any completed step, theorem,
+module, validation result, or deferred-work decision, and it does not approve
+a Chunk 8 scope or implementation.
 
 ## Integration Checkpoints
 

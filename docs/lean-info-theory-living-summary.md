@@ -48,15 +48,16 @@ certificates. Its two long-term branches are:
   network-information-theory converse proofs.
 
 **[Current] Mathematical phase.** Project B is active. Cover--Thomas Chapter 2
-Chunks 1-6 are checkpointed; `7b5f0db` is the last fully validated committed
-Lean/source baseline. The approved Chunk 7 execution plan is
+Chunks 1-7 are checkpointed. The approved Chunk 7 execution plan is
 [`docs/plans/chapter2-chunk-07.md`](plans/chapter2-chunk-07.md), and all 22
 steps are complete. The finite Section 2.7 scalar log-sum, finite-mixture,
 entropy-concavity, KL joint-convexity/equality, and MI input/channel-convexity
 surfaces, maintained examples, API review, generated references, public
-documentation, and independent milestone validation all pass in the current
-working tree. Chunk 7 is validated and checkpoint-ready but remains
-uncommitted; it is not yet checkpointed, pushed, or deployed.
+documentation, and independent milestone validation all pass. Commit
+`5e616d8` is the coherent Chunk 7 Lean/source checkpoint. The next authorized
+activity is completing its documentation and remote handoff, followed by a
+bounded Chunk 8 context intake; no Chunk 8 mathematical scope, detailed plan,
+or Lean implementation is approved by this transition.
 
 **[Decision] Architectural rules that must be preserved.**
 
@@ -89,7 +90,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Task | Read next |
 | --- | --- |
-| Chunk 7 review or checkpoint preparation | The approved Chunk 7 plan; Sections 3, 6-9, 11-14, and 16; Future Work Notes 2-4, 9, 14-18, 24, 28, and 36; the four new production modules plus `Examples.Convexity` |
+| Chunk 8 context intake or planning | The completed Chunk 7 plan; Sections 3, 6-9, 11-14, and 16; the current Future Work register; the four Chunk 7 production modules plus `Examples.Convexity`; inspect additional source and textbook sections only as the bounded intake requires |
 | Review of an existing Lean theorem | Sections 3, 7, 9, and 16; the owning source module and its direct imports |
 | API or module review | Sections 7, 9, 10, 11, and Future Work Notes 2-4, 14-16, 18, and 26 |
 | Certificate work | Sections 2, 5, 7, 11, and 13; `EntropyExpr`, `EntropyVal`, `PrimitiveIneq`, and `Certificate.Checked` |
@@ -101,12 +102,12 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-07-29 |
-| Last fully validated committed Lean/source baseline | `7b5f0db83f188bf65454f5aa7dcd2fe8ee221146` |
-| Repository transition state | Checked-in head `9aa3bb1258206fb24a3645115955be8501ea3e5e` is the documentation-only final Chunk 7 handoff above checkpoint `7b5f0db`; the current Chunk 7 implementation is independently validated through `C7.22` but remains an uncommitted working tree |
+| Last updated | 2026-07-30 |
+| Last fully validated committed Lean/source baseline | `5e616d805649f6aa39c380f55e14a5d933fb6b2f` |
+| Repository transition state | The documentation-only `Prepare Project B Chunk 8 handoff` commit follows checkpoint `5e616d8`; `origin/master` remains at `9aa3bb1258206fb24a3645115955be8501ea3e5e` pending the transition push |
 | Lean baseline | Lean `v4.30.0`, commit `d024af099ca4bf2c86f649261ebf59565dc8c622` |
 | mathlib baseline | mathlib input revision `v4.30.0`, manifest commit `c5ea00351c28e24afc9f0f84379aa41082b1188f` |
-| Current phase | Project B, Chunks 1-6 checkpointed; Chunk 7 complete and validated through `C7.22`, awaiting a coherent checkpoint |
+| Current phase | Project B, Chunks 1-7 checkpointed; complete the remote handoff, then perform bounded Chunk 8 context intake without assuming a mathematical scope |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -540,7 +541,7 @@ claim a general measure-theoretic formalization of the whole subject.
 | **2.4 Entropy/MI relationships** | **Complete for the finite pair and finite-atom algebraic surfaces.** Symmetry predates the programme; the pair identity family is Chunk 1; overlapping-atom family identities are Chunk 6. | `mutualInfoOf_eq_entropyOf_sub_condEntropyOf`, `mutualInfoOf_swap`, `mutualInfoOf_self`, `familyMutualInfo_eq_entropy_sub_condEntropy`, `familyCondMutualInfo_eq_condEntropy_sub_condEntropy` | Lightweight `Shannon.InfoMeasures` plus opt-in lightweight `Shannon.FiniteFamily`. | Rewrites remain explicit. Reverse-oriented aliases and exhaustive PMF/source mirrors are intentionally not generated without proof pressure. |
 | **2.5 Chain rules** | **Substantially complete for finite entropy and MI.** Pair/triple rules predate or belong to Chunk 1; Chunk 6 adds binary-union and duplicate-tolerant ordered finite-family entropy/MI rules; mathlib's KL chain rule is reused in Chunk 3. | `entropy_chain_rule_left`, `condEntropyOf_pair_chain_rule`, `familyEntropy_union_chain_rule_right`, `familyEntropy_eq_entropyChain`, `familyMutualInfo_eq_mutualInfoChain`, `familyMutualInfo_chain_rule_of_nodup`, `klDiv_channel_eq_add_posterior` | Lightweight pair/triple and finite-family algebra plus heavy semantic/KL decomposition. | The list theorems permit repeated indices; `Nodup` corollaries expose the textbook enumeration. A binary/ordered conditional-MI family and a project-local relative-entropy chain-rule family remain deferred. |
 | **2.6 Jensen and consequences** | **Substantially complete for currently used finite consequences.** Initial alphabet bounds predate the programme; sharp support/equality and pair independence endpoints are Chunks 1-2; finite-family monotonicity, submodularity, conditioning reduction, MI bounds, and n-way subadditivity are Chunk 6. | `entropy_le_log_card`, `entropy_eq_log_card_iff_eq_uniformOfFintype`, `familyEntropy_mono`, `familyEntropy_submodular`, `familyCondEntropy_union_le_condEntropy`, `familyEntropy_le_sum_singletons` | Jensen-heavy `EntropyBounds` is opt-in; family inequalities live in opt-in `SemanticBridge.FiniteFamily`; semantic equality cases remain heavier. | The project reuses mathlib Jensen/strict concavity rather than formalizing a local general Jensen theorem. Equality in n-way subadditivity and a family-level mutual-independence API are deferred. |
-| **2.7 Log-sum and convexity applications** | **Implemented and independently validated for finite PMFs in Chunk 7.** The scalar, mixture, entropy, KL, and MI theorem layers are complete through `C7.22` in the validated but uncommitted working tree. | `logSum_inequality`, `logSum_eq_iff_exists_constant_ratio`, `real_logSum_inequality_of_support`, `sum_mul_entropy_le_entropy_bind`, `binaryMixture_entropy_eq_iff`, `klDiv_bind_le_sum`, `klDiv_binaryMixture_eq_iff`, `sum_mul_mutualInfo_channelJoint_le`, `mutualInfo_channelMixture_le_sum` | Scalar `Shannon.LogSum`; PMF construction in `Probability.FiniteMixture`; Jensen entropy layer in `Shannon.EntropyConcavity`; KL/MI results in heavy `SemanticBridge.Convexity`. All remain opt-in. | Canonical KL statements are `ENNReal`-valued; Real forms have active support guards. General-selector equality classifications, MI/channel equality cases, finite-family wrappers, topology, and continuity remain deferred. |
+| **2.7 Log-sum and convexity applications** | **Implemented, independently validated, and checkpointed for finite PMFs in Chunk 7.** The scalar, mixture, entropy, KL, and MI theorem layers are complete through `C7.22` in checkpoint `5e616d8`. | `logSum_inequality`, `logSum_eq_iff_exists_constant_ratio`, `real_logSum_inequality_of_support`, `sum_mul_entropy_le_entropy_bind`, `binaryMixture_entropy_eq_iff`, `klDiv_bind_le_sum`, `klDiv_binaryMixture_eq_iff`, `sum_mul_mutualInfo_channelJoint_le`, `mutualInfo_channelMixture_le_sum` | Scalar `Shannon.LogSum`; PMF construction in `Probability.FiniteMixture`; Jensen entropy layer in `Shannon.EntropyConcavity`; KL/MI results in heavy `SemanticBridge.Convexity`. All remain opt-in. | Canonical KL statements are `ENNReal`-valued; Real forms have active support guards. General-selector equality classifications, MI/channel equality cases, finite-family wrappers, topology, and continuity remain deferred. |
 | **2.8 Data processing** | **Substantially complete for finite PMFs and finite-valued random variables.** Deterministic processing is Chunk 1; Markov and stochastic MI/KL DPI are Chunk 3; KL equality/recovery is Chunk 4. | `IsMarkovChainOf`, `mutualInfoOf_markov_chain_rule`, `mutualInfoOf_dataProcessing`, `mutualInfoOf_dataProcessing_eq_iff`, `klDiv_channel_le`, `toReal_klDiv_channel_le` | `SemanticBridge.Markov` and `DataProcessing` are opt-in; the raw channel core is lighter but still outside root. | No general measurable stochastic-variable coupling API. Strict-loss variants and some symmetric forms remain proof-pressure deferred. |
 | **2.9 Second law / stochastic entropy growth** | **Partial.** One-step finite consequences are Chunk 3. | `klDiv_channel_invariant_le`, `toReal_klDiv_channel_invariant_le`, `entropy_le_entropy_bind_of_uniform_invariant`, `entropy_le_entropy_bind_of_doublyStochastic` | Heavy `SemanticBridge.DataProcessing`; examples in `Examples.StochasticChannels`. | No iterated channel powers, stationary-process object, entropy rate, matrix bridge, or Birkhoff/majorization theory. A matrix-facing bridge is deferred by Note 38. |
 | **2.10 Sufficient statistics** | **Substantially complete for finite fixed-prior and finite family recovery.** Chunk 4. | `IsSufficientStatisticOf`, `IsSufficientChannel`, `IsSufficientStatistic`, `isSufficientStatisticOf_iff_exists_recovery`, `isSufficientChannel_iff_exists_common_posterior`, `isSufficientStatistic_iff_exists_fisherNeymanFactorization`, `klDiv_channel_eq_iff_exists_common_recovery` | Lightweight `Sufficiency`; posterior/KL statements in downstream heavy modules. | Canonical/minimal statistics, iid count-statistic infrastructure, and general measurable sufficiency are deferred. Larger-family pairwise KL equality does not yield a global witness. |
@@ -719,7 +720,7 @@ additive and preserved inherited public names.
 | 4 | `f990f2e` | Finite sufficient statistics and equality in data processing | Fixed-prior/family sufficiency, exact recovery, common posteriors, all-prior and Fisher-Neyman results, guarded KL equality |
 | 5 | `ec78829` | Finite Fano and estimation error | Boolean entropy bridge, type-generic deterministic error, exact/q-ary/weak Fano, error and uniform-source corollaries, permanent examples, API freeze |
 | 6 | `7b5f0db` | Finite families and concrete entropy valuations | Complete and independently validated: dependent finite-atom entropy/MI/CMI, binary and ordered chain rules, Shannon inequalities, concrete valuation, certificate adapter, permanent examples, generated references, and full milestone closeout |
-| 7 | Working tree above `9aa3bb1` | Finite log-sum and convexity | Implemented and API-reviewed through `C7.20`: zero-safe scalar LS3, finite mixtures, entropy concavity/equality, KL joint convexity/equality, MI input/channel convexity, and private maintained examples; generated references and independent closeout remain pending |
+| 7 | `5e616d8` | Finite log-sum and convexity | Complete and independently validated through `C7.22`: zero-safe scalar LS3, finite mixtures, entropy concavity/equality, KL joint convexity/equality, MI input/channel convexity, private maintained examples, generated references, and full milestone closeout |
 
 Cleanup checkpoints `e72e68c`, `7de8ff5`, and `11e071c` reconciled
 post-chunk documentation and prepared the Chunk 5 handoff. Commits `cb8eb6b`
@@ -756,13 +757,12 @@ the public references, and `C6.24` passed the focused, ten-target, default-
 build, consumer, axiom, placeholder, website, and hygiene gates. Commit
 `7b5f0db` is the coherent Chunk 6 Lean/source checkpoint.
 
-### Active Chunk 7 implementation
+### Checkpointed Chunk 7 implementation
 
-**[Current]** The approved 22-step plan has completed source implementation,
-maintained examples, and API/import review through `C7.19`; `C7.20` is this
-canonical reconciliation. `Probability.FiniteMixture`, `Shannon.LogSum`,
+**[Current]** The approved 22-step plan has completed `C7.01` through
+`C7.22`. `Probability.FiniteMixture`, `Shannon.LogSum`,
 `Shannon.EntropyConcavity`, `Shannon.SemanticBridge.Convexity`, and
-`Examples.Convexity` now exist in the uncommitted working tree. They add 27
+`Examples.Convexity` now exist in checkpointed source. They add 27
 public declarations, while the independently pressured
 `PMF.bind_toReal_apply` bridge adds the twenty-eighth declaration in the
 existing lightweight `Probability.Finite` owner.
@@ -785,7 +785,7 @@ and root-isolation consumers passed, representative axioms were limited to
 whitespace/diff checks were clean. `C7.21` subsequently regenerated and checked
 the public references, and `C7.22` independently passed the direct and complete
 milestone builds, boundary and trust audits, website checks, and repository
-hygiene. The chunk is complete and validated but remains uncommitted.
+hygiene. Commit `5e616d8` is the coherent Chunk 7 Lean/source checkpoint.
 
 ## 9. Stable Design Decisions and Rationale
 
@@ -956,13 +956,14 @@ These are intentional current contracts, not claims of maximal generality.
 
 ### Current phase status
 
-**Project B Chunk 7 is complete and independently validated through `C7.22`,
-but remains uncommitted and is not yet checkpointed.**
+**Project B Chunk 7 is complete, independently validated through `C7.22`, and
+checkpointed as commit `5e616d8`.**
 
-Chunks 5 and 6 remain checkpointed as `ec78829` and `7b5f0db`. The current
-checked-in head is documentation-only handoff commit `9aa3bb1`; the Chunk 7
-source is an uncommitted working tree above it. The approved execution plan is
-[`docs/plans/chapter2-chunk-07.md`](plans/chapter2-chunk-07.md).
+Chunks 5 and 6 remain checkpointed as `ec78829` and `7b5f0db`. The approved
+Chunk 7 execution plan is
+[`docs/plans/chapter2-chunk-07.md`](plans/chapter2-chunk-07.md). The
+documentation-only Chunk 8 handoff follows the source checkpoint locally;
+`origin/master` remains at `9aa3bb1` until the transition push.
 
 ### Frozen Chunk 7 implementation
 
@@ -995,17 +996,18 @@ source is an uncommitted working tree above it. The approved execution plan is
 
 ### Next repository action
 
-Create one coherent checkpoint for the validated but uncommitted Chunk 7
-working tree. Do not describe it as checkpointed, pushed, or deployed until
-those operations are independently completed and verified.
+Complete the documentation-only Chunk 8 handoff, push the transition commits,
+and require successful remote build/placeholder and Pages workflows. Then
+prepare the ignored Chunk 7 handoff report and begin only bounded Chunk 8
+context intake.
 
 ### Next review point
 
-After the checkpoint, choose any later Chapter 2, certificate, or maintenance
-phase through a separate bounded readiness and approval process. Chunk 7
-closeout does not authorize that scope. Deferred Future Work remains governed
-by its recorded pressure triggers rather than becoming automatic checkpoint
-work.
+After the remote-validated handoff, investigate Chunk 8's possible scope
+through a separate bounded readiness and approval process. Chunk 7 closeout
+does not authorize a mathematical scope or implementation. Deferred Future
+Work remains governed by its recorded pressure triggers rather than becoming
+automatic transition work.
 
 ## 13. Future-Work Register
 
@@ -1020,7 +1022,7 @@ again.
 
 | Note | Work |
 | --- | --- |
-| Unnumbered | **Chunk 7 checkpoint.** The implementation and all `C7.01`--`C7.22` validation gates are complete; create a coherent checkpoint before beginning a separately approved later phase. |
+| Unnumbered | **Chunk 7 checkpoint complete.** Commit `5e616d8` contains the implementation and all `C7.01`--`C7.22` validation evidence; finish the remote handoff, then perform bounded Chunk 8 intake without assuming its scope. |
 | 29 | **Finite-Fano phase checkpointed.** Commit `ec78829` completes the approved phase; its evidence-based Fano follow-ups remain open and deferred. |
 
 Note 29 also preserves proof-pressure triggers from `C5.08`-`C5.11` and
@@ -1218,12 +1220,12 @@ not reproduce textbook prose or proofs.
 - mathlib input revision: `v4.30.0`
 - mathlib manifest commit:
   `c5ea00351c28e24afc9f0f84379aa41082b1188f`
-- last fully validated committed Lean/source baseline: `7b5f0db`
-- documentation-only handoff commits `72f9f87` and current checked-in head
-  `9aa3bb1` sit above that checkpoint without changing the validated
-  Lean/source baseline
-- the current Chunk 7 implementation is independently validated through
-  `C7.22` but remains uncommitted and is not yet a source checkpoint
+- last fully validated committed Lean/source baseline: `5e616d8`
+- documentation-only handoff commits `72f9f87` and `9aa3bb1` precede the
+  Chunk 7 source checkpoint and change no Lean source
+- the documentation-only `Prepare Project B Chunk 8 handoff` commit follows
+  checkpoint `5e616d8` locally; `origin/master` remains at `9aa3bb1` pending
+  the transition push
 
 ### Most recent local validation
 
@@ -1248,8 +1250,8 @@ simp/import audits, twice-repeated byte-stable generators, website checker,
 conflict-marker and disposable-probe scans, and final diff/hygiene checks all
 pass. The generated references contain 48 modules, 90 local edges, 11
 root-reachable modules, 37 opt-in modules, and 862 documented source
-declarations. This validates the incremental uncommitted working tree; it does
-not establish a commit or remote deployment.
+declarations. This is the validation evidence preserved by source checkpoint
+`5e616d8`; it does not establish remote build or deployment status.
 
 On 2026-07-28, `C6.24` independently completed Chunk 6 validation. The six-
 target focused build passed with 2,770 jobs:
@@ -1351,8 +1353,8 @@ lake build LeanInfoTheory `
 
 During theorem work, build the touched module and its important downstream
 aggregate. Before a milestone, run the full suite above. The maintained
-individual commands are listed in `AGENTS.md`; C5.20 completed the Chunk 5
-assignment and C6.24 completed the Chunk 6 assignment.
+individual commands are listed in `AGENTS.md`; C5.20, C6.24, and C7.22
+completed the Chunk 5, 6, and 7 assignments.
 
 ### CI expectations and remote state
 
@@ -1376,6 +1378,11 @@ The July 26 post-checkpoint handoff adds `Shannon.Units` to that explicit
 workflow list. The final cleanup requires a successful remote workflow run
 after push; that operational result does not redefine the validated Lean/source
 baseline.
+
+The Chunk 7 source checkpoint `5e616d8` and its documentation-only Chunk 8
+handoff are local at this reconciliation. `origin/master` remains at
+`9aa3bb1`; fresh remote build/placeholder and Pages evidence belongs to the
+transition push gate and must not be inferred from local validation.
 
 ### Generated documentation and website checks
 
@@ -1481,6 +1488,9 @@ inferred from local content. The public site is:
   implementation outcomes for the completed finite-Fano phase.
 - [Chunk 6 plan](plans/chapter2-chunk-06.md): approved finite-family,
   concrete-valuation, and checked-certificate implementation sequence.
+- [Chunk 7 plan](plans/chapter2-chunk-07.md): completed finite log-sum,
+  mixture, entropy/KL convexity, and mutual-information implementation
+  sequence with checkpoint evidence.
 - [Semantic bridge design](semantic-bridge-design.md): original bridge design
   and conditional-law choices.
 - [Semantic bridge API audit](semantic-bridge-api-audit.md): audited mathlib
@@ -1505,6 +1515,7 @@ inferred from local content. The public site is:
 - Shared canonical-memory policy: `2413cb1`
 - Chunk 5 implementation and validated Lean/source baseline: `ec78829`
 - Chunk 6 implementation and validated Lean/source baseline: `7b5f0db`
+- Chunk 7 implementation and validated Lean/source baseline: `5e616d8`
 
 ### Temporary historical inputs
 

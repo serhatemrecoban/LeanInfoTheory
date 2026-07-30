@@ -243,8 +243,8 @@ when they stabilize.
   and 834 documented source declarations. The focused, maintained ten-target,
   default-build, consumer, trust, website, and hygiene gates all pass. Commit
   `7b5f0db` is the coherent Chunk 6 Lean/source checkpoint.
-- Project B Chunk 7 is complete through `C7.22` in the current validated but
-  uncommitted working tree. Its finite Cover--Thomas Section 2.7 surface adds
+- Project B Chunk 7 is complete through `C7.22` and checkpointed as commit
+  `5e616d8`. Its finite Cover--Thomas Section 2.7 surface adds
   zero-safe
   extended and guarded Real log-sum theorems, finite-selector and binary PMF
   mixtures, entropy concavity with the binary interior-weight equality case,
@@ -254,14 +254,14 @@ when they stabilize.
   convexity in the channel. Four new production modules and
   `Examples.Convexity` remain opt-in, while the lightweight
   `PMF.bind_toReal_apply` bridge lives in the already root-visible
-  `Probability.Finite` module. The frozen working-tree surface contains 28 new
+  `Probability.Finite` module. The frozen checkpoint contains 28 new
   public source declarations and 46 maintained private examples. Generated
   references now cover 48 modules, 90 local import edges, and 862 documented
   source declarations. Direct-owner and full milestone builds, boundary
   consumers, the all-new-theorem axiom audit, placeholder scan, repeated
-  generators, website checker, and repository-hygiene checks all pass. The
-  chunk is ready for a coherent checkpoint but is not yet committed,
-  checkpointed, pushed, or deployed.
+  generators, website checker, and repository-hygiene checks all pass. Commit
+  `5e616d8` is the coherent Chunk 7 Lean/source checkpoint; remote publication
+  remains a separate transition step.
 
 ## Lean Modules
 
@@ -507,9 +507,10 @@ Import heavier or demonstrational modules explicitly:
 
 ## Roadmap
 
-1. Create a coherent checkpoint for the validated but uncommitted Chunk 7
-   finite Cover--Thomas Section 2.7 package. Select any later theorem phase
-   through its own readiness and approval process.
+1. Complete the remote handoff, then use the independently validated Chunk 7
+   checkpoint `5e616d8` as the baseline for bounded Chunk 8 context intake.
+   Select its theorem scope and implementation plan through a separate
+   readiness and approval process.
 2. Keep the sufficiency core lightweight and place KL integration downstream;
    retain exact full-joint recovery as the contract established by the
    completed midpoint tests, including rejection of marginal-only false

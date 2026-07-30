@@ -7,18 +7,19 @@ commit `ec78829` was created on July 26. Project B Chunk 1 was committed as
 Chunk 6 completed all 24 steps and passed its generated-reference, independent
 validation, trust, boundary, website, and hygiene gates. It was checkpointed
 as commit `7b5f0db` (`Complete Project B Chunk 6`). The documentation-only
-handoff commit `72f9f87` (`Prepare Project B Chunk 7 handoff`) above it changes
-no Lean source. The later documentation-only handoff commit `9aa3bb1`
-(`Finalize Project B Chunk 7 handoff`) is the current checked-in head and also
-changes no Lean source. At the completed remote handoff gate for `72f9f87`,
-the Lean build/placeholder and Pages deployment workflows both succeeded.
+handoff commit `72f9f87` (`Prepare Project B Chunk 7 handoff`) and final
+handoff commit `9aa3bb1` (`Finalize Project B Chunk 7 handoff`) above it change
+no Lean source. At the completed remote handoff gate for `72f9f87`, the Lean
+build/placeholder and Pages deployment workflows both succeeded.
 
-The current working tree completes Project B Chunk 7 through `C7.22`. Its
-source, API, generated references, public documentation, and independent
-milestone validation are complete, but the changes remain uncommitted. The
-last fully validated committed Lean/source baseline therefore remains
-`7b5f0db`; Chunk 7 is validated and checkpoint-ready but must not yet be
-described as committed, checkpointed, pushed, or deployed.
+On July 29, Chunk 7 completed all 22 steps and passed its source, API,
+generated-reference, public-documentation, independent milestone, trust,
+boundary, and hygiene gates. On July 30, the coherent milestone was
+checkpointed as commit `5e616d8` (`Complete Project B Chunk 7`). The
+documentation-only `Prepare Project B Chunk 8 handoff` commit above it changes
+no Lean source; `origin/master` remains at `9aa3bb1` until the transition push.
+No Chunk 8 mathematical scope or Lean implementation is approved by this
+checkpoint.
 
 Project B Chunk 2 is complete. All 18 steps are finished. The chunk began
 from the clean Chunk 1 checkpoint, its new theorem contracts were validated by
@@ -149,12 +150,11 @@ audit, and final hygiene checks are current. The milestone is checkpointed as
 commit `ec78829`. Canonical/minimal sufficiency and larger iid examples are
 deferred by Future Work Note 39.
 
-## Current Project B Boundary: Chunk 7 Implementation Reviewed
+## Current Project B Boundary: Chunk 7 Checkpointed
 
 The approved 22-step Chunk 7 plan is
-`docs/plans/chapter2-chunk-07.md`. Steps `C7.01`--`C7.19` are complete in the
-current working source, and `C7.20` reconciles the canonical documents against
-that frozen API. The finite Cover--Thomas Section 2.7 surface now includes:
+`docs/plans/chapter2-chunk-07.md`; `C7.01`--`C7.22` are complete in
+checkpointed source. The finite Cover--Thomas Section 2.7 surface includes:
 
 - `Shannon.LogSum`, with a zero-safe `EReal` scalar term, finite log-sum
   inequality, exact active-ratio equality characterization, non-bottom facts,
@@ -202,9 +202,10 @@ confirmed the intended import surface. All 26 new theorems report only
 `propext`, `Classical.choice`, and `Quot.sound`; the placeholder scan,
 twice-repeated generators, website checker, declaration/source/anchor audits,
 and C7 disposable-source/artifact, conflict-marker, whitespace, and diff checks
-pass. Pre-existing ignored `tmp/` material was left untouched. This validates
-the current uncommitted working tree; it is not evidence of a commit or remote
-deployment.
+pass. Pre-existing ignored `tmp/` material was left untouched. Commit
+`5e616d8` is the coherent, fully validated Chunk 7 Lean/source checkpoint.
+Remote build and deployment confirmation remain part of the separate
+transition gate.
 
 ### Preceding Chunk 6 Checkpoint
 
@@ -246,8 +247,8 @@ final repository hygiene. Commit `7b5f0db` is the coherent, fully validated
 Chunk 6 Lean/source checkpoint.
 
 This is a maintained status note for Lean-focused work. It summarizes the
-current architecture, the completed checkpointed Chunk 3--6 theorem
-milestones, and the reviewed but not yet closed Chunk 7 working tree.
+current architecture and the completed checkpointed Chunk 3--7 theorem
+milestones.
 
 ## Current Lean Architecture
 
@@ -669,13 +670,12 @@ dependency map is module-level and is not theorem-level leanblueprint. Keep
 website wording honest about what is proved, demoed, generated, planned, and
 future work.
 
-The tracked generated references now describe the validated but uncommitted
-Chunk 7 working tree: 48 modules, 90 local import edges, 11 root-reachable
-modules, 37 opt-in modules, and 862 documented source declarations. Both
-generators are byte-stable on a second pass; source-link, anchor, summary, JSON,
-and website checks pass. These local files do not establish remote deployment;
-the deployed website remains whatever the latest successful pushed Pages
-workflow published.
+The tracked generated references describe the validated and checkpointed
+Chunk 7 source: 48 modules, 90 local import edges, 11 root-reachable modules,
+37 opt-in modules, and 862 documented source declarations. Both generators are
+byte-stable on a second pass; source-link, anchor, summary, JSON, and website
+checks pass. These local files do not establish remote deployment; the
+transition push and Pages workflow remain separate evidence.
 
 ## Important Design Constraints
 
