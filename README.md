@@ -239,10 +239,29 @@ when they stabilize.
   adapter, and 18 explicit example declarations; exactly eight reducing
   empty/self rules are `[simp]`, while chain and representation-changing rules
   remain explicit. The lightweight root and certificate trust boundary are
-  unchanged. The generated references now cover 43 modules and 834 documented
-  source declarations. The focused, maintained ten-target, default-build,
-  consumer, trust, website, and hygiene gates all pass. Commit `7b5f0db` is
-  the coherent Chunk 6 Lean/source checkpoint.
+  unchanged. At that checkpoint, the generated references cover 43 modules
+  and 834 documented source declarations. The focused, maintained ten-target,
+  default-build, consumer, trust, website, and hygiene gates all pass. Commit
+  `7b5f0db` is the coherent Chunk 6 Lean/source checkpoint.
+- Project B Chunk 7 is complete through `C7.22` in the current validated but
+  uncommitted working tree. Its finite Cover--Thomas Section 2.7 surface adds
+  zero-safe
+  extended and guarded Real log-sum theorems, finite-selector and binary PMF
+  mixtures, entropy concavity with the binary interior-weight equality case,
+  canonical
+  `ENNReal` and guarded Real KL joint convexity, the support-aware binary KL
+  equality case, and mutual-information concavity in the input law and
+  convexity in the channel. Four new production modules and
+  `Examples.Convexity` remain opt-in, while the lightweight
+  `PMF.bind_toReal_apply` bridge lives in the already root-visible
+  `Probability.Finite` module. The frozen working-tree surface contains 28 new
+  public source declarations and 46 maintained private examples. Generated
+  references now cover 48 modules, 90 local import edges, and 862 documented
+  source declarations. Direct-owner and full milestone builds, boundary
+  consumers, the all-new-theorem axiom audit, placeholder scan, repeated
+  generators, website checker, and repository-hygiene checks all pass. The
+  chunk is ready for a coherent checkpoint but is not yet committed,
+  checkpointed, pushed, or deployed.
 
 ## Lean Modules
 
@@ -254,7 +273,11 @@ when they stabilize.
 - `LeanInfoTheory.Probability.Finite`: real-mass bridge lemmas, the canonical
   finite `PMF.supportFinset` view, and reusable pointwise `PMF.map` facts in the
   `PMF` namespace for finite Shannon sums and relabeling arguments, plus the
-  pure-law/singleton-support equivalence.
+  pure-law/singleton-support equivalence and the finite-selector identity
+  `PMF.bind_toReal_apply`.
+- `LeanInfoTheory.Probability.FiniteMixture`: opt-in binary PMF mixtures with
+  `NNReal` weight `t <= 1`, their pointwise law, and exact zero/one endpoint
+  normalization. General finite-selector mixtures continue to use `PMF.bind`.
 - `LeanInfoTheory.Probability.FiniteChannel`: opt-in, type-generic PMF channel
   constructions and their elementary laws. It names deterministic channels,
   channel composition, induced input-output joint laws, and pair-to-triple
@@ -279,6 +302,13 @@ when they stabilize.
   taking entropy and provides PMF/source family entropy, conditional entropy,
   MI, CMI, pair/triple compatibility, and binary plus duplicate-tolerant
   ordered chain rules without requiring `[Fintype Var]`.
+- `LeanInfoTheory.Shannon.LogSum`: opt-in representation-independent finite
+  log-sum infrastructure over arbitrary finsets. Its canonical `EReal` API
+  preserves `0/0`, positive-over-zero, and `top` behavior, while guarded Real
+  corollaries use the active support implication.
+- `LeanInfoTheory.Shannon.EntropyConcavity`: opt-in finite-selector entropy
+  concavity proved directly by Jensen, with binary mixture and strict
+  interior-weight equality forms.
 - `LeanInfoTheory.Shannon.InfoMeasures`: conditional entropy, mutual
   information, conditional mutual information, named marginals, and
   random-variable versions, including both triple conditional-entropy chain
@@ -348,6 +378,12 @@ when they stabilize.
   input joint laws. Under input support inclusion it gives the converse for
   `ENNReal` and real KL equality, plus deterministic-map specializations stated
   with graph pushforwards.
+- `LeanInfoTheory.Shannon.SemanticBridge.Convexity`: opt-in finite
+  Cover--Thomas Section 2.7 semantic layer. It provides general-selector and
+  binary KL joint convexity, guarded Real forms, the support-aware binary
+  equality characterization, a channel entropy identity, MI concavity in the
+  input law, and MI convexity in the channel. The semantic aggregate imports
+  it, but the lightweight root does not.
 - `LeanInfoTheory.Shannon.SemanticBridge`: separated heavier bridge layer;
   contains finite entropy as expected self-information, finite conditional-law
   formulas, PMF support characterizations of absolute continuity and KL
@@ -363,7 +399,8 @@ when they stabilize.
   triple-level conditional inequalities and subadditivity,
   conditioning-reduces-entropy, the total conditional channel, the finite
   independence predicates, and the cross-product/positive-fiber/zero-CMI
-  conditional-independence bridge with its entropy equality cases.
+  conditional-independence bridge with its entropy equality cases, together
+  with the opt-in finite KL/MI convexity layer.
 - `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily`: opt-in family semantic
   layer proving monotonicity, nonnegativity, submodularity, MI bounds,
   conditioning reduction, binary/n-way subadditivity, and constructing
@@ -419,6 +456,9 @@ when they stabilize.
 - `LeanInfoTheory.Examples.FiniteFamily`: opt-in homogeneous Boolean and
   dependent Boolean/`Fin 3` family examples exercising ordered chains,
   overlap, empty entropy, and distinct checked/raw certificate paths.
+- `LeanInfoTheory.Examples.Convexity`: opt-in, non-public regression consumers
+  for scalar log-sum edge cases, mixture endpoints, entropy/KL equality, and
+  mutual-information input/channel convexity.
 - `LeanInfoTheory.Examples`: aggregate for the semantic examples above and the
   original toy certificate examples.
 
@@ -443,11 +483,18 @@ Import heavier or demonstrational modules explicitly:
   and finite Fano inequalities.
 - `LeanInfoTheory.Shannon.FiniteFamily` for the lightweight finite-atom family
   algebra and ordered chain rules.
+- `LeanInfoTheory.Probability.FiniteMixture` for binary PMF mixtures.
+- `LeanInfoTheory.Shannon.LogSum` for zero-safe finite log-sum inequalities and
+  equality.
+- `LeanInfoTheory.Shannon.EntropyConcavity` for finite-selector and binary
+  entropy concavity.
 - `LeanInfoTheory.Shannon.Units` for logarithm-base conversion.
 - `LeanInfoTheory.Shannon.SemanticBridge` for self-information,
   conditional-law, KL, averaged conditional-KL, nonnegativity, and chain-rule
-  bridge theorems, including the semantic finite-family layer and concrete
-  entropy valuations.
+  bridge theorems, including finite-family semantics, concrete entropy
+  valuations, and the opt-in Section 2.7 convexity layer. Its submodules,
+  including `LeanInfoTheory.Shannon.SemanticBridge.Convexity`, may also be
+  imported directly.
 - `LeanInfoTheory.Certificate.FiniteFamily` for checked-certificate soundness
   under concrete finite-family entropy.
 - `LeanInfoTheory.MathlibFragments` for heavy mathlib/coding anchors.
@@ -455,14 +502,14 @@ Import heavier or demonstrational modules explicitly:
   `LeanInfoTheory.Certificate.Subadditivity`,
   `LeanInfoTheory.Certificate.Monotonicity`,
   `LeanInfoTheory.Certificate.ThreeWaySubadditivity`, and
-  `LeanInfoTheory.Examples` for demos and examples. The seven semantic example
+  `LeanInfoTheory.Examples` for demos and examples. The eight semantic example
   modules may also be imported individually.
 
 ## Roadmap
 
-1. Use the complete and independently validated Chunk 6 checkpoint `7b5f0db`
-   as the baseline for bounded Chunk 7 context intake; approve the next
-   Chapter 2 scope and implementation plan separately.
+1. Create a coherent checkpoint for the validated but uncommitted Chunk 7
+   finite Cover--Thomas Section 2.7 package. Select any later theorem phase
+   through its own readiness and approval process.
 2. Keep the sufficiency core lightweight and place KL integration downstream;
    retain exact full-joint recovery as the contract established by the
    completed midpoint tests, including rejection of marginal-only false
@@ -483,6 +530,11 @@ lake build LeanInfoTheory.Shannon.FiniteFamily
 lake build LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily
 lake build LeanInfoTheory.Certificate.FiniteFamily
 lake build LeanInfoTheory.Examples.FiniteFamily
+lake build LeanInfoTheory.Probability.FiniteMixture
+lake build LeanInfoTheory.Shannon.LogSum
+lake build LeanInfoTheory.Shannon.EntropyConcavity
+lake build LeanInfoTheory.Shannon.SemanticBridge.Convexity
+lake build LeanInfoTheory.Examples.Convexity
 lake build LeanInfoTheory.Shannon.EntropyBounds
 lake build LeanInfoTheory.Shannon.Units
 lake build LeanInfoTheory.Shannon.SemanticBridge

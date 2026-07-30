@@ -5907,6 +5907,142 @@ and
 both completed successfully. After the post-push canonical reconciliation, the
 only remaining transition task is the ignored Step 8 Chunk 6 handoff report.
 
+### 147. Project B Chunk 7 Through Canonical Memory Reconciliation
+
+On July 29, 2026, the approved 22-step finite log-sum and convexity plan
+reached `C7.20` in the current uncommitted working tree above documentation-
+only handoff head `9aa3bb1`. The preceding fully validated committed
+Lean/source checkpoint remains `7b5f0db`. Steps `C7.01`--`C7.19` completed the
+Lean implementation, maintained examples, and API/import review; `C7.20`
+reconciles current-facing hand-maintained project memory. Generated references
+and public-documentation consistency remain assigned to `C7.21`, and
+independent final validation and closeout remain assigned to `C7.22`. This
+entry therefore does not declare the chunk complete or checkpointed.
+
+The two proof-complete feasibility gates established the accepted hard
+contracts before dependent production work. The scalar LS3 gate covered the
+guarded Real proof infrastructure and the unconditional zero-safe `EReal`
+theorem, including empty and singleton finsets, all-zero and `0/0` data,
+zero-over-positive, positive-over-zero, mixed finite/`top` terms, non-bottom
+sums, and equality at common ratios zero, finite-positive, and `top`. The
+binary KL gate established the interior-weight, component-support-aware
+equality iff pointwise division-free cross-product condition in both canonical
+`ENNReal` and guarded Real forms.
+
+The frozen implementation has four new opt-in production modules:
+
+- `Probability.FiniteMixture` contributes four declarations for
+  `PMF.binaryMixture`, its pointwise mass formula, and exact zero/one endpoint
+  laws;
+- `Shannon.LogSum` contributes nine declarations for the zero-safe scalar
+  term, non-bottom calculus, arbitrary-finset inequality/equality, and guarded
+  Real corollaries;
+- `Shannon.EntropyConcavity` contributes three declarations for
+  general-selector entropy concavity, the binary textbook inequality, and
+  strict interior equality; and
+- `Shannon.SemanticBridge.Convexity` contributes eleven declarations for
+  general-selector and binary KL joint convexity, guarded Real forms, binary
+  support-aware equality, the public channel entropy identity, MI concavity in
+  the input law, and MI convexity in the channel.
+
+`C7.19` also promoted the independently pressured
+`PMF.bind_toReal_apply` theorem in the existing lightweight
+`Probability.Finite` module. It eliminates four repeated finite-selector
+`ENNReal.toReal` mass conversions, requires only a finite selector, and leaves
+the output alphabet unrestricted. The total Chunk 7 public source increase is
+therefore 28 declarations. `Examples.Convexity` contains 46 private maintained
+consumers for the scalar edge matrix, mixture endpoint proof irrelevance,
+entropy and KL equality boundaries, inactive infinite KL, active finite
+support, and all four MI input/channel forms; it deliberately adds no public
+declaration.
+
+The API review retained every established public name and all four opt-in
+module boundaries. It added no compatibility alias, general-selector equality
+classification, MI/channel equality case, finite-family wrapper, topology,
+continuity, or certificate theorem. Only
+`PMF.binaryMixture_zero` and `PMF.binaryMixture_one` are `[simp]`;
+`PMF.binaryMixture_apply`, log-sum representation changes, chain rules, and
+convexity theorems remain explicit. The semantic aggregate imports
+`SemanticBridge.Convexity`, and the examples aggregate imports
+`Examples.Convexity`; none of the five new modules enters
+`LeanInfoTheory.lean`. The root-visible finite-bind theorem adds no import edge
+because the root already imports `Probability.Finite`. The
+`ShannonEntropyVal`, `EntropyExpr`, primitive-inequality, certificate,
+validator, and trust contracts are unchanged.
+
+The focused C7.19 build of the four production modules, semantic aggregate,
+convexity examples, examples aggregate, lightweight root, and the changed
+probability owner passed with 2,780 jobs. Direct and guarded root consumers
+confirmed the intended import surface. Representative axiom output contained
+only `propext`, `Classical.choice`, and `Quot.sound`; strict placeholder,
+scratch, whitespace, and diff checks passed. A read-only source-parser pass
+for this reconciliation reports 48 modules, 90 local import edges, 11 root-
+reachable modules, 37 opt-in modules, and 862 source declarations. The tracked
+generated files still intentionally describe the preceding Chunk 6 state of
+43 modules and 834 declarations until `C7.21`.
+
+Future Work Notes 2-4, 9, 14-18, 24, 28, and 36 preserve the relevant
+module-splitting and boundary, generated-documentation, naming, simp-regression,
+validation-harness, no-placeholder, strict-Jensen, example-pedagogy, and
+finite-bind follow-ups. No new numbered Future Work item is justified. In
+particular, the reusable validation driver and maintained boundary/trust
+harness remain later infrastructure rather than being pulled into `C7.20`;
+C7.22 still owns the approved independent disposable validation gate.
+
+### 148. Project B Chunk 7 Generated References And Independent Closeout
+
+On July 29, 2026, `C7.21` regenerated and checked the Chunk 7 module graph,
+declaration index, and hand-written public pages, and `C7.22` independently
+completed the approved milestone gate. All 22 steps of
+`docs/plans/chapter2-chunk-07.md` are complete. The finite Cover--Thomas
+Section 2.7 implementation is validated and checkpoint-ready in the current
+working tree, but remains uncommitted; this entry does not claim a checkpoint,
+push, Pages deployment, or approval of a later theorem phase.
+
+The direct owner/example build covered `Probability.Finite`, all four new
+production modules, and `Examples.Convexity` and passed with 2,704 jobs. The
+complete maintained ten-target suite passed with 2,789 jobs. Positive
+direct-import consumers exercised all 28 new public declarations, and
+aggregate consumers confirmed the intended semantic and examples exposure.
+Guarded negative consumers confirmed that representative names from all four
+opt-in production modules remain absent from the lightweight root and that
+selected private log-sum, KL, and example helpers remain inaccessible. The
+root exposes only `PMF.bind_toReal_apply` through its pre-existing
+`Probability.Finite` import. Every disposable audit and consumer file was
+deleted.
+
+An explicit manifest inspected all 26 new theorems with `#print axioms`; every
+result used only `propext`, `Classical.choice`, and `Quot.sound`. The strict
+Lean placeholder scan returned no matches. The final API/import/simp audit
+confirmed the exact 28-name surface, the reviewed `4/9/3/11/0` per-module
+declaration split, no private-declaration leakage, and only
+`PMF.binaryMixture_zero` and `PMF.binaryMixture_one` as new `[simp]` rules.
+All pointwise, representation-changing, chain, and convexity theorems remain
+explicit. The four production modules and `Examples.Convexity` remain outside
+`LeanInfoTheory.lean`; only `SemanticBridge.Convexity` and
+`Examples.Convexity` enter their respective opt-in aggregates. The
+`ShannonEntropyVal`, `EntropyExpr`, primitive-inequality, certificate,
+validator, and trust boundaries are unchanged.
+
+The regenerated artifacts contain 48 modules, 90 local import edges, 11
+root-reachable modules, 37 opt-in modules, and 862 source-declared public
+declarations, all documented. Source paths and lines resolve, all 862
+declaration anchors are unique, every module has curated metadata, and no
+private example appears in the index. Both generators reproduced byte-identical
+second-pass hashes, and `scripts/check_website.py` passed for 12 HTML files and
+two generated JSON files. Conflict-marker, C7 disposable-source/Lake-artifact,
+untracked-file, whitespace, and `git diff --check` audits found only the
+intentional Chunk 7 working-tree changes; pre-existing ignored `tmp/` material
+was left untouched. Validation used the incremental Lake cache; the standing
+cold-build policy remains unchanged.
+
+Future Work Notes 9, 14-18, 24, 28, and 36 continue to own their existing
+documentation, naming, simp-regression, validation-driver/boundary-harness,
+strict-Jensen, pedagogy, and finite-bind follow-ups. In particular, this
+manually orchestrated pass preserves rather than discharges the already
+triggered reusable validation driver and maintained boundary/trust harness in
+Note 17. No new Future Work item is justified by the closeout.
+
 ## Completed Project B Chunk 4 Plan
 
 This completed theorem phase is a revised 20-step plan for finite sufficient
@@ -6265,18 +6401,22 @@ approved 24-step finite-family Chunk 6 plan is complete and checkpointed as
 `7b5f0db`. Its 68-declaration lightweight core, 30-declaration semantic
 layer, concrete `ShannonEntropyVal`, single checked-certificate adapter, 18
 example declarations, API freeze, canonical reconciliation, generated
-references, and independent milestone gate all pass. Bounded Chunk 7 context
-intake and planning may proceed separately, but no theorem scope or
-implementation is approved. Richer certificate assumptions,
-external certificate import, coding-theory layers, theorem-level blueprint
-work, and substantial mathlib PR preparation remain later work.
+references, and independent milestone gate all pass. The approved 22-step
+Chunk 7 finite log-sum and convexity plan is complete and independently
+validated through `C7.22`. Its 28 new public source declarations, 46 private
+maintained examples, generated references, public documentation, complete
+milestone suite, boundary/trust audits, and repository-hygiene gates all pass
+in the current uncommitted working tree. The chunk is checkpoint-ready but is
+not yet committed, checkpointed, pushed, or deployed. Richer certificate
+assumptions, external certificate import, coding-theory layers, theorem-level
+blueprint work, and substantial mathlib PR preparation remain later work.
 
 ### Status Index
 
 | Status | Notes | Meaning |
 | --- | --- | --- |
 | Standing guardrails | 2-4, 6-8, 14-18, 26 | Apply these policies continuously; they do not create standalone cleanup tasks. |
-| Current Project B transition | Unnumbered | Chunks 5 and 6 are checkpointed as `ec78829` and `7b5f0db`; bounded Chunk 7 intake and planning are next, but no numbered note owns or authorizes its mathematical scope yet. |
+| Current Project B execution | Unnumbered | Chunks 5 and 6 are checkpointed as `ec78829` and `7b5f0db`; Chunk 7 is complete and independently validated through `C7.22` in an uncommitted checkpoint-ready working tree. |
 | Fano follow-ups | 29 | Retain the five evidence-based proof-pressure or pedagogy/sharpness groups and optional theorem-highlights curation; Note 29 no longer owns downstream chunk sequencing. |
 | Channel/Markov proof-pressure | 21, 25, 27 | Revisit these only when concrete channel, Markov, or data-processing consumers reach their stated triggers. |
 | Proof-pressure deferred | 19, 22-24, 30-37, 40 | Wait for the repeated proof or new statement pressure specified in each note. |
@@ -6289,7 +6429,7 @@ requested by Note 14 for the next scheduled API review.
 The 40 numbered entries therefore comprise 38 active or standing notes and two
 closed historical notes. Here, active includes guardrails, proof-pressure
 triggers, Fano follow-ups, and later milestones; it does not mean immediate
-implementation. The unnumbered current-transition row is navigation context,
+implementation. The unnumbered current-execution row is navigation context,
 not a 41st Future Work item. Earlier step-specific imperatives retained inside
 a note are historical trigger records when a later paragraph records their
 resolution.
@@ -6901,6 +7041,24 @@ resolution.
     preserve the `LeanInfoTheory.Shannon` namespace and import compatibility;
     do not split merely to reduce line count.
 
+    A July 29, 2026 post-C7.18 review applies the same pressure-based policy to
+    `Examples.Convexity`. The module now contains 46 maintained private
+    examples spanning scalar log-sum, finite mixtures, entropy concavity, KL
+    joint convexity/equality, and mutual-information input/channel convexity.
+    Keep it as one module for now: the examples share one Section 2.7 purpose,
+    the focused and aggregate builds remain practical, and separate sections
+    already make failures local. Line count and example count alone do not
+    justify an import hierarchy for non-public regressions.
+
+    Reconsider a split only if later convexity examples materially impair
+    navigation or focused build/review time, or if downstream validation needs
+    to import scalar, entropy, KL, and MI fixtures independently. A plausible
+    layout would retain `Examples.Convexity` as the aggregate and move coherent
+    private sections into focused submodules; exact names are deliberately
+    unapproved. Preserve non-public fixtures, keep every submodule outside
+    `LeanInfoTheory.lean`, and do not split merely to shorten the current file
+    or rename anonymous checks.
+
 3. Keep imports light in the core finite Shannon files. Heavy bridge files can
     import KL divergence, kernels, conditional probability, and coding theory
     only when those APIs are actually needed.
@@ -6940,6 +7098,32 @@ resolution.
     product construction for `PMF`, new finite KL expansion lemmas, or a public
     averaged conditional-KL API. If any of those exist upstream, prefer reusing
     them over maintaining parallel local helpers.
+
+    The July 29, 2026 post-`C7.17` review of C7.12 adds one precise item to
+    that upgrade audit. Search for an upstream finite-selector joint-convexity
+    theorem matching the canonical contract of `klDiv_bind_le_sum`:
+
+    ```text
+    klDiv (r.bind P) (r.bind Q)
+      <= sum i, r i * klDiv (P i) (Q i).
+    ```
+
+    A replacement is suitable only if it is unconditional and `ENNReal`-
+    valued, preserves the inactive-component convention `0 * top = 0`, handles
+    an active infinite-KL component through the genuine `top` branch, and does
+    not impose global support or positivity assumptions. Also compare its
+    measurable-space and finite-alphabet contract with the current
+    `[Fintype iota] [Finite alpha]` theorem. Do not replace the project theorem
+    with a support-guarded Real result or a theorem that silently excludes
+    infinite KL merely because the upstream proof is shorter.
+
+    If an exact or stronger upstream result appears, first test whether a
+    compatibility proof can preserve the existing public name and downstream
+    binary, equality, and mutual-information corollaries. Then decide whether
+    the local theorem should become a thin wrapper or whether its private
+    finite-PMF proof remains useful for the project's scalar bridge. This is an
+    upgrade-triggered audit, not work for active Chunk 7 and not a reason to
+    duplicate the current API.
 
 ### Do Later
 
@@ -8095,6 +8279,226 @@ resolution.
     simp attributes on existing theorems and one private helper, so no new
     naming-watch entry is required.
 
+    A July 29, 2026 review of the completed Chunk 7 `C7.06` scalar LS3 API,
+    recorded after `C7.01`--`C7.17` completed and before `C7.18` began, adds one
+    guarded-Real name to the watchlist without renaming or aliasing it:
+
+    - `real_logSum_eq_iff_exists_constant_ratio_of_support` is mathematically
+      exact and follows the established `real_..._of_support` spelling, but it
+      is long enough that permanent examples should test theorem discovery and
+      proof readability. Preserve the current declaration through `C7.18`.
+      During `C7.19`, compare it with compatibility-only sketches such as
+      `real_logSum_eq_iff_common_ratio_of_support` and
+      `real_logSum_eq_iff_proportional_of_support`. Add an alias only if the
+      shorter conceptual spelling materially improves use without obscuring
+      the existential common-ratio conclusion, the active-pair convention, or
+      the support-sensitive guard. Otherwise record a declined alias decision
+      and retain the current name alone.
+
+    Do not treat a pairwise cross-product equality characterization as a
+    spelling alias. A theorem saying that selected pairs are pairwise
+    proportional, equivalently `a i * b j = a j * b i`, would be a second
+    mathematical view of the zero-safe equality condition. The binary KL
+    equality development currently derives its two-component cross-product
+    condition privately from the guarded Real common-ratio theorem; that single
+    specialized consumer does not justify a general scalar theorem. Reconsider
+    a public cross-product characterization only if a second independent
+    entropy, KL, or scalar consumer repeats the conversion or `C7.18`/`C7.19`
+    demonstrates concrete friction with the existential-ratio surface. At that
+    point verify the empty, `(0, 0)`, common-zero, finite-ratio, and common-`top`
+    cases before choosing or auditing a public name.
+
+    A separate July 29, 2026 post-`C7.17` review of the completed C7.15 binary
+    KL equality API confirms that neither public theorem requires correction,
+    renaming, or a compatibility alias. `klDiv_binaryMixture_eq_iff` and
+    `toReal_klDiv_binaryMixture_eq_iff` form the direct equality continuation
+    of the corresponding C7.14 inequalities, and their names expose no private
+    scalar, support-transport, or conversion machinery. Do not place either
+    name on the watchlist merely because it is descriptive.
+
+    During C7.19's already scheduled API, helper, and documentation review,
+    inspect the two public doc comments together with the maintained C7.18
+    consumers. If the null-mass behavior is not immediately clear, improve the
+    comments without changing either theorem: when both reference masses at an
+    atom are positive, `p1 x * q2 x = p2 x * q1 x` is ordinary likelihood-ratio
+    equality; when one component has zero reference mass, support inclusion
+    forces its numerator mass to zero and the condition on that absent
+    component is vacuous. Do not replace the zero-safe cross-product statement
+    with division, add full-support or atom-positivity assumptions, or publish
+    a second explanatory theorem.
+
+    In the same review, reassess the explicit zero-reference case split in the
+    private `weightedPair_constant_ratio_iff_cross` bridge. Keep it private and
+    unchanged if the current branch structure remains the clearest audit of
+    both-zero, one-sided-zero, and both-positive cases. Extract a smaller
+    private zero-safe ratio lemma only if it materially shortens more than one
+    production proof or makes the C7.15 proof substantially easier to audit.
+    This single binary KL consumer does not meet the public cross-product
+    promotion trigger above, and proof length alone is not independent API
+    pressure.
+
+    Retain the current shared guarded-Real proof engine for both public
+    codomains. Deriving the Real theorem mechanically from the ENNReal theorem
+    would add finiteness and coercion bookkeeping without strengthening the
+    contract; reconsider that direction only if later maintenance reveals
+    actual divergence between the two forms. Future Work Note 17 already owns
+    the C7.18 support-boundary and unequal-active-ratio regressions for both
+    declarations, so create no duplicate fixture assignment here. C7.15
+    remains complete, and this review does not begin or authorize C7.18.
+
+    The length of the extended equality proof is not naming or helper pressure.
+    Its all-zero, finite-ratio, and common-`top` branches encode genuinely
+    different `EReal` behavior. Keep the current private conversion helpers and
+    do not compress those branches into a public abstraction merely to shorten
+    the source.
+
+    A July 29, 2026 side review of the completed Chunk 7 `C7.16`, recorded
+    after `C7.01`--`C7.17` completed and before `C7.18` began, adds one naming
+    watch, one consumer-triggered API possibility, and one deliberate non-task.
+    None identifies a mathematical or Lean defect, reopens C7.16, changes the
+    approved Chunk 7 order, or begins C7.18.
+
+    First, preserve
+    `mutualInfo_channelJoint_eq_entropy_bind_sub_sum` unchanged through the
+    active theorem phase. Its name is mathematically precise, but it is long
+    and exposes the `channelJoint`/`bind`/finite-sum presentation of the
+    textbook identity
+
+    ```text
+    I(X;Y) = H(Y) - sum_x p(x) H(W(x)).
+    ```
+
+    During the already scheduled C7.19 naming review, use the maintained C7.18
+    consumers to test whether a compatibility-only alias along the provisional
+    pattern
+    `mutualInfo_channel_eq_outputEntropy_sub_expectedEntropy` materially
+    improves theorem search and call-site readability. Treat that spelling as
+    a sketch, not approved vocabulary. Check namespace collisions, consistency
+    with the existing entropy and channel theorem families, and whether
+    `expectedEntropy` communicates the input weighting clearly enough. Add no
+    alias if the current theorem is readily discovered or if the shorter name
+    merely replaces explicit representation detail with ambiguous terminology.
+    The general-selector name `sum_mul_mutualInfo_channelJoint_le` deliberately
+    parallels `sum_mul_entropy_le_entropy_bind`, while
+    `mutualInfo_binaryMixture_input_concave` is already textbook-facing; do not
+    place either on the watchlist without new consumer evidence.
+
+    Second, retain the current joint-entropy calculation
+    `entropy_channelJoint_eq_entropy_add_sum` as a private theorem for now. Its
+    mathematical content,
+
+    ```text
+    H(X,Y) = H(X) + sum_x p(x) H(W(x)),
+    ```
+
+    is a standard finite channel chain rule and may become independently useful
+    in later coding-theory proofs. C7.16 itself has only one public consumer,
+    and the public mutual-information identity already exposes the result
+    needed by the current convexity development, so promotion now would be
+    speculative API growth. Reconsider a public theorem only when a second
+    independent production consumer needs this exact channel-joint entropy
+    expansion without passing through mutual information. At that point audit
+    the final textbook-facing name, confirm that zero-mass input atoms and
+    arbitrary unused channel fibers remain assumption-free, and keep the
+    theorem in the opt-in semantic/channel layer rather than moving its proof
+    dependencies into the lightweight root.
+
+    Third, do not schedule a rewrite of the private
+    `sum_mul_expectation_eq_expectation_bind` calculation through a
+    measure-theoretic expectation API. The current finite-sum proof keeps the
+    imports light, exposes the required `ENNReal.toReal` finiteness checks
+    explicitly, and is easier to audit in this finite theorem. Revisit its
+    implementation only if another production proof repeats the same
+    selector/expectation rearrangement or a verified mathlib theorem removes
+    substantial code and coercion burden without strengthening assumptions or
+    adding heavier imports. If repetition occurs, first extract or reuse a
+    coherent private helper in the owning module; promote a public expectation
+    theorem only after multiple independent consumers establish genuine API
+    pressure.
+
+    A second July 29, 2026 side review covers the completed Chunk 7 `C7.17`,
+    again after `C7.01`--`C7.17` completed and before `C7.18` began. The two
+    public declarations `mutualInfo_channelMixture_le_sum` and
+    `mutualInfo_binaryChannelMixture_le` are concise, state the correct
+    general-selector and binary channel-convexity orientations, and expose no
+    marginal, independent-product, support-transport, or coordinate
+    implementation detail. Keep both names unchanged and add no compatibility
+    alias without new consumer evidence.
+
+    During C7.19's already scheduled private-helper review, inspect one narrow
+    readability question inside the proof of
+    `mutualInfo_channelMixture_le_sum`. The current proof separately records
+    the mutual-information/KL bridge for the mixed channel and for each
+    component channel. A local parameterized fact of the schematic form
+
+    ```text
+    have hMIKL (V : alpha -> PMF beta) : ...
+    ```
+
+    could remove that small duplication. This is an optional local refactor,
+    not a missing theorem or public API request. Make it only if the complete
+    proof becomes materially shorter or easier to audit; otherwise preserve
+    the two explicit facts. Do not promote a channel-specific MI/KL forwarding
+    theorem merely to remove two nearby proof blocks, because the existing
+    public `mutualInfo_eq_toReal_klDiv_joint_indepProd` theorem already owns the
+    reusable mathematical bridge.
+
+    Keep the three C7.17 mixture-commutation results private. Two use explicit
+    PMF extensionality and finite-sum distributivity, while the output-law
+    identity uses `PMF.bind_comm`. A more abstract monadic derivation is
+    conceivable, but the present proofs are short, transparent, and expose the
+    exact fixed-input algebra needed by KL joint convexity. Reconsider their
+    implementation only if a second independent production proof repeats the
+    same channel-joint or fixed-left-independent-product commutation, or if a
+    verified mathlib bind/map theorem removes substantial proof code without
+    increasing import or typeclass burden. Even then, prefer one coherent
+    private helper family; public promotion requires multiple downstream
+    consumers rather than proof cleverness alone.
+
+    The implementation-time function-normalization and typeclass issues are
+    closed history, not future work. The binary specialization now correctly
+    uses `fun b x => if b then W1 x else W2 x`, and the private finite-sum
+    helpers use `[Finite iota]` with local enumeration rather than exposing an
+    unnecessary `[Fintype iota]` assumption. Do not reopen either choice.
+    Likewise, C7.17 supplies no evidence for channel-convexity equality cases,
+    finite-family or random-variable wrappers, a public channel-mixture
+    definition, a bundled channel abstraction, or public commutation theorems.
+    Those remain outside the accepted Chunk 7 scope unless a later separately
+    approved development produces genuine pressure. This review does not
+    begin or authorize C7.18.
+
+    C7.19 completed the Chunk 7 naming and helper review after the maintained
+    C7.18 consumers and an additional direct-import consumer exercised the
+    complete public surface. Retain
+    `real_logSum_eq_iff_exists_constant_ratio_of_support` without either
+    provisional alias. The existing name states the existential witness and
+    support guard exactly; `common_ratio` would save little, while
+    `proportional` is less explicit about the active-pair and zero-mass
+    convention. Likewise, retain
+    `mutualInfo_channelJoint_eq_entropy_bind_sub_sum` without the provisional
+    output-entropy alias: the current representation-facing name was readily
+    discovered in the maintained example, while `expectedEntropy` would leave
+    the input weighting and channel-law family implicit.
+
+    No general pairwise cross-product log-sum theorem was added. The private
+    binary KL conversion remains its sole mathematical consumer, and the
+    maintained scalar examples use the canonical common-ratio theorem
+    directly. The two public binary KL equality names also remain unchanged;
+    their source comments now explain the positive-reference likelihood-ratio
+    case and the zero-reference case in which support inclusion forces the
+    matching numerator mass to vanish. The private
+    `weightedPair_constant_ratio_iff_cross` case split remains the clearest
+    local audit of those branches and was neither extracted nor promoted.
+
+    C7.19 did add the independently justified lightweight theorem
+    `PMF.bind_toReal_apply` in `Probability.Finite`. Its name follows the
+    existing `fstMarginal_toReal_apply`/`sndMarginal_toReal_apply` bridge
+    pattern, its argument order follows `PMF.bind`, and it exposes no proof
+    machinery or semantic representation detail. It therefore needs no
+    compatibility alias or watch entry. Reopen any of these completed naming
+    decisions only after a later production consumer demonstrates a concrete
+    discovery or readability failure.
+
 15. The Step 13 `[simp]` review for mutual information and conditional mutual
     information was completed on July 14, 2026. Local attributes were tested
     on representative PMF, random-variable, symmetry, diagonal/self, and
@@ -8359,6 +8763,141 @@ resolution.
     until such a test layer exists, the reviewed source attributes, maintained
     mathematical examples, focused builds, and disposable API-review probes
     are the appropriate validation mechanism.
+
+    A July 29, 2026 post-`C7.17` review of the completed C7.08 finite-mixture
+    API sharpens the already scheduled C7.18/C7.19 mixture review without
+    reopening C7.08 or authorizing C7.18. The four-declaration BP3a surface is
+    mathematically and architecturally sound; preserve `PMF.binaryMixture`,
+    `PMF.binaryMixture_apply`, `PMF.binaryMixture_zero`, and
+    `PMF.binaryMixture_one` throughout the active phase.
+
+    C7.18 should exercise both endpoint laws with propositionally different
+    proofs of the required `t <= 1` bound, including an endpoint underneath a
+    function-valued channel or another ordinary downstream context. C7.19
+    should then test `binaryMixture_zero` and `binaryMixture_one` together as
+    local candidate simp rules. Promote either attribute only if the pair:
+
+    - rewrites arbitrary proof arguments by proof irrelevance;
+    - strictly removes the visible binary-mixture constructor;
+    - does not loop with `PMF.binaryMixture`, Bernoulli-bind unfolding, or any
+      pointwise mass rule;
+    - behaves predictably under lambdas and PMF extensionality; and
+    - does not make interior-weight goals unfold prematurely.
+
+    Review `PMF.binaryMixture_apply` separately. Its pointwise formula is useful
+    when atom masses are the intended normal form, but a global simp attribute
+    may expand mixtures too eagerly inside entropy, KL, support, or channel
+    expressions. Keep it explicit unless maintained consumers demonstrate a
+    strictly better and terminating normal form. Record a declined attribute
+    decision if the endpoint rules are accepted but the pointwise rule is not.
+
+    The explicit proof argument `ht : t <= 1` currently matches
+    `PMF.bernoulli`, works across proof irrelevance, and has caused no
+    demonstrated API failure. Do not replace the coefficient representation,
+    change existing signatures, or add a canonical-proof forwarding family
+    merely to remove `by norm_num` from endpoint calls. Reconsider only if
+    C7.18/C7.19 consumers show repeated elaboration or rewriting friction that
+    proof irrelevance and the endpoint theorems do not solve.
+
+    Finally, several binary entropy, KL, and MI corollaries currently specialize
+    their general-selector theorem by unfolding `PMF.binaryMixture`,
+    `PMF.bernoulli_apply`, and `Fintype.univ_bool`. This is real repetition but
+    remains short and transparent. During C7.19, test whether one private local
+    normalization helper materially improves multiple production proofs.
+    Promote no public Bool-selector, weighted-sum, or binary-specialization
+    helper without at least two independent downstream consumers that cannot
+    use the existing definition and pointwise theorem cleanly. If the current
+    proofs remain readable, record that no extraction is justified.
+
+    A July 29, 2026 post-`C7.17` review of the completed C7.14 binary KL
+    corollaries adds no theorem correction and no independent future-work
+    track. During C7.18's already assigned endpoint and inactive-`top`
+    coverage, instantiate `klDiv_binaryMixture_le` and
+    `toReal_klDiv_binaryMixture_le` at both endpoints and use
+    `PMF.binaryMixture_zero` and `PMF.binaryMixture_one` to demonstrate that
+    the textbook inequalities normalize to the expected exact equalities.
+    Include an inactive component that violates support inclusion and has
+    infinite KL, and use propositionally different proofs of `t <= 1` where
+    that keeps the proof-irrelevance check visible. Reuse the compact Bool
+    models already requested by Note 17 rather than creating a second fixture
+    family. Keep these checks private or anonymous in `Examples.Convexity`;
+    the PMF endpoint laws together with the two C7.14 declarations already
+    supply the mathematics, so public KL-specific endpoint theorems would be
+    redundant.
+
+    C7.19's existing private Bool-selector normalization review remains the
+    sole owner of the repeated `PMF.binaryMixture`, `PMF.bernoulli_apply`, and
+    `Fintype.univ_bool` proof pattern. Preserve the accepted `NNReal`
+    coefficient with explicit `ht : t <= 1` and the current
+    `(p1, p2, q1, q2)` argument order, which respectively match
+    `PMF.bernoulli` and the two displayed mixtures used consistently by C7.15.
+    Do not introduce an interval subtype, reorder the established theorem
+    family, or add forwarding aliases merely for aesthetic symmetry.
+    Reconsider one of those choices only if the maintained C7.18 consumers or
+    the scheduled C7.19 review demonstrates concrete elaboration, rewriting,
+    or discovery friction. C7.14 remains complete, and this clarification does
+    not begin or authorize C7.18.
+
+    C7.18 has now supplied that endpoint evidence. Both PMF endpoint laws
+    compiled against propositionally different proofs of `t <= 1`, including
+    the weight-one law beneath a function-valued channel. The canonical and
+    guarded Real binary KL inequalities were instantiated at both endpoints,
+    and four separate private consumers showed their displayed sides reducing
+    to exact equalities through `PMF.binaryMixture_zero` and
+    `PMF.binaryMixture_one`, including an inactive infinite-KL component.
+    Explicit PMF arguments keep those nested rewrites elaboration-stable.
+
+    This evidence creates no pressure for a canonical-proof forwarding family,
+    interval subtype, argument reordering, or public KL endpoint theorem. Keep
+    the four exact checks separate so failures remain localized by endpoint and
+    codomain. C7.19 still owns the local candidate-simp tests for
+    `binaryMixture_zero` and `binaryMixture_one`, the more conservative review
+    of `binaryMixture_apply`, and the possible private Bool-selector
+    normalization helper; do not infer those decisions from successful
+    explicit rewrites alone.
+
+    C7.19 completed that review. `PMF.binaryMixture_zero` and
+    `PMF.binaryMixture_one` are now `[simp]`: local and exported-attribute
+    probes showed that they erase the visible constructor across arbitrary
+    proof terms, lambdas, nested contexts, PMF application, and extensional
+    use. They terminate with the mixture definition, Bernoulli bind, and
+    pointwise laws, and the focused plus aggregate example builds exposed no
+    loop or premature interior-weight normalization. The explicit
+    `ht : t <= 1` construction argument therefore remains unchanged.
+
+    `PMF.binaryMixture_apply` deliberately remains explicit. It changes from a
+    PMF construction to an atomwise weighted-sum representation and can expand
+    mixtures inside entropy, support, KL, and channel expressions; the
+    endpoint rules do not create comparable representation growth. The six
+    short binary specializations through `PMF.bernoulli` and
+    `Fintype.univ_bool` also remain inline. A private selector-normalization
+    helper would either duplicate across owning modules or obscure transparent
+    textbook specializations, and no public helper has independent consumer
+    pressure. Revisit the pointwise attribute or selector helper only after a
+    concrete simplifier regression or repeated production friction.
+
+    A post-C7.19 critical review preserves the exact non-public regression
+    contract for the future dedicated Lean test layer already contemplated by
+    this note and Future Work Note 17. When that layer is introduced, or
+    earlier if either endpoint attribute regresses, include checks that:
+
+    - both endpoint rules are exported `[simp]` declarations;
+    - propositionally different proofs of `0 <= 1` or `1 <= 1` normalize by
+      proof irrelevance;
+    - normalization works under lambdas, nested function contexts, PMF
+      application, and extensional goals;
+    - combining endpoint simplification with explicit
+      `PMF.binaryMixture`/Bernoulli unfolding terminates; and
+    - plain `simp` does not prove the generic interior-weight pointwise formula,
+      so `PMF.binaryMixture_apply` remains a caller-selected representation.
+
+    Keep those declarations private or anonymous in the test layer. Do not add
+    public example theorems solely to preserve simp metadata, and do not
+    introduce a new maintained harness during C7.20--C7.22 merely because the
+    disposable C7.19 probes were deleted. C7.22 should still run its approved
+    independent disposable boundary and API checks. The maintained C7.18
+    endpoint examples plus the current source attributes remain sufficient
+    between those gates.
 
 16. Revisit `[simp]` status for conditional entropy chain-rule theorems after
     the chain-rule family has more downstream examples. The July 8 chain-rule
@@ -8725,6 +9264,256 @@ resolution.
     maintained boundary/trust-harness work. Keep that infrastructure scheduled
     before or alongside the next major milestone closeout or material CI
     refactor, not as a prerequisite for bounded Chunk 7 intake.
+
+    A July 29, 2026 critical review of Chunk 7 `C7.01`, recorded after
+    `C7.01`--`C7.15` completed and while `C7.16` was active, adds two bounded
+    lessons for future feasibility gates and regression infrastructure.
+    Neither identifies a mathematical defect in `C7.01`, reopens its validated
+    result, changes the approved Chunk 7 order, or authorizes work inside the
+    active `C7.16` step.
+
+    First, a proof-complete feasibility gate should elaborate the intended
+    production assumptions and theorem shapes exactly whenever practical.
+    The disposable `C7.01` spike used an all-selected-denominators-nonzero
+    convenience wrapper for part of its guarded Real proof, whereas the final
+    production contract uses the weaker support-sensitive guard
+
+    ```text
+    a i != 0 -> b i != 0.
+    ```
+
+    This created no correctness or scope gap: the spike's complete extended
+    proof already validated the required zero-denominator filtering, and
+    `C7.02` implemented and built the exact weaker guard before dependent
+    production work continued. Do not restore or rewrite the deleted spike and
+    do not reopen `C7.01` or `C7.02`. At the next proof-complete feasibility
+    gate, however, compile the exact planned hypothesis surface before declaring
+    the gate passed. If a stronger scratch wrapper is useful internally, keep
+    it subordinate to an exact-contract theorem in the same spike; otherwise
+    record the mismatch explicitly and stop dependent work until it is resolved.
+
+    Second, distinguish representative maintained examples from an exhaustive
+    mathematical edge-case regression matrix. Approved Step `C7.18` already
+    owns permanent examples for scalar empty/all-zero and positive-over-zero
+    behavior, together with mixture, entropy, KL, and MI boundary cases. Let
+    that step add the small source-facing examples justified by documentation
+    and API-review needs; do not pull them into `C7.16`, and do not preserve the
+    entire `C7.01` scratch file as a public example module merely to mirror
+    every theorem branch.
+
+    A comprehensive internal scalar regression fixture becomes worthwhile only
+    if one of the following occurs: the public extended log-sum definitions or
+    equality contract change; a Lean/mathlib upgrade changes relevant
+    `EReal`/`ENNReal` arithmetic or simplification; another extended-valued
+    theorem family repeats the same zero/top/non-bottom case matrix; or the
+    maintained validation/test harness already planned under this note is being
+    introduced. At that point, use a non-public test surface that covers empty
+    and singleton index sets, all-zero and `0/0` data, zero-over-positive,
+    positive-over-zero, mixed finite/top terms, total denominator zero,
+    non-bottom sums, and equality ratios `0`, finite, and `top`, including one
+    nonconstant-ratio failure. Keep those tests independent of transient
+    declaration counts, import the owning scalar module directly, and have the
+    eventual validation driver invoke them without turning test lemmas into
+    public API.
+
+    Timing is therefore split deliberately. Apply the exact-signature lesson at
+    the next future feasibility gate; complete the representative permanent
+    Chunk 7 coverage at `C7.18`; and schedule the exhaustive reusable regression
+    layer alongside the already-triggered Note 17 validation driver before or
+    with the next major milestone closeout or material CI refactor, unless one
+    of the earlier API/upgrade/repetition triggers fires first. No additional
+    implementation is appropriate while `C7.16` is active.
+
+    A later July 29, 2026 explicitly authorized post-`C7.01` follow-up,
+    performed after `C7.16` completed and before `C7.17` began, supersedes only
+    that timing decision. The follow-up first audited the production
+    `C7.02`--`C7.06` source and reconfirmed the exact support-sensitive guarded
+    Real hypothesis, unconditional zero-safe extended inequality, active-index
+    equality condition, and non-bottom contract. It then completed the scalar
+    regression subset of `C7.18` early in the non-public section of
+    `LeanInfoTheory.Examples.Convexity`. The maintained consumers cover the
+    full scalar edge matrix listed above, including finite/`top` mixtures,
+    ratio `0`, finite-positive, and ratio `top` equality, nonconstant-ratio
+    failure, and a selected `(0, 0)` pair that satisfies the production support
+    guard while refuting the stronger all-denominators-nonzero condition. The
+    examples aggregate reaches the module; the lightweight root does not.
+
+    This discharges the concrete exhaustive scalar-fixture trigger and the
+    `C7.01` exact-contract follow-up. It does not build or discharge the
+    reusable cross-platform validation driver, maintained general
+    boundary/trust harness, shared target manifest, or cold-build policy
+    already owned by this note. The exact-signature lesson also remains a
+    standing rule for future proof-complete feasibility gates. C7.18 itself
+    remains `not started` because its mixture, entropy, KL, MI, and remaining
+    boundary-consumer work has not begun.
+
+    A July 29, 2026 post-`C7.17` critical review of the completed `C7.07`
+    binary support-aware KL-equality feasibility gate adds one bounded
+    regression reminder and clarifies two items that are already owned
+    elsewhere. It does not reopen `C7.07`, change either production C7.15
+    theorem, authorize C7.18, or add a new public-API task.
+
+    During C7.18, preserve two small non-public consumers of the production
+    `klDiv_binaryMixture_eq_iff` and
+    `toReal_klDiv_binaryMixture_eq_iff` surfaces:
+
+    - one support-boundary model in which zero reference masses exercise the
+      division-free cross-product equality condition; and
+    - one interior-weight model with unequal active likelihood ratios, for
+      which both the canonical `ENNReal` equality and guarded Real equality
+      are rejected.
+
+    Reuse one model for both codomains when that keeps the example readable.
+    Keep the declarations private or anonymous, and do not publish a fixture,
+    ratio helper, cross-product alias, or general-selector equality theorem
+    solely for regression coverage. This reminder sharpens C7.18's already
+    approved finite/support-boundary KL assignment; it does not expand that
+    step's mathematical scope. If C7.18 cannot retain both checks without new
+    API or substantial example machinery, record the omission here for a
+    future non-public validation layer rather than forcing it.
+
+    The apparent redundancy between `ht : t <= 1` and the interior hypothesis
+    `ht1 : t < 1` is not a C7.07 defect: `ht` is the proof argument carried by
+    `PMF.binaryMixture`, and the production theorem family consistently exposes
+    that construction. C7.18 already owns endpoint and proof-irrelevance
+    examples, and C7.19 explicitly owns the cross-proof ergonomics review.
+    Test applications built with propositionally different proofs of
+    `t <= 1`, including endpoint normalization, before deciding whether the
+    current explicit proof argument causes real friction. Preserve every
+    current signature during the active phase; do not add a forwarding theorem
+    or compatibility alias unless those consumers demonstrate a concrete
+    problem.
+
+    Finally, C7.07's spike-to-production correspondence is already recorded in
+    its approved-plan outcome, and C7.11/C7.15 have implemented the PMF-mass
+    conversion, support transport, finite-KL normalization, and zero-safe
+    ratio/cross-product work as private infrastructure. That item is closed,
+    not future work. Reopen helper ownership only if an independent later
+    production proof repeats one of those arguments.
+
+    A separate July 29, 2026 post-`C7.17` review of the completed `C7.11`
+    private KL finite-branch infrastructure adds one focused validation
+    obligation for C7.18. It does not identify a defect in any of the four
+    private bridges, reopen C7.11, authorize C7.18 early, or require direct
+    access to private helper names. The maintained examples should exercise
+    the public C7.12--C7.14 surfaces across the small selector/KL matrix that
+    motivated those bridges:
+
+    - a zero-weight component with `klDiv = top`, confirming that its canonical
+      weighted contribution is `0 * top = 0` and that the guarded Real theorem
+      imposes no support condition on that inactive component;
+    - a nonzero-weight component with `klDiv = top`, confirming that the
+      canonical weighted right-hand side is `top` and that no `toReal`
+      conversion is used to make this branch appear finite;
+    - an active finite-KL component satisfying support inclusion, exercising
+      the genuine finite branch and its Real weighted-sum conclusion; and
+    - an ordinary inactive finite-KL component, which may be discharged by the
+      same Bool endpoint/proof-irrelevance model rather than receiving a
+      separate artificial fixture.
+
+    Prefer one or two compact Bool models that jointly cover this matrix.
+    Keep every regression declaration private or anonymous in
+    `Examples.Convexity`; do not expose the four C7.11 helpers, publish a KL
+    fixture, or add a theorem solely to inspect an implementation branch.
+    This sharpens C7.18's already approved inactive-infinite-KL and endpoint
+    assignments rather than expanding its mathematical scope. If the active-
+    `top` case would be only a verbose restatement of `le_top`, record that the
+    canonical theorem branch was inspected and let the inactive-`top` plus
+    active-finite consumers carry the maintained regression value.
+
+    No separate future task is created for pruning C7.11's initial import list:
+    the completed `SemanticBridge.Convexity` module now uses its planned
+    channel, mixture, entropy-concavity, log-sum, KL, and product dependencies.
+    Likewise, no standalone dependency-diagram task is justified. The module
+    header and approved-plan outcome already document the top/finite split and
+    the four-bridge dependency chain. Revisit presentation only if C7.19 or a
+    later contributor review finds the proof architecture materially difficult
+    to discover.
+
+    The completed C7.18 pass now discharges the representative convexity
+    examples assigned above. `Examples.Convexity` contains 46 private examples,
+    including the earlier scalar matrix, propositionally different endpoint
+    proofs, exact canonical and Real KL endpoint normalizations, inactive
+    infinite and finite selector components, active finite support, a
+    disjoint-support equality model in both codomains, unequal-ratio rejection,
+    and all four MI input/channel surfaces. The active-infinite general-selector
+    KL branch was inspected and deliberately not retained: once its weighted
+    right side is `top`, the maintained conclusion would be only `le_top`.
+    Reopen that choice only if the canonical theorem's infinite-branch
+    implementation changes or a future internal harness can test additional
+    behavior beyond the order-theoretic tautology.
+
+    C7.18 also repeated the temporary boundary pattern successfully: direct
+    consumers covered the four Chunk 7 modules, the semantic aggregate, and
+    the examples aggregate, while a root-only consumer rejected the four
+    representative opt-in names. All probes were deleted. Preserve this exact
+    matrix as input to the already-triggered maintained boundary/trust harness.
+    When that harness is implemented, stable internal test identifiers or a
+    reviewed manifest may be useful; add them in the test layer rather than
+    renaming the current anonymous private examples or turning regression
+    declarations into public API. The harness should continue to assert
+    specific negative diagnostics or environment absence, not accept an
+    arbitrary nonzero Lean exit.
+
+    Keep the four endpoint-normalization checks separate. Their small
+    repetition localizes failures by endpoint and codomain and directly
+    protects proof irrelevance plus `0 * top = 0`; consolidating them into one
+    large conjunction is not future work. Likewise, numerical MI calculations
+    are pedagogical rather than validation infrastructure and are tracked
+    separately under Future Work Note 28.
+
+    C7.19 completed the focused API-freeze validation without pulling the full
+    milestone gate forward. The four production modules, semantic aggregate,
+    maintained convexity examples, examples aggregate, and lightweight root
+    all built successfully. A direct consumer exercised the new finite-bind
+    bridge on an infinite output alphabet, the watched names, endpoint simp
+    behavior across distinct proof terms, and the changed equality/convexity
+    proofs. A guarded root consumer confirmed that the new lightweight PMF
+    bridge is available while the four opt-in Chunk 7 surfaces remain absent.
+    Representative axiom output contains only `propext`,
+    `Classical.choice`, and `Quot.sound`; the strict placeholder and scratch
+    scans are clean. The reusable validation driver, maintained boundary/trust
+    harness, generated-reference checks, and complete milestone suite remain
+    assigned to their existing later owners, especially C7.21--C7.22.
+
+    Preserve one C7.19-specific boundary profile when the maintained
+    import/trust harness is eventually implemented. A root-only environment
+    should contain the lightweight `PMF.bind_toReal_apply` bridge because
+    `LeanInfoTheory.lean` already imports `Probability.Finite`, while it should
+    not contain representative opt-in names from
+    `Probability.FiniteMixture`, `Shannon.LogSum`,
+    `Shannon.EntropyConcavity`, or `Shannon.SemanticBridge.Convexity`.
+    Positive consumers should continue to import each owning module directly,
+    and negative checks should assert environment absence or an exact
+    diagnostic rather than accept an arbitrary compiler failure. Include the
+    endpoint simp matrix from Future Work Note 15 in the same internal layer
+    when practical.
+
+    This records the disposable C7.19 consumer contract without changing the
+    current validation schedule. It does not require building the general
+    harness during C7.20, generated-documentation work during C7.21, or the
+    already approved independent C7.22 milestone pass.
+
+    `C7.22` completed that independent milestone assignment on July 29, 2026.
+    The direct Chunk 7 owner/example build passed with 2,704 jobs and the
+    maintained ten-target suite passed with 2,789 jobs. Direct and aggregate
+    consumers exercised all 28 new declarations; guarded root and
+    private-helper consumers verified the reviewed boundaries. All 26 new
+    theorems reported only `propext`, `Classical.choice`, and `Quot.sound`;
+    the strict placeholder scan, source/index/simp/import audits, twice-
+    repeated generators, website checker, and final repository-hygiene checks
+    passed. Every disposable probe was deleted. This closes the specific
+    Chunk 7 milestone assignment while retaining this note as the standing
+    validation policy.
+
+    The pass was again orchestrated manually and used the incremental Lake
+    cache. It therefore does not discharge the already-triggered reusable
+    cross-platform validation driver, maintained boundary/trust harness,
+    shared target-manifest direction, or cold-release policy. Preserve the
+    C7.22 positive-owner, semantic/examples aggregate, root-isolation,
+    private-helper, and all-new-theorem axiom matrix as requirements for that
+    later infrastructure; do not retrofit the completed Chunk 7 tree merely
+    to replace successful evidence.
 
 18. Standing architecture guardrail: preserve the boundary between the
     completed pair/triple Chunk 1, the completed equality/independence Chunk 2,
@@ -9143,6 +9932,82 @@ resolution.
     `PMF.uniformOfFinset p.supportFinset p.supportFinset_nonempty` and does not
     repeat strict Jensen. It therefore supplies no new pressure for either
     abstraction.
+
+    A July 29, 2026 critical review of Chunk 7 `C7.03`, recorded after
+    `C7.01`--`C7.16` completed and while `C7.17` was active, identifies related
+    strict-Jensen bookkeeping but does not yet meet this note's abstraction
+    trigger. The private guarded Real log-sum equality proof uses
+    `Real.strictConvexOn_mul_log.map_sum_eq_iff'` on the full selected Finset:
+    normalized denominator masses are the weights, zero-weight `(0, 0)` pairs
+    are ignored by the primed equality contract, and equality becomes constancy
+    of `a i / b i` on active pairs. This is mathematically different from the
+    constant-atom-mass consequence owned by `EntropyBounds`; it should not be
+    folded into an entropy-specific helper merely because both arguments use
+    strict Jensen.
+
+    There is some local normalization overlap between `C7.02` and `C7.03`,
+    including the positive total denominator, normalized weights, weighted
+    center, and final rescaling. Retain the current private proofs for now:
+    `C7.02` filters zero denominators for the inequality, while `C7.03` gains a
+    cleaner equality proof by keeping the full Finset and letting zero weights
+    disappear through the primed theorem. Reconsider one private normalization
+    helper in `Shannon.LogSum` only if a third production proof repeats this
+    setup or later maintenance demonstrates that the duplication is materially
+    burdensome. Any helper should expose a mathematical scalar consequence,
+    not raw Jensen proof terms, and no public helper is justified by the current
+    two private consumers.
+
+    The maintained scalar-regression subset completed early under `C7.18`
+    already covers common ratios `0`, finite-positive, and `top`, together with
+    a nonconstant-ratio failure. Do not create another equality-test task here.
+    Let the scheduled `C7.19` helper review compare the log-sum and entropy
+    strict-Jensen pressure after the remaining examples exist; until then,
+    neither the current full-Finset proof nor the earlier filtered inequality
+    proof needs refactoring.
+
+    A separate July 29, 2026 post-`C7.17` review of the completed C7.10 now
+    meets this note's entropy-side independent-consumer trigger.
+    `binaryMixture_entropy_eq_iff` is the second production entropy equality
+    proof based on strict concavity of `Real.negMulLog`. It first turns equality
+    of the global entropy sums into equality of every pointwise Jensen gap via
+    `Finset.sum_eq_sum_iff_of_le`; then
+    `Real.strictConcaveOn_negMulLog.map_sum_eq_iff`, with both Bernoulli weights
+    strictly positive, identifies the two component masses at each output atom.
+    This is genuine shared proof pressure, but its mathematical conclusion is
+    pairwise equality of two PMFs rather than the constant-mass conclusion used
+    by `entropy_eq_log_card_iff_eq_uniformOfFintype`.
+
+    During C7.19, first check whether mathlib already provides a suitably
+    reusable strict-Jensen equality consequence beyond the existing
+    `map_sum_eq_iff` theorem. If local abstraction is still useful, distinguish
+    the reusable mathematics from theorem-specific plumbing: the global-
+    sum-to-pointwise-gap argument may admit a lower-layer helper, while the
+    final constant-mass and pairwise-equality conclusions may remain in their
+    owning modules. Any shared helper must live at a dependency level usable by
+    both `EntropyBounds` and `EntropyConcavity`, must not make the latter import
+    the former, and should state a mathematical consequence rather than expose
+    Bool/Bernoulli or raw Jensen proof terms. Keep it private unless additional
+    independent consumers demonstrate a genuinely discoverable public API. If
+    extraction adds a heavy import, obscures either proof, or merely moves the
+    same bookkeeping, retain the two explicit arguments and record that choice.
+    C7.18 already owns maintained interior equal-law, unequal-law, and endpoint
+    entropy examples, so this review creates no duplicate example task and does
+    not authorize that step early.
+
+    C7.19 completed this comparison and declined a shared helper. The pinned
+    mathlib search found the already used
+    `StrictConcaveOn.map_sum_eq_iff`/primed strict-Jensen surfaces but no
+    higher-level theorem matching both project conclusions. The generic step
+    from equality of finite sums of pointwise inequalities to equality at
+    every index is already supplied by `Finset.sum_eq_sum_iff_of_le`.
+    `EntropyBounds` then proves constancy of all atom masses under uniform
+    weights, whereas `EntropyConcavity` proves equality of two PMFs under
+    positive Bernoulli weights. A new lower-layer wrapper would therefore
+    duplicate mathlib or merely move theorem-specific plumbing while adding a
+    dependency choice. Keep both proofs explicit. Reopen only if a third
+    independent production proof reveals a genuinely common mathematical
+    conclusion or maintenance friction, not merely another use of strict
+    Jensen.
 
 25. Ordinary-independence proof-pressure note: add convenience theorems only
     when concrete downstream proofs need them. The primary design remains
@@ -9807,6 +10672,30 @@ resolution.
     example builds, a fresh consumer import smoke test, and generated-reference
     checks if this cleanup is made.
 
+    The July 29, 2026 post-C7.18 review adds a separate low-priority convexity
+    pedagogy candidate to this example-polish owner. The maintained
+    `Examples.Convexity` module intentionally validates theorem contracts and
+    edge cases without calculating a numerical MI gap. If a later teaching,
+    theorem-highlights, or coding-theory example pass needs a concrete strict
+    illustration, consider a matched Boolean pair:
+
+    - for input-law concavity, mix the two pure Boolean input laws at weight
+      `1/2` through the identity channel; each pure input has MI zero, while
+      their uniform mixture has MI `log 2`; and
+    - for channel convexity, use a uniform Boolean input and mix the identity
+      and bit-flip channels at weight `1/2`; each deterministic bijection has
+      MI `log 2`, while the mixed channel is independent fair noise with MI
+      zero.
+
+    This pair would display strictness in opposite orientations using the same
+    tiny alphabet. Add it only if the entropy, independence, and exact-value
+    calculations remain compact through existing public APIs and improve
+    pedagogy beyond the current direct consumers. Keep it in an opt-in example
+    module, add no numerical-MI core helper solely for the example, and do not
+    make it a prerequisite for C7.19 or the Chunk 7 milestone. If the proof
+    becomes mostly coercion or logarithm bookkeeping, retain the current
+    theorem-facing examples and decline the numerical pair.
+
 29. The next dependency-ordered Project B sequence after the completed Chunk 3
     is sufficient statistics followed by Fano, each in its own focused phase
     rather than as an extension of the channel and data-processing chunk. The
@@ -10363,6 +11252,19 @@ resolution.
     optional theorem-highlights curation. Once Chunk 7 has an approved
     mathematical scope, record its ownership explicitly instead of reading
     that scope into this note.
+
+    The approved
+    `docs/plans/chapter2-chunk-07.md` now owns the finite Section 2.7 log-sum
+    and convexity scope. Its implementation and API review are complete
+    through `C7.20`, with generated/public documentation and independent
+    closeout still pending in `C7.21`--`C7.22`. This fulfills the ownership
+    instruction above without reactivating Note 29; this note continues to own
+    only its Fano follow-up groups and optional Fano theorem-highlights work.
+
+    Later on July 29, `C7.21` and `C7.22` completed those remaining generated-
+    documentation and independent-closeout gates. Chunk 7 is now validated but
+    uncommitted. This status change does not reactivate Note 29 or alter any of
+    its deferred Fano follow-up groups.
 
 30. Keep the Step 5 total conditional-channel law surface minimal until later
     proofs create a concrete need for a more abstract null-fiber theorem. The
@@ -10948,6 +11850,210 @@ resolution.
     Chunk 4 Step 19 introduces no support proof. The private type-generic
     `support_bind_mono` helper therefore still has one production consumer, and
     neither public promotion nor a weaker real cascade theorem is justified.
+
+    A separate July 29, 2026 post-`C7.17` review of C7.09 records genuine
+    pressure for a different, non-support bind lemma. Do not conflate this
+    question with `support_bind_mono`. The finite Real-mass identity
+
+    ```text
+    ((r.bind P) a).toReal
+      = sum i, (r i).toReal * (P i a).toReal
+    ```
+
+    is currently reproved locally in C7.09's
+    `sum_mul_entropy_le_entropy_bind`, C7.10's
+    `binaryMixture_entropy_eq_iff`, the C7.11 finite KL infrastructure, and
+    C7.16's expectation-under-bind argument. These are four production
+    occurrences in independently owned entropy and semantic modules, so the
+    repetition meets the project's normal helper-pressure threshold. C7.10's
+    second entropy-local occurrence strengthens the case that C7.19 should
+    test whether one lightweight PMF theorem removes real duplication from
+    both entropy proofs as well as the semantic consumers. It does not indicate
+    a mathematical defect in any completed step and does not authorize C7.18.
+
+    During C7.19, first search the pinned mathlib version again for an existing
+    theorem with this exact finite `ENNReal.toReal` contract. If none exists,
+    test whether one lightweight public PMF theorem removes the repeated
+    conversions cleanly from at least the entropy-concavity and semantic
+    consumers. The candidate statement should:
+
+    - be pointwise in the output atom and require only a finite enumerated
+      selector, not a finite output alphabet;
+    - use the existing `PMF.bind` rather than mention binary mixtures;
+    - expose no support, positivity, measurability, or non-top hypothesis,
+      since PMF atom masses are automatically finite;
+    - live no heavier than `Probability.Finite` unless an import audit finds a
+      more coherent lightweight owner; and
+    - receive a naming and argument-order review under Note 14 before public
+      promotion.
+
+    Do not place the helper in `SemanticBridge.Convexity`, because that would
+    make the lighter entropy-concavity module depend on the semantic layer.
+    Do not place it in `Probability.FiniteMixture` merely because Chunk 7
+    exposed the repetition: the identity is about arbitrary PMF bind. If a
+    shared public theorem worsens imports, elaboration, or proof readability,
+    retain the local calculations and record that cross-module duplication is
+    preferable to a poorly owned abstraction. Exact names remain deliberately
+    open; sketches such as `PMF.bind_apply_toReal_eq_sum` are not approved API.
+
+    C7.09's public name `sum_mul_entropy_le_entropy_bind` does not currently
+    enter the Note 14 watchlist. It is systematic beside the later MI theorem,
+    accurately states the inequality orientation, and has no demonstrated
+    discovery failure. C7.19 may still test it in real examples as part of the
+    ordinary whole-surface review, but no compatibility alias should be added
+    speculatively. Likewise, C7.18 already explicitly owns singleton-selector
+    and zero-weight Bool examples; no second regression assignment is needed.
+
+    The July 29, 2026 post-`C7.17` review of C7.11 identifies a second private
+    bind-support theorem, but not a second consumer of `support_bind_mono`.
+    `support_bind_subset_of_active` has the distinct common-selector contract
+
+    ```text
+    (forall i, r i != 0 -> support (P i) subset support (Q i))
+      -> support (r.bind P) subset support (r.bind Q).
+    ```
+
+    It requires no finite alphabet, measurable space, or full-support
+    assumption and is used only inside the `SemanticBridge.Convexity`
+    finite-branch proof family. C7.12--C7.17 consume the resulting public
+    convexity theorems rather than creating an independent caller for this
+    helper. Keep it private and do not count it as promotion pressure for the
+    older same-channel `support_bind_mono`.
+
+    Reconsider the common-selector theorem only if a later independently owned
+    mixture, channel, or semantic proof repeats the same
+    `PMF.mem_support_bind_iff` witness transport. At that point compare both
+    private support lemmas together, search pinned mathlib for an upstream
+    bind-support monotonicity result, and decide whether the natural owner is a
+    lightweight PMF module or an upstream proposal. Preserve the assumption-
+    minimal contract, avoid moving a semantic/KL dependency into the
+    probability layer, and audit any proposed public name and argument order
+    under Future Work Note 14. Mere reuse by another private theorem in the
+    same convexity proof family is not an independent-consumer trigger.
+
+    C7.19 should also review the size of C7.12's private finite-branch engine
+    `toReal_klDiv_bind_le_toReal_sum_of_ne_top`, but only after deciding the
+    shared bind-mass identity above. If a lightweight bind-to-Real theorem is
+    adopted, rewrite the private engine locally and then reassess whether
+    meaningful duplication remains. Split it further only when the resulting
+    pieces express independently understandable mathematics, such as active
+    component KL expansion or the pointwise weighted log-sum consequence, and
+    when extraction materially improves readability or supports another
+    production proof. Do not fragment it merely because the current proof is
+    long, and do not publish its finite-branch or `toReal` bookkeeping.
+
+    Retain the present guarded Real scalar log-sum route inside that finite
+    branch unless a concrete maintenance problem appears. Once both KL sides
+    are known non-top, the Real theorem avoids unnecessary EReal-to-ENNReal
+    conversion work; replacing it with the extended LS3 theorem solely for
+    proof-route uniformity would make the implementation less direct. The
+    extended route remains a fallback for a future theorem whose infinite
+    branch cannot be separated cleanly, not a pending C7.12 refactor.
+
+    The July 29, 2026 post-`C7.17` review of C7.13 adds a separate, currently
+    unmet helper-pressure trigger. `toReal_klDiv_bind_le_sum` locally derives
+    weighted-sum finiteness from the active-component support contract in three
+    steps: active support gives component KL non-top; each zero-weight or
+    finite active weighted term is non-top; and the finite sum is non-top.
+    C7.14 specializes the completed theorem, C7.15 uses its own binary equality
+    infrastructure, and C7.17 consumes the public Real convexity theorem
+    directly. None independently repeats this exact three-step argument.
+
+    Keep that calculation local for now. Extract a private semantic helper only
+    if another independently owned proof starts from
+
+    ```text
+    forall i, r i != 0 -> support (P i) subset support (Q i)
+    ```
+
+    and rebuilds the same weighted-KL non-top conclusion. Such a helper should
+    return the finiteness of the canonical ENNReal weighted sum and compose
+    with the existing mixed-finiteness bridge; it should not bundle the final
+    Real inequality or expose `toReal` bookkeeping. Keep it in the semantic KL
+    or convexity layer rather than moving KL-specific logic into a probability
+    module. A public theorem accepting only an explicit weighted-sum
+    `!= top` hypothesis remains unjustified until a caller naturally owns that
+    lower-level premise.
+
+    Retain `r i != 0` as the canonical active-component surface. Membership
+    `i in r.support` is mathematically equivalent, but no current consumer
+    repeatedly performs that conversion or finds the mass formulation
+    difficult to use. Consider a compatibility lemma or alternate theorem
+    only after such ergonomic pressure appears, and review its name under Note
+    14. Do not reformulate the public sum over a subtype of active indices:
+    doing so would complicate selector sums and binary endpoint specialization
+    while providing no stronger mathematical contract.
+
+    The inactive-infinite-KL consumer needed to protect this design is already
+    assigned to C7.18 by Future Work Note 17's selector/KL matrix. Do not create
+    another example or regression task here. C7.13 remains complete, and these
+    conditional API/helper questions do not authorize C7.18 early.
+
+    C7.19 discharged the finite Real-mass identity review. A fresh pinned-
+    mathlib search found `PMF.bind_apply` and `ENNReal.toReal_sum`, but no
+    theorem with the exact finite-selector `toReal` contract. The new
+    lightweight theorem
+
+    ```text
+    PMF.bind_toReal_apply :
+      ((r.bind P) a).toReal
+        = sum i, (r i).toReal * (P i a).toReal
+    ```
+
+    now lives in `Probability.Finite`. It requires only a `Fintype` selector;
+    the output alphabet may be infinite, and no support, positivity,
+    measurability, or explicit non-top hypothesis is exposed. Its proof uses
+    PMF atom finiteness to justify one finite `ENNReal.toReal_sum` conversion.
+    The theorem remains explicit rather than `[simp]`, because rewriting an
+    arbitrary bind into a sum is a representation choice.
+
+    Both entropy-concavity occurrences, the C7.11 finite KL engine, and the
+    C7.16 expectation-under-bind calculation now reuse that theorem. This
+    removes all four duplicate conversion blocks without adding an import edge:
+    both downstream modules already reached `Probability.Finite` through
+    `Probability.FiniteMixture`, and the lightweight root already imported the
+    owning module. A direct consumer also checked the theorem with output type
+    `Nat`.
+
+    After that extraction, the private
+    `toReal_klDiv_bind_le_toReal_sum_of_ne_top` proof still expresses one
+    coherent finite-branch argument, so it was not split. The active-component
+    support expansion, pointwise log-sum step, common-selector support
+    transport, and weighted-KL finiteness calculation remain private and have
+    no new independent consumer. The finite expectation rearrangement also
+    remains private; only its repeated bind-mass subcalculation moved to the
+    shared PMF layer. Reopen those helper questions only under their existing
+    production-pressure triggers.
+
+    A post-C7.19 critical review records two lower-priority follow-ups without
+    reopening the completed finite theorem. First, during the next source-
+    comment polish that already touches `Probability.Finite`, consider adding
+    one sentence to `PMF.bind_toReal_apply` stating explicitly that the output
+    alphabet need not be finite. The signature already communicates this and
+    the approved plan records it, so this is editorial polish rather than a
+    standalone task or a prerequisite for generated references.
+
+    Second, consider an infinite-selector `tsum` companion only after a real
+    consumer begins with a non-finite selector and otherwise repeats the
+    conversion from `PMF.bind_apply`. Before proposing a statement:
+
+    - search the then-pinned mathlib version for an `ENNReal.toReal_tsum` or
+      PMF bind-mass theorem with the needed contract;
+    - prove finiteness of the ENNReal total and summability of the corresponding
+      real series rather than exchanging `toReal` and `tsum` formally;
+    - preserve arbitrary output alphabets and avoid unnecessary support,
+      positivity, or measurability assumptions;
+    - account for the fact that `PMF Empty` is uninhabited rather than treating
+      an empty selector as an ordinary constructed example;
+    - keep the existing finite-sum theorem and its name for compatibility; and
+    - audit the companion's name, ownership, and simp status under Future Work
+      Notes 14--15.
+
+    The likely mathematical surface is the pointwise equality between the real
+    mass of `r.bind P` and a real `tsum` of weighted component masses, but no
+    name or exact assumptions are approved. Do not add it for generality alone:
+    the current finite Section 2.7 consumers are fully served by
+    `PMF.bind_toReal_apply`.
 
 37. Keep the Step 15 posterior API and exact composition-product KL
     decomposition unchanged unless later consumers create pressure for one of

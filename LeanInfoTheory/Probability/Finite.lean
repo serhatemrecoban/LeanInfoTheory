@@ -19,7 +19,7 @@ object itself remains mathlib's `PMF`.
 
 namespace PMF
 
-universe u
+universe u v
 
 open scoped BigOperators ENNReal
 
@@ -51,6 +51,21 @@ theorem sum_toReal [Fintype α] (p : PMF α) : (∑ a, (p a).toReal) = 1 := by
       rw [hsum]
     _ = 1 := by
       simp
+
+/--
+On a finite selector type, the real mass of a bind is the corresponding
+finite weighted sum of real masses.
+-/
+theorem bind_toReal_apply {α : Type u} {β : Type v} [Fintype α]
+    (p : PMF α) (f : α -> PMF β) (b : β) :
+    ((p.bind f) b).toReal =
+      ∑ a, (p a).toReal * (f a b).toReal := by
+  classical
+  rw [PMF.bind_apply, tsum_fintype]
+  rw [ENNReal.toReal_sum]
+  · simp only [ENNReal.toReal_mul]
+  · intro a _
+    exact ENNReal.mul_ne_top (p.apply_ne_top a) ((f a).apply_ne_top b)
 
 /--
 The finite set of atoms to which a finite PMF assigns nonzero mass.

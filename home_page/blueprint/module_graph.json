@@ -7,8 +7,8 @@
     "Certificate layer",
     "Reference anchors"
   ],
-  "local_edge_count": 75,
-  "module_count": 43,
+  "local_edge_count": 90,
+  "module_count": 48,
   "modules": [
     {
       "external_imports": [],
@@ -49,7 +49,29 @@
       "name": "LeanInfoTheory.Probability.Finite",
       "path": "LeanInfoTheory/Probability/Finite.lean",
       "root_reachable": true,
-      "summary": "Finite PMF real-mass bridge lemmas and pointwise PMF.map facts."
+      "summary": "Finite PMF real-mass, finite-bind, support, and pointwise PMF.map bridge lemmas."
+    },
+    {
+      "external_imports": [],
+      "layer": "Shared foundation",
+      "local_imports": [
+        "LeanInfoTheory.Probability.Finite"
+      ],
+      "name": "LeanInfoTheory.Probability.FiniteChannel",
+      "path": "LeanInfoTheory/Probability/FiniteChannel.lean",
+      "root_reachable": false,
+      "summary": "Type-generic PMF channel constructions and their elementary laws."
+    },
+    {
+      "external_imports": [],
+      "layer": "Shared foundation",
+      "local_imports": [
+        "LeanInfoTheory.Probability.Finite"
+      ],
+      "name": "LeanInfoTheory.Probability.FiniteMixture",
+      "path": "LeanInfoTheory/Probability/FiniteMixture.lean",
+      "root_reachable": false,
+      "summary": "Binary PMF mixtures with NNReal weights and exact endpoint laws; general finite selectors use PMF.bind."
     },
     {
       "external_imports": [],
@@ -104,6 +126,20 @@
       "summary": "Sharp alphabet/support entropy bounds and their uniform-law equality cases."
     },
     {
+      "external_imports": [
+        "Mathlib.Analysis.Convex.Jensen"
+      ],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Probability.FiniteMixture",
+        "LeanInfoTheory.Shannon.Entropy"
+      ],
+      "name": "LeanInfoTheory.Shannon.EntropyConcavity",
+      "path": "LeanInfoTheory/Shannon/EntropyConcavity.lean",
+      "root_reachable": false,
+      "summary": "Finite-selector entropy concavity and its binary interior-weight equality characterization, proved directly by Jensen."
+    },
+    {
       "external_imports": [],
       "layer": "Finite Shannon layer",
       "local_imports": [
@@ -143,6 +179,20 @@
     },
     {
       "external_imports": [
+        "Mathlib.Analysis.Convex.Jensen",
+        "Mathlib.Analysis.SpecialFunctions.Log.ENNRealLog",
+        "Mathlib.Analysis.SpecialFunctions.Log.NegMulLog",
+        "Mathlib.Data.EReal.Operations"
+      ],
+      "layer": "Finite Shannon layer",
+      "local_imports": [],
+      "name": "LeanInfoTheory.Shannon.LogSum",
+      "path": "LeanInfoTheory/Shannon/LogSum.lean",
+      "root_reachable": false,
+      "summary": "Zero-safe finite EReal log-sum inequality and equality with guarded Real corollaries."
+    },
+    {
+      "external_imports": [
         "Mathlib.Analysis.SpecialFunctions.Log.Base"
       ],
       "layer": "Finite Shannon layer",
@@ -160,6 +210,7 @@
       ],
       "layer": "Semantic bridge layer",
       "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
         "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
         "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
         "LeanInfoTheory.Shannon.SemanticBridge.Independence",
@@ -171,7 +222,7 @@
       "name": "LeanInfoTheory.Shannon.SemanticBridge",
       "path": "LeanInfoTheory/Shannon/SemanticBridge.lean",
       "root_reachable": false,
-      "summary": "Aggregate entry point for finite semantic, KL, independence, Markov, sufficiency, data-processing, recovery, and finite-family bridges."
+      "summary": "Aggregate entry point for finite semantic, KL, convexity, independence, Markov, sufficiency, data-processing, recovery, and finite-family bridges."
     },
     {
       "external_imports": [
@@ -185,6 +236,22 @@
       "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
       "root_reachable": false,
       "summary": "Finite conditional-law API and expected conditional entropy / conditional mutual-information formulas."
+    },
+    {
+      "external_imports": [],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Probability.FiniteChannel",
+        "LeanInfoTheory.Probability.FiniteMixture",
+        "LeanInfoTheory.Shannon.EntropyConcavity",
+        "LeanInfoTheory.Shannon.LogSum",
+        "LeanInfoTheory.Shannon.SemanticBridge.KL",
+        "LeanInfoTheory.Shannon.SemanticBridge.Product"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Convexity.lean",
+      "root_reachable": false,
+      "summary": "Finite-selector KL joint convexity, binary KL equality, and mutual-information input-law concavity and channel convexity."
     },
     {
       "external_imports": [
@@ -434,23 +501,13 @@
     },
     {
       "external_imports": [],
-      "layer": "Certificate layer",
-      "local_imports": [
-        "LeanInfoTheory.Probability.Finite"
-      ],
-      "name": "LeanInfoTheory.Probability.FiniteChannel",
-      "path": "LeanInfoTheory/Probability/FiniteChannel.lean",
-      "root_reachable": false,
-      "summary": "Type-generic PMF channel constructions and their elementary laws."
-    },
-    {
-      "external_imports": [],
       "layer": "Reference anchors",
       "local_imports": [
         "LeanInfoTheory.Certificate",
         "LeanInfoTheory.Certificate.Checked",
         "LeanInfoTheory.EntropyVal",
         "LeanInfoTheory.Examples.CommonCause",
+        "LeanInfoTheory.Examples.Convexity",
         "LeanInfoTheory.Examples.Fano",
         "LeanInfoTheory.Examples.FiniteFamily",
         "LeanInfoTheory.Examples.KLTop",
@@ -462,7 +519,7 @@
       "name": "LeanInfoTheory.Examples",
       "path": "LeanInfoTheory/Examples.lean",
       "root_reachable": false,
-      "summary": "Opt-in aggregate for certificate, finite-family, support-sensitive, Markov, channel, sufficiency, and Fano examples."
+      "summary": "Opt-in aggregate for certificate, convexity, finite-family, support-sensitive, Markov, channel, sufficiency, and Fano examples."
     },
     {
       "external_imports": [],
@@ -474,6 +531,20 @@
       "path": "LeanInfoTheory/Examples/CommonCause.lean",
       "root_reachable": false,
       "summary": "Noisy binary common-cause example for conditional independence and Markov factorization."
+    },
+    {
+      "external_imports": [],
+      "layer": "Reference anchors",
+      "local_imports": [
+        "LeanInfoTheory.Probability.FiniteMixture",
+        "LeanInfoTheory.Shannon.EntropyConcavity",
+        "LeanInfoTheory.Shannon.LogSum",
+        "LeanInfoTheory.Shannon.SemanticBridge.Convexity"
+      ],
+      "name": "LeanInfoTheory.Examples.Convexity",
+      "path": "LeanInfoTheory/Examples/Convexity.lean",
+      "root_reachable": false,
+      "summary": "Private maintained regressions for finite log-sum, mixtures, entropy concavity, KL convexity, and mutual-information input-law concavity and channel convexity."
     },
     {
       "external_imports": [],
@@ -563,5 +634,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 11,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 32
+  "separate_import_count": 37
 }

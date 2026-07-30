@@ -8,9 +8,17 @@ Chunk 6 completed all 24 steps and passed its generated-reference, independent
 validation, trust, boundary, website, and hygiene gates. It was checkpointed
 as commit `7b5f0db` (`Complete Project B Chunk 6`). The documentation-only
 handoff commit `72f9f87` (`Prepare Project B Chunk 7 handoff`) above it changes
-no Lean source. At the completed handoff gate, local `HEAD`, `master`,
-`origin/master`, and remote `master` agreed at `72f9f87`; the Lean
-build/placeholder and Pages deployment workflows both succeeded.
+no Lean source. The later documentation-only handoff commit `9aa3bb1`
+(`Finalize Project B Chunk 7 handoff`) is the current checked-in head and also
+changes no Lean source. At the completed remote handoff gate for `72f9f87`,
+the Lean build/placeholder and Pages deployment workflows both succeeded.
+
+The current working tree completes Project B Chunk 7 through `C7.22`. Its
+source, API, generated references, public documentation, and independent
+milestone validation are complete, but the changes remain uncommitted. The
+last fully validated committed Lean/source baseline therefore remains
+`7b5f0db`; Chunk 7 is validated and checkpoint-ready but must not yet be
+described as committed, checkpointed, pushed, or deployed.
 
 Project B Chunk 2 is complete. All 18 steps are finished. The chunk began
 from the clean Chunk 1 checkpoint, its new theorem contracts were validated by
@@ -141,7 +149,64 @@ audit, and final hygiene checks are current. The milestone is checkpointed as
 commit `ec78829`. Canonical/minimal sufficiency and larger iid examples are
 deferred by Future Work Note 39.
 
-## Current Project B Boundary: Chunk 6 Checkpointed
+## Current Project B Boundary: Chunk 7 Implementation Reviewed
+
+The approved 22-step Chunk 7 plan is
+`docs/plans/chapter2-chunk-07.md`. Steps `C7.01`--`C7.19` are complete in the
+current working source, and `C7.20` reconciles the canonical documents against
+that frozen API. The finite Cover--Thomas Section 2.7 surface now includes:
+
+- `Shannon.LogSum`, with a zero-safe `EReal` scalar term, finite log-sum
+  inequality, exact active-ratio equality characterization, non-bottom facts,
+  and support-guarded Real inequality/equality corollaries;
+- `Probability.FiniteMixture`, with `PMF.binaryMixture`, its pointwise formula,
+  and proof-irrelevant zero/one endpoint normalization;
+- `Shannon.EntropyConcavity`, with general finite-selector concavity, its
+  binary textbook form, and equality exactly when the two PMFs agree at an
+  interior weight;
+- `Shannon.SemanticBridge.Convexity`, with general-selector and binary
+  `ENNReal` KL joint convexity, active-support-guarded Real forms, the
+  support-aware binary KL equality iff pointwise cross-product condition, a
+  finite channel entropy identity, MI concavity in the input law, and MI
+  convexity in the channel;
+- `PMF.bind_toReal_apply` in the already root-visible
+  `Probability.Finite` module, extracted after four production proofs repeated
+  the same finite-selector mass conversion; and
+- `Examples.Convexity`, with 46 private maintained consumers covering scalar
+  zero/top behavior, mixture endpoints and proof irrelevance, entropy and KL
+  equality boundaries, inactive infinite KL, and all four MI input/channel
+  surfaces.
+
+The four new production modules and the example module are separately
+importable and remain outside `LeanInfoTheory.lean`.
+`Shannon.SemanticBridge.Convexity` joins only the existing opt-in semantic
+aggregate, and `Examples.Convexity` joins only the examples aggregate. The
+lightweight root gains no import edge; it sees `PMF.bind_toReal_apply` only
+because it already imports the owning `Probability.Finite` module. The
+certificate abstractions, primitive inequalities, validator, concrete
+finite-family valuation, and trust boundary are unchanged.
+
+The completed Chunk 7 source adds 28 source-declared public declarations:
+four in `Probability.FiniteMixture`, nine in `Shannon.LogSum`, three in
+`Shannon.EntropyConcavity`, eleven in
+`Shannon.SemanticBridge.Convexity`, and `PMF.bind_toReal_apply` in
+`Probability.Finite`. The regenerated references record 48 modules, 90 local
+import edges, 11 root-reachable modules, 37 opt-in modules, and 862 documented
+source declarations.
+
+`C7.22` independently built the changed finite-probability owner, all four
+production modules, and the maintained convexity examples with 2,704 jobs.
+The complete maintained ten-target milestone suite then passed with 2,789
+jobs. Direct, aggregate, guarded root-isolation, and private-helper consumers
+confirmed the intended import surface. All 26 new theorems report only
+`propext`, `Classical.choice`, and `Quot.sound`; the placeholder scan,
+twice-repeated generators, website checker, declaration/source/anchor audits,
+and C7 disposable-source/artifact, conflict-marker, whitespace, and diff checks
+pass. Pre-existing ignored `tmp/` material was left untouched. This validates
+the current uncommitted working tree; it is not evidence of a commit or remote
+deployment.
+
+### Preceding Chunk 6 Checkpoint
 
 Chunk 6 is the approved 24-step finite-family and concrete-valuation phase
 sequenced by Future Work Note 1. Its plan is
@@ -181,8 +246,8 @@ final repository hygiene. Commit `7b5f0db` is the coherent, fully validated
 Chunk 6 Lean/source checkpoint.
 
 This is a maintained status note for Lean-focused work. It summarizes the
-current architecture and the completed, checkpointed Chunk 3--6 theorem
-milestones.
+current architecture, the completed checkpointed Chunk 3--6 theorem
+milestones, and the reviewed but not yet closed Chunk 7 working tree.
 
 ## Current Lean Architecture
 
@@ -193,7 +258,12 @@ milestones.
 - `LeanInfoTheory.Probability.Finite` contains reusable finite `PMF` helper
   lemmas, including real-mass facts, the canonical finite `PMF.supportFinset`
   view, pointwise `PMF.map` formulas, and the singleton-support characterization
-  `PMF.eq_pure_iff_support_eq_singleton`.
+  `PMF.eq_pure_iff_support_eq_singleton`. It now also owns
+  `PMF.bind_toReal_apply`, the finite-selector pointwise Real-mass formula; the
+  output alphabet need not be finite.
+- `LeanInfoTheory.Probability.FiniteMixture` is an opt-in PMF construction
+  layer for `PMF.binaryMixture` with `t : NNReal` and `t <= 1`. General
+  finite-selector mixtures remain ordinary `PMF.bind`.
 - `LeanInfoTheory.Probability.FiniteChannel` is a separately importable,
   type-generic PMF channel construction layer. Channels remain raw functions
   `alpha -> PMF beta`; the module names deterministic channels, channel
@@ -218,6 +288,14 @@ milestones.
 - `LeanInfoTheory.Shannon.EntropyBounds` is separately importable and contains
   the Jensen-based alphabet- and support-cardinality entropy bounds and their
   exact uniform-law equality characterizations.
+- `LeanInfoTheory.Shannon.LogSum` is a separately importable scalar module.
+  It owns the zero-safe `EReal` log-sum term, arbitrary-finset inequality and
+  active common-ratio equality theorem, non-bottom calculus, and the coherent
+  support-guarded Real corollaries.
+- `LeanInfoTheory.Shannon.EntropyConcavity` is separately importable and proves
+  general finite-selector entropy concavity directly from Jensen, with binary
+  inequality and interior strict-equality forms. It does not import
+  `Shannon.LogSum`.
 - `LeanInfoTheory.Shannon.SemanticBridge` and its subfiles are the heavier
   bridge layer connecting the finite Shannon API to `PMF.toMeasure`, product
   measures, conditional laws, and `InformationTheory.klDiv`, including finite
@@ -278,6 +356,11 @@ milestones.
   conditioning reduction, binary/n-way subadditivity, and the concrete
   `finiteFamilyEntropyVal` and `finiteFamilyEntropyValOf` constructors. It is
   imported by the semantic aggregate but remains outside the root.
+- `LeanInfoTheory.Shannon.SemanticBridge.Convexity` is the opt-in Section 2.7
+  semantic owner. It builds on finite mixtures, entropy concavity, log-sum,
+  and the established KL bridge to prove KL joint convexity/equality and MI
+  input/channel convexity. The semantic aggregate imports it; the lightweight
+  root does not.
 - `LeanInfoTheory.EntropyExpr`, `LeanInfoTheory.EntropyVal`, and
   `LeanInfoTheory.PrimitiveIneq` form the abstract entropy-expression and
   primitive Shannon inequality layer.
@@ -298,8 +381,10 @@ milestones.
   `LeanInfoTheory.Examples.StochasticChannels` and
   `LeanInfoTheory.Examples.SufficientStatistics`,
   `LeanInfoTheory.Examples.Fano`, and
-  `LeanInfoTheory.Examples.FiniteFamily`, can also be imported directly when
-  only one semantic example is wanted.
+  `LeanInfoTheory.Examples.FiniteFamily`, and
+  `LeanInfoTheory.Examples.Convexity` can also be imported directly when only
+  one semantic example is wanted. `Examples.Convexity` deliberately exposes
+  no public declaration.
 - `LeanInfoTheory.MathlibFragments` is a separately importable anchor/checklist
   for mathlib APIs that the project expects to use later.
 
@@ -584,11 +669,13 @@ dependency map is module-level and is not theorem-level leanblueprint. Keep
 website wording honest about what is proved, demoed, generated, planned, and
 future work.
 
-The tracked generated references now describe the complete Chunk 6 working
-source: 43 modules, 75 local import edges, 11 root-reachable modules, 32
-opt-in modules, and 834 documented source declarations. The nested-comment
-parser correction, repeated generation, source-link/anchor checks, and website
-checker all pass.
+The tracked generated references now describe the validated but uncommitted
+Chunk 7 working tree: 48 modules, 90 local import edges, 11 root-reachable
+modules, 37 opt-in modules, and 862 documented source declarations. Both
+generators are byte-stable on a second pass; source-link, anchor, summary, JSON,
+and website checks pass. These local files do not establish remote deployment;
+the deployed website remains whatever the latest successful pushed Pages
+workflow published.
 
 ## Important Design Constraints
 

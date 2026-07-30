@@ -26,19 +26,23 @@ JSON_OUTPUT = OUTPUT_DIR / "module_graph.json"
 MODULE_SUMMARIES = {
     "LeanInfoTheory": "Lightweight public root import for stable finite Shannon and core certificate APIs.",
     "LeanInfoTheory.Basic": "Project namespace and shared status vocabulary.",
-    "LeanInfoTheory.Probability.Finite": "Finite PMF real-mass bridge lemmas and pointwise PMF.map facts.",
+    "LeanInfoTheory.Probability.Finite": "Finite PMF real-mass, finite-bind, support, and pointwise PMF.map bridge lemmas.",
     "LeanInfoTheory.Probability.FiniteChannel": "Type-generic PMF channel constructions and their elementary laws.",
+    "LeanInfoTheory.Probability.FiniteMixture": "Binary PMF mixtures with NNReal weights and exact endpoint laws; general finite selectors use PMF.bind.",
     "LeanInfoTheory.Shannon.BinaryEntropy": "Boolean-PMF entropy bridge to mathlib's Real.binEntropy.",
     "LeanInfoTheory.Shannon.Entropy": "Finite Shannon entropy, entropy of finite-valued random variables, and first entropy invariance theorems.",
     "LeanInfoTheory.Shannon.EntropyBounds": "Sharp alphabet/support entropy bounds and their uniform-law equality cases.",
+    "LeanInfoTheory.Shannon.EntropyConcavity": "Finite-selector entropy concavity and its binary interior-weight equality characterization, proved directly by Jensen.",
     "LeanInfoTheory.Shannon.Fano": "Deterministic decoding error, exact and weak finite Fano inequalities, and converse-facing corollaries.",
     "LeanInfoTheory.Shannon.FiniteFamily": "Dependent finite-family laws, finite marginals, family entropy/MI/CMI algebra, pair/triple bridges, and ordered chain rules.",
     "LeanInfoTheory.Shannon.InfoMeasures": "Marginals, conditional entropy, mutual information, conditional mutual information, and orientation lemmas.",
+    "LeanInfoTheory.Shannon.LogSum": "Zero-safe finite EReal log-sum inequality and equality with guarded Real corollaries.",
     "LeanInfoTheory.Shannon.Units": "Opt-in logarithm-base conversion for canonical nat-valued finite information measures.",
-    "LeanInfoTheory.Shannon.SemanticBridge": "Aggregate entry point for finite semantic, KL, independence, Markov, sufficiency, data-processing, recovery, and finite-family bridges.",
+    "LeanInfoTheory.Shannon.SemanticBridge": "Aggregate entry point for finite semantic, KL, convexity, independence, Markov, sufficiency, data-processing, recovery, and finite-family bridges.",
     "LeanInfoTheory.Shannon.SemanticBridge.Product": "Independent-product PMFs, product-measure semantics, support formulas, and absolute-continuity facts.",
     "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums": "Finite real-sum rewrites and mutual-information log-ratio formulas.",
     "LeanInfoTheory.Shannon.SemanticBridge.Conditional": "Finite conditional-law API and expected conditional entropy / conditional mutual-information formulas.",
+    "LeanInfoTheory.Shannon.SemanticBridge.Convexity": "Finite-selector KL joint convexity, binary KL equality, and mutual-information input-law concavity and channel convexity.",
     "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily": "Finite-family Shannon inequalities and concrete ShannonEntropyVal constructions.",
     "LeanInfoTheory.Shannon.SemanticBridge.KL": "PMF support/KL finiteness and equality, uniform-reference identities, and MI/CMI KL bridges.",
     "LeanInfoTheory.Shannon.SemanticBridge.Independence": "PMF-first ordinary/conditional independence, zero MI/CMI, and entropy equality cases.",
@@ -58,8 +62,9 @@ MODULE_SUMMARIES = {
     "LeanInfoTheory.Certificate.Subadditivity": "Checked certificate demo proving entropy subadditivity.",
     "LeanInfoTheory.Certificate.Monotonicity": "Checked certificate demo proving one-variable entropy monotonicity.",
     "LeanInfoTheory.Certificate.ThreeWaySubadditivity": "Manual certificate pressure-test module for three-way entropy subadditivity.",
-    "LeanInfoTheory.Examples": "Opt-in aggregate for certificate, finite-family, support-sensitive, Markov, channel, sufficiency, and Fano examples.",
+    "LeanInfoTheory.Examples": "Opt-in aggregate for certificate, convexity, finite-family, support-sensitive, Markov, channel, sufficiency, and Fano examples.",
     "LeanInfoTheory.Examples.CommonCause": "Noisy binary common-cause example for conditional independence and Markov factorization.",
+    "LeanInfoTheory.Examples.Convexity": "Private maintained regressions for finite log-sum, mixtures, entropy concavity, KL convexity, and mutual-information input-law concavity and channel convexity.",
     "LeanInfoTheory.Examples.Fano": "Perfect-decoder, singleton-source, and nonzero-error examples for the finite Fano API.",
     "LeanInfoTheory.Examples.FiniteFamily": "Homogeneous and dependent-alphabet finite-family examples with checked and raw certificate paths.",
     "LeanInfoTheory.Examples.KLTop": "Disjoint-support PMF example exposing the infinite-KL toReal zero trap.",
@@ -116,7 +121,7 @@ def parse_imports(path: Path) -> list[str]:
 def classify_module(name: str) -> str:
     if name == "LeanInfoTheory":
         return "Root import"
-    if name in {"LeanInfoTheory.Basic", "LeanInfoTheory.Probability.Finite"}:
+    if name == "LeanInfoTheory.Basic" or name.startswith("LeanInfoTheory.Probability."):
         return "Shared foundation"
     if name == "LeanInfoTheory.MathlibFragments" or name.startswith("LeanInfoTheory.Examples"):
         return "Reference anchors"

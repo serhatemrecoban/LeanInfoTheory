@@ -1,7 +1,9 @@
 # Roadmap
 
 This roadmap records planned technical milestones. The homepage, theorem
-highlights, and module guide record what is implemented now.
+highlights, module guide, and generated references now describe the validated
+but uncommitted Chunk 7 working tree. Remote publication remains a separate
+post-commit operation.
 
 ## Now
 
@@ -105,10 +107,26 @@ highlights, and module guide record what is implemented now.
   remain opt-in and the certificate trust boundary is unchanged. The
   generated/public references, independent full build, trust, boundary,
   placeholder, website, and hygiene gates all pass. Bounded Chunk 7 context
-  intake and planning may proceed separately, but no theorem scope or
-  implementation is approved. Future Work Note 39
+  intake and planning subsequently used this checkpoint. Future Work Note 39
   continues to defer canonical/minimal sufficiency, general measurable
   sufficiency, and a larger iid count-statistic development.
+- The approved 22-step
+  [finite log-sum and convexity plan](plans/chapter2-chunk-07.md) is complete
+  through `C7.22`. The implementation and API review provide the finite
+  Cover--Thomas Section 2.7 package: a zero-safe `EReal` log-sum theorem and
+  support-guarded Real family, binary and general-selector PMF mixtures,
+  entropy concavity with binary interior-weight equality, `ENNReal` and
+  guarded Real KL joint convexity with the support-aware binary equality case,
+  and MI
+  concavity in the input law plus convexity in the channel. The four production
+  modules and `Examples.Convexity` remain opt-in; the root-visible addition is
+  only the general finite bind-to-Real mass bridge in the already imported
+  `Probability.Finite` module. The validated working tree has 28 new public
+  source declarations and 46 maintained private examples. Generated
+  references, public documentation, direct and milestone builds, boundary and
+  trust audits, and repository hygiene all pass. Chunk 7 is complete and ready
+  for a coherent checkpoint, but remains uncommitted and is not yet
+  checkpointed or deployed.
 - Maintain project notes in the foundation conventions and project log.
 - Keep the lightweight finite API separated from heavier KL and coding imports.
 
@@ -121,8 +139,9 @@ highlights, and module guide record what is implemented now.
   orientation page.
 - Link generated docs and blueprint entries back to the curated theorem
   highlights and submodularity demo page.
-- Use checkpoint `7b5f0db` for bounded Chunk 7 context intake, then approve the
-  next Cover-Thomas Chapter 2 scope and implementation plan separately.
+- Checkpoint the validated Chunk 7 working tree coherently, then choose the next
+  focused Chapter 2 or certificate-development phase through a separate
+  readiness and approval process.
 
 ## 6 Months
 

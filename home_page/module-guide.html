@@ -29,19 +29,23 @@
 
       <ul>
         <li><code>LeanInfoTheory.Basic</code>: lightweight project namespace and shared status vocabulary.</li>
-        <li><code>LeanInfoTheory.Probability.Finite</code>: real-mass bridge lemmas and pointwise <code>PMF.map</code> facts for finite <code>PMF</code> sums and relabeling arguments.</li>
+        <li><code>LeanInfoTheory.Probability.Finite</code>: real-mass, finite-bind, support, and pointwise <code>PMF.map</code> bridge lemmas.</li>
         <li><code>LeanInfoTheory.Probability.FiniteChannel</code>: opt-in, type-generic PMF-valued channel constructions and their atom, projection, composition, deterministic-map, and support laws.</li>
+        <li><code>LeanInfoTheory.Probability.FiniteMixture</code>: opt-in binary PMF mixtures with <code>NNReal</code> weights and exact endpoint laws; general selectors use <code>PMF.bind</code>.</li>
         <li><code>LeanInfoTheory.Shannon.Entropy</code>: finite Shannon entropy, random-variable entropy, zero-entropy characterizations, and relabeling invariance theorems.</li>
         <li><code>LeanInfoTheory.Shannon.EntropyBounds</code>: Jensen-based alphabet and support-cardinality upper bounds plus the uniform-law equality theorem. Import this module explicitly when those heavier analytic bounds are needed.</li>
+        <li><code>LeanInfoTheory.Shannon.EntropyConcavity</code>: opt-in finite-selector entropy concavity with a binary textbook corollary and interior-weight equality characterization.</li>
         <li><code>LeanInfoTheory.Shannon.BinaryEntropy</code>: opt-in Boolean-PMF bridge identifying local entropy with mathlib's <code>Real.binEntropy</code>.</li>
         <li><code>LeanInfoTheory.Shannon.Fano</code>: opt-in deterministic-decoder error API, exact and q-ary finite Fano inequalities, weak forms, random-variable wrappers, and converse-facing corollaries.</li>
         <li><code>LeanInfoTheory.Shannon.FiniteFamily</code>: opt-in dependent finite-family laws, finite marginals, entropy/MI/CMI algebra, pair/triple compatibility, and duplicate-tolerant ordered chain rules.</li>
         <li><code>LeanInfoTheory.Shannon.InfoMeasures</code>: marginals, conditional entropy, mutual information, conditional mutual information, chain rules, symmetry, and textbook entropy identities.</li>
+        <li><code>LeanInfoTheory.Shannon.LogSum</code>: opt-in zero-safe finite <code>EReal</code> log-sum inequality and equality characterization with guarded Real corollaries.</li>
         <li><code>LeanInfoTheory.Shannon.Units</code>: opt-in logarithm-base conversion; canonical information measures remain in nats.</li>
-        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: separated bridge entry point for expected self-information, finite conditional laws, KL formulas, independence, Markov and sufficiency semantics, recovery, stochastic data processing, pair/triple inequalities, and finite-family semantics.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: separated bridge entry point for expected self-information, finite conditional laws, KL formulas, convexity, independence, Markov and sufficiency semantics, recovery, stochastic data processing, pair/triple inequalities, and finite-family semantics.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Product</code>: independent-product PMF infrastructure, product-measure bridge lemmas, and joint-law absolute-continuity facts.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.FiniteSums</code>: finite real-sum rewrites for marginals, entropy, and the log-ratio formula for mutual information.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Conditional</code>: finite conditional-law API and expected conditional entropy / conditional mutual information fiber formulas.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge.Convexity</code>: finite-selector KL joint convexity, binary KL equality, and mutual-information input-law concavity and channel convexity.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily</code>: finite-family monotonicity, nonnegativity, submodularity, MI bounds, conditioning reduction, binary/n-way subadditivity, and concrete <code>ShannonEntropyVal</code> constructions.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.KL</code>: finite KL expansion, mutual information as KL, and averaged conditional-KL bridge theorems.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Independence</code>: ordinary and conditional independence predicates, mathlib bridges, positive-fiber formulations, and zero-MI/zero-CMI characterizations.</li>
@@ -66,9 +70,10 @@
         <li><code>LeanInfoTheory.Examples.CommonCause</code>: opt-in noisy binary common-cause example exercising conditional independence, zero CMI, and Markov factorization.</li>
         <li><code>LeanInfoTheory.Examples.StochasticChannels</code>: opt-in stochastic reset/cascade examples exercising KL contraction, support-sensitive real bounds, and strict entropy growth.</li>
         <li><code>LeanInfoTheory.Examples.SufficientStatistics</code>: opt-in fixed-prior and family-sufficiency examples covering recovery, factorization, KL preservation, and failure modes.</li>
+        <li><code>LeanInfoTheory.Examples.Convexity</code>: opt-in private regression consumers for scalar log-sum, finite mixtures, entropy concavity, KL convexity, and MI input-law concavity and channel convexity.</li>
         <li><code>LeanInfoTheory.Examples.Fano</code>: opt-in examples covering perfect decoding, the singleton-source edge case, and a fair Boolean source with a constant observation.</li>
         <li><code>LeanInfoTheory.Examples.FiniteFamily</code>: opt-in homogeneous and dependent-alphabet examples exercising ordered chains, overlap, empty entropy, and distinct checked/raw certificate paths.</li>
-        <li><code>LeanInfoTheory.Examples</code>: aggregate import for the separately importable certificate, finite-family, and semantic examples.</li>
+        <li><code>LeanInfoTheory.Examples</code>: aggregate import for the separately importable certificate, convexity, finite-family, and semantic examples.</li>
       </ul>
 
       <p>

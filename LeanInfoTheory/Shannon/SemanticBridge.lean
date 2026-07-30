@@ -5,6 +5,7 @@ Authors: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.SemanticBridge.Theorems
+import LeanInfoTheory.Shannon.SemanticBridge.Convexity
 import LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily
 import LeanInfoTheory.Shannon.SemanticBridge.Independence
 import LeanInfoTheory.Shannon.SemanticBridge.Markov
@@ -69,6 +70,9 @@ textbook/measure-theoretic semantics.
 - finite KL data processing through a common stochastic channel, with
   unconditional `ENNReal`, support-guarded real, deterministic-map, and
   channel-cascade forms;
+- finite-selector KL joint convexity, entropy concavity and mutual-information
+  concavity in the input law, and mutual-information convexity in the channel,
+  together with binary textbook forms;
 - exact preservation of pairwise `ENNReal` KL divergence through a channel
   admitting one common exact recovery channel for both input laws, together
   with support-guarded `ENNReal`/real converses and deterministic-map forms;
