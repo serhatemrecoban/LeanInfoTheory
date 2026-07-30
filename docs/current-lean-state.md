@@ -16,10 +16,12 @@ On July 29, Chunk 7 completed all 22 steps and passed its source, API,
 generated-reference, public-documentation, independent milestone, trust,
 boundary, and hygiene gates. On July 30, the coherent milestone was
 checkpointed as commit `5e616d8` (`Complete Project B Chunk 7`). The
-documentation-only `Prepare Project B Chunk 8 handoff` commit above it changes
-no Lean source; `origin/master` remains at `9aa3bb1` until the transition push.
-No Chunk 8 mathematical scope or Lean implementation is approved by this
-checkpoint.
+documentation-only handoff commit `0324ee6` (`Prepare Project B Chunk 8
+handoff`) above it changes no Lean source. At the completed remote handoff
+gate, local `HEAD`, `master`, `origin/master`, and remote `master` agreed at
+`0324ee6`; the Lean build/placeholder and Pages deployment workflows both
+succeeded. No Chunk 8 mathematical scope or Lean implementation is approved
+by this checkpoint or handoff.
 
 Project B Chunk 2 is complete. All 18 steps are finished. The chunk began
 from the clean Chunk 1 checkpoint, its new theorem contracts were validated by
@@ -675,7 +677,8 @@ Chunk 7 source: 48 modules, 90 local import edges, 11 root-reachable modules,
 37 opt-in modules, and 862 documented source declarations. Both generators are
 byte-stable on a second pass; source-link, anchor, summary, JSON, and website
 checks pass. These local files do not establish remote deployment; the
-transition push and Pages workflow remain separate evidence.
+successful Pages run for handoff commit `0324ee6` supplies that separate
+deployment evidence.
 
 ## Important Design Constraints
 

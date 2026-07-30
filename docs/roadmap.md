@@ -1,9 +1,9 @@
 # Roadmap
 
 This roadmap records planned technical milestones. The homepage, theorem
-highlights, module guide, and generated references now describe the validated
-and checkpointed Chunk 7 source. Remote publication remains a separate
-transition operation.
+highlights, module guide, and generated references describe the validated and
+checkpointed Chunk 7 source. The Chunk 8 handoff is remotely validated; later
+mathematical scope still requires separate approval.
 
 ## Now
 
@@ -125,9 +125,10 @@ transition operation.
   `Probability.Finite` module. The checkpoint has 28 new public
   source declarations and 46 maintained private examples. Generated
   references, public documentation, direct and milestone builds, boundary and
-  trust audits, and repository hygiene all pass. After the remote handoff,
-  bounded Chunk 8 context intake and planning may proceed separately, but no
-  mathematical scope or Lean implementation is approved by this transition.
+  trust audits, and repository hygiene all pass. Handoff commit `0324ee6` and
+  both required remote workflows also pass. Bounded Chunk 8 context intake and
+  planning may proceed separately, but no mathematical scope or Lean
+  implementation is approved by this transition.
 - Maintain project notes in the foundation conventions and project log.
 - Keep the lightweight finite API separated from heavier KL and coding imports.
 
@@ -140,8 +141,8 @@ transition operation.
   orientation page.
 - Link generated docs and blueprint entries back to the curated theorem
   highlights and submodularity demo page.
-- Complete the remote handoff, then use checkpoint `5e616d8` for bounded
-  Chunk 8 context intake and approve its focused mathematical scope and
+- Use checkpoint `5e616d8` and remote-validated handoff `0324ee6` for bounded
+  Chunk 8 context intake, then approve its focused mathematical scope and
   implementation plan through a separate readiness process.
 
 ## 6 Months

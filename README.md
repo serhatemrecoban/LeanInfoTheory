@@ -260,8 +260,8 @@ when they stabilize.
   source declarations. Direct-owner and full milestone builds, boundary
   consumers, the all-new-theorem axiom audit, placeholder scan, repeated
   generators, website checker, and repository-hygiene checks all pass. Commit
-  `5e616d8` is the coherent Chunk 7 Lean/source checkpoint; remote publication
-  remains a separate transition step.
+  `5e616d8` is the coherent Chunk 7 Lean/source checkpoint. Handoff commit
+  `0324ee6` was pushed successfully, and both required remote workflows pass.
 
 ## Lean Modules
 
@@ -507,10 +507,10 @@ Import heavier or demonstrational modules explicitly:
 
 ## Roadmap
 
-1. Complete the remote handoff, then use the independently validated Chunk 7
-   checkpoint `5e616d8` as the baseline for bounded Chunk 8 context intake.
-   Select its theorem scope and implementation plan through a separate
-   readiness and approval process.
+1. Use the independently validated Chunk 7 checkpoint `5e616d8` and
+   remote-validated handoff `0324ee6` as the baseline for bounded Chunk 8
+   context intake. Select its theorem scope and implementation plan through a
+   separate readiness and approval process.
 2. Keep the sufficiency core lightweight and place KL integration downstream;
    retain exact full-joint recovery as the contract established by the
    completed midpoint tests, including rejection of marginal-only false

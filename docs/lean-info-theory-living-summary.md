@@ -55,9 +55,10 @@ entropy-concavity, KL joint-convexity/equality, and MI input/channel-convexity
 surfaces, maintained examples, API review, generated references, public
 documentation, and independent milestone validation all pass. Commit
 `5e616d8` is the coherent Chunk 7 Lean/source checkpoint. The next authorized
-activity is completing its documentation and remote handoff, followed by a
-bounded Chunk 8 context intake; no Chunk 8 mathematical scope, detailed plan,
-or Lean implementation is approved by this transition.
+activity is the ignored Chunk 7 handoff report and then a bounded Chunk 8
+context intake; handoff commit `0324ee6` and both required remote workflows
+pass. No Chunk 8 mathematical scope, detailed plan, or Lean implementation is
+approved by this transition.
 
 **[Decision] Architectural rules that must be preserved.**
 
@@ -104,10 +105,10 @@ temporary handoffs. See Section 4 for the conflict protocol.
 | --- | --- |
 | Last updated | 2026-07-30 |
 | Last fully validated committed Lean/source baseline | `5e616d805649f6aa39c380f55e14a5d933fb6b2f` |
-| Repository transition state | The documentation-only `Prepare Project B Chunk 8 handoff` commit follows checkpoint `5e616d8`; `origin/master` remains at `9aa3bb1258206fb24a3645115955be8501ea3e5e` pending the transition push |
+| Repository transition state | Handoff commit `0324ee613df0e42aa22f8afdcbefadc5322a85eb` follows checkpoint `5e616d8`; at the completed handoff gate all local/remote master refs agreed there and both required workflows succeeded |
 | Lean baseline | Lean `v4.30.0`, commit `d024af099ca4bf2c86f649261ebf59565dc8c622` |
 | mathlib baseline | mathlib input revision `v4.30.0`, manifest commit `c5ea00351c28e24afc9f0f84379aa41082b1188f` |
-| Current phase | Project B, Chunks 1-7 checkpointed; complete the remote handoff, then perform bounded Chunk 8 context intake without assuming a mathematical scope |
+| Current phase | Project B, Chunks 1-7 checkpointed; prepare the ignored Chunk 7 handoff report, then perform bounded Chunk 8 context intake without assuming a mathematical scope |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -962,8 +963,9 @@ checkpointed as commit `5e616d8`.**
 Chunks 5 and 6 remain checkpointed as `ec78829` and `7b5f0db`. The approved
 Chunk 7 execution plan is
 [`docs/plans/chapter2-chunk-07.md`](plans/chapter2-chunk-07.md). The
-documentation-only Chunk 8 handoff follows the source checkpoint locally;
-`origin/master` remains at `9aa3bb1` until the transition push.
+documentation-only handoff commit `0324ee6` follows the source checkpoint
+without changing Lean. At the completed handoff gate, all local and remote
+master refs agreed there and both required workflows succeeded.
 
 ### Frozen Chunk 7 implementation
 
@@ -996,10 +998,8 @@ documentation-only Chunk 8 handoff follows the source checkpoint locally;
 
 ### Next repository action
 
-Complete the documentation-only Chunk 8 handoff, push the transition commits,
-and require successful remote build/placeholder and Pages workflows. Then
-prepare the ignored Chunk 7 handoff report and begin only bounded Chunk 8
-context intake.
+Prepare the ignored Chunk 7 handoff report from source checkpoint `5e616d8`
+and handoff commit `0324ee6`. Then begin only bounded Chunk 8 context intake.
 
 ### Next review point
 
@@ -1022,7 +1022,7 @@ again.
 
 | Note | Work |
 | --- | --- |
-| Unnumbered | **Chunk 7 checkpoint complete.** Commit `5e616d8` contains the implementation and all `C7.01`--`C7.22` validation evidence; finish the remote handoff, then perform bounded Chunk 8 intake without assuming its scope. |
+| Unnumbered | **Chunk 7 checkpoint and remote handoff complete.** Commit `5e616d8` contains the implementation and all `C7.01`--`C7.22` validation evidence; handoff `0324ee6` and both required workflows pass. Prepare the ignored handoff report, then perform bounded Chunk 8 intake without assuming its scope. |
 | 29 | **Finite-Fano phase checkpointed.** Commit `ec78829` completes the approved phase; its evidence-based Fano follow-ups remain open and deferred. |
 
 Note 29 also preserves proof-pressure triggers from `C5.08`-`C5.11` and
@@ -1223,9 +1223,9 @@ not reproduce textbook prose or proofs.
 - last fully validated committed Lean/source baseline: `5e616d8`
 - documentation-only handoff commits `72f9f87` and `9aa3bb1` precede the
   Chunk 7 source checkpoint and change no Lean source
-- the documentation-only `Prepare Project B Chunk 8 handoff` commit follows
-  checkpoint `5e616d8` locally; `origin/master` remains at `9aa3bb1` pending
-  the transition push
+- documentation-only handoff commit `0324ee6` follows checkpoint `5e616d8`;
+  at the completed handoff gate local and remote master refs agreed there and
+  both required workflows succeeded
 
 ### Most recent local validation
 
@@ -1379,10 +1379,15 @@ workflow list. The final cleanup requires a successful remote workflow run
 after push; that operational result does not redefine the validated Lean/source
 baseline.
 
-The Chunk 7 source checkpoint `5e616d8` and its documentation-only Chunk 8
-handoff are local at this reconciliation. `origin/master` remains at
-`9aa3bb1`; fresh remote build/placeholder and Pages evidence belongs to the
-transition push gate and must not be inferred from local validation.
+The remote handoff gate for `0324ee6` completed on 2026-07-30:
+
+- build and placeholder check:
+  `https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/30546320537`;
+- website deployment:
+  `https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/30546320388`.
+
+Both runs succeeded. This fresh-checkout evidence agrees with the local
+Chunk 7 milestone evidence without redefining source checkpoint `5e616d8`.
 
 ### Generated documentation and website checks
 
