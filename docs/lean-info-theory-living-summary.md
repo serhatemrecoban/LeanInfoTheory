@@ -48,17 +48,17 @@ certificates. Its two long-term branches are:
   network-information-theory converse proofs.
 
 **[Current] Mathematical phase.** Project B is active. Cover--Thomas Chapter 2
-Chunks 1-7 are checkpointed, and the approved Chunk 8 execution plan is
-complete and independently validated in the working tree through `C8.24`.
-The frozen
+Chunks 1-8 are checkpointed, with Chunk 8 complete through `C8.24` at source
+checkpoint `1eef2289c3475ff978569f285329bdc78e060594`. The frozen
 18-declaration surface adds four lightweight conditional-family CMI chain
 rules, common-base channel conditional KL with finite `ENNReal` weighted and
 joint chain rules plus guarded Real forms, and finite-family mutual
 independence with the n-way entropy-additivity equality case. All new heavy
 owners remain opt-in, and the root and certificate trust boundary are
 unchanged. Generated/public references and the independent build, consumer,
-trust, website, and hygiene gates all pass. The working tree is not yet
-checkpointed, committed, pushed, deployed, or remotely validated.
+trust, website, and hygiene gates all pass. The checkpoint is pushed, and its
+exact-SHA Lean build/placeholder and Pages deployment workflows both pass. No
+later theorem phase has been selected.
 
 **[Decision] Architectural rules that must be preserved.**
 
@@ -91,7 +91,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Task | Read next |
 | --- | --- |
-| Chunk 8 implementation or closeout | The approved Chunk 8 plan; Sections 3, 6-9, 11-14, and 16; the three changed/new mathematical owners, two maintained example owners, semantic/examples aggregates, and current Future Work Notes 9, 14-18, and 24 |
+| Chunk 8 review or later-phase intake | The completed Chunk 8 plan; Sections 3, 6-9, 11-14, and 16; the three Chunk 8 mathematical owners, two maintained example owners, semantic/examples aggregates, and current Future Work Notes 9, 14-18, and 24 |
 | Review of an existing Lean theorem | Sections 3, 7, 9, and 16; the owning source module and its direct imports |
 | API or module review | Sections 7, 9, 10, 11, and Future Work Notes 2-4, 14-16, 18, and 26 |
 | Certificate work | Sections 2, 5, 7, 11, and 13; `EntropyExpr`, `EntropyVal`, `PrimitiveIneq`, and `Certificate.Checked` |
@@ -103,12 +103,12 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-07-31 |
-| Last fully validated committed Lean/source baseline | `5e616d805649f6aa39c380f55e14a5d933fb6b2f` |
-| Repository transition state | Baseline `a27ef8d429d8aa5f0d707817cea9586c07118719` follows the remotely validated Chunk 8 handoff line; the uncommitted Chunk 8 working tree is complete and independently validated through `C8.24`, but is not checkpointed, pushed, deployed, or remotely validated |
+| Last updated | 2026-08-20 |
+| Last fully validated committed Lean/source baseline | `1eef2289c3475ff978569f285329bdc78e060594` |
+| Repository transition state | The independently validated Chunk 8 source was checkpointed and pushed as `1eef2289c3475ff978569f285329bdc78e060594`; both required exact-SHA workflows succeeded, and the following status reconciliation changes no Lean source |
 | Lean baseline | Lean `v4.30.0`, commit `d024af099ca4bf2c86f649261ebf59565dc8c622` |
 | mathlib baseline | mathlib input revision `v4.30.0`, manifest commit `c5ea00351c28e24afc9f0f84379aa41082b1188f` |
-| Current phase | Project B, Chunks 1-7 checkpointed; Chunk 8 complete and independently validated in the working tree through `C8.24`; no later theorem phase or checkpoint operation is authorized by that closeout |
+| Current phase | Project B, Chunks 1-8 checkpointed; Chunk 8 is complete through `C8.24`; no later theorem phase has been selected or approved |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -590,10 +590,9 @@ claim a general measure-theoretic formalization of the whole subject.
 | `LeanInfoTheory.Certificate.Checked` | Raw/checked certificates and validator | Yes |
 | `LeanInfoTheory` | Lightweight public aggregate only | Root |
 
-The tracked generated reference state contains the 51 modules from the
-independently validated Chunk 8 working tree: 11 are root-reachable and 40 are
-opt-in. The root is unchanged and
-does not import bounds, units, finite-family or mixture modules,
+The tracked generated reference state contains 51 modules from checkpointed
+Chunk 8 source: 11 are root-reachable and 40 are opt-in. The root is unchanged
+and does not import bounds, units, finite-family or mixture modules,
 log-sum/concavity modules, semantic bridges, channel modules, demos, examples,
 or mathlib coding anchors.
 
@@ -718,8 +717,8 @@ convexity, and one lightweight finite-bind declaration. Both generators are
 byte-stable on a second pass, and the source-line, anchor, module-summary, JSON,
 and website checks pass.
 
-For the independently validated Chunk 8 working tree, the regenerated
-references report 51 modules, 100 local edges, 11 root-reachable modules, 40
+For checkpointed Chunk 8 source, the regenerated references report 51 modules,
+100 local edges, 11 root-reachable modules, 40
 opt-in modules, and 880 documented source declarations. The delta from the
 Chunk 7 checkpoint is exactly three opt-in modules and 18 public declarations.
 Both generators are byte-stable on a second pass; source paths and lines,
@@ -761,7 +760,7 @@ additive and preserved inherited public names.
 | 5 | `ec78829` | Finite Fano and estimation error | Boolean entropy bridge, type-generic deterministic error, exact/q-ary/weak Fano, error and uniform-source corollaries, permanent examples, API freeze |
 | 6 | `7b5f0db` | Finite families and concrete entropy valuations | Complete and independently validated: dependent finite-atom entropy/MI/CMI, binary and ordered chain rules, Shannon inequalities, concrete valuation, certificate adapter, permanent examples, generated references, and full milestone closeout |
 | 7 | `5e616d8` | Finite log-sum and convexity | Complete and independently validated through `C7.22`: zero-safe scalar LS3, finite mixtures, entropy concavity/equality, KL joint convexity/equality, MI input/channel convexity, private maintained examples, generated references, and full milestone closeout |
-| 8 | Validated working tree; baseline `a27ef8d` | Finite conditional KL, conditional CMI, and mutual independence | Complete and independently validated through `C8.24`: four conditional-family CMI chain rules, common-base conditional KL and joint chain rules, n-way mutual-independence equality, maintained examples, frozen API/imports, generated references, and complete build/boundary/trust/website/hygiene closeout; checkpointing remains separate |
+| 8 | `1eef228` | Finite conditional KL, conditional CMI, and mutual independence | Complete, checkpointed, and remotely validated through `C8.24`: four conditional-family CMI chain rules, common-base conditional KL and joint chain rules, n-way mutual-independence equality, maintained examples, frozen API/imports, generated references, and complete build/boundary/trust/website/hygiene closeout |
 
 Cleanup checkpoints `e72e68c`, `7de8ff5`, and `11e071c` reconciled
 post-chunk documentation and prepared the Chunk 5 handoff. Commits `cb8eb6b`
@@ -998,11 +997,12 @@ These are intentional current contracts, not claims of maximal generality.
 
 ### Current phase status
 
-**Project B Chunk 8 is complete and independently validated through `C8.24`
-in the working tree. It is not yet checkpointed, committed, pushed, deployed,
-or remotely validated.**
+**Project B Chunk 8 is complete through `C8.24`, checkpointed as `1eef228`,
+pushed, remotely build-validated, and deployed. No later theorem phase has
+been selected.**
 
-Chunks 5--7 remain checkpointed as `ec78829`, `7b5f0db`, and `5e616d8`. The
+Chunks 5--8 are checkpointed as `ec78829`, `7b5f0db`, `5e616d8`, and
+`1eef228`. The
 approved Chunk 8 execution plan is
 [`docs/plans/chapter2-chunk-08.md`](plans/chapter2-chunk-08.md), based on
 commit `a27ef8d`; all 24 steps are complete.
@@ -1043,15 +1043,16 @@ commit `a27ef8d`; all 24 steps are complete.
 
 ### Next repository action
 
-Review the independently validated Chunk 8 working tree. Any checkpoint,
-commit, push, deployment, remote validation, handoff, or later theorem phase
-requires separate authorization and evidence.
+Select any later mathematical, certificate, or documentation phase through a
+separate readiness and planning decision. Preserve the checkpointed Chunk 8
+API, import boundaries, and certificate trust path unless a later approved
+scope explicitly changes them.
 
 ### Next review point
 
-The next review should decide the checkpoint/handoff sequence separately from
-the next mathematical scope. Deferred Future Work remains governed by its
-recorded pressure triggers rather than becoming automatic post-chunk work.
+The next review should choose scope rather than infer it from roadmap order.
+Deferred Future Work remains governed by its recorded pressure triggers rather
+than becoming automatic post-chunk work.
 
 ## 13. Future-Work Register
 
@@ -1066,7 +1067,7 @@ again.
 
 | Note | Work |
 | --- | --- |
-| Unnumbered | **Chunk 8 is complete and independently validated in the working tree through `C8.24`.** Its 18-declaration API, generated references, and complete validation evidence are frozen; checkpointing and any later theorem phase require separate decisions. |
+| Unnumbered | **Chunk 8 is complete through `C8.24` and checkpointed as `1eef228`.** Its 18-declaration API, generated references, complete validation evidence, exact-SHA Lean workflow, and Pages deployment pass; any later theorem phase requires a separate decision. |
 | 29 | **Finite-Fano phase checkpointed.** Commit `ec78829` completes the approved phase; its evidence-based Fano follow-ups remain open and deferred. |
 
 Note 29 also preserves proof-pressure triggers from `C5.08`-`C5.11` and
@@ -1265,15 +1266,16 @@ not reproduce textbook prose or proofs.
 - mathlib input revision: `v4.30.0`
 - mathlib manifest commit:
   `c5ea00351c28e24afc9f0f84379aa41082b1188f`
-- last fully validated committed Lean/source baseline: `5e616d8`
+- last fully validated committed Lean/source baseline: `1eef228`
 - documentation-only handoff commits `72f9f87` and `9aa3bb1` precede the
   Chunk 7 source checkpoint and change no Lean source
 - documentation-only handoff commit `0324ee6` follows checkpoint `5e616d8`;
   at the completed handoff gate local and remote master refs agreed there and
   both required workflows succeeded
-- documentation-only baseline `a27ef8d` finalizes the Chunk 8 handoff context;
-  the current independently validated Chunk 8 source changes above it are
-  uncommitted
+- documentation-only baseline `a27ef8d` finalized the Chunk 8 handoff context
+- source checkpoint `1eef228` contains the complete, independently validated
+  Chunk 8 implementation; it was pushed on 2026-08-20 and both required
+  exact-SHA workflows succeeded
 
 ### Most recent local validation
 
@@ -1315,9 +1317,10 @@ All 15 new public theorems reported only `propext`, `Classical.choice`, and
 website checker, exact declaration/module/source/anchor audit, and repository
 hygiene pass. The generated state is 51 modules, 100 local edges, 11 root-
 reachable modules, 40 opt-in modules, and 880 documented source declarations.
-The pass used the incremental cache. This is an independently validated but
-uncommitted working tree, not a checkpoint, push, deployment, or remote
-validation.
+The pass used the incremental cache. At the time of C8.24 this was an
+independently validated but uncommitted working tree. On 2026-08-20 the exact
+validated source became checkpoint `1eef228`; its required remote build and
+deployment workflows both succeeded.
 
 On 2026-07-31, `C8.21` completed focused integration for the frozen Chunk 8
 source. One combined build of the nine approved direct and downstream targets
@@ -1507,6 +1510,18 @@ The remote handoff gate for `0324ee6` completed on 2026-07-30:
 Both runs succeeded. This fresh-checkout evidence agrees with the local
 Chunk 7 milestone evidence without redefining source checkpoint `5e616d8`.
 
+The remote Chunk 8 source-checkpoint gate for `1eef228` completed on
+2026-08-20:
+
+- build and placeholder check:
+  `https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/32380332070`;
+- website deployment:
+  `https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/32380332151`.
+
+Both runs succeeded for the exact source checkpoint. The following
+documentation-only reconciliation records that remote state without changing
+the validated Lean/source baseline.
+
 ### Generated documentation and website checks
 
 Use:
@@ -1618,7 +1633,7 @@ inferred from local content. The public site is:
   sequence with checkpoint evidence.
 - [Chunk 8 plan](plans/chapter2-chunk-08.md): approved finite conditional-KL,
   conditional-family CMI, and mutual-independence implementation sequence;
-  complete and independently validated in the working tree through `C8.24`.
+  complete through `C8.24` and checkpointed as `1eef228`.
 - [Semantic bridge design](semantic-bridge-design.md): original bridge design
   and conditional-law choices.
 - [Semantic bridge API audit](semantic-bridge-api-audit.md): audited mathlib
@@ -1644,6 +1659,7 @@ inferred from local content. The public site is:
 - Chunk 5 implementation and validated Lean/source baseline: `ec78829`
 - Chunk 6 implementation and validated Lean/source baseline: `7b5f0db`
 - Chunk 7 implementation and validated Lean/source baseline: `5e616d8`
+- Chunk 8 implementation and validated Lean/source baseline: `1eef228`
 
 ### Temporary historical inputs
 

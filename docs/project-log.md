@@ -6186,6 +6186,24 @@ documentation, naming, simp, validation-infrastructure, architecture, and
 strict-Jensen responsibilities; no new numbered note is created by this
 closeout.
 
+#### August 20, 2026 checkpoint and remote gate
+
+After separate authorization, the exact validated 25-entry Chunk 8 working-
+tree inventory was re-audited, committed as
+`1eef2289c3475ff978569f285329bdc78e060594` (`Complete Project B Chunk 8`), and
+pushed to `master`. Before the following documentation-only reconciliation,
+local `HEAD`, local `master`, and `origin/master` all agreed at that source
+checkpoint. The exact-SHA
+[Lean build and placeholder workflow](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/32380332070)
+and [Pages deployment workflow](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/32380332151)
+both completed successfully.
+
+This transition changes no theorem, declaration, import, generated reference,
+root boundary, or certificate trust path. It preserves the July 31 C8.24
+working-tree closeout as historical evidence while advancing the validated
+committed Lean/source baseline to `1eef228`. No later mathematical phase is
+selected or authorized by the checkpoint.
+
 ## Completed Project B Chunk 4 Plan
 
 This completed theorem phase is a revised 20-step plan for finite sufficient
@@ -6550,12 +6568,12 @@ through `C7.22`, and checkpointed as `5e616d8`. Its 28 new public source
 declarations, 46 private maintained examples, generated references, public
 documentation, complete milestone suite, boundary/trust audits, and
 repository-hygiene gates all pass. The approved 24-step Chunk 8 plan is now
-complete and independently validated in the working tree through `C8.24`.
+complete through `C8.24` and checkpointed as `1eef228`.
 Its 18-declaration conditional-CMI, common-base conditional-KL, and finite-
 family mutual-independence surface is API-frozen; generated references,
 public documentation, complete builds, boundaries, trust, and hygiene all
-pass. The milestone is not yet checkpointed, committed, pushed, deployed, or
-remotely validated.
+pass. The exact-SHA Lean build/placeholder and Pages deployment workflows also
+pass.
 Richer certificate
 assumptions, external certificate import, coding-theory layers, theorem-level
 blueprint work, and substantial mathlib PR preparation remain later work.
@@ -6565,7 +6583,7 @@ blueprint work, and substantial mathlib PR preparation remain later work.
 | Status | Notes | Meaning |
 | --- | --- | --- |
 | Standing guardrails | 2-4, 6-8, 14-18, 26 | Apply these policies continuously; they do not create standalone cleanup tasks. |
-| Current Project B execution | Unnumbered | Chunks 5-7 are checkpointed as `ec78829`, `7b5f0db`, and `5e616d8`. Chunk 8 is complete and independently validated in the working tree through `C8.24`; checkpointing and any later theorem phase require separate decisions. |
+| Current Project B execution | Unnumbered | Chunks 5-8 are checkpointed as `ec78829`, `7b5f0db`, `5e616d8`, and `1eef228`. Chunk 8 is complete through `C8.24`, and both required exact-SHA workflows pass; any later theorem phase requires a separate decision. |
 | Fano follow-ups | 29 | Retain the five evidence-based proof-pressure or pedagogy/sharpness groups and optional theorem-highlights curation; Note 29 no longer owns downstream chunk sequencing. |
 | Channel/Markov proof-pressure | 21, 25, 27 | Revisit these only when concrete channel, Markov, or data-processing consumers reach their stated triggers. |
 | Proof-pressure deferred | 19, 22-24, 30-37, 40 | Wait for the repeated proof or new statement pressure specified in each note. |
@@ -7572,6 +7590,16 @@ resolution.
     authorized checkpoint, push, and deployment, verify representative new
     declaration source links and deployed counts against that actual remote
     state rather than treating local generation as remote validation.
+
+    The August 20, 2026 Chunk 8 checkpoint repeats and completes that remote-
+    transition pattern. The validated source was committed as `1eef228`,
+    pushed, and accepted by both required exact-SHA workflows. Reconciling the
+    same plan, project log, living summary, README, current-state document,
+    roadmap, site home, and site roadmap after the push is further evidence for
+    the already-eligible structured-status source. It also confirms the schema
+    must distinguish the Lean/source checkpoint from a later documentation-
+    only reconciliation head. Do not implement that tooling as part of this
+    status update.
 
     No separate Chunk 8 theorem-highlight task is created by this review. The
     complete generated index already exposes the new conditional-KL,
@@ -10462,6 +10490,17 @@ resolution.
     phase before or alongside a later major milestone closeout or material CI
     refactor. No new numbered Future Work item is needed; this note remains
     the sole executable-validation owner.
+
+    The separately authorized August 20, 2026 source checkpoint completed the
+    remote C8 gate. Commit `1eef228` was pushed to `master`; the exact-SHA Lean
+    build/placeholder workflow
+    (`https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/32380332070`)
+    and Pages workflow
+    (`https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/32380332151`)
+    both succeeded. This supplies fresh-checkout and deployment evidence for
+    the frozen Chunk 8 source while leaving the reusable validation driver,
+    maintained boundary/trust harness, and cold-release policy open under this
+    note.
 
 18. Standing architecture guardrail: preserve the boundary between the
     completed pair/triple Chunk 1, the completed equality/independence Chunk 2,

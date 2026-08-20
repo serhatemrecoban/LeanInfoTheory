@@ -1,10 +1,10 @@
 # Roadmap
 
-This roadmap records planned technical milestones. Chunk 8 is complete and
-independently validated in the working tree through `C8.24`; the homepage,
-module guide, and generated references describe that local state accurately.
-The milestone is not yet checkpointed, committed, pushed, deployed, or
-remotely validated.
+This roadmap records planned technical milestones. Chunk 8 is complete through
+`C8.24`, checkpointed as commit `1eef228`, pushed, remotely build-validated,
+and deployed. The homepage, module guide, and generated references describe
+that source checkpoint accurately. No later mathematical phase has been
+selected.
 
 ## Now
 
@@ -152,7 +152,8 @@ remotely validated.
   in Cover--Thomas Sections 2.5--2.8 without claiming all Chapter 2 complete.
   Generated references record 51 modules, 100 local edges, 11 root-reachable
   modules, 40 opt-in modules, and 880 documented source declarations. The
-  validated working tree is not yet a checkpoint or deployed state.
+  validated source is checkpointed as `1eef228`; its required Lean and Pages
+  workflows both succeeded.
 - Maintain project notes in the foundation conventions and project log.
 - Keep the lightweight finite API separated from heavier KL and coding imports.
 
@@ -165,9 +166,9 @@ remotely validated.
   orientation page.
 - Link generated docs and blueprint entries back to the curated theorem
   highlights and submodularity demo page.
-- Review and, only with separate authorization, checkpoint the independently
-  validated Chunk 8 working tree before selecting any later mathematical
-  phase.
+- Select any later mathematical, certificate, or documentation phase through a
+  separate readiness and planning process, preserving the checkpointed Chunk 8
+  API and architecture as the current boundary.
 
 ## 6 Months
 

@@ -1,8 +1,9 @@
 # Chapter 2 Chunk 8: Finite Conditional KL, Conditional CMI, And Mutual Independence
 
-**Plan status:** Complete; independently validated in the working tree
+**Plan status:** Complete; checkpointed and remotely validated
 **Baseline commit:** `a27ef8d429d8aa5f0d707817cea9586c07118719`
 **Preceding Chunk 7 Lean/source checkpoint:** `5e616d805649f6aa39c380f55e14a5d933fb6b2f`
+**Chunk 8 Lean/source checkpoint:** `1eef2289c3475ff978569f285329bdc78e060594`
 **Plan path:** `docs/plans/chapter2-chunk-08.md`
 **Number of steps:** 24
 **Execution status:** `C8.01`--`C8.24` complete
@@ -3211,6 +3212,22 @@ Chunk 8 is complete and independently validated in the working tree. It is
 not checkpointed, committed, pushed, deployed, or remotely validated, and
 this closeout authorizes none of those operations or any later mathematical
 phase.
+
+#### Post-plan checkpoint transition (August 20, 2026)
+
+After separate authorization, the validated 25-entry Chunk 8 working-tree
+inventory was re-audited and committed as
+`1eef2289c3475ff978569f285329bdc78e060594` (`Complete Project B Chunk 8`). The
+checkpoint was pushed to `master`; local `HEAD`, local `master`, and
+`origin/master` agreed at that exact source commit before this documentation-
+only reconciliation. The exact-SHA
+[Lean build and placeholder workflow](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/32380332070)
+and [Pages deployment workflow](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/32380332151)
+both succeeded.
+
+This post-plan transition does not rewrite the historically accurate C8.24
+outcome above, change any theorem, declaration, import, generated reference, or
+validation evidence, or authorize a later mathematical phase.
 
 ## Integration Checkpoints
 

@@ -262,8 +262,8 @@ when they stabilize.
   generators, website checker, and repository-hygiene checks all pass. Commit
   `5e616d8` is the coherent Chunk 7 Lean/source checkpoint. Handoff commit
   `0324ee6` was pushed successfully, and both required remote workflows pass.
-- Project B Chunk 8 is complete and independently validated in the working
-  tree through `C8.24`. The implementation
+- Project B Chunk 8 is complete, checkpointed, and remotely validated through
+  `C8.24`. The implementation
   closes the remaining finite algebraic gaps in Cover--Thomas Sections
   2.5--2.6 without adding a new Section 2.8 theorem. It adds exactly four
   lightweight conditional-family CMI chain rules, the opt-in common-base
@@ -283,9 +283,10 @@ when they stabilize.
   build, direct and guarded boundary consumers, complete 15-theorem axiom
   audit, placeholder scan, and repository hygiene pass. Generated references
   now cover 51 modules, 100 local import edges, 11 root-reachable modules, 40
-  opt-in modules, and 880 documented source declarations. This validated
-  working tree is not yet checkpointed, committed, pushed, deployed, or
-  remotely validated.
+  opt-in modules, and 880 documented source declarations. The independently
+  validated source was checkpointed and pushed on August 20, 2026 as commit
+  `1eef228`; the required Lean build/placeholder and Pages workflows both
+  succeeded for that exact source checkpoint.
 
 ## Lean Modules
 
@@ -548,9 +549,10 @@ Import heavier or demonstrational modules explicitly:
 
 ## Roadmap
 
-1. Review and, only with separate authorization, checkpoint the independently
-   validated Chunk 8 working tree without changing its frozen 18-declaration
-   API, lightweight-root boundary, or certificate trust path.
+1. Select any later mathematical, certificate, or documentation phase through
+   a separate readiness and planning decision while preserving Chunk 8's
+   frozen 18-declaration API, lightweight-root boundary, and certificate trust
+   path.
 2. Keep the sufficiency core lightweight and place KL integration downstream;
    retain exact full-joint recovery as the contract established by the
    completed midpoint tests, including rejection of marginal-only false

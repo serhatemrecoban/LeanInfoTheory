@@ -28,9 +28,13 @@ On July 31, Chunk 8 completed all 24 approved steps and passed independent
 working-tree validation. Its 18-declaration source surface is frozen; the root
 and certificate trust boundaries remain unchanged; and the focused, maintained,
 and default builds, consumers, trust audit, generated references, website, and
-repository-hygiene checks all pass. The current working tree is complete and
-independently validated, but not yet checkpointed, committed, pushed, deployed,
-or remotely validated.
+repository-hygiene checks all pass. On August 20, that exact validated source
+was checkpointed and pushed as commit `1eef2289c3475ff978569f285329bdc78e060594`
+(`Complete Project B Chunk 8`). The exact-SHA
+[Lean build and placeholder workflow](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/32380332070)
+and [Pages deployment workflow](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/32380332151)
+both succeeded. This subsequent documentation-only reconciliation records the
+transition and changes no Lean source.
 
 Project B Chunk 2 is complete. All 18 steps are finished. The chunk began
 from the clean Chunk 1 checkpoint, its new theorem contracts were validated by
@@ -161,11 +165,11 @@ audit, and final hygiene checks are current. The milestone is checkpointed as
 commit `ec78829`. Canonical/minimal sufficiency and larger iid examples are
 deferred by Future Work Note 39.
 
-## Current Project B Boundary: Chunk 8 Independently Validated In The Working Tree
+## Current Project B Boundary: Chunk 8 Checkpointed And Remotely Validated
 
 The approved 24-step Chunk 8 plan is
-`docs/plans/chapter2-chunk-08.md`; `C8.01`--`C8.24` are complete in the current
-working tree. The mathematical implementation closes the remaining finite
+`docs/plans/chapter2-chunk-08.md`; `C8.01`--`C8.24` are complete in checkpointed
+source. The mathematical implementation closes the remaining finite
 algebraic gaps in Cover--Thomas Sections 2.5--2.6 and, together with the
 already completed Section 2.7 convexity and Section 2.8 data-processing
 layers, supports the limited claim that the finite algebraic gaps in Sections
@@ -318,8 +322,8 @@ final repository hygiene. Commit `7b5f0db` is the coherent, fully validated
 Chunk 6 Lean/source checkpoint.
 
 This is a maintained status note for Lean-focused work. It summarizes the
-current architecture, the completed checkpointed Chunk 3--7 theorem
-milestones, and the independently validated Chunk 8 working tree.
+current architecture and the completed checkpointed Chunk 3--8 theorem
+milestones.
 
 ## Current Lean Architecture
 
@@ -765,14 +769,14 @@ dependency map is module-level and is not theorem-level leanblueprint. Keep
 website wording honest about what is proved, demoed, generated, planned, and
 future work.
 
-The tracked generated references describe the independently validated Chunk 8
-working tree: 51 modules, 100 local import edges, 11 root-reachable modules,
+The tracked generated references describe the checkpointed Chunk 8 source: 51
+modules, 100 local import edges, 11 root-reachable modules,
 40 opt-in modules, and 880 documented source declarations. Both generators are
 byte-stable on a second pass; source-link, anchor, summary, JSON, and website
 checks pass. Their delta from checkpointed Chunk 7 source is exactly three
-modules and 18 declarations. These local files do not establish remote
-deployment; the successful Pages run for handoff commit `0324ee6` applies to
-the preceding handoff state, not the uncommitted Chunk 8 working tree.
+modules and 18 declarations. Commit `1eef228` contains that generated state,
+and its exact-SHA Pages deployment succeeded. The post-checkpoint status
+reconciliation changes only hand-maintained documentation and public wording.
 
 ## Important Design Constraints
 
