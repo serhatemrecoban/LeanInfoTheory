@@ -1,9 +1,10 @@
 # Roadmap
 
-This roadmap records planned technical milestones. The homepage, theorem
-highlights, module guide, and generated references describe the validated and
-checkpointed Chunk 7 source. The Chunk 8 handoff is remotely validated; later
-mathematical scope still requires separate approval.
+This roadmap records planned technical milestones. Chunk 8 is complete and
+independently validated in the working tree through `C8.24`; the homepage,
+module guide, and generated references describe that local state accurately.
+The milestone is not yet checkpointed, committed, pushed, deployed, or
+remotely validated.
 
 ## Now
 
@@ -126,9 +127,32 @@ mathematical scope still requires separate approval.
   source declarations and 46 maintained private examples. Generated
   references, public documentation, direct and milestone builds, boundary and
   trust audits, and repository hygiene all pass. Handoff commit `0324ee6` and
-  both required remote workflows also pass. Bounded Chunk 8 context intake and
-  planning may proceed separately, but no mathematical scope or Lean
-  implementation is approved by this transition.
+  both required remote workflows also pass. That transition supplied the
+  baseline later used by the separately approved Chunk 8 plan.
+- The approved 24-step
+  [finite conditional-KL, conditional-CMI, and mutual-independence plan](plans/chapter2-chunk-08.md)
+  is complete and independently validated through `C8.24`. Its frozen source
+  adds four lightweight binary/ordered law/source conditional-family CMI chain
+  rules; the separately importable
+  `Shannon.SemanticBridge.ConditionalKL` module with common-base channel
+  conditional KL, finite `ENNReal` weighted and joint chain rules, and
+  support-guarded Real forms; and the separately importable
+  `Shannon.SemanticBridge.FiniteFamilyIndependence` module with PMF/source
+  factorization predicates, empty/singleton/restriction laws, pair
+  compatibility, and n-way entropy-additivity iff mutual independence. The
+  maintained conditional-KL and finite-family examples cover null and infinite
+  fibers, duplicate/overlapping CMI chains, dependent alphabets, product
+  families, and pairwise-but-not-mutual independence. Exactly 18 public
+  declarations were added; all new heavy owners remain opt-in, while the
+  root, certificate API, validator, primitive inequalities, and trust boundary
+  remain unchanged. The focused, maintained, and default builds, boundary and
+  trust suites, complete 15-theorem axiom audit, generated references, website,
+  and repository-hygiene checks pass. Chunk 8 adds no Section 2.8 theorem: together
+  with completed Chunks 3 and 7, it closes the remaining finite algebraic gaps
+  in Cover--Thomas Sections 2.5--2.8 without claiming all Chapter 2 complete.
+  Generated references record 51 modules, 100 local edges, 11 root-reachable
+  modules, 40 opt-in modules, and 880 documented source declarations. The
+  validated working tree is not yet a checkpoint or deployed state.
 - Maintain project notes in the foundation conventions and project log.
 - Keep the lightweight finite API separated from heavier KL and coding imports.
 
@@ -141,9 +165,9 @@ mathematical scope still requires separate approval.
   orientation page.
 - Link generated docs and blueprint entries back to the curated theorem
   highlights and submodularity demo page.
-- Use checkpoint `5e616d8` and remote-validated handoff `0324ee6` for bounded
-  Chunk 8 context intake, then approve its focused mathematical scope and
-  implementation plan through a separate readiness process.
+- Review and, only with separate authorization, checkpoint the independently
+  validated Chunk 8 working tree before selecting any later mathematical
+  phase.
 
 ## 6 Months
 

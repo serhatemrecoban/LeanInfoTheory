@@ -7,8 +7,8 @@
     "Certificate layer",
     "Reference anchors"
   ],
-  "local_edge_count": 90,
-  "module_count": 48,
+  "local_edge_count": 100,
+  "module_count": 51,
   "modules": [
     {
       "external_imports": [],
@@ -164,7 +164,7 @@
       "name": "LeanInfoTheory.Shannon.FiniteFamily",
       "path": "LeanInfoTheory/Shannon/FiniteFamily.lean",
       "root_reachable": false,
-      "summary": "Dependent finite-family laws, finite marginals, family entropy/MI/CMI algebra, pair/triple bridges, and ordered chain rules."
+      "summary": "Dependent finite-family laws, finite marginals, family entropy/MI/CMI algebra, pair/triple bridges, and binary/ordered entropy, MI, and conditional-MI chain rules."
     },
     {
       "external_imports": [],
@@ -210,9 +210,11 @@
       ],
       "layer": "Semantic bridge layer",
       "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL",
         "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
         "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
         "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+        "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
         "LeanInfoTheory.Shannon.SemanticBridge.Independence",
         "LeanInfoTheory.Shannon.SemanticBridge.Markov",
         "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
@@ -222,7 +224,7 @@
       "name": "LeanInfoTheory.Shannon.SemanticBridge",
       "path": "LeanInfoTheory/Shannon/SemanticBridge.lean",
       "root_reachable": false,
-      "summary": "Aggregate entry point for finite semantic, KL, convexity, independence, Markov, sufficiency, data-processing, recovery, and finite-family bridges."
+      "summary": "Aggregate entry point for finite semantic, KL, convexity, conditional-KL, independence, Markov, sufficiency, data-processing, recovery, and finite-family bridges."
     },
     {
       "external_imports": [
@@ -236,6 +238,18 @@
       "path": "LeanInfoTheory/Shannon/SemanticBridge/Conditional.lean",
       "root_reachable": false,
       "summary": "Finite conditional-law API and expected conditional entropy / conditional mutual-information formulas."
+    },
+    {
+      "external_imports": [],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+        "LeanInfoTheory.Shannon.SemanticBridge.KL"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/ConditionalKL.lean",
+      "root_reachable": false,
+      "summary": "Common-base channel conditional KL, finite weighted semantics, joint KL chain rule, and support-guarded Real forms."
     },
     {
       "external_imports": [],
@@ -280,6 +294,18 @@
       "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteFamily.lean",
       "root_reachable": false,
       "summary": "Finite-family Shannon inequalities and concrete ShannonEntropyVal constructions."
+    },
+    {
+      "external_imports": [],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+        "LeanInfoTheory.Shannon.SemanticBridge.Independence"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteFamilyIndependence.lean",
+      "root_reachable": false,
+      "summary": "Dependent-family mutual independence, restriction and pair laws, and n-way entropy-additivity equality characterizations."
     },
     {
       "external_imports": [],
@@ -507,6 +533,7 @@
         "LeanInfoTheory.Certificate.Checked",
         "LeanInfoTheory.EntropyVal",
         "LeanInfoTheory.Examples.CommonCause",
+        "LeanInfoTheory.Examples.ConditionalKL",
         "LeanInfoTheory.Examples.Convexity",
         "LeanInfoTheory.Examples.Fano",
         "LeanInfoTheory.Examples.FiniteFamily",
@@ -519,7 +546,7 @@
       "name": "LeanInfoTheory.Examples",
       "path": "LeanInfoTheory/Examples.lean",
       "root_reachable": false,
-      "summary": "Opt-in aggregate for certificate, convexity, finite-family, support-sensitive, Markov, channel, sufficiency, and Fano examples."
+      "summary": "Opt-in aggregate for certificate, conditional-KL, convexity, finite-family, support-sensitive, Markov, channel, sufficiency, and Fano examples."
     },
     {
       "external_imports": [],
@@ -531,6 +558,17 @@
       "path": "LeanInfoTheory/Examples/CommonCause.lean",
       "root_reachable": false,
       "summary": "Noisy binary common-cause example for conditional independence and Markov factorization."
+    },
+    {
+      "external_imports": [],
+      "layer": "Reference anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL"
+      ],
+      "name": "LeanInfoTheory.Examples.ConditionalKL",
+      "path": "LeanInfoTheory/Examples/ConditionalKL.lean",
+      "root_reachable": false,
+      "summary": "Private maintained regressions for common-base conditional KL across null, active, finite, infinite, and guarded Real cases."
     },
     {
       "external_imports": [],
@@ -562,12 +600,14 @@
       "layer": "Reference anchors",
       "local_imports": [
         "LeanInfoTheory.Certificate.FiniteFamily",
-        "LeanInfoTheory.Certificate.Submodularity"
+        "LeanInfoTheory.Certificate.Submodularity",
+        "LeanInfoTheory.Shannon.EntropyBounds",
+        "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence"
       ],
       "name": "LeanInfoTheory.Examples.FiniteFamily",
       "path": "LeanInfoTheory/Examples/FiniteFamily.lean",
       "root_reachable": false,
-      "summary": "Homogeneous and dependent-alphabet finite-family examples with checked and raw certificate paths."
+      "summary": "Homogeneous and dependent-alphabet finite-family examples covering conditional-MI chains, product and pairwise-not-mutual laws, and checked/raw certificate paths."
     },
     {
       "external_imports": [],
@@ -634,5 +674,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 11,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 37
+  "separate_import_count": 40
 }

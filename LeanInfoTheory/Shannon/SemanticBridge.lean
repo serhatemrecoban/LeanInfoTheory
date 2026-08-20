@@ -8,9 +8,11 @@ import LeanInfoTheory.Shannon.SemanticBridge.Theorems
 import LeanInfoTheory.Shannon.SemanticBridge.Convexity
 import LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily
 import LeanInfoTheory.Shannon.SemanticBridge.Independence
+import LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence
 import LeanInfoTheory.Shannon.SemanticBridge.Markov
 import LeanInfoTheory.Shannon.SemanticBridge.Sufficiency
 import LeanInfoTheory.Shannon.SemanticBridge.DataProcessing
+import LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL
 import LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL
 import Mathlib.Probability.ProbabilityMassFunction.Integrals
 
@@ -84,10 +86,16 @@ textbook/measure-theoretic semantics.
 - `condEntropy` as the expected entropy of these conditional laws;
 - `condMutualInfo` as expected fiber mutual information and as an averaged
   conditional KL divergence;
+- conditional relative entropy for PMF-valued channels under one input law,
+  with finite unconditional `ENNReal` weighted-fiber and joint-chain formulas
+  and support-guarded real-valued counterparts;
 - semantic theorem API: `0 <= I(A;B)`, `0 <= I(A;B|C)`, and the chain rule
   `I(A;B,C) = I(A;C) + I(A;B|C)`.
 - finite-family entropy monotonicity, nonnegative conditional entropy and CMI,
   and entropy submodularity, without requiring a finite family index.
+- finite-family mutual independence through pointwise PMF factorization,
+  including empty, singleton, restriction, pair compatibility, and exact
+  entropy-additivity characterizations.
 
 Keeping this file separate prevents KL divergence, kernels, and related
 measure-theoretic imports from becoming dependencies of the lightweight finite

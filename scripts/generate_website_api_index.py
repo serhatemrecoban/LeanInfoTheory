@@ -26,6 +26,7 @@ GITHUB_SOURCE_ROOT = "https://github.com/serhatemrecoban/LeanInfoTheory/blob/mas
 
 DECL_RE = re.compile(
     r"^\s*"
+    r"(?:@\[[^]]+\]\s*)*"
     r"(?:(?P<private>private)\s+)?"
     r"(?:(?:noncomputable|partial|unsafe|protected)\s+)*"
     r"(?P<kind>abbrev|class|def|inductive|instance|lemma|structure|theorem)\s+"

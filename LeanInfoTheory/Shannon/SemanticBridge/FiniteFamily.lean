@@ -33,7 +33,8 @@ family entropy chain rule and conditioning reduction.
 
 N-way subadditivity bounds the entropy of a finite atom by the sum of its
 singleton entropies. The corresponding equality characterization by mutual
-independence is deferred.
+independence is developed in the separate downstream
+`LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence` module.
 
 The concrete `finiteFamilyEntropyVal` packages actual family entropy as the
 existing abstract `ShannonEntropyVal`, using the empty, conditional-entropy,

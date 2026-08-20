@@ -6092,6 +6092,100 @@ and
 both completed successfully. After this post-push canonical reconciliation,
 the only remaining transition task is the ignored Chunk 7 handoff report.
 
+### 150. Project B Chunk 8 Through Independent Working-Tree Closeout
+
+On July 31, 2026, the approved 24-step Chunk 8 plan first reached canonical
+project-memory reconciliation in `C8.22`. The work began from verified baseline
+`a27ef8d429d8aa5f0d707817cea9586c07118719` and the preceding independently
+validated Chunk 7 source checkpoint `5e616d8`. At the `C8.22` boundary this
+was an uncommitted, focused-validated working tree; `C8.23` and `C8.24`
+subsequently completed generated/public reconciliation and independent final
+validation.
+
+The mathematical implementation closes the approved remaining finite
+algebraic gaps in Cover--Thomas Sections 2.5--2.6. Four declarations in the
+existing lightweight `Shannon.FiniteFamily` module give binary and duplicate-
+tolerant ordered conditional-family mutual-information chain rules at PMF-law
+and source-family levels. They allow overlapping atoms and variables already
+present in the conditioning atom and remain explicit rather than simp rules.
+
+The new, separately importable
+`Shannon.SemanticBridge.ConditionalKL` module defines common-base channel
+`conditionalKlDiv`. Its six-declaration surface includes self-divergence, the
+unconditional finite `ENNReal` weighted-fiber formula, the two-base joint KL
+chain rule, and support-guarded Real forms. The weighted formula preserves the
+canonical inactive-fiber behavior `0 * top = 0`; Real conversion is never used
+to infer finiteness without the active support hypotheses.
+
+The new, separately importable
+`Shannon.SemanticBridge.FiniteFamilyIndependence` module contributes eight
+declarations: PMF/source pointwise-factorization predicates, law-facing empty
+and singleton facts, restriction to a subatom, one source-facing distinct-
+index pair bridge, and PMF/source characterizations of equality in n-way
+entropy subadditivity. The API is for one selected finite atom over dependent
+alphabets and does not identify pairwise independence with mutual
+independence, introduce a global process predicate, or expose private product
+and transport machinery.
+
+Maintained private examples now cover null and active conditional-KL fibers,
+inactive and active infinite divergence, support-guarded Real formulas, joint
+KL chain rules, overlapping and duplicate CMI chains, initially conditioned
+variables, dependent alphabets, restriction, a nondegenerate product family,
+and a pairwise-but-not-mutually-independent family. The new
+`Examples.ConditionalKL` module and the expanded `Examples.FiniteFamily`
+module remain outside the root. The two new semantic modules join only the
+existing opt-in semantic aggregate; the new example joins only the examples
+aggregate.
+
+The scheduled API review froze exactly 18 new public declarations: four
+lightweight CMI theorems, six conditional-KL declarations, and eight mutual-
+independence declarations. It retained every approved public name, extracted
+only one repeated private weighted-KL finiteness helper, and approved only the
+strictly reducing self/empty/singleton simp rules. `LeanInfoTheory.lean`,
+`ShannonEntropyVal`, `EntropyExpr`, primitive inequalities, certificate
+validation, `CheckedCert.sound_finiteFamily`, and the trust boundary are
+unchanged. Chunk 8 adds no new Section 2.8 theorem; its final limited claim
+combines this Sections 2.5--2.6 work with the already completed Sections
+2.7--2.8 layers and does not claim all Chapter 2 complete.
+
+`C8.21` passed the approved nine-target focused/downstream build with 2,783
+jobs. Direct and aggregate consumers exercised all 18 declarations and the
+existing certificate adapter; exact guarded consumers confirmed root,
+intermediate-owner, certificate, and private-helper isolation. The preliminary
+audit of all 15 new public theorems reported only `propext`,
+`Classical.choice`, and `Quot.sound`; placeholder and repository-hygiene checks
+passed. A narrow follow-up completed Future Work Note 17's exact intermediate
+boundary matrix and rebuilt the affected semantic and certificate targets with
+2,764 jobs.
+
+At `C8.22`, that reconciliation updated only hand-maintained canonical status;
+the generated/public and independent closeout gates were still assigned to
+`C8.23`--`C8.24`. `C8.23` then regenerated the references and reconciled the
+public pages. Its final source-derived inventory is 51 modules, 100 local
+edges, 11 root-reachable modules, 40 opt-in modules, and 880 documented source
+declarations. The delta from the Chunk 7 checkpoint is exactly three modules
+and the 18 approved declarations. Both generators were byte-idempotent, and
+the website and structural reference checks passed.
+
+`C8.24` independently closed the plan. The nine-target Chunk 8 owner/downstream
+build passed with 2,783 jobs; the maintained ten-target milestone suite passed
+with 2,792 jobs; and default `lake build` passed with 2,240 jobs. Direct and
+aggregate consumers exercised all 18 declarations and the existing finite-
+family valuation/certificate path. Exact environment checks preserved the
+root, intermediate, certificate, and private-helper boundaries. All 15 new
+public theorems reported only `propext`, `Classical.choice`, and `Quot.sound`.
+The strict placeholder scan, repeated generators, website checker, exact
+declaration/module/source/anchor audit, and repository hygiene all passed.
+The pass used the incremental Lake cache rather than a cold release build.
+
+Chunk 8 is therefore complete and independently validated in the working
+tree. It is not checkpointed, committed, pushed, deployed, or remotely
+validated, and this closeout authorizes none of those operations or a later
+mathematical phase. Future Work Notes 9, 14--18, and 24 retain their existing
+documentation, naming, simp, validation-infrastructure, architecture, and
+strict-Jensen responsibilities; no new numbered note is created by this
+closeout.
+
 ## Completed Project B Chunk 4 Plan
 
 This completed theorem phase is a revised 20-step plan for finite sufficient
@@ -6455,9 +6549,14 @@ Chunk 7 finite log-sum and convexity plan is complete, independently validated
 through `C7.22`, and checkpointed as `5e616d8`. Its 28 new public source
 declarations, 46 private maintained examples, generated references, public
 documentation, complete milestone suite, boundary/trust audits, and
-repository-hygiene gates all pass. Bounded Chunk 8 context intake and planning
-may follow the remote handoff, but no mathematical scope or implementation is
-approved by this transition. Richer certificate
+repository-hygiene gates all pass. The approved 24-step Chunk 8 plan is now
+complete and independently validated in the working tree through `C8.24`.
+Its 18-declaration conditional-CMI, common-base conditional-KL, and finite-
+family mutual-independence surface is API-frozen; generated references,
+public documentation, complete builds, boundaries, trust, and hygiene all
+pass. The milestone is not yet checkpointed, committed, pushed, deployed, or
+remotely validated.
+Richer certificate
 assumptions, external certificate import, coding-theory layers, theorem-level
 blueprint work, and substantial mathlib PR preparation remain later work.
 
@@ -6466,7 +6565,7 @@ blueprint work, and substantial mathlib PR preparation remain later work.
 | Status | Notes | Meaning |
 | --- | --- | --- |
 | Standing guardrails | 2-4, 6-8, 14-18, 26 | Apply these policies continuously; they do not create standalone cleanup tasks. |
-| Current Project B execution | Unnumbered | Chunks 5-7 are checkpointed as `ec78829`, `7b5f0db`, and `5e616d8`; remote handoff `0324ee6` and both workflows pass. Prepare the ignored report before bounded Chunk 8 intake, whose mathematical scope remains unapproved. |
+| Current Project B execution | Unnumbered | Chunks 5-7 are checkpointed as `ec78829`, `7b5f0db`, and `5e616d8`. Chunk 8 is complete and independently validated in the working tree through `C8.24`; checkpointing and any later theorem phase require separate decisions. |
 | Fano follow-ups | 29 | Retain the five evidence-based proof-pressure or pedagogy/sharpness groups and optional theorem-highlights curation; Note 29 no longer owns downstream chunk sequencing. |
 | Channel/Markov proof-pressure | 21, 25, 27 | Revisit these only when concrete channel, Markov, or data-processing consumers reach their stated triggers. |
 | Proof-pressure deferred | 19, 22-24, 30-37, 40 | Wait for the repeated proof or new statement pressure specified in each note. |
@@ -6781,6 +6880,46 @@ resolution.
     strictly reduce and pass the scheduled C6.21 representative tests. No
     current consumer justifies these additions, and this watchlist neither
     alters active `C6.16` nor reopens completed Steps `C6.01`--`C6.15`.
+
+    A July 31, 2026 post-`C8.17` review of the completed `C8.04` ordered
+    conditional-family CMI rule supplies the first later consumer evidence for
+    this initial-conditioning watchlist, but does not yet meet its abstraction
+    trigger. The public theorem already presents the useful mathematics
+    directly as
+
+    ```text
+    I(l.toFinset; B | C) =
+      sum k, I({l[k]}; B | C union (l.take k).toFinset),
+    ```
+
+    and its direct list induction was clearer than introducing or exposing a
+    recursive accumulator. Do not add both `familyMutualInfoChainFrom` and a
+    competing `familyCondMutualInfoChain` merely to name this right-hand side.
+    If another independent production theorem repeatedly needs to manipulate
+    the same initial-conditioning positional sum as an object, revisit one
+    coherent abstraction and let those consumers determine its name and
+    argument order. Keep any recursive implementation private, preserve the
+    direct finite-sum public meaning, and apply the naming and simp reviews in
+    Future Work Notes 14--15.
+
+    The duplicate-tolerant C8.04 theorem remains the primary contract. Do not
+    add a `List.Nodup` corollary merely to attach an unused textbook
+    hypothesis: unlike a genuinely simpler textbook presentation, it would
+    currently repeat the identical sum. Reconsider only if later textbook
+    documentation or a consumer benefits materially from the explicit
+    distinct-name assumption. Likewise, equality of the displayed sums under
+    list permutation follows by identifying each with the same atom-level CMI,
+    but a public theorem would need to choose an exact `List.Perm`, length,
+    and dependent-`Fin` transport surface. Let a real consumer select that
+    contract rather than publishing a speculative transport theorem.
+
+    `C8.19` already owns maintained empty-list, duplicate-name, overlap,
+    heterogeneous-family, and initially-conditioned examples, so no second
+    regression assignment is needed. During `C8.20`, consider expanding the
+    thin source-facing theorem comment to state that it inherits duplicate
+    tolerance from the law theorem. This is optional prose only; it does not
+    justify a new definition, theorem, helper, import, or simp attribute and
+    does not begin either `C8.18` or `C8.19` early.
 
     The July 28 review of Step `C6.11` preserves its four public entropy-chain
     theorems unchanged. In particular, keep the duplicate-tolerant all-list
@@ -7397,6 +7536,51 @@ resolution.
     without changing Lean source. This is further evidence for the already
     eligible structured-status phase, not a reason to implement that tooling
     during the remaining ignored-report or Chunk 8 intake steps.
+
+    A July 31, 2026 post-`C8.23` critical review confirms that the generated
+    references and public working-tree status are correct and does not reopen
+    the step or pull documentation tooling into `C8.24`. The regenerated state
+    contains 51 modules, 100 local import edges, 11 root-reachable modules,
+    and 880 documented source declarations. Its delta from the Chunk 7
+    checkpoint is exactly three modules and the 18 approved Chunk 8 public
+    declarations, with no removed declaration and no new root exposure.
+    Public pages consistently distinguish completion through `C8.23` from the
+    still-pending independent validation, checkpoint, push, deployment, and
+    remote-validation states.
+
+    The first `C8.23` declaration-index pass omitted exactly three theorems
+    written with a same-line leading `@[simp]` attribute. The bounded parser
+    now accepts leading inline attribute blocks, and disposable probes checked
+    attributed public, attributed private, and ordinary declarations. This
+    immediate false-negative is discharged, but it adds concrete evidence for
+    the maintained parser-fixture task above. When that test surface is built,
+    include one and multiple leading attribute blocks and their interaction
+    with doc comments, visibility, and declaration modifiers, alongside the
+    already-recorded block-comment and malformed-comment cases. Do not broaden
+    the regular expression into a speculative Lean lexer merely to anticipate
+    syntax not used by the project.
+
+    `C8.23` also repeated JSON/count, unique-name/anchor, source-location,
+    module-membership, aggregate-import, root-isolation, private-helper, and
+    generic-summary assertions through disposable checks. This reinforces the
+    existing proposal to move stable, count-independent invariants into
+    `scripts/check_website.py` or a companion checker during the dedicated
+    documentation-tooling phase; it does not justify hard-coding the current
+    51/100/880 totals. The coordinated update of several public status pages
+    is further evidence for the already-eligible shared status source, not a
+    reason to introduce it during final Chunk 8 validation. After a later
+    authorized checkpoint, push, and deployment, verify representative new
+    declaration source links and deployed counts against that actual remote
+    state rather than treating local generation as remote validation.
+
+    No separate Chunk 8 theorem-highlight task is created by this review. The
+    complete generated index already exposes the new conditional-KL,
+    conditional-family CMI, and mutual-independence declarations; curate a
+    hand-written shortlist only if newcomer navigation or public usage shows
+    concrete pressure. Full Lean doc-gen, a Lean-environment-backed declaration
+    inventory, machine-readable validation reports, and the executable
+    milestone/boundary harness remain under this note and Note 17 at their
+    existing dedicated-maintenance triggers.
 
 10. Add a minimal contributor surface before inviting broader collaboration:
     `CONTRIBUTING.md`, beginner-friendly tasks, issue labels, and a short note
@@ -8558,6 +8742,69 @@ resolution.
     decisions only after a later production consumer demonstrates a concrete
     discovery or readability failure.
 
+    A July 31, 2026 C8.15 naming audit adds
+    `isMutuallyIndependentFamilyOf_pair_iff_isIndependentOf` to the watchlist
+    for the scheduled C8.20 API review. The name is unusually long, but it
+    states the exact compatibility between the established
+    `IsMutuallyIndependentFamilyOf` and `IsIndependentOf` predicates, preserves
+    the source-facing `...Of` convention, and exposes none of the private
+    dependent-pair evaluator, constructor, subtype-witness, finite-product, or
+    mapped-law machinery used by its proof.
+
+    Preserve the declaration unchanged during the active theorem phase.
+    C8.20 should exercise it in direct source consumers and compare theorem
+    search and call-site readability with the surrounding pair and n-way
+    independence API. No provisional shorter spelling is currently preferred:
+    dropping either predicate name obscures which established surface appears
+    on that side of the iff, while coined `pairIndependence` or
+    `mutualIndependence_pair` vocabulary would create a competing terminology.
+    Add a compatibility-preserving alias only if those consumers demonstrate a
+    concrete discovery problem and a shorter spelling can retain both the
+    distinct-index pair contract and the PMF/source distinction. Otherwise
+    record a declined alias decision and keep the current name alone.
+
+    The July 31, 2026 C8.16 naming audit adds the exact n-way entropy-equality
+    pair to the same scheduled C8.20 review:
+
+    - `familyEntropy_eq_sum_singletons_iff_isMutuallyIndependentFamily`;
+    - `familyEntropyOf_eq_sum_singletons_iff_isMutuallyIndependentFamilyOf`.
+
+    Both names are long, but they state the precise sum-of-singletons equality,
+    preserve the law/source `...Of` distinction, identify the established
+    mutual-independence predicates exactly, and expose none of the private
+    induction, block-law, product-PMF, or dependent-coordinate machinery.
+    Preserve both declarations unchanged during the active theorem phase.
+
+    During C8.20, exercise the pair together and compare the current precise
+    spellings with compatibility-only sketches following
+    `familyEntropy_additive_iff_isMutuallyIndependentFamily` and
+    `familyEntropyOf_additive_iff_isMutuallyIndependentFamilyOf`. The shorter
+    pattern aligns with the accepted pair-level `jointEntropy_additive_iff_...`
+    vocabulary, but `additive` may be ambiguous beside binary disjoint-union
+    additivity and hides that the right side is the sum of all singleton
+    entropies. Add aliases only if direct consumers show a material discovery
+    or readability improvement and the two names remain one coherent
+    law/source family. Otherwise record a declined alias decision and retain
+    the explicit current names alone.
+
+    The July 31, 2026 C8.20 API review completed all three naming decisions
+    after the maintained C8.19 models and a direct-import consumer exercised
+    the law- and source-facing surfaces together. Retain
+    `isMutuallyIndependentFamilyOf_pair_iff_isIndependentOf` without a shorter
+    alias: despite its length, the name makes both established predicates and
+    the source-facing `...Of` distinction explicit, and the call sites remained
+    readable beside the required distinctness proof. Retain
+    `familyEntropy_eq_sum_singletons_iff_isMutuallyIndependentFamily` and
+    `familyEntropyOf_eq_sum_singletons_iff_isMutuallyIndependentFamilyOf`
+    without the provisional `...additive_iff_...` aliases. The shorter wording
+    would hide the exact singleton-sum equality and could be confused with
+    binary disjoint-union additivity. These are completed declined-alias
+    decisions, not unresolved naming debt; reopen them only after a later
+    production consumer demonstrates a concrete discovery failure. The other
+    15 new Chunk 8 public declarations are systematic, mathematical, and do not
+    expose private evaluators, product laws, support conversions, or proof
+    helpers, so this review adds no further watch entry.
+
 15. The Step 13 `[simp]` review for mutual information and conditional mutual
     information was completed on July 14, 2026. Local attributes were tested
     on representative PMF, random-variable, symmetry, diagonal/self, and
@@ -8957,6 +9204,117 @@ resolution.
     independent disposable boundary and API checks. The maintained C7.18
     endpoint examples plus the current source attributes remain sufficient
     between those gates.
+
+    A July 31, 2026 post-`C8.17` review of the completed `C8.03` binary
+    conditional-family CMI step confirms that both the law- and source-facing
+    union chain rules should remain explicit. They rewrite one compact CMI term
+    into an additive decomposition and therefore select a proof representation
+    rather than a strictly reducing simplifier normal form. The successful
+    `C8.05` probes already confirmed that plain `simp` does not expand either
+    generic theorem. Do not add `[simp]`, a union-normalization helper, a
+    disjointness hypothesis, or a changed orientation without new production
+    evidence.
+
+    The already approved `C8.19` empty, overlap, duplicate, and initial-
+    conditioning consumers are sufficient maintained regression coverage for
+    C8.03. In particular, include a case where the two left blocks overlap and
+    a case where a revealed coordinate is already present in the conditioning
+    atom, so Finset idempotence visibly supplies the zero-new-information
+    behavior. Reuse the C8.19 finite-family fixtures and add no second example
+    module or public test theorem. This sharpens that existing assignment; it
+    does not begin `C8.18` or `C8.19` early.
+
+    During `C8.20`, consider expanding the source comment on
+    `familyCondMutualInfo_union_chain_rule` to say explicitly that the four
+    atoms may overlap and no disjointness assumption is required. Make only
+    the prose change if it materially improves source-level discovery; the
+    theorem statement already has the correct assumption-free contract.
+
+    Do not add a mirrored public chain-rule family splitting the second CMI
+    argument merely for symmetry. The existing
+    `familyCondMutualInfo_swap`/`familyCondMutualInfoOf_swap` theorems derive
+    that orientation from the current left-union rule. Reconsider a coherent
+    law/source pair only after at least two independent production consumers
+    repeatedly need the mirrored orientation and the explicit swap sequence is
+    a demonstrated readability or discovery problem. Any accepted names must
+    be reviewed under Future Work Note 14 and remain explicit rather than
+    `[simp]`. Until that trigger, the current two-theorem C8.03 surface is
+    complete rather than missing a symmetric half.
+
+    A July 31, 2026 post-`C8.17` review of the completed `C8.06` elementary
+    conditional-KL API preserves `conditionalKlDiv_self` as one genuine
+    candidate for the scheduled `C8.20` simp review, without preapproving the
+    attribute. Test direct self-divergence, the theorem beneath
+    `ENNReal.toReal`, nested occurrences, and explicit unfolding of
+    `conditionalKlDiv`; confirm that normalization agrees with mathlib's
+    `InformationTheory.klDiv_self`, terminates, and does not trigger the
+    weighted-fiber or joint-chain representations. Add `[simp]` only if these
+    direct and maintained `C8.18` consumers show a strictly reducing,
+    construction-eliminating rule with no competing normal form. Otherwise
+    retain the explicit theorem. Preserve the resulting behavior in the
+    future internal simp-regression layer already contemplated by this note
+    and Future Work Note 17.
+
+    During the same `C8.20` source review, inspect the module heading
+    "Conditional relative entropy for finite PMF channels." The primitive and
+    self theorem support arbitrary measurable input and output alphabets,
+    while only the weighted and chain-rule sections are finite. If the current
+    title can mislead a direct importer, prefer a small prose clarification or
+    the heading "Conditional relative entropy for PMF channels," with the
+    finite scope stated in the later theorem-section description. This is
+    documentation precision only and must not weaken assumptions, change the
+    module name, or imply a countable-alphabet weighted theorem.
+
+    The completed `C8.17` aggregate wiring introduces the same possible wording
+    ambiguity in `LeanInfoTheory.Shannon.SemanticBridge`: its summary currently
+    describes `conditionalKlDiv` as being "for two finite PMF channels." During
+    the same `C8.20` documentation pass, check that bullet together with the
+    owning module heading. If clarification is useful, prefer wording such as
+    "conditional relative entropy for PMF-valued channels, with finite
+    weighted-fiber and joint-chain formulas," so the type-generic definition
+    and self theorem are not accidentally presented as finite-only. This is one
+    coordinated prose correction, not a reason to alter imports, split the
+    module, weaken the finite theorem assumptions, or create another API.
+
+    No separate C8.17 future task is needed for the disposable aggregate/root/
+    private-helper consumers or for a cold build. Future Work Note 17 already
+    owns the maintained boundary/trust harness and cold-release policy, while
+    `C8.21` and `C8.24` own the approved focused and milestone validation gates.
+    Preserve those assignments and do not pull either infrastructure project
+    forward before `C8.18`.
+
+    Create no duplicate support-extensionality task: the C8.01 review and
+    approved C8.18/C8.20 consumer gate already own that decision. Likewise,
+    do not split an elementary conditional-KL core from the current coherent
+    opt-in module merely to reduce imports. Reconsider a split only after at
+    least two direct consumers need the primitive/self surface without the
+    finite theorem dependencies and demonstrate material compile-time or
+    architectural pressure. Preserve the joint-law definition and keep the
+    weighted fiber formula as a theorem rather than an alternate primitive.
+    This review does not reopen C8.06 or begin C8.18.
+
+    C8.20 completed the scheduled simplifier review with exported and local
+    probes. `conditionalKlDiv_self` is now `[simp]`: it strictly removes the
+    conditional-KL constructor in direct goals, beneath `ENNReal.toReal`, and
+    in nested additive expressions, agrees with explicit unfolding and
+    `InformationTheory.klDiv_self`, and does not trigger either weighted-fiber
+    or joint-chain expansion. `isMutuallyIndependentFamily_empty` and
+    `isMutuallyIndependentFamily_singleton` are also now `[simp]`; they reduce
+    the two universal base atoms directly and continue to normalize through an
+    explicit unfolding of the source-facing predicate without unfolding the
+    private product-law machinery.
+
+    All four Chunk 8 conditional-mutual-information chain rules remain
+    explicit. Their additive orientations choose a representation rather than
+    remove a constructor, and the maintained empty-list, overlap, duplicate,
+    and initially-conditioned examples continue to invoke them by name. The
+    source comments now state that the union atoms may overlap and that the
+    ordered source theorem inherits duplicate tolerance. The conditional-KL
+    owner and semantic aggregate now distinguish the type-generic channel
+    definition/self theorem from the finite weighted and chain-rule formulas.
+    Preserve these three new simp rules and four explicit chain rules in the
+    future internal regression layer; no additional simp candidate or mirrored
+    chain-rule family is justified by this review.
 
 16. Revisit `[simp]` status for conditional entropy chain-rule theorems after
     the chain-rule family has more downstream examples. The July 8 chain-rule
@@ -9587,6 +9945,524 @@ resolution.
     not discharge the reusable driver, maintained boundary/trust harness,
     shared target manifest, or cold-release policy already retained above.
 
+    A July 31, 2026 post-`C8.17` critical review of the completed `C8.01`
+    conditional-KL feasibility gate identifies no mathematical, API, import,
+    or trust-boundary defect. It does not reopen `C8.01`, revise any of
+    `C8.02`--`C8.17`, or begin `C8.18`. The gate correctly validated both hard
+    contracts needed by the accepted joint-law representation: the
+    unconditional `ENNReal` weighted-fiber formula, including inactive
+    `0 * top = 0` and active-`top` behavior, and the distinct-base joint KL
+    chain rule whose conditional term is weighted by the numerator base law.
+    Their later direct promotion in `C8.07` and `C8.08`, followed by the
+    independent `C8.11` review, confirms that the spike was production-grade
+    feasibility work rather than a throwaway alternate design.
+
+    The one concrete follow-up worth preserving is already assigned to
+    `C8.18`: replace the gate's deleted disposable consumers with maintained,
+    non-public examples of the production API. In the planned
+    `LeanInfoTheory.Examples.ConditionalKL` module, exercise the public
+    declarations directly on compact finite models covering:
+
+    - a null base fiber and an inactive component with fiber KL equal to
+      `top`, visibly protecting the canonical `0 * top = 0` convention;
+    - an active finite fiber and an active positive-over-zero fiber with KL
+      equal to `top`;
+    - `conditionalKlDiv_self`, the unconditional weighted `ENNReal` formula,
+      and the unconditional distinct-base joint chain rule;
+    - the support-guarded Real weighted formula and Real joint chain rule,
+      with support assumptions imposed only on active fibers; and
+    - direct-module and examples-aggregate reachability together with
+      lightweight-root isolation.
+
+    Keep these checks private or anonymous and reuse as few fixtures as remain
+    readable. They should test whether a public two-sided support-extensionality
+    theorem has genuine consumer value, but must not create that theorem, a
+    fixture API, aliases, simp rules, or reusable helpers merely for testing.
+    If this maintained coverage unexpectedly requires new public API or a
+    material module change, stop and record the pressure rather than forcing
+    it into `C8.18`. The already-triggered general validation driver and
+    boundary/trust harness remain separate future infrastructure; `C8.18`
+    should not build them merely because it replaces the disposable C8.01
+    probes with maintained mathematical examples.
+
+    A separate July 31, 2026 post-`C8.17` review of the completed `C8.08`
+    unconditional joint-KL chain rule likewise finds no mathematical,
+    assumption, codomain, proof, naming, import, or trust-boundary defect and
+    does not reopen the theorem or begin `C8.18`. The existing source comment
+    already states both essential orientation facts: the conditional term is
+    weighted by the numerator base law `p`, and the identity is unconditional
+    in `ENNReal` when either summand is `top`. No corrective documentation task
+    remains. During the scheduled `C8.20` source/API review, consider only the
+    optional discoverability polish of cross-referencing
+    `conditionalKlDiv_eq_sum`, or displaying the equivalent expanded formula
+
+    ```text
+    D(channelJoint p W || channelJoint q V) =
+      D(p || q) + sum_x p(x) D(W_x || V_x).
+    ```
+
+    Adopt that wording only if it clarifies the relation between the chain
+    rule and weighted-fiber API without duplicating nearby documentation.
+    Likewise, exercise the long but systematic name
+    `klDiv_channelJoint_eq_add_conditionalKlDiv` through the maintained
+    `C8.18` consumers and the `C8.20` direct-import review; add a
+    compatibility-preserving textbook-facing alias only if those consumers
+    demonstrate real discovery pressure. This review does not yet justify a
+    Future Work Note 14 watch entry. The maintained base-`top` and
+    conditional-`top` regression branches are already part of the detailed
+    `C8.18` assignment above, so no duplicate example task or separate
+    regression module should be created.
+
+    No other standalone future task is justified by the review. Do not split
+    the historical C8.01 gate retroactively: combining the weighted formula
+    and distinct-base chain rule was appropriate because both independently
+    gated the same conditional-KL representation and all dependent work had to
+    stop if either failed. For future proof-complete feasibility work, split a
+    gate only when its hard contracts control genuinely independent downstream
+    branches; otherwise continue to compile the exact accepted assumptions and
+    theorem shapes together before dependent implementation begins.
+
+    `conditionalKlDiv_self` was deliberately deferred from the feasibility
+    gate and is already complete in `C8.06`, so it creates no open follow-up.
+    The production module currently needs only one private active-support
+    bridge; do not extract additional support, finiteness, or top-branch
+    helpers unless another independent production proof repeats the argument
+    and the abstraction materially improves auditability. Preserve
+    `conditionalKlDiv` as KL divergence between the two common-base joint laws:
+    the fiberwise sum is its finite semantic theorem, not a better primitive
+    definition. Reconsider that representation only if a later independent
+    consumer demonstrates an actual incompatibility with null-fiber, support,
+    chain-rule, or data-processing use.
+
+    A July 31, 2026 post-`C8.17` review of the completed `C8.07` weighted
+    conditional-KL theorem likewise finds no mathematical, assumption, API,
+    or proof-architecture defect and does not reopen `C8.07` or begin
+    `C8.18`. Keep `conditionalKlDiv_eq_sum` as the unconditional all-fiber
+    `ENNReal` identity. Its visible `0 * top` terms are part of the canonical
+    null-fiber semantics rather than an artifact to hide with a support guard,
+    a Real codomain, a `[simp]` attribute, or a different primitive definition.
+
+    Strengthen the already assigned `C8.18` conditional-KL example matrix with
+    one compact model whose total conditional KL is genuinely finite and
+    nonzero while a different, zero-base-mass fiber has component KL equal to
+    `top`. For example, a two-point base may put all mass on one atom, use a
+    distinct support-compatible pair of output PMFs on that active atom, and
+    use mutually singular output PMFs on the inactive atom. Exercise
+    `conditionalKlDiv_eq_sum` directly and make both facts visible: the active
+    summand supplies the nonzero finite value, while the inactive summand is
+    exactly `0 * top = 0`. Prefer reusing this model for the guarded Real
+    formula when readable. Keep the fixture and proofs private or anonymous;
+    do not add a public constructor, evaluation theorem, or numerical API just
+    to obtain the example.
+
+    `C8.07` and `C8.09` now provide two production occurrences of the same
+    small finiteness pattern: split on `r x = 0`; reduce the null summand to
+    zero; on an active atom use the fiber-support inclusion and
+    `klDiv_pmf_ne_top_iff_support_subset`; then combine that KL non-top fact
+    with `r.apply_ne_top x` through `ENNReal.mul_ne_top`. During the scheduled
+    `C8.20` helper review, compare these two blocks after normalizing the guard
+    to the common implication
+
+    ```text
+    r x != 0 -> (W x).support subset (V x).support.
+    ```
+
+    Extract at most one private weighted-fiber non-top helper if it materially
+    shortens both proofs and leaves the active-support contract easier to
+    audit. Do not promote it publicly, expose a direct-ne-top theorem family,
+    or move `toReal` conversion into the helper. If the conversion between
+    support membership and nonzero mass makes either caller less transparent,
+    retain the two short local proofs; demonstrated repetition alone does not
+    require an awkward abstraction.
+
+    A support-restricted finite sum over `r.support` is deliberately not a
+    replacement for the current theorem. It suppresses the informative
+    `0 * top` convention and gives downstream algebra a less canonical index
+    set. Consider it only as a secondary corollary after at least two
+    independent consumers repeatedly need support-indexed finite sums and the
+    derivation is clean from `conditionalKlDiv_eq_sum`; otherwise leave it
+    implicit. Any such corollary must preserve the unconditional `ENNReal`
+    theorem as the primary API and receive the standing naming review.
+
+    Likewise, do not add a one-off countable-input `tsum` forwarding theorem.
+    Revisit countable weighted conditional KL only in a coherent nonfinite
+    conditional-KL/chain-rule phase with an actual consumer. That phase must
+    settle the required measurability and summability or extended-sum
+    interchange, preserve inactive `0 * top` and active-`top` behavior, and
+    state clearly whether the output fibers remain finite. It must not obtain
+    an easier theorem by silently adding global support, positivity, or
+    finiteness assumptions. Until those triggers occur, both variants are
+    deferred design possibilities rather than missing Chunk 8 work.
+
+    A July 31, 2026 post-`C8.17` review of the completed `C8.10` guarded Real
+    joint-KL chain rule also finds no mathematical, assumption, codomain,
+    proof, import, or trust-boundary defect and does not reopen the theorem or
+    begin `C8.18`. Preserve its two PMF-facing hypotheses: base support
+    inclusion and fiber support inclusion only on the numerator support. They
+    communicate the exact finite-alphabet finiteness mechanism more clearly
+    than public direct-`ne_top` assumptions or one opaque joint-support guard.
+    The conditional term must remain based on the numerator law `p`, and the
+    unconditional `ENNReal` C8.08 theorem remains the canonical statement.
+
+    C8.09 is a conceptual and API companion rather than a proof dependency of
+    C8.10; the direct support proof of C8.10 is therefore intentional and does
+    not justify rewriting completed plan history. In the already assigned
+    `C8.18` maintained examples, compose
+    `toReal_klDiv_channelJoint_eq_add_conditionalKlDiv` with
+    `toReal_conditionalKlDiv_eq_sum` at least once to expose the fully expanded
+    textbook formula. During `C8.20`, consider a direct expanded public
+    corollary only if that two-theorem route proves repeatedly awkward or the
+    maintained consumer demonstrates a real discoverability problem. Any such
+    corollary must retain exactly the current active-support guards and remain
+    secondary to the canonical `ENNReal` and conditional-KL statements; do not
+    add it merely to duplicate an immediate rewrite.
+
+    The long theorem name is the systematic `toReal_` companion to C8.08.
+    Exercise it in the C8.18 direct consumer and scheduled C8.20 naming review,
+    but add a compatibility-preserving alias only under demonstrated discovery
+    pressure; this review alone creates no Future Work Note 14 watch entry.
+    Likewise, do not extract a private conditional-KL non-top wrapper from the
+    single clear C8.10 proof block or publish a finiteness theorem. Reconsider a
+    private wrapper only if another production proof repeats the same complete
+    active-support-to-joint-support conversion and the abstraction improves
+    auditability. C8.18 already owns the inactive-`top` and guarded Real
+    chain-rule regression branches, so no duplicate example assignment is
+    needed.
+
+    A separate July 31, 2026 post-`C8.17` critical review of the completed
+    `C8.02` dependent-family mutual-independence feasibility gate likewise
+    finds no mathematical or architectural defect. It does not reopen
+    `C8.02`, alter `C8.03`--`C8.17`, begin `C8.18`, or authorize `C8.19`
+    early. The later unchanged promotion of the two predicates in `C8.12`, the
+    base and restriction laws in `C8.13`--`C8.14`, the pair bridge in
+    `C8.15`, and both entropy-equality characterizations in `C8.16` confirms
+    that the proof-complete gate selected the correct dependent-family
+    representation and assumptions.
+
+    One strengthened maintained-example obligation is worth preserving for
+    the already approved `C8.19` step. In addition to its existing
+    dependent-alphabet and both-direction consumers, prefer compact private or
+    anonymous models covering both of the following when they can be expressed
+    without new public infrastructure:
+
+    - a nondegenerate stochastic three-coordinate product family, preferably a
+      small Boolean model with positive singleton entropies, exercising actual
+      n-way factorization and both directions of the law/source entropy-
+      equality characterizations rather than relying only on deterministic
+      coordinates; and
+    - the standard pairwise-independent-but-not-mutually-independent pattern,
+      such as two independent fair bits together with their xor, checking the
+      distinct two-coordinate restrictions through the public pair bridge and
+      refuting full three-way factorization at a concrete outcome or through
+      the public n-way entropy characterization.
+
+    Reuse one fixture family for law- and source-facing checks when readable,
+    and retain the existing heterogeneous deterministic model for dependent-
+    alphabet and proof-irrelevance coverage. These examples should make the
+    pairwise-versus-mutual distinction executable and discoverable; they must
+    not introduce a public product-family constructor, fixture API, evaluation
+    helper, pairwise-independence predicate, or specialized xor theorem. If the
+    full pairwise counterexample would require material public API or obscure
+    the surface under review, keep the nondegenerate positive example and
+    record the omitted negative case for the future internal regression layer
+    rather than forcing it into production code.
+
+    During `C8.20`, also inspect navigation through the private proof engine in
+    `FiniteFamilyIndependence`. Adding short internal section comments for the
+    normalized product law, disjoint-block transport, base cases, pair bridge,
+    restriction, and entropy induction is reasonable if it materially helps a
+    contributor audit the file. Do not split the coherent module or promote
+    private transport/product declarations merely to shorten or label the
+    proof. This is a source-readability check, not a new theorem task.
+
+    No representation redesign should be scheduled from this review. Preserve
+    the public predicate as type-generic pointwise factorization: defining it
+    by equality with the privately normalized `familyProduct` would add
+    avoidable finiteness assumptions. Keep mathlib measurable `iIndepFun`
+    interoperability private until a later independent consumer requires that
+    bridge, retain `Finset` atoms rather than an ordered-list definition, and
+    expose block transports or a product PMF only after genuine repeated
+    downstream pressure. These are deliberate boundaries, not unfinished
+    C8.02 work.
+
+    A July 31, 2026 post-`C8.17` critical review of the production `C8.12`
+    predicates identifies no correction to their pointwise atom-factorization
+    contract and does not reopen `C8.12` or begin `C8.18`. Preserve two
+    distinct later possibilities that are not otherwise guaranteed to arise
+    from implementation pressure.
+
+    First, during the `C8.22`--`C8.23` project-memory and public-documentation
+    reconciliation, consider adding one concise textbook-facing explanation
+    that, for the finite discrete laws formalized here, pointwise factorization
+    of every atom is the mass-function form of the usual finite-intersection
+    or event-factorization definition of mutual independence. This should be
+    explanatory prose or a cross-reference, not a new public theorem, unless a
+    later proof genuinely needs the conversion as Lean API. Do not burden the
+    current type-generic predicate with measurable-space assumptions merely to
+    mirror textbook event notation.
+
+    Second, a later probability-process or coding-theory consumer may need a
+    predicate asserting independence of an entire indexed family rather than
+    independence on one selected atom. The natural candidate is a thin global
+    quantification over every finite atom, schematically
+
+    ```text
+    forall s : Finset Var, IsMutuallyIndependentFamily q s,
+    ```
+
+    together with a source-facing counterpart only if that consumer needs it.
+    Revisit this surface only under demonstrated use: it should reuse, not
+    replace, the current atom-indexed predicate; require neither `Fintype Var`
+    nor an infinite product PMF; and settle its name, theorem-discovery story,
+    and relationship to measurable `iIndepFun` in one coherent review. The
+    existing pressure triggers already cover an eventual measurable bridge
+    and public product-law exposure, while Future Work Note 14 and `C8.20`
+    already own shorter-name review. Do not create duplicate tasks for those
+    three matters.
+
+    A July 31, 2026 post-`C8.17` critical review of the completed `C8.14`
+    restriction theorem finds no mathematical, assumption, proof, naming,
+    import, or trust-boundary defect within the approved finite-alphabet scope.
+    It does not reopen `C8.14`, alter `C8.15`--`C8.17`, begin `C8.18`, or
+    authorize source forwarding early. The current theorem should remain the
+    stable finite result: it assumes only pointwise `Finite (alpha i)`, keeps
+    the ambient variable type arbitrary, and exposes none of the private
+    disjoint-block, projection, dependent-cast, or finite-product machinery.
+
+    During the scheduled `C8.20` assumption and source-comment review, inspect
+    whether the phrase "finite atom" could be read as describing only the
+    finite set of selected coordinates while obscuring the additional
+    pointwise-finite alphabet assumption. If so, add one concise sentence to
+    the theorem comment distinguishing those two finiteness conditions. The
+    signature already states the contract, so make no prose change if direct
+    consumers find it clear; this is documentation precision, not a theorem or
+    API task.
+
+    Preserve one distinct later mathematical direction. Heredity of mutual
+    independence is expected to remain valid for nonfinite discrete coordinate
+    alphabets, whereas the current proof sums out `t \ s` through finite
+    dependent products and `Fintype.ofFinite`. Revisit a stronger restriction
+    theorem only after a production consumer actually has a nonfinite
+    coordinate alphabet. Before proposing its statement, determine from the
+    then-current PMF and `tsum` APIs whether the clean contract needs no new
+    alphabet class, pointwise `Countable`, or another explicit summability
+    hypothesis. The proof investigation should cover dependent fibers,
+    exchange of nonnegative infinite sums with the finite coordinate product,
+    marginal normalization, and empty, equal, and proper subsets.
+
+    Any accepted generalization must preserve the type-generic pointwise
+    predicate, require neither `Fintype Var` nor homogeneous alphabets, add no
+    support or positivity assumptions merely to simplify summation, and avoid
+    introducing an infinite product PMF for a theorem still indexed by a
+    finite `Finset`. Keep the current finite theorem and its callers
+    compatibility-preserving while the stronger surface and naming are
+    reviewed. Until this consumer and feasibility trigger fires, the stronger
+    theorem is deferred scope rather than missing Chunk 8 work.
+
+    Do not create separate follow-ups from this review for a source-facing
+    restriction wrapper, the `..._mono` name, or publication of the private
+    block-restriction helper. `C8.19`--`C8.20` already own the source-ergonomics
+    and naming evidence gates, and private implementation machinery should be
+    reconsidered only after repeated production proof pressure.
+
+    A July 31, 2026 post-`C8.17` critical review of the completed `C8.15` pair
+    compatibility theorem likewise finds no mathematical, assumption, proof,
+    orientation, import, or trust-boundary defect and does not reopen `C8.15`
+    or begin `C8.18`. Preserve its exact distinct-index contract: if `i = j`,
+    the atom `{i, j}` collapses to a singleton and is automatically mutually
+    independent, while `IsIndependentOf p (X i) (X i)` is false in general.
+    The hypothesis is therefore mathematical rather than proof plumbing.
+
+    During `C8.20`, consider adding that one-sentence explanation to the public
+    theorem comment if the maintained `C8.19` source consumer would benefit
+    from it. Do not create a same-index companion, deterministic special case,
+    symmetric duplicate, or simp rule merely to document why the existing
+    theorem assumes distinctness. Future Work Note 14 already owns the complete
+    name and compatibility-alias review for
+    `isMutuallyIndependentFamilyOf_pair_iff_isIndependentOf`; do not duplicate
+    that watch entry here.
+
+    Preserve the private law-facing equivalence as one possible later API
+    promotion, but only under repeated direct-PMF consumer pressure. `C8.19`
+    should exercise it privately as already approved; that maintained test by
+    itself is evidence that the bridge works, not evidence that it must be
+    public. Reconsider publication only after at least two independent
+    production consumers begin with a family law `q` and repeatedly need the
+    equivalence between `IsMutuallyIndependentFamily q {i, j}` and independence
+    of `q.map (fun y => (y i, y j))`. At that point, review the public name and
+    orientation together with the source theorem, preserve the distinct-index
+    and no-alphabet-finiteness contracts, and keep the dependent evaluator,
+    constructor, subtype witnesses, and pair-product normalization private.
+    Until that trigger fires, the one source-facing theorem is the deliberate
+    minimal compatibility surface, not an incomplete pair API.
+
+    A July 31, 2026 post-`C8.17` critical review of the completed `C8.16`
+    entropy-equality characterizations finds no mathematical, assumption,
+    induction, source-specialization, import, or trust-boundary defect and does
+    not reopen `C8.16` or begin `C8.18`. Preserve both exact iff directions,
+    dependent finite alphabets, arbitrary finite atoms in a potentially
+    infinite ambient index type, and zero-mass behavior. Future Work Note 14
+    already owns the two long-name and provisional `...additive_iff_...` alias
+    decisions, while `C8.19` already owns nondegenerate product-family and
+    pairwise-but-not-mutually-independent examples. Do not duplicate those
+    assignments here.
+
+    Preserve a later multivariate-information direction only when a coding or
+    multivariate consumer needs the quantity independently. A natural finite
+    entropy-gap candidate is
+
+    ```text
+    sum i in s, familyEntropy q {i} - familyEntropy q s,
+    ```
+
+    commonly called total correlation or multivariate mutual information in
+    some conventions. Before fixing terminology or a definition, distinguish
+    this nonnegative total-correlation quantity from interaction information,
+    which can have a different sign and must not share the same API name. A
+    later design should decide whether the primary object is this Real-valued
+    entropy gap, canonical ENNReal KL divergence from `familyMarginal q s` to
+    the product of its coordinate marginals, or a paired API with a guarded
+    `toReal` bridge. It should derive nonnegativity from the existing n-way
+    subadditivity theorem and zero exactly from the C8.16 mutual-independence
+    characterization.
+
+    Any KL formulation must first establish the n-way support/absolute-
+    continuity and finite-divergence facts for the joint marginal against its
+    product of marginals, including empty and singleton atoms and zero
+    coordinate masses. Do not publish the current private `familyProduct`, add
+    a public dependent-product PMF, or create a total-correlation module merely
+    to restate C8.16. Let a genuine downstream consumer determine the name,
+    codomain, module owner, law/source forwarding surface, and whether the
+    product law itself needs public status.
+
+    Separately, the private block theorem identifying
+
+    ```text
+    familyEntropy q (a union b) = familyEntropy q a + familyEntropy q b
+    ```
+
+    with independence of the corresponding block-pair law may eventually be
+    useful in coding proofs that manipulate groups of coordinates. Keep it
+    private until at least two independent production proofs need this exact
+    equivalence rather than obtaining it transparently from `familyEntropy_union`
+    and the established pair entropy-equality theorem. If that trigger fires,
+    review whether the reusable public statement should be law-facing,
+    source-facing, or both; whether overlapping blocks should remain allowed;
+    and whether exposing the current `familyPairLaw` vocabulary improves or
+    harms discovery. Preserve the existing theorem as an implementation helper
+    until those consumers settle the contract. Do not create ordered-list,
+    pairwise-independence, simp, or public product-family variants in
+    anticipation.
+
+    A July 31, 2026 post-`C8.17` review of the completed `C8.05` lightweight
+    conditional-family CMI checkpoint identifies no missing theorem, import
+    defect, or trust issue and does not reopen the checkpoint or begin
+    `C8.18`. Its disposable consumers were appropriate for an intermediate
+    freeze: `C8.19` already owns permanent mathematical examples, `C8.21`
+    owns the preliminary all-new-theorem axiom and focused boundary audit, and
+    `C8.24` owns the complete milestone suite and final trust validation.
+
+    Preserve the following C8.05 profile as input to the already-triggered
+    maintained boundary/trust harness in this note. On the positive side, a
+    direct `Shannon.FiniteFamily` consumer should elaborate the binary and
+    ordered law/source conditional-CMI chain rules; downstream semantic and
+    certificate consumers should continue to elaborate
+    `finiteFamilyEntropyVal`, `finiteFamilyEntropyValOf`, and
+    `CheckedCert.sound_finiteFamily` without changing the lightweight owner.
+    On the negative side, importing only `Shannon.FiniteFamily` should not make
+    `finiteFamilyEntropyVal`, `conditionalKlDiv`,
+    `IsMutuallyIndependentFamily`, or `CheckedCert.sound_finiteFamily`
+    available, and importing only `LeanInfoTheory` should not expose the four
+    Chunk 8 conditional-family CMI chain rules. Assert environment absence or
+    an exact expected diagnostic rather than accepting an arbitrary failing
+    Lean process.
+
+    Preserve the reviewed simplifier behavior in the same future harness:
+    none of the binary or ordered CMI chain rules is `[simp]`, and plain
+    `simp` should not choose their additive expansion automatically. Maintain
+    the representative empty, overlap, duplicate, initially conditioned, and
+    dependent-alphabet cases through `C8.19` rather than turning test-only
+    propositions into public theorems. Do not hard-code the source declaration
+    count as permanently equal to four after Chunk 8; use an explicit reviewed
+    manifest for this checkpoint and allow a later approved API to extend it
+    without making the harness itself an obstacle.
+
+    No separate axiom-audit or full-build future task is created by this
+    review. Run those checks at their approved `C8.21` and `C8.24` owners, then
+    preserve any final boundary and trust evidence needed by the general
+    harness. Do not pull the full milestone suite forward into an intermediate
+    theorem checkpoint merely to duplicate its later independent closeout.
+
+    C8.20 completed the remaining helper, assumption, and import review. The
+    active-support-to-weighted-KL-finiteness argument had two production
+    occurrences, in the unconditional weighted formula and its guarded Real
+    corollary, so it was extracted once as the private
+    `weighted_klDiv_ne_top_of_active_support`. Both callers now present the same
+    implication `r x != 0 -> (W x).support subset (V x).support`; the public
+    support guards, `ENNReal`/Real codomains, and `toReal` conversion points are
+    unchanged. The helper remains invisible to direct importers, and no public
+    direct-`ne_top`, support-extensionality, support-indexed-sum, or countable
+    forwarding theorem was added.
+
+    The complete 18-declaration Chunk 8 surface was checked through its owning
+    imports. Guarded negative consumers confirmed that representative
+    finite-family, conditional-KL, and mutual-independence names remain absent
+    from `LeanInfoTheory`, while a private-helper consumer confirmed the new
+    helper is inaccessible. The exact `Finite`/`Fintype`, measurable-singleton,
+    active-support, arbitrary ambient-index, and dependent-alphabet contracts
+    remain unchanged. The maintained examples supply endpoint,
+    proof-irrelevance, overlap/duplicate, inactive-`top`, and source/law
+    evidence. C8.21 still owns the focused axiom and integration gate, C8.24
+    still owns the full milestone suite, and the broader maintained
+    boundary/trust harness remains open future infrastructure rather than work
+    performed by this review.
+
+    C8.21 subsequently completed its focused assignment. The combined
+    nine-target build passed with 2,783 jobs; direct and aggregate consumers
+    exercised all 18 new declarations and the existing finite-family
+    certificate adapter; guarded root, intermediate, certificate, and private-
+    helper checks passed; and the preliminary 15-theorem axiom manifest
+    reported only `propext`, `Classical.choice`, and `Quot.sound`. The strict
+    placeholder and repository-hygiene checks were also clean.
+
+    A post-step audit then exercised the exact C8.05 intermediate matrix
+    preserved above. A consumer importing only `Shannon.FiniteFamily`
+    elaborated all four conditional-CMI rules while exact guarded diagnostics
+    rejected `finiteFamilyEntropyVal`, `conditionalKlDiv`,
+    `IsMutuallyIndependentFamily`, and `CheckedCert.sound_finiteFamily`.
+    Downstream semantic/certificate imports elaborated both concrete entropy
+    valuations and the certificate adapter. This discharges the immediate
+    C8.21 evidence assignment but does not build the maintained harness. C8.24
+    still owns the independent final matrix and trust suite, and the general
+    reusable driver/harness remains future infrastructure under this note.
+
+    C8.24 completed that independent assignment on July 31, 2026. The
+    nine-target Chunk 8 owner/downstream build passed with 2,783 jobs, the
+    maintained ten-target suite passed with 2,792 jobs, and default
+    `lake build` passed with 2,240 jobs. Independent direct and aggregate
+    consumers exercised all 18 declarations and the existing finite-family
+    valuation/certificate route. Deliberate environment-absence checks
+    preserved the lightweight root, intermediate finite-family, certificate,
+    and four private-helper boundaries. The complete 15-theorem axiom manifest
+    again reported only `propext`, `Classical.choice`, and `Quot.sound`.
+
+    The strict placeholder scan, twice-idempotent generators, website checker,
+    exact source/declaration/module/anchor checks, expected working-tree
+    inventory, and final hygiene checks all passed. The validation used the
+    existing incremental cache; the old `lake serve` processes belong to the
+    editor session, and ignored textbooks, handoff reports, external audits,
+    QA profiles, and Python caches predate this step and were left untouched.
+
+    This is another complete manual execution of the already-triggered
+    reusable-driver and maintained boundary/trust-harness contract. It adds
+    the C8 conditional-CMI, conditional-KL, mutual-independence, and
+    intermediate-owner matrix as future harness requirements, but does not
+    justify building the infrastructure inside a completed mathematical
+    chunk. Schedule that work as one dedicated cross-platform maintenance
+    phase before or alongside a later major milestone closeout or material CI
+    refactor. No new numbered Future Work item is needed; this note remains
+    the sole executable-validation owner.
+
 18. Standing architecture guardrail: preserve the boundary between the
     completed pair/triple Chunk 1, the completed equality/independence Chunk 2,
     and later Project B chunks. The full equality characterization for the
@@ -9646,6 +10522,20 @@ resolution.
     conditional-MI chain, topology, coding, and richer certificate-constraint
     work must remain separately planned rather than being retroactively
     attributed to this chunk.
+
+    Chunk 8 subsequently completed the two finite-algebraic items through that
+    separate planning process while preserving this boundary. Exactly four
+    conditional-family CMI chain rules were added to the lightweight
+    `Shannon.FiniteFamily` owner; finite-atom mutual-independence predicates,
+    restriction/pair laws, and n-way entropy equality were placed downstream
+    in `Shannon.SemanticBridge.FiniteFamilyIndependence`; and common-base
+    conditional KL was placed in its own semantic module. None enters the
+    lightweight root or certificate checker, and the abstract valuation,
+    primitive inequalities, validator, and trust model remain unchanged. This
+    discharges the previously deferred conditional-CMI and n-way independence
+    items without retroactively assigning them to Chunk 6. Topology, coding,
+    richer certificate constraints, global indexed-family independence, and
+    measurable-independence interoperability remain separate later work.
 
 19. Keep the Step 7 deterministic-entropy decomposition private unless a later
     theorem creates a genuine consumer. The two planned support-sensitive

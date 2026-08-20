@@ -51,11 +51,11 @@
         </p>
         <p>
           Current milestone: finite PMF and dependent finite-family information
-          measures, zero-safe finite log-sum and PMF mixtures, entropy
-          concavity, KL joint convexity, MI input-law concavity and channel
-          convexity, conditional laws and independence, finite stochastic
-          channels, concrete Shannon entropy valuations, and checked
-          certificate demos.
+          measures, ordered conditional-MI chain rules, finite-family mutual
+          independence, zero-safe finite log-sum and PMF mixtures, entropy
+          concavity, KL joint convexity, common-base conditional KL, MI
+          input-law concavity and channel convexity, finite stochastic channels,
+          concrete Shannon entropy valuations, and checked certificate demos.
         </p>
       </section>
 
@@ -68,8 +68,9 @@
           conditional entropy, mutual information, conditional mutual
           information, independence and Markov characterizations, finite
           stochastic-channel data processing, deterministic-decoder Fano,
-          dependent finite-family entropy, finite log-sum, entropy concavity,
-          KL joint convexity, MI input-law concavity and channel convexity, and
+          dependent finite-family entropy and mutual independence, finite
+          log-sum, entropy concavity, KL joint convexity, common-base
+          conditional KL, MI input-law concavity and channel convexity, and
           checked Shannon-inequality demos over a concrete entropy valuation;
           the longer-term goal is a textbook-scale library with importable
           external certificates for network-information-theory converses.
@@ -86,8 +87,9 @@
               Entropy, conditional entropy, mutual information, conditional
               mutual information, relabeling invariance, and finite entropy
               upper-bound results are checked in Lean, together with dependent
-              finite-subfamily measures, ordered family chain rules, finite
-              mixtures, and entropy concavity.
+              finite-subfamily measures, ordered entropy/MI/CMI chain rules,
+              finite-atom mutual independence, finite mixtures, and entropy
+              concavity.
             </p>
             <a href="theorems.html">See theorem highlights</a>
           </article>
@@ -99,7 +101,8 @@
               conditional laws, KL divergence, independence and Markov
               characterizations, MI/KL data processing, entropy growth under
               doubly stochastic channels, KL joint convexity with binary
-              equality, and MI input-law concavity and channel convexity.
+              equality, common-base conditional KL and its joint chain rule,
+              and MI input-law concavity and channel convexity.
             </p>
             <a href="theorems.html">See bridge statements</a>
           </article>
@@ -139,8 +142,9 @@
             <p>
               Entropy, conditional entropy, mutual information, conditional
               mutual information, marginal APIs, entropy bounds, relabeling,
-              swaps, reassociation, finite PMF mixtures, log-sum, and entropy
-              concavity over mathlib <code>PMF</code>s.
+              swaps, reassociation, dependent-family CMI chains and mutual
+              independence, finite PMF mixtures, log-sum, and entropy concavity
+              over mathlib <code>PMF</code>s.
             </p>
           </article>
           <article class="info-card">
@@ -152,8 +156,9 @@
               averaged conditional-KL, stochastic MI/KL data processing, and
               invariant-law, entropy-growth, and finite-family Shannon
               inequalities, including concrete entropy valuations, KL joint
-              convexity/equality, and MI input-law concavity and channel
-              convexity.
+              convexity/equality, common-base conditional KL, finite-family
+              mutual-independence equality, and MI input-law concavity and
+              channel convexity.
             </p>
           </article>
           <article class="info-card">
@@ -315,7 +320,7 @@
           <li><span class="status-pill proved">Completed</span> Chunk 5 finite deterministic-decoder Fano is checkpointed as commit <code>ec78829</code> after passing the full milestone validation suite.</li>
           <li><span class="status-pill proved">Completed</span> Chunk 6 adds the dependent finite-family core, semantic Shannon inequalities, concrete entropy valuation, checked-certificate adapter, examples, API review, generated references, and full independent milestone validation. It is checkpointed as commit <code>7b5f0db</code>.</li>
           <li><span class="status-pill proved">Completed</span> Chunk 7's finite Cover-Thomas Section 2.7 implementation, examples, API review, canonical memory, generated references, public-documentation refresh, and independent milestone validation are complete through <code>C7.22</code>. The coherent Lean/source checkpoint is commit <code>5e616d8</code>.</li>
-          <li><span class="status-pill planned">Planning</span> Handoff commit <code>0324ee6</code> and both required remote workflows pass. Bounded Chunk 8 context intake may proceed from checkpoint <code>5e616d8</code>; its mathematical scope and implementation plan require separate approval.</li>
+          <li><span class="status-pill proved">Validated working tree</span> Chunk 8's finite conditional-KL, conditional-family CMI, and mutual-independence implementation is complete and independently validated through <code>C8.24</code>. Its focused, maintained, and default builds, consumers, trust audit, generated references, website checks, and repository hygiene pass. This working-tree milestone is not yet checkpointed, committed, pushed, deployed, or remotely validated.</li>
           <li><span class="status-pill planned">Planned</span> Theorem-level leanblueprint pages, full Lean doc-gen output, and blueprint PDF on top of the current module dependency map and source-derived declaration index.</li>
           <li><span class="status-pill separate">Later</span> Exact Fano sharpness, randomized/list decoding, coding-theorem applications, and richer certificate-assumption layers.</li>
           <li><span class="status-pill separate">Later</span> PSITIP/oXitip-style import into untrusted raw certificate data and non-toy network-information-theory converse examples.</li>

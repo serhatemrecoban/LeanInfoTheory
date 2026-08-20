@@ -20,8 +20,17 @@ documentation-only handoff commit `0324ee6` (`Prepare Project B Chunk 8
 handoff`) above it changes no Lean source. At the completed remote handoff
 gate, local `HEAD`, `master`, `origin/master`, and remote `master` agreed at
 `0324ee6`; the Lean build/placeholder and Pages deployment workflows both
-succeeded. No Chunk 8 mathematical scope or Lean implementation is approved
-by this checkpoint or handoff.
+succeeded. Commit `a27ef8d` (`Finalize Project B Chunk 8 handoff`) is the
+verified baseline for the approved Chunk 8 working-tree implementation; it
+changes no Lean source relative to that handoff line.
+
+On July 31, Chunk 8 completed all 24 approved steps and passed independent
+working-tree validation. Its 18-declaration source surface is frozen; the root
+and certificate trust boundaries remain unchanged; and the focused, maintained,
+and default builds, consumers, trust audit, generated references, website, and
+repository-hygiene checks all pass. The current working tree is complete and
+independently validated, but not yet checkpointed, committed, pushed, deployed,
+or remotely validated.
 
 Project B Chunk 2 is complete. All 18 steps are finished. The chunk began
 from the clean Chunk 1 checkpoint, its new theorem contracts were validated by
@@ -152,7 +161,67 @@ audit, and final hygiene checks are current. The milestone is checkpointed as
 commit `ec78829`. Canonical/minimal sufficiency and larger iid examples are
 deferred by Future Work Note 39.
 
-## Current Project B Boundary: Chunk 7 Checkpointed
+## Current Project B Boundary: Chunk 8 Independently Validated In The Working Tree
+
+The approved 24-step Chunk 8 plan is
+`docs/plans/chapter2-chunk-08.md`; `C8.01`--`C8.24` are complete in the current
+working tree. The mathematical implementation closes the remaining finite
+algebraic gaps in Cover--Thomas Sections 2.5--2.6 and, together with the
+already completed Section 2.7 convexity and Section 2.8 data-processing
+layers, supports the limited claim that the finite algebraic gaps in Sections
+2.5--2.8 are closed. Chunk 8 introduces no new Section 2.8 theorem and does
+not claim that all of Chapter 2 is complete.
+
+The frozen 18-declaration surface consists of:
+
+- four lightweight declarations in `Shannon.FiniteFamily`:
+  `familyCondMutualInfo_union_chain_rule`,
+  `familyCondMutualInfoOf_union_chain_rule`,
+  `familyCondMutualInfo_chain_rule`, and
+  `familyCondMutualInfoOf_chain_rule`;
+- six declarations in the new opt-in
+  `Shannon.SemanticBridge.ConditionalKL`: `conditionalKlDiv`, its self
+  theorem, the finite unconditional weighted `ENNReal` formula, the two-base
+  joint KL chain rule, and their support-guarded Real forms; and
+- eight declarations in the new opt-in
+  `Shannon.SemanticBridge.FiniteFamilyIndependence`: PMF/source mutual-
+  independence predicates, empty and singleton laws, restriction to a
+  subatom, source-facing pair compatibility, and PMF/source n-way entropy-
+  additivity iff mutual-independence characterizations.
+
+The lightweight CMI rules allow overlapping atoms, duplicate ordered names,
+and variables already present in the conditioning atom. The canonical
+conditional KL is the divergence between two channel-joint laws with one
+common base. Its finite weighted semantics correctly suppresses inactive
+`top` fibers through zero weights, while the Real forms retain explicit active
+support guards. Mutual independence is pointwise factorization of a selected
+dependent-family marginal, not pairwise independence and not a measurable
+`iIndepFun` API.
+
+`Examples.ConditionalKL` provides private maintained coverage for null/active
+fibers, finite and infinite component divergence, support-guarded Real
+conversion, and the joint chain rule. The extended
+`Examples.FiniteFamily` coverage includes empty, overlap, duplicate,
+initially-conditioned, dependent-alphabet, product-family, restriction, pair,
+and pairwise-but-not-mutual-independence cases. Both semantic owners join only
+the opt-in semantic aggregate, and the new example joins only the examples
+aggregate. `LeanInfoTheory.lean`, `ShannonEntropyVal`, `EntropyExpr`, the
+primitive inequalities, certificate validation, and
+`CheckedCert.sound_finiteFamily` are unchanged.
+
+`C8.24` independently reran the nine-target focused/downstream build with
+2,783 jobs, the maintained ten-target suite with 2,792 jobs, and default
+`lake build` with 2,240 jobs. Direct and aggregate consumers exercised all 18
+declarations and the certificate adapter; exact environment checks preserved
+the root, intermediate, and private-helper boundaries. The complete axiom
+audit of all 15 new public theorems reported only `propext`,
+`Classical.choice`, and `Quot.sound`. The strict placeholder, generated-
+reference, website, source/path/anchor, scratch, conflict, whitespace, and
+working-tree hygiene checks pass. The generated references now record 51
+modules, 100 local edges, 11 root-reachable modules, 40 opt-in modules, and
+880 documented source declarations.
+
+### Preceding Chunk 7 Checkpoint
 
 The approved 22-step Chunk 7 plan is
 `docs/plans/chapter2-chunk-07.md`; `C7.01`--`C7.22` are complete in
@@ -249,8 +318,8 @@ final repository hygiene. Commit `7b5f0db` is the coherent, fully validated
 Chunk 6 Lean/source checkpoint.
 
 This is a maintained status note for Lean-focused work. It summarizes the
-current architecture and the completed checkpointed Chunk 3--7 theorem
-milestones.
+current architecture, the completed checkpointed Chunk 3--7 theorem
+milestones, and the independently validated Chunk 8 working tree.
 
 ## Current Lean Architecture
 
@@ -283,8 +352,8 @@ milestones.
   PMF on a dependent function type, restricts to finite `Finset` atoms before
   taking entropy, and owns PMF/source family information measures,
   pair/triple compatibility, elementary identities, and binary/ordered chain
-  rules. It does not import semantic inequalities, `EntropyVal`, certificates,
-  or examples.
+  rules, including the four Chunk 8 conditional-family CMI rules. It does not
+  import semantic inequalities, `EntropyVal`, certificates, or examples.
 - `LeanInfoTheory.Shannon.Units` is a separately importable logarithm-base
   conversion layer. It leaves the canonical definitions in nats and supplies
   division-by-`Real.log`/`Real.logb` bridge theorems.
@@ -359,6 +428,19 @@ milestones.
   conditioning reduction, binary/n-way subadditivity, and the concrete
   `finiteFamilyEntropyVal` and `finiteFamilyEntropyValOf` constructors. It is
   imported by the semantic aggregate but remains outside the root.
+- `LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL` is the opt-in
+  common-base channel conditional-relative-entropy owner. Its type-generic
+  definition and self theorem require only the measure assumptions needed by
+  `PMF.toMeasure`; its unconditional finite theorems give weighted-fiber and
+  two-base joint `ENNReal` chain formulas, with separate support-guarded Real
+  forms. It imports the existing data-processing and KL bridges and remains
+  outside the root.
+- `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence` is the
+  opt-in mutual-independence owner for dependent finite atoms. It keeps the
+  pointwise factorization predicate type-generic, adds finite restriction and
+  entropy-equality results downstream, and imports the semantic finite-family
+  and pair-independence owners without exposing its private product and
+  transport machinery.
 - `LeanInfoTheory.Shannon.SemanticBridge.Convexity` is the opt-in Section 2.7
   semantic owner. It builds on finite mixtures, entropy concavity, log-sum,
   and the established KL bridge to prove KL joint convexity/equality and MI
@@ -385,9 +467,10 @@ milestones.
   `LeanInfoTheory.Examples.SufficientStatistics`,
   `LeanInfoTheory.Examples.Fano`, and
   `LeanInfoTheory.Examples.FiniteFamily`, and
-  `LeanInfoTheory.Examples.Convexity` can also be imported directly when only
-  one semantic example is wanted. `Examples.Convexity` deliberately exposes
-  no public declaration.
+  `LeanInfoTheory.Examples.Convexity`, and
+  `LeanInfoTheory.Examples.ConditionalKL` can also be imported directly when
+  only one semantic example is wanted. `Examples.Convexity` and
+  `Examples.ConditionalKL` deliberately expose no public declaration.
 - `LeanInfoTheory.MathlibFragments` is a separately importable anchor/checklist
   for mathlib APIs that the project expects to use later.
 
@@ -437,6 +520,8 @@ Implemented and building:
   identities;
 - binary set entropy/MI chain rules and duplicate-tolerant ordered
   `List`-based entropy/MI chain rules, with `List.Nodup` textbook corollaries;
+- binary-union and duplicate-tolerant ordered conditional-family CMI chain
+  rules at both PMF-law and source-family levels;
 - opt-in change of logarithm base through `Shannon.div_log_change_base`,
   `Shannon.negMulLog_div_log`, `Shannon.entropy_div_log`, and
   `Shannon.entropyOf_div_log`;
@@ -566,7 +651,15 @@ Implemented and building:
   subadditivity;
 - `Shannon.finiteFamilyEntropyVal` and
   `Shannon.finiteFamilyEntropyValOf`, which instantiate the existing abstract
-  valuation directly from the semantic empty, monotonicity, and CMI theorems.
+  valuation directly from the semantic empty, monotonicity, and CMI theorems;
+- `Shannon.conditionalKlDiv` for two PMF-valued channels over one common base,
+  together with self-divergence, the unconditional finite weighted-fiber
+  formula, the two-base joint KL chain rule, and active-support-guarded Real
+  forms;
+- `Shannon.IsMutuallyIndependentFamily` and
+  `Shannon.IsMutuallyIndependentFamilyOf`, with empty/singleton laws,
+  restriction to subatoms, distinct-index pair compatibility, and equality in
+  finite-atom n-way entropy subadditivity exactly under mutual independence.
 
 The semantic bridge API remains separately importable. The Chunk 1 API review
 added compatibility-preserving left/right/both aliases for the pair bounds,
@@ -672,13 +765,14 @@ dependency map is module-level and is not theorem-level leanblueprint. Keep
 website wording honest about what is proved, demoed, generated, planned, and
 future work.
 
-The tracked generated references describe the validated and checkpointed
-Chunk 7 source: 48 modules, 90 local import edges, 11 root-reachable modules,
-37 opt-in modules, and 862 documented source declarations. Both generators are
+The tracked generated references describe the independently validated Chunk 8
+working tree: 51 modules, 100 local import edges, 11 root-reachable modules,
+40 opt-in modules, and 880 documented source declarations. Both generators are
 byte-stable on a second pass; source-link, anchor, summary, JSON, and website
-checks pass. These local files do not establish remote deployment; the
-successful Pages run for handoff commit `0324ee6` supplies that separate
-deployment evidence.
+checks pass. Their delta from checkpointed Chunk 7 source is exactly three
+modules and 18 declarations. These local files do not establish remote
+deployment; the successful Pages run for handoff commit `0324ee6` applies to
+the preceding handoff state, not the uncommitted Chunk 8 working tree.
 
 ## Important Design Constraints
 

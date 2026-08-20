@@ -951,6 +951,37 @@ theorem familyMutualInfoOf_union_chain_rule
   simpa only [familyMutualInfoOf, familyCondMutualInfoOf] using
     (familyMutualInfo_union_chain_rule (familyLawOf p X) a b c)
 
+/--
+Conditional-mutual-information union chain rule:
+`I(A ∪ B; C | D) = I(A; C | D) + I(B; C | A ∪ D)`.
+
+The four atoms may overlap; no disjointness hypothesis is required.
+-/
+theorem familyCondMutualInfo_union_chain_rule
+    {Var : Type u} {alpha : Var -> Type v}
+    [DecidableEq Var] [forall i, Fintype (alpha i)]
+    (q : PMF ((i : Var) -> alpha i))
+    (a b c d : Finset Var) :
+    familyCondMutualInfo q (a ∪ b) c d =
+      familyCondMutualInfo q a c d +
+        familyCondMutualInfo q b c (a ∪ d) := by
+  unfold familyCondMutualInfo
+  simp only [Finset.union_left_comm, Finset.union_comm]
+  ring
+
+/-- Source-family conditional-mutual-information union chain rule. -/
+theorem familyCondMutualInfoOf_union_chain_rule
+    {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
+    [DecidableEq Var] [forall i, Fintype (alpha i)]
+    (p : PMF omega) (X : (i : Var) -> omega -> alpha i)
+    (a b c d : Finset Var) :
+    familyCondMutualInfoOf p X (a ∪ b) c d =
+      familyCondMutualInfoOf p X a c d +
+        familyCondMutualInfoOf p X b c (a ∪ d) := by
+  simpa only [familyCondMutualInfoOf] using
+    (familyCondMutualInfo_union_chain_rule
+      (familyLawOf p X) a b c d)
+
 /-! ## Ordered prefix sums
 
 The public chain expressions are finite sums over list positions. Lists may
@@ -1230,6 +1261,76 @@ theorem familyMutualInfoOf_chain_rule_of_nodup
           (l.take k).toFinset := by
   simpa only [familyMutualInfoChain, familyCondMutualInfoOf] using
     familyMutualInfoOf_eq_mutualInfoChain p X l b
+
+/-! ## Ordered conditional-mutual-information chain rule -/
+
+/--
+Conditional-mutual-information chain rule for an arbitrary ordered list of
+variable names:
+`I(l; B | C) = ∑ k, I({l[k]}; B | C ∪ {l[0], ..., l[k-1]})`.
+
+Repeated names are allowed, including names already present in the
+conditioning atom.
+-/
+theorem familyCondMutualInfo_chain_rule
+    {Var : Type u} {alpha : Var -> Type v}
+    [DecidableEq Var] [forall i, Fintype (alpha i)]
+    (q : PMF ((i : Var) -> alpha i)) (l : List Var)
+    (b c : Finset Var) :
+    familyCondMutualInfo q l.toFinset b c =
+      ∑ k : Fin l.length,
+        familyCondMutualInfo q {l.get k} b
+          (c ∪ (l.take k).toFinset) := by
+  induction l generalizing c with
+  | nil =>
+      simp [familyCondMutualInfo]
+  | cons i l ih =>
+      rw [List.toFinset_cons, ← Finset.singleton_union]
+      rw [familyCondMutualInfo_union_chain_rule]
+      change
+        familyCondMutualInfo q {i} b c +
+            familyCondMutualInfo q l.toFinset b ({i} ∪ c) =
+          ∑ k : Fin (l.length + 1),
+            familyCondMutualInfo q {(i :: l).get k} b
+              (c ∪ ((i :: l).take k).toFinset)
+      rw [Fin.sum_univ_succ]
+      simp only [Fin.val_zero, List.get_cons_zero, List.take_zero,
+        List.toFinset_nil, Finset.union_empty]
+      rw [ih]
+      congr 1
+      apply Fintype.sum_congr
+      intro k
+      simp only [Fin.val_succ, List.take_succ_cons,
+        List.toFinset_cons]
+      have hcond :
+          {i} ∪ c ∪ (l.take k).toFinset =
+            c ∪ insert i (l.take k).toFinset := by
+        ext j
+        simp only [Finset.mem_union, Finset.mem_singleton,
+          Finset.mem_insert]
+        tauto
+      rw [hcond]
+      have hget : (i :: l).get k.succ = l.get k := by
+        exact List.get_cons_succ
+      rw [hget]
+
+/--
+Source-family ordered conditional-mutual-information chain rule. As in the
+law-facing theorem, repeated names and names already in the conditioning atom
+are allowed.
+-/
+theorem familyCondMutualInfoOf_chain_rule
+    {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
+    [DecidableEq Var] [forall i, Fintype (alpha i)]
+    (p : PMF omega) (X : (i : Var) -> omega -> alpha i)
+    (l : List Var) (b c : Finset Var) :
+    familyCondMutualInfoOf p X l.toFinset b c =
+      ∑ k : Fin l.length,
+        familyCondMutualInfoOf p X {l.get k} b
+          (c ∪ (l.take k).toFinset) := by
+  simpa only [familyCondMutualInfoOf] using
+    (familyCondMutualInfo_chain_rule
+      (familyLawOf p X) l b c)
 
 end
 

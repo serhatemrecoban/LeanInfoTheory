@@ -262,6 +262,30 @@ when they stabilize.
   generators, website checker, and repository-hygiene checks all pass. Commit
   `5e616d8` is the coherent Chunk 7 Lean/source checkpoint. Handoff commit
   `0324ee6` was pushed successfully, and both required remote workflows pass.
+- Project B Chunk 8 is complete and independently validated in the working
+  tree through `C8.24`. The implementation
+  closes the remaining finite algebraic gaps in Cover--Thomas Sections
+  2.5--2.6 without adding a new Section 2.8 theorem. It adds exactly four
+  lightweight conditional-family CMI chain rules, the opt-in common-base
+  channel quantity `conditionalKlDiv` with finite `ENNReal` weighted and joint
+  chain rules plus support-guarded Real forms, and opt-in dependent-family
+  mutual-independence predicates with empty, singleton, restriction, pair, and
+  n-way entropy-additivity characterizations. The 18 new public declarations
+  live in the existing `Shannon.FiniteFamily` owner and the new
+  `SemanticBridge.ConditionalKL` and
+  `SemanticBridge.FiniteFamilyIndependence` modules. Maintained examples cover
+  null/infinite KL fibers, overlap and duplicate CMI chains, dependent
+  alphabets, nondegenerate product families, and pairwise-but-not-mutual
+  independence. All new semantic and example modules remain opt-in; the
+  lightweight root, `ShannonEntropyVal`, `EntropyExpr`, certificate checker,
+  primitive inequalities, and trust boundary are unchanged. The focused
+  2,783-job build, maintained 2,792-job milestone suite, default 2,240-job
+  build, direct and guarded boundary consumers, complete 15-theorem axiom
+  audit, placeholder scan, and repository hygiene pass. Generated references
+  now cover 51 modules, 100 local import edges, 11 root-reachable modules, 40
+  opt-in modules, and 880 documented source declarations. This validated
+  working tree is not yet checkpointed, committed, pushed, deployed, or
+  remotely validated.
 
 ## Lean Modules
 
@@ -400,11 +424,22 @@ when they stabilize.
   conditioning-reduces-entropy, the total conditional channel, the finite
   independence predicates, and the cross-product/positive-fiber/zero-CMI
   conditional-independence bridge with its entropy equality cases, together
-  with the opt-in finite KL/MI convexity layer.
+  with the opt-in finite KL/MI convexity, common-base conditional-KL, and
+  finite-family mutual-independence layers.
 - `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily`: opt-in family semantic
   layer proving monotonicity, nonnegativity, submodularity, MI bounds,
   conditioning reduction, binary/n-way subadditivity, and constructing
   `finiteFamilyEntropyVal` and `finiteFamilyEntropyValOf`.
+- `LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL`: opt-in common-base
+  channel conditional relative entropy. It provides the type-generic
+  `conditionalKlDiv` definition and self theorem, finite unconditional
+  `ENNReal` weighted-fiber and two-base joint KL chain rules, and
+  support-guarded Real forms.
+- `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence`: opt-in
+  dependent-family mutual independence. It provides PMF/source predicates,
+  empty and singleton laws, restriction to subatoms, source-facing pair
+  compatibility, and the PMF/source equality characterization for n-way
+  entropy subadditivity.
 - `LeanInfoTheory.InformationMeasures`: public re-export for finite information
   measures and their core rewrite lemmas. Binary and q-ary entropy remain mathlib names:
   `Real.binEntropy` and `Real.qaryEntropy`.
@@ -459,6 +494,9 @@ when they stabilize.
 - `LeanInfoTheory.Examples.Convexity`: opt-in, non-public regression consumers
   for scalar log-sum edge cases, mixture endpoints, entropy/KL equality, and
   mutual-information input/channel convexity.
+- `LeanInfoTheory.Examples.ConditionalKL`: opt-in, non-public regression
+  consumers for null and active fibers, inactive and active infinite KL,
+  support-guarded Real formulas, and joint KL chain rules.
 - `LeanInfoTheory.Examples`: aggregate for the semantic examples above and the
   original toy certificate examples.
 
@@ -492,8 +530,11 @@ Import heavier or demonstrational modules explicitly:
 - `LeanInfoTheory.Shannon.SemanticBridge` for self-information,
   conditional-law, KL, averaged conditional-KL, nonnegativity, and chain-rule
   bridge theorems, including finite-family semantics, concrete entropy
-  valuations, and the opt-in Section 2.7 convexity layer. Its submodules,
-  including `LeanInfoTheory.Shannon.SemanticBridge.Convexity`, may also be
+  valuations, the opt-in Section 2.7 convexity layer, common-base conditional
+  KL, and finite-family mutual independence. Its submodules, including
+  `LeanInfoTheory.Shannon.SemanticBridge.Convexity`,
+  `LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL`, and
+  `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence`, may also be
   imported directly.
 - `LeanInfoTheory.Certificate.FiniteFamily` for checked-certificate soundness
   under concrete finite-family entropy.
@@ -502,15 +543,14 @@ Import heavier or demonstrational modules explicitly:
   `LeanInfoTheory.Certificate.Subadditivity`,
   `LeanInfoTheory.Certificate.Monotonicity`,
   `LeanInfoTheory.Certificate.ThreeWaySubadditivity`, and
-  `LeanInfoTheory.Examples` for demos and examples. The eight semantic example
+  `LeanInfoTheory.Examples` for demos and examples. The nine semantic example
   modules may also be imported individually.
 
 ## Roadmap
 
-1. Use the independently validated Chunk 7 checkpoint `5e616d8` and
-   remote-validated handoff `0324ee6` as the baseline for bounded Chunk 8
-   context intake. Select its theorem scope and implementation plan through a
-   separate readiness and approval process.
+1. Review and, only with separate authorization, checkpoint the independently
+   validated Chunk 8 working tree without changing its frozen 18-declaration
+   API, lightweight-root boundary, or certificate trust path.
 2. Keep the sufficiency core lightweight and place KL integration downstream;
    retain exact full-joint recovery as the contract established by the
    completed midpoint tests, including rejection of marginal-only false
@@ -529,8 +569,11 @@ lake exe cache get
 lake build
 lake build LeanInfoTheory.Shannon.FiniteFamily
 lake build LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily
+lake build LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL
+lake build LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence
 lake build LeanInfoTheory.Certificate.FiniteFamily
 lake build LeanInfoTheory.Examples.FiniteFamily
+lake build LeanInfoTheory.Examples.ConditionalKL
 lake build LeanInfoTheory.Probability.FiniteMixture
 lake build LeanInfoTheory.Shannon.LogSum
 lake build LeanInfoTheory.Shannon.EntropyConcavity
