@@ -155,6 +155,10 @@ to an approved plan.
   convention at issue.
 - Consult targeted Git history when provenance, rejected alternatives, or
   rationale matters.
+- Apart from pinned dependencies such as mathlib, do not consult or reuse
+  external information-theory formalization repositories unless the project
+  lead explicitly requests it. If external implementation code is consulted
+  or reused, record its source and any required attribution.
 - Use GitHub and the deployed website only for relevant remote, CI, issue, or
   public-documentation questions.
 - Avoid loading unrelated repository files, textbook chapters, log history, or
