@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.EntropyBounds
@@ -66,8 +71,18 @@ theorem entropy_strictly_increases_from_pure :
   exact Real.log_pos (by norm_num)
 
 /-- A full-support nonuniform reference law. -/
-def biasedLaw : PMF Bool := PMF.bernoulli (3 / 4) (by
-  exact (div_le_one (by norm_num)).2 (by norm_num))
+def biasedLaw : PMF Bool :=
+  PMF.ofFintype
+    (fun b : Bool =>
+      ((cond b (3 / 4 : NNReal) (1 - (3 / 4 : NNReal)) : NNReal) : ENNReal))
+    (by
+      have h : (3 / 4 : NNReal) <= 1 := by
+        change (3 / 4 : Real) <= 1
+        norm_num
+      rw [Fintype.sum_bool]
+      simp only [Bool.cond_true, Bool.cond_false, ← ENNReal.coe_add]
+      rw [add_tsub_cancel_of_le h]
+      rfl)
 
 /-- A channel that resets every input to the nonuniform reference law. -/
 def biasedReset (_ : Bool) : PMF Bool := biasedLaw
@@ -76,7 +91,7 @@ def biasedReset (_ : Bool) : PMF Bool := biasedLaw
 theorem biasedLaw_ne_uniform : biasedLaw ≠ PMF.uniformOfFintype Bool := by
   intro h
   have hmass := congrArg (fun p : PMF Bool => p true) h
-  simp only [biasedLaw, PMF.bernoulli_apply, Bool.cond_true,
+  simp only [biasedLaw, PMF.ofFintype_apply, Bool.cond_true,
     PMF.uniformOfFintype_apply, Fintype.card_bool] at hmass
   have hreal := congrArg ENNReal.toReal hmass
   norm_num [ENNReal.toReal_inv] at hreal

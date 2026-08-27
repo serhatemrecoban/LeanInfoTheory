@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Probability.Finite
@@ -9,9 +14,9 @@ import LeanInfoTheory.Probability.Finite
 /-!
 # Finite mixtures of probability mass functions
 
-This opt-in probability module provides a binary PMF mixture matching
-mathlib's `PMF.bernoulli` parameter convention. General finite-selector
-mixtures continue to use `PMF.bind` directly.
+This opt-in probability module provides a binary PMF mixture whose parameter
+is the weight of the first component. General finite-selector mixtures
+continue to use `PMF.bind` directly.
 -/
 
 namespace PMF
@@ -29,7 +34,10 @@ Equivalently, a Bernoulli selector chooses `p` on `true` and `q` on `false`.
 -/
 def binaryMixture (t : NNReal) (ht : t <= 1)
     (p q : PMF alpha) : PMF alpha :=
-  (PMF.bernoulli t ht).bind fun b => if b then p else q
+  (PMF.ofFintype
+      (fun b : Bool => ((cond b t (1 - t) : NNReal) : ENNReal))
+      (by simp [ht])).bind fun b =>
+    if b then p else q
 
 /-- Pointwise mass formula for a binary PMF mixture. -/
 theorem binaryMixture_apply (t : NNReal) (ht : t <= 1)
@@ -37,7 +45,7 @@ theorem binaryMixture_apply (t : NNReal) (ht : t <= 1)
     binaryMixture t ht p q a =
       (t : ENNReal) * p a + ((1 - t : NNReal) : ENNReal) * q a := by
   rw [binaryMixture, PMF.bind_apply, tsum_fintype]
-  simp [PMF.bernoulli_apply, ENNReal.coe_sub]
+  simp [PMF.ofFintype_apply, ENNReal.coe_sub]
 
 /-- A binary mixture of weight zero is its second component. -/
 @[simp]

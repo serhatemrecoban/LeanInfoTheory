@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily
@@ -296,7 +301,7 @@ private theorem isMutuallyIndependentFamily_union_restrict_left
     (q : PMF ((i : Var) -> alpha i)) {a b : Finset Var}
     (hab : Disjoint a b) (h : IsMutuallyIndependentFamily q (a ∪ b)) :
     IsMutuallyIndependentFamily q a := by
-  letI (i : Var) : Fintype (alpha i) := Fintype.ofFinite (alpha i)
+  let (i : Var) : Fintype (alpha i) := Fintype.ofFinite (alpha i)
   rw [isMutuallyIndependentFamily_iff_eq_familyProduct] at h ⊢
   calc
     familyMarginal q a =
@@ -321,7 +326,7 @@ private theorem isMutuallyIndependentFamily_union_restrict_right
     (q : PMF ((i : Var) -> alpha i)) {a b : Finset Var}
     (hab : Disjoint a b) (h : IsMutuallyIndependentFamily q (a ∪ b)) :
     IsMutuallyIndependentFamily q b := by
-  letI (i : Var) : Fintype (alpha i) := Fintype.ofFinite (alpha i)
+  let (i : Var) : Fintype (alpha i) := Fintype.ofFinite (alpha i)
   rw [isMutuallyIndependentFamily_iff_eq_familyProduct] at h ⊢
   calc
     familyMarginal q b =
@@ -346,7 +351,7 @@ private theorem isIndependent_familyPairLaw_of_mutuallyIndependent_union
     (q : PMF ((i : Var) -> alpha i)) {a b : Finset Var}
     (hab : Disjoint a b) (h : IsMutuallyIndependentFamily q (a ∪ b)) :
     IsIndependent (familyPairLaw q a b) := by
-  letI (i : Var) : Fintype (alpha i) := Fintype.ofFinite (alpha i)
+  let (i : Var) : Fintype (alpha i) := Fintype.ofFinite (alpha i)
   have ha :=
     isMutuallyIndependentFamily_union_restrict_left q hab h
   have hb :=
@@ -378,7 +383,7 @@ private theorem mutuallyIndependent_union_of_restrict_and_pair
     (hb : IsMutuallyIndependentFamily q b)
     (hp : IsIndependent (familyPairLaw q a b)) :
     IsMutuallyIndependentFamily q (a ∪ b) := by
-  letI (i : Var) : Fintype (alpha i) := Fintype.ofFinite (alpha i)
+  let (i : Var) : Fintype (alpha i) := Fintype.ofFinite (alpha i)
   rw [isMutuallyIndependentFamily_iff_eq_familyProduct] at ha hb ⊢
   rw [IsIndependent, fstMarginal_familyPairLaw,
     sndMarginal_familyPairLaw] at hp

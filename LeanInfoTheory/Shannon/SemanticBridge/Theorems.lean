@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.SemanticBridge.KL
@@ -56,8 +61,8 @@ coercion of an `ENNReal` KL divergence.
 theorem mutualInfo_nonneg {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
     0 <= mutualInfo p := by
-  letI : MeasurableSpace (alpha × beta) := ⊤
-  haveI : MeasurableSingletonClass (alpha × beta) := ⟨fun _ => trivial⟩
+  let : MeasurableSpace (alpha × beta) := ⊤
+  have : MeasurableSingletonClass (alpha × beta) := ⟨fun _ => trivial⟩
   rw [mutualInfo_eq_toReal_klDiv_joint_indepProd (p := p)]
   exact ENNReal.toReal_nonneg
 
@@ -365,7 +370,7 @@ theorem entropy_map_eq_iff_injOn_support
       _ = a' := (hg a' ha').symm
   · intro hinj
     obtain ⟨a0, _ha0⟩ := p.support_nonempty
-    letI : Nonempty alpha := ⟨a0⟩
+    let : Nonempty alpha := ⟨a0⟩
     have hzero : condEntropyOf p id f = 0 :=
       (condEntropyOf_eq_zero_iff_exists_function p id f).2
         ⟨Function.invFunOn f p.support,
@@ -476,7 +481,12 @@ theorem condEntropy_map_fst_le
     (p : PMF (alpha × gamma)) (f : alpha -> beta) :
     condEntropy (p.map fun z => (f z.1, z.2)) <= condEntropy p := by
   have hid : p.map (fun z : alpha × gamma => (z.1, z.2)) = p := by
-    simpa only [Prod.eta] using PMF.map_id p
+    calc
+      p.map (fun z : alpha × gamma => (z.1, z.2)) = p.map id := by
+        exact congrArg (fun h => p.map h) (by
+          funext z
+          exact Prod.eta z)
+      _ = p := PMF.map_id p
   simpa only [condEntropyOf, hid] using
     condEntropyOf_comp_le p Prod.fst Prod.snd f
 
@@ -492,7 +502,12 @@ theorem condEntropy_map_fst_eq_iff_exists_recovery
       ∃ g : beta × gamma -> alpha,
         ∀ z, z ∈ p.support -> z.1 = g (f z.1, z.2) := by
   have hid : p.map (fun z : alpha × gamma => (z.1, z.2)) = p := by
-    simpa only [Prod.eta] using PMF.map_id p
+    calc
+      p.map (fun z : alpha × gamma => (z.1, z.2)) = p.map id := by
+        exact congrArg (fun h => p.map h) (by
+          funext z
+          exact Prod.eta z)
+      _ = p := PMF.map_id p
   simpa only [condEntropyOf, hid] using
     condEntropyOf_comp_eq_iff_exists_recovery p Prod.fst Prod.snd f
 
@@ -977,7 +992,12 @@ theorem mutualInfo_map_fst_le
     (p : PMF (alpha × beta)) (f : alpha -> gamma) :
     mutualInfo (p.map fun z => (f z.1, z.2)) <= mutualInfo p := by
   have hid : p.map (fun z : alpha × beta => (z.1, z.2)) = p := by
-    simpa only [Prod.eta] using PMF.map_id p
+    calc
+      p.map (fun z : alpha × beta => (z.1, z.2)) = p.map id := by
+        exact congrArg (fun h => p.map h) (by
+          funext z
+          exact Prod.eta z)
+      _ = p := PMF.map_id p
   simpa only [mutualInfoOf, hid] using
     mutualInfoOf_comp_left_le p Prod.fst Prod.snd f
 
@@ -988,7 +1008,12 @@ theorem mutualInfo_map_snd_le
     (p : PMF (alpha × beta)) (f : beta -> gamma) :
     mutualInfo (p.map fun z => (z.1, f z.2)) <= mutualInfo p := by
   have hid : p.map (fun z : alpha × beta => (z.1, z.2)) = p := by
-    simpa only [Prod.eta] using PMF.map_id p
+    calc
+      p.map (fun z : alpha × beta => (z.1, z.2)) = p.map id := by
+        exact congrArg (fun h => p.map h) (by
+          funext z
+          exact Prod.eta z)
+      _ = p := PMF.map_id p
   simpa only [mutualInfoOf, hid] using
     mutualInfoOf_comp_right_le p Prod.fst Prod.snd f
 
@@ -999,7 +1024,12 @@ theorem mutualInfo_map_prod_le
     (p : PMF (alpha × beta)) (f : alpha -> gamma) (g : beta -> delta) :
     mutualInfo (p.map fun z => (f z.1, g z.2)) <= mutualInfo p := by
   have hid : p.map (fun z : alpha × beta => (z.1, z.2)) = p := by
-    simpa only [Prod.eta] using PMF.map_id p
+    calc
+      p.map (fun z : alpha × beta => (z.1, z.2)) = p.map id := by
+        exact congrArg (fun h => p.map h) (by
+          funext z
+          exact Prod.eta z)
+      _ = p := PMF.map_id p
   simpa only [mutualInfoOf, hid] using
     mutualInfoOf_comp_le p Prod.fst Prod.snd f g
 

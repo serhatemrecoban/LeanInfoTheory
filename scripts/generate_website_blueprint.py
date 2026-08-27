@@ -9,6 +9,7 @@ documentation.
 
 from __future__ import annotations
 
+import argparse
 import html
 import json
 from dataclasses import dataclass
@@ -24,8 +25,8 @@ JSON_OUTPUT = OUTPUT_DIR / "module_graph.json"
 
 
 MODULE_SUMMARIES = {
-    "LeanInfoTheory": "Lightweight public root import for stable finite Shannon and core certificate APIs.",
-    "LeanInfoTheory.Basic": "Project namespace and shared status vocabulary.",
+    "LeanInfoTheory": "Lightweight public root import for finite PMF and Shannon APIs.",
+    "LeanInfoTheory.Basic": "Non-stable development anchor for project metadata and roadmap vocabulary.",
     "LeanInfoTheory.Probability.Finite": "Finite PMF real-mass, finite-bind, support, and pointwise PMF.map bridge lemmas.",
     "LeanInfoTheory.Probability.FiniteChannel": "Type-generic PMF channel constructions and their elementary laws.",
     "LeanInfoTheory.Probability.FiniteMixture": "Binary PMF mixtures with NNReal weights and exact endpoint laws; general finite selectors use PMF.bind.",
@@ -37,14 +38,16 @@ MODULE_SUMMARIES = {
     "LeanInfoTheory.Shannon.FiniteFamily": "Dependent finite-family laws, finite marginals, family entropy/MI/CMI algebra, pair/triple bridges, and binary/ordered entropy, MI, and conditional-MI chain rules.",
     "LeanInfoTheory.Shannon.InfoMeasures": "Marginals, conditional entropy, mutual information, conditional mutual information, and orientation lemmas.",
     "LeanInfoTheory.Shannon.LogSum": "Zero-safe finite EReal log-sum inequality and equality with guarded Real corollaries.",
-    "LeanInfoTheory.Shannon.Units": "Opt-in logarithm-base conversion for canonical nat-valued finite information measures.",
-    "LeanInfoTheory.Shannon.SemanticBridge": "Aggregate entry point for finite semantic, KL, convexity, conditional-KL, independence, Markov, sufficiency, data-processing, recovery, and finite-family bridges.",
+    "LeanInfoTheory.Shannon.Units": "Opt-in scalar conversion from canonical nats to arbitrary valid logarithm bases and bits.",
+    "LeanInfoTheory.Shannon": "Import-only umbrella for the complete supported finite information-theory stack.",
+    "LeanInfoTheory.Shannon.SemanticBridge": "Import-only aggregate for finite semantic, KL, convexity, conditional-KL, independence, Markov, sufficiency, data-processing, recovery, and finite-family bridges.",
+    "LeanInfoTheory.Shannon.SemanticBridge.Entropy": "Expected-self-information semantics for finite entropy.",
     "LeanInfoTheory.Shannon.SemanticBridge.Product": "Independent-product PMFs, product-measure semantics, support formulas, and absolute-continuity facts.",
     "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums": "Finite real-sum rewrites and mutual-information log-ratio formulas.",
     "LeanInfoTheory.Shannon.SemanticBridge.Conditional": "Finite conditional-law API and expected conditional entropy / conditional mutual-information formulas.",
     "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL": "Common-base channel conditional KL, finite weighted semantics, joint KL chain rule, and support-guarded Real forms.",
     "LeanInfoTheory.Shannon.SemanticBridge.Convexity": "Finite-selector KL joint convexity, binary KL equality, and mutual-information input-law concavity and channel convexity.",
-    "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily": "Finite-family Shannon inequalities and concrete ShannonEntropyVal constructions.",
+    "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily": "Finite-family Shannon inequalities, including submodularity and n-way subadditivity.",
     "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence": "Dependent-family mutual independence, restriction and pair laws, and n-way entropy-additivity equality characterizations.",
     "LeanInfoTheory.Shannon.SemanticBridge.KL": "PMF support/KL finiteness and equality, uniform-reference identities, and MI/CMI KL bridges.",
     "LeanInfoTheory.Shannon.SemanticBridge.Independence": "PMF-first ordinary/conditional independence, zero MI/CMI, and entropy equality cases.",
@@ -54,27 +57,18 @@ MODULE_SUMMARIES = {
     "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL": "Pairwise KL preservation and guarded equality characterizations through common exact recovery.",
     "LeanInfoTheory.Shannon.SemanticBridge.Theorems": "User-facing semantic nonnegativity, chain rules, deterministic processing, and information inequalities.",
     "LeanInfoTheory.InformationMeasures": "Convenience re-export for the finite information-measure API.",
-    "LeanInfoTheory.EntropyExpr": "Formal rational entropy-expression algebra and empty-entropy convention interface.",
-    "LeanInfoTheory.EntropyVal": "Abstract Shannon entropy valuations for certificate soundness.",
-    "LeanInfoTheory.PrimitiveIneq": "Primitive Shannon inequality expressions and soundness under abstract valuations.",
-    "LeanInfoTheory.Certificate": "Nonnegative-combination certificate soundness and exact decomposition matching.",
-    "LeanInfoTheory.Certificate.Checked": "Raw/checked certificate split with a first validator.",
-    "LeanInfoTheory.Certificate.FiniteFamily": "Leaf adapter from checked-certificate soundness to concrete finite-family Shannon entropy.",
-    "LeanInfoTheory.Certificate.Submodularity": "First non-toy checked certificate demo, proving entropy submodularity.",
-    "LeanInfoTheory.Certificate.Subadditivity": "Checked certificate demo proving entropy subadditivity.",
-    "LeanInfoTheory.Certificate.Monotonicity": "Checked certificate demo proving one-variable entropy monotonicity.",
-    "LeanInfoTheory.Certificate.ThreeWaySubadditivity": "Manual certificate pressure-test module for three-way entropy subadditivity.",
-    "LeanInfoTheory.Examples": "Opt-in aggregate for certificate, conditional-KL, convexity, finite-family, support-sensitive, Markov, channel, sufficiency, and Fano examples.",
+    "LeanInfoTheory.Examples": "Non-stable aggregate for maintained conditional-KL, convexity, finite-family, support-sensitive, Markov, channel, sufficiency, Fano, and units regression consumers.",
     "LeanInfoTheory.Examples.CommonCause": "Noisy binary common-cause example for conditional independence and Markov factorization.",
     "LeanInfoTheory.Examples.ConditionalKL": "Private maintained regressions for common-base conditional KL across null, active, finite, infinite, and guarded Real cases.",
     "LeanInfoTheory.Examples.Convexity": "Private maintained regressions for finite log-sum, mixtures, entropy concavity, KL convexity, and mutual-information input-law concavity and channel convexity.",
     "LeanInfoTheory.Examples.Fano": "Perfect-decoder, singleton-source, and nonzero-error examples for the finite Fano API.",
-    "LeanInfoTheory.Examples.FiniteFamily": "Homogeneous and dependent-alphabet finite-family examples covering conditional-MI chains, product and pairwise-not-mutual laws, and checked/raw certificate paths.",
+    "LeanInfoTheory.Examples.FiniteFamily": "Homogeneous and dependent-alphabet finite-family examples covering conditional-MI chains, product laws, and pairwise-but-not-mutual independence.",
     "LeanInfoTheory.Examples.KLTop": "Disjoint-support PMF example exposing the infinite-KL toReal zero trap.",
     "LeanInfoTheory.Examples.SufficientStatistics": "Finite sufficient-statistics examples covering noninjective sufficiency, constant-statistic failure, and recovery/posterior/KL boundaries.",
     "LeanInfoTheory.Examples.SupportSensitive": "Support-aware entropy, conditional-fiber, functional-dependence, and recovery examples.",
+    "LeanInfoTheory.Examples.Units": "Private maintained regressions for arbitrary-base, bits, entropy, MI, CMI, and guarded real-KL conversion.",
     "LeanInfoTheory.Examples.StochasticChannels": "Finite stochastic-channel examples for KL contraction, cascade support, and entropy growth.",
-    "LeanInfoTheory.MathlibFragments": "Separately importable checklist of heavier mathlib information-theory and coding anchors.",
+    "LeanInfoTheory.MathlibFragments": "Non-stable reference checklist of heavier mathlib information-theory and coding anchors.",
 }
 
 
@@ -83,8 +77,7 @@ LAYER_ORDER = [
     "Shared foundation",
     "Finite Shannon layer",
     "Semantic bridge layer",
-    "Certificate layer",
-    "Reference anchors",
+    "Non-stable anchors",
 ]
 
 
@@ -124,15 +117,19 @@ def parse_imports(path: Path) -> list[str]:
 def classify_module(name: str) -> str:
     if name == "LeanInfoTheory":
         return "Root import"
-    if name == "LeanInfoTheory.Basic" or name.startswith("LeanInfoTheory.Probability."):
+    if name.startswith("LeanInfoTheory.Probability."):
         return "Shared foundation"
-    if name == "LeanInfoTheory.MathlibFragments" or name.startswith("LeanInfoTheory.Examples"):
-        return "Reference anchors"
+    if (
+        name == "LeanInfoTheory.Basic"
+        or name == "LeanInfoTheory.MathlibFragments"
+        or name.startswith("LeanInfoTheory.Examples")
+    ):
+        return "Non-stable anchors"
     if name.startswith("LeanInfoTheory.Shannon.SemanticBridge"):
         return "Semantic bridge layer"
     if name.startswith("LeanInfoTheory.Shannon") or name == "LeanInfoTheory.InformationMeasures":
         return "Finite Shannon layer"
-    return "Certificate layer"
+    raise ValueError(f"Unclassified LeanInfoTheory module: {name}")
 
 
 def root_reachable_modules(import_graph: dict[str, list[str]]) -> set[str]:
@@ -182,6 +179,8 @@ def status_label(info: ModuleInfo) -> str:
         return "root"
     if info.root_reachable:
         return "root reachable"
+    if info.layer == "Non-stable anchors":
+        return "non-stable"
     return "separate import"
 
 
@@ -209,7 +208,7 @@ def module_to_dict(info: ModuleInfo) -> dict[str, object]:
     }
 
 
-def write_json(infos: list[ModuleInfo]) -> None:
+def generated_json(infos: list[ModuleInfo]) -> str:
     local_edge_count = sum(len(info.local_imports) for info in infos)
     data = {
         "schema": "lean-info-theory.module-graph.v1",
@@ -221,7 +220,11 @@ def write_json(infos: list[ModuleInfo]) -> None:
         "layers": LAYER_ORDER,
         "modules": [module_to_dict(info) for info in infos],
     }
-    JSON_OUTPUT.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    return json.dumps(data, indent=2, sort_keys=True) + "\n"
+
+
+def write_json(infos: list[ModuleInfo]) -> None:
+    JSON_OUTPUT.write_text(generated_json(infos), encoding="utf-8")
 
 
 def layer_summary_rows(infos: list[ModuleInfo]) -> str:
@@ -289,9 +292,8 @@ def generated_html(infos: list[ModuleInfo]) -> str:
       <h2 class="project-tagline">Module-level graph generated from Lean import lines.</h2>
       <nav class="project-links" aria-label="Project links">
         <a href="../" class="btn">Home</a>
+        <a href="../docs/" class="btn">Docs</a>
         <a href="../theorems.html" class="btn">Theorems</a>
-        <a href="../submodularity-demo.html" class="btn">Demo</a>
-        <a href="../docs/api-index.html" class="btn">API Index</a>
         <a href="./" class="btn">Blueprint</a>
         <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
@@ -300,9 +302,10 @@ def generated_html(infos: list[ModuleInfo]) -> str:
       <section class="status-strip" aria-label="Generation status">
         <p>
           Generated by <code>scripts/generate_website_blueprint.py</code> from
-          local Lean <code>import</code> lines. This is a module-level dependency map; a
-          theorem-level leanblueprint graph and full Lean doc-gen output are
-          still future milestones.
+          local Lean <code>import</code> lines. This remains a module-level map,
+          not a theorem-level leanblueprint graph. The separate
+          <a href="../docs/v0.1.0/">v0.1.0 API route</a> is populated from
+          signature-bearing doc-gen output during website assembly.
         </p>
       </section>
 
@@ -380,14 +383,47 @@ def write_html(infos: list[ModuleInfo]) -> None:
     HTML_OUTPUT.write_text(generated_html(infos), encoding="utf-8")
 
 
-def main() -> None:
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+def check_output(path: Path, expected: str) -> bool:
+    if not path.exists():
+        print(f"missing generated artifact: {path.relative_to(ROOT)}")
+        return False
+    if path.read_text(encoding="utf-8") != expected:
+        print(
+            f"stale generated artifact: {path.relative_to(ROOT)}; run "
+            "python scripts/generate_website_blueprint.py"
+        )
+        return False
+    return True
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="fail unless both checked-in artifacts match the current imports",
+    )
+    args = parser.parse_args()
+
     infos = build_module_infos()
+    rendered_json = generated_json(infos)
+    rendered_html = generated_html(infos)
+
+    if args.check:
+        ok = check_output(JSON_OUTPUT, rendered_json)
+        ok = check_output(HTML_OUTPUT, rendered_html) and ok
+        if ok:
+            print("website blueprint artifacts are current")
+            return 0
+        return 1
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     write_json(infos)
     write_html(infos)
     print(f"wrote {HTML_OUTPUT.relative_to(ROOT)}")
     print(f"wrote {JSON_OUTPUT.relative_to(ROOT)}")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

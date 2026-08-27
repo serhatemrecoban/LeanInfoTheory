@@ -298,16 +298,14 @@ mathlib's measure-theoretic semantics.
 
 ## File And Import Plan
 
-The current file `LeanInfoTheory/Shannon/SemanticBridge.lean` remains the
-public semantic bridge entry point.
-
-If step 3 grows beyond a small amount of code, introduce subfiles under:
+The file `LeanInfoTheory/Shannon/SemanticBridge.lean` is the public, import-only
+semantic bridge entry point. Focused declarations live under:
 
 ```text
 LeanInfoTheory/Shannon/SemanticBridge/
 ```
 
-Likely subfiles:
+The implemented focused owners include:
 
 - `Product.lean`, for `indepProd`, marginal formulas, product-measure bridge,
   and joint absolute-continuity helpers.
@@ -315,11 +313,11 @@ Likely subfiles:
 - `Conditional.lean`, for finite conditional laws and conditional-distribution
   bridge theorems.
 
-The existing `SemanticBridge.lean` file can import stable subfiles as they
-settle. If later subfiles need the existing `selfInfo` theorem and import cycles
-appear, move the entropy/self-information bridge into
-`SemanticBridge/Entropy.lean` and make `SemanticBridge.lean` a small aggregator.
-Do not do that split until theorem pressure justifies it.
+Release-preparation Step 5 completed the split anticipated by this note:
+`SemanticBridge/Entropy.lean` now owns `selfInfo` and the
+`entropy_eq_integral_selfInfo` bridge, including the focused PMF-integral
+dependency. The aggregate imports every supported semantic submodule directly
+and declares no definitions or theorems.
 
 ## Implementation Order After This Note
 

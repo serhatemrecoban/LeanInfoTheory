@@ -37,15 +37,11 @@ Status labels used below:
 ## 0. AI Assistant Quick Start
 
 **[Current] What this project is.** LeanInfoTheory is a Lean 4/mathlib library
-for finite discrete information theory and Lean-checked entropy-inequality
-certificates. Its two long-term branches are:
-
-- **Project B:** textbook-facing finite Shannon theory over mathlib `PMF`s,
-  including semantic bridges to measures, KL divergence, channels, Markov
-  structure, data processing, and sufficient statistics;
-- **Project A:** formal entropy expressions and a trusted Lean validator for
-  primitive Shannon-inequality certificates, intended eventually to support
-  network-information-theory converse proofs.
+for reusable finite discrete information theory over mathlib `PMF`s, including
+semantic bridges to measures, KL divergence, channels, Markov structure, data
+processing, and sufficient statistics. Certificate representation, checking,
+import, and application demonstrations belong to downstream projects and are
+not part of the LeanInfoTheory `v0.1.0` surface.
 
 **[Current] Mathematical phase.** Project B is active. Cover--Thomas Chapter 2
 Chunks 1-8 are checkpointed, with Chunk 8 complete through `C8.24` at source
@@ -60,13 +56,55 @@ trust, website, and hygiene gates all pass. The checkpoint is pushed, and its
 exact-SHA Lean build/placeholder and Pages deployment workflows both pass. No
 later theorem phase has been selected.
 
+**[Decision] `v0.1.0` release preparation.** The approved release target is
+recorded in [`docs/v0.1-release-contract.md`](v0.1-release-contract.md). It
+selects a certificate-free finite-information-theory library surface, canonical
+nats with opt-in scalar conversion, Lean/mathlib `v4.33.1`, and versioned
+signature-bearing API documentation. Certificate representation and checking
+belong downstream; reusable finite-family, entropy, channel, KL, Markov,
+independence, data-processing, and sufficiency mathematics remains upstream.
+`ShannonCert` has not been accessed or modified.
+
+Release-preparation Steps 1–15 are complete. The standalone Step 15 safety
+commit `81ffef37402909481c5dea51a42973dee9a79ae6` permanently removed the
+automatic tag/Release workflow from `origin/master` and nothing else; the
+candidate was reconciled without drift at
+`f0d06dfab4f411ced312294e63e96bb67bba859b`. The candidate's Pages workflow is
+manual-only, requires a `publish` boolean that defaults to `false`, and guards
+deployment separately. Immutable GitHub Releases is intentionally deferred
+until Step 17 external review passes and the user explicitly authorizes Step 18
+publication. No tag, GitHub Release, Pages deployment, Zenodo record, DOI, or
+publication has occurred.
+
+The release surface has a five-module lightweight root, a 31-module full
+Shannon umbrella, 601 documented supported declarations, 92 root exports, and
+94 reviewed `simp` declarations. All 13 development/example/reference anchors
+remain non-stable. The complete source-derived inventory is 44 modules, 90
+local edges, five root-reachable modules, 39 separate-import modules, and 716
+declarations (715 documented plus one example-only instance). The validator
+enforces builds, trust and placeholder policy, frozen API/import boundaries,
+proof dependencies, generated references, final release-documentation markers,
+five independently compiled README examples, website integrity, workflow
+safety, metadata, and repository hygiene.
+
+École polytechnique fédérale de Lausanne (EPFL) is the rights holder; Serhat
+Emre Coban is the sole software creator with affiliation `EPFL, Mathematics of
+Information Laboratory`; Apache-2.0 remains the licence. `CITATION.cff` is
+canonical, `.zenodo.json` and a redundant `NOTICE` remain absent, and the
+tagged CFF is DOI-free. The fixed Europe/Zurich publication date is
+`2026-08-27`. Step 16 is the current exact-candidate qualification gate: final
+release-facing prose, clean exact-commit and external-consumer reproduction,
+remote nonpublishing CI/API-doc/Pages evidence, licence detection, and a read-
+only Zenodo-integration preflight.
+
 **[Decision] Architectural rules that must be preserved.**
 
 1. Use mathlib `PMF`, measure, kernel, KL, binary-entropy, and q-ary-entropy
    APIs. Do not create a toy or parallel probability theory.
-2. Keep `LeanInfoTheory.lean` lightweight. Entropy bounds, semantic bridges,
-   units, examples, certificate demos, coding anchors, and other heavy layers
-   remain explicit imports.
+2. Keep `LeanInfoTheory.lean` lightweight and mathematical. Use
+   `LeanInfoTheory.Shannon` for the complete supported mathematical stack and
+   focused imports when dependency weight matters. `Basic`, examples, and
+   reference anchors remain explicitly non-stable and outside both umbrellas.
 3. Keep canonical finite information measures in `Real` and in nats.
    Base conversion is theorem-level, opt-in infrastructure.
 4. Keep lightweight algebraic definitions separate from heavier semantic
@@ -94,7 +132,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 | Chunk 8 review or later-phase intake | The completed Chunk 8 plan; Sections 3, 6-9, 11-14, and 16; the three Chunk 8 mathematical owners, two maintained example owners, semantic/examples aggregates, and current Future Work Notes 9, 14-18, and 24 |
 | Review of an existing Lean theorem | Sections 3, 7, 9, and 16; the owning source module and its direct imports |
 | API or module review | Sections 7, 9, 10, 11, and Future Work Notes 2-4, 14-16, 18, and 26 |
-| Certificate work | Sections 2, 5, 7, 11, and 13; `EntropyExpr`, `EntropyVal`, `PrimitiveIneq`, and `Certificate.Checked` |
+| Downstream certificate compatibility | Sections 2, 5, 7, 11, and 13; preserve general mathematical APIs without adding checker-specific ownership upstream |
 | Documentation or website work | Sections 1, 4, 5, 7, 11, and 16; `AGENTS.md` website rules |
 | Grant or project-description work | Sections 2, 5, 6, 8, 11, and 13; distinguish implemented work from plans |
 | General Assistant maintenance | Read the whole summary, then reconcile the project log, roadmap, and current Git state |
@@ -103,12 +141,12 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-20 |
+| Last updated | 2026-08-27 |
 | Last fully validated committed Lean/source baseline | `1eef2289c3475ff978569f285329bdc78e060594` |
-| Repository transition state | The independently validated Chunk 8 source was checkpointed and pushed as `1eef2289c3475ff978569f285329bdc78e060594`; both required exact-SHA workflows succeeded, and the following status reconciliation changes no Lean source |
-| Lean baseline | Lean `v4.30.0`, commit `d024af099ca4bf2c86f649261ebf59565dc8c622` |
-| mathlib baseline | mathlib input revision `v4.30.0`, manifest commit `c5ea00351c28e24afc9f0f84379aa41082b1188f` |
-| Current phase | Project B, Chunks 1-8 checkpointed; Chunk 8 is complete through `C8.24`; no later theorem phase has been selected or approved |
+| Repository transition state | The independently validated Chunk 8 source remains checkpoint `1eef2289c3475ff978569f285329bdc78e060594`; Step 15 safety commit `81ffef37402909481c5dea51a42973dee9a79ae6` is live on `origin/master`; the accumulated candidate is reconciled locally at `f0d06dfab4f411ced312294e63e96bb67bba859b`; no tag, Release, deployment, Zenodo record, DOI, or publication has occurred |
+| Lean baseline | Release-preparation working tree: Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6`; the last committed source baseline used `v4.30.0` |
+| mathlib baseline | Release-preparation working tree: input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474`; the last committed source baseline used `v4.30.0` at `c5ea00351c28e24afc9f0f84379aa41082b1188f` |
+| Current phase | `v0.1.0` release preparation; Steps 1–15 are complete, publication date is `2026-08-27`, Step 16 exact-candidate qualification is current, Project B Chunks 1–8 remain checkpointed, and no later theorem phase is selected |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -169,19 +207,12 @@ finite channels and divergence.
 
 ### Formalization goal
 
-**[Current]** Connect three layers without conflating them:
-
-```text
-finite PMF information measures
-    -> semantic PMF / measure / kernel / KL theorems
-    -> abstract entropy expressions and checked certificates
-```
-
-Project B supplies the mathematical semantics. Project A supplies scalable,
-kernel-checked algebra once suitable semantic assumptions have been packaged.
-The long-term objective is not merely a list of entropy lemmas, but a path from
-standard information-theoretic models to checked inequality certificates and
-recognizable converse steps.
+**[Current]** Connect a lightweight finite-PMF information-measure layer to
+reusable semantic PMF, measure, kernel, KL, channel, Markov, data-processing,
+and sufficiency theorems without conflating their import costs. Downstream
+applications may use this mathematics for certificate checking or converse
+proofs, but their representations and validators are not upstream library
+responsibilities.
 
 ### Relationship to mathlib
 
@@ -195,8 +226,8 @@ formalization:
 - add finite PMF-facing definitions and bridge theorems that are absent or
   inconvenient at the pinned version;
 - upstream small generic lemmas only after assumptions and names stabilize;
-- keep certificate syntax and import machinery local unless mathlib
-  maintainers request a generic framework.
+- keep application-specific certificate syntax, checking, and import machinery
+  downstream unless a genuinely reusable abstraction earns separate review.
 
 ### Intended users
 
@@ -217,12 +248,13 @@ formalization:
 - AEP, typicality, method of types, entropy rates, or a stochastic-process
   hierarchy;
 - general measurable-space entropy and sufficient-statistics theory;
-- automatic certificate search, primitive recognition, or PSITIP/oXitip
-  import;
+- certificate representations, checking, search, primitive recognition, or
+  PSITIP/oXitip import;
 - canonical or minimal sufficient statistics;
 - a local standalone log-sum inequality, general KL convexity, entropy
   concavity, Pinsker family, or finite-simplex continuity theory;
-- full Lean doc-gen and a theorem-level leanblueprint.
+- theorem-level leanblueprint data, a blueprint PDF, and optional
+  equation-expanded API-documentation pages.
 
 Chunk 5 is also explicitly bounded away from a full coding theorem.
 
@@ -236,8 +268,9 @@ Chunk 5 is also explicitly bounded away from a full coding theorem.
   `sum a, Real.negMulLog (p a).toReal`.
 - Entropy values are `Real`.
 - Canonical units are nats because the underlying logarithm is `Real.log`.
-- `Shannon.Units` converts a nat-valued quantity to base `b` by division by
-  `Real.log b`; there is no duplicate hierarchy of base-indexed definitions.
+- `Shannon.Units` converts a real-valued quantity measured in nats to base `b`
+  with `natsToBase b x = x / Real.log b`; `natsToBits` selects base `2`, and
+  there is no duplicate hierarchy of base-indexed definitions.
 - Zero-mass atoms contribute zero through `Real.negMulLog 0 = 0`.
 - `selfInfo p a` also uses a zero branch at a zero-mass atom; only weighted
   statements assign it semantic significance there.
@@ -260,8 +293,9 @@ Chunk 5 is also explicitly bounded away from a full coding theorem.
 - `condEntropy`, `mutualInfo`, and `condMutualInfo` are defined in the
   lightweight layer by entropy identities.
 - The semantic bridge proves the expected-conditional-law and KL forms.
-- These are equivalent mathematical views, but keeping the algebraic forms
-  definitional supports Project A's linear entropy-expression certificates.
+- These are equivalent mathematical views; keeping the algebraic forms
+  definitional also makes the lightweight API convenient for downstream
+  symbolic consumers.
 - Entropy and conditional-entropy chain rules are explicit rewrite theorems,
   not general `[simp]` normalizations.
 - Finite-family mutual independence means pointwise factorization of every
@@ -329,18 +363,14 @@ Chunk 5 is also explicitly bounded away from a full coding theorem.
 - Some current finite theorems intentionally carry stronger assumptions than
   the most general mathematics; Section 11 records the known cases.
 
-### Certificate semantics
+### Downstream certificate boundary
 
-- `EntropyAtom` is a finite set of variable names.
-- `EntropyExpr` is a sparse rational linear combination of entropy atoms.
-- The empty entropy atom is explicit; arbitrary interpretations do not
-  automatically satisfy `H(empty) = 0`.
-- `ShannonEntropyVal` packages empty entropy, elemental conditional-entropy
-  nonnegativity, and conditional-mutual-information nonnegativity.
-- Raw certificate coefficients are `Rat`; checked coefficients are `NNRat`.
-- External search or parsing is untrusted. Lean validation of primitive tags,
-  coefficient nonnegativity, and exact normalized expression equality is the
-  trust boundary.
+- Certificate expressions, primitive tags, raw/checked structures, validators,
+  adapters, and demonstrations are not LeanInfoTheory APIs.
+- General finite-family inequalities and semantic results remain upstream and
+  may be consumed by downstream certificate applications.
+- No downstream extraction decision authorizes modifying `ShannonCert` during
+  this release-preparation task.
 
 ## 4. Source-of-Truth Hierarchy
 
@@ -509,25 +539,14 @@ corollaries that divide by `log |alpha|`. The owners are
 `Shannon.BinaryEntropy` and `Shannon.Fano`; both remain outside the lightweight
 root and semantic-bridge aggregate.
 
-### Certificate layer
+### Downstream certificate consumers
 
-**[Current]** The trusted checking path includes:
-
-- entropy atoms and sparse rational entropy expressions;
-- abstract Shannon entropy valuations;
-- empty-entropy, conditional-entropy, and CMI primitive expressions;
-- primitive soundness;
-- raw and checked certificate structures;
-- nonnegative checked coefficients and exact decomposition equality;
-- raw-to-checked validation and validation-to-soundness theorems;
-- concrete `finiteFamilyEntropyVal` and `finiteFamilyEntropyValOf`
-  constructions satisfying the unchanged abstract contract;
-- `Certificate.CheckedCert.sound_finiteFamily`, applying checked soundness to
-  actual finite-family Shannon entropy without a new trust path;
-- checked demos for submodularity, subadditivity, one-variable monotonicity,
-  and three-way subadditivity.
-
-This is validation, not certificate generation or search.
+**[Current]** LeanInfoTheory owns the reusable mathematics needed by downstream
+consumers, including finite-family monotonicity, submodularity,
+subadditivity, KL, independence, Markov, data processing, and sufficiency. It
+does not own an entropy-expression language, primitive-tag vocabulary,
+raw/checked certificate structures, validators, adapters, or certificate-only
+demonstrations.
 
 ### Examples and public documentation
 
@@ -544,14 +563,18 @@ This is validation, not certificate generation or search.
   Fano API;
 - homogeneous Boolean and heterogeneous Boolean/ternary finite families,
   ordered chains, overlapping entropy atoms, empty-family entropy, product and
-  pairwise-but-not-mutually-independent laws, and distinct checked/raw
-  certificate paths;
+  pairwise-but-not-mutually-independent laws;
 - common-base conditional KL across null, active, finite, and infinite fibers,
   together with guarded Real and joint-chain formulas.
 
-The website has a hand-written module guide, theorem highlights, certificate
-demo, generated module dependency map, and source-derived declaration index.
-It does not yet have full doc-gen or theorem-level leanblueprint output.
+The website has a hand-written module guide, theorem highlights, generated
+module dependency map, and source-derived declaration index. Its Steps 4--5
+certificate-free/import-architecture reconciliation is local. Step 11 produced
+separate signature-bearing doc-gen output, and Step 12 now stages that output at
+`/docs/v0.1.0/` inside a Pages-shaped local preview. Preview staging suppresses
+machine-local source links, connects generated and hand-written navigation,
+records provenance, and remains explicitly unpublishable. The site still has
+no theorem-level leanblueprint output.
 
 ## 6. Cover-Thomas Chapter 2 Coverage Matrix
 
@@ -560,7 +583,7 @@ claim a general measure-theoretic formalization of the whole subject.
 
 | Topic | Status and provenance | Representative declarations | Owner and layer | Limitations, downstream use, and remaining work |
 | --- | --- | --- | --- | --- |
-| **2.1 Entropy** | **Substantially complete.** Core predates the eight-chunk programme; zero/equality and units were strengthened in Chunk 1; the maintained Boolean bridge is Chunk 5. | `entropy`, `entropyOf`, `entropy_nonneg`, `entropy_eq_zero_iff`, `entropyOf_eq_zero_iff`, `entropy_eq_integral_selfInfo`, `entropy_div_log`, `entropy_bool` | `Shannon.Entropy` is lightweight; semantic expectation, units, and `Shannon.BinaryEntropy` are opt-in. | Nats are canonical. The Boolean bridge reuses mathlib `Real.binEntropy`; no parallel binary-entropy definition is maintained. |
+| **2.1 Entropy** | **Substantially complete.** Core predates the eight-chunk programme; zero/equality and units were strengthened in Chunk 1; the maintained Boolean bridge is Chunk 5; release Step 6 names scalar arbitrary-base and bits conversion. | `entropy`, `entropyOf`, `entropy_nonneg`, `entropy_eq_zero_iff`, `entropyOf_eq_zero_iff`, `entropy_eq_integral_selfInfo`, `natsToBase`, `natsToBits`, `entropy_div_log`, `entropy_bool` | `Shannon.Entropy` is lightweight; semantic expectation, units, and `Shannon.BinaryEntropy` are opt-in. | Nats are canonical. The Boolean bridge reuses mathlib `Real.binEntropy`; no parallel base-indexed information-measure hierarchy is maintained. |
 | **2.2 Joint and conditional entropy** | **Substantially complete for pairs, triples, and finite subfamilies.** Core and expected-fiber semantics predate the programme; functional dependence is Chunk 1; pair equality cases use Chunk 2 independence; finite-family atoms are Chunk 6; n-way equality is Chunk 8. Chain-rule work is catalogued under 2.5. | `jointEntropyOf`, `condEntropy`, `familyEntropy`, `familyEntropyOf`, `familyCondEntropy`, `condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd`, `familyEntropy_eq_sum_singletons_iff_isMutuallyIndependentFamily` | Pair/triple algebra in lightweight `InfoMeasures`; dependent finite-atom algebra in opt-in `Shannon.FiniteFamily`; conditional PMFs and equality consequences in semantic modules. | `Var` may be infinite, alphabets may depend on the variable, and entropy is applied only after finite restriction. Null fibers use explicit zero or totality conventions. Mutual independence is selected-atom pointwise factorization, not a global process predicate. |
 | **2.3 Relative entropy and mutual information** | **Substantially complete at finite PMF level.** MI/KL bridges predate the programme; support/finiteness, equality, and uniform-reference results are Chunk 2; channel KL is Chunks 3-4; finite joint convexity is Chunk 7; common-base channel conditional KL is Chunk 8. | `mutualInfo`, `mutualInfo_eq_toReal_klDiv_joint_prod_marginals`, `toMeasure_absolutelyContinuous_iff_support_subset`, `klDiv_pmf_ne_top_iff_support_subset`, `klDiv_pmf_eq_zero_iff`, `klDiv_bind_le_sum`, `conditionalKlDiv`, `conditionalKlDiv_eq_sum` | `InfoMeasures` plus heavy `SemanticBridge.KL`, `DataProcessing`, `SemanticBridge.Convexity`, and `SemanticBridge.ConditionalKL`; KL itself is mathlib's `InformationTheory.klDiv`. | Real KL requires support/finiteness guards. The local conditional object compares two PMF channels over one common base; no arbitrary-joint or two-base conditional-KL definition is introduced. |
 | **2.4 Entropy/MI relationships** | **Complete for the finite pair and finite-atom algebraic surfaces.** Symmetry predates the programme; the pair identity family is Chunk 1; overlapping-atom family identities are Chunk 6. | `mutualInfoOf_eq_entropyOf_sub_condEntropyOf`, `mutualInfoOf_swap`, `mutualInfoOf_self`, `familyMutualInfo_eq_entropy_sub_condEntropy`, `familyCondMutualInfo_eq_condEntropy_sub_condEntropy` | Lightweight `Shannon.InfoMeasures` plus opt-in lightweight `Shannon.FiniteFamily`. | Rewrites remain explicit. Reverse-oriented aliases and exhaustive PMF/source mirrors are intentionally not generated without proof pressure. |
@@ -578,30 +601,41 @@ claim a general measure-theoretic formalization of the whole subject.
 
 | Module | Responsibility | Root-visible? |
 | --- | --- | --- |
-| `LeanInfoTheory.Basic` | Project namespace and status vocabulary | Yes |
+| `LeanInfoTheory.Basic` | Non-stable project metadata and roadmap vocabulary | No |
 | `LeanInfoTheory.Probability.Finite` | Reusable PMF real-mass, finite-bind, map, support, and pure-law helpers | Yes |
 | `LeanInfoTheory.Shannon.Entropy` | Entropy, entropy of pushforwards, joint entropy, zero and relabeling facts | Yes, through `InformationMeasures` |
 | `LeanInfoTheory.Shannon.InfoMeasures` | Marginals, conditional entropy, MI, CMI, random-variable forms, core rewrites | Yes, through `InformationMeasures` |
 | `LeanInfoTheory.InformationMeasures` | Explicit convenience re-export from `Shannon` into `LeanInfoTheory` | Yes |
-| `LeanInfoTheory.EntropyExpr` | Entropy atoms and sparse rational expressions | Yes |
-| `LeanInfoTheory.EntropyVal` | Abstract Shannon entropy valuations | Yes |
-| `LeanInfoTheory.PrimitiveIneq` | Primitive Shannon expressions and soundness | Yes |
-| `LeanInfoTheory.Certificate` | Generic certificate combination and soundness skeleton | Yes |
-| `LeanInfoTheory.Certificate.Checked` | Raw/checked certificates and validator | Yes |
 | `LeanInfoTheory` | Lightweight public aggregate only | Root |
+| `LeanInfoTheory.Shannon` | Import-only complete supported mathematical umbrella | No; subsumes the root |
 
-The tracked generated reference state contains 51 modules from checkpointed
-Chunk 8 source: 11 are root-reachable and 40 are opt-in. The root is unchanged
-and does not import bounds, units, finite-family or mixture modules,
-log-sum/concavity modules, semantic bridges, channel modules, demos, examples,
-or mathlib coding anchors.
+After Step 7, the verified source-derived inventory contains 44 modules, 90
+local import edges, 5 root-reachable modules, 39 separate-import modules, and
+716 declarations (715 documented plus one explicit example-only instance).
+The root directly imports exactly `Probability.Finite` and
+`InformationMeasures`; its closure has five modules. It does not import bounds, units,
+finite-family or mixture modules, log-sum/concavity modules, semantic bridges,
+channel modules, examples, or mathlib coding anchors.
+
+The `LeanInfoTheory.Shannon` umbrella directly imports the root, `Shannon.Fano`,
+`Shannon.SemanticBridge`, and `Shannon.Units`. Its 31-module closure contains
+the complete supported mathematical stack and excludes the 13 non-stable
+`Basic`, example, and `MathlibFragments` anchors. The new non-stable
+`Examples.Units` consumer does not change that closure.
+
+The exact supported closure contains 601 documented project-owned public
+declarations: 535 theorems, 56 definitions, nine abbreviations, and one named
+instance. `InformationMeasures` preserves 92 explicit root convenience exports,
+and 94 supported declarations carry reviewed `simp` attributes. See the
+[`v0.1.x` public API contract](v0.1-public-api.md) and deterministic
+[`v0.1-public-api.json`](v0.1-public-api.json) manifest.
 
 ### Opt-in finite and semantic layers
 
 | Module | Responsibility |
 | --- | --- |
 | `LeanInfoTheory.Shannon.EntropyBounds` | Jensen-based alphabet/support bounds and exact uniform equality |
-| `LeanInfoTheory.Shannon.Units` | Logarithm-base conversion |
+| `LeanInfoTheory.Shannon.Units` | Scalar conversion from canonical nats to arbitrary valid logarithm bases and bits |
 | `LeanInfoTheory.Shannon.BinaryEntropy` | Boolean-PMF entropy bridge to mathlib `Real.binEntropy` |
 | `LeanInfoTheory.Shannon.Fano` | Type-generic decoding error and finite exact/weak Fano inequalities and corollaries |
 | `LeanInfoTheory.Shannon.FiniteFamily` | Dependent finite-family laws, finite-atom entropy/MI/CMI algebra, pair/triple compatibility, and binary/ordered entropy, MI, and conditional-MI chain rules |
@@ -609,12 +643,13 @@ or mathlib coding anchors.
 | `LeanInfoTheory.Shannon.LogSum` | Zero-safe `EReal` finite log-sum inequality/equality and guarded Real corollaries |
 | `LeanInfoTheory.Shannon.EntropyConcavity` | General-selector entropy concavity and binary strict equality, proved directly by Jensen |
 | `LeanInfoTheory.Probability.FiniteChannel` | Raw PMF channel constructions and elementary laws, with no Shannon/KL dependency |
+| `LeanInfoTheory.Shannon.SemanticBridge.Entropy` | Self-information and finite entropy as expected self-information |
 | `LeanInfoTheory.Shannon.SemanticBridge.Product` | Independent product PMFs and product-measure bridges |
 | `LeanInfoTheory.Shannon.SemanticBridge.FiniteSums` | Finite real-mass and log-ratio expansions |
 | `LeanInfoTheory.Shannon.SemanticBridge.Conditional` | Positive conditional PMFs and expected fiber formulas |
 | `LeanInfoTheory.Shannon.SemanticBridge.KL` | PMF KL support/equality/uniform-reference results and MI/CMI KL bridges |
 | `LeanInfoTheory.Shannon.SemanticBridge.Theorems` | Nonnegativity, chain rules, processing, functional dependence, and inequality consequences |
-| `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily` | Finite-family Shannon inequalities and concrete `ShannonEntropyVal` constructors |
+| `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily` | Finite-family Shannon inequalities |
 | `LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL` | Common-base channel conditional KL, finite weighted semantics, joint KL chain rule, and guarded Real forms |
 | `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence` | Dependent-family mutual independence, restriction/pair laws, and n-way entropy equality characterization |
 | `LeanInfoTheory.Shannon.SemanticBridge.Independence` | Ordinary/conditional independence and equality characterizations |
@@ -623,7 +658,7 @@ or mathlib coding anchors.
 | `LeanInfoTheory.Shannon.SemanticBridge.DataProcessing` | PMF-kernel bridge, posterior KL decomposition, KL DPI, entropy growth |
 | `LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL` | Downstream exact-recovery and KL equality integration |
 | `LeanInfoTheory.Shannon.SemanticBridge.Convexity` | Finite-selector and binary KL joint convexity/equality plus MI input/channel convexity |
-| `LeanInfoTheory.Shannon.SemanticBridge` | Heavy semantic aggregate |
+| `LeanInfoTheory.Shannon.SemanticBridge` | Import-only semantic aggregate |
 
 **[Decision] Dependency direction.**
 
@@ -636,7 +671,7 @@ Markov + Sufficiency + focused mathlib KL/kernel
 Entropy + mathlib binary entropy -> BinaryEntropy
 BinaryEntropy + EntropyBounds + Theorems -> Fano
 InfoMeasures + finite dependent-Pi support -> FiniteFamily
-FiniteFamily + Theorems + EntropyVal -> SemanticBridge.FiniteFamily
+FiniteFamily + Theorems -> SemanticBridge.FiniteFamily
 DataProcessing + KL -> SemanticBridge.ConditionalKL
 SemanticBridge.FiniteFamily + Independence
     -> SemanticBridge.FiniteFamilyIndependence
@@ -652,19 +687,17 @@ The exact file graph is generated in
 New work should use the lightest owner whose statement and proof dependencies
 justify it.
 
-### Certificates, examples, and anchors
+### Examples and anchors
 
-- `Certificate.Submodularity`, `Subadditivity`, `Monotonicity`, and
-  `ThreeWaySubadditivity` are opt-in checked-certificate demonstrations.
-- `Certificate.FiniteFamily` is an opt-in adapter from existing checked
-  soundness to concrete finite-family Shannon entropy; it adds no validation
-  path or trusted assumption.
+- `Basic`, every `Examples` module, and `MathlibFragments` are non-stable
+  development, regression, or reference anchors. Neither mathematical umbrella
+  imports them.
 - `Examples.SupportSensitive`, `KLTop`, `CommonCause`,
   `StochasticChannels`, `SufficientStatistics`, `Fano`, `FiniteFamily`, and
-  `Convexity`, and `ConditionalKL` are separately importable.
-  `Examples.Convexity` and `Examples.ConditionalKL` contain only private
-  maintained regression consumers.
-- `Examples` aggregates the semantic examples and original certificate toys.
+  `Convexity`, `ConditionalKL`, and `Units` are separately importable.
+  `Examples.Convexity`, `Examples.ConditionalKL`, and `Examples.Units` contain
+  only private maintained regression consumers.
+- `Examples` aggregates the maintained mathematical examples.
 - `MathlibFragments` is an opt-in import checklist for binary/q-ary entropy,
   KL, KL chain rules, PMF constructions, and Kraft-McMillan. It intentionally
   declares no replacement API.
@@ -672,31 +705,63 @@ justify it.
 ### Namespaces and public API
 
 - `LeanInfoTheory.Shannon` is the canonical namespace for finite information
-  measures and semantic theorems.
+  measures and semantic theorems; the module of the same name is the complete
+  import-only mathematical umbrella.
 - `LeanInfoTheory.InformationMeasures` exports selected names into
   `LeanInfoTheory` for root users.
 - PMF-specific reusable constructions and facts extend the `PMF` namespace.
-- Certificate declarations live under `LeanInfoTheory.Certificate` and
-  descriptive demo namespaces.
+- Certificate declarations and checker-specific demo namespaces are downstream
+  concerns and are not part of the LeanInfoTheory API.
 - Existing descriptive theorem names are stable. Compatibility aliases are
   additive and review-driven.
+- The exact supported names, owners, kinds, reviewed attributes, module paths,
+  and 92 root exports are frozen in
+  [`v0.1-public-api.json`](v0.1-public-api.json).
 
 ### Generated documentation and website pipeline
 
 The scripts:
 
 ```text
+scripts/validate_release.py
+scripts/check_api_docs.py
 scripts/generate_website_blueprint.py
 scripts/generate_website_api_index.py
+scripts/generate_v0_1_public_api.py
 scripts/check_website.py
 ```
 
-produce or validate:
+provide the canonical release gate and produce or validate:
 
 - a module-level graph derived from local import lines;
 - a source-derived public declaration index;
 - HTML views of those artifacts;
 - internal website links and JSON structure.
+
+The isolated `docbuild/` environment additionally pins `doc-gen4` `v4.33.1` at
+commit `e2af49a7b7e5e1a9224008c1f15e7aa4f58a4015` without adding documentation
+tooling to the downstream runtime graph. Step 11's checker requires exactly 31
+supported module pages and 601 declarations with rendered signatures, 92
+canonical export targets, 13 non-stable exclusions, and zero equation rows in
+the approved `DISABLE_EQUATIONS=1` mode. Disabling equations omits only optional
+equation pages; signatures, docstrings, attributes, and sorry markers remain.
+No signature-fingerprint file is committed. The public manifest and canonical
+targets jointly record the 92 root aliases.
+
+The validated local file-linked output is unpublished and contains 5,521 files
+totalling 624.6 MiB. Its configuration stamp keys generation mode, source
+identity, and equation policy; targeted invalidation preserves compiled
+dependencies. A first pass after cleaning the documentation build also removed
+shared package outputs in the existing working tree and took 17,547.3 seconds
+(4h52m27.3s), so it is not clean-checkout or cold-reproduction evidence. The
+immediate incremental pass took 154.8 seconds. An earlier fully warm pair took
+5.5 seconds per pass. The final post-review gate took 31.8 seconds and 11.9
+seconds and reproduced digest
+`fa46bbc0de9359ea1e14e79d9e3bce9ac425f33cb2e9efb54086a4e28d6730fe`.
+Full generation is therefore outside ordinary push/pull-request CI and runs
+only as a conditional `workflow_dispatch` `api_docs` release gate with a
+360-minute maximum; exact-candidate remote capacity is recorded by the Step 16
+validation report, while routine CI keeps static pin and configuration checks.
 
 For the completed Chunk 6 checkpoint, the tracked regenerated references
 report:
@@ -725,8 +790,8 @@ Both generators are byte-stable on a second pass; source paths and lines,
 unique anchors, module summaries, aggregate imports, root reachability, and
 website checks pass.
 
-These artifacts are not theorem-level dependency data and not full Lean
-doc-gen.
+The source-derived declaration index and module graph are not the Step 11
+doc-gen output and are not theorem-level dependency data.
 
 ## 8. Development History by Phase
 
@@ -842,7 +907,7 @@ hygiene. Commit `5e616d8` is the coherent Chunk 7 Lean/source checkpoint.
 | Zero-safe scalar log-sum in `EReal` | Represents positive-over-zero by `top`, keeps `0/0` inactive, and supports an exact equality statement without silently strengthening support assumptions |
 | Separate direct-Jensen entropy concavity | Avoids an unnecessary dependency from the entropy layer to scalar log-sum while preserving the textbook finite proof |
 | Ordered chains over `List Var` | Gives textbook prefix sums, permits repeated names in the stronger theorem, and reserves `Nodup` for presentation corollaries |
-| Algebraic core, semantic bridge | Supports certificate algebra without losing textbook expected-fiber and KL meanings |
+| Algebraic core, semantic bridge | Keeps the lightweight identities convenient without losing textbook expected-fiber and KL meanings |
 | Lightweight root | Prevents Jensen, KL, kernels, examples, and coding imports from burdening ordinary finite-entropy users |
 | Raw channel functions, not a bundled channel | Reuses `PMF.bind` and keeps the elementary construction layer type-generic and cheap |
 | Cross-product conditional independence | Gives a proof-independent, null-fiber-safe primary predicate |
@@ -856,9 +921,7 @@ hygiene. Commit `5e616d8` is the coherent Chunk 7 Lean/source checkpoint.
 | Proof-pressure API growth | Avoids speculative aliases, helper families, bundled structures, and symmetric theorem clutter |
 | Compatibility aliases instead of active renames | Preserves downstream code while improving discovery only when examples justify it |
 | Explicit entropy rewrites | Avoids choosing one arbitrary expanded/unexpanded entropy normal form through `[simp]` |
-| Exact certificate decomposition | Keeps the trusted checker algebraic and kernel-verifiable |
-| Concrete family valuation before certificate adaptation | Proves the Shannon assumptions semantically, then lets the unchanged checked-certificate theorem consume that valuation |
-| Untrusted certificate generation/import | External tools may propose data; Lean validates the result |
+| Downstream certificate ownership | Keeps checker DSLs, validation, import, and application demonstrations out of the reusable mathematical library |
 
 ## 10. Rejected and Superseded Approaches
 
@@ -889,9 +952,8 @@ review.
   pairwise KL-equality witnesses.
 - **Rejected:** broad `[simp]` use for chain rules, symmetry, or entropy
   difference identities.
-- **Rejected for now:** automatic primitive recognition, a certificate DSL,
-  and external certificate import before the checked format receives more
-  pressure.
+- **Assigned downstream:** primitive recognition, certificate DSLs, validation,
+  and external certificate import.
 - **Deferred rather than rejected:** splitting `InfoMeasures` or
   `Independence`, adding a product-channel constructor, general injective MI
   relabeling, generic posterior wrappers, and matrix channels.
@@ -982,20 +1044,132 @@ These are intentional current contracts, not claims of maximal generality.
 
 ### Documentation gaps
 
-- Full Lean doc-gen, theorem-level dependency data, and a blueprint PDF remain
-  absent.
+- Theorem-level dependency data, a blueprint PDF, and optional equation-expanded
+  documentation remain absent. Clean exact-commit source-link and remote
+  capacity evidence is a Step 16 external validation record, not content baked
+  into the candidate.
 - A minimal contributor guide and beginner issue surface remain absent.
 
 ### Automation gaps
 
-- No certificate search or coefficient solver.
-- No primitive autotagging.
-- No PSITIP/oXitip parser.
-- No theorem-level blueprint or doc-gen pipeline.
+- No theorem-level blueprint pipeline. Full doc-gen is a manual release gate;
+  remote capacity and exact-commit GitHub-source reproduction are Step 16
+  validation evidence.
+
+Certificate search, coefficient solving, primitive autotagging, and external
+certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
 
 ### Current phase status
+
+**`v0.1.0` release preparation is active. Steps 1–15 are complete; Step 16
+exact-candidate qualification is current.** Step 14 fixed every
+legal/provenance, Zenodo-route, and publication-date decision, including
+`date-released: 2026-08-27`.** The release contract freezes Lean and mathlib at
+`v4.33.1`, keeps nats canonical with opt-in base conversion, assigns
+certificate representations and checking to downstream projects, and preserves
+the completed legal-attribution checkpoint plus independent prepublication
+review.
+
+Step 6 preserves the Step 5 public import architecture. `LeanInfoTheory` directly imports
+only `Probability.Finite` and `InformationMeasures`; the import-only
+`LeanInfoTheory.Shannon` umbrella subsumes that root and reaches the complete
+31-module supported mathematical stack. `SemanticBridge.Entropy` now owns the
+five expected-self-information declarations formerly placed in the aggregate,
+with their names, statements, attributes, and proofs unchanged. Both umbrellas
+exclude the 13 explicitly non-stable `Basic`, example, and `MathlibFragments`
+anchors. `Shannon.Units` retains its lightweight four-module closure and adds
+only `natsToBase` and `natsToBits`; `Examples.Units` compiles arbitrary-base,
+entropy, MI, CMI, and absolute-continuity-guarded real-KL conversions. The
+generated inventory is 44 modules, 90 local edges, 5 root-reachable modules, 39
+separate-import modules, and 716 declarations.
+
+Step 7 retains every current public declaration, assumption, name, namespace,
+attribute, owner, and import boundary. It freezes the 31-module supported
+closure at 601 documented project declarations, split between 557
+`LeanInfoTheory.Shannon` declarations and 44 `PMF` extensions, together with 92
+explicit lightweight-root exports and 94 reviewed `simp` declarations. The
+audit promoted no example declaration and added no speculative compatibility
+alias. The human contract and deterministic manifest are
+[`docs/v0.1-public-api.md`](v0.1-public-api.md) and
+[`docs/v0.1-public-api.json`](v0.1-public-api.json).
+
+Step 4 removed the former entropy-expression/checker modules, finite-family
+adapter, checker-only examples, and certificate-facing semantic constructors
+from LeanInfoTheory ownership while retaining all general finite-family and
+information-theory theorems. `ShannonCert` was not accessed or modified. The
+post-separation generators reported 41 modules, 77 local edges, 6 root-reachable
+modules, 35 opt-in modules, and 714 declarations; the focused, maintained, and
+default builds plus the generator, website, source-removal, boundary, trust,
+and hygiene checks pass.
+
+The supplemental checkpoint applied the project lead's exact EPFL/MIL source-
+notice decision to all 51 then-tracked project-authored Lean files, restored the root `LICENSE` to
+canonical Apache-2.0 text, adds explicit Lake licence metadata and a validated
+`CITATION.cff`, and adds the README's long-form AI-assistance disclosure. It
+found no vendored Lean source or concrete `NOTICE` requirement. The exact
+institutional header intentionally differs from mathlib's style-linter template,
+so only that stylistic linter is conditionally disabled; a repository-specific
+exact-header scan covers every tracked Lean file instead. The complete audit
+inventory is in
+[`docs/v0.1-legal-metadata-audit.md`](v0.1-legal-metadata-audit.md).
+
+Step 14 later clarified that École polytechnique fédérale de Lausanne (EPFL)
+alone is the rights holder and that the Mathematics of Information Laboratory
+is the author affiliation/project laboratory. The exact source header remains
+approved and unchanged; its MIL organizational line does not create a second
+rights holder.
+
+Step 9 reconciled that dated checkpoint with the then-current 44-file certificate-
+free tree. Lake now describes a finite discrete information-theory package,
+includes the Reservoir `math` keyword, and declares `fixedToolchain = true` in
+both configuration and manifest. The shared static gate parses and checks the
+exact package/library/dependency metadata, canonical Apache-2.0 licence,
+reviewed CFF fields and sole author, exact release date and absent DOI, README
+AI/legal/citation wording, and the reviewed absence of `NOTICE` and
+`.zenodo.json`. CFF schema validation, provenance, author spelling, and the
+then-current 44 exact headers passed. Step 14 later finalized all corresponding
+decisions, fixed `date-released` as `2026-08-27`, and extended the header audit
+to the 45-file tree including the documentation shim.
+
+Step 10 made the release entry points usable without changing Lean source or
+the frozen API. The README now gives the exact tag-pinned Lake dependency and
+toolchain contract, lightweight/full/focused import guidance, supported scope,
+nats and guarded-KL conventions, limitations, `0.1.x` compatibility, and
+maintained reproduction commands. Step 16 converts the versioned
+[`docs/releases/v0.1.0.md`](releases/v0.1.0.md) and README to timeless final
+release prose; transient commit, CI, publication, and DOI state belongs in the
+external validation and release records. The release date is `2026-08-27`, and
+the immutable tag remains DOI-free. Five marked README examples compile independently
+with warnings as errors through the shared local/CI validator; the static gate
+also checks release-document markers and local links. No new example module was
+needed, so the 44-module/90-edge/716-declaration source inventory and the
+31-module/601-declaration supported surface remain unchanged.
+
+Step 11 adds signature-bearing generated documentation without changing the
+mathematical library or frozen API. Its isolated build pins `doc-gen4` `v4.33.1`
+at commit `e2af49a7b7e5e1a9224008c1f15e7aa4f58a4015` and leaves the package runtime
+graph unchanged. The local checker confirms exactly 31 supported pages, all 601
+declarations with rendered signatures, 92 canonical export targets, 13 non-
+stable exclusions, and zero optional equation rows. The mathematical inventory
+remains 44 modules; the project-authored header scan is now 45 Lean files because
+it includes the build-only `docbuild/CCShim.lean` shim. No mathematical source,
+supported API, root import, or runtime manifest changed. Independent final
+review is complete and found no remaining issue after its corrections were
+re-reviewed.
+
+The automatic Lean-version tag/release workflow is permanently absent from
+`origin/master` after the Step 15 safety-only commit. The candidate's approved
+Pages replacement has no push trigger and requires an explicit `publish=true`
+manual dispatch before deployment. No tag, Release, website publication,
+Zenodo action, DOI action, or `ShannonCert` change has occurred. The Step 3
+migration required compatibility edits across
+22 Lean files, but the independent audit found no public signature,
+assumption, namespace, attribute, import, dependency-boundary, or root-import
+change; the Step 3 plan-health review then left the 17-step sequence intact.
+The later Step 13 checkpoint amended that sequence to 18 steps for a separate
+remote-safety landing.
 
 **Project B Chunk 8 is complete through `C8.24`, checkpointed as `1eef228`,
 pushed, remotely build-validated, and deployed. No later theorem phase has
@@ -1043,10 +1217,10 @@ commit `a27ef8d`; all 24 steps are complete.
 
 ### Next repository action
 
-Select any later mathematical, certificate, or documentation phase through a
-separate readiness and planning decision. Preserve the checkpointed Chunk 8
-API, import boundaries, and certificate trust path unless a later approved
-scope explicitly changes them.
+Step 16 is current. Freeze one exact candidate, prove an ordinary push cannot
+publish, run local and clean exact-commit GitHub-source validation, reproduce an
+external Lake consumer, push the candidate, and collect remote routine plus
+nonpublishing API-doc/Pages evidence. Then stop for Step 17 external review.
 
 ### Next review point
 
@@ -1110,19 +1284,18 @@ processes, entropy rates, capacity, AEP, typicality, method of types,
 source/channel coding, and nontrivial network converses. These remain later
 roadmap work rather than hidden parts of Chunks 5-8.
 
-### Certificate work
+### Downstream certificate work
 
 | Note | Work |
 | --- | --- |
-| 7 | **Standing guardrail.** Keep PSITIP/oXitip-style infrastructure local unless upstream maintainers request otherwise. |
-| 11 | Add independence, functional-dependence, and Markov certificate constraints after concrete converse pressure. |
-| 12 | Add primitive recognition/autotagging only after larger manually tagged examples show the need. |
-| 13 | Add external certificate import only after the internal checked format stabilizes; parsing remains untrusted. |
+| 7 | **Transferred downstream.** Keep PSITIP/oXitip-style infrastructure outside LeanInfoTheory unless a reusable abstraction receives explicit review. |
+| 11 | **Transferred downstream.** Certificate-specific independence, functional-dependence, and Markov constraints. |
+| 12 | **Transferred downstream.** Primitive recognition/autotagging. |
+| 13 | **Transferred downstream.** External certificate import and untrusted parsing. |
 
-Chunk 6 has completed the previously crucial bridge: actual finite-family
-joint laws now instantiate `ShannonEntropyVal`, and checked certificates can
-be interpreted through that concrete valuation. Richer certificate
-constraints and external import remain deferred under Notes 11--13.
+The old notes remain in the chronological project log as historical design
+records. Step 4 reassigns their implementation ownership downstream; they are
+not pending LeanInfoTheory release work.
 
 ### Channel and Markov proof-pressure-deferred API work
 
@@ -1164,7 +1337,7 @@ constraints and external import remain deferred under Notes 11--13.
 
 | Note | Work |
 | --- | --- |
-| 9 | Add full Lean doc-gen, theorem-level leanblueprint, and eventually a blueprint PDF; later consider a structured source for repeated status fragments and complete verified module-summary metadata. |
+| 9 | Stage and maintain the local signature-bearing API docs; later add theorem-level leanblueprint data, a blueprint PDF, and optional equation-expanded pages if justified. Also consider a structured source for repeated status fragments and complete verified module-summary metadata. |
 | 10 | Add `CONTRIBUTING.md`, beginner tasks, issue labels, and upstream guidance before broad contributor outreach. |
 | 28 | Later improve opt-in example pedagogy: the side-information recovery example, `KLTop` absolute-continuity notation, and, only if compact, matched numerical Boolean examples exhibiting strict MI input concavity and channel convexity. Preserve existing declarations and avoid new core helpers solely for pedagogy. |
 
@@ -1182,7 +1355,7 @@ site.
 - constrained entropy/MI extremization;
 - canonical/minimal sufficiency and experiment comparison;
 - matrix majorization and Birkhoff-von Neumann bridges;
-- richer network converse certificate semantics.
+- downstream network-converse applications.
 
 These are not approved theorem tasks until assigned to a focused phase.
 
@@ -1262,11 +1435,14 @@ not reproduce textbook prose or proofs.
 
 ### Current versions and validated source baseline
 
-- Lean: `v4.30.0`
-- mathlib input revision: `v4.30.0`
-- mathlib manifest commit:
-  `c5ea00351c28e24afc9f0f84379aa41082b1188f`
+- current release-preparation working tree: Lean `v4.33.1`, commit
+  `819816b2e0a3bf405af45ae5c7af2491d8f5bee6`
+- current working-tree mathlib input revision: `v4.33.1`
+- current working-tree mathlib manifest commit:
+  `0df444a360eaa60ab8c11dca51a86af692955474`
 - last fully validated committed Lean/source baseline: `1eef228`
+- that committed source baseline used Lean/mathlib `v4.30.0`, with mathlib
+  manifest commit `c5ea00351c28e24afc9f0f84379aa41082b1188f`
 - documentation-only handoff commits `72f9f87` and `9aa3bb1` precede the
   Chunk 7 source checkpoint and change no Lean source
 - documentation-only handoff commit `0324ee6` follows checkpoint `5e616d8`;
@@ -1278,6 +1454,348 @@ not reproduce textbook prose or proofs.
   exact-SHA workflows succeeded
 
 ### Most recent local validation
+
+On 2026-08-27, release-preparation Step 15 completed under the user's safety
+amendment. The standalone default-branch commit
+`81ffef37402909481c5dea51a42973dee9a79ae6` deleted only
+`.github/workflows/create-release.yml`; remote verification found no tag,
+Release, Pages deployment, Zenodo record, DOI, candidate change, or unintended
+deployment. The old Pages workflow was deliberately retained until the user
+approved the candidate's manual-only, `publish=false`-by-default replacement,
+whose normalized SHA-256 is
+`4a7e426f5fdf61ffd428503ac9364efdece71a11b9df7354c00e963643ed407c`.
+The safety commit was reconciled without candidate drift at
+`f0d06dfab4f411ced312294e63e96bb67bba859b`. Immutable Releases remains
+deliberately deferred until Step 17 review and explicit Step 18 publication
+approval.
+
+On 2026-08-27, release-preparation Step 14 finalized every non-date legal and
+provenance decision. The project lead confirmed sole copyrightable human
+contribution and selected automatic post-release GitHub--Zenodo ingestion with
+canonical `CITATION.cff`, no `.zenodo.json`, and no DOI in the immutable GitHub
+Release or tagged CFF. École polytechnique fédérale de Lausanne (EPFL) is the
+rights holder; Serhat Emre Coban remains sole creator with affiliation
+`EPFL, Mathematics of Information Laboratory`; Apache-2.0 remains the licence.
+The 45-file exact-header, canonical-licence, contributor, third-party, and
+generated-asset audit found no missing attribution or concrete root-`NOTICE`
+requirement. The project lead fixed the Europe/Zurich publication date and
+`date-released` value as `2026-08-27`, completing Step 14. The exact 45-file
+header/trust scan, canonical Apache check, focused
+metadata and complete static gates, five README examples, and isolated CFF 1.2
+schema validation pass. The current CFF SHA-256 is
+`91e81c920d647899aa49a9621d6849ac0565d74c90cf42f7c0546e640c28057a`.
+The refreshed ignored preview passes its complete checker at 5,520 HTML files,
+2,951,158 links/assets, two generated JSON files, and 654,016,718 bytes with the
+unchanged exact 111-advisory fingerprint. No external publication state changed
+and `ShannonCert` was untouched.
+
+On 2026-08-26, release-preparation Step 13 completed the release checkpoint and
+plan-health review. A fresh complete routine suite passed the 2,605-job default
+build, 3,072-job warning-as-error maintained build, five README examples, all
+31 direct-import probes, the exact 601-declaration/94-`simp` full-umbrella and
+92-export/480-exclusion root checks, and the 1,382-constant all-project axiom
+audit. Only `propext`, `Classical.choice`, and `Quot.sound` are used. Independent
+audits reproduced the 44-module/90-edge graph, five-module root, 31-module full
+umbrella, certificate-free boundary, nats-first units layer, and fixed
+Lean/mathlib `v4.33.1` package graph. No scope, API, or axiom plan-health trigger
+fired.
+
+The status-only Step 13 restage also passed the complete preview checker at
+5,520 HTML files, 2,951,158 links/assets, two generated JSON files, and
+654,016,210 bytes. The 111 imported-dependency advisories retain their exact
+reviewed fingerprint; the 654,015,176-byte measurement remains the historical
+Step 12 artifact record.
+
+At the Step 13 checkpoint, the overall release verdict was amber but sound
+because remote and publication evidence was absent. `origin/master` then
+retained both the automatic toolchain-triggered release workflow and the old
+push-triggered Pages workflow; the remote licence was `NOASSERTION`, immutable
+Releases was disabled, and the Pages environment permitted only `master`. The
+release sequence was amended to 18 steps. Step 15 was the separately approved
+safety-only remote landing, Step 16 is
+the release-ready metadata and exact candidate/consumer/capacity gate, Step 17
+is the read-only independent dry run,
+and Step 18 alone may publish. The Pages publication procedure must prove that
+its workflow `head_sha` equals the immutable `v0.1.0` tag commit. Branch
+protection remains beneficial but is not a `v0.1.0` blocker. The Step 15 record
+above supersedes the two workflow-state facts while preserving this historical
+checkpoint.
+
+On 2026-08-26, release-preparation Step 11 locally completed the isolated,
+signature-bearing documentation implementation. `doc-gen4` `v4.33.1` is pinned
+at commit `e2af49a7b7e5e1a9224008c1f15e7aa4f58a4015`; the package runtime graph is
+unchanged. The hardened checker verifies 31 supported module pages, all 601
+frozen declarations with rendered signatures, 92 canonical export targets, 13
+non-stable exclusions, and zero equation rows. `DISABLE_EQUATIONS=1` removes
+only optional equation pages and retains signatures, docstrings, attributes,
+and sorry markers. The 5,521-file, 624.6-MiB local output uses file-linked
+sources and is unpublished.
+
+The first pass after cleaning the documentation build also removed shared
+package build outputs in the existing working tree. It took 17,547.3 seconds
+(4h52m27.3s) and is not clean-checkout or cold-reproduction evidence. The
+immediate incremental run took 154.8 seconds. An earlier fully warm pair took
+5.5 seconds per pass. The final post-review gate took 31.8 seconds and 11.9
+seconds and reproduced digest
+`fa46bbc0de9359ea1e14e79d9e3bce9ac425f33cb2e9efb54086a4e28d6730fe`.
+A plan-health review moved full generation out of ordinary push/pull-request CI
+into a conditional `workflow_dispatch` `api_docs` release gate with a 360-minute
+maximum. Routine static pin checks remain in CI; Step 16 records remote runner
+capacity externally against the exact candidate. The configuration stamp keys generation mode, source identity,
+and equation policy, and targeted invalidation preserves compiled dependencies.
+
+The mathematical library remains 44 modules, while the exact header scan now
+covers 45 project-authored Lean files because it includes the build-only
+`docbuild/CCShim.lean`. No mathematical source, 31-module/601-declaration API,
+root import, or runtime manifest changed. Independent final Step 11 review is
+complete after correcting the GitHub range predicate, Windows preflight order,
+and Step 12 status wording; read-only re-review found no remaining issue. Step
+12 subsequently completed the versioned local staging, navigation, provenance,
+and served-preview work; Step 16 owns clean exact-commit GitHub-source mode,
+remote-capacity measurement, and fresh-checkout reproduction. No publication is
+claimed.
+
+On 2026-08-26, release-preparation Step 12 assembled the tracked site and the
+5,521-file doc-gen tree into `.lake/website-stage/LeanInfoTheory/`, with the
+supported reference at `/docs/v0.1.0/`. Preview mode removed 151,458 local
+`file:` source links, repaired 5,496 generated `#top` targets, and added an
+unpublishable marker plus structured provenance. Shared navigation connects the
+project pages, generated reference, supplementary source inventory, and legal/
+third-party pages without changing the established site design.
+
+The complete staged checker covered 5,520 HTML files, 2,951,158 links/assets,
+two generated JSON files, and 654,015,176 bytes with no project-owned or runtime
+errors. It recorded 111 imported-dependency link advisories outside the
+31-module LeanInfoTheory support claim and pins their complete reviewed message
+fingerprint. Staging first recomputes a full-tree attestation written only after
+both API-doc validation passes. Served browser checks covered the
+project subpath, navigation, search, exact declaration and `find` links,
+imported-by and instance population, themes, runtime assets, source-link
+suppression, return routes, and the 404 page. Thirteen generated assets, four
+external runtime resources, exact dependency pins, the project licence, and ten
+upstream licence records are inventoried. Pages is manual-only and separates
+artifact preparation from an explicit deployment input; neither mode was run
+remotely, and nothing was published.
+
+Previously on 2026-08-26, release-preparation Step 10 completed the release-facing README,
+five exact compiling examples, and then-draft versioned release notes without
+changing Lean source or the frozen public API. The static validator now checks
+the tagged dependency and toolchain guidance, import/scope/units/limitations/
+compatibility sections, the then-current publication state, all local README/release-note
+links, and the exact five marked example IDs. The CI workflow and focused
+`documentation` command compile each fence independently with warnings as
+errors.
+
+The complete local run passed the 2,605-job default build, the 3,072-job
+warning-as-error maintained build, all five README examples, all 31
+direct-import probes, the 601-declaration/94-`simp` full-umbrella audit, the
+92-export/480-exclusion root audit, and the 1,382-constant all-project axiom
+audit. Only `propext`, `Classical.choice`, and `Quot.sound` were reported. The
+static gate also passed the 44-file source scan, package/legal/toolchain and
+release-safety contracts, two non-mutating render checks for every generator,
+11 HTML and two generated JSON website checks, local release-document links,
+and repository hygiene. Three independent read-only reviews of the public
+documentation, executable example/CI contract, and legal/release claims reran
+the focused gates, reproduced the unchanged Lean-tree and public-manifest
+hashes, and found no remaining Step 10 blocker. This remains local working-tree
+evidence: no commit, push, tag, release, website publication, Zenodo action,
+clean exact-commit release-candidate checkout, or external Lake consumer is
+claimed.
+
+Previously on 2026-08-26, release-preparation Step 9 made the package and preliminary
+legal contract explicit without changing Lean source or the frozen public API.
+Lake now describes LeanInfoTheory `0.1.0` as a finite discrete
+information-theory library, restores the Reservoir `math` keyword, and sets
+`fixedToolchain = true` for the frozen Lean/mathlib `v4.33.1` baseline. The
+regenerated manifest records that flag. A second `lake update` was byte-
+idempotent at SHA-256
+`392f0f382a11ec1ce0e71cf39eaef062c5a6446e02520a890e68ba6987e1ace9`;
+relative to the Step 8 manifest, the flag is its only semantic change.
+
+The static validator now enforces exact package, library, dependency, manifest,
+canonical Apache-2.0, sole-author CFF, README disclosure, and preliminary
+pre-Zenodo metadata. At that Step 9 checkpoint all 44 then-current Lean headers
+passed and the then-current CFF passed isolated `cffconvert` 2.0.0 validation.
+Step 14 has since finalized institutional, contributor, third-party,
+no-`NOTICE`, automatic post-release DOI, and `2026-08-27` release-date
+decisions; Step 14 is complete.
+
+The final local run passed the 2,605-job default build, the 3,072-job maintained
+warning-as-error build, all 31 direct-import probes, the 601-declaration and
+94-`simp` full-umbrella audit, the 92-export/480-exclusion root audit, and the
+1,382-constant all-project axiom audit. An independent read-only review passed
+the metadata and static gates, Lake/Reservoir resolution, Python syntax,
+canonical-licence comparison, manifest reconstruction, and CFF schema
+validation. It reproduced the unchanged 44-file Lean-tree hash
+`36b5f081cadcb102e8fe2508433ef7c12881c4de5ca35f20c5ddbf33b5374ace`
+and public-manifest hash
+`d4c5bfa78588de605798f568b312a4cef2896855e36d3c983849270181e397be`,
+and reported no Step 9 blocker.
+
+Previously, on 2026-08-26, release-preparation Step 8 established one executable local and
+CI trust contract without changing Lean source or the frozen public API.
+`scripts/validate_release.py` owns the maintained eight-target list, requires
+the exact three reviewed workflow files, and runs
+the default build, the warning-as-error maintained build, strict source and
+toolchain checks, non-mutating repeated generated-artifact checks, website
+validation, and repository hygiene. The two website generators now expose
+non-mutating `--check` modes.
+
+Lean environment probes import all 31 supported modules directly and compare
+each exact local-module closure and reviewable declaration/owner set with the
+checked module graph and public manifest. The full umbrella independently
+matches all 601 declarations and all 94 recorded `simp` attributes; the
+lightweight root resolves all 92 exports to their exact canonical targets and
+excludes the 480 opt-in declarations. The public axiom audit permits only
+`propext`, `Classical.choice`, and `Quot.sound`. A broader maintained aggregate
+audit checks every compiled project constant across all 44 modules, including
+private, generated, and non-stable declarations, against the same allowlist.
+
+The final local run passed the 2,605-job default build, the 3,072-job maintained
+build, all 31 direct-import probes, the exact umbrella and root audits, and the
+1,382-constant all-project axiom audit. An independent read-only review
+recomputed the unchanged Step 7 Lean-tree and API-manifest hashes, ran
+actionlint across all three workflows, and found no remaining Step 8 blocker.
+
+The Lean, Pages, and manual dependency-update workflows now pin every direct
+action to a reviewed full commit. The Lean workflow runs the shared static,
+build, trust, and hygiene gates; Pages runs the static contract before upload.
+At the Step 8 checkpoint these revisions were locally validated but unpushed.
+Step 15 has since removed the automatic release workflow from `origin/master`
+without carrying the candidate. Step 16 owns the guarded workflow landing plus
+fresh-checkout/external-consumer and remote nonpublishing validation. At the
+Step 8 checkpoint,
+Step 11 still owned signature-bearing API documentation; it has since been
+implemented locally. The public manifest still does not claim to detect same-
+name signature drift, and Step 11 did not add committed signature fingerprints.
+
+Previously, on 2026-08-26, release-preparation Step 7 completed the public API freeze
+without changing Lean source. The 31-module full umbrella contains 601 unique,
+documented project declarations (535 theorems, 56 definitions, nine
+abbreviations, and one instance), split between 557
+`LeanInfoTheory.Shannon` declarations and 44 `PMF` extensions. The explicit
+root façade contains 92 unique exports, and the reviewed supported simp surface
+contains 94 declarations. The 31 supported and 13 non-stable modules partition
+all 44 local modules; all six aggregate/façade/reference anchors own zero
+declarations.
+
+Lean resolved all 601 canonical names through `LeanInfoTheory.Shannon` and all
+92 root aliases plus targets through `LeanInfoTheory`. Negative environment
+probes excluded all 115 non-stable declarations from the full umbrella and all
+480 opt-in supported declarations from the five-module root. The maintained
+warning-as-error matrix passed with 3,072 jobs, and default `lake build` passed
+with 2,605 jobs. All 601 declarations depend only on `propext`,
+`Classical.choice`, and `Quot.sound`; strict placeholder and supplemental trust
+scans are clean, and every one of the 44 Lean files has the exact EPFL/MIL
+header.
+
+`docs/v0.1-public-api.json` and both website generators found all five rendered
+text artifacts current on two independent non-mutating passes. The manifest
+`--check` mode and website checker passed, as did whitespace, conflict-marker,
+JSON, and local-link checks. Three parallel read-only audits and a separate independent
+final validation found no naming, assumption, attribute, helper-visibility,
+namespace, export, ownership, manifest, or status blocker. The final review
+also recomputed 120 private supported declarations (100 theorems and 20
+definitions), all absent from the public manifest. No commit, push, tag,
+release, Zenodo deposit, website publication, or `ShannonCert` access occurred.
+
+Previously, on 2026-08-26, release-preparation Step 6 completed the nats-first
+units surface. Its maintained warning-as-error matrix passed with 3,072 jobs,
+default `lake build` passed with 2,605 jobs, and its focused units, example,
+boundary, trust, generated-reference, website, and hygiene checks all passed.
+
+On 2026-08-26, release-preparation Step 5 completed its local import and
+declaration-ownership normalization. The new entropy semantic owner, old
+semantic aggregate, full Shannon umbrella, and lightweight root passed a
+3,057-job focused warning-as-error build. The updated eight-target maintained
+warning-as-error matrix passed with 3,071 jobs, and default `lake build` passed
+with 2,605 jobs. Four positive consumers checked the root, focused entropy
+owner, compatibility aggregate, and full umbrella; eight expected-failure
+consumers confirmed root/focused/umbrella isolation from heavier or non-stable
+declarations.
+
+The generated graph is acyclic and matches the exact Step 5 contract: 43
+modules, 87 edges, a five-module root closure, a 31-module full-umbrella closure,
+and 12 excluded non-stable anchors. All six aggregates/facades own zero indexed
+declarations. The five moved declarations retain their indexed names, kinds,
+documentation, signatures as checked by Lean, and standard
+`propext`/`Classical.choice`/`Quot.sound` axiom set. Both generators were
+byte-idempotent; the website checker passed across 11 HTML and two JSON files;
+placeholder, unsafe, exact-header, conflict, scratch, whitespace, and diff
+checks passed. No commit, push, tag, release, Zenodo deposit, website
+publication, or `ShannonCert` access occurred.
+
+Previously, on 2026-08-25, release-preparation Step 4 completed its local ownership
+separation and validation. Ten certificate-owned modules, six semantic
+valuation adapters, fifteen aggregate toy declarations, and four finite-family
+certificate consumers were removed while all reusable mathematical declarations
+remained upstream. The strict focused build passed for the root, finite-family
+semantic owners, and semantic/example aggregates; the maintained six-target
+warning-as-error matrix passed with 3,069 jobs, and default `lake build` passed
+with 2,606 jobs. Representative direct-import consumers elaborated the entropy,
+channel, family, Fano, KL, Markov, sufficiency, data-processing, conditional-KL,
+independence, and convexity APIs, while a guarded root consumer rejected an
+opt-in finite-family theorem.
+
+Both source-derived generators were byte-idempotent and report 41 modules, 77
+local edges, 6 root-reachable modules, 35 opt-in modules, and 714 declarations
+(713 documented plus one explicit example-only instance). The website
+checker passed across 11 HTML files and two generated JSON files. Placeholder,
+unsafe, deleted-name/import, exact-header, representative axiom, conflict,
+scratch, whitespace, and diff checks pass. `ShannonCert` was not accessed or
+modified; no commit, push, tag, release, Zenodo deposit, or website publication
+occurred. An independent final review confirmed the extraction boundary,
+retained API, generated counts, documentation, and repository hygiene with no
+blocker.
+
+The remainder of this subsection preserves the preceding Step 3 and Chunk 8
+validation evidence.
+
+On 2026-08-25, release-preparation Step 3 completed the one-time Lean/mathlib
+upgrade and froze the local baseline at `v4.33.1`. All nine package checkouts
+match `lake-manifest.json`, and all eight inherited revisions match the pinned
+mathlib manifest. A final idempotent `lake update` reported no downloads and
+completed successfully. The maintained release matrix passed with 3,079 jobs:
+
+```powershell
+lake -KwarningAsError=true build LeanInfoTheory `
+  LeanInfoTheory.Shannon.EntropyBounds `
+  LeanInfoTheory.Shannon.Units `
+  LeanInfoTheory.Shannon.SemanticBridge `
+  LeanInfoTheory.MathlibFragments `
+  LeanInfoTheory.Examples
+```
+
+Focused validation also rebuilt every migration owner and the complete examples
+aggregate. Strict scans found no proof placeholders, project axioms, unsafe or
+partial declarations, external implementation hooks, native/run tactics, or
+deprecated Bernoulli remnants. The independent frozen-diff audit found no
+public signature, assumption, namespace, attribute, import, or root-boundary
+change. Both source-derived generators were byte-idempotent on a second pass,
+and the website checker passed across 12 HTML and two generated JSON files.
+The architecture remains 51 modules, 100 local edges, 11 root-reachable
+modules, and 40 separate-import modules. The declaration index now contains
+881 entries because the existing example-only instance
+`ThreePoint.instFintype` is written explicitly for Lean 4.33 compatibility and
+is therefore visible to the source parser; its qualified name, type, instance
+status, and opt-in ownership are unchanged.
+
+The subsequent legal-metadata checkpoint retained all theorem bodies and
+imports while replacing or adding the exact EPFL/MIL notice on all 51 tracked
+Lean files. The official CFF validator `cffconvert` 2.0.0 accepted
+`CITATION.cff` against schema 1.2.0, the root licence matches the canonical
+Apache-2.0 text after newline normalization, and the source-derived generators
+were byte-idempotent on a second pass. The exact-header scan passed 51/51 files,
+the website checker again passed 12 HTML and two generated JSON files, and the
+strict maintained release matrix again completed successfully with 3,079 jobs.
+The `weak.linter.style.header = false` package option is limited to the
+incompatible mathlib header-style check; all other strict build warnings remain
+errors.
+
+This is a validated but uncommitted pre-separation working tree based on
+documentation-only `HEAD` `32b2aec`. It does not advance the last fully
+validated committed Lean/source baseline or permit a push while the Step 2
+remote release-workflow interlock remains unresolved.
 
 On 2026-07-31, `C8.24` independently completed Chunk 8 validation. The
 nine-target direct-owner/downstream build passed with 2,783 jobs, the
@@ -1473,19 +1991,32 @@ lake build LeanInfoTheory `
 ### Focused build policy
 
 During theorem work, build the touched module and its important downstream
-aggregate. Before a milestone, run the full suite above. The maintained
-individual commands are listed in `AGENTS.md`; C5.20, C6.24, and C7.22
-completed the Chunk 5, 6, and 7 assignments.
+aggregate. Before a milestone, run the current maintained suite in `AGENTS.md`.
+The command blocks immediately above are historical Chunk 5--8 evidence and
+include pre-Step-4 modules that no longer belong to LeanInfoTheory.
 
 ### CI expectations and remote state
 
 `.github/workflows/lean_action_ci.yml`:
 
-1. regenerates and checks the website module/declaration artifacts;
-2. runs the strict Lean placeholder scan;
-3. invokes `leanprover/lean-action@v1` for the default project build;
-4. explicitly builds entropy bounds, units, the semantic aggregate,
-   `MathlibFragments`, four certificate demos, and `Examples`.
+1. uses read-only repository permissions, concurrency cancellation, a bounded
+   job timeout, and immutable full-commit references for direct actions;
+2. runs `python scripts/validate_release.py static`, which checks source trust,
+   exact package and preliminary legal metadata, the frozen toolchain/manifest
+   relation, the automatic-release interlock, all five generated artifacts
+   twice without modifying them, website links and JSON, and repository
+   hygiene;
+3. invokes the pinned `lean-action` commit for an explicit warning-as-error
+   default build and mathlib cache setup;
+4. invokes the shared maintained eight-target warning-as-error build;
+5. runs the environment-level 31-module API/import/simp/root-export checks and
+   both the 601-declaration public and all-project-constant axiom audits; and
+6. finishes with the shared hygiene gate.
+
+The Pages workflow uses the same non-mutating static contract before uploading
+`home_page`, and all direct actions in the Lean, Pages, and manual dependency-
+update workflows are pinned to reviewed commits. These are local workflow
+definitions only until an approved push produces an exact-SHA remote run.
 
 The GitHub Actions run for validated source baseline `217e35c` completed on
 2026-07-23:
@@ -1527,12 +2058,25 @@ the validated Lean/source baseline.
 Use:
 
 ```powershell
-python scripts/generate_website_blueprint.py
-python scripts/generate_website_api_index.py
-python scripts/check_website.py
+python scripts/generate_v0_1_public_api.py --check
+python scripts/generate_website_blueprint.py --check
+python scripts/generate_website_api_index.py --check
+python scripts/validate_release.py static
 ```
 
-The currently tracked generated Chunk 8 working-tree artifacts record:
+The separate, potentially multi-hour signature-documentation gate is:
+
+```powershell
+python scripts/validate_release.py api-docs
+```
+
+Run it only for the approved manual release gate or focused local Step 11
+validation, not as an ordinary push/pull-request check. The static command above
+checks the immutable documentation-tool pins and configuration without
+regenerating the 624.6-MiB output.
+
+The currently tracked pre-Step-4 generated artifacts record the historical
+Chunk 8 surface:
 
 - 51 modules and 100 local import edges;
 - 11 root-reachable and 40 separately importable modules;
@@ -1546,6 +2090,14 @@ recognition, and regenerated both reference sets. `C8.24` reproduced all four
 artifacts byte-for-byte on the second pass and rechecked counts, source links,
 unique anchors, module summaries, aggregate imports, root reachability, private
 helper exclusion, and website consistency.
+
+Steps 4--7 changed and then froze that source surface. The current source-
+derived website artifacts, which are distinct from Step 11 doc-gen, contain
+44 modules, 90 local edges, 5 root-reachable modules, 39 separate-import
+modules, and 716 declarations (715 documented plus one explicit example-only
+instance). The separate `v0.1.x` manifest records the 31 supported modules,
+601 supported declarations, 94 reviewed `simp` declarations, and 92 root
+exports.
 Deployment status is checked from the Pages workflow after push rather than
 inferred from local content. The public site is:
 `https://serhatemrecoban.github.io/LeanInfoTheory/`.
@@ -1554,7 +2106,11 @@ inferred from local content. The public site is:
 
 - No `sorry`, `admit`, unapproved `axiom`, `opaque`, or `undefined` in project
   Lean source.
-- No external certificate parser or solver is part of the trusted core.
+- No unsafe or partial declaration, external implementation hook,
+  native-decision shortcut, or run tactic in project Lean source.
+- Every compiled project constant may depend only on `propext`,
+  `Classical.choice`, and `Quot.sound`.
+- No certificate parser, checker, DSL, or solver is part of LeanInfoTheory.
 - Successful compilation does not by itself prove an API is appropriately
   scoped; module, support, null-fiber, and equality contracts still require
   review.

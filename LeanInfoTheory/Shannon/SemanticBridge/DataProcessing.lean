@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.SemanticBridge.Markov
@@ -190,8 +195,8 @@ private theorem klDiv_map_equiv
     InformationTheory.klDiv (p.map e).toMeasure (q.map e).toMeasure =
       InformationTheory.klDiv p.toMeasure q.toMeasure := by
   classical
-  letI := Fintype.ofFinite alpha
-  letI := Fintype.ofFinite beta
+  let := Fintype.ofFinite alpha
+  let := Fintype.ofFinite beta
   have hsupport :
       (p.map e).support ⊆ (q.map e).support ↔ p.support ⊆ q.support := by
     simpa only [PMF.support_map] using
@@ -247,7 +252,7 @@ theorem klDiv_channel_eq_add_posterior
           ((p.bind W).toMeasure ⊗ₘ pmfChannelKernel (channelPosterior p W))
           ((p.bind W).toMeasure ⊗ₘ pmfChannelKernel (channelPosterior q W)) := by
   classical
-  letI := Fintype.ofFinite beta
+  let := Fintype.ofFinite beta
   have hsame := InformationTheory.klDiv_compProd_left
     p.toMeasure q.toMeasure (pmfChannelKernel W)
   have hjointP := channelJoint_toMeasure p W
@@ -300,7 +305,7 @@ theorem klDiv_channel_le
     InformationTheory.klDiv (p.bind W).toMeasure (q.bind W).toMeasure <=
       InformationTheory.klDiv p.toMeasure q.toMeasure := by
   classical
-  letI := Fintype.ofFinite alpha
+  let := Fintype.ofFinite alpha
   rw [klDiv_channel_eq_add_posterior p q W]
   exact le_add_of_nonneg_right bot_le
 
@@ -581,8 +586,8 @@ theorem entropy_le_entropy_bind_of_uniform_invariant
     (hW : (PMF.uniformOfFintype alpha).bind W =
       PMF.uniformOfFintype alpha) :
     entropy p <= entropy (p.bind W) := by
-  letI : MeasurableSpace alpha := ⊤
-  haveI : MeasurableSingletonClass alpha := ⟨fun _ => trivial⟩
+  let : MeasurableSpace alpha := ⊤
+  have : MeasurableSingletonClass alpha := ⟨fun _ => trivial⟩
   have hkl := toReal_klDiv_channel_invariant_le
     p (PMF.uniformOfFintype alpha) W hW (by simp)
   rw [toReal_klDiv_pmf_uniformOfFintype,

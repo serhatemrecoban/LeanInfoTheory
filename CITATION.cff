@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use LeanInfoTheory in your work, please cite the software using this metadata."
+type: software
+title: "LeanInfoTheory"
+version: "0.1.0"
+date-released: 2026-08-27
+authors:
+  - family-names: "Coban"
+    given-names: "Serhat Emre"
+    affiliation: "EPFL, Mathematics of Information Laboratory"
+license: Apache-2.0
+repository-code: "https://github.com/serhatemrecoban/LeanInfoTheory"
+url: "https://serhatemrecoban.github.io/LeanInfoTheory/"

@@ -12,9 +12,8 @@
       <h2 class="project-tagline">Current compileable Lean modules and how they fit together.</h2>
       <nav class="project-links" aria-label="Project links">
         <a href="./" class="btn">Home</a>
+        <a href="docs/" class="btn">Docs</a>
         <a href="theorems.html" class="btn">Theorems</a>
-        <a href="submodularity-demo.html" class="btn">Demo</a>
-        <a href="docs/api-index.html" class="btn">API Index</a>
         <a href="blueprint/" class="btn">Blueprint</a>
         <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
@@ -22,16 +21,28 @@
 
     <main class="main-content" role="main">
       <p class="lead">
-        This is the hand-written companion to the
-        <a href="docs/api-index.html">generated declaration index</a>. Full Lean
-        doc-gen output is still a later milestone.
+        This hand-written import guide complements the
+        <a href="docs/v0.1.0/">signature-bearing v0.1.0 API reference</a> and the
+        supplementary <a href="docs/api-index.html">source-derived declaration
+        inventory</a>. The versioned API tree is generated from the exact
+        release commit and served at the stable route above.
+      </p>
+
+      <p>
+        Import <code>LeanInfoTheory</code> for the lightweight mathematical API,
+        <code>LeanInfoTheory.Shannon</code> for the complete supported
+        mathematical stack, or a focused module when dependency weight matters.
+        <code>Basic</code>, <code>Examples</code>, and
+        <code>MathlibFragments</code> are non-stable anchors excluded from both
+        mathematical umbrellas.
       </p>
 
       <ul>
-        <li><code>LeanInfoTheory.Basic</code>: lightweight project namespace and shared status vocabulary.</li>
+        <li><code>LeanInfoTheory.Basic</code>: non-stable development anchor for project metadata and roadmap vocabulary.</li>
         <li><code>LeanInfoTheory.Probability.Finite</code>: real-mass, finite-bind, support, and pointwise <code>PMF.map</code> bridge lemmas.</li>
         <li><code>LeanInfoTheory.Probability.FiniteChannel</code>: opt-in, type-generic PMF-valued channel constructions and their atom, projection, composition, deterministic-map, and support laws.</li>
         <li><code>LeanInfoTheory.Probability.FiniteMixture</code>: opt-in binary PMF mixtures with <code>NNReal</code> weights and exact endpoint laws; general selectors use <code>PMF.bind</code>.</li>
+        <li><code>LeanInfoTheory.Shannon</code>: import-only umbrella for the complete supported mathematical stack.</li>
         <li><code>LeanInfoTheory.Shannon.Entropy</code>: finite Shannon entropy, random-variable entropy, zero-entropy characterizations, and relabeling invariance theorems.</li>
         <li><code>LeanInfoTheory.Shannon.EntropyBounds</code>: Jensen-based alphabet and support-cardinality upper bounds plus the uniform-law equality theorem. Import this module explicitly when those heavier analytic bounds are needed.</li>
         <li><code>LeanInfoTheory.Shannon.EntropyConcavity</code>: opt-in finite-selector entropy concavity with a binary textbook corollary and interior-weight equality characterization.</li>
@@ -40,14 +51,15 @@
         <li><code>LeanInfoTheory.Shannon.FiniteFamily</code>: opt-in dependent finite-family laws, finite marginals, entropy/MI/CMI algebra, pair/triple compatibility, and binary/ordered entropy, MI, and conditional-MI chain rules.</li>
         <li><code>LeanInfoTheory.Shannon.InfoMeasures</code>: marginals, conditional entropy, mutual information, conditional mutual information, chain rules, symmetry, and textbook entropy identities.</li>
         <li><code>LeanInfoTheory.Shannon.LogSum</code>: opt-in zero-safe finite <code>EReal</code> log-sum inequality and equality characterization with guarded Real corollaries.</li>
-        <li><code>LeanInfoTheory.Shannon.Units</code>: opt-in logarithm-base conversion; canonical information measures remain in nats.</li>
-        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: separated bridge entry point for expected self-information, finite conditional laws, KL and conditional-KL formulas, convexity, independence, Markov and sufficiency semantics, recovery, stochastic data processing, pair/triple inequalities, and finite-family semantics.</li>
+        <li><code>LeanInfoTheory.Shannon.Units</code>: lightweight opt-in scalar conversion from canonical nats to arbitrary valid logarithm bases, with base <code>2</code> named for bits. It remains outside the lightweight root and does not duplicate the information-measure hierarchy.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: import-only bridge entry point for expected self-information, finite conditional laws, KL and conditional-KL formulas, convexity, independence, Markov and sufficiency semantics, recovery, stochastic data processing, pair/triple inequalities, and finite-family semantics.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge.Entropy</code>: focused owner for self-information and finite entropy as expected self-information.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Product</code>: independent-product PMF infrastructure, product-measure bridge lemmas, and joint-law absolute-continuity facts.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.FiniteSums</code>: finite real-sum rewrites for marginals, entropy, and the log-ratio formula for mutual information.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Conditional</code>: finite conditional-law API and expected conditional entropy / conditional mutual information fiber formulas.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL</code>: common-base channel conditional KL, finite weighted semantics, the joint KL chain rule, and support-guarded Real forms.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Convexity</code>: finite-selector KL joint convexity, binary KL equality, and mutual-information input-law concavity and channel convexity.</li>
-        <li><code>LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily</code>: finite-family monotonicity, nonnegativity, submodularity, MI bounds, conditioning reduction, binary/n-way subadditivity, and concrete <code>ShannonEntropyVal</code> constructions.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily</code>: finite-family monotonicity, nonnegativity, submodularity, MI bounds, conditioning reduction, and binary/n-way subadditivity.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence</code>: finite-atom PMF/source mutual independence, restriction and pair laws, and n-way entropy-additivity equality characterizations.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.KL</code>: finite KL expansion, mutual information as KL, and averaged conditional-KL bridge theorems.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Independence</code>: ordinary and conditional independence predicates, mathlib bridges, positive-fiber formulations, and zero-MI/zero-CMI characterizations.</li>
@@ -57,16 +69,6 @@
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL</code>: downstream KL preservation and guarded converse theorems for sufficient channels and deterministic statistics.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code>: user-facing semantic theorems, including nonnegativity, zero conditional entropy, deterministic entropy/MI processing, chain-rule variants, and ordinary/conditional inequality bands.</li>
         <li><code>LeanInfoTheory.InformationMeasures</code>: public convenience re-export for the finite information-measure API; theorem-oriented code should usually prefer the canonical <code>LeanInfoTheory.Shannon</code> names.</li>
-        <li><code>LeanInfoTheory.EntropyExpr</code>: formal entropy-expression algebra and the empty-entropy convention interface.</li>
-        <li><code>LeanInfoTheory.EntropyVal</code>: abstract Shannon entropy valuations for certificate work.</li>
-        <li><code>LeanInfoTheory.PrimitiveIneq</code>: primitive Shannon inequality expressions and their soundness under abstract valuations.</li>
-        <li><code>LeanInfoTheory.Certificate</code>: generic nonnegative-combination soundness theorem and exact decomposition matching.</li>
-        <li><code>LeanInfoTheory.Certificate.Checked</code>: raw certificate data, a first raw-to-checked validator, and proof-carrying checked certificate structures with nonnegative rational coefficients and exact decomposition equality.</li>
-        <li><code>LeanInfoTheory.Certificate.FiniteFamily</code>: opt-in leaf adapter applying existing checked-certificate soundness to concrete finite-family Shannon entropy without changing validation or trust boundaries.</li>
-        <li><code>LeanInfoTheory.Certificate.Submodularity</code>: separately importable first non-toy certificate demo, proving entropy submodularity from a validated CMI certificate.</li>
-        <li><code>LeanInfoTheory.Certificate.Subadditivity</code>: separately importable checked certificate demo, proving entropy subadditivity from a two-step primitive certificate.</li>
-        <li><code>LeanInfoTheory.Certificate.Monotonicity</code>: separately importable checked certificate demo, proving one-variable entropy monotonicity from a conditional-entropy primitive.</li>
-        <li><code>LeanInfoTheory.Certificate.ThreeWaySubadditivity</code>: separately importable manual certificate pressure-test module, proving three-way entropy subadditivity from a four-step primitive certificate.</li>
         <li><code>LeanInfoTheory.Examples.SupportSensitive</code>: opt-in support-cardinality, conditional-fiber, functional-dependence, and recovery examples.</li>
         <li><code>LeanInfoTheory.Examples.KLTop</code>: opt-in disjoint-support example demonstrating the need for finiteness guards in real-valued KL equality statements.</li>
         <li><code>LeanInfoTheory.Examples.CommonCause</code>: opt-in noisy binary common-cause example exercising conditional independence, zero CMI, and Markov factorization.</li>
@@ -75,8 +77,10 @@
         <li><code>LeanInfoTheory.Examples.SufficientStatistics</code>: opt-in fixed-prior and family-sufficiency examples covering recovery, factorization, KL preservation, and failure modes.</li>
         <li><code>LeanInfoTheory.Examples.Convexity</code>: opt-in private regression consumers for scalar log-sum, finite mixtures, entropy concavity, KL convexity, and MI input-law concavity and channel convexity.</li>
         <li><code>LeanInfoTheory.Examples.Fano</code>: opt-in examples covering perfect decoding, the singleton-source edge case, and a fair Boolean source with a constant observation.</li>
-        <li><code>LeanInfoTheory.Examples.FiniteFamily</code>: opt-in homogeneous and dependent-alphabet examples exercising ordered entropy/MI/CMI chains, overlap, empty entropy, product and pairwise-not-mutual laws, and distinct checked/raw certificate paths.</li>
-        <li><code>LeanInfoTheory.Examples</code>: aggregate import for the separately importable certificate, conditional-KL, convexity, finite-family, and semantic examples.</li>
+        <li><code>LeanInfoTheory.Examples.FiniteFamily</code>: opt-in homogeneous and dependent-alphabet examples exercising ordered entropy/MI/CMI chains, overlap, empty entropy, product laws, and pairwise-but-not-mutual independence.</li>
+        <li><code>LeanInfoTheory.Examples.Units</code>: opt-in maintained consumers for arbitrary-base, bits, entropy, MI, CMI, and finiteness-guarded real-KL conversion.</li>
+        <li><code>LeanInfoTheory.Examples</code>: non-stable aggregate for all maintained regression consumers, including information-unit conversions.</li>
+        <li><code>LeanInfoTheory.MathlibFragments</code>: non-stable reference anchor for heavier mathlib information-theory and coding imports.</li>
       </ul>
 
       <p>

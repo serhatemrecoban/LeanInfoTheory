@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL
@@ -106,15 +111,17 @@ theorem statistic_collides_on_support (t : Bool) :
 
 /-- Discarding the nuisance bit is sufficient for the whole model family. -/
 theorem statistic_isSufficient : IsSufficientStatistic model statistic := by
-  simpa only [model] using
-    statistic_sufficient_for (fun t : Bool => PMF.pure t)
+  change IsSufficientStatistic
+    (fun t : Bool => observationLaw (PMF.pure t)) statistic
+  exact statistic_sufficient_for (fun t : Bool => PMF.pure t)
 
 /-- A full-support prior used for the fixed-prior view. -/
 def fairPrior : PMF Bool := PMF.uniformOfFintype Bool
 
 /-- The fair prior reaches both parameter values. -/
 theorem fairPrior_support : fairPrior.support = Set.univ := by
-  simpa only [fairPrior] using PMF.support_uniformOfFintype Bool
+  simpa only [fairPrior, Set.top_eq_univ] using
+    PMF.support_uniformOfFintype Bool
 
 /-- The generated parameter-observation law under the fair prior. -/
 def experimentLaw : PMF (Bool × (Bool × Bool)) :=
@@ -180,8 +187,18 @@ theorem klDiv_preserved (s t : Bool) :
     statistic_isSufficient s t
 
 /-- A full-support nonuniform signal law. -/
-def biasedSignal : PMF Bool := PMF.bernoulli (3 / 4) (by
-  exact (div_le_one (by norm_num)).2 (by norm_num))
+def biasedSignal : PMF Bool :=
+  PMF.ofFintype
+    (fun b : Bool =>
+      ((cond b (3 / 4 : NNReal) (1 - (3 / 4 : NNReal)) : NNReal) : ENNReal))
+    (by
+      have h : (3 / 4 : NNReal) <= 1 := by
+        change (3 / 4 : Real) <= 1
+        norm_num
+      rw [Fintype.sum_bool]
+      simp only [Bool.cond_true, Bool.cond_false, ← ENNReal.coe_add]
+      rw [add_tsub_cancel_of_le h]
+      rfl)
 
 /-- Two overlapping signal laws for the guarded binary KL characterization. -/
 def overlapSignalModel : Bool -> PMF Bool
@@ -198,14 +215,20 @@ theorem overlap_support_subset :
   rintro ⟨b, n⟩ _
   simp only [overlapModel, observationLaw, PMF.mem_support_channelJoint_iff]
   constructor
-  · cases b <;> simp [overlapSignalModel, biasedSignal]
-    norm_num
+  · cases b
+    · simp only [overlapSignalModel, biasedSignal, PMF.mem_support_iff,
+        PMF.ofFintype_apply, Bool.cond_false]
+      exact ENNReal.coe_ne_zero.mpr
+        (ne_of_gt (tsub_pos_iff_lt.mpr (by norm_num)))
+    · simp [overlapSignalModel, biasedSignal]
   · simp [noiseChannel, fairBit]
 
 /-- The first-coordinate statistic is sufficient for the overlapping model. -/
 theorem overlap_statistic_isSufficient :
     IsSufficientStatistic overlapModel statistic := by
-  simpa only [overlapModel] using statistic_sufficient_for overlapSignalModel
+  change IsSufficientStatistic
+    (fun t : Bool => observationLaw (overlapSignalModel t)) statistic
+  exact statistic_sufficient_for overlapSignalModel
 
 /-- The channel-facing binary KL equality characterizes this sufficient model. -/
 theorem overlap_channel_iff_klDiv_eq :

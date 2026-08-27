@@ -1,55 +1,83 @@
-name: Lean build and placeholder check
+name: Lean build and release gates
 
 on:
   push:
   pull_request:
   workflow_dispatch:
+    inputs:
+      api_docs:
+        description: Run the full signature-bearing API documentation release gate
+        required: true
+        default: false
+        type: boolean
 
 permissions:
   contents: read
 
+concurrency:
+  group: lean-release-gates-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build:
+  release-gates:
+    name: Release gates
     runs-on: ubuntu-latest
+    timeout-minutes: 90
 
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
 
-      - name: Check generated website blueprint is current
-        shell: bash
-        run: |
-          set -euo pipefail
-          python scripts/generate_website_blueprint.py
-          python scripts/generate_website_api_index.py
-          python scripts/check_website.py
-          git diff --exit-code -- \
-            home_page/blueprint/dep_graph_document.html \
-            home_page/blueprint/module_graph.json \
-            home_page/docs/api-index.html \
-            home_page/docs/declaration_index.json
+      - name: Check static release contract
+        run: python scripts/validate_release.py static
 
-      - name: Check Lean source has no placeholders
-        shell: bash
-        run: |
-          set -euo pipefail
-          if grep -RInE '(^|[^[:alnum:]_])(sorry|admit|axiom|opaque|undefined)([^[:alnum:]_]|$)' \
-              --include='*.lean' LeanInfoTheory LeanInfoTheory.lean; then
-            echo "::error::Lean source contains a placeholder or unapproved axiom."
-            exit 1
-          fi
+      - name: Set up Lean and build the default target
+        uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596 # v1
+        with:
+          auto-config: "false"
+          build: "true"
+          build-args: "-KwarningAsError=true"
+          test: "false"
+          lint: "false"
+          use-mathlib-cache: "true"
 
-      - uses: leanprover/lean-action@v1
+      - name: Build maintained targets with warnings as errors
+        run: python scripts/validate_release.py maintained-build
 
-      - name: Build separately importable modules
-        shell: bash
-        run: |
-          set -euo pipefail
-          lake build LeanInfoTheory.Shannon.EntropyBounds
-          lake build LeanInfoTheory.Shannon.Units
-          lake build LeanInfoTheory.Shannon.SemanticBridge
-          lake build LeanInfoTheory.MathlibFragments
-          lake build LeanInfoTheory.Certificate.Submodularity
-          lake build LeanInfoTheory.Certificate.Subadditivity
-          lake build LeanInfoTheory.Certificate.Monotonicity
-          lake build LeanInfoTheory.Certificate.ThreeWaySubadditivity
-          lake build LeanInfoTheory.Examples
+      - name: Compile release-documentation examples
+        run: python scripts/validate_release.py documentation
+
+      - name: Check frozen API, import boundaries, simp attributes, and axioms
+        run: python scripts/validate_release.py trust
+
+      - name: Check final repository hygiene
+        run: python scripts/validate_release.py hygiene
+
+  api-documentation:
+    name: API documentation release gate
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.api_docs }}
+    needs: release-gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+
+      - name: Check static documentation-build contract
+        run: python scripts/validate_release.py static
+
+      - name: Set up Lean and restore the mathlib cache
+        uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596 # v1
+        with:
+          auto-config: "false"
+          build: "true"
+          build-args: "-KwarningAsError=true"
+          test: "false"
+          lint: "false"
+          use-mathlib-cache: "true"
+
+      - name: Build and validate signature-bearing API documentation
+        env:
+          DOCGEN_SRC: github
+        run: python scripts/validate_release.py api-docs

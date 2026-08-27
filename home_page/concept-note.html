@@ -12,9 +12,8 @@
       <h2 class="project-tagline">Lean-certified classical and network information theory.</h2>
       <nav class="project-links" aria-label="Project links">
         <a href="./" class="btn">Home</a>
+        <a href="docs/" class="btn">Docs</a>
         <a href="theorems.html" class="btn">Theorems</a>
-        <a href="submodularity-demo.html" class="btn">Demo</a>
-        <a href="docs/api-index.html" class="btn">API Index</a>
         <a href="blueprint/" class="btn">Blueprint</a>
         <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
@@ -22,10 +21,9 @@
     <main class="main-content" role="main">
       <h2>Project</h2>
       <p>
-        Lean-certified classical and network information theory: a reusable
-        finite information-measures layer, with a planned path toward
-        AI-assisted, machine-checked entropy-inequality and converse
-        automation.
+        A reusable Lean 4 and mathlib foundation for finite discrete
+        information theory, designed for direct use by downstream formal
+        developments.
       </p>
 
       <h2>Motivation</h2>
@@ -34,8 +32,8 @@
         including binary entropy, q-ary entropy, KL divergence, Markov-kernel
         infrastructure, and coding basics such as Kraft-McMillan. What is still
         missing is a mature information-theorist-facing layer for finite entropy,
-        mutual information, conditional mutual information, and certified
-        network-information-theory converse proofs.
+        mutual information, conditional mutual information, channels, and
+        related semantic theorems.
       </p>
 
       <h2>Current and near-term deliverables</h2>
@@ -47,26 +45,16 @@
         <li>Finite independence, conditional-independence, and Markov characterizations, including zero-MI/zero-CMI equality cases and canonical channel factorization.</li>
         <li>Finite stochastic-channel data processing for mutual information and KL divergence, with deterministic, cascade, invariant-law, and doubly stochastic entropy consequences.</li>
         <li>Dependent finite-family laws with finite-atom entropy, conditional entropy, mutual information, conditional mutual information, pair/triple compatibility, and ordered chain rules.</li>
-        <li>Finite-family Shannon inequalities and concrete entropy valuations connecting actual family entropy to the abstract certificate contract.</li>
+        <li>Finite-family Shannon inequalities, including monotonicity, submodularity, conditioning reduction, and n-way subadditivity.</li>
         <li>A zero-safe finite log-sum API, finite PMF mixtures, entropy concavity, KL joint convexity with a binary equality characterization, and mutual-information input-law concavity and channel convexity.</li>
-        <li>A formal entropy-expression layer for rational linear combinations of entropy atoms.</li>
-        <li>An abstract Shannon entropy-valuation layer for certificate-facing semantic assumptions.</li>
-        <li>Primitive Shannon inequality expressions for empty entropy, conditional entropy, and conditional mutual information, with soundness theorems under abstract Shannon entropy valuations.</li>
-        <li>A generic Lean-checked soundness theorem for nonnegative certificate combinations.</li>
-        <li>A first raw/checked certificate split, where checked certificates use primitive Shannon ingredients, nonnegative rational coefficients, and the proof data needed for soundness.</li>
-        <li>Exact rational expression matching for checked certificate decompositions.</li>
-        <li>A first raw-to-checked validator for primitive-tagged certificate steps.</li>
-        <li>Checked certificate demos proving entropy submodularity, subadditivity, one-variable monotonicity, and three-way subadditivity.</li>
-        <li>An opt-in checked-certificate adapter and homogeneous/dependent-alphabet examples for concrete finite-family Shannon entropy.</li>
+        <li>Finite Fano inequalities, common-base conditional KL, sufficient-statistic recovery, and finite-family mutual-independence equality characterizations.</li>
       </ul>
 
       <h2>Current limitations</h2>
       <ul>
         <li>The semantic and Fano layers remain finite-PMF/finite-alphabet focused; general measurable extensions, exact Fano equality and sharpness, randomized/list decoding, AEP, and source/channel coding remain future work.</li>
-        <li>The certificate layer checks and validates certificates, but it does not yet search for certificates automatically.</li>
-        <li>The certificate layer is not yet a full import pipeline for external certificate formats such as PSITIP/oXitip output.</li>
-        <li>Independence, Markov, and functional-dependence constraints are not yet part of the checked certificate language.</li>
-        <li>Full Lean doc-gen output and non-toy network converse examples are future milestones.</li>
+        <li>Application-specific proof automation, certificate import, and paper-specific constructions belong in downstream projects rather than this library.</li>
+        <li>Signature-bearing v0.1.0 API documentation is generated from the exact release commit; non-toy downstream converse examples remain separate milestones.</li>
       </ul>
     </main>
   </body>

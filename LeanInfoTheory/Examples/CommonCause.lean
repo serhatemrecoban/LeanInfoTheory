@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.SemanticBridge.Markov
@@ -28,16 +33,36 @@ def causeLaw : PMF Bool := PMF.uniformOfFintype Bool
 
 /-- A binary channel that copies its input correctly with probability `3 / 4`. -/
 def noisyCopy (b : Bool) : PMF Bool :=
-  if b then PMF.bernoulli (3 / 4) (by
-    exact (div_le_one (by norm_num)).2 (by norm_num))
-  else PMF.bernoulli (1 / 4) (by
-    exact (div_le_one (by norm_num)).2 (by norm_num))
+  if b then
+    PMF.ofFintype
+      (fun c : Bool =>
+        ((cond c (3 / 4 : NNReal) (1 - (3 / 4 : NNReal)) : NNReal) : ENNReal))
+      (by
+        have h : (3 / 4 : NNReal) <= 1 := by
+          change (3 / 4 : Real) <= 1
+          norm_num
+        rw [Fintype.sum_bool]
+        simp only [Bool.cond_true, Bool.cond_false, ← ENNReal.coe_add]
+        rw [add_tsub_cancel_of_le h]
+        rfl)
+  else
+    PMF.ofFintype
+      (fun c : Bool =>
+        ((cond c (1 / 4 : NNReal) (1 - (1 / 4 : NNReal)) : NNReal) : ENNReal))
+      (by
+        have h : (1 / 4 : NNReal) <= 1 := by
+          change (1 / 4 : Real) <= 1
+          norm_num
+        rw [Fintype.sum_bool]
+        simp only [Bool.cond_true, Bool.cond_false, ← ENNReal.coe_add]
+        rw [add_tsub_cancel_of_le h]
+        rfl)
 
 /-- Both channel rows are genuinely random and depend on the input. -/
 theorem noisyCopy_masses :
     noisyCopy false true = (1 / 4 : ENNReal) /\
       noisyCopy true true = (3 / 4 : ENNReal) := by
-  norm_num [noisyCopy, PMF.bernoulli_apply, ENNReal.coe_div]
+  norm_num [noisyCopy, PMF.ofFintype_apply, ENNReal.coe_div]
 
 /-- Two noisy observations sampled independently from the same binary cause. -/
 def law : PMF (Bool × Bool × Bool) :=

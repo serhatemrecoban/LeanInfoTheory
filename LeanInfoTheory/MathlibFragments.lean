@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import Mathlib.Analysis.SpecialFunctions.BinaryEntropy
@@ -13,9 +18,10 @@ import Mathlib.Probability.ProbabilityMassFunction.Constructions
 /-!
 # Mathlib information-theory fragments
 
-This file intentionally gathers mathlib material that the project will build on
-later. It is not imported by the lightweight root module; import it explicitly
-when working on bridge or coding-theory files that need these anchors.
+This non-stable reference-anchor module intentionally gathers mathlib material
+that the project may build on later. It is not imported by either public
+mathematical umbrella; import it explicitly when working on bridge or
+coding-theory files that need these anchors.
 
 Important anchors include:
 

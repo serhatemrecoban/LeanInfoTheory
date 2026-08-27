@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.Entropy
@@ -194,7 +199,7 @@ theorem entropy_le_log_support_ncard {alpha : Type u} [Fintype alpha]
     (p : PMF alpha) :
     entropy p <= Real.log (p.support.ncard : Real) := by
   classical
-  letI : Nonempty p.supportFinset := by
+  let : Nonempty p.supportFinset := by
     obtain ⟨a, ha⟩ := p.supportFinset_nonempty
     exact ⟨⟨a, ha⟩⟩
   have h := entropy_le_log_card (supportPMF p)
@@ -388,7 +393,7 @@ theorem entropy_eq_log_support_ncard_iff_eq_uniformOnSupport
     entropy p = Real.log (p.support.ncard : Real) ↔
       p = PMF.uniformOfFinset p.supportFinset p.supportFinset_nonempty := by
   classical
-  letI : Nonempty p.supportFinset := by
+  let : Nonempty p.supportFinset := by
     obtain ⟨a, ha⟩ := p.supportFinset_nonempty
     exact ⟨⟨a, ha⟩⟩
   constructor

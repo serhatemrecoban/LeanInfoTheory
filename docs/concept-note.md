@@ -2,9 +2,9 @@
 
 ## Project
 
-Lean-certified classical and network information theory: a reusable finite
-information-measures layer, with a planned path toward AI-assisted,
-machine-checked entropy-inequality and converse automation.
+Lean-certified finite information theory: a reusable mathlib-based
+information-measures and semantic theorem library for downstream mathematical
+and verification projects.
 
 ## Motivation
 
@@ -13,8 +13,8 @@ binary entropy, q-ary entropy, KL divergence, Markov-kernel infrastructure, and
 coding basics such as Kraft-McMillan. PFR and related formalization work show
 that Shannon entropy methods can be developed seriously in Lean. What is still
 missing is a mature, information-theorist-facing layer for finite entropy,
-mutual information, conditional mutual information, and certified
-network-information-theory converse proofs.
+mutual information, conditional mutual information, KL, finite channels,
+Markov structure, data processing, and sufficiency.
 
 ## Current and Near-Term Deliverables
 
@@ -27,38 +27,29 @@ network-information-theory converse proofs.
   entropy as expected fiber entropy, conditional mutual information as averaged
   fiber mutual information and averaged fiber KL, semantic nonnegativity, and
   a first mutual-information chain rule.
-- A formal entropy-expression layer for rational linear combinations of entropy
-  atoms.
-- An abstract Shannon entropy-valuation layer for certificate-facing semantic
-  assumptions.
-- Primitive Shannon inequality expressions for empty entropy, conditional
-  entropy, and conditional mutual information, with soundness theorems under
-  abstract Shannon entropy valuations.
-- A generic Lean-checked soundness theorem for nonnegative certificate
-  combinations.
-- A first raw/checked certificate split, where checked certificates use
-  primitive Shannon ingredients, nonnegative rational coefficients, and the
-  proof data needed for soundness.
-- Exact rational expression matching for checked certificate decompositions.
-- A first raw-to-checked validator for primitive-tagged certificate steps.
-- Checked certificate demos proving entropy submodularity, subadditivity,
-  one-variable monotonicity, and three-way subadditivity.
+- Finite-family, channel, Markov, data-processing, Fano, convexity,
+  conditional-KL, mutual-independence, and sufficient-statistics APIs.
 - A small set of recognizable examples from classical/network information
   theory.
+- An isolated, exactly pinned doc-gen4 pipeline that renders and checks
+  signatures for the complete supported API, together with versioned website
+  staging and a separately authorized publication path.
+
+Certificate expression languages, validators, importers, and checker-specific
+demonstrations belong to downstream applications. LeanInfoTheory retains the
+general mathematical theorems those applications may consume.
 
 ## Current Limitations
 
 - The semantic and Fano layers remain finite-PMF/finite-alphabet focused.
   General measurable extensions, exact Fano equality and sharpness,
   randomized/list decoding, AEP, and source/channel coding remain future work.
-- The certificate layer checks and validates certificates, but it does not yet
-  search for certificates automatically.
-- The certificate layer is not yet a full import pipeline for external
-  certificate formats such as PSITIP/oXitip output.
-- Independence, Markov, and functional-dependence constraints are not yet part
-  of the checked certificate language.
-- Full Lean doc-gen output and non-toy network converse examples are future
-  milestones.
+- Certificate checking, search, and external-format import are outside the
+  LeanInfoTheory release scope.
+- Signature-bearing documentation is generated rather than committed; release
+  publication requires a clean exact-commit GitHub-source build and the guarded
+  manual Pages path.
+- Non-toy network converse examples remain a future milestone.
 
 ## Funding Use
 
@@ -69,5 +60,5 @@ documentation, library maintenance, and collaboration with Lean/mathlib mentors.
 
 The project lead defines the information-theoretic API, theorem targets, and
 examples. A Lean/mathlib mentor reviews architecture and upstreamability.
-Student contributors can work on bounded Lean tasks such as expression
-normalization, certificate import, and finite-entropy lemmas.
+Student contributors can work on bounded Lean tasks such as finite-entropy,
+channel, KL, example, and documentation lemmas.

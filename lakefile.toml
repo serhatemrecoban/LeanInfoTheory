@@ -1,18 +1,24 @@
 name = "LeanInfoTheory"
 version = "0.1.0"
-keywords = ["math"]
+description = "A Lean 4 and mathlib library for finite discrete information theory"
+keywords = ["math", "information-theory", "probability", "formal-verification"]
+homepage = "https://serhatemrecoban.github.io/LeanInfoTheory/"
+license = "Apache-2.0"
+licenseFiles = ["LICENSE"]
 defaultTargets = ["LeanInfoTheory"]
+fixedToolchain = true
 
 [leanOptions]
 pp.unicode.fun = true # pretty-prints `fun a ↦ b`
 relaxedAutoImplicit = false
 weak.linter.mathlibStandardSet = true
+weak.linter.style.header = false # exact EPFL/MIL headers are validated separately
 maxSynthPendingDepth = 3
 
 [[require]]
 name = "mathlib"
 scope = "leanprover-community"
-rev = "v4.30.0"
+rev = "v4.33.1"
 
 [[lean_lib]]
 name = "LeanInfoTheory"

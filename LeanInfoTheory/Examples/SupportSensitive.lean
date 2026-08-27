@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.EntropyBounds
@@ -30,7 +35,12 @@ inductive ThreePoint where
   | left
   | right
   | outside
-  deriving DecidableEq, Fintype
+  deriving DecidableEq
+
+instance ThreePoint.instFintype : Fintype ThreePoint where
+  elems := {ThreePoint.left, ThreePoint.right, ThreePoint.outside}
+  complete x := by
+    cases x <;> simp
 
 open ThreePoint
 
@@ -63,7 +73,8 @@ theorem supportBound_is_strictly_sharper :
   simp only [twoPointLaw_support]
   have hlog : Real.log (2 : Real) < Real.log (3 : Real) := by
     exact Real.strictMonoOn_log (by norm_num) (by norm_num) (by norm_num)
-  simpa [twoPointSupport] using hlog
+  have hcard : Fintype.card ThreePoint = 3 := by decide
+  simpa [twoPointSupport, hcard] using hlog
 
 /-- A map that separates the support but collides at an unsupported point. -/
 def supportEncoding : ThreePoint -> Bool

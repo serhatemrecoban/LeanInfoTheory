@@ -1,11 +1,14 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
-import LeanInfoTheory.Certificate.FiniteFamily
-import LeanInfoTheory.Certificate.Submodularity
 import LeanInfoTheory.Shannon.EntropyBounds
 import LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence
 
@@ -13,13 +16,7 @@ import LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence
 # Finite-family information examples
 
 This module exercises finite-family entropy, conditional mutual information,
-and mutual independence on homogeneous and dependent-alphabet models. It also
-keeps the two certificate trust paths visibly separate:
-
-* `BooleanModel.submodularity_checked` applies a proof-carrying checked
-  certificate directly to concrete Shannon entropy;
-* `BooleanModel.submodularity_raw` first uses the existing raw-certificate
-  validator theorem and then invokes generic validated-certificate soundness.
+and mutual independence on homogeneous and dependent-alphabet models.
 
 The variable-name types deliberately have no `Fintype` instances. Only the
 coordinate alphabets used by entropy are finite.
@@ -83,7 +80,7 @@ private example :
     Shannon.familyCondMutualInfo law emptyOrder.toFinset
         {Var.parity} {Var.left} = 0 := by
   rw [Shannon.familyCondMutualInfo_chain_rule]
-  simp [emptyOrder]
+  exact Fin.sum_univ_zero _
 
 private example :
     Shannon.familyCondMutualInfo law
@@ -182,7 +179,11 @@ private theorem left_right_independent :
   have hmap :
       source.map (fun x => (coordinates .left x, coordinates .right x)) =
         source := by
-    simpa [coordinates] using PMF.map_id source
+    change source.map (fun x : Bool × Bool => (x.1, x.2)) = source
+    rw [show (fun x : Bool × Bool => (x.1, x.2)) = id by
+      funext x
+      exact Prod.eta x]
+    exact PMF.map_id source
   rw [hmap]
   exact source_independent
 
@@ -300,40 +301,6 @@ private example :
   have hreal := congrArg ENNReal.toReal hfactor
   norm_num [source, bitLaw, PMF.uniformOfFintype_apply] at hreal
 
-/-! ### Certificate consumers -/
-
-/-- The first atom in the overlapping submodularity example. -/
-def leftAtom : Finset Var :=
-  {Var.left, Var.parity}
-
-/-- The second atom in the overlapping submodularity example. -/
-def rightAtom : Finset Var :=
-  {Var.right, Var.parity}
-
-/--
-The checked submodularity certificate is sound for the concrete Boolean-family
-entropy valuation.
--/
-theorem submodularity_checked :
-    0 <= EntropyExpr.eval (Shannon.familyEntropy law)
-      (Certificate.Submodularity.checkedCert leftAtom rightAtom).target := by
-  exact Certificate.CheckedCert.sound_finiteFamily
-    (Certificate.Submodularity.checkedCert leftAtom rightAtom) law
-
-/--
-The raw submodularity certificate proves the same concrete Shannon inequality
-only after the existing validator has accepted its primitive tag and exact
-decomposition.
--/
-theorem submodularity_raw :
-    0 <= EntropyExpr.eval (Shannon.familyEntropy law)
-      (Certificate.Submodularity.rawCert leftAtom rightAtom).target := by
-  simpa only [Shannon.finiteFamilyEntropyVal_eval] using
-    Certificate.RawCert.sound_of_toCheckedCert?_isSome
-      (Certificate.Submodularity.rawCert_toCheckedCert?_isSome
-        (a := leftAtom) (b := rightAtom))
-      (Shannon.finiteFamilyEntropyVal law)
-
 end BooleanModel
 
 /-! ## A family with dependent alphabets -/
@@ -419,7 +386,11 @@ private theorem coordinatePairIndependent :
   have hmap :
       source.map (fun x => (coordinates .bit x, coordinates .trit x)) =
         source := by
-    simpa [coordinates] using PMF.map_id source
+    change source.map (fun x : Bool × Fin 3 => (x.1, x.2)) = source
+    rw [show (fun x : Bool × Fin 3 => (x.1, x.2)) = id by
+      funext x
+      exact Prod.eta x]
+    exact PMF.map_id source
   rw [hmap]
   exact source_independent
 
@@ -607,7 +578,10 @@ private example
       Shannon.IsIndependent (q.map fun y => (y i, y j)) := by
   have hid : Shannon.familyLawOf q (fun i y => y i) = q := by
     rw [Shannon.familyLawOf]
-    simpa using PMF.map_id q
+    rw [show (fun x : ((i : Var) → alpha i) => fun i => x i) = id by
+      funext x i
+      rfl]
+    exact PMF.map_id q
   have h := Shannon.isMutuallyIndependentFamilyOf_pair_iff_isIndependentOf
     q (fun i y => y i) hij
   rw [Shannon.IsMutuallyIndependentFamilyOf, hid,

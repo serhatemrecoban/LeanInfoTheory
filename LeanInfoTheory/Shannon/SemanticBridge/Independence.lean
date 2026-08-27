@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.SemanticBridge.Theorems
@@ -176,7 +181,6 @@ theorem isIndependent_map_swap {alpha : Type u} {beta : Type v}
         rcases x with ⟨a, b⟩
         rfl
       rw [hfun, PMF.map_id]
-    dsimp only at hp'
     rw [hswap, indepProd_map_swap, fstMarginal_map_swap,
       sndMarginal_map_swap] at hp'
     exact hp'
@@ -254,8 +258,8 @@ theorem mutualInfo_eq_zero_iff_isIndependent
     {alpha : Type u} {beta : Type v}
     [Fintype alpha] [Fintype beta] (p : PMF (alpha × beta)) :
     mutualInfo p = 0 ↔ IsIndependent p := by
-  letI : MeasurableSpace (alpha × beta) := ⊤
-  haveI : MeasurableSingletonClass (alpha × beta) := ⟨fun _ => trivial⟩
+  let : MeasurableSpace (alpha × beta) := ⊤
+  have : MeasurableSingletonClass (alpha × beta) := ⟨fun _ => trivial⟩
   have hsupport :
       p.support ⊆
         (indepProd (fstMarginal p) (sndMarginal p)).support :=

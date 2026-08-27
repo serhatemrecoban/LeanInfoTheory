@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.Entropy
@@ -414,7 +419,7 @@ theorem apply_le_fstMarginal {alpha : Type u} {beta : Type v} [Finite beta]
     (p : PMF (alpha × beta)) (a : alpha) (b : beta) :
     p (a, b) ≤ fstMarginal p a := by
   classical
-  letI := Fintype.ofFinite beta
+  let := Fintype.ofFinite beta
   rw [fstMarginal_apply (p := p) (a := a)]
   exact finset_apply_le_sum (fun b' => p (a, b')) b
 
@@ -425,7 +430,7 @@ theorem apply_le_sndMarginal {alpha : Type u} {beta : Type v} [Finite alpha]
     (p : PMF (alpha × beta)) (a : alpha) (b : beta) :
     p (a, b) ≤ sndMarginal p b := by
   classical
-  letI := Fintype.ofFinite alpha
+  let := Fintype.ofFinite alpha
   rw [sndMarginal_apply (p := p) (b := b)]
   exact finset_apply_le_sum (fun a' => p (a', b)) a
 
@@ -438,7 +443,7 @@ theorem apply_le_fstThirdMarginal
     (p : PMF (alpha × beta × gamma)) (a : alpha) (b : beta) (c : gamma) :
     p (a, b, c) ≤ fstThirdMarginal p (a, c) := by
   classical
-  letI := Fintype.ofFinite beta
+  let := Fintype.ofFinite beta
   rw [fstThirdMarginal_apply (p := p) (a := a) (c := c)]
   exact finset_apply_le_sum (fun b' => p (a, b', c)) b
 
@@ -451,7 +456,7 @@ theorem apply_le_sndThirdMarginal
     (p : PMF (alpha × beta × gamma)) (a : alpha) (b : beta) (c : gamma) :
     p (a, b, c) ≤ sndThirdMarginal p (b, c) := by
   classical
-  letI := Fintype.ofFinite alpha
+  let := Fintype.ofFinite alpha
   rw [sndThirdMarginal_apply (p := p) (b := b) (c := c)]
   exact finset_apply_le_sum (fun a' => p (a', b, c)) a
 
@@ -464,8 +469,8 @@ theorem apply_le_thirdMarginal
     (p : PMF (alpha × beta × gamma)) (a : alpha) (b : beta) (c : gamma) :
     p (a, b, c) ≤ thirdMarginal p c := by
   classical
-  letI := Fintype.ofFinite alpha
-  letI := Fintype.ofFinite beta
+  let := Fintype.ofFinite alpha
+  let := Fintype.ofFinite beta
   have hinner : p (a, b, c) ≤ ∑ b', p (a, b', c) :=
     finset_apply_le_sum (fun b' => p (a, b', c)) b
   have houter : (∑ b', p (a, b', c)) ≤ ∑ a', ∑ b', p (a', b', c) :=

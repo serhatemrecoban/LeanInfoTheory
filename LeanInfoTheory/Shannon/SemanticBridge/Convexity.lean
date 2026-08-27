@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Probability.FiniteChannel
@@ -112,7 +117,7 @@ private theorem toReal_klDiv_bind_le_toReal_sum_of_ne_top
       (∑ i, r i *
         InformationTheory.klDiv (P i).toMeasure (Q i).toMeasure).toReal := by
   classical
-  letI := Fintype.ofFinite alpha
+  let := Fintype.ofFinite alpha
   have hcomponentSupport (i : iota) (hi : r i ≠ 0) :
       (P i).support ⊆ (Q i).support :=
     (klDiv_pmf_ne_top_iff_support_subset (P i) (Q i)).1
@@ -342,10 +347,25 @@ theorem klDiv_binaryMixture_le
           InformationTheory.klDiv p1.toMeasure q1.toMeasure +
         ((1 - t : NNReal) : ENNReal) *
           InformationTheory.klDiv p2.toMeasure q2.toMeasure := by
-  simpa [PMF.binaryMixture, Fintype.univ_bool, PMF.bernoulli_apply,
-    ENNReal.coe_sub] using
-    (klDiv_bind_le_sum
-      (PMF.bernoulli t ht)
+  let r : PMF Bool :=
+    PMF.ofFintype
+      (fun b : Bool => ((cond b t (1 - t) : NNReal) : ENNReal))
+      (by simp [ht])
+  have hr_true : r true = (t : ENNReal) := by
+    simp only [r, PMF.ofFintype_apply, Bool.cond_true]
+  have hr_false : r false = ((1 - t : NNReal) : ENNReal) := by
+    simp only [r, PMF.ofFintype_apply, Bool.cond_false]
+  change
+    InformationTheory.klDiv
+        (r.bind (fun b => if b then p1 else p2)).toMeasure
+        (r.bind (fun b => if b then q1 else q2)).toMeasure <=
+      (t : ENNReal) * InformationTheory.klDiv p1.toMeasure q1.toMeasure +
+        ((1 - t : NNReal) : ENNReal) *
+          InformationTheory.klDiv p2.toMeasure q2.toMeasure
+  simpa only [Fintype.univ_bool, Finset.sum_insert, Finset.mem_singleton,
+    Bool.true_eq_false, Bool.false_eq_true, not_false_eq_true,
+    Finset.sum_singleton, hr_true, hr_false, if_true, if_false] using
+    (klDiv_bind_le_sum r
       (fun b => if b then p1 else p2)
       (fun b => if b then q1 else q2))
 
@@ -370,22 +390,26 @@ theorem toReal_klDiv_binaryMixture_le
           (InformationTheory.klDiv p1.toMeasure q1.toMeasure).toReal +
         ((1 - t : NNReal) : Real) *
           (InformationTheory.klDiv p2.toMeasure q2.toMeasure).toReal := by
+  let r : PMF Bool :=
+    PMF.ofFintype
+      (fun b : Bool => ((cond b t (1 - t) : NNReal) : ENNReal))
+      (by simp [ht])
   have hsupport :
-      ∀ b, PMF.bernoulli t ht b ≠ 0 ->
+      ∀ b, r b ≠ 0 ->
         (if b then p1 else p2).support ⊆
           (if b then q1 else q2).support := by
     intro b hb
     cases b
     · apply hsecond
       intro ht1
-      exact hb (by simp [PMF.bernoulli_apply, ht1])
+      exact hb (by simp [r, PMF.ofFintype_apply, ht1])
     · apply hfirst
       intro ht0
-      exact hb (by simp [PMF.bernoulli_apply, ht0])
-  simpa [PMF.binaryMixture, Fintype.univ_bool, PMF.bernoulli_apply,
+      exact hb (by simp [r, PMF.ofFintype_apply, ht0])
+  simpa [r, PMF.binaryMixture, Fintype.univ_bool, PMF.ofFintype_apply,
     ENNReal.coe_sub] using
     (toReal_klDiv_bind_le_sum
-      (PMF.bernoulli t ht)
+      r
       (fun b => if b then p1 else p2)
       (fun b => if b then q1 else q2)
       hsupport)
@@ -695,7 +719,7 @@ private theorem real_binaryKl_eq_iff_cross
           ((1 - t : NNReal) : Real) * realKL p2 q2) ↔
       ∀ x, p1 x * q2 x = p2 x * q1 x := by
   classical
-  letI := Fintype.ofFinite alpha
+  let := Fintype.ofFinite alpha
   have hmix :
       (PMF.binaryMixture t ht p1 p2).support ⊆
         (PMF.binaryMixture t ht q1 q2).support :=
@@ -778,7 +802,7 @@ private theorem ennreal_binaryKl_eq_iff_cross
             InformationTheory.klDiv p2.toMeasure q2.toMeasure) ↔
       ∀ x, p1 x * q2 x = p2 x * q1 x := by
   classical
-  letI := Fintype.ofFinite alpha
+  let := Fintype.ofFinite alpha
   have hmixSupport :
       (PMF.binaryMixture t ht p1 p2).support ⊆
         (PMF.binaryMixture t ht q1 q2).support :=
@@ -847,7 +871,7 @@ theorem klDiv_binaryMixture_eq_iff
             InformationTheory.klDiv p2.toMeasure q2.toMeasure) ↔
       ∀ x, p1 x * q2 x = p2 x * q1 x := by
   classical
-  letI := Fintype.ofFinite alpha
+  let := Fintype.ofFinite alpha
   exact ennreal_binaryKl_eq_iff_cross
     t ht ht0 ht1 p1 q1 p2 q2 hfirst hsecond
 
@@ -877,7 +901,7 @@ theorem toReal_klDiv_binaryMixture_eq_iff
             (InformationTheory.klDiv p2.toMeasure q2.toMeasure).toReal) ↔
       ∀ x, p1 x * q2 x = p2 x * q1 x := by
   classical
-  letI := Fintype.ofFinite alpha
+  let := Fintype.ofFinite alpha
   exact real_binaryKl_eq_iff_cross
     t ht ht0 ht1 p1 q1 p2 q2 hfirst hsecond
 
@@ -1021,10 +1045,24 @@ theorem mutualInfo_binaryMixture_input_concave
         ((1 - t : NNReal) : Real) *
           mutualInfo (PMF.channelJoint q W) <=
       mutualInfo (PMF.channelJoint (PMF.binaryMixture t ht p q) W) := by
-  simpa [PMF.binaryMixture, Fintype.univ_bool, PMF.bernoulli_apply,
-    ENNReal.coe_sub] using
-    (sum_mul_mutualInfo_channelJoint_le
-      (PMF.bernoulli t ht) (fun b => if b then p else q) W)
+  let r : PMF Bool :=
+    PMF.ofFintype
+      (fun b : Bool => ((cond b t (1 - t) : NNReal) : ENNReal))
+      (by simp [ht])
+  have hr_true : (r true).toReal = (t : Real) := by
+    simp only [r, PMF.ofFintype_apply, Bool.cond_true]
+    rw [ENNReal.coe_toReal]
+  have hr_false : (r false).toReal = ((1 - t : NNReal) : Real) := by
+    simp only [r, PMF.ofFintype_apply, Bool.cond_false]
+    rw [ENNReal.coe_toReal]
+  change
+    (t : Real) * mutualInfo (PMF.channelJoint p W) +
+        ((1 - t : NNReal) : Real) * mutualInfo (PMF.channelJoint q W) <=
+      mutualInfo (PMF.channelJoint (r.bind fun b => if b then p else q) W)
+  simpa only [Fintype.univ_bool, Finset.sum_insert, Finset.mem_singleton,
+    Bool.true_eq_false, Bool.false_eq_true, not_false_eq_true,
+    Finset.sum_singleton, hr_true, hr_false, if_true, if_false] using
+    (sum_mul_mutualInfo_channelJoint_le r (fun b => if b then p else q) W)
 
 /-!
 ## Mutual information under channel mixing
@@ -1038,7 +1076,7 @@ private theorem bind_channelJoint_eq_channelJoint_bind
     r.bind (fun i => PMF.channelJoint p (W i)) =
       PMF.channelJoint p (fun x => r.bind fun i => W i x) := by
   classical
-  letI := Fintype.ofFinite iota
+  let := Fintype.ofFinite iota
   apply PMF.ext
   rintro ⟨x, y⟩
   simp only [PMF.bind_apply, tsum_fintype, PMF.channelJoint_apply]
@@ -1062,7 +1100,7 @@ private theorem bind_indepProd_eq_indepProd_bind
     r.bind (fun i => indepProd p (Q i)) =
       indepProd p (r.bind Q) := by
   classical
-  letI := Fintype.ofFinite iota
+  let := Fintype.ofFinite iota
   apply PMF.ext
   rintro ⟨x, y⟩
   simp only [PMF.bind_apply, tsum_fintype, indepProd_apply]
@@ -1084,8 +1122,8 @@ theorem mutualInfo_channelMixture_le_sum
         (PMF.channelJoint p (fun x => r.bind fun i => W i x)) <=
       ∑ i, (r i).toReal * mutualInfo (PMF.channelJoint p (W i)) := by
   classical
-  letI : MeasurableSpace (alpha × beta) := ⊤
-  haveI : MeasurableSingletonClass (alpha × beta) := ⟨fun _ => trivial⟩
+  let : MeasurableSpace (alpha × beta) := ⊤
+  have : MeasurableSingletonClass (alpha × beta) := ⟨fun _ => trivial⟩
   have hsupport :
       ∀ i, r i ≠ 0 ->
         (PMF.channelJoint p (W i)).support ⊆
@@ -1152,10 +1190,26 @@ theorem mutualInfo_binaryChannelMixture_le
       (t : Real) * mutualInfo (PMF.channelJoint p W1) +
         ((1 - t : NNReal) : Real) *
           mutualInfo (PMF.channelJoint p W2) := by
-  simpa [PMF.binaryMixture, Fintype.univ_bool, PMF.bernoulli_apply,
-    ENNReal.coe_sub] using
-    (mutualInfo_channelMixture_le_sum
-      (PMF.bernoulli t ht) p
+  let r : PMF Bool :=
+    PMF.ofFintype
+      (fun b : Bool => ((cond b t (1 - t) : NNReal) : ENNReal))
+      (by simp [ht])
+  have hr_true : (r true).toReal = (t : Real) := by
+    simp only [r, PMF.ofFintype_apply, Bool.cond_true]
+    rw [ENNReal.coe_toReal]
+  have hr_false : (r false).toReal = ((1 - t : NNReal) : Real) := by
+    simp only [r, PMF.ofFintype_apply, Bool.cond_false]
+    rw [ENNReal.coe_toReal]
+  change
+    mutualInfo
+        (PMF.channelJoint p
+          (fun x => r.bind fun b => if b then W1 x else W2 x)) <=
+      (t : Real) * mutualInfo (PMF.channelJoint p W1) +
+        ((1 - t : NNReal) : Real) * mutualInfo (PMF.channelJoint p W2)
+  simpa only [Fintype.univ_bool, Finset.sum_insert, Finset.mem_singleton,
+    Bool.true_eq_false, Bool.false_eq_true, not_false_eq_true,
+    Finset.sum_singleton, hr_true, hr_false, if_true, if_false] using
+    (mutualInfo_channelMixture_le_sum r p
       (fun b x => if b then W1 x else W2 x))
 
 end

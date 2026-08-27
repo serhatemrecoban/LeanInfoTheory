@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.SemanticBridge.DataProcessing
@@ -93,7 +98,7 @@ private theorem weighted_klDiv_ne_top_of_active_support
         InformationTheory.klDiv
           (W x).toMeasure (V x).toMeasure ≠ ⊤ := by
   classical
-  letI := Fintype.ofFinite beta
+  let := Fintype.ofFinite beta
   by_cases hx : r x = 0
   · simp [hx]
   · exact
@@ -119,7 +124,7 @@ theorem conditionalKlDiv_eq_sum
       ∑ x, r x *
         InformationTheory.klDiv (W x).toMeasure (V x).toMeasure := by
   classical
-  letI := Fintype.ofFinite beta
+  let := Fintype.ofFinite beta
   by_cases hactive :
       ∀ x, r x ≠ 0 -> (W x).support ⊆ (V x).support
   · have hjointSupport :
@@ -275,8 +280,8 @@ theorem klDiv_channelJoint_eq_add_conditionalKlDiv
       InformationTheory.klDiv p.toMeasure q.toMeasure +
         conditionalKlDiv p W V := by
   classical
-  letI := Fintype.ofFinite alpha
-  letI := Fintype.ofFinite beta
+  let := Fintype.ofFinite alpha
+  let := Fintype.ofFinite beta
   simpa only [conditionalKlDiv, channelJoint_toMeasure] using
     (InformationTheory.klDiv_compProd_eq_add
       p.toMeasure q.toMeasure

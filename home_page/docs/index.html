@@ -9,41 +9,46 @@
   <body>
     <header class="page-header" role="banner">
       <h1 class="project-name">Documentation</h1>
-      <h2 class="project-tagline">Hand-written guides plus a generated declaration index.</h2>
+      <h2 class="project-tagline">Guides, the supported API reference, and supplementary generated inventories.</h2>
       <nav class="project-links" aria-label="Project links">
         <a href="../" class="btn">Home</a>
+        <a href="./" class="btn">Docs</a>
         <a href="../theorems.html" class="btn">Theorems</a>
-        <a href="../submodularity-demo.html" class="btn">Demo</a>
-        <a href="api-index.html" class="btn">API Index</a>
         <a href="../blueprint/" class="btn">Blueprint</a>
         <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
     </header>
     <main class="main-content" role="main">
       <p class="lead">
-        The site currently combines hand-written guides with generated
-        reference artifacts. A lightweight declaration index is available now;
-        full Lean doc-gen output and a theorem-level blueprint remain planned.
+        The v0.1.0 signature-bearing API reference covers all 31 supported
+        modules and 601 supported declarations. Its complete dependency-aware
+        tree is served at the stable versioned route below.
       </p>
 
       <div class="link-grid">
-        <a href="api-index.html">Generated declaration index</a>
+        <a href="v0.1.0/">v0.1.0 API reference</a>
+        <a href="api-index.html">Source-derived declaration inventory</a>
         <a href="../module-guide.html">Module guide</a>
         <a href="../theorems.html">Theorem highlights</a>
-        <a href="../submodularity-demo.html">Submodularity demo</a>
         <a href="../development.html">Development</a>
         <a href="../prior-art.html">Prior art</a>
         <a href="../blueprint/">Blueprint</a>
         <a href="../blueprint/dep_graph_document.html">Module dependency map</a>
         <a href="../roadmap.html">Roadmap</a>
+        <a href="third-party.html">Documentation provenance</a>
+        <a href="../license.html">License and citation</a>
       </div>
 
       <section class="notice" aria-label="Generated docs status">
         <p>
-          The generated declaration index is source-derived and intentionally lighter
-          than full Lean doc-gen. Use the module guide for import choices and
-          the theorem highlights page for the main checked mathematical
-          statements.
+          The signature-bearing reference is the supported API documentation.
+          The 716-entry source-derived inventory is supplementary: it includes
+          non-private declarations from non-stable examples and reference
+          anchors as well as the supported library. Use the module guide for
+          import choices and theorem highlights for a curated mathematical map.
+          The published artifact is rebuilt from the exact release commit, so
+          project source links are immutable commit links rather than local or
+          moving-branch paths.
         </p>
       </section>
     </main>

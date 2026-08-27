@@ -9,12 +9,11 @@
   <body>
     <header class="page-header" role="banner">
       <h1 class="project-name">Roadmap</h1>
-      <h2 class="project-tagline">A 3 / 6 / 12 month plan for the library and certificate checker.</h2>
+      <h2 class="project-tagline">Release maintenance and future finite-information-theory work.</h2>
       <nav class="project-links" aria-label="Project links">
         <a href="./" class="btn">Home</a>
+        <a href="docs/" class="btn">Docs</a>
         <a href="theorems.html" class="btn">Theorems</a>
-        <a href="submodularity-demo.html" class="btn">Demo</a>
-        <a href="docs/api-index.html" class="btn">API Index</a>
         <a href="blueprint/" class="btn">Blueprint</a>
         <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
@@ -40,22 +39,22 @@
           <tr>
             <td><span class="status-pill proved">Completed</span></td>
             <td>Checked Lean work or completed website/documentation work.</td>
-            <td>Project B Chunks 1-8, finite Shannon and semantic/KL bridges, stochastic data processing, finite sufficiency, Fano, finite-family, finite convexity, conditional-KL, and mutual-independence APIs, checked certificate demos, and generated reference artifacts.</td>
+            <td>Project B Chunks 1-8, finite Shannon and semantic/KL bridges, stochastic data processing, finite sufficiency, Fano, finite-family, finite convexity, conditional-KL, mutual-independence APIs, and generated reference artifacts.</td>
           </tr>
           <tr>
             <td><span class="status-pill prototype">Active</span></td>
-            <td>Next-phase selection.</td>
-            <td>Select any later mathematical, certificate, or documentation phase through a separate readiness and planning process.</td>
+            <td><code>v0.1.x</code> maintenance and downstream adoption.</td>
+            <td>The stable baseline contains 31 supported modules, 601 project declarations, and 92 root exports. Provenance, attribution, Apache-2.0 licensing, citation metadata, and versioned API documentation are part of the release contract.</td>
           </tr>
           <tr>
             <td><span class="status-pill planned">Planned</span></td>
             <td>Next technical goals that are not yet formalized or generated.</td>
-            <td>Later Chapter 2 extensions, richer certificate assumptions, and fuller generated documentation.</td>
+            <td>Later Chapter 2 extensions, theorem-level blueprint work, and optional equation-expanded documentation.</td>
           </tr>
           <tr>
             <td><span class="status-pill separate">Later</span></td>
             <td>Larger infrastructure or research-facing milestones.</td>
-            <td>PSITIP/oXitip import, network converse skeletons, and a technical report or paper.</td>
+            <td>Broader finite information theory, downstream applications, and a technical report or paper.</td>
           </tr>
         </tbody>
       </table>
@@ -69,32 +68,39 @@
         <li><span class="status-pill proved">Completed</span> Project B Chunk 3: finite stochastic channels, Markov characterizations and factorization, MI/KL data processing, invariant-law contraction, and entropy growth under doubly stochastic channels.</li>
         <li><span class="status-pill proved">Completed</span> Project B Chunk 4: finite sufficient statistics, exact recovery, common-posterior characterizations, and guarded equality in data processing.</li>
         <li><span class="status-pill proved">Completed</span> Project B Chunk 5: deterministic decoding error, exact/q-ary/weak finite Fano inequalities, converse-facing corollaries, examples, API review, generated references, and full milestone validation.</li>
-        <li><span class="status-pill proved">Completed</span> Project B Chunk 6: dependent finite-family entropy/MI/CMI, ordered chain rules, semantic Shannon inequalities, concrete entropy valuation, checked-certificate interpretation, examples, generated references, full milestone validation, and checkpoint <code>7b5f0db</code>.</li>
+        <li><span class="status-pill proved">Completed</span> Project B Chunk 6: dependent finite-family entropy/MI/CMI, ordered chain rules, semantic Shannon inequalities, examples, generated references, full milestone validation, and checkpoint <code>7b5f0db</code>.</li>
         <li><span class="status-pill proved">Completed</span> Project B Chunk 7: zero-safe finite log-sum, PMF mixtures, entropy concavity, KL joint convexity and support-aware binary equality, MI input/channel convexity, maintained examples, generated references, independent milestone validation through <code>C7.22</code>, and checkpoint <code>5e616d8</code>.</li>
         <li><span class="status-pill proved">Completed</span> Project B Chunk 8: four conditional-family CMI chain rules, common-base conditional KL and joint chain rules, finite-family mutual independence with n-way entropy-additivity equality, maintained examples, generated references, independent milestone validation through <code>C8.24</code>, and checkpoint <code>1eef228</code>. The required Lean and Pages workflows both pass.</li>
         <li><span class="status-pill proved">Completed</span> Semantic bridge theorems for expected self-information, conditional laws, KL divergence, fiber formulas, and nonnegativity.</li>
-        <li><span class="status-pill demo">Completed demos</span> Checked certificates for submodularity, subadditivity, monotonicity, and three-way subadditivity.</li>
-        <li><span class="status-pill proved">Completed</span> Website dashboard, theorem highlights, module guide, source-derived declaration index, module dependency map, prior-art page, and trusted-flow demo diagram.</li>
+        <li><span class="status-pill proved">Completed</span> Release import normalization: lightweight and full mathematical umbrellas, focused semantic declaration ownership, and explicit non-stable anchors.</li>
+        <li><span class="status-pill proved">Completed</span> Local release trust gates: maintained warning-as-error builds, frozen-API and import-boundary checks, strict source and generated-artifact checks, and project-wide axiom auditing.</li>
+        <li><span class="status-pill proved">Completed</span> Local package and preliminary legal metadata: toolchain-fixed Lake package metadata, canonical Apache-2.0 licence, CFF citation validation, and exact current source-header audit.</li>
+        <li><span class="status-pill proved">Completed</span> Release-facing documentation and independently compiled README examples, including tagged dependency, imports, scope, units, limitations, compatibility, and versioned release notes.</li>
+        <li><span class="status-pill proved">Completed</span> Local Step 11 signature-bearing documentation: 31 supported module pages and all 601 frozen declarations, with optional equation pages omitted and independent final review complete.</li>
+        <li><span class="status-pill proved">Completed</span> Versioned website staging, navigation, exact-commit source links, upstream-licence inventory, guarded publication workflow, and artifact validation.</li>
+        <li><span class="status-pill proved">Completed</span> Release checkpoint and plan-health review: the mathematical, units, certificate-boundary, package, API, and trust contracts remain healthy.</li>
+        <li><span class="status-pill proved">Completed</span> Legal/provenance review, automatic-Zenodo route, and <code>2026-08-27</code> release date. The tagged CFF remains DOI-free.</li>
+        <li><span class="status-pill proved">Completed</span> Website dashboard, theorem highlights, module guide, source-derived declaration index, module dependency map, and prior-art page.</li>
       </ul>
 
-      <h2>Active</h2>
+      <h2>Next</h2>
       <ul class="roadmap-list">
-        <li><span class="status-pill prototype">Active</span> No later theorem phase is selected. The next phase will be chosen through a separate readiness and planning process while preserving the checkpointed Chunk 8 API and architecture.</li>
+        <li><span class="status-pill planned">Next</span> Maintain source compatibility throughout <code>0.1.x</code> and respond to downstream adoption feedback.</li>
+        <li><span class="status-pill planned">Planned</span> Evaluate theorem-level leanblueprint pages, a blueprint PDF, and optional equation-expanded API documentation when concrete use justifies their cost.</li>
+        <li><span class="status-pill separate">Downstream</span> Keep certificate checking, paper-specific constructions, and application automation in separate projects.</li>
       </ul>
 
       <h2>Planned</h2>
       <ul class="roadmap-list">
-        <li><span class="status-pill planned">Planned</span> Extend the current module dependency map and source-derived declaration index toward theorem-level leanblueprint pages, a blueprint PDF, and full Lean doc-gen output.</li>
-        <li><span class="status-pill planned">Planned</span> Add richer certificate assumptions such as independence, functional dependence, and Markov constraints.</li>
+        <li><span class="status-pill planned">Planned</span> Extend the current module dependency map toward theorem-level leanblueprint pages and a blueprint PDF; consider optional equation-expanded API documentation only if its cost and use justify it.</li>
         <li><span class="status-pill planned">Planned</span> Select any later Cover-Thomas Chapter 2 theorem scope only through a separate readiness and planning process after the Chunk 8 checkpoint.</li>
         <li><span class="status-pill planned">Planned</span> Prepare focused mathlib PRs for generic, stable finite-measure lemmas.</li>
       </ul>
 
       <h2>Later</h2>
       <ul class="roadmap-list">
-        <li><span class="status-pill separate">Later</span> Add PSITIP/oXitip-style import into untrusted raw certificate data.</li>
-        <li><span class="status-pill separate">Later</span> Formalize selected network-information-theory converse proof skeletons.</li>
-        <li><span class="status-pill separate">Later</span> Write a technical report or short paper describing the Lean library and certificate pipeline.</li>
+        <li><span class="status-pill separate">Later</span> Formalize additional reusable finite information-theory results motivated by downstream applications.</li>
+        <li><span class="status-pill separate">Later</span> Write a technical report or short paper describing the Lean library.</li>
       </ul>
     </main>
   </body>

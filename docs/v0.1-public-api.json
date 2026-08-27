@@ -1,0 +1,4255 @@
+{
+  "aggregate_declaration_counts": {
+    "LeanInfoTheory": 0,
+    "LeanInfoTheory.Examples": 0,
+    "LeanInfoTheory.InformationMeasures": 0,
+    "LeanInfoTheory.MathlibFragments": 0,
+    "LeanInfoTheory.Shannon": 0,
+    "LeanInfoTheory.Shannon.SemanticBridge": 0
+  },
+  "declaration_count": 601,
+  "declarations": [
+    {
+      "attributes": [],
+      "kind": "abbrev",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.FamilyOutcome"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.IsCondIndependent"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.IsCondIndependentOf"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.IsIndependent"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.IsIndependentOf"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.IsMarkovChain"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.IsMarkovChainOf"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+      "name": "LeanInfoTheory.Shannon.IsMutuallyIndependentFamily"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+      "name": "LeanInfoTheory.Shannon.IsMutuallyIndependentFamilyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.IsSufficientChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.IsSufficientStatistic"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.IsSufficientStatisticOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_eq_zero_of_fstMarginal_eq_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_eq_zero_of_fstThirdMarginal_eq_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_eq_zero_of_sndMarginal_eq_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_eq_zero_of_sndThirdMarginal_eq_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_eq_zero_of_thirdMarginal_eq_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_le_fstMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_le_fstThirdMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_le_sndMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_le_sndThirdMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.apply_le_thirdMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.EntropyConcavity",
+      "name": "LeanInfoTheory.Shannon.binaryMixture_entropy_concave"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.EntropyConcavity",
+      "name": "LeanInfoTheory.Shannon.binaryMixture_entropy_eq_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.channelJoint_condFstGivenSndChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.channelJoint_toMeasure"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.channelPosterior"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.channelPosterior_reconstructs_joint"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condEntropy"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condEntropyFstGivenSnd"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyFstGivenSnd_eq_zero_iff_of_sndMarginal_ne_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyFstGivenSnd_nonneg"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condEntropyFstGivenSnd_of_sndMarginal_eq_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condEntropyFstGivenSnd_of_sndMarginal_ne_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_comp_eq_iff_exists_recovery"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_comp_eq_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_comp_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_dataProcessing"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_dataProcessing_eq_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_deterministic_chain_rule"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_eq"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_eq_condEntropyOf_iff_isCondIndependentOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_eq_entropyOf_iff_isIndependentOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_eq_zero_iff_exists_function"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_fano"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_fano_qary"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_fano_weak"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_fst_snd"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_le_condEntropyOf_pair"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_le_condEntropyOf_pair_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_le_entropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_left_le_condEntropyOf_pair"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_pair_additive_iff_isCondIndependentOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_pair_chain_rule"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_pair_chain_rule_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_pair_eq_add_condEntropyOf_iff_isCondIndependentOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_pair_le_add_condEntropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_pair_le_condEntropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_pair_le_condEntropyOf_add_condEntropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_pair_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_right_le_condEntropyOf_pair"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_self_eq_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.condEntropy_dataProcessing"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.condEntropy_dataProcessing_eq_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condEntropy_eq"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.condEntropy_eq_condEntropy_fstThirdMarginal_iff_isCondIndependent"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.condEntropy_eq_entropy_left_iff_isIndependent"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.condEntropy_eq_of_isSufficientChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropy_eq_zero_iff_exists_function"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.condEntropy_fano"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.condEntropy_fano_qary"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.condEntropy_fano_weak"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropy_fstThirdMarginal_le_condEntropy_pairThirdLaw"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropy_le_condEntropy_fstThirdMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropy_le_entropy_fstMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropy_le_entropy_left"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropy_left_le_condEntropy_pair"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropy_map_fst_eq_iff_exists_recovery"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropy_map_fst_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropy_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condEntropy_pairThirdLaw_chain_rule"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condEntropy_pairThirdLaw_chain_rule_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropy_pairThirdLaw_le_condEntropy_fstThirdMarginal_add_condEntropy_sndThirdMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.condEntropy_pair_additive_iff_isCondIndependent"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.condEntropy_pair_eq_add_condEntropy_iff_isCondIndependent"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropy_pair_le_add_condEntropy"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropy_right_le_condEntropy_pair"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condEntropy_sndThirdMarginal_le_condEntropy_pairThirdLaw"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSnd"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSndChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSndChannel_null_fiber_irrelevant"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSndChannel_of_sndMarginal_eq_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSndChannel_of_sndMarginal_ne_zero"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSnd_apply"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSnd_apply_eq_zero_iff"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSnd_apply_ne_zero_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSnd_mul_sndMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSnd_pairThirdLaw_eq_condFstSndGivenThird"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstGivenSnd_proof_irrel"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstSndGivenThird"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condFstSndGivenThird_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThirdKL"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird_eq_KL"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird_eq_entropy_fibers_of_ne_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird_nonneg"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird_of_thirdMarginal_eq_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird_of_thirdMarginal_ne_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoOf_eq"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoOf_eq_condEntropyOf_add_condEntropyOf_sub_condEntropyOf_pair"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoOf_eq_zero_iff_isCondIndependentOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoOf_eq_zero_iff_isMarkovChainOf"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoOf_fst_snd_third"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoOf_le_condEntropyOf_left"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoOf_le_condEntropyOf_right"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoOf_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condMutualInfoOf_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_eq"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_eq_condEntropy_fstThirdMarginal_sub_condEntropy"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_eq_condEntropy_marginals"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_eq_condEntropy_sndThirdMarginal_sub_condEntropy_swap12"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThird"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThirdKL"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_eq_zero_iff_condMutualInfoFstSndGivenThird_eq_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_eq_zero_iff_isCondIndependent"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_eq_zero_of_isSufficientChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_le_condEntropy_fstThirdMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_le_condEntropy_left"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_le_condEntropy_right"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_le_condEntropy_sndThirdMarginal"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_map_swap12"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.condMutualInfo_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL",
+      "name": "LeanInfoTheory.Shannon.conditionalKlDiv"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL",
+      "name": "LeanInfoTheory.Shannon.conditionalKlDiv_eq_sum"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL",
+      "name": "LeanInfoTheory.Shannon.conditionalKlDiv_self"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.decodingErrorIndicator"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.decodingErrorIndicator_eq_false_iff"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.decodingErrorIndicator_eq_true_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.decodingErrorProbability"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.decodingErrorProbabilityOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.decodingErrorProbabilityOf_fano_lower_bound"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.decodingErrorProbabilityOf_fano_lower_bound_of_uniform_source"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.decodingErrorProbabilityOf_le_one"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.decodingErrorProbabilityOf_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.decodingErrorProbability_eq_sum"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.decodingErrorProbability_fano_lower_bound"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.decodingErrorProbability_fano_lower_bound_of_uniform_source"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.decodingErrorProbability_le_one"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.decodingErrorProbability_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Units",
+      "name": "LeanInfoTheory.Shannon.div_log_change_base"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.entropyOf_comp_eq_iff_injOn_support"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropyOf_comp_equiv"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropyOf_comp_injective"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.entropyOf_comp_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.entropyOf_decodingErrorIndicator"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Units",
+      "name": "LeanInfoTheory.Shannon.entropyOf_div_log"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.EntropyBounds",
+      "name": "LeanInfoTheory.Shannon.entropyOf_eq_log_card_iff_map_eq_uniformOfFintype"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.EntropyBounds",
+      "name": "LeanInfoTheory.Shannon.entropyOf_eq_log_support_ncard_iff_map_eq_uniformOnSupport"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropyOf_eq_zero_iff"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.entropyOf_fst"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropyOf_id"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.entropyOf_le_jointEntropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.entropyOf_le_jointEntropyOf_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.EntropyBounds",
+      "name": "LeanInfoTheory.Shannon.entropyOf_le_log_support_ncard"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.entropyOf_left_le_jointEntropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropyOf_prodAssoc"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.entropyOf_right_le_jointEntropyOf"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.entropyOf_snd"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.entropyOf_third"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.BinaryEntropy",
+      "name": "LeanInfoTheory.Shannon.entropy_bool"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.entropy_chain_rule_left"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.entropy_chain_rule_right"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.entropy_decodingErrorIndicator"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Units",
+      "name": "LeanInfoTheory.Shannon.entropy_div_log"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.entropy_eq_entropy_fstMarginal_add_condEntropy_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.entropy_eq_entropy_sndMarginal_add_condEntropy"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.entropy_eq_entropy_sndMarginal_iff_exists_function"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_eq_integral_selfInfo"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.EntropyBounds",
+      "name": "LeanInfoTheory.Shannon.entropy_eq_log_card_iff_eq_uniformOfFintype"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.EntropyBounds",
+      "name": "LeanInfoTheory.Shannon.entropy_eq_log_support_ncard_iff_eq_uniformOnSupport"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_eq_sum"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.entropy_eq_sum_toReal_mul_neg_log"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_eq_zero_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.entropy_fstMarginal_eq_sum_joint"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.entropy_fstMarginal_le_entropy"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.entropy_le_entropy_bind_of_doublyStochastic"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.entropy_le_entropy_bind_of_uniform_invariant"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.entropy_le_entropy_fstMarginal_add_entropy_sndMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.EntropyBounds",
+      "name": "LeanInfoTheory.Shannon.entropy_le_log_card"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.EntropyBounds",
+      "name": "LeanInfoTheory.Shannon.entropy_le_log_support_ncard"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.entropy_left_le_jointEntropy"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.entropy_map_eq_iff_injOn_support"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_map_equiv"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_map_injective"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.entropy_map_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_map_prodAssoc"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_map_prodAssoc_symm"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_map_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.entropy_pairThirdLaw"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.entropy_pure"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.entropy_right_le_jointEntropy"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.entropy_sndMarginal_eq_sum_joint"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.entropy_sndMarginal_le_entropy"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.EntropyBounds",
+      "name": "LeanInfoTheory.Shannon.entropy_uniformOfFintype"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.exists_marginal_recovery_of_isSufficientStatisticOf"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondEntropy"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondEntropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondEntropyOf_eq_condEntropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondEntropyOf_le_entropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondEntropyOf_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondEntropyOf_singletons"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondEntropyOf_union_le_condEntropyOf"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondEntropy_empty_left"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondEntropy_empty_right"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondEntropy_eq_condEntropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondEntropy_le_entropy"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondEntropy_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondEntropy_singletons"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondEntropy_union_le_condEntropy"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfo"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfoOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfoOf_chain_rule"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfoOf_eq_condMutualInfoOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfoOf_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfoOf_singletons"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfoOf_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfoOf_union_chain_rule"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfo_chain_rule"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfo_empty_conditioning"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfo_empty_right"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfo_eq_condEntropy_sub_condEntropy"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfo_eq_condMutualInfoOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfo_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfo_singletons"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfo_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyCondMutualInfo_union_chain_rule"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropy"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyChain"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_chain_rule_of_nodup"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_congr"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_empty"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_eq_entropyChain"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_eq_entropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_eq_sum_singletons_iff_isMutuallyIndependentFamilyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_le_sum_singletons"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_mono"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_singleton"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_subadditivity_of_nodup"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_submodular"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_tripleUnion"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_union"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_union_chain_rule_left"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_union_chain_rule_right"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropyOf_union_le_add"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropy_chain_rule_of_nodup"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropy_empty"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropy_eq_entropyChain"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropy_eq_entropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+      "name": "LeanInfoTheory.Shannon.familyEntropy_eq_sum_singletons_iff_isMutuallyIndependentFamily"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropy_le_sum_singletons"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropy_mono"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropy_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropy_singleton"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropy_subadditivity_of_nodup"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropy_submodular"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropy_tripleUnion"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropy_union"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropy_union_chain_rule_left"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropy_union_chain_rule_right"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyEntropy_union_le_add"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyLawOf"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMarginal_familyLawOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMarginal_restrict"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfo"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfoChain"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfoOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfoOf_chain_rule_of_nodup"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfoOf_eq_entropyOf_sub_condEntropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfoOf_eq_mutualInfoChain"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfoOf_eq_mutualInfoOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfoOf_le_entropyOf_left"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfoOf_le_entropyOf_right"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfoOf_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfoOf_singletons"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfoOf_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfoOf_union_chain_rule"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfo_chain_rule_of_nodup"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfo_empty_right"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfo_eq_entropy_sub_condEntropy"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfo_eq_mutualInfoChain"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfo_eq_mutualInfoOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfo_le_entropy_left"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfo_le_entropy_right"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfo_nonneg"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfo_self"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfo_singletons"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfo_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.familyMutualInfo_union_chain_rule"
+    },
+    {
+      "attributes": [],
+      "kind": "abbrev",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_condFstSndGivenThird"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_fstThirdMarginal"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_indepProd"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_map"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_map_pair"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_map_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_ne_zero_of_apply_ne_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.fstMarginal_toReal_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "abbrev",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstSndMarginal"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstSndMarginal_map"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstSndMarginal_map_triple"
+    },
+    {
+      "attributes": [],
+      "kind": "abbrev",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstThirdMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstThirdMarginal_apply"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstThirdMarginal_map"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstThirdMarginal_map_swap12"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstThirdMarginal_map_triple"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.fstThirdMarginal_ne_zero_of_apply_ne_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.indepProd"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.indepProd_apply"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.indepProd_apply_eq_zero_iff"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.indepProd_apply_ne_zero_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.indepProd_map_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.indepProd_toMeasure"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.indepProd_toMeasure_prod"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.isCondIndependentOf_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.isCondIndependent_iff_isIndependent_condFstSndGivenThird"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.isCondIndependent_map_swap12"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.isIndependentOf_iff_indepFun"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.isIndependentOf_iff_map_eq_indepProd"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.isIndependentOf_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.isIndependent_iff_apply_eq_mul_marginals"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.isIndependent_indepProd"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.isIndependent_map_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.isMarkovChainOf_comp"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.isMarkovChainOf_of_isSufficientChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.isMarkovChainOf_reverse"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.isMarkovChain_channelExtension"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.isMarkovChain_iff_canonical_channelExtension"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.isMarkovChain_iff_crossProduct"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.isMarkovChain_iff_eq_channelExtension_condFstGivenSndChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.isMarkovChain_iff_exists_channelExtension"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.isMarkovChain_iff_fiberwise_endpoints_independent"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.isMarkovChain_iff_isIndependent_condFstSndGivenThird"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.isMarkovChain_map_reverse"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+      "name": "LeanInfoTheory.Shannon.isMutuallyIndependentFamilyOf_pair_iff_isIndependentOf"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+      "name": "LeanInfoTheory.Shannon.isMutuallyIndependentFamily_empty"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+      "name": "LeanInfoTheory.Shannon.isMutuallyIndependentFamily_mono"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+      "name": "LeanInfoTheory.Shannon.isMutuallyIndependentFamily_singleton"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.isSufficientChannel_iff_exists_common_posterior"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.isSufficientChannel_iff_forall_isMarkovChainOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.isSufficientChannel_iff_isMarkovChainOf_of_support_eq_univ"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
+      "name": "LeanInfoTheory.Shannon.isSufficientChannel_iff_klDiv_eq_bool"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.isSufficientStatisticOf_iff_condEntropyOf_eq"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.isSufficientStatisticOf_iff_condMutualInfoOf_eq_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.isSufficientStatisticOf_iff_exists_recovery"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.isSufficientStatisticOf_iff_isMarkovChainOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.isSufficientStatisticOf_iff_mutualInfoOf_eq"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.isSufficientStatistic_id"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.isSufficientStatistic_iff_exists_fisherNeymanFactorization"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.isSufficientStatistic_iff_forall_isSufficientStatisticOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.isSufficientStatistic_iff_isSufficientStatisticOf_of_support_eq_univ"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
+      "name": "LeanInfoTheory.Shannon.isSufficientStatistic_iff_klDiv_eq_bool"
+    },
+    {
+      "attributes": [],
+      "kind": "abbrev",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.jointEntropy"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_additive_iff_isIndependentOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_chain_rule_left"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_chain_rule_right"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_eq_add_entropyOf_iff_isIndependentOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_eq_entropyOf_add_condEntropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_eq_entropyOf_add_condEntropyOf_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_eq_entropyOf_iff_exists_function"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_fst_snd"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_fst_third"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_le_add_entropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_le_entropyOf_add_entropyOf"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_snd_third"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.jointEntropyOf_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.jointEntropy_additive_iff_isIndependent"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.jointEntropy_eq_add_marginalEntropy_iff_isIndependent"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.jointEntropy_le_add_marginalEntropy"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Entropy",
+      "name": "LeanInfoTheory.Shannon.jointEntropy_map_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.joint_toMeasure_absolutelyContinuous_indepProd_marginals"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.joint_toMeasure_absolutelyContinuous_prod_marginals"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+      "name": "LeanInfoTheory.Shannon.klDiv_binaryMixture_eq_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+      "name": "LeanInfoTheory.Shannon.klDiv_binaryMixture_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+      "name": "LeanInfoTheory.Shannon.klDiv_bind_le_sum"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.klDiv_channelComp_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL",
+      "name": "LeanInfoTheory.Shannon.klDiv_channelJoint_eq_add_conditionalKlDiv"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.klDiv_channel_cascade_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.klDiv_channel_eq_add_posterior"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
+      "name": "LeanInfoTheory.Shannon.klDiv_channel_eq_iff_exists_common_recovery"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.klDiv_channel_eq_iff_posterior_ae_eq"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.klDiv_channel_eq_iff_posterior_eq_on_support"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
+      "name": "LeanInfoTheory.Shannon.klDiv_channel_eq_of_common_recovery"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.klDiv_channel_invariant_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.klDiv_channel_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
+      "name": "LeanInfoTheory.Shannon.klDiv_eq_of_isSufficientChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
+      "name": "LeanInfoTheory.Shannon.klDiv_eq_of_isSufficientStatistic"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
+      "name": "LeanInfoTheory.Shannon.klDiv_map_eq_iff_exists_common_recovery"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.klDiv_map_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.klDiv_pmf_eq_top_iff_not_support_subset"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.klDiv_pmf_eq_zero_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.klDiv_pmf_ne_top_iff_support_subset"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.LogSum",
+      "name": "LeanInfoTheory.Shannon.logSumTerm"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.LogSum",
+      "name": "LeanInfoTheory.Shannon.logSumTerm_ne_bot"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.LogSum",
+      "name": "LeanInfoTheory.Shannon.logSumTerm_pos_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.LogSum",
+      "name": "LeanInfoTheory.Shannon.logSumTerm_zero_left"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.LogSum",
+      "name": "LeanInfoTheory.Shannon.logSum_eq_iff_exists_constant_ratio"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.LogSum",
+      "name": "LeanInfoTheory.Shannon.logSum_inequality"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfo"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_chain_rule_fst"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_chain_rule_snd"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_comp_both_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_comp_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_comp_left_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_comp_right_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_dataProcessing"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_dataProcessing_eq_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_deterministic_chain_rule_left"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_eq"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_eq_entropyOf_sub_condEntropyOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_eq_entropyOf_sub_condEntropyOf_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_eq_zero_iff_isIndependentOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_fano_lower_bound_of_uniform_source"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_fst_snd"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_le_entropyOf_left"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_le_entropyOf_right"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_markov_chain_rule"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_self"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfoOf_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_binaryChannelMixture_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_binaryMixture_input_concave"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_chain_rule_fst"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_chain_rule_snd"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_channelComp_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_channelJoint_eq_entropy_bind_sub_sum"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_channelMixture_le_sum"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_channel_cascade_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_channel_left_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_channel_map_output_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_channel_right_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_dataProcessing"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_dataProcessing_eq_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_eq"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_eq_entropy_fstMarginal_sub_condEntropy"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_eq_entropy_sndMarginal_sub_condEntropy_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_eq_of_isSufficientChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_eq_sum_log_ratio"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_eq_sum_neg_log"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_eq_toReal_klDiv_joint_indepProd"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_eq_toReal_klDiv_joint_prod_marginals"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_eq_zero_iff_isIndependent"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Fano",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_fano_lower_bound_of_uniform_source"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_independent_channels_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_le_entropy_fstMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_le_entropy_left"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_le_entropy_right"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_le_entropy_sndMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_map_both_le"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_map_diag"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_map_fst_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_map_left_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_map_prod_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_map_right_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_map_snd_le"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_map_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_markov_chain_rule"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_summand_eq_log_ratio"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.Units",
+      "name": "LeanInfoTheory.Shannon.natsToBase"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.Units",
+      "name": "LeanInfoTheory.Shannon.natsToBits"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Units",
+      "name": "LeanInfoTheory.Shannon.negMulLog_div_log"
+    },
+    {
+      "attributes": [],
+      "kind": "abbrev",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.pairThirdLaw"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.pairThirdLaw_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.pmfChannelKernel"
+    },
+    {
+      "attributes": [],
+      "kind": "instance",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.pmfChannelKernel.instIsMarkovKernel"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.pmfChannelKernel_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.LogSum",
+      "name": "LeanInfoTheory.Shannon.real_logSum_eq_iff_exists_constant_ratio_of_support"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.LogSum",
+      "name": "LeanInfoTheory.Shannon.real_logSum_inequality_of_support"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Entropy",
+      "name": "LeanInfoTheory.Shannon.selfInfo"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Entropy",
+      "name": "LeanInfoTheory.Shannon.selfInfo_of_toReal_eq_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Entropy",
+      "name": "LeanInfoTheory.Shannon.selfInfo_of_toReal_ne_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "abbrev",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_condFstSndGivenThird"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_eq_sndThirdMarginal"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_fstThirdMarginal"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_indepProd"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_map"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_map_pair"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_map_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_mul_condFstGivenSnd"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_mul_condFstGivenSndChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_ne_zero_of_apply_ne_zero"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_pairThirdLaw"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_sndThirdMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_toReal_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_toReal_mul_condEntropyFstGivenSnd"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.sndMarginal_toReal_mul_condFstGivenSnd_toReal"
+    },
+    {
+      "attributes": [],
+      "kind": "abbrev",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndThirdMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndThirdMarginal_apply"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndThirdMarginal_map"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndThirdMarginal_map_swap12"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndThirdMarginal_map_triple"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.sndThirdMarginal_ne_zero_of_apply_ne_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+      "name": "LeanInfoTheory.Shannon.statisticTripleLawOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.LogSum",
+      "name": "LeanInfoTheory.Shannon.sum_logSumTerm_ne_bot"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.EntropyConcavity",
+      "name": "LeanInfoTheory.Shannon.sum_mul_entropy_le_entropy_bind"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+      "name": "LeanInfoTheory.Shannon.sum_mul_mutualInfo_channelJoint_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.sum_toReal_mul_fstMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+      "name": "LeanInfoTheory.Shannon.sum_toReal_mul_sndMarginal"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.support_condFstGivenSnd"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
+      "name": "LeanInfoTheory.Shannon.support_indepProd"
+    },
+    {
+      "attributes": [],
+      "kind": "abbrev",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal_apply"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal_map"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal_map_swap12"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal_map_triple"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal_mul_condFstSndGivenThird"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InfoMeasures",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal_ne_zero_of_apply_ne_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal_toReal_mul_condFstSndGivenThird_toReal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+      "name": "LeanInfoTheory.Shannon.thirdMarginal_toReal_mul_condMutualInfoFstSndGivenThird"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.toMeasure_absolutelyContinuous_iff_support_subset"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.toMeasure_withDensity_pmf_div"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL",
+      "name": "LeanInfoTheory.Shannon.toReal_conditionalKlDiv_eq_sum"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_binaryMixture_eq_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_binaryMixture_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_bind_le_sum"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_channelComp_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_channelJoint_eq_add_conditionalKlDiv"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_channel_cascade_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_channel_eq_iff_exists_common_recovery"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_channel_eq_iff_posterior_eq_on_support"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_channel_invariant_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_channel_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_map_eq_iff_exists_common_recovery"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_map_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_pmf_eq_sum"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_pmf_eq_zero_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_pmf_uniformOfFinset"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.KL",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_pmf_uniformOfFintype"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Entropy",
+      "name": "LeanInfoTheory.Shannon.toReal_mul_selfInfo"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.FiniteMixture",
+      "name": "PMF.binaryMixture"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteMixture",
+      "name": "PMF.binaryMixture_apply"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteMixture",
+      "name": "PMF.binaryMixture_one"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteMixture",
+      "name": "PMF.binaryMixture_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.bind_channelComp"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.bind_deterministicChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.bind_toReal_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelComp"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelComp_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelComp_assoc"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelComp_deterministic_left"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelComp_deterministic_right"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelComp_pure_left"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelComp_pure_right"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelExtension"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelExtension_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelExtension_deterministicChannel"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelExtension_map_endpoints"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelExtension_map_input"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelExtension_map_output"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelExtension_map_outputPair"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelJoint"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelJoint_apply"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelJoint_deterministicChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelJoint_eq_iff_eq_on_support"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelJoint_map_fst"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelJoint_map_snd"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.coe_supportFinset"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.deterministicChannel"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.deterministicChannel_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.eq_pure_iff_support_eq_singleton"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.map_apply_eq_zero_of_notMem_range"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.map_apply_equiv"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.map_apply_of_injective"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.mem_supportFinset"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.mem_support_channelComp_iff"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.mem_support_channelExtension_iff"
+    },
+    {
+      "attributes": [
+        "simp"
+      ],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.mem_support_channelJoint_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.sum_toReal"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.supportFinset"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.supportFinset_card"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.supportFinset_nonempty"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.toReal_le_one"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Finite",
+      "name": "PMF.toReal_nonneg"
+    }
+  ],
+  "documented_declaration_count": 601,
+  "full_umbrella": "LeanInfoTheory.Shannon",
+  "kind_counts": {
+    "abbrev": 9,
+    "def": 56,
+    "instance": 1,
+    "theorem": 535
+  },
+  "lightweight_root": "LeanInfoTheory",
+  "lightweight_root_direct_imports": [
+    "LeanInfoTheory.InformationMeasures",
+    "LeanInfoTheory.Probability.Finite"
+  ],
+  "local_module_count": 44,
+  "namespace_counts": {
+    "LeanInfoTheory.Shannon": 557,
+    "PMF": 44
+  },
+  "non_stable_module_count": 13,
+  "non_stable_modules": [
+    "LeanInfoTheory.Basic",
+    "LeanInfoTheory.Examples",
+    "LeanInfoTheory.Examples.CommonCause",
+    "LeanInfoTheory.Examples.ConditionalKL",
+    "LeanInfoTheory.Examples.Convexity",
+    "LeanInfoTheory.Examples.Fano",
+    "LeanInfoTheory.Examples.FiniteFamily",
+    "LeanInfoTheory.Examples.KLTop",
+    "LeanInfoTheory.Examples.StochasticChannels",
+    "LeanInfoTheory.Examples.SufficientStatistics",
+    "LeanInfoTheory.Examples.SupportSensitive",
+    "LeanInfoTheory.Examples.Units",
+    "LeanInfoTheory.MathlibFragments"
+  ],
+  "release_line": "0.1.x",
+  "root_export_count": 92,
+  "root_exports": [
+    {
+      "alias": "LeanInfoTheory.entropy",
+      "target": "LeanInfoTheory.Shannon.entropy"
+    },
+    {
+      "alias": "LeanInfoTheory.entropyOf",
+      "target": "LeanInfoTheory.Shannon.entropyOf"
+    },
+    {
+      "alias": "LeanInfoTheory.jointEntropy",
+      "target": "LeanInfoTheory.Shannon.jointEntropy"
+    },
+    {
+      "alias": "LeanInfoTheory.jointEntropyOf",
+      "target": "LeanInfoTheory.Shannon.jointEntropyOf"
+    },
+    {
+      "alias": "LeanInfoTheory.fstMarginal",
+      "target": "LeanInfoTheory.Shannon.fstMarginal"
+    },
+    {
+      "alias": "LeanInfoTheory.sndMarginal",
+      "target": "LeanInfoTheory.Shannon.sndMarginal"
+    },
+    {
+      "alias": "LeanInfoTheory.fstThirdMarginal",
+      "target": "LeanInfoTheory.Shannon.fstThirdMarginal"
+    },
+    {
+      "alias": "LeanInfoTheory.sndThirdMarginal",
+      "target": "LeanInfoTheory.Shannon.sndThirdMarginal"
+    },
+    {
+      "alias": "LeanInfoTheory.thirdMarginal",
+      "target": "LeanInfoTheory.Shannon.thirdMarginal"
+    },
+    {
+      "alias": "LeanInfoTheory.fstSndMarginal",
+      "target": "LeanInfoTheory.Shannon.fstSndMarginal"
+    },
+    {
+      "alias": "LeanInfoTheory.condEntropy",
+      "target": "LeanInfoTheory.Shannon.condEntropy"
+    },
+    {
+      "alias": "LeanInfoTheory.mutualInfo",
+      "target": "LeanInfoTheory.Shannon.mutualInfo"
+    },
+    {
+      "alias": "LeanInfoTheory.condMutualInfo",
+      "target": "LeanInfoTheory.Shannon.condMutualInfo"
+    },
+    {
+      "alias": "LeanInfoTheory.condEntropyOf",
+      "target": "LeanInfoTheory.Shannon.condEntropyOf"
+    },
+    {
+      "alias": "LeanInfoTheory.mutualInfoOf",
+      "target": "LeanInfoTheory.Shannon.mutualInfoOf"
+    },
+    {
+      "alias": "LeanInfoTheory.condMutualInfoOf",
+      "target": "LeanInfoTheory.Shannon.condMutualInfoOf"
+    },
+    {
+      "alias": "LeanInfoTheory.mutualInfo_map_swap",
+      "target": "LeanInfoTheory.Shannon.mutualInfo_map_swap"
+    },
+    {
+      "alias": "LeanInfoTheory.mutualInfoOf_swap",
+      "target": "LeanInfoTheory.Shannon.mutualInfoOf_swap"
+    },
+    {
+      "alias": "LeanInfoTheory.condMutualInfo_map_swap12",
+      "target": "LeanInfoTheory.Shannon.condMutualInfo_map_swap12"
+    },
+    {
+      "alias": "LeanInfoTheory.condMutualInfoOf_swap",
+      "target": "LeanInfoTheory.Shannon.condMutualInfoOf_swap"
+    },
+    {
+      "alias": "LeanInfoTheory.fstMarginal_map",
+      "target": "LeanInfoTheory.Shannon.fstMarginal_map"
+    },
+    {
+      "alias": "LeanInfoTheory.sndMarginal_map",
+      "target": "LeanInfoTheory.Shannon.sndMarginal_map"
+    },
+    {
+      "alias": "LeanInfoTheory.fstMarginal_map_pair",
+      "target": "LeanInfoTheory.Shannon.fstMarginal_map_pair"
+    },
+    {
+      "alias": "LeanInfoTheory.sndMarginal_map_pair",
+      "target": "LeanInfoTheory.Shannon.sndMarginal_map_pair"
+    },
+    {
+      "alias": "LeanInfoTheory.fstMarginal_map_swap",
+      "target": "LeanInfoTheory.Shannon.fstMarginal_map_swap"
+    },
+    {
+      "alias": "LeanInfoTheory.sndMarginal_map_swap",
+      "target": "LeanInfoTheory.Shannon.sndMarginal_map_swap"
+    },
+    {
+      "alias": "LeanInfoTheory.fstMarginal_apply",
+      "target": "LeanInfoTheory.Shannon.fstMarginal_apply"
+    },
+    {
+      "alias": "LeanInfoTheory.sndMarginal_apply",
+      "target": "LeanInfoTheory.Shannon.sndMarginal_apply"
+    },
+    {
+      "alias": "LeanInfoTheory.fstSndMarginal_map",
+      "target": "LeanInfoTheory.Shannon.fstSndMarginal_map"
+    },
+    {
+      "alias": "LeanInfoTheory.fstSndMarginal_map_triple",
+      "target": "LeanInfoTheory.Shannon.fstSndMarginal_map_triple"
+    },
+    {
+      "alias": "LeanInfoTheory.fstThirdMarginal_map",
+      "target": "LeanInfoTheory.Shannon.fstThirdMarginal_map"
+    },
+    {
+      "alias": "LeanInfoTheory.sndThirdMarginal_map",
+      "target": "LeanInfoTheory.Shannon.sndThirdMarginal_map"
+    },
+    {
+      "alias": "LeanInfoTheory.thirdMarginal_map",
+      "target": "LeanInfoTheory.Shannon.thirdMarginal_map"
+    },
+    {
+      "alias": "LeanInfoTheory.fstThirdMarginal_map_triple",
+      "target": "LeanInfoTheory.Shannon.fstThirdMarginal_map_triple"
+    },
+    {
+      "alias": "LeanInfoTheory.sndThirdMarginal_map_triple",
+      "target": "LeanInfoTheory.Shannon.sndThirdMarginal_map_triple"
+    },
+    {
+      "alias": "LeanInfoTheory.thirdMarginal_map_triple",
+      "target": "LeanInfoTheory.Shannon.thirdMarginal_map_triple"
+    },
+    {
+      "alias": "LeanInfoTheory.fstThirdMarginal_map_swap12",
+      "target": "LeanInfoTheory.Shannon.fstThirdMarginal_map_swap12"
+    },
+    {
+      "alias": "LeanInfoTheory.sndThirdMarginal_map_swap12",
+      "target": "LeanInfoTheory.Shannon.sndThirdMarginal_map_swap12"
+    },
+    {
+      "alias": "LeanInfoTheory.thirdMarginal_map_swap12",
+      "target": "LeanInfoTheory.Shannon.thirdMarginal_map_swap12"
+    },
+    {
+      "alias": "LeanInfoTheory.fstThirdMarginal_apply",
+      "target": "LeanInfoTheory.Shannon.fstThirdMarginal_apply"
+    },
+    {
+      "alias": "LeanInfoTheory.sndThirdMarginal_apply",
+      "target": "LeanInfoTheory.Shannon.sndThirdMarginal_apply"
+    },
+    {
+      "alias": "LeanInfoTheory.thirdMarginal_apply",
+      "target": "LeanInfoTheory.Shannon.thirdMarginal_apply"
+    },
+    {
+      "alias": "LeanInfoTheory.apply_le_fstMarginal",
+      "target": "LeanInfoTheory.Shannon.apply_le_fstMarginal"
+    },
+    {
+      "alias": "LeanInfoTheory.apply_le_sndMarginal",
+      "target": "LeanInfoTheory.Shannon.apply_le_sndMarginal"
+    },
+    {
+      "alias": "LeanInfoTheory.apply_le_fstThirdMarginal",
+      "target": "LeanInfoTheory.Shannon.apply_le_fstThirdMarginal"
+    },
+    {
+      "alias": "LeanInfoTheory.apply_le_sndThirdMarginal",
+      "target": "LeanInfoTheory.Shannon.apply_le_sndThirdMarginal"
+    },
+    {
+      "alias": "LeanInfoTheory.apply_le_thirdMarginal",
+      "target": "LeanInfoTheory.Shannon.apply_le_thirdMarginal"
+    },
+    {
+      "alias": "LeanInfoTheory.apply_eq_zero_of_fstMarginal_eq_zero",
+      "target": "LeanInfoTheory.Shannon.apply_eq_zero_of_fstMarginal_eq_zero"
+    },
+    {
+      "alias": "LeanInfoTheory.apply_eq_zero_of_sndMarginal_eq_zero",
+      "target": "LeanInfoTheory.Shannon.apply_eq_zero_of_sndMarginal_eq_zero"
+    },
+    {
+      "alias": "LeanInfoTheory.fstMarginal_ne_zero_of_apply_ne_zero",
+      "target": "LeanInfoTheory.Shannon.fstMarginal_ne_zero_of_apply_ne_zero"
+    },
+    {
+      "alias": "LeanInfoTheory.sndMarginal_ne_zero_of_apply_ne_zero",
+      "target": "LeanInfoTheory.Shannon.sndMarginal_ne_zero_of_apply_ne_zero"
+    },
+    {
+      "alias": "LeanInfoTheory.apply_eq_zero_of_fstThirdMarginal_eq_zero",
+      "target": "LeanInfoTheory.Shannon.apply_eq_zero_of_fstThirdMarginal_eq_zero"
+    },
+    {
+      "alias": "LeanInfoTheory.apply_eq_zero_of_sndThirdMarginal_eq_zero",
+      "target": "LeanInfoTheory.Shannon.apply_eq_zero_of_sndThirdMarginal_eq_zero"
+    },
+    {
+      "alias": "LeanInfoTheory.apply_eq_zero_of_thirdMarginal_eq_zero",
+      "target": "LeanInfoTheory.Shannon.apply_eq_zero_of_thirdMarginal_eq_zero"
+    },
+    {
+      "alias": "LeanInfoTheory.fstThirdMarginal_ne_zero_of_apply_ne_zero",
+      "target": "LeanInfoTheory.Shannon.fstThirdMarginal_ne_zero_of_apply_ne_zero"
+    },
+    {
+      "alias": "LeanInfoTheory.sndThirdMarginal_ne_zero_of_apply_ne_zero",
+      "target": "LeanInfoTheory.Shannon.sndThirdMarginal_ne_zero_of_apply_ne_zero"
+    },
+    {
+      "alias": "LeanInfoTheory.thirdMarginal_ne_zero_of_apply_ne_zero",
+      "target": "LeanInfoTheory.Shannon.thirdMarginal_ne_zero_of_apply_ne_zero"
+    },
+    {
+      "alias": "LeanInfoTheory.entropyOf_fst",
+      "target": "LeanInfoTheory.Shannon.entropyOf_fst"
+    },
+    {
+      "alias": "LeanInfoTheory.entropyOf_snd",
+      "target": "LeanInfoTheory.Shannon.entropyOf_snd"
+    },
+    {
+      "alias": "LeanInfoTheory.jointEntropyOf_fst_snd",
+      "target": "LeanInfoTheory.Shannon.jointEntropyOf_fst_snd"
+    },
+    {
+      "alias": "LeanInfoTheory.condEntropyOf_fst_snd",
+      "target": "LeanInfoTheory.Shannon.condEntropyOf_fst_snd"
+    },
+    {
+      "alias": "LeanInfoTheory.mutualInfoOf_fst_snd",
+      "target": "LeanInfoTheory.Shannon.mutualInfoOf_fst_snd"
+    },
+    {
+      "alias": "LeanInfoTheory.entropyOf_third",
+      "target": "LeanInfoTheory.Shannon.entropyOf_third"
+    },
+    {
+      "alias": "LeanInfoTheory.jointEntropyOf_fst_third",
+      "target": "LeanInfoTheory.Shannon.jointEntropyOf_fst_third"
+    },
+    {
+      "alias": "LeanInfoTheory.jointEntropyOf_snd_third",
+      "target": "LeanInfoTheory.Shannon.jointEntropyOf_snd_third"
+    },
+    {
+      "alias": "LeanInfoTheory.condMutualInfoOf_fst_snd_third",
+      "target": "LeanInfoTheory.Shannon.condMutualInfoOf_fst_snd_third"
+    },
+    {
+      "alias": "LeanInfoTheory.condEntropy_eq",
+      "target": "LeanInfoTheory.Shannon.condEntropy_eq"
+    },
+    {
+      "alias": "LeanInfoTheory.mutualInfo_eq",
+      "target": "LeanInfoTheory.Shannon.mutualInfo_eq"
+    },
+    {
+      "alias": "LeanInfoTheory.condMutualInfo_eq",
+      "target": "LeanInfoTheory.Shannon.condMutualInfo_eq"
+    },
+    {
+      "alias": "LeanInfoTheory.entropy_eq_entropy_sndMarginal_add_condEntropy",
+      "target": "LeanInfoTheory.Shannon.entropy_eq_entropy_sndMarginal_add_condEntropy"
+    },
+    {
+      "alias": "LeanInfoTheory.entropy_eq_entropy_fstMarginal_add_condEntropy_swap",
+      "target": "LeanInfoTheory.Shannon.entropy_eq_entropy_fstMarginal_add_condEntropy_swap"
+    },
+    {
+      "alias": "LeanInfoTheory.jointEntropyOf_eq_entropyOf_add_condEntropyOf",
+      "target": "LeanInfoTheory.Shannon.jointEntropyOf_eq_entropyOf_add_condEntropyOf"
+    },
+    {
+      "alias": "LeanInfoTheory.jointEntropyOf_eq_entropyOf_add_condEntropyOf_swap",
+      "target": "LeanInfoTheory.Shannon.jointEntropyOf_eq_entropyOf_add_condEntropyOf_swap"
+    },
+    {
+      "alias": "LeanInfoTheory.entropy_chain_rule_right",
+      "target": "LeanInfoTheory.Shannon.entropy_chain_rule_right"
+    },
+    {
+      "alias": "LeanInfoTheory.entropy_chain_rule_left",
+      "target": "LeanInfoTheory.Shannon.entropy_chain_rule_left"
+    },
+    {
+      "alias": "LeanInfoTheory.jointEntropyOf_chain_rule_right",
+      "target": "LeanInfoTheory.Shannon.jointEntropyOf_chain_rule_right"
+    },
+    {
+      "alias": "LeanInfoTheory.jointEntropyOf_chain_rule_left",
+      "target": "LeanInfoTheory.Shannon.jointEntropyOf_chain_rule_left"
+    },
+    {
+      "alias": "LeanInfoTheory.condEntropyOf_eq",
+      "target": "LeanInfoTheory.Shannon.condEntropyOf_eq"
+    },
+    {
+      "alias": "LeanInfoTheory.condEntropyOf_pair_swap",
+      "target": "LeanInfoTheory.Shannon.condEntropyOf_pair_swap"
+    },
+    {
+      "alias": "LeanInfoTheory.condEntropyOf_pair_chain_rule",
+      "target": "LeanInfoTheory.Shannon.condEntropyOf_pair_chain_rule"
+    },
+    {
+      "alias": "LeanInfoTheory.condEntropyOf_pair_chain_rule_swap",
+      "target": "LeanInfoTheory.Shannon.condEntropyOf_pair_chain_rule_swap"
+    },
+    {
+      "alias": "LeanInfoTheory.mutualInfoOf_eq",
+      "target": "LeanInfoTheory.Shannon.mutualInfoOf_eq"
+    },
+    {
+      "alias": "LeanInfoTheory.condMutualInfoOf_eq",
+      "target": "LeanInfoTheory.Shannon.condMutualInfoOf_eq"
+    },
+    {
+      "alias": "LeanInfoTheory.condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf",
+      "target": "LeanInfoTheory.Shannon.condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf"
+    },
+    {
+      "alias": "LeanInfoTheory.condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf_swap",
+      "target": "LeanInfoTheory.Shannon.condMutualInfoOf_eq_condEntropyOf_sub_condEntropyOf_swap"
+    },
+    {
+      "alias": "LeanInfoTheory.condMutualInfoOf_eq_condEntropyOf_add_condEntropyOf_sub_condEntropyOf_pair",
+      "target": "LeanInfoTheory.Shannon.condMutualInfoOf_eq_condEntropyOf_add_condEntropyOf_sub_condEntropyOf_pair"
+    },
+    {
+      "alias": "LeanInfoTheory.mutualInfo_eq_entropy_fstMarginal_sub_condEntropy",
+      "target": "LeanInfoTheory.Shannon.mutualInfo_eq_entropy_fstMarginal_sub_condEntropy"
+    },
+    {
+      "alias": "LeanInfoTheory.mutualInfo_eq_entropy_sndMarginal_sub_condEntropy_swap",
+      "target": "LeanInfoTheory.Shannon.mutualInfo_eq_entropy_sndMarginal_sub_condEntropy_swap"
+    },
+    {
+      "alias": "LeanInfoTheory.mutualInfoOf_eq_entropyOf_sub_condEntropyOf",
+      "target": "LeanInfoTheory.Shannon.mutualInfoOf_eq_entropyOf_sub_condEntropyOf"
+    },
+    {
+      "alias": "LeanInfoTheory.mutualInfoOf_eq_entropyOf_sub_condEntropyOf_swap",
+      "target": "LeanInfoTheory.Shannon.mutualInfoOf_eq_entropyOf_sub_condEntropyOf_swap"
+    },
+    {
+      "alias": "LeanInfoTheory.mutualInfo_map_diag",
+      "target": "LeanInfoTheory.Shannon.mutualInfo_map_diag"
+    },
+    {
+      "alias": "LeanInfoTheory.mutualInfoOf_self",
+      "target": "LeanInfoTheory.Shannon.mutualInfoOf_self"
+    }
+  ],
+  "schema": "lean-info-theory.public-api.v0.1.v1",
+  "scope_notes": [
+    "This manifest covers project-owned public declarations in the transitive closure of LeanInfoTheory.Shannon.",
+    "Imported mathlib declarations and private declarations are outside this manifest.",
+    "LeanInfoTheory.Basic, LeanInfoTheory.MathlibFragments, and the LeanInfoTheory.Examples hierarchy are non-stable.",
+    "Declaration types and assumptions remain governed by the Lean source and signature-bearing API documentation."
+  ],
+  "simp_declaration_count": 94,
+  "supported_module_count": 31,
+  "supported_modules": [
+    "LeanInfoTheory",
+    "LeanInfoTheory.InformationMeasures",
+    "LeanInfoTheory.Probability.Finite",
+    "LeanInfoTheory.Probability.FiniteChannel",
+    "LeanInfoTheory.Probability.FiniteMixture",
+    "LeanInfoTheory.Shannon",
+    "LeanInfoTheory.Shannon.BinaryEntropy",
+    "LeanInfoTheory.Shannon.Entropy",
+    "LeanInfoTheory.Shannon.EntropyBounds",
+    "LeanInfoTheory.Shannon.EntropyConcavity",
+    "LeanInfoTheory.Shannon.Fano",
+    "LeanInfoTheory.Shannon.FiniteFamily",
+    "LeanInfoTheory.Shannon.InfoMeasures",
+    "LeanInfoTheory.Shannon.LogSum",
+    "LeanInfoTheory.Shannon.SemanticBridge",
+    "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+    "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL",
+    "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+    "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+    "LeanInfoTheory.Shannon.SemanticBridge.Entropy",
+    "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+    "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+    "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+    "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+    "LeanInfoTheory.Shannon.SemanticBridge.KL",
+    "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+    "LeanInfoTheory.Shannon.SemanticBridge.Product",
+    "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+    "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
+    "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+    "LeanInfoTheory.Shannon.Units"
+  ]
+}

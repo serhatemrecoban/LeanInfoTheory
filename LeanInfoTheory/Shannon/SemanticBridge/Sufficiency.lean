@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.SemanticBridge.Markov
@@ -221,8 +226,21 @@ theorem exists_marginal_recovery_of_isSufficientStatisticOf
   refine ⟨R, ?_⟩
   have hmap := congrArg (fun q : PMF (theta × beta × alpha) =>
     q.map fun z => z.2.2) hR
-  simpa only [statisticTripleLawOf, PMF.map_comp,
-    PMF.channelExtension_map_output] using hmap
+  rw [statisticTripleLawOf, PMF.map_comp,
+    PMF.channelExtension_map_output] at hmap
+  have hX :
+      (fun z : theta × beta × alpha => z.2.2) ∘
+          (fun omega => (Theta omega, T (X omega), X omega)) = X := by
+    funext omega
+    rfl
+  have hT :
+      Prod.snd ∘ (fun omega => (Theta omega, T (X omega))) =
+        (fun omega => T (X omega)) := by
+    funext omega
+    rfl
+  rw [PMF.map_comp] at hmap
+  rw [hX, hT] at hmap
+  exact hmap
 
 /-! ## Family-level sufficiency
 
@@ -385,7 +403,12 @@ theorem condMutualInfo_eq_zero_of_isSufficientChannel
   have hcond : IsCondIndependent q := by
     unfold IsMarkovChainOf IsCondIndependentOf at hmarkov
     have hid : q.map (fun z => (z.1, z.2.1, z.2.2)) = q := by
-      simpa only [Prod.eta] using PMF.map_id q
+      have hfun :
+          (fun z : theta × alpha × beta => (z.1, z.2.1, z.2.2)) = id := by
+        funext z
+        rcases z with ⟨t, a, b⟩
+        rfl
+      rw [hfun, PMF.map_id]
     rw [hid] at hmarkov
     exact hmarkov
   exact (condMutualInfo_eq_zero_iff_isCondIndependent q).2 hcond
@@ -483,9 +506,16 @@ theorem isSufficientChannel_iff_isMarkovChainOf_of_support_eq_univ
         fstSndMarginal qrev =
           PMF.channelJoint prior (PMF.channelComp model W) := by
       unfold fstSndMarginal
+      simp only [qrev]
       rw [PMF.map_comp]
-      simpa only [qrev, q, swap23, Function.comp_apply] using
-        PMF.channelExtension_map_endpoints prior model W
+      have hfun :
+          (fun x : theta × beta × alpha => (x.1, x.2.1)) ∘ swap23 =
+            (fun z : theta × alpha × beta => (z.1, z.2.2)) := by
+        funext z
+        rfl
+      rw [hfun]
+      simp only [q]
+      exact PMF.channelExtension_map_endpoints prior model W
     have hfactor :
         qrev = PMF.channelExtension
           (PMF.channelJoint prior (PMF.channelComp model W)) R := by
@@ -542,14 +572,15 @@ theorem isSufficientChannel_iff_forall_isMarkovChainOf
           (PMF.channelExtension (PMF.channelJoint prior model) W)
           (fun z => z.1) (fun z => z.2.2) (fun z => z.2.1) := by
   classical
-  letI := Fintype.ofFinite theta
+  let := Fintype.ofFinite theta
   constructor
   · intro h prior
     exact isMarkovChainOf_of_isSufficientChannel prior model W h
   · intro h
     let prior := PMF.uniformOfFintype theta
     exact (isSufficientChannel_iff_isMarkovChainOf_of_support_eq_univ
-      prior (by simpa only [prior] using PMF.support_uniformOfFintype theta)
+      prior (by simpa only [prior, Set.top_eq_univ] using
+        PMF.support_uniformOfFintype theta)
       model W).2 (h prior)
 
 private theorem isSufficientStatisticOf_channelJoint_iff
@@ -626,7 +657,7 @@ private theorem fisherNeymanFiberMass_ne_top
     (hh : ∀ a, h a ≠ ⊤) (b : beta) :
     fisherNeymanFiberMass T h b ≠ ⊤ := by
   classical
-  letI := Fintype.ofFinite alpha
+  let := Fintype.ofFinite alpha
   rw [fisherNeymanFiberMass, tsum_fintype]
   apply ENNReal.sum_ne_top.2
   intro a _ha
@@ -653,7 +684,12 @@ private theorem fisherNeymanRecovery_apply_of_fiberMass_ne_zero
     fisherNeymanRecovery T h hh b a =
       fisherNeymanFiberWeight T h b a *
         (fisherNeymanFiberMass T h b)⁻¹ := by
-  rw [fisherNeymanRecovery, dif_neg hb, PMF.normalize_apply]
+  rw [fisherNeymanRecovery, dif_neg hb]
+  change
+    fisherNeymanFiberWeight T h b a *
+        (∑' x, fisherNeymanFiberWeight T h b x)⁻¹ =
+      fisherNeymanFiberWeight T h b a *
+        (fisherNeymanFiberMass T h b)⁻¹
   rfl
 
 private theorem map_statistic_eq_factor_mul_fiberMass
@@ -691,7 +727,7 @@ theorem isSufficientStatistic_iff_exists_fisherNeymanFactorization
           (∀ a, h a ≠ ⊤) ∧
             ∀ t a, model t a = g t (T a) * h a := by
   classical
-  letI := Fintype.ofFinite alpha
+  let := Fintype.ofFinite alpha
   constructor
   · intro hsuff
     rw [IsSufficientStatistic, IsSufficientChannel] at hsuff

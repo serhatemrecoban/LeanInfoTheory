@@ -12,9 +12,8 @@
       <h2 class="project-tagline">Project layers and theorem-dependency plan.</h2>
       <nav class="project-links" aria-label="Project links">
         <a href="../" class="btn">Home</a>
+        <a href="../docs/" class="btn">Docs</a>
         <a href="../theorems.html" class="btn">Theorems</a>
-        <a href="../submodularity-demo.html" class="btn">Demo</a>
-        <a href="../docs/api-index.html" class="btn">API Index</a>
         <a href="dep_graph_document.html" class="btn">Module dependency map</a>
         <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
@@ -23,9 +22,10 @@
       <p>
         This blueprint mixes implemented modules with planned layers. The
         <a href="dep_graph_document.html">module-level dependency map</a> is
-        generated from Lean <code>import</code> lines; a source-derived API
-        index is available under documentation; theorem-level blueprint pages,
-        full Lean doc-gen output, and a blueprint PDF remain future work.
+        generated from Lean <code>import</code> lines. A source-derived inventory
+        and the separate <a href="../docs/v0.1.0/">signature-bearing v0.1.0 API
+        reference</a> are available under documentation. Theorem-level
+        blueprint pages and a blueprint PDF remain future work.
       </p>
 
       <h2>Layer 0: Existing foundations</h2>
@@ -39,7 +39,7 @@
       <h2>Layer 1: Finite information measures</h2>
       <ul>
         <li>finite random variables and mathlib <code>PMF</code>s</li>
-        <li>finite Shannon entropy in nats via <code>Real.negMulLog</code></li>
+        <li>finite Shannon entropy in nats via <code>Real.negMulLog</code>, with opt-in scalar conversion to other logarithm bases and bits</li>
         <li>entropy invariance under equivalence, injective alphabet relabeling, swaps, and reassociation</li>
         <li>finite entropy upper bound by <code>log |alphabet|</code> and the uniform-law equality case</li>
         <li>joint entropy, conditional entropy, mutual information, and conditional mutual information</li>
@@ -59,28 +59,22 @@
         <li>first mutual-information chain rule <code>I(A;B,C) = I(A;C) + I(A;B|C)</code></li>
       </ul>
 
-      <h2>Layer 2: Algebraic entropy expressions</h2>
+      <h2>Layer 2: Semantic bridges and finite theorems</h2>
       <ul>
-        <li>entropy atoms indexed by finite sets of variable names</li>
-        <li>rational linear combinations of atoms</li>
-        <li>semantic evaluation into real entropy values</li>
-        <li>abstract Shannon entropy valuations for certificate soundness</li>
-        <li>concrete finite-family entropy valuations satisfying the abstract Shannon contract</li>
-        <li>primitive Shannon inequality expressions and valuation soundness theorems</li>
+        <li>finite conditional laws and expected-fiber formulas</li>
+        <li>KL interpretations and support-aware equality theorems</li>
+        <li>independence, conditional independence, and Markov characterizations</li>
+        <li>finite stochastic-channel data processing and sufficiency</li>
+        <li>finite-family Shannon inequalities and mutual independence</li>
+        <li>finite Fano, log-sum, entropy concavity, and KL-convexity results</li>
       </ul>
 
-      <h2>Layer 3: Certificates</h2>
+      <h2>Layer 3: Documentation and downstream use</h2>
       <ul>
-        <li>current nonnegative-combination soundness skeleton</li>
-        <li>current raw/checked certificate split with nonnegative rational coefficients</li>
-        <li>current exact rational expression matching for checked decompositions</li>
-        <li>current basic raw-to-checked validation for primitive-tagged steps</li>
-        <li>current entropy submodularity demo from a validated CMI certificate</li>
-        <li>current opt-in adapter from checked-certificate soundness to concrete finite-family Shannon entropy</li>
-        <li>current homogeneous and dependent-alphabet examples exercising checked and raw certificate paths</li>
-        <li>current checker validates normalized entropy-expression equality; it does not search for certificates automatically</li>
-        <li>future import support for external certificate formats</li>
-        <li>future import path for PSITIP/oXitip-style certificates</li>
+        <li>focused public imports, a lightweight mathematical root, and the complete import-only <code>LeanInfoTheory.Shannon</code> umbrella</li>
+        <li>source-derived module and declaration references</li>
+        <li>versioned signature-bearing API documentation and future theorem-level blueprint pages</li>
+        <li>downstream applications built against tagged releases</li>
       </ul>
 
       <h2>Layer 4: Network information theory</h2>

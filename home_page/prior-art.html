@@ -12,9 +12,8 @@
       <h2 class="project-tagline">What LeanInfoTheory builds on and how it differs.</h2>
       <nav class="project-links" aria-label="Project links">
         <a href="./" class="btn">Home</a>
+        <a href="docs/" class="btn">Docs</a>
         <a href="theorems.html" class="btn">Theorems</a>
-        <a href="submodularity-demo.html" class="btn">Demo</a>
-        <a href="docs/api-index.html" class="btn">API Index</a>
         <a href="blueprint/" class="btn">Blueprint</a>
         <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
@@ -22,10 +21,9 @@
 
     <main class="main-content" role="main">
       <p class="lead">
-        LeanInfoTheory is meant to sit between existing formal libraries,
-        theorem-proving projects, and external entropy-inequality search tools:
-        it reuses mathlib foundations, learns from prior formalizations, and
-        keeps Lean as the trusted checker for certificate-backed results.
+        LeanInfoTheory builds a reusable finite-information-theory layer on
+        mathlib, informed by existing formal libraries and the needs of
+        downstream theorem-proving projects.
       </p>
 
       <h2>mathlib</h2>
@@ -72,10 +70,10 @@
 
       <h2>PSITIP and oXitip</h2>
       <p>
-        PSITIP and oXitip are relevant for entropy-inequality certificate
-        search. The planned architecture is that external tools may search for
-        certificates and export raw data, but Lean remains the trusted checker
-        that validates the certificate and proves the target inequality.
+        PSITIP and oXitip are relevant prior art for entropy-inequality search.
+        Their search and import workflows may inform separate downstream
+        applications, but are not part of LeanInfoTheory's public library
+        surface.
       </p>
       <div class="link-grid">
         <a href="https://github.com/cheuktingli/psitip">PSITIP repository</a>
@@ -146,9 +144,9 @@
               information inequalities.
             </td>
             <td>
-              These tools can later provide untrusted search/import data.
-              LeanInfoTheory's trusted role is to validate imported certificate
-              data and prove the target inequality inside Lean.
+              These tools are relevant to downstream automation and
+              certificate-checking applications built on reusable
+              information-theory results.
             </td>
           </tr>
           <tr>
@@ -170,8 +168,8 @@
       <p>
         LeanInfoTheory currently adds a finite <code>PMF</code>-based Shannon
         layer, semantic bridges to expected self-information and KL divergence,
-        and a Lean-checked certificate pipeline for primitive Shannon
-        inequalities.
+        and reusable APIs for channels, finite families, Fano inequalities,
+        Markov structure, data processing, and sufficiency.
       </p>
     </main>
   </body>

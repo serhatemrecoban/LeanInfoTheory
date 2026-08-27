@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Probability.FiniteMixture
@@ -68,10 +73,23 @@ theorem binaryMixture_entropy_concave
     (t : Real) * entropy p +
         ((1 - t : NNReal) : Real) * entropy q <=
       entropy (PMF.binaryMixture t ht p q) := by
-  simpa [PMF.binaryMixture, Fintype.univ_bool, PMF.bernoulli_apply,
-    ENNReal.coe_sub] using
-    (sum_mul_entropy_le_entropy_bind
-      (PMF.bernoulli t ht) (fun b => if b then p else q))
+  let r : PMF Bool :=
+    PMF.ofFintype
+      (fun b : Bool => ((cond b t (1 - t) : NNReal) : ENNReal))
+      (by simp [ht])
+  have hr_true : (r true).toReal = (t : Real) := by
+    simp only [r, PMF.ofFintype_apply, Bool.cond_true]
+    rw [ENNReal.coe_toReal]
+  have hr_false : (r false).toReal = ((1 - t : NNReal) : Real) := by
+    simp only [r, PMF.ofFintype_apply, Bool.cond_false]
+    rw [ENNReal.coe_toReal]
+  change
+    (t : Real) * entropy p + ((1 - t : NNReal) : Real) * entropy q <=
+      entropy (r.bind fun b => if b then p else q)
+  simpa only [Fintype.univ_bool, Finset.sum_insert, Finset.mem_singleton,
+    Bool.true_eq_false, Bool.false_eq_true, not_false_eq_true,
+    Finset.sum_singleton, hr_true, hr_false, if_true, if_false] using
+    (sum_mul_entropy_le_entropy_bind r (fun b => if b then p else q))
 
 /--
 For an interior binary weight, equality in entropy concavity holds exactly
@@ -86,15 +104,18 @@ theorem binaryMixture_entropy_eq_iff
         entropy (PMF.binaryMixture t ht p q) ↔
       p = q := by
   classical
-  let r : PMF Bool := PMF.bernoulli t ht
+  let r : PMF Bool :=
+    PMF.ofFintype
+      (fun b : Bool => ((cond b t (1 - t) : NNReal) : ENNReal))
+      (by simp [ht])
   let P : Bool -> PMF alpha := fun b => if b then p else q
   have hr_pos (b : Bool) : 0 < (r b).toReal := by
     cases b
     · have hcompl : 0 < (1 - t : NNReal) := tsub_pos_iff_lt.mpr ht1
-      simp only [r, PMF.bernoulli_apply, Bool.cond_false]
+      simp only [r, PMF.ofFintype_apply, Bool.cond_false]
       rw [ENNReal.coe_toReal]
       exact_mod_cast hcompl
-    · simpa [r, PMF.bernoulli_apply] using
+    · simpa [r, PMF.ofFintype_apply] using
         (show (0 : Real) < (t : Real) by exact_mod_cast ht0)
   have hpoint (a : alpha) :
       (∑ b, (r b).toReal * Real.negMulLog (P b a).toReal) <=
@@ -116,7 +137,7 @@ theorem binaryMixture_entropy_eq_iff
         (∑ b, (r b).toReal * entropy (P b)) =
           entropy (r.bind P) := by
       simpa [r, P, PMF.binaryMixture, Fintype.univ_bool,
-        PMF.bernoulli_apply, ENNReal.coe_sub] using hEntropy
+        PMF.ofFintype_apply, ENNReal.coe_sub] using hEntropy
     have hsum :
         (∑ a, ∑ b,
             (r b).toReal * Real.negMulLog (P b a).toReal) =

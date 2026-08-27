@@ -15,13 +15,14 @@ facts; this chronological log should not duplicate a full module inventory.
 Stable entry points are:
 
 - `LeanInfoTheory.lean`: the lightweight root for finite Shannon definitions
-  and the core certificate/checker layer;
+  and elementary finite-probability support;
 - `LeanInfoTheory.InformationMeasures`: the finite information-measure
   convenience re-export;
 - `LeanInfoTheory.Shannon.SemanticBridge`: the opt-in semantic aggregate, with
   focused submodules remaining separately importable;
-- `LeanInfoTheory.Examples`: the opt-in example aggregate, while certificate
-  demonstrations and `MathlibFragments` remain separate imports.
+- `LeanInfoTheory.Examples`: the opt-in mathematical example aggregate;
+- `LeanInfoTheory.MathlibFragments`: a separate import for heavier upstream
+  information-theory and coding anchors.
 
 For source-derived current inventories, consult the
 [module graph](../home_page/blueprint/module_graph.json) and
@@ -2353,8 +2354,8 @@ only four conversion theorems:
 
 There are no parallel base-indexed definitions of entropy, conditional
 entropy, mutual information, or conditional mutual information. The generic
-change-of-base theorem applies to any of their nat-valued real results. The
-project root does not import `Shannon.Units`; its documentation now points to
+change-of-base theorem applies to any of their real-valued results measured in
+nats. The project root does not import `Shannon.Units`; its documentation now points to
 the opt-in module.
 
 The Future Work Note 14 review retained every existing declaration and added
@@ -6204,6 +6205,992 @@ working-tree closeout as historical evidence while advancing the validated
 committed Lean/source baseline to `1eef228`. No later mathematical phase is
 selected or authorized by the checkpoint.
 
+### 151. `v0.1.0` Release Preparation Through the Frozen Toolchain Baseline
+
+On August 25, 2026, the first three separately authorized steps of the
+17-step `v0.1.0` release-preparation sequence completed in the local working
+tree. The work began from documentation-only `HEAD`
+`32b2aec75e62c2c410dc9c1fc4de9f27ab657eef`, whose last fully validated
+committed Lean/source ancestor remains Chunk 8 checkpoint
+`1eef2289c3475ff978569f285329bdc78e060594`.
+
+Step 1 recorded the approved release contract in
+`docs/v0.1-release-contract.md`. The target is a reusable finite-PMF
+information-theory library rather than a claim of complete information theory,
+the publication of `ShannonCert`, or a paper-specific formalization. Nats stay
+canonical, with opt-in change-of-base infrastructure rather than duplicated
+bit-valued definitions and theorem families. Certificate machinery is assigned
+to a later ownership-separation step, judged by mathematical generality and
+dependencies rather than filename alone. The contract also selects one
+Lean/mathlib `v4.33.1` upgrade, a certificate-free eventual root surface,
+Apache-2.0, and a mandatory pre-release legal-attribution checkpoint. The
+initial personal-holder fallback was superseded on August 25 by the project
+lead's EPFL/MIL ownership decision. No publication may proceed until Step 14
+re-confirms institutional, contributor, third-party, release-date, and DOI
+metadata.
+
+Step 2 removed `.github/workflows/create-release.yml` locally. That workflow
+would automatically create a tag and GitHub Release after a Lean-version
+change, which conflicts with the contract's explicit-approval publication
+gate. The deletion is still uncommitted and `origin/master` still contains the
+workflow. Consequently no toolchain migration may be pushed until the deletion
+has reached the default branch and the remote interlock has been verified.
+
+Step 3 upgraded and froze the local release-preparation baseline as follows:
+
+- Lean toolchain `leanprover/lean4:v4.33.1`, exact commit
+  `819816b2e0a3bf405af45ae5c7af2491d8f5bee6`;
+- mathlib input revision `v4.33.1`, exact manifest commit
+  `0df444a360eaa60ab8c11dca51a86af692955474`;
+- all nine dependency checkouts equal their root-manifest revisions, and all
+  eight inherited revisions equal the corresponding mathlib-manifest entries.
+
+The migration exposed compiler and library compatibility changes beyond the
+two version pins: Lean 4.33 rejects proof-local class syntax used as ordinary
+facts, is less permissive about several eta-expanded `PMF.map` and composition
+equalities, renamed the relevant set-membership simplification, and deprecated
+the PMF Bernoulli API. The implementation therefore made proof-local facts
+ordinary `let`/`have` bindings, supplied explicit function extensionality and
+composition equalities, used the current set lemma, and represented Boolean
+selectors directly with `PMF.ofFintype`. A three-constructor example now writes
+its `ThreePoint.instFintype` instance explicitly because the new deriving
+handler failed; this preserves the same generated qualified name, type,
+instance status, constructor enumeration, and opt-in example ownership.
+
+The independent frozen-diff audit covered all 22 changed Lean files. It found
+no change to any public theorem signature or assumption, namespace, attribute,
+visibility, import, dependency boundary, or root import. `PMF.binaryMixture`
+and `binaryMixture_apply` retain their exact public signatures and pointwise
+formula. The other changed public bodies are example laws with the same Boolean
+masses; all remaining changes are proof-only compatibility edits. No new proof
+shortcut or dependency expansion was introduced.
+
+Focused builds passed for each migration owner and downstream aggregate. The
+complete examples aggregate passed with 3,065 jobs. The maintained release
+matrix then passed cleanly with 3,079 jobs:
+
+```powershell
+lake -KwarningAsError=true build LeanInfoTheory `
+  LeanInfoTheory.Shannon.EntropyBounds `
+  LeanInfoTheory.Shannon.Units `
+  LeanInfoTheory.Shannon.SemanticBridge `
+  LeanInfoTheory.MathlibFragments `
+  LeanInfoTheory.Certificate.Submodularity `
+  LeanInfoTheory.Certificate.Subadditivity `
+  LeanInfoTheory.Certificate.Monotonicity `
+  LeanInfoTheory.Certificate.ThreeWaySubadditivity `
+  LeanInfoTheory.Examples
+```
+
+A final idempotent `lake update` completed successfully with no downloads.
+Strict Lean-source scans found no `sorry`, `admit`, project `axiom`, `opaque`,
+`undefined`, unsafe or partial declaration, external implementation hook,
+native/run tactic, obsolete proof-local class syntax, or deprecated PMF
+Bernoulli use. `git diff --check` and conflict-marker checks passed. Both
+source-derived website generators were byte-idempotent on a second pass, and
+`scripts/check_website.py` checked 12 HTML files and two generated JSON files.
+The module inventory remains 51 modules, 100 local edges, 11 root-reachable
+modules, and 40 separate-import modules. The declaration index is now 881
+because the already-existing example `Fintype` instance is explicit and hence
+visible to the source parser; this is not an environment-level API addition.
+
+Because the compatibility work was broader than a pin-only edit, Step 3 also
+performed the contract's plan-health review. The full build, frozen-diff audit,
+unchanged import graph, and unchanged public contracts show that the migration
+does not alter mathematical scope, certificate ownership, units policy, trust
+policy, or later sequencing. The 17-step plan remains healthy. The toolchain is
+now frozen through `v0.1.0`; any further upgrade requires another explicit
+plan-health decision.
+
+Nothing in these three steps touched `ShannonCert`, began certificate
+extraction, migrated units, renamed the API, started Chunk 9, committed or
+pushed the working tree, created a tag or GitHub Release, or published the
+website. Step 4, certificate ownership separation, requires a new explicit user
+prompt. The unresolved remote release-workflow interlock remains a hard gate on
+any future push containing the toolchain change.
+
+### 152. EPFL/MIL Copyright, Citation, and AI-Assistance Metadata Checkpoint
+
+After Step 3, the project lead separately clarified the legal and authorship
+metadata and authorized its local application before Step 4. LeanInfoTheory is
+recorded as an EPFL/MIL research software project with ECOLE POLYTECHNIQUE
+FEDERALE DE LAUSANNE (EPFL), Switzerland, Mathematics of Information Laboratory
+(MIL), as copyright holder and Serhat Emre Coban as author, software creator,
+and project lead. Apache-2.0 remains the licence. This does not claim approval
+by EPFL, MIL, or EPFL TTO.
+
+A provenance audit found 51 tracked Lean files. All are project-authored: 47
+had the old personal notice and four had no header (`LeanInfoTheory.lean` and
+the Monotonicity, Subadditivity, and ThreeWaySubadditivity certificate demos).
+All 51 now use the exact approved EPFL/MIL header. `MathlibFragments.lean`
+contains an import checklist and no copied mathlib implementation. There is no
+tracked vendored or generated Lean source. External Lake packages remain under
+`.lake` and were not modified.
+
+The audit also found that the former root `LICENSE` was not a faithful copy of
+Apache-2.0: material phrases were missing, and GitHub classified the remote
+version as `Other` / `NOASSERTION`. The local file is now the canonical
+Apache-2.0 text obtained from GitHub's licence API and compared after newline
+normalization. GitHub licence detection must be checked again only after this
+correction reaches the default branch. Lake package metadata now declares the
+description, focused keywords, website, `Apache-2.0`, and `LICENSE` file.
+
+The new root `CITATION.cff` records software title `LeanInfoTheory`, version
+`0.1.0`, Serhat Emre Coban as the sole creator, EPFL/MIL affiliation,
+Apache-2.0, the GitHub repository, and project website. Its release date is
+omitted with a visible placeholder until known, and no DOI is invented. The
+official `cffconvert` 2.0.0 validator accepted it against CFF schema 1.2.0.
+No separate `.zenodo.json` duplicates this canonical metadata; the DOI and any
+deposit-specific additions remain Step 14 and publication-dry-run work.
+
+The README now contains the one long-form AI-assistance disclosure. It states
+that OpenAI Codex and ChatGPT provided extensive assistance, does not claim the
+proof code was manually written or audited line by line, and distinguishes
+Lean kernel checking from human responsibility for theorem selection,
+assumptions, conventions, architecture, review, and mathematical
+interpretation. AI systems and companies are not listed as authors or creators.
+A shorter disclosure remains release-notes work and the long paragraph is not
+duplicated elsewhere.
+
+No `NOTICE` file was added: there is no vendored attribution requiring one,
+and the Cayman-derived website stylesheet is CC0-1.0 and was deliberately left
+without an exclusive project-authored notice. No existing third-party notice
+was overwritten. Hand-written website credit and release-facing navigation
+remain Step 12 work; generator-owned HTML/JSON was changed only by rerunning
+the source-derived generators after Lean header line shifts.
+
+Mathlib's stylistic header linter accepts only its own `Copyright (c)` /
+`Authors:` template and therefore warns on the exact institutional header. The
+package conditionally disables only that check with
+`weak.linter.style.header = false`; an explicit repository scan instead checks
+the exact ten-line header on every tracked Lean file. Focused strict builds of
+the minimal and linted source layers passed, followed by the complete
+warning-as-error release matrix with 3,079 jobs. Both website generators were
+byte-idempotent on a second pass, and the website checker passed 12 HTML and two
+generated JSON files.
+
+This supplemental checkpoint does not complete broader Step 9 packaging or
+Step 14's final release-date, DOI, contributor, institutional, and third-party
+confirmation. It does not begin Step 4, touch `ShannonCert`, commit or push,
+create a tag or GitHub Release, initiate a Zenodo deposit, or publish the
+website. The remote automatic-release interlock from Step 2 remains unresolved
+and still blocks any push containing the toolchain migration.
+
+### 153. `v0.1.0` Step 4 Certificate Ownership Separation
+
+Release-preparation Step 4 removes the entropy-expression language,
+primitive-inequality vocabulary, raw/checked certificate subsystem,
+finite-family adapter, certificate demonstrations, certificate-only example
+code, and certificate-facing semantic constructors from LeanInfoTheory
+ownership. The lightweight root and examples aggregate become mathematical;
+all reusable finite-family, entropy, KL, independence, Markov, data-processing,
+and sufficiency results remain upstream. Certificate DSL, checking, import,
+and application work is assigned downstream. `ShannonCert` was neither
+accessed nor modified.
+
+Current-facing architecture, import, build, roadmap, and validation documents
+were reconciled without rewriting the completed Chunk plans, dated audits, or
+earlier chronological entries. The regenerated source inventory contains 41
+modules, 77 local edges, 6 root-reachable modules, 35 opt-in modules, and 714
+declarations (713 documented plus one explicit example-only instance).
+The focused, maintained warning-as-error, and default builds pass; the
+generators are byte-idempotent, and the website, placeholder, axiom, import-
+boundary, and hygiene checks pass. An independent final review confirmed the
+exact extraction boundary, retained reusable API, generated counts, current-
+facing documentation, and repository hygiene with no blocker. No commit, push,
+tag, release, Zenodo deposit, or website publication occurred. Step 5 requires
+a separate prompt.
+
+### 154. `v0.1.0` Step 5 Public Import And Declaration Ownership Normalization
+
+Release-preparation Step 5 fixes the public import tiers without starting the
+units or API-freeze steps. `LeanInfoTheory` now directly imports exactly
+`Probability.Finite` and `InformationMeasures`; removing the non-mathematical
+`Basic` edge gives a five-module lightweight mathematical closure. The new
+import-only `LeanInfoTheory.Shannon` umbrella directly imports the root, `Fano`,
+`SemanticBridge`, and `Units`, yielding a 31-module closure containing the
+complete supported mathematical stack. It excludes exactly 12 non-stable
+anchors: `Basic`, the `Examples` aggregate and its nine submodules, and
+`MathlibFragments`. Those modules remain separately importable; no Step 7
+deletion or declaration-promotion decision is made here.
+
+The only aggregate ownership defect was the five self-information declarations
+in `Shannon.SemanticBridge`. They moved unchanged to the focused
+`Shannon.SemanticBridge.Entropy` owner anticipated by the semantic-bridge design
+note. Their names, namespaces, statements, attributes, documentation, and proof
+text are unchanged; existing semantic-aggregate consumers remain compatible.
+`SemanticBridge` now directly imports every supported semantic submodule and
+owns no declarations. `InformationMeasures` directly imports both declaration
+owners whose names it exports. The root, full Shannon umbrella,
+`InformationMeasures`, semantic aggregate, examples aggregate, and
+`MathlibFragments` all contain zero indexed declarations.
+
+The regenerated graph is an acyclic 43-module, 87-edge graph with 5 root-
+reachable and 38 separate-import modules. The declaration inventory remains
+714 entries, 713 documented plus one explicit example-only instance. A
+3,057-job focused warning-as-error build passed for the new owner, semantic
+aggregate, full umbrella, and root. The strengthened eight-target maintained
+warning-as-error matrix passed with 3,071 jobs and covers all 43 retained
+modules; default `lake build` passed with 2,605 jobs. Four positive consumers
+checked the root, focused owner, old aggregate, and full umbrella. Eight
+expected-failure consumers confirmed root/focused/umbrella isolation. The moved
+declaration band is byte-identical to its prior owner, and its declarations use
+only Lean's standard `propext`, `Classical.choice`, and `Quot.sound` axioms.
+
+Both source-derived generators are byte-idempotent, the website checker passes
+across 11 HTML and two JSON files, and the placeholder, unsafe, exact-header,
+conflict, scratch, whitespace, diff, graph-coverage, and repository-hygiene
+checks pass. Independent validation recomputed the import graph, closures,
+exclusions, aggregate ownership, declaration compatibility, consumer
+boundaries, builds, generated artifacts, and trust checks with no blocker. No
+commit, push, tag, GitHub Release, Zenodo deposit, website publication, Step 6
+work, or `ShannonCert` access occurred.
+
+### 155. `v0.1.0` Step 6 Nats-First Units Policy
+
+Release-preparation Step 6 implements the approved nats-first policy without
+starting public-API curation. Canonical entropy, conditional entropy, mutual
+information, and conditional mutual information remain `Real`-valued and
+measured in nats, matching mathlib's natural-log conventions. The lightweight
+opt-in `Shannon.Units` owner adds exactly two documented scalar definitions:
+
+- `natsToBase b x = x / Real.log b`, whose ordinary information-theoretic
+  interpretation requires `1 < b`; and
+- `natsToBits x = natsToBase 2 x`.
+
+The pre-existing `div_log_change_base`, `negMulLog_div_log`,
+`entropy_div_log`, and `entropyOf_div_log` declarations retain their exact
+names, signatures, assumptions, attributes, and proofs. No base-indexed
+entropy/MI/CMI definition, duplicated theorem family, unit-specific simp rule,
+or `ENNReal`-to-bits conversion is introduced.
+
+The new non-stable `Examples.Units` module imports `Shannon.Units` and
+`SemanticBridge.KL` rather than making the units owner heavy. Its anonymous
+compiled consumers cover valid arbitrary-base conversion, base-two entropy,
+mutual information, conditional mutual information, and the finite KL sum in
+bits under absolute continuity. Its documentation records the necessary
+boundary: applying `ENNReal.toReal` to infinite KL yields zero, so real unit
+conversion must follow a support/finiteness guard. The examples aggregate
+imports this module, but neither public mathematical umbrella does.
+
+The regenerated source graph contains 44 modules and 90 local edges, with a
+five-module lightweight root, a 31-module full Shannon umbrella, a four-module
+focused Units closure, and 39 separate-import modules. The declaration index
+contains 716 declarations, 715 documented plus the existing explicit
+example-only instance. The only declaration delta is the two scalar definitions.
+README, conventions, current-state, living-summary, release-contract, roadmap,
+module-guide, theorem-highlight, and blueprint material now state the nats/bits
+policy and the guarded-KL rule; all misleading uses of "nat-valued" were
+removed except the release contract's explicit prohibition of that wording.
+
+Focused source and example builds pass. The complete eight-target
+warning-as-error maintained matrix passes with 3,072 jobs, and default
+`lake build` passes with 2,605 jobs. Direct Units and full-umbrella consumers
+resolve the scalar API; expected-failure consumers confirm that the lightweight
+root exposes no unit declaration and that focused Units exposes no semantic-KL
+declaration. Representative axiom output contains only `propext`,
+`Classical.choice`, and `Quot.sound`. Both generators are byte-idempotent, the
+website checker passes across 11 HTML files and two generated JSON files, and
+placeholder, supplemental trust, exact 44-file EPFL/MIL header, conflict,
+scratch, graph-boundary, whitespace, and diff checks pass.
+
+An independent read-only final validation recomputed the declaration delta,
+proof preservation, compiled examples, import closures, generated counts,
+consumer boundaries, documentation claims, trust surface, and repository
+hygiene. It corrected one provenance phrase for the explicit example-only
+`ThreePoint.instFintype` instance and then reported a clean pass with no
+blocker.
+
+No commit, push, tag, GitHub Release, Zenodo deposit, website publication,
+Step 7 API-freeze work, or `ShannonCert` access occurred. Step 7 requires a
+separate user prompt.
+
+### 156. `v0.1.0` Step 7 Public API Curation and Freeze
+
+Release-preparation Step 7 freezes the current public mathematical surface
+without changing Lean source. The audit rechecked the stability contract,
+actual full-umbrella closure, declaration inventory, root export façade,
+representative elaborated signatures, namespaces, assumptions, attributes,
+module ownership, private-helper boundary, documentation, and the completed
+naming and simplifier decisions in Future Work Notes 14--16 and 26.
+
+The review found no release-blocking API defect. It retained every current
+public declaration, signature, assumption, namespace, attribute, owner, and
+import path. It added no compatibility alias, renamed nothing, weakened no
+assumption, promoted no helper, changed no simp rule, split no module, and
+promoted no example declaration. The already reviewed descriptive names and
+34 compatibility aliases remain stable, while the completed declined-alias
+decisions from Chunks 3--8 remain closed absent new consumer pressure. The new
+`natsToBase` and `natsToBits` names are frozen unchanged: they are collision-
+free, documented, consumer-tested, and follow the useful base-first order of
+`Real.logb`. The existing Units theorem names remain coherent; no base-specific
+entropy, MI, CMI, or KL theorem family is added.
+
+The exact supported surface is the 31-module transitive closure of
+`LeanInfoTheory.Shannon`. It contains 601 unique and documented project-owned
+public declarations: 535 theorems, 56 definitions, nine abbreviations, and one
+named instance. Namespace ownership is exact: 557 declarations use
+`LeanInfoTheory.Shannon`, while 44 elementary PMF constructions and facts use
+`PMF`. There is no public `_aux`, helper, scratch, temporary, raw, or similar
+proof-engine name. The six aggregate, façade, and reference anchors
+`LeanInfoTheory`, `LeanInfoTheory.InformationMeasures`,
+`LeanInfoTheory.Shannon`, `LeanInfoTheory.Shannon.SemanticBridge`,
+`LeanInfoTheory.Examples`, and `LeanInfoTheory.MathlibFragments` own zero source
+declarations. The 31 supported modules and 13 non-stable `Basic`, example, and
+reference anchors partition all 44 local modules exactly.
+
+The explicit `InformationMeasures` façade contributes 92 unique
+`LeanInfoTheory.*` export paths, each targeting one supported
+`LeanInfoTheory.Shannon.*` declaration. Those aliases are a real supported
+user surface even though Lean's `export` command does not create duplicate
+environment constants and the general declaration index therefore does not
+list them separately. The Step 7 manifest records the aliases and targets
+explicitly.
+
+The assumption review confirmed the established finite/type-generic boundary.
+Raw PMF channels, elementary semantic predicates, `indepProd`, Markov and
+sufficiency predicates, and the primitive `conditionalKlDiv` definition do not
+acquire artificial finite alphabets. Finite sums and entropy declarations use
+the appropriate `Fintype` contracts, while finite-family predicates do not
+require a finite index type. Two known stronger contracts are accurate and now
+explicitly documented: `channelPosterior` uses `[Fintype alpha]`, and
+`isSufficientStatistic_iff_exists_fisherNeymanFactorization` uses
+`[Finite alpha] [Nonempty alpha]`. Neither has consumer pressure sufficient to
+justify a compatibility wrapper during the release freeze.
+
+The reviewed simplifier surface contains exactly 94 supported source
+declarations and no separate `attribute [simp]` command. The construction-
+reducing MI/CMI swap and diagonal/self rules, eight finite-family empty/self
+rules, mixture endpoints, conditional-KL self rule, mutual-independence base
+rules, and generated-channel Markov rule are present. Chain rules, semantic
+views, entropy-difference identities, symmetric RV statements,
+`PMF.binaryMixture_apply`, and deterministic channel-extension representation
+remain explicit as required by Future Work Notes 15--16. The audit also found
+120 explicitly private proof-engine declarations (100 theorems and 20
+definitions) in supported sources and no
+accidental public helper promotion.
+
+Step 7 adds three release artifacts:
+
+- `docs/v0.1-public-api.md`, the human stability, scope, assumptions, naming,
+  units, and compatibility contract;
+- `docs/v0.1-public-api.json`, the deterministic exact module/declaration/
+  attribute/export baseline; and
+- `scripts/generate_v0_1_public_api.py`, whose generation and `--check` modes
+  validate the 31/13 module partition, all declaration names and docs, namespace
+  ownership, six zero-declaration aggregates, the root export targets, and the
+  checked-in manifest.
+
+The manifest deliberately excludes source lines and doc text, which are not
+compatibility identifiers, and does not pretend to be signature-bearing Lean
+documentation. Exact types and assumptions remain governed by Lean source and
+the later Step 11 environment-generated API documentation.
+
+No-file Lean consumers resolved all 601 canonical declarations through
+`import LeanInfoTheory.Shannon` and all 92 root aliases plus canonical targets
+through `import LeanInfoTheory`. Environment-level negative probes confirmed
+that the full umbrella exposes none of the 115 public declarations owned by
+non-stable modules and that the lightweight root exposes none of the 480
+supported declarations owned outside its five-module closure. The maintained
+eight-target warning-as-error build passed with 3,072 jobs, and default
+`lake build` passed with 2,605 jobs.
+
+The full 601-declaration axiom audit reported only `propext`,
+`Classical.choice`, and `Quot.sound`. Strict source scans found no `sorry`,
+`admit`, project `axiom`, `opaque`, `undefined`, unsafe or partial declaration,
+external implementation hook, native-decision shortcut, or run tactic. All 44
+Lean files retain the exact EPFL/MIL header. The versioned manifest and both
+website generators reproduced all five generated artifacts byte-for-byte on a
+second pass; the manifest `--check` mode passed, and the website checker passed
+across 11 HTML files and two generated JSON files. `git diff --check`, conflict-
+marker, JSON, and local-link target checks passed.
+
+Three independent read-only audits separately reviewed naming/discoverability,
+assumptions/attributes/helper visibility, and namespace/export/manifest
+architecture. All reported no blocker and recommended freezing the current
+Lean surface unchanged. Current-facing status documents and the narrowly
+scoped website roadmap status now identify Step 8 trust and CI gates as the
+next separately authorized release-preparation step.
+
+A separate independent final validator recomputed the complete inventory,
+module partition, exports, simp surface, aggregate ownership, private-helper
+count, environment existence and isolation probes, manifest, website, diff,
+and status claims. It corrected the private-helper record to 120 declarations
+(100 theorems and 20 definitions) and then reported an unconditional Step 7
+pass with no blocker.
+
+No commit, push, tag, GitHub Release, Zenodo deposit, website publication,
+Step 8 work, Chunk 9 work, or `ShannonCert` access occurred.
+
+### 157. `v0.1.0` Step 8 Maintained Trust and CI Gates
+
+Release-preparation Step 8 was completed locally on August 26, 2026. It changes
+no Lean source, declaration, theorem statement, assumption, namespace,
+attribute, import edge, unit convention, or public-surface classification.
+Instead, `scripts/validate_release.py` makes the reviewed release contract
+executable through one cross-platform entry point and one authoritative
+eight-target maintained build list. The default mode runs the static gates,
+default project build, warning-as-error maintained build, Lean environment
+trust matrix, and final hygiene; focused and CI-specific modes reuse the same
+policy without shell-specific orchestration.
+
+The static gate checks the exact EPFL/MIL header on all 44 project-authored Lean
+files; rejects proof placeholders, unsafe/partial declarations, external
+implementation hooks, native decision, and run tactics; checks the frozen
+Lean/mathlib/manifest relationship; requires the exact three reviewed workflow
+files and asserts the local automatic-release workflow remains absent; checks
+the `v0.1.x` manifest and both website
+generators twice without modifying the working tree; validates website links
+and JSON; and finishes with diff, conflict-marker, and scratch hygiene. Both
+website generators now expose `--check` modes, so CI no longer regenerates over
+an intentionally dirty baseline merely to test freshness.
+
+The Lean trust matrix first rebuilds the maintained targets to prevent stale
+`.olean` evidence. It then imports each of the 31 supported modules directly
+and compares its exact local-module closure and reviewable declaration/owner
+set with the checked graph and manifest. Lean's own
+`isAutoDeclOrPrivate_Internal` filter avoids the known trap of counting
+compiler-generated declarations as user API. The full umbrella independently
+matches all 601 supported declarations and all 94 recorded `simp` flags,
+excludes all 115 non-stable public declarations and all 120 private source
+declarations by their unmangled user names, and permits only `propext`,
+`Classical.choice`, and `Quot.sound`. The root resolves each of the 92 export
+aliases to its exact target and excludes all 480 opt-in supported declarations.
+A separate all-module audit checks all 1,382 compiled project constants,
+including private, internal, compiler-generated, and non-stable constants,
+against the same axiom allowlist.
+
+The Lean workflow now uses the shared static, maintained-build, trust, and
+hygiene commands around an explicit warning-as-error default build. The Pages
+workflow runs the static gate before upload, and the manual dependency-update
+workflow retains its PR/issue behavior. Every direct action reference in all
+three workflows is pinned to a reviewed full commit; the Lean job also has
+read-only repository permissions, concurrency cancellation, and a bounded
+timeout. The maintained warning-as-error build passed with 3,072 jobs, all 31
+direct-import environments passed, and the public and all-project axiom audits
+reported no dependency outside the three-name allowlist. The non-mutating
+generated, website, source, and hygiene gates pass.
+
+An independent read-only final review reproduced the 44-file Lean-tree hash
+`36b5f081cadcb102e8fe2508433ef7c12881c4de5ca35f20c5ddbf33b5374ace` and
+the public-manifest hash
+`d4c5bfa78588de605798f568b312a4cef2896855e36d3c983849270181e397be`,
+matching the Step 7 baselines. It also passed Python compilation, the complete
+static gate, generator checks, and actionlint 1.7.12 across all three workflows;
+confirmed every pinned direct action commit and documented major-version ref;
+and found no remaining Step 8 blocker. During review, current-facing prose was
+corrected from raw byte identity to newline-normalized rendered-text currency,
+the Quick Start was advanced from Step 7, and the workflow interlock was
+hardened to require the exact reviewed workflow-file set.
+
+This is validated working-tree evidence, not remote CI evidence. The revised
+workflows are unpushed and have not run on GitHub. More importantly,
+`origin/master` still contains the automatic `create-release.yml` workflow
+removed locally in Step 2. Its deletion must be pushed and verified separately
+before any accumulated change containing the Lean `v4.33.1` toolchain update
+is pushed. No clean-checkout, cold-build, external-consumer, branch-protection,
+tagging, release, Pages publication, or Zenodo claim is made here; Steps 15--17
+retain those assignments.
+
+The `v0.1` manifest freezes names, kinds, owners, modules, exports, and reviewed
+`simp` attributes, but deliberately does not carry declaration-type hashes.
+Step 8 therefore does not claim automated same-name signature-drift detection;
+Step 11 remains the owner of signature-bearing API documentation. Step 8
+discharges Future Work Note 17's reusable driver, shared target list, maintained
+import-boundary matrix, and axiom-harness items while leaving its cold-release
+policy to Step 15. Step 9 package and preliminary legal metadata is the next
+separately authorized release-preparation step. No commit, push, tag, GitHub
+Release, Zenodo deposit, website publication, Chunk 9 work, or `ShannonCert`
+access occurred.
+
+### 158. `v0.1.0` Step 9 Package and Preliminary Legal Metadata
+
+Release-preparation Step 9 was completed locally on August 26, 2026. It changes
+no Lean source, declaration, theorem statement, assumption, namespace,
+attribute, import edge, unit convention, public-surface classification,
+workflow, or generated API/website artifact. It corrects the release package
+contract, reconciles the preliminary legal record with the current
+certificate-free tree, and makes both contracts continuously checkable.
+
+`lakefile.toml` now describes LeanInfoTheory `0.1.0` as a Lean 4 and mathlib
+library for finite discrete information theory, uses the reviewed Reservoir
+keywords `math`, `information-theory`, `probability`, and
+`formal-verification`, and sets `fixedToolchain = true` for the frozen
+Lean/mathlib `v4.33.1` release baseline. Existing homepage, Apache-2.0 licence,
+`LICENSE`, default target, library, and exact mathlib revision metadata remain
+unchanged. No `releaseRepo`, prebuilt-artifact preference, redundant Reservoir
+field, unsupported repository/author field, or artificial Lake test/lint driver
+was added.
+
+The first `lake update` changed the current root manifest's
+`fixedToolchain` value from `false` to `true`. A second update completed
+successfully and was byte-idempotent at manifest SHA-256
+`392f0f382a11ec1ce0e71cf39eaef062c5a6446e02520a890e68ba6987e1ace9`.
+Changing only that root value back to `false` reconstructs the Step 8 manifest
+hash `56a15221bc71d92765fd193fecd231aca3e2c9f2220662753043ef3d212de794`.
+`lake reservoir-config` resolves version `0.1.0`, `README.md`, Apache-2.0 and
+`LICENSE`, all four keywords, the project homepage, and indexing.
+
+`scripts/validate_release.py` now parses the Lake TOML and checks the exact
+package, library, dependency, default-target, fixed-toolchain, and manifest
+contract. The same metadata gate requires the canonical newline-normalized
+Apache-2.0 licence hash, the exact sole-author CFF fields, the absence of a
+premature release date or DOI, the README's legal/citation/AI disclosures, no
+positive institutional-approval claim, and the reviewed preliminary absence of
+`NOTICE` and `.zenodo.json`. Those last pre-Zenodo checks are deliberately
+temporary contracts and must be revised if Step 14 legitimately adds release
+metadata.
+
+The legal audit now distinguishes its historical August 25 checkpoint of 51
+then-tracked project Lean files from the current 44-file tree. Step 4 removed
+ten certificate, entropy-expression, valuation, and primitive-vocabulary files;
+later approved steps added the full Shannon umbrella, the units example, and
+the entropy semantic bridge. All 44 current project-authored Lean files retain
+the exact EPFL/MIL header. The current generated inventory is 44 modules, 90
+local import edges, 716 source declarations, 11 website HTML files, and two
+generated JSON files.
+
+The substantive legal files required no Step 9 rewrite. The root `LICENSE`
+still matches the canonical Apache-2.0 body after newline normalization, with
+SHA-256 `c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4`.
+The unchanged `CITATION.cff`, SHA-256
+`c3b614d35c4d2426e7e3224b83a6f0c4da7678858d21182346f7988fe313315f`,
+passes isolated `cffconvert` 2.0.0 validation under CFF 1.2.0 and names only
+Serhat Emre Coban as creator with the EPFL/MIL affiliation. The README's
+AI-assistance disclosure remains accurate. No copied or vendored Lean source,
+additional recorded human contributor, or concrete `NOTICE` requirement was
+found. The release date, any reserved Zenodo DOI, and final institutional,
+contributor, and third-party confirmation remain mandatory Step 14 work.
+
+The complete maintained release suite passed: the 2,605-job default build; the
+3,072-job eight-target warning-as-error build; all 31 exact direct-import
+probes; the 601-declaration/94-`simp` umbrella audit; the
+92-export/480-exclusion root audit; and the 1,382-constant all-project axiom
+audit. Every public and compiled-project axiom check reported only `propext`,
+`Classical.choice`, and `Quot.sound`. The static gate also passed all 44 source
+headers and trust scans, two non-mutating passes of all three generators, the
+11-HTML/two-JSON website check, and repository hygiene.
+
+An independent read-only final review passed Python syntax, the focused
+metadata and full static gates, Lake/Reservoir resolution, exact manifest
+reconstruction, the canonical-licence comparison, targeted authorship and
+approval scans, and CFF 1.2.0 schema validation. It found no package, legal,
+metadata, validation-policy, or Step 9 scope blocker. A separate read-only
+integrity review reproduced the unchanged 44-file framed Lean-tree hash
+`36b5f081cadcb102e8fe2508433ef7c12881c4de5ca35f20c5ddbf33b5374ace`
+and public-manifest hash
+`d4c5bfa78588de605798f568b312a4cef2896855e36d3c983849270181e397be`.
+The maintained validator's CFF assertions remain exact-field checks rather than
+a bundled schema engine; Step 14 must repeat schema validation after inserting
+any real date or DOI.
+
+Remote state was not changed. GitHub still reports the unpushed default-branch
+licence as `Other` / `NOASSERTION` and has no repository topics. More
+importantly, `origin/master` still contains the automatic release workflow
+removed locally in Step 2; its deletion must reach and be verified on the
+default branch before the accumulated toolchain-changing tree may be pushed.
+No clean checkout, external Lake consumer, tag, release, Pages publication, or
+Zenodo claim is made. Step 10 release-facing documentation and compiling
+examples is next and requires a separate prompt. No commit, push, tag, GitHub
+Release, Zenodo deposit, website publication, Chunk 9 work, or `ShannonCert`
+access occurred.
+
+### 159. `v0.1.0` Step 10 Release-Facing Documentation and Compiling Examples
+
+Release-preparation Step 10 was completed locally on August 26, 2026. The
+README is now a public release entry point rather than a chronological
+maintainer report. It records the pre-tag state, exact future `v0.1.0` Lake Git
+dependency, fixed Lean/mathlib `v4.33.1` compatibility, lightweight/full/
+focused import choices, supported mathematical scope, nats-first and guarded-
+real-KL conventions, limitations, `0.1.x` source-compatibility policy, Python
+3.11+ validator prerequisite, maintained build reproduction, and the controlled
+Steps 11--17 release procedure. The approved long-form AI disclosure and
+EPFL/MIL, Apache-2.0, and CFF metadata remain intact.
+
+The new versioned draft [`docs/releases/v0.1.0.md`](releases/v0.1.0.md) is the
+prospective GitHub Release body. It summarizes scope, units, certificate
+ownership, compatibility, imports, trust evidence, limitations, short AI
+disclosure, authorship, licence, and citation without duplicating the README.
+It explicitly leaves the tag, GitHub Release, Zenodo record, release date, DOI,
+exact release commit, remote CI, clean checkout, and external-consumer evidence
+pending. It makes no institutional-approval claim and no manual line-by-line
+proof-audit claim.
+
+Five stable HTML markers identify exact README Lean fences for the lightweight
+root, complete Shannon umbrella, focused raw channel API, nats-to-bits
+conversion, and support-guarded real KL equality. Each snippet imports its own
+surface and is compiled independently with warnings as errors. This prevents a
+prior umbrella import from hiding an inaccurate lightweight or focused-import
+claim. The existing non-stable example hierarchy already provides deeper
+permanent channel and units consumers, so no duplicate quick-start Lean module
+was added.
+
+`scripts/validate_release.py` now parses those exact five markers, rejects
+missing, duplicate, reordered, additional marked, or unmarked Lean fences, and
+exposes a focused `documentation` command. Its static phase checks the tagged
+dependency, imports, scope, units, limitations, compatibility, Python
+prerequisite, controlled release procedure, draft release state, short AI and
+legal metadata, institutional-approval boundary, and all local README/release-
+note links without requiring built Lean artifacts. The complete suite compiles
+the snippets only after both builds. The Lean CI workflow does the same between
+the maintained build and trust audit, and `AGENTS.md` documents the contract.
+
+Status was reconciled in the release contract, roadmap, current Lean state,
+living summary, legal metadata audit, project log, and the existing website
+roadmap. The website change is status-only: Step 11 is now active there. Step
+12 still owns release-accuracy, navigation, source-link, and publication-
+readiness work, and no website redesign began.
+
+Step 10 changes no Lean source, module, import edge, declaration, theorem
+signature, assumption, namespace, attribute, public-manifest entry, generated
+module graph, or source-derived declaration index. The independently reproduced
+framed Lean-tree hash remains
+`36b5f081cadcb102e8fe2508433ef7c12881c4de5ca35f20c5ddbf33b5374ace`,
+and the public-manifest hash remains
+`d4c5bfa78588de605798f568b312a4cef2896855e36d3c983849270181e397be`.
+The inventory remains 44 modules, 90 local edges, 5 root-reachable modules, 39
+separate-import modules, and 716 declarations; the frozen supported surface
+remains 31 modules, 601 declarations, 92 root exports, and 94 reviewed `simp`
+declarations.
+
+The complete maintained validator passed the 2,605-job default build, the
+3,072-job warning-as-error maintained build, all five README examples, all 31
+direct-import probes, the 601-declaration/94-`simp` umbrella audit, the
+92-export/480-exclusion root audit, and the 1,382-constant all-project axiom
+audit. Only `propext`, `Classical.choice`, and `Quot.sound` were reported. The
+Python compilation of the validator passed. The static gate passed the 44-file
+source scan, package/legal/toolchain/interlock checks, all local release-
+document links, two non-mutating passes of all generators, the 11-HTML/two-JSON
+website check, and repository hygiene.
+
+Three independent read-only final reviews examined public-document accuracy,
+the executable example/CI contract, and legal/release claims. They identified a
+stale website-roadmap active item, a legal-audit changed/unchanged ambiguity,
+and the missing Python 3.11 prerequisite; those issues were corrected before
+the checks were rerun, after which the reviewers reported no blocker. No
+commit, push, tag, GitHub Release, Zenodo deposit, website publication, clean
+consumer claim, Chunk 9 work, or `ShannonCert` access occurred. Step 11
+signature-bearing API documentation is next and requires a separate prompt.
+
+### 160. v0.1.0 Step 11 Signature-Bearing API Documentation
+
+Release-preparation Step 11 was completed and independently validated locally
+on August 26, 2026. The documentation environment
+under `docbuild/` pins `doc-gen4` `v4.33.1` at commit
+`e2af49a7b7e5e1a9224008c1f15e7aa4f58a4015`. It is isolated from the package's
+runtime dependency graph. The mathematical library remains the same 44 modules,
+while the exact project-authored Lean header scan is now 45 files because it
+also covers the build-only `docbuild/CCShim.lean` compatibility shim.
+
+The hardened generated-output contract checks exactly 31 supported module
+pages and 601 frozen declarations, requiring a rendered signature for every
+declaration. It separately reconciles all 92 canonical lightweight-root export
+targets and rejects every one of the 13 non-stable module anchors. There are no
+committed signature fingerprints: the public manifest and canonical targets
+jointly document the 92 root aliases. No mathematical source, supported
+declaration, root import, or runtime manifest changed.
+
+Generation uses `DISABLE_EQUATIONS=1` and produces zero equation rows. That
+setting omits only doc-gen's optional equation pages; signatures, docstrings,
+attributes, and sorry markers remain rendered and checked. The configuration
+stamp keys generation mode, source identity, and equation policy. Targeted
+invalidation refreshes generated output without discarding compiled
+dependencies when those dependencies remain valid.
+
+The validated local output uses file-linked sources, remains unpublished, and
+contains 5,521 files totalling 624.6 MiB. The first measured pass after cleaning
+the documentation build also removed shared package build outputs in the
+existing working tree. It took 17,547.3 seconds (4h52m27.3s), so it must not be
+described as a clean-checkout or cold-reproduction result. The immediate
+incremental pass took 154.8 seconds. An earlier fully warm pair took 5.5
+seconds per pass. The final post-review gate took 31.8 seconds and 11.9 seconds
+and reproduced digest
+`fa46bbc0de9359ea1e14e79d9e3bce9ac425f33cb2e9efb54086a4e28d6730fe`.
+
+That long local pass triggered a plan-health review of the CI design. Full
+doc-gen is no longer part of ordinary push or pull-request CI; those paths keep
+the routine static pin and configuration checks. A conditional
+`workflow_dispatch` `api_docs` release gate owns full generation with a
+360-minute maximum. Remote runner capacity and duration have not yet been
+measured, so no remote documentation-build claim is made.
+
+The independent final review caught an over-strict GitHub source-range check:
+doc-gen ranges begin at documentation comments, so none of the 601 generated
+ranges satisfied the original declaration-line start predicate. The corrected
+check still requires the exact repository, 40-character commit, file, and
+bounded range, but accepts any such range containing the exact inventory
+declaration line; all 601 database ranges satisfy it. The review also moved the
+Windows Zig/Lean preflight ahead of mode-sensitive cache invalidation and
+corrected premature Step 12 status wording. A read-only re-review found no
+remaining actionable issue. The final static gate, full routine suite,
+two-pass API-documentation gate, workflow lint, manifest-idempotence check, and
+frozen Lean/API/runtime hashes all passed.
+
+Step 11 did not stage or publish the generated site. Step 12 remains responsible
+for website staging, navigation, release-accurate source-link integration, and
+served-preview validation. Under the Step 13 amendment, Step 16 remains responsible for clean exact-commit
+GitHub-source mode, remote-capacity measurement, and fresh-checkout/external-
+consumer reproduction. No tag, GitHub Release, website publication, Zenodo
+action, later theorem work, or downstream-project mutation occurred.
+
+### 161. v0.1.0 Step 12 Versioned Website Staging
+
+Release-preparation Step 12 was completed and independently validated locally
+on August 26, 2026. It changes no Lean source, mathematical declaration,
+supported module, frozen API entry, root import, runtime dependency, units
+policy, or certificate boundary. It preserves the existing website design and
+limits its changes to release accuracy, navigation, documentation staging,
+provenance, publication interlocks, and validation.
+
+`scripts/stage_website.py` now assembles the tracked `home_page/` tree and the
+ignored Step 11 output into a disposable Pages-shaped artifact under
+`.lake/website-stage/LeanInfoTheory/`. The supported signature-bearing API is
+versioned at `/docs/v0.1.0/`; a tracked placeholder makes the route explicit
+without committing the generated 624.6 MiB tree. Shared navigation connects
+the project pages, generated API, supplementary source inventory, licence and
+third-party pages, and a route back from doc-gen pages.
+
+Preview mode accepts only attested file-source output, replaces all 151,458
+machine-local source anchors with a clear unavailable marker, repairs 5,496
+systematically missing generated `#top` targets, and writes
+`NOT_FOR_PUBLICATION.txt`. The maintained API-doc gate now removes any old
+attestation before building and writes a new one only after both semantic
+passes, repository-state preservation, and digest stability succeed. The
+attestation binds the full 5,521-file input tree to SHA-256
+`838335fb72d891ad9e6dd090e1556ed225c13b1408b754ed8a8da32f12b34fbe`
+and retains the supported-surface digest
+`fa46bbc0de9359ea1e14e79d9e3bce9ac425f33cb2e9efb54086a4e28d6730fe`.
+Staging recomputes the full digest before copying. Release mode additionally
+requires a clean checkout, GitHub source mode, and exact `HEAD`, and rewrites
+project tag links to that same 40-character commit.
+
+The assembled artifact contains 5,554 files, including 5,520 HTML files, and
+totals 654,015,176 bytes. The full checker follows 2,951,158 links/assets,
+validates exact path casing and project-subpath-relative navigation, checks
+fragments on project-owned pages, verifies root/versioned metadata identity,
+pins tool revisions and inventories, rejects links escaping the site, scans all
+relevant text formats for local paths and mutable project source references,
+and rejects symlinks, redirected destinations, hard links, oversized files,
+and Pages-limit overflow.
+
+Imported Lean, Lake, Std, mathlib, and package pages remain outside the
+31-module LeanInfoTheory support claim. Doc-gen currently emits 111 known
+upstream link advisories: 109 missing targets and two casing mismatches. Their
+complete sorted-message fingerprint is
+`bf8682253b1141fa6d97226f32d94fe599e4af7e4f69d8e363609f2155cfdd12`.
+The checker treats that exact reviewed baseline as advisory but fails on any
+count, kind, or fingerprint drift; project-owned and runtime errors remain
+unconditionally blocking.
+
+The concrete distribution inventory records 13 generated runtime/search
+assets, four externally loaded font/polyfill/MathJax resources, exact Lean,
+mathlib, doc-gen and dependency revisions, the project Apache-2.0 licence, and
+ten exact upstream licence groups. It found no concrete reason to add a
+redundant root `NOTICE`; Step 14 retains the final legal/provenance decision.
+No project notice was applied to generated or third-party material.
+
+Served browser validation at the real `/LeanInfoTheory/` project subpath passed
+homepage-to-docs-to-versioned-API navigation, return navigation, search,
+declaration deep links, `find` document/source/unknown redirects, imported-by
+and instance population, light/system themes, runtime assets, the clear preview
+source marker, and the generated 404 fallback. A fresh generated module page
+had no console messages. The only search-time observer diagnostic came from the
+browser automation layer after dynamic DOM insertion and was not present in
+the staged sources or a fresh page.
+
+`.github/workflows/pages.yml` is now manual-only. Its preparation job runs the
+static gate, Lean build, clean GitHub-source API-doc gate, attested release
+staging, publishable checker, and artifact upload; the separate deploy job runs
+only when the required boolean `publish` input is true. Permissions are isolated
+to that guarded deploy job. The static validator pins the normalized reviewed
+workflow shape at SHA-256
+`4a7e426f5fdf61ffd428503ac9364efdece71a11b9df7354c00e963643ed407c`,
+so trigger, guard, permission, or job changes require explicit safety review.
+
+The final local checks passed Python compilation, the source website contract
+(15 HTML, 952 links/assets, two JSON files), both generators twice, the static
+release contract, the two-pass 31-module/601-declaration API-doc gate, attested
+preview staging, the complete staged checker, the release-mode negative test,
+repository hygiene, and `git diff --check`. Independent code, staging,
+documentation, remote, and served-site reviews found and then rechecked the
+attestation, advisory-baseline, broad text-scan, metadata, and destination-path
+hardening. No commit, push, tag, GitHub Release, Pages deployment, Zenodo action,
+Step 13 work, later theorem work, or `ShannonCert` access occurred. Step 13 is
+next and requires a separate user prompt.
+
+### 162. v0.1.0 Step 13 Release Checkpoint and Plan Health
+
+Release-preparation Step 13 was completed and independently validated locally
+on August 26, 2026. It changes no Lean source, mathematical declaration,
+supported module, frozen API entry, import, unit convention, dependency,
+licence, author, release date, DOI, or external publication state.
+
+The fresh complete routine suite passed the 2,605-job default build, 3,072-job
+warning-as-error maintained build, five independently compiled README examples,
+all 31 direct-import probes, the 601-declaration/94-`simp` full-umbrella audit,
+the 92-export/480-exclusion root audit, and the 1,382-constant all-project axiom
+audit. The only axioms are `propext`, `Classical.choice`, and `Quot.sound`.
+Independent source/API review reproduced 44 modules, 90 local edges, the exact
+five-module root and 31-module full umbrella, the 31-supported/13-non-stable
+partition, the downstream certificate boundary, nats-first scalar units API,
+and coherent Lean/mathlib `v4.33.1` package graph. The public-manifest SHA-256
+remains `d4c5bfa78588de605798f568b312a4cef2896855e36d3c983849270181e397be`.
+
+The plan-health verdict is amber but sound. No mathematical scope, units,
+certificate, API, toolchain, or axiom trigger requires reopening Steps 1–12.
+The Step 12 preview measurement remains historical evidence at 654,015,176
+bytes. After the Step 13 status pages were finalized, preview staging was rerun
+and the exact current checker passed 5,520 HTML files, 2,951,158 links/assets,
+two generated JSON files, and 654,016,210 bytes with zero project/runtime errors
+and the unchanged exact 111-advisory imported-dependency fingerprint
+`bf8682253b1141fa6d97226f32d94fe599e4af7e4f69d8e363609f2155cfdd12`.
+
+The amber findings are operational. Local `HEAD` is `4aa2c79aee9fed49a664f8e9768fcc21503cfc09`
+while `origin/master` is `32b2aec75e62c2c410dc9c1fc4de9f27ab657eef`;
+the accumulated candidate is uncommitted. Remote `master` still contains both
+the automatic toolchain-triggered tag/release workflow and the old
+push-triggered Pages deployment. GitHub has no tag or Release for `v0.1.0`,
+reports the unpushed licence as `NOASSERTION`, has immutable Releases disabled,
+serves the older certificate-oriented site, and has no CI/capacity evidence for
+the accumulated tree. The `github-pages`
+environment accepts only `master`, so publication must prove that the Pages
+run's exact `head_sha` equals the tag commit. The unprotected default branch is
+a recorded risk but not a `v0.1.0` blocker.
+
+The release sequence is therefore amended from 17 to 18 steps. Step 14 remains
+the legal/provenance/date/Zenodo-route decision. New Step 15 is a separately
+approved safety-only default-branch landing based directly on `origin/master`.
+Its allowed repository diff deletes the automatic release workflow and deletes
+or replaces Pages with a self-contained inert/manual-only workflow; it excludes
+local commit `4aa2c79` and every candidate file. It then enables immutable
+Releases and stops for remote verification. Step 16 owns non-destructive
+reconciliation, the functional final Pages workflow, the exact committed candidate, clean checkout,
+external consumer, remote CI, GitHub-source API documentation, nonpublishing
+Pages-capacity run, and Apache-2.0 detection. Step 17 owns the independent final
+dry run; Step 18 alone may tag and publish after explicit approval. Draft docs
+now say clean exact-commit release-candidate checkout rather than clean tagged
+checkout. Step 16 must also convert the tracked pre-release notes, website
+status, and exact validator markers to timeless release-ready wording before
+the exact candidate is committed; Step 17 may only verify that state, and any
+correction rejects the candidate and repeats Step 16.
+
+The Zenodo route is an explicit Step 14 decision. A pre-reserved DOI requires
+an expressly authorized draft and DOI-bearing candidate metadata before Step
+16. A DOI issued only after the immutable GitHub Release cannot be added to that
+Release or tagged CFF; it is verified at Zenodo, and any later default-branch or
+site metadata update is post-release rather than part of `v0.1.0`. No commit,
+push, tag, Release, Pages deployment, Zenodo action, later
+theorem work, or `ShannonCert` access occurred. Step 14 is next and requires a
+separate user prompt.
+
+### 163. v0.1.0 Step 14 Provenance, Automatic Zenodo, and Release Date
+
+On August 27, 2026, the project lead confirmed that Serhat Emre Coban is the
+only human contributor of copyrightable project code and documentation. The
+extensive AI-assistance disclosure and scientific advice remain distinct from
+software authorship. École polytechnique fédérale de Lausanne (EPFL) is the
+rights holder, Serhat Emre Coban remains the sole software creator, his
+affiliation is `EPFL, Mathematics of Information Laboratory`, and the licence
+remains Apache-2.0. The exact approved EPFL/MIL source header remains unchanged;
+its laboratory line does not create a second rights holder. The audit found no
+copied or vendored source, missing third-party attribution, overwritten notice,
+or concrete reason to add a root `NOTICE`.
+
+The project lead selected automatic post-release GitHub--Zenodo ingestion.
+`CITATION.cff` is the canonical repository metadata source, `.zenodo.json`
+remains absent, and the immutable GitHub Release and tagged CFF intentionally
+remain DOI-free. After automatic ingestion, Serhat remains the sole Zenodo
+creator and the maintainer records École polytechnique fédérale de Lausanne
+(EPFL) directly in Zenodo as `RightsHolder`. The issued version DOI is verified
+there and may later be added to the default-branch `CITATION.cff`, README, and
+website without moving the tag. The pre-reserved alternative recorded in Step
+13 is superseded; no Zenodo draft was created or authorized.
+
+Later on August 27, the project lead fixed the Europe/Zurich GitHub Release
+publication date as `2026-08-27`. `CITATION.cff` now records that exact
+`date-released` value. If publication moves, every release-date surface must be
+updated and revalidated before the candidate is frozen. This completes Step 14;
+Step 15 is the next separately controlled release-preparation step.
+
+The metadata validator now pins the entire dated CFF template and the
+rights-holder, affiliation, canonical-CFF, DOI-free-tag, no-`.zenodo.json`,
+no-`NOTICE`, automatic-integration, and Step-14-complete decision surfaces. It
+also requires a nonpublishing Steps 16--17 preflight that the correct GitHub
+repository is enabled for automatic Zenodo ingestion; any required setting
+change needs separate approval.
+
+Focused validation passed the exact 45-file header/trust scan, canonical
+Apache-2.0 check, metadata gate, complete static gate, both non-mutating passes
+of every generator, the 15-page source website, `git diff --check`, the
+documentation contract, and all five README Lean examples with warnings as
+errors. The current `CITATION.cff` has SHA-256
+`91e81c920d647899aa49a9621d6849ac0565d74c90cf42f7c0546e640c28057a`
+and independently passes `cffconvert` 2.0.0 under CFF 1.2.0. The pre-date
+`7c683f...` value is interim Step 14 evidence, and the older `c3b614...` value
+remains historical Step 9 evidence.
+
+The ignored preview was regenerated through its staging script and the full
+checker passed 5,520 HTML files, 2,951,158 links/assets, two generated JSON
+files, and 654,016,718 bytes with zero project/runtime errors and the unchanged
+111-advisory imported-dependency fingerprint
+`bf8682253b1141fa6d97226f32d94fe599e4af7e4f69d8e363609f2155cfdd12`.
+No commit, push, tag, GitHub Release, Pages deployment, Zenodo action,
+repository-setting change, later theorem work, or `ShannonCert` access occurred.
+
+### 164. v0.1.0 Step 15 Publication-Safety Landing and Reconciliation
+
+- **Date:** 2026-08-27.
+- **Status:** Complete under the user's controlling amendment.
+- **Safety commit:**
+  `81ffef37402909481c5dea51a42973dee9a79ae6`, based directly on the then-current
+  `origin/master` and deleting only `.github/workflows/create-release.yml`.
+- **Isolation:** The commit contained no release-candidate, toolchain, Lean
+  source, metadata, or website change. The old `.github/workflows/pages.yml` was
+  deliberately retained pending a separate decision.
+- **Remote verification:** The automatic tag/Release workflow was absent after
+  the push. No tag, GitHub Release, Pages deployment, Zenodo record, DOI,
+  candidate change, or unintended deployment was created.
+- **Pages decision:** The user approved the candidate's manual-only replacement:
+  `workflow_dispatch` only, required `publish` input defaulting to `false`,
+  preparation independent of deployment, and a deploy job guarded by the
+  explicit input. Its normalized SHA-256 is
+  `4a7e426f5fdf61ffd428503ac9364efdece71a11b9df7354c00e963643ed407c`.
+- **Reconciliation:** The safety commit was integrated non-destructively into
+  the accumulated candidate at
+  `f0d06dfab4f411ced312294e63e96bb67bba859b`; byte-for-byte candidate
+  preservation was verified.
+- **Deferred setting:** Immutable GitHub Releases remains disabled until the
+  exact candidate passes Step 17 external review and the user explicitly
+  authorizes publication in Step 18.
+- **Boundary:** `ShannonCert` was untouched. No publication action was
+  authorized or performed.
+
+### 165. v0.1.0 Step 16 Exact-Candidate Qualification Contract
+
+- **Date:** 2026-08-27.
+- **Scope:** Finish every reversible release-candidate change; convert the
+  README, release notes, website, status documents, and validator to final
+  release-facing state; include the approved guarded Pages workflow; and freeze
+  one exact commit.
+- **Candidate validation:** The exact commit must pass the complete maintained
+  local suite, isolated CFF schema validation, actionlint, file- and GitHub-
+  source API documentation, preview and publishable staging checks, a clean
+  exact-commit checkout, and a minimal external Lake consumer.
+- **Remote validation:** Before push, re-prove that ordinary branch push can run
+  routine Lean CI only and cannot create a tag, Release, deployment, Zenodo
+  record, or DOI. After push, routine CI and explicitly nonpublishing manual
+  `api_docs=true` and `publish=false` gates must pass; licence detection and the
+  GitHub--Zenodo integration state are checked read-only.
+- **Evidence ownership:** The final Step 16 report records the exact candidate
+  SHA, run identifiers, durations, remote state, and complete changed-file list.
+  These transient facts are not written back into the candidate, because doing
+  so would change the commit being validated.
+- **Publication boundary:** No tag, GitHub Release, Pages deployment, Zenodo
+  record/deposit, DOI reservation/issuance, immutable-Releases setting change,
+  or other publication action is part of Step 16. Any candidate drift sends the
+  process back through Step 16; a passing candidate stops for Step 17 external
+  review.
+
 ## Completed Project B Chunk 4 Plan
 
 This completed theorem phase is a revised 20-step plan for finite sufficient
@@ -7334,17 +8321,19 @@ resolution.
 
 ### Do Later
 
-9. Add theorem-level blueprint and full Lean doc-gen output once the Lean API is
-    stable enough. The current generated artifacts are a module dependency map
-    built from local import lines and a source-derived declaration index. Until
-    richer generation exists, keep `/docs/` as a documentation landing page, keep
+9. Maintain and stage signature-bearing Lean doc-gen output, and add a theorem-
+    level blueprint only when the remaining work is justified. The existing
+    website artifacts are a module dependency map built from local import lines
+    and a source-derived declaration index; they remain distinct from the local
+    Step 11 doc-gen output. Until Step 12 stages and connects that output, keep
+    `/docs/` as a documentation landing page, keep
     `home_page/module-guide.html` as the hand-written import guide, and keep
-    `home_page/docs/api-index.html` described as lighter than full Lean
-    doc-gen. When full doc generation is added, link the homepage, theorem
-    highlights, docs landing page, module guide, generated module dependency
-    map, and declaration index directly to rendered declaration pages. A
-    blueprint PDF should be added after the theorem-level blueprint source is
-    real enough to be worth rendering.
+    `home_page/docs/api-index.html` described as a source-derived inventory.
+    Step 12 may link the homepage, theorem highlights, docs landing page, module
+    guide, generated module dependency map, and declaration index to rendered
+    declaration pages. A blueprint PDF should be added only after a real
+    theorem-level blueprint source is worth rendering; optional equation-
+    expanded doc-gen remains cost-gated.
 
     A July 25, 2026 post-C5.19 review records three lower-priority refinements
     under this existing documentation owner. They are not prerequisites for
@@ -7609,6 +8598,22 @@ resolution.
     inventory, machine-readable validation reports, and the executable
     milestone/boundary harness remain under this note and Note 17 at their
     existing dedicated-maintenance triggers.
+
+    The August 26, 2026 release-preparation Step 11 update discharges the
+    signature-bearing doc-gen portion of this note locally. The isolated pinned
+    build renders all 601 frozen declarations across the 31 supported module
+    pages and reconciles the 92 canonical export targets while excluding the 13
+    non-stable anchors. Its file-linked output remains unpublished, and
+    `DISABLE_EQUATIONS=1` deliberately omits only optional equation pages. The
+    measured existing-working-tree pass showed that full signature-bearing
+    generation, even with those pages disabled, is too expensive for ordinary
+    push/pull-request CI. Step 12 owns
+    website staging, navigation, source-link integration, and served-preview
+    validation; under the Step 13 amendment, Step 16 owns clean exact-commit GitHub-source mode, remote-
+    capacity measurement, and fresh-checkout reproduction. The theorem-level
+    blueprint, blueprint PDF, optional equation-expanded output, and structured
+    shared-status source remain deferred. This update does not authorize a
+    website redesign.
 
 10. Add a minimal contributor surface before inviting broader collaboration:
     `CONTRIBUTING.md`, beginner-friendly tasks, issue labels, and a short note
@@ -10501,6 +11506,21 @@ resolution.
     the frozen Chunk 8 source while leaving the reusable validation driver,
     maintained boundary/trust harness, and cold-release policy open under this
     note.
+
+    Release-preparation Step 8 completed the first three open infrastructure
+    assignments on August 26, 2026. `scripts/validate_release.py` is now the
+    cross-platform maintained driver and sole eight-target list; its exact
+    per-supported-module environment comparisons replace the historical ad hoc
+    positive/negative consumer matrix, and its public plus all-project
+    `Lean.collectAxioms` passes enforce the existing three-name allowlist. The
+    workflow invokes the same contract, and generated checks are non-mutating.
+    This implementation preserves permanent examples as the mathematical
+    consumers and uses generated probes only for architecture/trust regression.
+    The cold-release policy remains open and is assigned explicitly to release-
+    preparation Step 15; no active cache is cleared by the driver. Step 11 owns
+    signature-bearing API output, because the Step 7 name/owner manifest does
+    not encode type fingerprints. Remote execution of the revised workflow also
+    remains pending an approved push and does not weaken the local Step 8 pass.
 
 18. Standing architecture guardrail: preserve the boundary between the
     completed pair/triple Chunk 1, the completed equality/independence Chunk 2,

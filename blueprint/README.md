@@ -3,9 +3,10 @@
 This blueprint is the project map for LeanInfoTheory. The website now includes
 a generated module-level dependency map produced from Lean `import` lines by
 `scripts/generate_website_blueprint.py`. The website also has a source-derived
-declaration index from `scripts/generate_website_api_index.py`. A theorem-level
-blueprint, full Lean doc-gen output, and blueprint PDF remain later
-milestones.
+declaration index from `scripts/generate_website_api_index.py`. The complete
+supported API is rendered and validated with an isolated, pinned doc-gen4
+build and assembled at the stable versioned website route. A theorem-level
+blueprint and blueprint PDF remain later milestones.
 
 ## Layer 0: Existing Foundations
 
@@ -25,19 +26,24 @@ milestones.
 - equivalence between algebraic entropy definitions and textbook conditional
   distribution / KL-divergence definitions
 
-## Layer 2: Algebraic Entropy Expressions
+## Layer 2: Semantic Bridges and Finite Theorems
 
-- entropy atoms indexed by finite sets of variable names
-- rational linear combinations of atoms
-- semantic evaluation into real entropy values
-- normalization and comparison of expressions
+- finite conditional laws and expected-fiber formulas
+- KL interpretations and support-aware equality theorems
+- independence, conditional independence, and Markov characterizations
+- finite stochastic-channel data processing and sufficiency
+- finite-family Shannon inequalities and mutual independence
+- finite Fano, log-sum, entropy concavity, and KL-convexity results
 
-## Layer 3: Certificates
+## Layer 3: Documentation and Downstream Use
 
-- elemental inequality basis
-- nonnegative linear-combination certificates
-- soundness theorem for certified inequalities
-- import path for PSITIP/oXitip-style certificates
+- focused public imports, a lightweight mathematical root, and the complete
+  import-only `LeanInfoTheory.Shannon` umbrella
+- source-derived module and declaration references
+- signature-bearing generated API documentation with exact-commit source links
+  and versioned website staging
+- theorem-level blueprint pages
+- downstream applications built against tagged releases
 
 ## Layer 4: Network Information Theory
 

@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.InfoMeasures
@@ -151,9 +156,12 @@ theorem familyMarginal_familyLawOf
     (p : PMF omega) (X : (i : Var) -> omega -> alpha i) (s : Finset Var) :
     familyMarginal (familyLawOf p X) s =
       p.map (fun x (i : s) => X i x) := by
-  simpa [familyMarginal, familyLawOf, Function.comp_def] using
-    (PMF.map_comp
-      (p := p) (f := fun x i => X i x) (g := s.restrict))
+  rw [familyMarginal, familyLawOf, PMF.map_comp]
+  have hcomp : s.restrict ∘ (fun x i => X i x) =
+      (fun x (i : s) => X i x) := by
+    funext x i
+    rfl
+  rw [hcomp]
 
 /-- Family entropy is ordinary random-variable entropy of finite restriction. -/
 theorem familyEntropy_eq_entropyOf
@@ -350,9 +358,19 @@ theorem familyEntropy_union
       jointEntropyOf q a.restrict b.restrict := by
   rw [familyEntropy_eq_entropyOf]
   symm
-  simpa [jointEntropyOf, splitUnion, Function.comp_def] using
-    (entropyOf_comp_injective q (a ∪ b).restrict
-      (splitUnion_injective (alpha := alpha) a b))
+  unfold jointEntropyOf
+  have hsplit :
+      (fun x => splitUnion (alpha := alpha) a b ((a ∪ b).restrict x)) =
+        (fun x => (a.restrict x, b.restrict x)) := by
+    funext x
+    apply Prod.ext
+    · funext i
+      simp only [splitUnion, Finset.restrict, Finset.restrict₂]
+    · funext i
+      simp only [splitUnion, Finset.restrict, Finset.restrict₂]
+  rw [← hsplit]
+  exact entropyOf_comp_injective q (a ∪ b).restrict
+    (splitUnion_injective (alpha := alpha) a b)
 
 /--
 Source-family entropy on a union is the joint entropy of the two selected
@@ -369,10 +387,21 @@ theorem familyEntropyOf_union
         (fun x (i : b) => X i x) := by
   rw [familyEntropyOf_eq_entropyOf]
   symm
-  simpa [jointEntropyOf, splitUnion, Function.comp_def] using
-    (entropyOf_comp_injective p
-      (fun x (i : ↥(a ∪ b)) => X i x)
-      (splitUnion_injective (alpha := alpha) a b))
+  unfold jointEntropyOf
+  have hsplit :
+      (fun x => splitUnion (alpha := alpha) a b
+          (fun i : ↥(a ∪ b) => X i x)) =
+        (fun x => ((fun i : a => X i x), fun i : b => X i x)) := by
+    funext x
+    apply Prod.ext
+    · funext i
+      simp only [splitUnion, Finset.restrict₂]
+    · funext i
+      simp only [splitUnion, Finset.restrict₂]
+  rw [← hsplit]
+  exact entropyOf_comp_injective p
+    (fun x (i : ↥(a ∪ b)) => X i x)
+    (splitUnion_injective (alpha := alpha) a b)
 
 /--
 Entropy on a three-way union is entropy of the right-associated triple of
@@ -389,9 +418,22 @@ theorem familyEntropy_tripleUnion
         (fun x => (a.restrict x, (b.restrict x, c.restrict x))) := by
   rw [familyEntropy_eq_entropyOf]
   symm
-  simpa [splitTripleUnion, Function.comp_def] using
-    (entropyOf_comp_injective q (a ∪ b ∪ c).restrict
-      (splitTripleUnion_injective (alpha := alpha) a b c))
+  have hsplit :
+      (fun x => splitTripleUnion (alpha := alpha) a b c
+          ((a ∪ b ∪ c).restrict x)) =
+        (fun x => (a.restrict x, (b.restrict x, c.restrict x))) := by
+    funext x
+    apply Prod.ext
+    · funext i
+      simp only [splitTripleUnion, Finset.restrict, Finset.restrict₂]
+    · apply Prod.ext
+      · funext i
+        simp only [splitTripleUnion, Finset.restrict, Finset.restrict₂]
+      · funext i
+        simp only [splitTripleUnion, Finset.restrict, Finset.restrict₂]
+  rw [← hsplit]
+  exact entropyOf_comp_injective q (a ∪ b ∪ c).restrict
+    (splitTripleUnion_injective (alpha := alpha) a b c)
 
 /--
 Source-family entropy on a three-way union is entropy of the right-associated
@@ -409,10 +451,25 @@ theorem familyEntropyOf_tripleUnion
             ((fun i : b => X i x), fun i : c => X i x))) := by
   rw [familyEntropyOf_eq_entropyOf]
   symm
-  simpa [splitTripleUnion, Function.comp_def] using
-    (entropyOf_comp_injective p
-      (fun x (i : ↥(a ∪ b ∪ c)) => X i x)
-      (splitTripleUnion_injective (alpha := alpha) a b c))
+  have hsplit :
+      (fun x => splitTripleUnion (alpha := alpha) a b c
+          (fun i : ↥(a ∪ b ∪ c) => X i x)) =
+        (fun x =>
+          ((fun i : a => X i x),
+            ((fun i : b => X i x), fun i : c => X i x))) := by
+    funext x
+    apply Prod.ext
+    · funext i
+      simp only [splitTripleUnion, Finset.restrict₂]
+    · apply Prod.ext
+      · funext i
+        simp only [splitTripleUnion, Finset.restrict₂]
+      · funext i
+        simp only [splitTripleUnion, Finset.restrict₂]
+  rw [← hsplit]
+  exact entropyOf_comp_injective p
+    (fun x (i : ↥(a ∪ b ∪ c)) => X i x)
+    (splitTripleUnion_injective (alpha := alpha) a b c)
 
 /-! ## Compatibility with pair and triple information measures -/
 
@@ -442,9 +499,21 @@ theorem familyCondEntropyOf_eq_condEntropyOf
       condEntropyOf p
         (fun x (i : a) => X i x)
         (fun x (i : b) => X i x) := by
-  simpa [familyCondEntropyOf, condEntropyOf, familyLawOf,
-    PMF.map_comp, Function.comp_def] using
-    (familyCondEntropy_eq_condEntropyOf (q := familyLawOf p X) a b)
+  unfold familyCondEntropyOf
+  rw [familyCondEntropy_eq_condEntropyOf]
+  unfold condEntropyOf familyLawOf
+  rw [PMF.map_comp]
+  have hcomp :
+      (fun y : (i : Var) -> alpha i => (a.restrict y, b.restrict y)) ∘
+          (fun x i => X i x) =
+        (fun x => ((fun i : a => X i x), fun i : b => X i x)) := by
+    funext x
+    apply Prod.ext
+    · funext i
+      rfl
+    · funext i
+      rfl
+  rw [hcomp]
 
 /--
 Family mutual information is ordinary mutual information of the two
@@ -473,9 +542,21 @@ theorem familyMutualInfoOf_eq_mutualInfoOf
       mutualInfoOf p
         (fun x (i : a) => X i x)
         (fun x (i : b) => X i x) := by
-  simpa [familyMutualInfoOf, mutualInfoOf, familyLawOf,
-    PMF.map_comp, Function.comp_def] using
-    (familyMutualInfo_eq_mutualInfoOf (q := familyLawOf p X) a b)
+  unfold familyMutualInfoOf
+  rw [familyMutualInfo_eq_mutualInfoOf]
+  unfold mutualInfoOf familyLawOf
+  rw [PMF.map_comp]
+  have hcomp :
+      (fun y : (i : Var) -> alpha i => (a.restrict y, b.restrict y)) ∘
+          (fun x i => X i x) =
+        (fun x => ((fun i : a => X i x), fun i : b => X i x)) := by
+    funext x
+    apply Prod.ext
+    · funext i
+      rfl
+    · funext i
+      rfl
+  rw [hcomp]
 
 /--
 Family conditional mutual information is ordinary conditional mutual
@@ -506,10 +587,27 @@ theorem familyCondMutualInfoOf_eq_condMutualInfoOf
         (fun x (i : a) => X i x)
         (fun x (i : b) => X i x)
         (fun x (i : c) => X i x) := by
-  simpa [familyCondMutualInfoOf, condMutualInfoOf, familyLawOf,
-    PMF.map_comp, Function.comp_def] using
-    (familyCondMutualInfo_eq_condMutualInfoOf
-      (q := familyLawOf p X) a b c)
+  unfold familyCondMutualInfoOf
+  rw [familyCondMutualInfo_eq_condMutualInfoOf]
+  unfold condMutualInfoOf familyLawOf
+  rw [PMF.map_comp]
+  have hcomp :
+      (fun y : (i : Var) -> alpha i =>
+          (a.restrict y, (b.restrict y, c.restrict y))) ∘
+          (fun x i => X i x) =
+        (fun x =>
+          ((fun i : a => X i x),
+            ((fun i : b => X i x), fun i : c => X i x))) := by
+    funext x
+    apply Prod.ext
+    · funext i
+      rfl
+    · apply Prod.ext
+      · funext i
+        rfl
+      · funext i
+        rfl
+  rw [hcomp]
 
 /-! ### Singleton atoms -/
 
@@ -1044,7 +1142,7 @@ private theorem familyEntropyChain_sum_eq_aux
           familyEntropyChainAux q s (i :: l)
       rw [Fin.sum_univ_succ]
       simp [familyEntropyChainAux]
-      simpa only [Finset.insert_union] using ih (insert i s)
+      simpa only [Finset.insert_union, List.get_eq_getElem] using ih (insert i s)
 
 private theorem union_cons_toFinset
     {Var : Type u} [DecidableEq Var]
@@ -1166,7 +1264,7 @@ private theorem familyMutualInfoChain_sum_eq_aux
           familyMutualInfoChainAux q b s (i :: l)
       rw [Fin.sum_univ_succ]
       simp [familyMutualInfoChainAux]
-      simpa only [Finset.insert_union] using ih (insert i s)
+      simpa only [Finset.insert_union, List.get_eq_getElem] using ih (insert i s)
 
 private theorem familyMutualInfo_union_eq_add_chainAux
     {Var : Type u} {alpha : Var -> Type v}

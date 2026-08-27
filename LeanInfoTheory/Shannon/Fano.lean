@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.BinaryEntropy
@@ -178,8 +183,15 @@ theorem entropyOf_decodingErrorIndicator
     (decoder : beta -> alpha) :
     entropyOf p (fun omega => decodingErrorIndicator decoder (X omega) (Y omega)) =
       Real.binEntropy (decodingErrorProbabilityOf p X Y decoder) := by
-  simpa only [entropyOf, decodingErrorProbabilityOf, PMF.map_comp,
-    Function.comp_apply] using
+  have hcomp :
+      (fun z : alpha × beta =>
+          decodingErrorIndicator decoder z.1 z.2) ∘
+          (fun omega => (X omega, Y omega)) =
+        (fun omega =>
+          decodingErrorIndicator decoder (X omega) (Y omega)) := by
+    funext omega
+    rfl
+  simpa only [entropyOf, decodingErrorProbabilityOf, PMF.map_comp, hcomp] using
     entropy_decodingErrorIndicator
       (p.map fun omega => (X omega, Y omega)) decoder
 

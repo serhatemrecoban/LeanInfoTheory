@@ -1,10 +1,14 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
-import LeanInfoTheory.EntropyVal
 import LeanInfoTheory.Shannon.FiniteFamily
 import LeanInfoTheory.Shannon.SemanticBridge.Theorems
 
@@ -36,13 +40,9 @@ singleton entropies. The corresponding equality characterization by mutual
 independence is developed in the separate downstream
 `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence` module.
 
-The concrete `finiteFamilyEntropyVal` packages actual family entropy as the
-existing abstract `ShannonEntropyVal`, using the empty, conditional-entropy,
-and conditional-mutual-information theorems proved in this module.
-
 Submodularity is stated as nonnegativity of
-`H(A) + H(B) - H(A ∪ B) - H(A ∩ B)`. This is the same expression used by the
-abstract `ShannonEntropyVal` and checked-certificate layers.
+`H(A) + H(B) - H(A ∪ B) - H(A ∩ B)`, directly in terms of finite-family
+entropy.
 -/
 
 namespace LeanInfoTheory
@@ -342,78 +342,6 @@ theorem familyEntropyOf_subadditivity_of_nodup
     familyEntropyOf p X l.toFinset ≤
       ∑ k : Fin l.length, familyEntropyOf p X {l.get k} := by
   exact familyEntropy_subadditivity_of_nodup (familyLawOf p X) l hl
-
-/-! ## Concrete Shannon entropy valuations -/
-
-/--
-Actual Shannon entropy of finite family atoms as an abstract Shannon entropy
-valuation.
--/
-def finiteFamilyEntropyVal
-    {Var : Type u} {alpha : Var -> Type v}
-    [DecidableEq Var] [forall i, Fintype (alpha i)]
-    (q : PMF ((i : Var) -> alpha i)) :
-    ShannonEntropyVal Var where
-  value := familyEntropy q
-  empty_eq_zero := familyEntropy_empty q
-  cond_nonneg := by
-    intro s i _hi
-    exact sub_nonneg.mpr
-      (familyEntropy_mono q (Finset.subset_insert i s))
-  cmi_nonneg := by
-    intro a b c
-    exact familyCondMutualInfo_nonneg q a b c
-
-/-- Source-family Shannon entropy as an abstract Shannon entropy valuation. -/
-def finiteFamilyEntropyValOf
-    {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
-    [DecidableEq Var] [forall i, Fintype (alpha i)]
-    (p : PMF omega) (X : (i : Var) -> omega -> alpha i) :
-    ShannonEntropyVal Var :=
-  finiteFamilyEntropyVal (familyLawOf p X)
-
-/-- Applying the concrete family valuation reduces to family entropy. -/
-@[simp]
-theorem finiteFamilyEntropyVal_apply
-    {Var : Type u} {alpha : Var -> Type v}
-    [DecidableEq Var] [forall i, Fintype (alpha i)]
-    (q : PMF ((i : Var) -> alpha i)) (s : EntropyAtom Var) :
-    finiteFamilyEntropyVal q s = familyEntropy q s :=
-  rfl
-
-/-- Applying the concrete source-family valuation reduces to source-family entropy. -/
-@[simp]
-theorem finiteFamilyEntropyValOf_apply
-    {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
-    [DecidableEq Var] [forall i, Fintype (alpha i)]
-    (p : PMF omega) (X : (i : Var) -> omega -> alpha i)
-    (s : EntropyAtom Var) :
-    finiteFamilyEntropyValOf p X s = familyEntropyOf p X s :=
-  rfl
-
-/-- Evaluating with the concrete family valuation uses actual family entropy. -/
-@[simp]
-theorem finiteFamilyEntropyVal_eval
-    {Var : Type u} {alpha : Var -> Type v}
-    [DecidableEq Var] [forall i, Fintype (alpha i)]
-    (q : PMF ((i : Var) -> alpha i)) (e : EntropyExpr Var) :
-    ShannonEntropyVal.eval (finiteFamilyEntropyVal q) e =
-      EntropyExpr.eval (familyEntropy q) e :=
-  rfl
-
-/--
-Evaluating with the concrete source-family valuation uses actual source-family
-entropy.
--/
-@[simp]
-theorem finiteFamilyEntropyValOf_eval
-    {Var : Type u} {alpha : Var -> Type v} {omega : Type w}
-    [DecidableEq Var] [forall i, Fintype (alpha i)]
-    (p : PMF omega) (X : (i : Var) -> omega -> alpha i)
-    (e : EntropyExpr Var) :
-    ShannonEntropyVal.eval (finiteFamilyEntropyValOf p X) e =
-      EntropyExpr.eval (familyEntropyOf p X) e :=
-  rfl
 
 end
 

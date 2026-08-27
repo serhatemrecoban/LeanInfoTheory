@@ -2,11 +2,44 @@
 
 This roadmap records planned technical milestones. Chunk 8 is complete through
 `C8.24`, checkpointed as commit `1eef228`, pushed, remotely build-validated,
-and deployed. The homepage, module guide, and generated references describe
-that source checkpoint accurately. No later mathematical phase has been
-selected.
+and deployed. Release preparation is active: Steps 1–15 are complete and Step
+16 exact-candidate qualification is current. The certificate subsystem is assigned downstream and removed from
+the `v0.1.0` library surface, the public import architecture normalized, and the
+nats-first scalar units API documented with maintained conversion consumers.
+The `v0.1.x` public surface is frozen at 31 supported modules, 601
+project-owned declarations, 92 lightweight-root exports, and 94 reviewed
+`simp` declarations; all 13 development, example, and reference anchors remain
+non-stable.
+The verified mathematical source inventory is 44 modules, 90 local edges, 5
+root-reachable modules, 39 separate-import modules, and 716 declarations. Public API
+curation changed no Lean source. The maintained trust and CI gates and the
+toolchain-fixed package/preliminary legal metadata are locally validated;
+release-facing installation, import, scope, units, limitations, compatibility,
+and final versioned release documentation is in place, and five exact README examples
+compile independently under the maintained validator. The isolated pinned
+documentation build now renders signatures for all 601 declarations across all
+31 supported module pages, with the 92 canonical export targets reconciled and
+all 13 non-stable anchors excluded. Step 12 assembled that output into a
+versioned, served, explicitly unpublishable local preview, removed machine-local
+source links, connected project/API navigation, and inventoried generated and
+third-party assets. The Step 13 checkpoint found the mathematical/API plan
+healthy and the overall release state amber. Step 14 has since finalized sole
+software authorship, EPFL rights-holder/MIL-affiliation metadata, third-party
+provenance, the no-`NOTICE` decision, and automatic post-release GitHub--Zenodo
+ingestion with a DOI-free immutable tag. Step 14 is complete with the approved
+`2026-08-27` publication date. Step 15 permanently removed the automatic
+tag/Release workflow on the default branch in safety-only commit `81ffef3` and
+reconciled it into the candidate at `f0d06df`; the guarded Pages replacement is
+manual-only and cannot deploy on branch push. Step 16 qualification, Step 17
+independent dry run, and explicitly approved Step 18 publication remain. No
+later mathematical phase has been selected.
 
 ## Now
+
+The completed Chunk descriptions below are historical checkpoint records.
+Certificate-related components mentioned in the Chunk 6 or Chunk 8 baseline
+were subsequently separated in release-preparation Step 4 and are not current
+LeanInfoTheory release work.
 
 - Project B Chunk 2 is complete. All 18 steps finished finite KL
   support/equality, uniform-reference identities,
@@ -159,30 +192,27 @@ selected.
 
 ## 3 Months
 
-- Publish a genuine leanblueprint web page, blueprint PDF, and theorem-level
-  dependency graph.
-- Upgrade the current source-derived declaration index into full Lean doc-gen
-  output, while keeping the hand-written module guide as a stable
-  orientation page.
-- Link generated docs and blueprint entries back to the curated theorem
-  highlights and submodularity demo page.
-- Select any later mathematical, certificate, or documentation phase through a
-  separate readiness and planning process, preserving the checkpointed Chunk 8
-  API and architecture as the current boundary.
+- Complete the remaining ordered `v0.1.0` release-preparation steps, including
+  clean external-consumer validation, automatic GitHub--Zenodo integration preflight,
+  remote documentation-capacity measurement, independent dry run, and
+  explicitly approved publication.
+- Publish `v0.1.0` and its Zenodo deposit only after explicit approval and all
+  release gates pass.
+- Consider a theorem-level blueprint and PDF after release documentation is
+  stable.
 
 ## 6 Months
 
-- Add richer certificate constraints such as independence, functional
-  dependence, and Markov constraints.
-- Return to richer checked-certificate assumptions and recognizable converse
-  steps after the planned Project B foundations are in place.
 - Prepare focused mathlib PRs for generic finite-measure lemmas.
+- Select later finite information-theory mathematics through a separate
+  readiness and planning process.
+- Keep certificate constraints and recognizable certificate-driven converse
+  applications in downstream projects.
 
 ## 12 Months
 
-- Add PSITIP/oXitip-style certificate import.
 - Formalize selected converse proof skeletons.
-- Write a technical report or short paper describing the Lean library and
-  certificate pipeline.
-- Stabilize project documentation, full Lean doc-gen output, and theorem-level
-  blueprint dependency graph.
+- Write a technical report or short paper describing the Lean library.
+- Maintain versioned signature-bearing API documentation and consider optional
+  equation-expanded output and a theorem-level blueprint dependency graph only
+  after their costs and concrete uses justify them.

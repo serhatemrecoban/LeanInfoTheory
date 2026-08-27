@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Probability.FiniteMixture
@@ -220,7 +225,10 @@ private def uniformBool : PMF Bool :=
   PMF.uniformOfFintype Bool
 
 private def boolSelector : PMF Bool :=
-  PMF.bernoulli halfWeight halfWeight_le_one
+  PMF.ofFintype
+    (fun b : Bool =>
+      ((cond b halfWeight (1 - halfWeight) : NNReal) : ENNReal))
+    (by simp [halfWeight_le_one])
 
 private def boolInputFamily : Bool -> PMF Bool
   | false => pureFalse

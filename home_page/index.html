@@ -7,7 +7,7 @@
     <title>LeanInfoTheory | Lean-certified information theory</title>
     <meta
       name="description"
-      content="A Lean/mathlib project for finite information measures, semantic bridge theorems, and checked entropy-inequality certificates."
+      content="A Lean 4 and mathlib library for finite information measures, channels, and semantic bridge theorems."
     >
     <link rel="stylesheet" href="styles.css">
   </head>
@@ -17,7 +17,7 @@
     <header class="page-header" role="banner">
       <h1 class="project-name">LeanInfoTheory</h1>
       <h2 class="project-tagline">
-        Lean-certified finite information measures and entropy-certificate checking.
+        A Lean 4 and mathlib library for finite information theory.
       </h2>
       <p class="project-authors">
         <a href="https://serhatemrecoban.github.io/" target="_blank" rel="noopener noreferrer">
@@ -25,9 +25,8 @@
         </a>
       </p>
       <nav class="project-links" aria-label="Project links">
+        <a href="docs/" class="btn">Docs</a>
         <a href="theorems.html" class="btn">Theorems</a>
-        <a href="submodularity-demo.html" class="btn">Demo</a>
-        <a href="docs/api-index.html" class="btn">API Index</a>
         <a href="blueprint/" class="btn">Blueprint</a>
         <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
@@ -39,7 +38,7 @@
           <a href="https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/lean_action_ci.yml">
             <img
               src="https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/lean_action_ci.yml/badge.svg"
-              alt="Lean build and placeholder check status"
+              alt="Lean build and release-gate status"
             >
           </a>
           <a href="https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/pages.yml">
@@ -50,30 +49,32 @@
           </a>
         </p>
         <p>
-          Current milestone: finite PMF and dependent finite-family information
+          Release <code>v0.1.0</code> is the first stable LeanInfoTheory library
+          baseline. The supported scope
+          covers finite PMF and dependent finite-family information
           measures, ordered conditional-MI chain rules, finite-family mutual
-          independence, zero-safe finite log-sum and PMF mixtures, entropy
-          concavity, KL joint convexity, common-base conditional KL, MI
-          input-law concavity and channel convexity, finite stochastic channels,
-          concrete Shannon entropy valuations, and checked certificate demos.
+           independence, zero-safe finite log-sum and PMF mixtures, entropy
+           concavity, KL joint convexity, common-base conditional KL, MI
+           input-law concavity and channel convexity, finite stochastic channels,
+           finite Fano inequalities, data processing, and sufficient statistics.
         </p>
       </section>
 
       <section class="project-summary" aria-labelledby="summary-heading">
         <h2 id="summary-heading">Project Summary</h2>
         <p>
-          LeanInfoTheory is a Lean 4/mathlib project building a finite
-          information-theory library and a trusted entropy-inequality
-          certificate checker. The current formalization covers entropy,
+          LeanInfoTheory is a Lean 4/mathlib library for finite discrete
+          information theory. The current formalization covers entropy,
           conditional entropy, mutual information, conditional mutual
           information, independence and Markov characterizations, finite
           stochastic-channel data processing, deterministic-decoder Fano,
           dependent finite-family entropy and mutual independence, finite
-          log-sum, entropy concavity, KL joint convexity, common-base
-          conditional KL, MI input-law concavity and channel convexity, and
-          checked Shannon-inequality demos over a concrete entropy valuation;
-          the longer-term goal is a textbook-scale library with importable
-          external certificates for network-information-theory converses.
+           log-sum, entropy concavity, KL joint convexity, common-base
+           conditional KL, MI input-law concavity and channel convexity. The
+           goal is a reusable, proof-complete foundation that downstream Lean
+           projects can consume through focused public imports, the lightweight
+           <code>LeanInfoTheory</code> root, or the complete import-only
+           <code>LeanInfoTheory.Shannon</code> umbrella.
         </p>
       </section>
 
@@ -107,25 +108,29 @@
             <a href="theorems.html">See bridge statements</a>
           </article>
           <article class="dashboard-item">
-            <span class="status-pill demo">Checked demo</span>
-            <h3>Certificate Checker</h3>
+            <span class="status-pill proved">Proved applications</span>
+            <h3>Channels, Fano, and Sufficiency</h3>
             <p>
-              Lean validates supplied primitive-Shannon certificates by checking
-              nonnegative rational coefficients and exact normalized
-              entropy-expression equality. It does not search automatically yet.
+              Finite channel composition, stochastic data processing,
+              deterministic-decoder Fano bounds, exact recovery, and
+              support-aware sufficiency theorems are available as focused APIs.
             </p>
-            <a href="submodularity-demo.html">See submodularity demo</a>
+            <a href="module-guide.html">See the module guide</a>
           </article>
           <article class="dashboard-item">
-            <span class="status-pill separate">Generated references</span>
+            <span class="status-pill proved">Generated references</span>
             <h3>Documentation Artifacts</h3>
             <p>
-              The site currently has a source-derived declaration index and a
-              module-level dependency map. Full Lean doc-gen and theorem-level
-              blueprint output remain future milestones.
+              A signature-bearing v0.1.0 reference covers all 31 supported
+              modules and 601 supported declarations. The generated reference
+              also carries the complete imported dependency closure for working
+              links and search. The source-derived inventory and module-level
+              dependency map remain separate supplementary artifacts.
             </p>
             <p class="dashboard-links">
-              <a href="docs/api-index.html">Declaration index</a>
+              <a href="docs/v0.1.0/">v0.1.0 API reference</a>
+              <span aria-hidden="true">/</span>
+              <a href="docs/api-index.html">Source inventory</a>
               <span aria-hidden="true">/</span>
               <a href="blueprint/dep_graph_document.html">Module dependency map</a>
             </p>
@@ -155,28 +160,27 @@
               mutual information as KL, independence and Markov equivalences,
               averaged conditional-KL, stochastic MI/KL data processing, and
               invariant-law, entropy-growth, and finite-family Shannon
-              inequalities, including concrete entropy valuations, KL joint
-              convexity/equality, common-base conditional KL, finite-family
+              inequalities, KL joint convexity/equality, common-base conditional
+              KL, finite-family
               mutual-independence equality, and MI input-law concavity and
               channel convexity.
             </p>
           </article>
           <article class="info-card">
-            <p class="status-pill proved">Checked core</p>
-            <h3>Certificate Layer</h3>
+            <p class="status-pill proved">Proved structure</p>
+            <h3>Channels and Sufficiency</h3>
             <p>
-              Entropy expressions, abstract Shannon valuations, primitive
-              inequalities, raw-to-checked validation, and exact rational
-              decomposition matching, plus an opt-in adapter to actual
-              finite-family Shannon entropy.
+              Type-generic PMF channels, channel composition and support laws,
+              Markov factorization, KL and mutual-information data processing,
+              sufficient statistics, and common recovery.
             </p>
           </article>
           <article class="info-card">
-            <p class="status-pill demo">Proved demo</p>
-            <h3>Submodularity Demo</h3>
+            <p class="status-pill proved">Proved extensions</p>
+            <h3>Bounds and Convexity</h3>
             <p>
-              A one-step CMI certificate validates the Shannon submodularity
-              inequality through the trusted Lean checker.
+              Sharp finite entropy bounds, Fano inequalities, zero-safe
+              log-sum, entropy concavity, KL convexity, and equality cases.
             </p>
           </article>
         </div>
@@ -184,7 +188,7 @@
 
       <section aria-labelledby="architecture-heading">
         <h2 id="architecture-heading">Architecture</h2>
-        <div class="architecture-diagram" aria-label="LeanInfoTheory architecture with two branches: a finite Shannon library branch and a certificate-validation branch that meet in checked theorem demos.">
+        <div class="architecture-diagram" aria-label="LeanInfoTheory architecture from mathlib foundations through a lightweight Shannon core and focused semantic modules.">
           <div class="arch-branch arch-library">
             <p class="arch-label">Formal library branch</p>
             <div class="arch-flow">
@@ -196,32 +200,31 @@
             </div>
           </div>
 
-          <div class="arch-branch arch-certificate">
-            <p class="arch-label">Certificate-validation branch</p>
+          <div class="arch-branch arch-library">
+            <p class="arch-label">Focused extension modules</p>
             <div class="arch-flow">
-              <div class="arch-node">entropy expressions</div>
+              <div class="arch-node">finite channels and families</div>
               <div class="arch-arrow">then</div>
-              <div class="arch-node">primitive Shannon inequalities</div>
+              <div class="arch-node">Fano, convexity, sufficiency</div>
               <div class="arch-arrow">then</div>
-              <div class="arch-node">raw certificates checked by Lean</div>
+              <div class="arch-node">focused reusable theorems</div>
             </div>
           </div>
 
           <div class="arch-merge">
             <span class="status-pill proved">Lean checked</span>
-            <strong>Verified theorem demos</strong>
+            <strong>Reusable finite-information-theory library</strong>
             <p>
-              The library branch proves the semantic facts; the certificate
-              branch validates algebraic entropy decompositions. Together they
-              support checked inequalities such as Shannon submodularity and
-              subadditivity.
+              A lightweight root exposes the core mathematical API, while
+              heavier analytic, KL, channel, finite-family, and example layers
+              remain explicitly importable.
             </p>
           </div>
 
           <p class="arch-future">
-            Later milestones extend the same shape toward textbook inequalities,
-            richer assumptions, external certificate imports, and network
-            converse examples.
+            Later milestones extend the reusable theorem surface and generated
+            documentation without pulling application-specific constructions
+            into the library root.
           </p>
         </div>
       </section>
@@ -230,7 +233,6 @@
         <h2 id="start-heading">Start Here</h2>
         <div class="link-grid">
           <a href="theorems.html">Theorem highlights</a>
-          <a href="submodularity-demo.html">Submodularity demo</a>
           <a href="docs/api-index.html">Generated declaration index</a>
           <a href="module-guide.html">Module guide</a>
           <a href="blueprint/">Blueprint</a>
@@ -274,24 +276,24 @@
               <td><span class="status-pill proved">Proved</span></td>
             </tr>
             <tr>
-              <td>Entropy submodularity from a checked CMI certificate</td>
-              <td><code>Certificate.Submodularity.entropy_submodularity</code></td>
-              <td><span class="status-pill demo">Proved demo</span></td>
+              <td>Finite-family entropy is submodular</td>
+              <td><code>Shannon.familyEntropy_submodular</code></td>
+              <td><span class="status-pill proved">Proved</span></td>
             </tr>
             <tr>
-              <td>Entropy subadditivity from a checked primitive certificate</td>
-              <td><code>Certificate.Subadditivity.entropy_subadditivity</code></td>
-              <td><span class="status-pill demo">Proved demo</span></td>
+              <td>Finite deterministic-decoder Fano inequality</td>
+              <td><code>Shannon.condEntropy_fano</code></td>
+              <td><span class="status-pill proved">Proved</span></td>
             </tr>
             <tr>
-              <td>One-variable entropy monotonicity from a checked primitive certificate</td>
-              <td><code>Certificate.Monotonicity.entropy_insert_monotonicity</code></td>
-              <td><span class="status-pill demo">Proved demo</span></td>
+              <td>KL divergence contracts through a finite channel</td>
+              <td><code>Shannon.klDiv_channel_le</code></td>
+              <td><span class="status-pill proved">Proved</span></td>
             </tr>
             <tr>
-              <td>Three-way entropy subadditivity from a checked primitive certificate</td>
-              <td><code>Certificate.ThreeWaySubadditivity.entropy_three_way_subadditivity</code></td>
-              <td><span class="status-pill demo">Proved demo</span></td>
+              <td>Entropy additivity characterizes finite-family mutual independence</td>
+              <td><code>Shannon.familyEntropy_eq_sum_singletons_iff_isMutuallyIndependentFamily</code></td>
+              <td><span class="status-pill proved">Proved</span></td>
             </tr>
           </tbody>
         </table>
@@ -299,17 +301,17 @@
       </section>
 
       <section aria-labelledby="validation-heading">
-        <h2 id="validation-heading">Certificate Validation</h2>
+        <h2 id="validation-heading">Validation and Trust</h2>
         <p>
-          The Lean side currently checks certificates; it does not search for
-          them automatically. Given raw certificate data, Lean validates
-          primitive tags, nonnegative rational coefficients, and exact
-          normalized entropy-expression equality.
+          Release declarations are checked by Lean's kernel and the
+          maintained project builds. Continuous integration also regenerates the
+          source-derived references and rejects proof placeholders in project
+          Lean source.
         </p>
         <p>
-          External tools such as PSITIP or oXitip may later search for
-          certificates. The importer and external tool remain untrusted; Lean
-          validation is the trusted step.
+          Kernel checking establishes that formal declarations follow from
+          their formal assumptions; theorem selection, assumptions, conventions,
+          and mathematical interpretation remain human responsibilities.
         </p>
       </section>
 
@@ -318,19 +320,21 @@
         <ul class="roadmap-list">
           <li><span class="status-pill proved">Completed</span> Project B Chunks 1-4 cover finite pair/triple identities, KL equality and independence, Markov structure, stochastic MI/KL data processing, and finite sufficient statistics.</li>
           <li><span class="status-pill proved">Completed</span> Chunk 5 finite deterministic-decoder Fano is checkpointed as commit <code>ec78829</code> after passing the full milestone validation suite.</li>
-          <li><span class="status-pill proved">Completed</span> Chunk 6 adds the dependent finite-family core, semantic Shannon inequalities, concrete entropy valuation, checked-certificate adapter, examples, API review, generated references, and full independent milestone validation. It is checkpointed as commit <code>7b5f0db</code>.</li>
+          <li><span class="status-pill proved">Completed</span> Chunk 6 adds the dependent finite-family core, semantic Shannon inequalities, examples, API review, generated references, and full independent milestone validation. It is checkpointed as commit <code>7b5f0db</code>.</li>
           <li><span class="status-pill proved">Completed</span> Chunk 7's finite Cover-Thomas Section 2.7 implementation, examples, API review, canonical memory, generated references, public-documentation refresh, and independent milestone validation are complete through <code>C7.22</code>. The coherent Lean/source checkpoint is commit <code>5e616d8</code>.</li>
           <li><span class="status-pill proved">Completed</span> Chunk 8's finite conditional-KL, conditional-family CMI, and mutual-independence implementation is complete through <code>C8.24</code>. Its focused, maintained, and default builds, consumers, trust audit, generated references, website checks, and repository hygiene pass. The validated source is checkpointed as <code>1eef228</code>; its required Lean build/placeholder and Pages workflows both succeeded.</li>
-          <li><span class="status-pill planned">Planned</span> Theorem-level leanblueprint pages, full Lean doc-gen output, and blueprint PDF on top of the current module dependency map and source-derived declaration index.</li>
-          <li><span class="status-pill separate">Later</span> Exact Fano sharpness, randomized/list decoding, coding-theorem applications, and richer certificate-assumption layers.</li>
-          <li><span class="status-pill separate">Later</span> PSITIP/oXitip-style import into untrusted raw certificate data and non-toy network-information-theory converse examples.</li>
+          <li><span class="status-pill proved">Completed</span> Versioned signature-bearing API-documentation pipeline for all 31 supported modules and 601 declarations, with exact-commit source links and guarded manual publication.</li>
+          <li><span class="status-pill planned">Planned</span> Theorem-level leanblueprint pages and a blueprint PDF on top of the current module dependency map.</li>
+          <li><span class="status-pill separate">Later</span> Exact Fano sharpness, randomized/list decoding, coding-theorem applications, and broader reusable finite-information-theory results.</li>
+          <li><span class="status-pill separate">Downstream</span> Paper-specific constructions, application-specific automation, and non-toy converse developments remain separate projects.</li>
         </ul>
       </section>
 
       <footer class="site-footer">
         <span class="site-footer-owner">
           <a href="https://github.com/serhatemrecoban/LeanInfoTheory">LeanInfoTheory</a>
-          is maintained by Serhat Emre Coban. Visit the GitHub repository for more information.
+          is maintained by Serhat Emre Coban. See the
+          <a href="license.html">license and citation page</a> or visit the GitHub repository.
         </span>
       </footer>
     </main>

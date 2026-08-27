@@ -1,15 +1,20 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 /-!
 # LeanInfoTheory
 
-This lightweight file contains project-wide names that should be cheap to
-import. Heavier mathlib information-theory anchors are recorded in
-`LeanInfoTheory.MathlibFragments`.
+This development-anchor module contains project metadata and roadmap
+vocabulary. It is not part of the stable mathematical API and is deliberately
+not imported by `LeanInfoTheory` or `LeanInfoTheory.Shannon`.
 -/
 
 namespace LeanInfoTheory

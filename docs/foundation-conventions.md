@@ -18,6 +18,20 @@ reference material only and is intentionally not part of the repository.
 
 ## Conventions We Follow
 
+- The lightweight public import `LeanInfoTheory` directly imports only
+  `Probability.Finite` and `InformationMeasures`. The import-only
+  `LeanInfoTheory.Shannon` umbrella subsumes that root and gathers the complete
+  supported mathematical stack. Focused modules remain valid public imports.
+  `Basic`, `Examples`, and `MathlibFragments` are non-stable development,
+  regression, and reference anchors excluded from both mathematical umbrellas.
+- The `v0.1.x` compatibility baseline is the 31-module full-umbrella closure:
+  601 documented project-owned declarations, 92 explicit lightweight-root
+  exports, and 94 reviewed `simp` declarations. The exact inventory is
+  generated in [`v0.1-public-api.json`](v0.1-public-api.json) and interpreted
+  by [`v0.1-public-api.md`](v0.1-public-api.md).
+- Aggregates own no focused declarations. In particular,
+  `Shannon.SemanticBridge` is import-only; the expected-self-information
+  declarations live in `Shannon.SemanticBridge.Entropy`.
 - Finite distributions are mathlib `PMF`s. We do not introduce a project-local
   probability type.
 - A finite discrete channel is represented directly by a PMF-valued function
@@ -89,13 +103,18 @@ reference material only and is intentionally not part of the repository.
   exact recovery channel and supplies deterministic-map specializations. The
   lightweight sufficiency core retains no kernel or KL import.
 - Entropy values live in `Real`.
-- The current entropy unit is the nat, because mathlib's logarithm is natural
-  logarithm and mathlib's `Real.binEntropy` is documented in nats.
+- Canonical information quantities are `Real`-valued and measured in nats,
+  because mathlib's logarithm is natural logarithm and mathlib's
+  `Real.binEntropy` is documented in nats.
 - Logarithm-base conversion is opt-in through
-  `LeanInfoTheory.Shannon.Units`. A nat-valued information quantity is
-  converted to base-`b` units by division by `Real.log b`; the module supplies
-  a generic change-of-base theorem and `Real.logb` entropy formulas rather
+  `LeanInfoTheory.Shannon.Units`. `natsToBase b x` is `x / Real.log b`, while
+  `natsToBits x` uses base `2`. The usual information-theoretic interpretation
+  requires `1 < b`; the real-algebra definitions and formulas are total. The
+  module supplies generic change-of-base and `Real.logb` entropy formulas rather
   than parallel base-indexed definitions.
+- Mathlib KL is canonically `ENNReal`-valued. Convert a real KL value only after
+  a support/finiteness guard; `ENNReal.toReal ⊤ = 0` must never be presented as
+  a finite base-converted divergence.
 - Zero-mass atoms contribute zero via mathlib's `Real.negMulLog 0 = 0`.
 - Entropy is a function of a distribution. Random-variable entropy is entropy
   of the pushforward distribution under `PMF.map`.
@@ -115,26 +134,10 @@ reference material only and is intentionally not part of the repository.
   exactly when the PMF, or the random variable's pushforward law, is uniform on
   that support.
 - Joint entropy is ordinary entropy of a joint distribution.
-- In the entropy-expression layer, the empty atom is named explicitly as
-  `EntropyExpr.empty`. Arbitrary atom interpretations do not automatically
-  satisfy `H(empty) = 0`; the predicate `EntropyExpr.RespectsEmpty` records
-  this convention until the abstract valuation layer packages it as a field.
-- The abstract `ShannonEntropyVal` layer packages entropy-expression semantics
-  independently of concrete `PMF`s. It records `H(empty) = 0`, conditional
-  entropy nonnegativity for adjoining one variable, and conditional mutual
-  information nonnegativity as assumptions for future certificate proofs.
-- The primitive Shannon inequality expressions live in
-  `LeanInfoTheory.PrimitiveIneq`. They define the formal entropy-expression
-  shapes for empty entropy, conditional entropy, and conditional mutual
-  information, together with their soundness theorems under
-  `ShannonEntropyVal`.
-- The checked certificate layer lives in `LeanInfoTheory.Certificate.Checked`.
-  Raw certificates are untrusted data. Checked certificates carry
-  nonnegative rational coefficients by construction and exact decomposition
-  equality over normalized sparse rational entropy expressions. The first
-  validator derives checked certificates from raw rational coefficients,
-  proposed primitive tags, and exact decomposition matching; later import work
-  should parse external certificate formats into this raw layer.
+- Entropy-expression languages, primitive-tag vocabularies, certificate
+  structures, validators, and importers belong to downstream applications.
+  LeanInfoTheory retains the general entropy and information inequalities that
+  such applications may consume.
 - The current `condEntropy` and `condMutualInfo` definitions use entropy
   identities. For finite variables these are equivalent to the conditional
   distribution formulas used in textbooks. The semantic bridge now proves
@@ -318,8 +321,8 @@ expect to connect to next.
   information-measure API into the `LeanInfoTheory` namespace as convenience
   aliases for users who import the project root.
 - The root module `LeanInfoTheory` is intentionally lightweight. It imports the
-  stable finite-measure API and the core certificate/checker definitions, but
-  not demo modules, heavier analytic theorem modules, KL bridge modules,
+  stable finite-measure API, but not examples, heavier analytic theorem
+  modules, KL bridge modules,
   coding anchors, or generated-reference material.
 - Import `LeanInfoTheory.Shannon.EntropyBounds`,
   `LeanInfoTheory.Probability.FiniteChannel`,
@@ -329,7 +332,6 @@ expect to connect to next.
   `LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL`,
   `LeanInfoTheory.Shannon.SemanticBridge`,
   `LeanInfoTheory.MathlibFragments`,
-  `LeanInfoTheory.Certificate.Submodularity`, and
   `LeanInfoTheory.Examples` explicitly when working with those layers.
 - The semantic examples remain opt-in. Import
   `LeanInfoTheory.Examples.SupportSensitive` for support-aware entropy,
@@ -338,9 +340,8 @@ expect to connect to next.
   common-cause, stochastic-channel, and sufficient-statistics examples also
   remain separately importable. `LeanInfoTheory.Examples` aggregates all five
   semantic example modules, but the project root imports none of them.
-- Certificate-demo theorems stay in their descriptive namespaces, such as
-  `Certificate.Submodularity.entropy_submodularity`, until enough examples
-  exist to justify a separate polished theorem-facing alias layer.
+- Certificate-specific declarations and demonstrations remain downstream and
+  are not part of the upstream namespace policy.
 
 In the current mathlib checkout, I did not find a general Shannon entropy
 definition for an arbitrary finite `PMF`, nor finite-PMF definitions of
@@ -353,8 +354,8 @@ Cover-Thomas, El Gamal-Kim, and Polyanskiy-Wu introduce conditional entropy as
 an average of entropies of conditional laws. That is the semantic picture we
 should eventually expose. Yeung's entropy-inequality treatment, however,
 regularly rewrites conditional mutual information as a linear combination of
-ordinary entropies. Since Project A will check linear entropy-expression
-certificates, the algebraic form is the most useful definitional layer.
+ordinary entropies. The algebraic form is therefore a useful lightweight
+definitional layer for theorem proving and downstream symbolic consumers.
 
 This is a design compromise, not a mathematical change: the next foundation
 milestones should continue extending the theorem layer while preserving the
@@ -427,5 +428,5 @@ The comparison with Rocq `infotheo` is recorded in `docs/project-log.md`.
 - Keep canonical/minimal sufficiency, general measurable sufficiency, and the
   larger iid count-statistic example deferred under Future Work Note 39 rather
   than expanding the active recovery phase.
-- Keep concrete finite semantics for abstract certificate assumptions and
-  richer certificate examples in later Project A work.
+- Keep certificate-specific semantics and examples in downstream projects;
+  retain only broadly reusable information-theory mathematics upstream.

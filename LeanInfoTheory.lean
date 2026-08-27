@@ -1,19 +1,24 @@
-import LeanInfoTheory.Basic
+/-
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
+-/
+
 import LeanInfoTheory.Probability.Finite
 import LeanInfoTheory.InformationMeasures
-import LeanInfoTheory.EntropyExpr
-import LeanInfoTheory.EntropyVal
-import LeanInfoTheory.PrimitiveIneq
-import LeanInfoTheory.Certificate
-import LeanInfoTheory.Certificate.Checked
 
 /-!
 # LeanInfoTheory root import
 
 This root module gathers the lightweight project API that should be convenient
-for users to import. It includes the finite information-measure re-export and
-the core certificate/checker definitions, but not demo files, heavier theorem
-files, bridge files, or reference modules.
+for users to import. It includes elementary finite probability and the finite
+information-measure re-export, but not heavier theorem files, semantic bridge
+files, units, examples, or development/reference modules.
 
 Import these separately when needed:
 
@@ -22,11 +27,8 @@ Import these separately when needed:
 - `LeanInfoTheory.Shannon.Units` for opt-in logarithm-base conversion while
   keeping the canonical information measures in nats;
 - `LeanInfoTheory.Shannon.SemanticBridge` for KL/conditional-law bridge work;
+- `LeanInfoTheory.Shannon` for the complete supported mathematical stack;
 - `LeanInfoTheory.MathlibFragments` for heavier mathlib information-theory and
   coding anchors;
-- `LeanInfoTheory.Certificate.Submodularity`,
-  `LeanInfoTheory.Certificate.Subadditivity`,
-  `LeanInfoTheory.Certificate.Monotonicity`,
-  `LeanInfoTheory.Certificate.ThreeWaySubadditivity`, and
-  `LeanInfoTheory.Examples` for demonstration and pressure-test files.
+- `LeanInfoTheory.Examples` for maintained examples and regression consumers.
 -/

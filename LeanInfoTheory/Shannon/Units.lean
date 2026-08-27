@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.InfoMeasures
@@ -11,10 +16,11 @@ import Mathlib.Analysis.SpecialFunctions.Log.Base
 # Information units and logarithm-base conversion
 
 The canonical finite information measures in this project are real-valued and
-measured in nats. This opt-in module relates division by `Real.log b` to the
-usual formulas written with `Real.logb b`; it does not introduce parallel
-base-indexed definitions of entropy, conditional entropy, mutual information,
-or conditional mutual information.
+measured in nats. This opt-in module provides scalar conversion from nats to an
+arbitrary logarithm base, with base `2` named explicitly for bits, and relates
+division by `Real.log b` to the usual formulas written with `Real.logb b`. It
+does not introduce parallel base-indexed definitions of entropy, conditional
+entropy, mutual information, or conditional mutual information.
 
 For the usual information-theoretic interpretation, logarithm bases are
 greater than one. The summand and entropy identities are algebraically valid
@@ -29,6 +35,20 @@ open scoped BigOperators
 noncomputable section
 
 universe u v
+
+/--
+Convert a real-valued quantity measured in nats to base-`b` information units.
+
+For the usual information-theoretic interpretation the base must satisfy
+`1 < b`. The definition itself is total because `Real.log` and real division
+are total in Lean.
+-/
+def natsToBase (b x : Real) : Real :=
+  x / Real.log b
+
+/-- Convert a real-valued quantity measured in nats to bits, namely `x / Real.log 2`. -/
+def natsToBits (x : Real) : Real :=
+  natsToBase 2 x
 
 /--
 Change a real quantity from logarithm base `b` to logarithm base `c`.

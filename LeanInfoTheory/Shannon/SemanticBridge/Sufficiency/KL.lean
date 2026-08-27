@@ -1,7 +1,12 @@
 /-
-Copyright (c) 2026 Serhat Emre Coban. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Serhat Emre Coban
+Copyright © 2026 ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE (EPFL),
+Switzerland, Mathematics of Information Laboratory (MIL).
+All rights reserved.
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for details.
+
+Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.SemanticBridge.DataProcessing
@@ -100,7 +105,7 @@ theorem klDiv_channel_eq_iff_exists_common_recovery
           PMF.channelJoint (q.bind W) R =
             (PMF.channelJoint q W).map Prod.swap := by
   classical
-  letI := Fintype.ofFinite alpha
+  let := Fintype.ofFinite alpha
   constructor
   · intro heq
     have hposterior :=
