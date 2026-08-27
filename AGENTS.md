@@ -178,13 +178,17 @@ through it:
 python scripts/validate_release.py focused LeanInfoTheory.Shannon.FiniteFamily
 ```
 
-Before a release, commit, chunk completion, or milestone, run the complete
-maintained suite:
+During an intentionally dirty implementation pass, use focused and static
+checks. Once the candidate or checkpoint changes are committed into a clean
+tree, run the complete maintained suite and repeat it after any amendment:
 
 ```powershell
 python scripts/validate_release.py
 ```
 
+The default command and the standalone `hygiene` command require no staged,
+unstaged, or unignored untracked paths. The root `.gitattributes` fixes tracked
+text to LF so Lake manifests remain byte-stable in ordinary Windows checkouts.
 The default command runs non-mutating generated-artifact checks, the default
 Lake build, the eight-target warning-as-error build, independently compiles all
 marked README Lean examples with warnings as errors, checks exact direct-import
@@ -301,3 +305,7 @@ workflow run's exact `head_sha` equals the immutable release tag commit.
   DOI-free and no `.zenodo.json` is added. The approved `v0.1.0` publication
   date is `2026-08-27`; if that day changes before publication, update every
   release-date surface and revalidate before freezing the candidate.
+- Do not create, register, link, or configure a Zenodo account for the project
+  lead. When a signed-in account is required for the integration preflight, ask
+  the project lead to create or connect it, then inspect it read-only unless a
+  separate instruction explicitly authorizes a setting change.

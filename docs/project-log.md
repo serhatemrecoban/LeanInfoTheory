@@ -7191,6 +7191,62 @@ repository-setting change, later theorem work, or `ShannonCert` access occurred.
   process back through Step 16; a passing candidate stops for Step 17 external
   review.
 
+### 166. v0.1.0 Initial Candidate Qualification and Step 17 Rejection
+
+On August 27, 2026, the first exact release candidate was committed and pushed
+as `6a933d248dc183ddf9bd3c750f16e9cfdf772855`. Its complete routine validator,
+clean dependency graph, external Lake consumer, CFF schema validation, Apache-
+2.0 detection, ordinary push CI, manually dispatched API-documentation gate,
+and manually dispatched `publish=false` Pages preparation all passed. The API
+documentation covered 31 supported module pages and 601 declarations; the
+publishable website checker covered 5,520 HTML files and retained the reviewed
+111-advisory upstream fingerprint. The candidate created no tag, GitHub
+Release, Pages deployment, Zenodo record, DOI, or immutable-Releases setting
+change.
+
+Independent Step 17 review nevertheless rejected that candidate. Several
+tracked surfaces advertised as current state still said Step 16 was pending,
+described safety commit `81ffef3` as the live default branch, described
+`f0d06df` as only a local candidate, and required the stale heading in the
+release validator. This contradicted Step 16's explicit timeless-source
+criterion. A second independent ordinary Windows checkout found a separate
+reproducibility defect: with system `core.autocrlf=true` and no
+`.gitattributes`, Git checked out `lake-manifest.json` with CRLF, while
+`lake update` rewrote it with LF. The dependency graph was unchanged, but the
+raw manifest hash changed and `git status` remained dirty. The validator's
+then-current hygiene gate did not detect that EOL-only state.
+
+The Zenodo integration preflight also remained unavailable without a signed-in
+maintainer-created account. The project lead explicitly prohibited an agent
+from creating, registering, linking, or configuring a Zenodo account; the
+maintainer will create it when the integration gate is ready. Candidate
+`6a933d2` must never be tagged. These findings triggered the contract's Step 16
+correction loop rather than Step 18 publication.
+
+### 167. v0.1.0 Step 16R Corrective Candidate Source
+
+The approved Step 16R source correction is deliberately narrow. It changes no
+Lean theorem, public declaration, import, unit convention, certificate
+boundary, toolchain pin, dependency revision, `CITATION.cff`, licence, release
+notes, website content, or workflow. A root `.gitattributes` now fixes tracked
+text to LF across platforms. The release validator requires that exact policy,
+enforces the complete reviewed nine-package root manifest rather than checking
+only the mathlib input, checks both staged and unstaged diff formatting, and
+makes the complete suite and standalone hygiene gate reject staged, unstaged,
+or unignored untracked paths. Focused and static checks remain usable during an
+intentionally dirty implementation pass.
+
+The README and agent instructions document the clean-checkout contract. Current
+state, living-summary, roadmap, website-task, legal-audit, and release-contract
+wording now distinguish immutable source facts from transient exact-SHA, CI,
+review, tag, deployment, Zenodo, and DOI state. Historical Step 13--16 records
+remain dated history; `81ffef3` remains the safety commit and `f0d06df` an
+intermediate reconciliation rather than the new candidate identity. The exact
+corrective candidate SHA, clean ordinary-Windows checkout hashes, external-
+consumer result, remote run identifiers, Step 17 verdict, and live publication
+state are external evidence and must not be written back into this snapshot.
+Any source correction after freezing that SHA restarts qualification.
+
 ## Completed Project B Chunk 4 Plan
 
 This completed theorem phase is a revised 20-step plan for finite sufficient

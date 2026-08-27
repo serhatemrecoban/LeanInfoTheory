@@ -38,6 +38,91 @@ DOCGEN_REVISION = "e2af49a7b7e5e1a9224008c1f15e7aa4f58a4015"
 MATHLIB_REVISION = "0df444a360eaa60ab8c11dca51a86af692955474"
 LEAN_REVISION = "819816b2e0a3bf405af45ae5c7af2491d8f5bee6"
 WINDOWS_ZIG_SHA256 = "086ce9d47ba42f33a514e1a6e04eb1d4a8fa1d75e0868e0213caad447c91e864"
+EXPECTED_GIT_ATTRIBUTES = b"* text=auto eol=lf\n"
+
+EXPECTED_ROOT_GIT_PACKAGES = (
+    (
+        "mathlib",
+        "https://github.com/leanprover-community/mathlib4",
+        "leanprover-community",
+        MATHLIB_REVISION,
+        "v4.33.1",
+        False,
+        "lakefile.lean",
+    ),
+    (
+        "plausible",
+        "https://github.com/leanprover-community/plausible",
+        "leanprover-community",
+        "b7eb3304aeae834b12dda98993a37f6a41f6f0bb",
+        "main",
+        True,
+        "lakefile.toml",
+    ),
+    (
+        "LeanSearchClient",
+        "https://github.com/leanprover-community/LeanSearchClient",
+        "leanprover-community",
+        "5f4d51b81cbd3f6b32b156bfad9056621a040404",
+        "main",
+        True,
+        "lakefile.toml",
+    ),
+    (
+        "importGraph",
+        "https://github.com/leanprover-community/import-graph",
+        "leanprover-community",
+        "16f02aa7642864af59f1ff0e384a015994db9118",
+        "main",
+        True,
+        "lakefile.toml",
+    ),
+    (
+        "proofwidgets",
+        "https://github.com/leanprover-community/ProofWidgets4",
+        "leanprover-community",
+        "4be2e3d5087eeb272cf5a8853b8f9dd025ef5957",
+        "main",
+        True,
+        "lakefile.lean",
+    ),
+    (
+        "aesop",
+        "https://github.com/leanprover-community/aesop",
+        "leanprover-community",
+        "3448c0bcc5ce01b2d1546e483ec3620e32df3d0e",
+        "master",
+        True,
+        "lakefile.toml",
+    ),
+    (
+        "Qq",
+        "https://github.com/leanprover-community/quote4",
+        "leanprover-community",
+        "92c15be17b7caf78c2ad767ec40f89052d908d81",
+        "master",
+        True,
+        "lakefile.toml",
+    ),
+    (
+        "batteries",
+        "https://github.com/leanprover-community/batteries",
+        "leanprover-community",
+        "4488d40d070b9700d4d5a6aa342f0d40c31b2a2d",
+        "main",
+        True,
+        "lakefile.toml",
+    ),
+    (
+        "Cli",
+        "https://github.com/leanprover/lean4-cli",
+        "leanprover",
+        "6130a47896ce867c6a4a55373441e59e565bad0f",
+        "v4.33.0",
+        True,
+        "lakefile.toml",
+    ),
+)
 
 EXPECTED_DOCBUILD_GIT_PACKAGES = {
     "«doc-gen4»": (
@@ -509,6 +594,14 @@ def raw_sha256(path: Path) -> str:
 
 def check_release_metadata() -> None:
     errors: list[str] = []
+    attributes_path = ROOT / ".gitattributes"
+    if not attributes_path.is_file():
+        errors.append(".gitattributes is missing")
+    elif attributes_path.read_bytes() != EXPECTED_GIT_ATTRIBUTES:
+        errors.append(
+            ".gitattributes must contain exactly '* text=auto eol=lf' with an LF newline"
+        )
+
     toolchain = (ROOT / "lean-toolchain").read_text(encoding="utf-8").strip()
     if toolchain != "leanprover/lean4:v4.33.1":
         errors.append(
@@ -543,13 +636,60 @@ def check_release_metadata() -> None:
         )
 
     manifest = json.loads((ROOT / "lake-manifest.json").read_text(encoding="utf-8"))
-    if manifest.get("name") != "LeanInfoTheory":
+    expected_manifest_scalars = {
+        "version": "1.2.0",
+        "packagesDir": ".lake/packages",
+        "name": "LeanInfoTheory",
+        "lakeDir": ".lake",
+        "fixedToolchain": True,
+    }
+    if set(manifest) != {*expected_manifest_scalars, "packages"}:
         errors.append(
-            "lake-manifest.json root name must be LeanInfoTheory, found "
-            f"{manifest.get('name')!r}"
+            "lake-manifest.json keys differ from the reviewed root lock: "
+            f"found {sorted(manifest)}"
         )
-    if manifest.get("fixedToolchain") is not True:
-        errors.append("lake-manifest.json must record fixedToolchain: true")
+    for key, expected in expected_manifest_scalars.items():
+        if manifest.get(key) != expected:
+            errors.append(
+                f"lake-manifest.json {key}: expected {expected!r}, "
+                f"found {manifest.get(key)!r}"
+            )
+
+    packages = manifest.get("packages")
+    if not isinstance(packages, list):
+        errors.append("lake-manifest.json packages must be a list")
+        packages = []
+    elif not all(isinstance(package, dict) for package in packages):
+        errors.append("lake-manifest.json packages must contain only objects")
+        packages = []
+    expected_package_names = [package[0] for package in EXPECTED_ROOT_GIT_PACKAGES]
+    actual_package_names = [str(package.get("name")) for package in packages]
+    if actual_package_names != expected_package_names:
+        errors.append(
+            "root runtime package order/set differs from the reviewed nine-package lock: "
+            f"expected {expected_package_names!r}, found {actual_package_names!r}"
+        )
+    for index, expected in enumerate(EXPECTED_ROOT_GIT_PACKAGES):
+        if index >= len(packages):
+            break
+        name, url, scope, revision, input_revision, inherited, config_file = expected
+        expected_package = {
+            "url": url,
+            "type": "git",
+            "subDir": None,
+            "scope": scope,
+            "rev": revision,
+            "name": name,
+            "manifestFile": "lake-manifest.json",
+            "inputRev": input_revision,
+            "inherited": inherited,
+            "configFile": config_file,
+        }
+        if packages[index] != expected_package:
+            errors.append(
+                f"root runtime package {name} differs from the reviewed lock: "
+                f"found {packages[index]!r}"
+            )
 
     license_hash = normalized_sha256(ROOT / "LICENSE")
     if license_hash != APACHE_2_0_NORMALIZED_SHA256:
@@ -662,8 +802,9 @@ license: Apache-2.0"""
             "Step 15 safety landing and reconciliation",
             "81ffef37402909481c5dea51a42973dee9a79ae6",
             "f0d06dfab4f411ced312294e63e96bb67bba859b",
-            "Immutable GitHub Releases remains deliberately disabled until the exact candidate passes Step 17",
+            "Immutable GitHub Releases was not enabled",
             "nonpublishing preflight of the correct GitHub account/repository's Zenodo integration state",
+            "an agent must not create an account or alter the integration without explicit authorization",
             "Before accepting the ingested Zenodo record, verify its software type",
             "as a contributor of type `RightsHolder`",
         ),
@@ -678,12 +819,30 @@ license: Apache-2.0"""
             "This closes the sole remaining Step 14 decision",
             "Step 15 publication-safety record",
             "immutable GitHub Releases was not enabled",
+            "This audit authorizes no publication",
+            "deliberately not encoded in the tagged source snapshot",
         ),
         ROOT / "docs" / "current-lean-state.md": (
             "Release-preparation Step 14 — complete",
             "Step 14 is complete",
-            "Release-preparation Step 15 — complete; Step 16 candidate qualification",
+            "`v0.1.0` release-candidate source state",
+            "Exact candidate identity, remote run identifiers, clean-checkout and external-consumer evidence",
+            "This source snapshot neither authorizes nor asserts publication",
             "81ffef37402909481c5dea51a42973dee9a79ae6",
+            "f0d06dfab4f411ced312294e63e96bb67bba859b",
+        ),
+        ROOT / "docs" / "lean-info-theory-living-summary.md": (
+            "The source effects of release-preparation Steps 1–16 are incorporated in this snapshot",
+            "Exact candidate identity, remote validation evidence, the Step 17 verdict, and live publication state are external records",
+            "no Zenodo account or integration action is performed by an agent",
+        ),
+        ROOT / "docs" / "roadmap.md": (
+            "Release-candidate source preparation is represented in this snapshot",
+            "this tracked roadmap does not claim them",
+        ),
+        ROOT / "docs" / "next-website-tasks.md": (
+            "Release publication controls",
+            "No tracked website text asserts that a GitHub Release, Pages deployment, Zenodo record, or DOI exists",
         ),
         ROOT / "home_page" / "license.html": (
             "Serhat Emre Coban is the author, software creator, and project lead",
@@ -698,7 +857,7 @@ license: Apache-2.0"""
         for marker in markers:
             if marker not in source_flat:
                 errors.append(
-                    f"{path.relative_to(ROOT).as_posix()} is missing the Step 14 decision marker: {marker}"
+                    f"{path.relative_to(ROOT).as_posix()} is missing a reviewed release decision/status marker: {marker}"
                 )
 
     if (ROOT / "NOTICE").exists():
@@ -885,6 +1044,10 @@ def check_release_documentation_contract() -> None:
         ROOT / "home_page" / "license.html",
         ROOT / "docs" / "v0.1-release-contract.md",
         ROOT / "docs" / "current-lean-state.md",
+        ROOT / "docs" / "lean-info-theory-living-summary.md",
+        ROOT / "docs" / "roadmap.md",
+        ROOT / "docs" / "next-website-tasks.md",
+        ROOT / "docs" / "v0.1-legal-metadata-audit.md",
         ROOT / "blueprint" / "README.md",
     )
     obsolete_markers = (
@@ -906,9 +1069,20 @@ def check_release_documentation_contract() -> None:
         "current generated state is local and has not been committed, pushed, or deployed",
         "staging that output into the website remains release work",
         "website staging and exact-commit publication links pending",
+        "Release-preparation Step 15 — complete; Step 16 candidate qualification",
+        "Steps 1–15 are complete",
+        "Step 16 exact-candidate qualification is current",
+        "Step 16 is current. Freeze one exact candidate",
+        "the accumulated candidate is reconciled locally at",
+        "Step 16 qualification, Step 17 independent dry run",
+        "Step 16 candidate qualification, Step 17 independent review",
+        "Step 16 converts every current-facing release surface",
+        "Step 16 measures GitHub runner and Pages behavior",
+        "Step 16 owns the exact release-candidate commit",
+        "Current gate: **Step 16",
     )
     for path in release_facing_paths:
-        source = path.read_text(encoding="utf-8")
+        source = " ".join(path.read_text(encoding="utf-8").split())
         for marker in obsolete_markers:
             if marker in source:
                 errors.append(
@@ -1044,8 +1218,24 @@ def candidate_text_paths() -> list[Path]:
     return sorted(set(paths))
 
 
-def check_hygiene() -> None:
+def check_clean_repository_state(context: str) -> None:
+    status = run_command(
+        ("git", "status", "--porcelain=v1", "-z", "--untracked-files=all"),
+        capture_output=True,
+        label=f"require clean repository {context}",
+    ).stdout
+    if status:
+        entries = status.rstrip("\0").replace("\0", "\n")
+        raise ValidationError(
+            f"repository must be clean {context}; staged, unstaged, or unignored "
+            f"untracked paths remain:\n{entries}"
+        )
+    print(f"clean repository state passed {context}")
+
+
+def check_hygiene(*, require_clean: bool = False) -> None:
     run_command(("git", "diff", "--check"))
+    run_command(("git", "diff", "--cached", "--check"))
     conflicts: list[str] = []
     scratch: list[str] = []
     conflict_re = re.compile(r"^(?:<<<<<<<|=======|>>>>>>>)(?:\s.*)?$")
@@ -1064,7 +1254,14 @@ def check_hygiene() -> None:
         )
     if conflicts:
         raise ValidationError("conflict markers found:\n" + "\n".join(conflicts))
-    print("repository diff, conflict-marker, and scratch-artifact hygiene passed")
+    if require_clean:
+        check_clean_repository_state("at the final hygiene gate")
+    print(
+        "repository diff, staged-diff, conflict-marker, scratch-artifact, and "
+        "clean-state hygiene passed"
+        if require_clean
+        else "repository diff, staged-diff, conflict-marker, and scratch-artifact hygiene passed"
+    )
 
 
 def load_public_manifest() -> dict[str, object]:
@@ -1930,15 +2127,16 @@ def main() -> int:
         elif args.command == "hygiene":
             if args.targets:
                 raise ValidationError("hygiene does not accept Lake targets")
-            check_hygiene()
+            check_hygiene(require_clean=True)
         else:
             if args.targets:
                 raise ValidationError("all does not accept Lake targets")
+            check_clean_repository_state("before the complete suite")
             run_static_contract()
             run_complete_build()
             check_documentation_examples()
             check_trust_contract()
-            check_hygiene()
+            check_hygiene(require_clean=True)
             print(
                 "complete routine release-validation suite passed; run the explicit "
                 "api-docs gate for release-candidate documentation"

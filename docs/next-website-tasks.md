@@ -33,19 +33,18 @@
   unpublishable; release staging requires a clean GitHub-source build bound to
   exact `HEAD`.
 
-## Remaining immediate tasks
+## Release publication controls
 
-- Step 13 completed the release checkpoint and plan-health review.
-- Step 14 finalized provenance, attribution, the no-`NOTICE` decision, the
-  automatic post-release Zenodo route, and the `2026-08-27` publication date.
-- Step 15 is complete: safety commit `81ffef3` removed only the automatic
-  tag/Release workflow, and the candidate's approved Pages replacement is
-  manual-only with `publish=false` by default.
-- Step 16 measures GitHub runner and Pages behavior for the approximately
-  624 MiB artifact, regenerate exact-commit source links from a clean checkout,
-  and reassess the 111 imported-dependency advisories.
-- Keep publication disabled until the exact candidate passes Step 16 and Step
-  17 external review and the user gives explicit Step 18 approval.
+- The tracked candidate contains completed release staging and the guarded
+  manual-only Pages workflow.
+- Exact-commit GitHub-source generation, publishable-site checking, remote
+  capacity evidence, and reassessment of the 111 imported-dependency advisories
+  belong to the external candidate-validation record.
+- Ordinary pushes cannot deploy. A `publish=true` dispatch requires explicit
+  Step 18 authorization and proof that its ref and SHA equal the validated tag
+  commit.
+- No tracked website text asserts that a GitHub Release, Pages deployment,
+  Zenodo record, or DOI exists.
 
 ## Later milestones
 

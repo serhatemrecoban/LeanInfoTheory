@@ -65,16 +65,17 @@ belong downstream; reusable finite-family, entropy, channel, KL, Markov,
 independence, data-processing, and sufficiency mathematics remains upstream.
 `ShannonCert` has not been accessed or modified.
 
-Release-preparation Steps 1–15 are complete. The standalone Step 15 safety
-commit `81ffef37402909481c5dea51a42973dee9a79ae6` permanently removed the
-automatic tag/Release workflow from `origin/master` and nothing else; the
-candidate was reconciled without drift at
-`f0d06dfab4f411ced312294e63e96bb67bba859b`. The candidate's Pages workflow is
-manual-only, requires a `publish` boolean that defaults to `false`, and guards
-deployment separately. Immutable GitHub Releases is intentionally deferred
-until Step 17 external review passes and the user explicitly authorizes Step 18
-publication. No tag, GitHub Release, Pages deployment, Zenodo record, DOI, or
-publication has occurred.
+The source effects of release-preparation Steps 1–16 are incorporated in this
+snapshot. The standalone Step 15 safety commit
+`81ffef37402909481c5dea51a42973dee9a79ae6` permanently removed the automatic
+tag/Release workflow and nothing else; the later
+`f0d06dfab4f411ced312294e63e96bb67bba859b` reconciliation is an intermediate
+history point rather than the candidate identity. This snapshot's Pages
+workflow is manual-only, requires a `publish` boolean that defaults to `false`,
+and guards deployment separately. Exact candidate identity, remote validation
+evidence, the Step 17 verdict, and live publication state are external records
+and are not asserted by this source snapshot. Publication still requires an
+unchanged candidate, independent review, and explicit Step 18 authorization.
 
 The release surface has a five-module lightweight root, a 31-module full
 Shannon umbrella, 601 documented supported declarations, 92 root exports, and
@@ -92,10 +93,11 @@ Emre Coban is the sole software creator with affiliation `EPFL, Mathematics of
 Information Laboratory`; Apache-2.0 remains the licence. `CITATION.cff` is
 canonical, `.zenodo.json` and a redundant `NOTICE` remain absent, and the
 tagged CFF is DOI-free. The fixed Europe/Zurich publication date is
-`2026-08-27`. Step 16 is the current exact-candidate qualification gate: final
-release-facing prose, clean exact-commit and external-consumer reproduction,
-remote nonpublishing CI/API-doc/Pages evidence, licence detection, and a read-
-only Zenodo-integration preflight.
+`2026-08-27`. The tracked source state is final for exact-SHA qualification.
+Clean exact-commit and external-consumer reproduction, remote nonpublishing
+CI/API-doc/Pages evidence, licence detection, the independent verdict, and the
+read-only Zenodo-integration preflight are recorded outside the immutable
+source snapshot.
 
 **[Decision] Architectural rules that must be preserved.**
 
@@ -142,11 +144,11 @@ temporary handoffs. See Section 4 for the conflict protocol.
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-08-27 |
-| Last fully validated committed Lean/source baseline | `1eef2289c3475ff978569f285329bdc78e060594` |
-| Repository transition state | The independently validated Chunk 8 source remains checkpoint `1eef2289c3475ff978569f285329bdc78e060594`; Step 15 safety commit `81ffef37402909481c5dea51a42973dee9a79ae6` is live on `origin/master`; the accumulated candidate is reconciled locally at `f0d06dfab4f411ced312294e63e96bb67bba859b`; no tag, Release, deployment, Zenodo record, DOI, or publication has occurred |
-| Lean baseline | Release-preparation working tree: Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6`; the last committed source baseline used `v4.30.0` |
-| mathlib baseline | Release-preparation working tree: input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474`; the last committed source baseline used `v4.30.0` at `c5ea00351c28e24afc9f0f84379aa41082b1188f` |
-| Current phase | `v0.1.0` release preparation; Steps 1–15 are complete, publication date is `2026-08-27`, Step 16 exact-candidate qualification is current, Project B Chunks 1–8 remain checkpointed, and no later theorem phase is selected |
+| Last fully validated mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the release-candidate source state is represented by this revision and exact-SHA evidence is external |
+| Repository transition state | This revision contains the `v0.1.0` release-candidate source state. Step 15 safety commit `81ffef37402909481c5dea51a42973dee9a79ae6` and intermediate reconciliation `f0d06dfab4f411ced312294e63e96bb67bba859b` remain historical facts; live tag, Release, deployment, Zenodo, DOI, and validation status are deliberately not asserted here |
+| Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
+| mathlib baseline | `v0.1.0` uses input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474` |
+| Source-snapshot phase | `v0.1.0` release-candidate source; publication date `2026-08-27`; Project B Chunks 1–8 remain checkpointed; no later theorem phase is selected; external qualification and publication status are not encoded in this snapshot |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -1046,31 +1048,32 @@ These are intentional current contracts, not claims of maximal generality.
 
 - Theorem-level dependency data, a blueprint PDF, and optional equation-expanded
   documentation remain absent. Clean exact-commit source-link and remote
-  capacity evidence is a Step 16 external validation record, not content baked
-  into the candidate.
+  capacity evidence belongs to the external candidate-validation record, not
+  content baked into the candidate.
 - A minimal contributor guide and beginner issue surface remain absent.
 
 ### Automation gaps
 
 - No theorem-level blueprint pipeline. Full doc-gen is a manual release gate;
-  remote capacity and exact-commit GitHub-source reproduction are Step 16
-  validation evidence.
+  remote capacity and exact-commit GitHub-source reproduction are external
+  candidate-validation evidence.
 
 Certificate search, coefficient solving, primitive autotagging, and external
 certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
 
-### Current phase status
+### Release-candidate source status
 
-**`v0.1.0` release preparation is active. Steps 1–15 are complete; Step 16
-exact-candidate qualification is current.** Step 14 fixed every
-legal/provenance, Zenodo-route, and publication-date decision, including
-`date-released: 2026-08-27`.** The release contract freezes Lean and mathlib at
-`v4.33.1`, keeps nats canonical with opt-in base conversion, assigns
+**This revision contains the `v0.1.0` release-candidate source state.** Step 14
+fixed every legal/provenance, Zenodo-route, and publication-date decision,
+including `date-released: 2026-08-27`. The release contract freezes Lean and
+mathlib at `v4.33.1`, keeps nats canonical with opt-in base conversion, assigns
 certificate representations and checking to downstream projects, and preserves
 the completed legal-attribution checkpoint plus independent prepublication
-review.
+review. Exact candidate identity, qualification results, and publication state
+remain external so this tracked snapshot does not become stale or self-
+referential.
 
 Step 6 preserves the Step 5 public import architecture. `LeanInfoTheory` directly imports
 only `Probability.Finite` and `InformationMeasures`; the import-only
@@ -1137,7 +1140,7 @@ Step 10 made the release entry points usable without changing Lean source or
 the frozen API. The README now gives the exact tag-pinned Lake dependency and
 toolchain contract, lightweight/full/focused import guidance, supported scope,
 nats and guarded-KL conventions, limitations, `0.1.x` compatibility, and
-maintained reproduction commands. Step 16 converts the versioned
+maintained reproduction commands. The release-candidate pass converted the versioned
 [`docs/releases/v0.1.0.md`](releases/v0.1.0.md) and README to timeless final
 release prose; transient commit, CI, publication, and DOI state belongs in the
 external validation and release records. The release date is `2026-08-27`, and
@@ -1159,11 +1162,11 @@ supported API, root import, or runtime manifest changed. Independent final
 review is complete and found no remaining issue after its corrections were
 re-reviewed.
 
-The automatic Lean-version tag/release workflow is permanently absent from
-`origin/master` after the Step 15 safety-only commit. The candidate's approved
-Pages replacement has no push trigger and requires an explicit `publish=true`
-manual dispatch before deployment. No tag, Release, website publication,
-Zenodo action, DOI action, or `ShannonCert` change has occurred. The Step 3
+The automatic Lean-version tag/release workflow is permanently absent after the
+Step 15 safety-only commit. The candidate's approved Pages replacement has no
+push trigger and requires an explicit `publish=true` manual dispatch before
+deployment. Live tag, Release, website, Zenodo, and DOI status is intentionally
+external to this snapshot; `ShannonCert` remains outside this repository. The Step 3
 migration required compatibility edits across
 22 Lean files, but the independent audit found no public signature,
 assumption, namespace, attribute, import, dependency-boundary, or root-import
@@ -1215,12 +1218,15 @@ commit `a27ef8d`; all 24 steps are complete.
   consumers, the complete 15-theorem axiom audit, generators, website checker,
   placeholder scan, and repository hygiene.
 
-### Next repository action
+### Exact-candidate and publication procedure
 
-Step 16 is current. Freeze one exact candidate, prove an ordinary push cannot
-publish, run local and clean exact-commit GitHub-source validation, reproduce an
-external Lake consumer, push the candidate, and collect remote routine plus
-nonpublishing API-doc/Pages evidence. Then stop for Step 17 external review.
+For any candidate represented by this source state, record the exact SHA and
+qualification evidence externally. An unchanged commit must pass the local,
+clean-checkout, external-consumer, remote routine, and nonpublishing API-doc/
+Pages gates, then independent Step 17 review. Any source correction creates a
+new candidate and repeats exact-candidate qualification. Step 18 publication
+always requires separate explicit authorization; this tracked snapshot does not
+claim which external gate has completed.
 
 ### Next review point
 
@@ -1433,15 +1439,15 @@ not reproduce textbook prose or proofs.
 
 ## 16. Validation State
 
-### Current versions and validated source baseline
+### `v0.1.0` versions and historical mathematical baseline
 
-- current release-preparation working tree: Lean `v4.33.1`, commit
+- release-candidate source snapshot: Lean `v4.33.1`, commit
   `819816b2e0a3bf405af45ae5c7af2491d8f5bee6`
-- current working-tree mathlib input revision: `v4.33.1`
-- current working-tree mathlib manifest commit:
+- release-candidate mathlib input revision: `v4.33.1`
+- release-candidate mathlib manifest commit:
   `0df444a360eaa60ab8c11dca51a86af692955474`
-- last fully validated committed Lean/source baseline: `1eef228`
-- that committed source baseline used Lean/mathlib `v4.30.0`, with mathlib
+- historical pre-release mathematical checkpoint: `1eef228`
+- that checkpoint used Lean/mathlib `v4.30.0`, with mathlib
   manifest commit `c5ea00351c28e24afc9f0f84379aa41082b1188f`
 - documentation-only handoff commits `72f9f87` and `9aa3bb1` precede the
   Chunk 7 source checkpoint and change no Lean source
@@ -1453,7 +1459,19 @@ not reproduce textbook prose or proofs.
   Chunk 8 implementation; it was pushed on 2026-08-20 and both required
   exact-SHA workflows succeeded
 
-### Most recent local validation
+### Release-preparation validation history
+
+On 2026-08-27, independent Step 17 review rejected initial candidate
+`6a933d248dc183ddf9bd3c750f16e9cfdf772855` despite successful Lean, API-doc,
+website, dependency-graph, metadata, and publication-safety gates. Current-
+facing status pages still described Step 16 as pending and the validator
+required that stale wording. An ordinary Windows checkout with
+`core.autocrlf=true` also changed the raw bytes of `lake-manifest.json` from
+CRLF to LF during `lake update`, leaving the tree dirty because no repository
+EOL policy existed. The corrective source state adds an exact LF checkout
+policy, strict clean-state and exact root-manifest validation, and timeless
+status wording. Its exact candidate SHA and qualification evidence remain
+external; no Zenodo account or integration action is performed by an agent.
 
 On 2026-08-27, release-preparation Step 15 completed under the user's safety
 amendment. The standalone default-branch commit
@@ -1465,9 +1483,9 @@ approved the candidate's manual-only, `publish=false`-by-default replacement,
 whose normalized SHA-256 is
 `4a7e426f5fdf61ffd428503ac9364efdece71a11b9df7354c00e963643ed407c`.
 The safety commit was reconciled without candidate drift at
-`f0d06dfab4f411ced312294e63e96bb67bba859b`. Immutable Releases remains
-deliberately deferred until Step 17 review and explicit Step 18 publication
-approval.
+`f0d06dfab4f411ced312294e63e96bb67bba859b`. At that checkpoint immutable
+Releases was deliberately deferred; the contract permits enabling it only after
+Step 17 review and explicit Step 18 publication approval.
 
 On 2026-08-27, release-preparation Step 14 finalized every non-date legal and
 provenance decision. The project lead confirmed sole copyrightable human
@@ -1512,9 +1530,8 @@ retained both the automatic toolchain-triggered release workflow and the old
 push-triggered Pages workflow; the remote licence was `NOASSERTION`, immutable
 Releases was disabled, and the Pages environment permitted only `master`. The
 release sequence was amended to 18 steps. Step 15 was the separately approved
-safety-only remote landing, Step 16 is
-the release-ready metadata and exact candidate/consumer/capacity gate, Step 17
-is the read-only independent dry run,
+safety-only remote landing, Step 16 the release-ready metadata and exact
+candidate/consumer/capacity gate, Step 17 the read-only independent dry run,
 and Step 18 alone may publish. The Pages publication procedure must prove that
 its workflow `head_sha` equals the immutable `v0.1.0` tag commit. Branch
 protection remains beneficial but is not a `v0.1.0` blocker. The Step 15 record
@@ -1540,8 +1557,8 @@ seconds and reproduced digest
 `fa46bbc0de9359ea1e14e79d9e3bce9ac425f33cb2e9efb54086a4e28d6730fe`.
 A plan-health review moved full generation out of ordinary push/pull-request CI
 into a conditional `workflow_dispatch` `api_docs` release gate with a 360-minute
-maximum. Routine static pin checks remain in CI; Step 16 records remote runner
-capacity externally against the exact candidate. The configuration stamp keys generation mode, source identity,
+maximum. Routine static pin checks remain in CI; remote runner capacity is
+recorded externally against the exact candidate. The configuration stamp keys generation mode, source identity,
 and equation policy, and targeted invalidation preserves compiled dependencies.
 
 The mathematical library remains 44 modules, while the exact header scan now
@@ -1551,9 +1568,9 @@ root import, or runtime manifest changed. Independent final Step 11 review is
 complete after correcting the GitHub range predicate, Windows preflight order,
 and Step 12 status wording; read-only re-review found no remaining issue. Step
 12 subsequently completed the versioned local staging, navigation, provenance,
-and served-preview work; Step 16 owns clean exact-commit GitHub-source mode,
-remote-capacity measurement, and fresh-checkout reproduction. No publication is
-claimed.
+and served-preview work; Step 16 was assigned clean exact-commit GitHub-source
+mode, remote-capacity measurement, and fresh-checkout reproduction. Publication
+state is not claimed by this historical record.
 
 On 2026-08-26, release-preparation Step 12 assembled the tracked site and the
 5,521-file doc-gen tree into `.lake/website-stage/LeanInfoTheory/`, with the
@@ -1661,9 +1678,9 @@ The Lean, Pages, and manual dependency-update workflows now pin every direct
 action to a reviewed full commit. The Lean workflow runs the shared static,
 build, trust, and hygiene gates; Pages runs the static contract before upload.
 At the Step 8 checkpoint these revisions were locally validated but unpushed.
-Step 15 has since removed the automatic release workflow from `origin/master`
-without carrying the candidate. Step 16 owns the guarded workflow landing plus
-fresh-checkout/external-consumer and remote nonpublishing validation. At the
+Step 15 later removed the automatic release workflow without carrying the
+candidate. Step 16 was assigned the guarded workflow landing plus fresh-
+checkout/external-consumer and remote nonpublishing validation. At the
 Step 8 checkpoint,
 Step 11 still owned signature-bearing API documentation; it has since been
 implemented locally. The public manifest still does not claim to detect same-

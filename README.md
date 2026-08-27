@@ -301,8 +301,11 @@ build, compiles every marked README example independently, verifies every
 supported direct-import closure, checks the frozen API, root exports, `simp`
 surface, and approved axiom allowlist, scans for proof placeholders and
 implementation shortcuts, checks generated artifacts and the website twice,
-and finishes with repository hygiene. This routine suite deliberately excludes
-the much heavier signature-bearing documentation build.
+and finishes with strict repository hygiene. Run it from a clean checkout: it
+rejects staged, unstaged, and unignored untracked files. The repository's LF
+checkout policy keeps Lake manifests byte-stable on Windows as well as Unix.
+This routine suite deliberately excludes the much heavier signature-bearing
+documentation build.
 
 Useful focused commands are:
 

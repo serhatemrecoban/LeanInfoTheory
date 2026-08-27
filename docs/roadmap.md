@@ -2,8 +2,10 @@
 
 This roadmap records planned technical milestones. Chunk 8 is complete through
 `C8.24`, checkpointed as commit `1eef228`, pushed, remotely build-validated,
-and deployed. Release preparation is active: Steps 1–15 are complete and Step
-16 exact-candidate qualification is current. The certificate subsystem is assigned downstream and removed from
+and deployed. Release-candidate source preparation is represented in this
+snapshot. Exact candidate identity, qualification evidence, independent-review
+result, and publication state are external; this tracked roadmap does not claim
+them. The certificate subsystem is assigned downstream and removed from
 the `v0.1.0` library surface, the public import architecture normalized, and the
 nats-first scalar units API documented with maintained conversion consumers.
 The `v0.1.x` public surface is frozen at 31 supported modules, 601
@@ -28,11 +30,11 @@ software authorship, EPFL rights-holder/MIL-affiliation metadata, third-party
 provenance, the no-`NOTICE` decision, and automatic post-release GitHub--Zenodo
 ingestion with a DOI-free immutable tag. Step 14 is complete with the approved
 `2026-08-27` publication date. Step 15 permanently removed the automatic
-tag/Release workflow on the default branch in safety-only commit `81ffef3` and
-reconciled it into the candidate at `f0d06df`; the guarded Pages replacement is
-manual-only and cannot deploy on branch push. Step 16 qualification, Step 17
-independent dry run, and explicitly approved Step 18 publication remain. No
-later mathematical phase has been selected.
+tag/Release workflow in safety-only commit `81ffef3`; `f0d06df` is the
+intermediate reconciliation point. The guarded Pages replacement is manual-only
+and cannot deploy on branch push. The controlled publication procedure requires
+exact-candidate qualification, independent review of the unchanged commit, and
+explicit Step 18 authorization. No later mathematical phase has been selected.
 
 ## Now
 
@@ -192,12 +194,11 @@ LeanInfoTheory release work.
 
 ## 3 Months
 
-- Complete the remaining ordered `v0.1.0` release-preparation steps, including
-  clean external-consumer validation, automatic GitHub--Zenodo integration preflight,
-  remote documentation-capacity measurement, independent dry run, and
-  explicitly approved publication.
-- Publish `v0.1.0` and its Zenodo deposit only after explicit approval and all
-  release gates pass.
+- Preserve exact-SHA clean-checkout, external-consumer, automatic
+  GitHub--Zenodo integration-preflight, remote documentation-capacity, and
+  independent-review gates for `v0.1.0` publication.
+- Publish `v0.1.0` and its Zenodo deposit only after all release gates pass and
+  the project lead gives explicit approval.
 - Consider a theorem-level blueprint and PDF after release documentation is
   stable.
 

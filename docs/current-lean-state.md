@@ -1,30 +1,27 @@
 # Current Lean State
 
-## Release-preparation Step 15 — complete; Step 16 candidate qualification
+## `v0.1.0` release-candidate source state
 
-The publication-safety amendment is complete. A standalone commit based on the
-then-current `origin/master` deleted only the automatic
-`.github/workflows/create-release.yml` and was pushed as
-`81ffef37402909481c5dea51a42973dee9a79ae6`. It contained no candidate,
-toolchain, Lean source, metadata, or website change. Remote verification found
-no tag, GitHub Release, Pages deployment, Zenodo record, DOI, or unintended
-deployment.
+This tracked snapshot contains the reversible library, documentation, metadata,
+workflow, and website work required for the `v0.1.0` candidate. Exact candidate
+identity, remote run identifiers, clean-checkout and external-consumer evidence,
+the independent Step 17 verdict, and live publication state are deliberately
+external records: writing them here would change the commit under review.
 
-The old push-triggered Pages workflow was intentionally left in that safety
-commit. The user subsequently approved the candidate's replacement: manual
-dispatch only, `publish` required and defaulting to `false`, preparation
-independent of deployment, and a separately guarded deploy job. Its normalized
-SHA-256 is
-`4a7e426f5fdf61ffd428503ac9364efdece71a11b9df7354c00e963643ed407c`.
-The safety commit was reconciled without candidate drift at
-`f0d06dfab4f411ced312294e63e96bb67bba859b`.
+The source history includes the Step 15 safety-only commit
+`81ffef37402909481c5dea51a42973dee9a79ae6`, which permanently removed the
+automatic tag/Release workflow without carrying candidate content or creating
+publication state. The later
+`f0d06dfab4f411ced312294e63e96bb67bba859b` reconciliation is an intermediate
+history point, not this candidate's identity. This snapshot's Pages workflow is
+manual-only; `publish` is required, defaults to `false`, and guards the separate
+deployment job. Ordinary branch pushes cannot create a tag, GitHub Release, or
+Pages deployment.
 
-Step 16 owns the exact release-candidate commit, clean-checkout and external-
-consumer reproduction, remote routine/API-doc/`publish=false` validation,
-licence detection, and a read-only Zenodo-integration preflight. Immutable
-GitHub Releases remains disabled by design; it may be enabled only after Step
-17 external review and explicit Step 18 publication approval. No tag, Release,
-Pages deployment, Zenodo action, DOI action, or publication is authorized.
+This source snapshot neither authorizes nor asserts publication. Immutable
+GitHub Releases may be enabled, and `v0.1.0` may be tagged, released, deployed,
+and ingested by Zenodo, only after the unchanged exact commit passes independent
+Step 17 validation and the project lead explicitly authorizes Step 18.
 
 ## Release-preparation Step 14 — complete
 
@@ -47,8 +44,8 @@ or EPFL TTO.
 The project lead fixed the Europe/Zurich GitHub Release publication date as
 `2026-08-27`. `CITATION.cff` now records that exact `date-released` value. If
 publication moves, every release-date surface must be updated and revalidated
-  before the candidate is frozen. Step 14 is complete; Step 15 subsequently
-  completed under the amendment recorded above.
+before the candidate is frozen. Step 14 is complete; Step 15 subsequently
+completed under the amendment recorded above.
 
 Focused Step 14 validation passes: all 45 source header/trust checks, canonical
 Apache-2.0, the exact sole-author dated CFF template, isolated CFF 1.2.0
@@ -87,14 +84,12 @@ triggered Pages deployment; GitHub's immutable-Releases setting was disabled,
 the Pages environment permitted only `master`, the remote licence was
 `NOASSERTION`, and no tag, Release, or accumulated-tree CI result existed. The
 plan was therefore amended to 18 steps: at that checkpoint Step 14 remained the
-legal/date/DOI decision; the current section above records its later
-completion. New Step 15 is
-a separately approved safety-only remote landing, Step 16 owns the committed
-exact candidate, conversion from draft to timeless release-ready metadata, and
-consumer/capacity tests, Step 17 owns the read-only final dry run,
-and Step 18 alone may publish after explicit approval. Step 15 has since removed
-the automatic release workflow remotely; the other remote checks remain Step 16
-or later gates as described in the leading current-state section.
+legal/date/DOI decision; the leading section records its later completion. Step
+15 was assigned the separately approved safety-only remote landing, Step 16 the
+committed exact candidate, conversion from draft to timeless release-ready
+metadata, and consumer/capacity tests, Step 17 the read-only final dry run, and
+Step 18 alone the explicitly approved publication. The leading source-state
+section records the durable outcome without embedding transient gate status.
 
 ### Retained Steps 4–12 implementation state
 
@@ -196,9 +191,9 @@ choices, supported mathematical scope, nats-first conversion policy, the
 guarded real-KL boundary, limitations, `0.1.x` compatibility, maintained build
 reproduction, and the controlled publication gates. At that checkpoint the
 versioned body at [`releases/v0.1.0.md`](releases/v0.1.0.md) was deliberately a
-draft. Step 16 converts it and the README to timeless release-facing wording;
-the external validation report, tag, Release, and Zenodo record carry transient
-state rather than the immutable source snapshot.
+draft. The release-candidate pass later converted it and the README to timeless
+release-facing wording; the external validation report, tag, Release, and
+Zenodo record carry transient state rather than the immutable source snapshot.
 
 Five exact README examples cover the lightweight root, complete Shannon
 umbrella, a focused raw channel, nats-to-bits conversion, and the support guard
@@ -302,12 +297,12 @@ are likewise pinned by their complete reviewed message fingerprint.
 
 The revised Lean, Pages, and dependency-update workflows use immutable action
 commit references, and Pages validates the static contract before upload. The
-automatic release workflow has since been removed from `origin/master` by the
-standalone Step 15 safety commit. The guarded manual-only Pages replacement is
-part of the Step 16 candidate and cannot deploy on an ordinary branch push.
-Steps 11–15 are complete. Step 16 owns clean exact-commit GitHub-source
-generation, remote-capacity measurement, remote nonpublishing validation, and
-reproduction from a fresh checkout.
+automatic release workflow was removed by the standalone Step 15 safety commit.
+The guarded manual-only Pages replacement is part of this release-candidate
+source state and cannot deploy on an ordinary branch push. Clean exact-commit
+GitHub-source generation, remote-capacity measurement, remote nonpublishing
+validation, and fresh-checkout reproduction are transient qualification
+evidence recorded outside the source snapshot.
 
 The chronological Chunk 1--8 descriptions and completed plans below document
 their historical checkpoints. Certificate-related facts in those records do
@@ -1009,9 +1004,10 @@ example-only instance `ThreePoint.instFintype`. Both generators report current
 rendered text under repeated non-mutating checks, and the tracked-source website
 checker passes across 15 HTML files and two generated JSON files. The separate
 staged checker results are recorded above. Commit `1eef228` remains the
-historical pre-release mathematical checkpoint; the Step 16 candidate carries
-the certificate-free generated state. Website deployment remains a separately
-authorized Step 18 action. Step 8 changed no generated website content.
+historical pre-release mathematical checkpoint; this release-candidate snapshot
+carries the certificate-free generated state. Website deployment remains a
+separately authorized Step 18 action. Step 8 changed no generated website
+content.
 
 ## Important Design Constraints
 
