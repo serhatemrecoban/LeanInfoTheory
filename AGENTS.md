@@ -303,7 +303,7 @@ workflow run's exact `head_sha` equals the immutable release tag commit.
   affiliation `EPFL, Mathematics of Information Laboratory`. Under the
   approved automatic post-release GitHub--Zenodo route, the tagged CFF remains
   DOI-free and no `.zenodo.json` is added. The approved `v0.1.0` publication
-  date is `2026-08-27`; if that day changes before publication, update every
+  date is `2026-09-01`; if that day changes before publication, update every
   release-date surface and revalidate before freezing the candidate.
 - Do not create, register, link, or configure a Zenodo account for the project
   lead. When a signed-in account is required for the integration preflight, ask

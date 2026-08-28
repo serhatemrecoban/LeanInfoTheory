@@ -41,17 +41,19 @@ found no copied or vendored source, missing third-party attribution, or
 concrete root-`NOTICE` requirement. No statement claims approval by EPFL, MIL,
 or EPFL TTO.
 
-The project lead fixed the Europe/Zurich GitHub Release publication date as
-`2026-08-27`. `CITATION.cff` now records that exact `date-released` value. If
-publication moves, every release-date surface must be updated and revalidated
-before the candidate is frozen. Step 14 is complete; Step 15 subsequently
-completed under the amendment recorded above.
+The project lead initially fixed the Europe/Zurich GitHub Release publication
+date as `2026-08-27`. On August 28, 2026, the project lead superseded that
+initial choice with `2026-09-01`. `CITATION.cff` now records the approved
+`2026-09-01` `date-released` value. This amendment changes no authorship,
+rights-holder, licence, DOI-route, or institutional-approval decision. Step 14
+is complete, but the exact candidate must be requalified before Step 17.
 
 Focused Step 14 validation passes: all 45 source header/trust checks, canonical
 Apache-2.0, the exact sole-author dated CFF template, isolated CFF 1.2.0
 schema validation, the metadata and complete static gates, and all five README
-examples with warnings as errors. The current CFF SHA-256 is
-`91e81c920d647899aa49a9621d6849ac0565d74c90cf42f7c0546e640c28057a`.
+examples with warnings as errors. After the release-date amendment, the current
+CFF SHA-256 is
+`68ec75662faa89cd8e880ec23df38ce1fc2b8ad52754f853c71ec29d69e6c34b`.
 The refreshed ignored preview passes its complete checker at 5,520 HTML files,
 2,951,158 links/assets, two generated JSON files, and 654,016,718 bytes, with
 the unchanged exact 111-advisory fingerprint. No external state changed.
@@ -165,7 +167,10 @@ covers 45 files. Step 14 reconfirmed all 45 headers, CFF schema validity, sole
 software authorship, institutional and third-party provenance, and the absence
 of a concrete `NOTICE` requirement. It also fixed the canonical CFF affiliation
 and selected the automatic post-release DOI route. The project lead supplied
-`2026-08-27` as the publication date, completing Step 14.
+`2026-08-27` as the publication date, completing Step 14. That initial date was
+superseded on August 28 by the approved `2026-09-01` publication date; the
+date-only amendment restarts exact-candidate qualification without reopening
+the legal and provenance decisions.
 
 Step 9's final local validation passed the 2,605-job default build, the
 3,072-job warning-as-error maintained build, all 31 direct-import probes, the

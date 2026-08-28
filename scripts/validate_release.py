@@ -704,7 +704,7 @@ message: "If you use LeanInfoTheory in your work, please cite the software using
 type: software
 title: "LeanInfoTheory"
 version: "0.1.0"
-date-released: 2026-08-27
+date-released: 2026-09-01
 authors:
   - family-names: "Coban"
     given-names: "Serhat Emre"
@@ -722,7 +722,7 @@ url: "https://serhatemrecoban.github.io/LeanInfoTheory/"
         "type: software",
         'title: "LeanInfoTheory"',
         'version: "0.1.0"',
-        "date-released: 2026-08-27",
+        "date-released: 2026-09-01",
         'family-names: "Coban"',
         'given-names: "Serhat Emre"',
         'affiliation: "EPFL, Mathematics of Information Laboratory"',
@@ -743,9 +743,9 @@ license: Apache-2.0"""
     if len(re.findall(r"(?m)^\s+- family-names:", citation)) != 1:
         errors.append("CITATION.cff must contain exactly one software author")
     release_dates = re.findall(r"(?m)^\s*date-released\s*:\s*(.*?)\s*$", citation)
-    if release_dates != ["2026-08-27"]:
+    if release_dates != ["2026-09-01"]:
         errors.append(
-            "CITATION.cff must contain exactly one date-released value: 2026-08-27"
+            "CITATION.cff must contain exactly one date-released value: 2026-09-01"
         )
     if re.search(r"(?m)^\s*doi\s*:", citation, re.IGNORECASE):
         errors.append("CITATION.cff DOI must remain absent under the approved post-release route")
@@ -766,7 +766,7 @@ license: Apache-2.0"""
         "`CITATION.cff` remains the canonical repository metadata source; no `.zenodo.json` is used",
         "will be recorded as `RightsHolder` directly in Zenodo after ingestion",
         "tagged `CITATION.cff` and immutable GitHub Release will intentionally contain no DOI",
-        "Its approved `date-released` value is `2026-08-27`",
+        "Its approved `date-released` value is `2026-09-01`",
         "[CITATION.cff](CITATION.cff)",
     )
     for marker in readme_markers:
@@ -797,7 +797,7 @@ license: Apache-2.0"""
             "The approved Zenodo route is automatic post-release GitHub ingestion.",
             "no `.zenodo.json` is added",
             "tagged CFF remain DOI-free",
-            "The approved `date-released` value is `2026-08-27`",
+            "The approved `date-released` value is `2026-09-01`",
             "Step 14 is complete",
             "Step 15 safety landing and reconciliation",
             "81ffef37402909481c5dea51a42973dee9a79ae6",
@@ -809,7 +809,7 @@ license: Apache-2.0"""
             "as a contributor of type `RightsHolder`",
         ),
         ROOT / "docs" / "v0.1-legal-metadata-audit.md": (
-            "Step 14 complete; publication date `2026-08-27`",
+            "Step 14 complete; publication date `2026-09-01`",
             "creator/software author: Serhat Emre Coban",
             "affiliation: `EPFL, Mathematics of Information Laboratory`",
             "rights holder: École polytechnique fédérale de Lausanne (EPFL)",
@@ -849,7 +849,7 @@ license: Apache-2.0"""
             "polytechnique fédérale de Lausanne (EPFL) is the project rights holder",
             "approved automatic post-release GitHub--Zenodo route",
             "tagged CFF remains DOI-free",
-            "The approved release date is <code>2026-08-27</code>",
+            "The approved release date is <code>2026-09-01</code>",
         ),
     }
     for path, markers in decision_surface_markers.items():
@@ -870,7 +870,7 @@ license: Apache-2.0"""
     print(
         "package/legal metadata passed: LeanInfoTheory 0.1.0, fixed Lean/mathlib "
         "v4.33.1, Apache-2.0, sole CFF author, canonical CFF/post-release DOI route, "
-        "release date 2026-08-27; Steps 14-15 complete and release documentation ready"
+        "release date 2026-09-01; Steps 14-15 complete and release documentation ready"
     )
 
 
@@ -996,7 +996,7 @@ def check_release_documentation_contract() -> None:
     )
     release_note_markers = (
         "# LeanInfoTheory v0.1.0",
-        "Release date: **2026-08-27**",
+        "Release date: **2026-09-01**",
         "`v0.1.0` is the first public-library release of LeanInfoTheory",
         "automatic post-release GitHub--Zenodo route",
         "tagged CFF and immutable GitHub Release DOI-free",

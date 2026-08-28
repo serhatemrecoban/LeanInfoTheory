@@ -29,7 +29,7 @@ healthy and the overall release state amber. Step 14 has since finalized sole
 software authorship, EPFL rights-holder/MIL-affiliation metadata, third-party
 provenance, the no-`NOTICE` decision, and automatic post-release GitHub--Zenodo
 ingestion with a DOI-free immutable tag. Step 14 is complete with the approved
-`2026-08-27` publication date. Step 15 permanently removed the automatic
+`2026-09-01` publication date. Step 15 permanently removed the automatic
 tag/Release workflow in safety-only commit `81ffef3`; `f0d06df` is the
 intermediate reconciliation point. The guarded Pages replacement is manual-only
 and cannot deploy on branch push. The controlled publication procedure requires

@@ -25,7 +25,7 @@ results stay in LeanInfoTheory when their ownership and assumptions are general.
 a reusable finite-information-theory foundation and the source-compatibility
 baseline for the `0.1.x` line without claiming that all of information theory,
 all of Cover--Thomas Chapter 2, or any particular paper has been formalized.
-The release date is `2026-08-27` in Europe/Zurich. Under the approved automatic
+The release date is `2026-09-01` in Europe/Zurich. Under the approved automatic
 post-release GitHub--Zenodo route, the tagged `CITATION.cff` and immutable
 GitHub Release will intentionally contain no DOI; Zenodo issues the version DOI
 after ingesting the Release.
@@ -411,7 +411,7 @@ No statement in this repository claims approval by EPFL, MIL, or EPFL TTO.
 ## Citation
 
 Please use the release metadata in [CITATION.cff](CITATION.cff) when citing
-LeanInfoTheory. Its approved `date-released` value is `2026-08-27`. The tagged
+LeanInfoTheory. Its approved `date-released` value is `2026-09-01`. The tagged
 `v0.1.0` CFF intentionally remains DOI-free under the
 automatic post-release Zenodo route; the issued version DOI will be added only
 to the later default-branch `CITATION.cff`, README, and website metadata.

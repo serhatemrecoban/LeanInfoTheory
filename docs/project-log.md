@@ -7112,6 +7112,9 @@ publication date as `2026-08-27`. `CITATION.cff` now records that exact
 updated and revalidated before the candidate is frozen. This completes Step 14;
 Step 15 is the next separately controlled release-preparation step.
 
+**Update (2026-08-28):** The planned `2026-08-27` publication date was
+superseded by `2026-09-01`; see Entry 168.
+
 The metadata validator now pins the entire dated CFF template and the
 rights-holder, affiliation, canonical-CFF, DOI-free-tag, no-`.zenodo.json`,
 no-`NOTICE`, automatic-integration, and Step-14-complete decision surfaces. It
@@ -7246,6 +7249,31 @@ corrective candidate SHA, clean ordinary-Windows checkout hashes, external-
 consumer result, remote run identifiers, Step 17 verdict, and live publication
 state are external evidence and must not be written back into this snapshot.
 Any source correction after freezing that SHA restarts qualification.
+
+### 168. v0.1.0 Release-Date Amendment and Candidate Requalification
+
+- **Date:** 2026-08-28.
+- **Decision:** The project lead moved the planned Europe/Zurich GitHub Release
+  publication date from the initially approved `2026-08-27` to `2026-09-01`.
+- **Candidate effect:** Corrective candidate
+  `7989d54aefdf1ccaf8172ca9408e01cf0a5d645b` had passed its local, ordinary-
+  Windows, external-consumer, routine-CI, API-documentation, and nonpublishing
+  Pages gates before this decision. The date amendment supersedes that exact
+  candidate; it must not be tagged, and all SHA-sensitive Step 16 qualification
+  gates must be repeated on the amended candidate.
+- **Source scope:** Update only canonical citation metadata, current-facing
+  release documentation, legal/status records, website text, and release-date
+  validator literals. Preserve the August 27 entries as historical evidence
+  while recording their supersession. The amended CFF SHA-256 is
+  `68ec75662faa89cd8e880ec23df38ce1fc2b8ad52754f853c71ec29d69e6c34b`.
+- **Unchanged decisions:** No Lean theorem, public API, import, nats-first units
+  policy, certificate boundary, toolchain, dependency, licence, creator,
+  affiliation, rights holder, third-party attribution, `NOTICE`, Zenodo route,
+  DOI policy, or institutional-approval statement changed. `ShannonCert` was
+  untouched.
+- **Publication boundary:** No tag, GitHub Release, Pages deployment, Zenodo
+  account, integration change, record/deposit, DOI, immutable-Releases setting
+  change, or other publication action was authorized or performed.
 
 ## Completed Project B Chunk 4 Plan
 

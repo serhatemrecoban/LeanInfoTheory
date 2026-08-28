@@ -93,7 +93,7 @@ Emre Coban is the sole software creator with affiliation `EPFL, Mathematics of
 Information Laboratory`; Apache-2.0 remains the licence. `CITATION.cff` is
 canonical, `.zenodo.json` and a redundant `NOTICE` remain absent, and the
 tagged CFF is DOI-free. The fixed Europe/Zurich publication date is
-`2026-08-27`. The tracked source state is final for exact-SHA qualification.
+`2026-09-01`. The tracked source state is final for exact-SHA qualification.
 Clean exact-commit and external-consumer reproduction, remote nonpublishing
 CI/API-doc/Pages evidence, licence detection, the independent verdict, and the
 read-only Zenodo-integration preflight are recorded outside the immutable
@@ -143,12 +143,12 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-27 |
+| Last updated | 2026-08-28 |
 | Last fully validated mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the release-candidate source state is represented by this revision and exact-SHA evidence is external |
 | Repository transition state | This revision contains the `v0.1.0` release-candidate source state. Step 15 safety commit `81ffef37402909481c5dea51a42973dee9a79ae6` and intermediate reconciliation `f0d06dfab4f411ced312294e63e96bb67bba859b` remain historical facts; live tag, Release, deployment, Zenodo, DOI, and validation status are deliberately not asserted here |
 | Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
 | mathlib baseline | `v0.1.0` uses input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474` |
-| Source-snapshot phase | `v0.1.0` release-candidate source; publication date `2026-08-27`; Project B Chunks 1–8 remain checkpointed; no later theorem phase is selected; external qualification and publication status are not encoded in this snapshot |
+| Source-snapshot phase | `v0.1.0` release-candidate source; publication date `2026-09-01`; Project B Chunks 1–8 remain checkpointed; no later theorem phase is selected; external qualification and publication status are not encoded in this snapshot |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -1066,8 +1066,8 @@ certificate parsers are downstream application work, not LeanInfoTheory gaps.
 ### Release-candidate source status
 
 **This revision contains the `v0.1.0` release-candidate source state.** Step 14
-fixed every legal/provenance, Zenodo-route, and publication-date decision,
-including `date-released: 2026-08-27`. The release contract freezes Lean and
+fixed every legal/provenance and Zenodo-route decision; the later approved date
+amendment fixes `date-released: 2026-09-01`. The release contract freezes Lean and
 mathlib at `v4.33.1`, keeps nats canonical with opt-in base conversion, assigns
 certificate representations and checking to downstream projects, and preserves
 the completed legal-attribution checkpoint plus independent prepublication
@@ -1133,8 +1133,10 @@ reviewed CFF fields and sole author, exact release date and absent DOI, README
 AI/legal/citation wording, and the reviewed absence of `NOTICE` and
 `.zenodo.json`. CFF schema validation, provenance, author spelling, and the
 then-current 44 exact headers passed. Step 14 later finalized all corresponding
-decisions, fixed `date-released` as `2026-08-27`, and extended the header audit
-to the 45-file tree including the documentation shim.
+decisions, initially fixed `date-released` as `2026-08-27`, and extended the
+header audit to the 45-file tree including the documentation shim. The project
+lead superseded that initial date on 2026-08-28 with `2026-09-01`; no other
+Step 14 decision changed.
 
 Step 10 made the release entry points usable without changing Lean source or
 the frozen API. The README now gives the exact tag-pinned Lake dependency and
@@ -1143,7 +1145,7 @@ nats and guarded-KL conventions, limitations, `0.1.x` compatibility, and
 maintained reproduction commands. The release-candidate pass converted the versioned
 [`docs/releases/v0.1.0.md`](releases/v0.1.0.md) and README to timeless final
 release prose; transient commit, CI, publication, and DOI state belongs in the
-external validation and release records. The release date is `2026-08-27`, and
+external validation and release records. The release date is `2026-09-01`, and
 the immutable tag remains DOI-free. Five marked README examples compile independently
 with warnings as errors through the shared local/CI validator; the static gate
 also checks release-document markers and local links. No new example module was
@@ -1461,6 +1463,17 @@ not reproduce textbook prose or proofs.
 
 ### Release-preparation validation history
 
+On 2026-08-28, after corrective candidate
+`7989d54aefdf1ccaf8172ca9408e01cf0a5d645b` had passed its local, ordinary-
+Windows, external-consumer, routine-CI, API-documentation, and nonpublishing
+Pages gates, the project lead moved the planned Europe/Zurich publication date
+from `2026-08-27` to `2026-09-01`. That choice supersedes the exact candidate,
+so it must not be tagged and the SHA-sensitive Step 16 qualification gates must
+be repeated on the date-amended candidate. No Lean source, public API,
+toolchain, dependency, licence, authorship, rights-holder, Zenodo-route, or DOI
+decision changed, and no tag, Release, deployment, Zenodo account, record, or
+DOI was created.
+
 On 2026-08-27, independent Step 17 review rejected initial candidate
 `6a933d248dc183ddf9bd3c750f16e9cfdf772855` despite successful Lean, API-doc,
 website, dependency-graph, metadata, and publication-safety gates. Current-
@@ -1496,11 +1509,12 @@ rights holder; Serhat Emre Coban remains sole creator with affiliation
 `EPFL, Mathematics of Information Laboratory`; Apache-2.0 remains the licence.
 The 45-file exact-header, canonical-licence, contributor, third-party, and
 generated-asset audit found no missing attribution or concrete root-`NOTICE`
-requirement. The project lead fixed the Europe/Zurich publication date and
-`date-released` value as `2026-08-27`, completing Step 14. The exact 45-file
+requirement. The project lead initially fixed the Europe/Zurich publication date
+and `date-released` value as `2026-08-27`, completing Step 14; the approved
+`2026-09-01` date superseded that initial choice on 2026-08-28. The exact 45-file
 header/trust scan, canonical Apache check, focused
 metadata and complete static gates, five README examples, and isolated CFF 1.2
-schema validation pass. The current CFF SHA-256 is
+schema validation pass. The then-current CFF SHA-256 was
 `91e81c920d647899aa49a9621d6849ac0565d74c90cf42f7c0546e640c28057a`.
 The refreshed ignored preview passes its complete checker at 5,520 HTML files,
 2,951,158 links/assets, two generated JSON files, and 654,016,718 bytes with the
@@ -1634,8 +1648,10 @@ canonical Apache-2.0, sole-author CFF, README disclosure, and preliminary
 pre-Zenodo metadata. At that Step 9 checkpoint all 44 then-current Lean headers
 passed and the then-current CFF passed isolated `cffconvert` 2.0.0 validation.
 Step 14 has since finalized institutional, contributor, third-party,
-no-`NOTICE`, automatic post-release DOI, and `2026-08-27` release-date
-decisions; Step 14 is complete.
+no-`NOTICE`, and automatic post-release DOI decisions. Its initial
+`2026-08-27` release-date decision was superseded on 2026-08-28 by the approved
+`2026-09-01` date; Step 14 remains complete while exact-SHA qualification is
+repeated.
 
 The final local run passed the 2,605-job default build, the 3,072-job maintained
 warning-as-error build, all 31 direct-import probes, the 601-declaration and
