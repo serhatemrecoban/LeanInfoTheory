@@ -253,8 +253,8 @@ formalization:
 - certificate representations, checking, search, primitive recognition, or
   PSITIP/oXitip import;
 - canonical or minimal sufficient statistics;
-- a local standalone log-sum inequality, general KL convexity, entropy
-  concavity, Pinsker family, or finite-simplex continuity theory;
+- finite-PMF total-variation and maximal-coupling infrastructure, a Pinsker
+  family, or finite-simplex topology and continuity theory;
 - theorem-level leanblueprint data, a blueprint PDF, and optional
   equation-expanded API-documentation pages.
 
@@ -400,10 +400,6 @@ Use this order when claims disagree:
 
 ### Known source discrepancies at this baseline
 
-- **[Current documentation gap]** `docs/concept-note.md` still says general
-  stochastic data processing and independence equality cases are future work.
-  Current source completed those in Chunks 2-4. Treat that limitation paragraph
-  as stale historical positioning.
 - **[Superseded planning]** The original eight-chunk topic boundaries were
   revised by implementation. Conditional independence moved into Chunk 2;
   channels, DPI, and one-step doubly stochastic entropy growth moved into

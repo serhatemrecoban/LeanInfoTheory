@@ -1202,6 +1202,7 @@ def check_generated_artifacts() -> None:
         for command in commands:
             run_command(command, label=f"generated-artifact check pass {pass_number}")
     run_command((sys.executable, "scripts/check_website.py", "--mode", "source"))
+    run_command((sys.executable, "scripts/test_check_website.py"))
     print("generated artifact text is current on two independent render passes")
 
 

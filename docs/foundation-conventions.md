@@ -101,7 +101,10 @@ reference material only and is intentionally not part of the repository.
   pairwise `ENNReal` KL preservation. Under input support inclusion, the same
   module characterizes `ENNReal` and real equality by existence of one common
   exact recovery channel and supplies deterministic-map specializations. The
-  lightweight sufficiency core retains no kernel or KL import.
+  lightweight sufficiency core directly imports only `Markov`, depends on
+  neither downstream `DataProcessing` nor `Sufficiency.KL`, and owns no kernel-
+  or KL-specific API. Generic `SemanticBridge.KL` is nevertheless transitively
+  reachable through the `Markov` import closure.
 - Entropy values live in `Real`.
 - Canonical information quantities are `Real`-valued and measured in nats,
   because mathlib's logarithm is natural logarithm and mathlib's
@@ -338,8 +341,9 @@ expect to connect to next.
   conditional-fiber, functional-dependence, and recovery examples, or
   `LeanInfoTheory.Examples.KLTop` for the disjoint-support real-KL trap. The
   common-cause, stochastic-channel, and sufficient-statistics examples also
-  remain separately importable. `LeanInfoTheory.Examples` aggregates all five
-  semantic example modules, but the project root imports none of them.
+  remain separately importable. `LeanInfoTheory.Examples` aggregates all ten
+  currently maintained example modules, but the project root imports none of
+  them.
 - Certificate-specific declarations and demonstrations remain downstream and
   are not part of the upstream namespace policy.
 
@@ -351,16 +355,17 @@ Those are the local definitions introduced here.
 ## Why This Shape
 
 Cover-Thomas, El Gamal-Kim, and Polyanskiy-Wu introduce conditional entropy as
-an average of entropies of conditional laws. That is the semantic picture we
-should eventually expose. Yeung's entropy-inequality treatment, however,
-regularly rewrites conditional mutual information as a linear combination of
-ordinary entropies. The algebraic form is therefore a useful lightweight
-definitional layer for theorem proving and downstream symbolic consumers.
+an average of entropies of conditional laws. That semantic picture is exposed
+in `LeanInfoTheory.Shannon.SemanticBridge.Conditional`, including expected-
+fiber formulas for conditional entropy and conditional mutual information.
+Yeung's entropy-inequality treatment, however, regularly rewrites conditional
+mutual information as a linear combination of ordinary entropies. The
+algebraic form therefore remains a useful lightweight definitional layer for
+theorem proving and downstream symbolic consumers.
 
-This is a design compromise, not a mathematical change: the next foundation
-milestones should continue extending the theorem layer while preserving the
-separation between lightweight entropy-identity definitions and heavier
-semantic bridge imports.
+This is a layered API design, not a mathematical change: the algebraic
+definitions and the heavier semantic bridge are separately importable public
+layers. Future work should preserve their dependency separation.
 
 The comparison with Rocq `infotheo` is recorded in `docs/project-log.md`.
 

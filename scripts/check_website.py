@@ -10,6 +10,7 @@ import json
 import posixpath
 import re
 import sys
+from html.parser import HTMLParser
 from pathlib import Path, PurePosixPath
 from urllib.parse import unquote, urlsplit
 
@@ -22,6 +23,7 @@ ROOT_STAGE_METADATA = "website-stage.json"
 PREVIEW_MARKER = "NOT_FOR_PUBLICATION.txt"
 HTML_LINK_RE = re.compile(r"\b(?:href|src)\s*=\s*([\"'])(.*?)\1", re.IGNORECASE)
 HTML_ID_RE = re.compile(r"\b(?:id|name)\s*=\s*([\"'])(.*?)\1", re.IGNORECASE)
+HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
 CSS_URL_RE = re.compile(r"url\(\s*([\"']?)(.*?)\1\s*\)", re.IGNORECASE)
 MUTABLE_GITHUB_RE = re.compile(
     r"https://github\.com/serhatemrecoban/LeanInfoTheory/blob/(?:master|main|HEAD)/",
@@ -39,6 +41,16 @@ FILE_URL_LITERAL_RE = re.compile(
 )
 PROJECT_BLOB_RE = re.compile(
     r"https://github\.com/serhatemrecoban/LeanInfoTheory/blob/([^/]+)/"
+)
+CURATED_THEOREM_PAGE = "theorems.html"
+CURATED_INDEX_PATH = "docs/declaration_index.json"
+EXPECTED_CURATED_DECLARATION_COUNT = 28
+CURATED_TBODY_RE = re.compile(r"<tbody\b[^>]*>(.*?)</tbody>", re.IGNORECASE | re.DOTALL)
+CURATED_ROW_RE = re.compile(r"<tr\b[^>]*>(.*?)</tr>", re.IGNORECASE | re.DOTALL)
+CURATED_CELL_RE = re.compile(r"<td\b[^>]*>(.*?)</td>", re.IGNORECASE | re.DOTALL)
+CURATED_SOURCE_RE = re.compile(
+    r"https://github\.com/serhatemrecoban/LeanInfoTheory/blob/"
+    r"(?P<ref>[^/]+)/(?P<path>[^?#]+)#L(?P<line>[1-9][0-9]{0,8})"
 )
 EXACT_COMMIT_RE = re.compile(r"[0-9a-f]{40}")
 SHA256_RE = re.compile(r"[0-9a-f]{64}")
@@ -127,6 +139,296 @@ EXPECTED_LICENSE_NAMES = (
 )
 
 
+class CuratedCellParser(HTMLParser):
+    """Extract browser-interpreted anchors and code text from one table cell."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.anchors: list[tuple[str | None, tuple[str, ...]]] = []
+        self.codes: list[str] = []
+        self.errors: list[str] = []
+        self._anchor_open = False
+        self._anchor_href: str | None = None
+        self._anchor_codes: list[str] = []
+        self._code_chunks: list[str] | None = None
+
+    def handle_starttag(
+        self, tag: str, attrs: list[tuple[str, str | None]]
+    ) -> None:
+        if tag == "a":
+            unexpected = [name for name, _value in attrs if name.lower() != "href"]
+            if unexpected:
+                self.errors.append(f"anchor has unexpected attributes {unexpected!r}")
+            if self._anchor_open:
+                self.errors.append("nested anchor")
+                return
+            hrefs = [value for name, value in attrs if name.lower() == "href"]
+            if len(hrefs) != 1 or hrefs[0] is None:
+                self.errors.append(
+                    f"anchor has {len(hrefs)} href attributes, expected exactly one"
+                )
+            self._anchor_open = True
+            self._anchor_href = hrefs[0] if hrefs else None
+            self._anchor_codes = []
+        elif tag == "code":
+            if attrs:
+                self.errors.append(f"code element has unexpected attributes {attrs!r}")
+            if self._code_chunks is not None:
+                self.errors.append("nested code element")
+                return
+            self._code_chunks = []
+        elif tag == "span":
+            if attrs != [("class", "decl-actions")]:
+                self.errors.append(f"span has unexpected attributes {attrs!r}")
+        else:
+            self.errors.append(f"unexpected start tag {tag!r}")
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "code":
+            if self._code_chunks is None:
+                self.errors.append("closing code tag without an opening tag")
+                return
+            rendered = "".join(self._code_chunks)
+            self.codes.append(rendered)
+            if self._anchor_open:
+                self._anchor_codes.append(rendered)
+            self._code_chunks = None
+        elif tag == "a":
+            if not self._anchor_open:
+                self.errors.append("closing anchor tag without an opening tag")
+                return
+            self.anchors.append((self._anchor_href, tuple(self._anchor_codes)))
+            self._anchor_open = False
+            self._anchor_href = None
+            self._anchor_codes = []
+        elif tag != "span":
+            self.errors.append(f"unexpected closing tag {tag!r}")
+
+    def handle_data(self, data: str) -> None:
+        if self._code_chunks is not None:
+            self._code_chunks.append(data)
+
+    def finish(self) -> None:
+        self.close()
+        if self._code_chunks is not None:
+            self.errors.append("unclosed code element")
+        if self._anchor_open:
+            self.errors.append("unclosed anchor element")
+
+
+class CuratedTableAuditParser(HTMLParser):
+    """Audit that the curated table is live, visible, and structurally sound."""
+
+    VOID_TAGS = {
+        "area",
+        "base",
+        "br",
+        "col",
+        "embed",
+        "hr",
+        "img",
+        "input",
+        "link",
+        "meta",
+        "param",
+        "source",
+        "track",
+        "wbr",
+    }
+    INERT_TAGS = {
+        "iframe",
+        "noembed",
+        "noframes",
+        "noscript",
+        "optgroup",
+        "option",
+        "plaintext",
+        "script",
+        "select",
+        "style",
+        "template",
+        "textarea",
+        "title",
+        "xmp",
+    }
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.errors: list[str] = []
+        self.target_table_count = 0
+        self.target_tbody_count = 0
+        self.row_cell_counts: list[int] = []
+        self._stack: list[tuple[str, bool]] = []
+        self._target_table_depth: int | None = None
+        self._target_tbody_depth: int | None = None
+        self._target_row_depth: int | None = None
+        self._target_cell_depth: int | None = None
+        self._current_cell_count = 0
+
+    @staticmethod
+    def _is_hidden(
+        tag: str, attrs: list[tuple[str, str | None]], parent_hidden: bool
+    ) -> bool:
+        if parent_hidden or tag in CuratedTableAuditParser.INERT_TAGS:
+            return True
+        lowered = [(name.lower(), value) for name, value in attrs]
+        if any(name in {"hidden", "inert"} for name, _value in lowered):
+            return True
+        if any(
+            name == "aria-hidden" and (value or "").strip().lower() == "true"
+            for name, value in lowered
+        ):
+            return True
+        styles = [value or "" for name, value in lowered if name == "style"]
+        compact_styles = [re.sub(r"\s+", "", value.lower()) for value in styles]
+        return any(
+            "display:none" in value or "visibility:hidden" in value
+            for value in compact_styles
+        )
+
+    @staticmethod
+    def _has_status_table_class(attrs: list[tuple[str, str | None]]) -> bool:
+        return any(
+            name.lower() == "class"
+            and value is not None
+            and "status-table" in value.split()
+            for name, value in attrs
+        )
+
+    def handle_starttag(
+        self, tag: str, attrs: list[tuple[str, str | None]]
+    ) -> None:
+        tag = tag.lower()
+        depth = len(self._stack)
+        parent_hidden = self._stack[-1][1] if self._stack else False
+        hidden = self._is_hidden(tag, attrs, parent_hidden)
+
+        if tag == "table" and self._target_table_depth is not None:
+            self.errors.append("nested table inside status-table")
+
+        if tag == "table" and self._has_status_table_class(attrs):
+            self.target_table_count += 1
+            if self._target_table_depth is not None:
+                self.errors.append("nested status-table elements")
+            else:
+                self._target_table_depth = depth
+                if attrs != [("class", "status-table")]:
+                    self.errors.append(
+                        f"status-table has unexpected attributes {attrs!r}"
+                    )
+                if not self._stack or self._stack[-1][0] != "main":
+                    self.errors.append("status-table is not a direct child of main")
+                if hidden:
+                    self.errors.append("status-table is hidden or inside inert content")
+        elif tag == "tbody" and self._target_table_depth is not None:
+            self.target_tbody_count += 1
+            if self._target_tbody_depth is not None:
+                self.errors.append("nested theorem table bodies")
+            else:
+                self._target_tbody_depth = depth
+                if attrs:
+                    self.errors.append(
+                        f"theorem table body has unexpected attributes {attrs!r}"
+                    )
+                if (
+                    not self._stack
+                    or self._stack[-1][0] != "table"
+                    or depth != self._target_table_depth + 1
+                ):
+                    self.errors.append(
+                        "theorem table body is not a direct child of status-table"
+                    )
+                if hidden:
+                    self.errors.append("theorem table body is hidden or inert")
+        elif tag == "tr" and self._target_tbody_depth is not None:
+            if self._target_row_depth is not None:
+                self.errors.append("nested theorem table rows")
+            else:
+                self._target_row_depth = depth
+                self._current_cell_count = 0
+                if attrs:
+                    self.errors.append(
+                        f"theorem table row has unexpected attributes {attrs!r}"
+                    )
+                if (
+                    not self._stack
+                    or self._stack[-1][0] != "tbody"
+                    or depth != self._target_tbody_depth + 1
+                ):
+                    self.errors.append(
+                        "theorem table row is not a direct child of its table body"
+                    )
+                if hidden:
+                    self.errors.append("theorem table row is hidden or inert")
+        elif tag == "td" and self._target_row_depth is not None:
+            if self._target_cell_depth is not None:
+                self.errors.append("nested theorem table cells")
+            else:
+                self._target_cell_depth = depth
+                self._current_cell_count += 1
+                if attrs:
+                    self.errors.append(
+                        f"theorem table cell has unexpected attributes {attrs!r}"
+                    )
+                if (
+                    not self._stack
+                    or self._stack[-1][0] != "tr"
+                    or depth != self._target_row_depth + 1
+                ):
+                    self.errors.append(
+                        "theorem table cell is not a direct child of its row"
+                    )
+                if hidden:
+                    self.errors.append("theorem table cell is hidden or inert")
+
+        if tag not in self.VOID_TAGS:
+            self._stack.append((tag, hidden))
+
+    def handle_startendtag(
+        self, tag: str, attrs: list[tuple[str, str | None]]
+    ) -> None:
+        if tag.lower() not in self.VOID_TAGS:
+            self.errors.append(
+                f"non-void HTML element {tag.lower()!r} uses self-closing syntax"
+            )
+        self.handle_starttag(tag, attrs)
+        if tag.lower() not in self.VOID_TAGS:
+            self.handle_endtag(tag)
+
+    def handle_endtag(self, tag: str) -> None:
+        tag = tag.lower()
+        if not self._stack or self._stack[-1][0] != tag:
+            expected = self._stack[-1][0] if self._stack else None
+            self.errors.append(
+                f"closing tag {tag!r} does not match open tag {expected!r}"
+            )
+            return
+
+        depth = len(self._stack) - 1
+        if tag == "td" and self._target_cell_depth == depth:
+            self._target_cell_depth = None
+        elif tag == "tr" and self._target_row_depth == depth:
+            if self._target_cell_depth is not None:
+                self.errors.append("theorem table row ended inside a cell")
+            self.row_cell_counts.append(self._current_cell_count)
+            self._target_row_depth = None
+        elif tag == "tbody" and self._target_tbody_depth == depth:
+            if self._target_row_depth is not None:
+                self.errors.append("theorem table body ended inside a row")
+            self._target_tbody_depth = None
+        elif tag == "table" and self._target_table_depth == depth:
+            if self._target_tbody_depth is not None:
+                self.errors.append("status-table ended inside its table body")
+            self._target_table_depth = None
+
+        self._stack.pop()
+
+    def finish(self) -> None:
+        self.close()
+        if self._stack:
+            self.errors.append(f"unclosed HTML element {self._stack[-1][0]!r}")
+
+
 class WebsiteValidator:
     def __init__(self, site_root: Path, mode: str):
         self.site_root = site_root.resolve()
@@ -139,6 +441,7 @@ class WebsiteValidator:
         self.anchor_cache: dict[str, set[str]] = {}
         self.html_count = 0
         self.link_count = 0
+        self.curated_declaration_count = 0
         self.total_bytes = 0
         self.metadata: dict[str, object] | None = None
 
@@ -207,8 +510,292 @@ class WebsiteValidator:
                 json.loads(path.read_text(encoding="utf-8"))
             except FileNotFoundError:
                 self.error(f"missing generated JSON: {relative}")
-            except json.JSONDecodeError as exc:
+            except ValueError as exc:
                 self.error(f"invalid JSON in {relative}: {exc}")
+
+    @staticmethod
+    def declaration_fragment(name: str) -> str:
+        """Return the declaration-index fragment used by the website generator."""
+        slug = re.sub(r"[^A-Za-z0-9_-]+", "-", name).strip("-")
+        return f"decl-{slug}"
+
+    def validate_curated_theorem_links(self) -> None:
+        """Match every hand-curated theorem row to the source-derived index."""
+        theorem_path = self.site_root / CURATED_THEOREM_PAGE
+        index_path = self.site_root / CURATED_INDEX_PATH
+        try:
+            theorem_source = theorem_path.read_text(encoding="utf-8")
+            index_data = json.loads(index_path.read_text(encoding="utf-8"))
+        except FileNotFoundError as exc:
+            self.error(f"curated theorem validation is missing {exc.filename}")
+            return
+        except UnicodeDecodeError as exc:
+            self.error(f"curated theorem validation found invalid UTF-8: {exc}")
+            return
+        except ValueError as exc:
+            self.error(f"curated theorem validation found invalid JSON: {exc}")
+            return
+
+        theorem_source = HTML_COMMENT_RE.sub("", theorem_source)
+        if "<!--" in theorem_source or "-->" in theorem_source:
+            self.error(
+                f"{CURATED_THEOREM_PAGE}: malformed or unterminated HTML comment"
+            )
+            return
+
+        table_audit = CuratedTableAuditParser()
+        table_audit.feed(theorem_source)
+        table_audit.finish()
+        for issue in table_audit.errors:
+            self.error(f"{CURATED_THEOREM_PAGE}: invalid curated table HTML: {issue}")
+        if table_audit.target_table_count != 1:
+            self.error(
+                f"{CURATED_THEOREM_PAGE}: expected exactly one live status-table, "
+                f"found {table_audit.target_table_count}"
+            )
+        if table_audit.target_tbody_count != 1:
+            self.error(
+                f"{CURATED_THEOREM_PAGE}: expected exactly one live theorem table body, "
+                f"found {table_audit.target_tbody_count}"
+            )
+        if (
+            table_audit.errors
+            or table_audit.target_table_count != 1
+            or table_audit.target_tbody_count != 1
+        ):
+            return
+
+        if not isinstance(index_data, dict):
+            self.error(f"{CURATED_INDEX_PATH}: top-level JSON value is not an object")
+            return
+        raw_declarations = index_data.get("declarations")
+        if not isinstance(raw_declarations, list):
+            self.error(f"{CURATED_INDEX_PATH}: declarations is not a list")
+            return
+
+        declarations_by_fragment: dict[str, dict[str, object]] = {}
+        for position, record in enumerate(raw_declarations, start=1):
+            if not isinstance(record, dict):
+                self.error(
+                    f"{CURATED_INDEX_PATH}: declaration {position} is not an object"
+                )
+                continue
+            name = record.get("name")
+            if not isinstance(name, str) or not name:
+                self.error(
+                    f"{CURATED_INDEX_PATH}: declaration {position} has no valid name"
+                )
+                continue
+            fragment = self.declaration_fragment(name)
+            previous = declarations_by_fragment.get(fragment)
+            if previous is not None:
+                self.error(
+                    f"{CURATED_INDEX_PATH}: duplicate declaration fragment {fragment!r}"
+                )
+                continue
+            declarations_by_fragment[fragment] = record
+
+        table_bodies = CURATED_TBODY_RE.findall(theorem_source)
+        if len(table_bodies) != 1:
+            self.error(
+                f"{CURATED_THEOREM_PAGE}: expected exactly one theorem table body, "
+                f"found {len(table_bodies)}"
+            )
+            return
+        rows = CURATED_ROW_RE.findall(table_bodies[0])
+        if not rows:
+            self.error(f"{CURATED_THEOREM_PAGE}: curated theorem table has no rows")
+            return
+        if len(rows) != len(table_audit.row_cell_counts):
+            self.error(
+                f"{CURATED_THEOREM_PAGE}: raw and live theorem row counts differ "
+                f"({len(rows)} versus {len(table_audit.row_cell_counts)})"
+            )
+            return
+        for row_number, cell_count in enumerate(
+            table_audit.row_cell_counts, start=1
+        ):
+            if cell_count != 4:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: live curated row {row_number} has "
+                    f"{cell_count} cells, expected 4"
+                )
+        if len(rows) != EXPECTED_CURATED_DECLARATION_COUNT:
+            self.error(
+                f"{CURATED_THEOREM_PAGE}: expected "
+                f"{EXPECTED_CURATED_DECLARATION_COUNT} curated rows, found {len(rows)}"
+            )
+
+        expected_ref = "v0.1.0"
+        if self.mode == "publishable":
+            if self.metadata is None:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: publishable validation has no stage metadata"
+                )
+                return
+            expected_ref = str(self.metadata.get("source_identity", ""))
+
+        seen_fragments: set[str] = set()
+        valid_rows = 0
+        for row_number, row in enumerate(rows, start=1):
+            cells = CURATED_CELL_RE.findall(row)
+            if len(cells) != 4:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: curated row {row_number} has "
+                    f"{len(cells)} cells, expected 4"
+                )
+                continue
+
+            declaration_cell = cells[1]
+            declaration_parser = CuratedCellParser()
+            declaration_parser.feed(declaration_cell)
+            declaration_parser.finish()
+            for issue in declaration_parser.errors:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: curated row {row_number} "
+                    f"declaration cell has invalid HTML: {issue}"
+                )
+            primary_matches = [
+                (target, codes)
+                for target, codes in declaration_parser.anchors
+                if target is not None
+                and target.startswith("docs/api-index.html#decl-")
+                and len(codes) == 1
+            ]
+            if len(primary_matches) != 1:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: curated row {row_number} has "
+                    f"{len(primary_matches)} primary declaration links, expected 1"
+                )
+                continue
+            primary_target, primary_codes = primary_matches[0]
+            fragment = primary_target.split("#", 1)[1]
+            display = primary_codes[0].strip()
+            observed_codes = [code.strip() for code in declaration_parser.codes]
+            if observed_codes != [display]:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: curated row {row_number} declaration "
+                    f"cell code elements are {observed_codes!r}, expected [{display!r}]"
+                )
+            if fragment in seen_fragments:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: duplicate curated declaration {fragment!r}"
+                )
+                continue
+            seen_fragments.add(fragment)
+
+            declaration = declarations_by_fragment.get(fragment)
+            if declaration is None:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: curated row {row_number} references "
+                    f"unknown declaration fragment {fragment!r}"
+                )
+                continue
+
+            name = declaration.get("name")
+            module = declaration.get("module")
+            path = declaration.get("path")
+            line = declaration.get("line")
+            if (
+                not isinstance(name, str)
+                or not isinstance(module, str)
+                or not isinstance(path, str)
+                or not isinstance(line, int)
+                or isinstance(line, bool)
+                or line <= 0
+            ):
+                self.error(
+                    f"{CURATED_INDEX_PATH}: declaration for {fragment!r} has "
+                    "invalid name/module/path/line metadata"
+                )
+                continue
+
+            expected_display = name.removeprefix("LeanInfoTheory.")
+            if display != expected_display:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: curated row {row_number} displays "
+                    f"{display!r}, expected {expected_display!r}"
+                )
+
+            api_target = f"docs/api-index.html#{fragment}"
+            all_targets = [
+                target
+                for target, _codes in declaration_parser.anchors
+                if target is not None
+            ]
+            if len(declaration_parser.anchors) != 3 or len(all_targets) != 3:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: curated row {row_number} has "
+                    f"{len(declaration_parser.anchors)} anchors and {len(all_targets)} "
+                    "valid hrefs, expected three declaration/API-index/source links"
+                )
+            api_targets = [
+                target
+                for target in all_targets
+                if target.startswith("docs/api-index.html#decl-")
+            ]
+            if api_targets != [api_target, api_target]:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: curated row {row_number} API links "
+                    f"are {api_targets!r}, expected two copies of {api_target!r}"
+                )
+
+            module_parser = CuratedCellParser()
+            module_parser.feed(cells[2])
+            module_parser.finish()
+            for issue in module_parser.errors:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: curated row {row_number} "
+                    f"module cell has invalid HTML: {issue}"
+                )
+            module_codes = [code.strip() for code in module_parser.codes]
+            if module_parser.anchors:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: curated row {row_number} module cell "
+                    "must not contain links"
+                )
+            observed_module = module_codes[0] if len(module_codes) == 1 else None
+            if observed_module != module:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: curated row {row_number} module is "
+                    f"{observed_module!r}, expected {module!r}"
+                )
+
+            source_targets = [
+                target
+                for target in all_targets
+                if CURATED_SOURCE_RE.fullmatch(target) is not None
+            ]
+            if len(source_targets) != 1:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: curated row {row_number} has "
+                    f"{len(source_targets)} project source links, expected 1"
+                )
+                continue
+            source_match = CURATED_SOURCE_RE.fullmatch(source_targets[0])
+            assert source_match is not None
+            observed_ref = source_match.group("ref")
+            observed_path = unquote(source_match.group("path"))
+            observed_line = int(source_match.group("line"))
+            if observed_ref != expected_ref:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: curated row {row_number} source ref is "
+                    f"{observed_ref!r}, expected {expected_ref!r}"
+                )
+            if observed_path != path or observed_line != line:
+                self.error(
+                    f"{CURATED_THEOREM_PAGE}: curated row {row_number} source location "
+                    f"is {observed_path}#L{observed_line}, expected {path}#L{line} for {name}"
+                )
+                continue
+            valid_rows += 1
+
+        self.curated_declaration_count = valid_rows
+        if valid_rows != len(rows):
+            self.error(
+                f"{CURATED_THEOREM_PAGE}: only {valid_rows} of {len(rows)} curated "
+                "rows have authoritative source locations"
+            )
 
     def validate_stage_contract(self) -> None:
         version = self.site_root / Path(VERSION_ROUTE)
@@ -492,6 +1079,7 @@ class WebsiteValidator:
         self.validate_required_site_files()
         self.validate_json()
         self.validate_stage_contract()
+        self.validate_curated_theorem_links()
         self.validate_links()
         self.validate_advisory_baseline()
 
@@ -526,7 +1114,9 @@ def main() -> int:
     ).hexdigest()
     print(
         f"checked {validator.html_count} HTML files, {validator.link_count} links/assets, "
-        f"{len(REQUIRED_JSON)} generated JSON files, and {validator.total_bytes} bytes "
+        f"{len(REQUIRED_JSON)} generated JSON files, "
+        f"{validator.curated_declaration_count} curated theorem links, and "
+        f"{validator.total_bytes} bytes "
         f"in {args.mode} mode; recorded {len(validator.advisories)} imported-dependency "
         f"link advisories ({advisory_digest})"
     )
