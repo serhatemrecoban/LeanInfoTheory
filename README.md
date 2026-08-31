@@ -23,8 +23,9 @@ results stay in LeanInfoTheory when their ownership and assumptions are general.
 
 `v0.1.0` is the first public-library release of LeanInfoTheory. It establishes
 a reusable finite-information-theory foundation and the source-compatibility
-baseline for the `0.1.x` line without claiming that all of information theory,
-all of Cover--Thomas Chapter 2, or any particular paper has been formalized.
+baseline for the `0.1.x` line. Its scope is deliberately foundational: this
+release does not claim a complete formalization of information theory or of any
+particular textbook or research paper.
 The release date is `2026-09-01` in Europe/Zurich. Under the approved automatic
 post-release GitHub--Zenodo route, the tagged `CITATION.cff` and immutable
 GitHub Release will intentionally contain no DOI; Zenodo issues the version DOI
@@ -211,8 +212,11 @@ The `v0.1.0` release includes:
 - fixed-prior and model-family sufficiency, exact recovery, Fisher--Neyman
   factorization, and guarded KL-preservation characterizations.
 
-This is a reusable foundation, not a claim that information theory, Cover--
-Thomas Chapter 2, or any paper has been completely formalized.
+The mathematical development draws on standard references, including Thomas M.
+Cover and Joy A. Thomas, *Elements of Information Theory* (John Wiley & Sons,
+1991). See the [foundation conventions](docs/foundation-conventions.md) for the
+broader reference set and the conventions used when adapting textbook
+statements to Lean and mathlib.
 
 ## Mathematical conventions and limitations
 
@@ -236,10 +240,11 @@ Thomas Chapter 2, or any paper has been completely formalized.
 
 The release does not cover general measurable or continuous entropy,
 entropy rates and stochastic processes, channel capacity or coding theorems,
-AEP/typicality, Pinsker inequalities, full majorization/Birkhoff theory,
-canonical or minimal sufficient statistics, certificate search/checking, or
-paper-specific constructions. Some currently supported theorems intentionally
-retain stronger finite-type assumptions documented in the public API contract.
+AEP/typicality, a dedicated finite-`PMF` total-variation API or Pinsker
+inequalities, full majorization/Birkhoff theory, canonical or minimal sufficient
+statistics, application-specific certificate tooling, or paper-specific
+constructions. Some currently supported theorems intentionally retain stronger
+finite-type assumptions documented in the public API contract.
 See [Known Limitations and Open Questions](docs/lean-info-theory-living-summary.md#11-known-limitations-and-open-questions)
 for the detailed register.
 
@@ -405,8 +410,6 @@ Information Laboratory, authored and led by Serhat Emre Coban. Copyright ©
 2026 École polytechnique fédérale de Lausanne (EPFL), the project rights
 holder. The project is licensed under the Apache License, Version 2.0; see
 [LICENSE](LICENSE).
-
-No statement in this repository claims approval by EPFL, MIL, or EPFL TTO.
 
 ## Citation
 

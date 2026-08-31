@@ -998,10 +998,11 @@ def check_release_documentation_contract() -> None:
         "# LeanInfoTheory v0.1.0",
         "Release date: **2026-09-01**",
         "`v0.1.0` is the first public-library release of LeanInfoTheory",
-        "automatic post-release GitHub--Zenodo route",
-        "tagged CFF and immutable GitHub Release DOI-free",
+        "Thomas M. Cover and Joy A. Thomas",
+        "John Wiley & Sons, 1991",
+        "tagged snapshot is intentionally DOI-free",
+        "after Zenodo archives the GitHub Release",
         "## Information units",
-        "## Certificate boundary",
         "## Compatibility, installation, and imports",
         "## Validation and trust",
         "reproduced from a clean exact checkout and compiled through a minimal external Lake consumer",
@@ -1017,6 +1018,7 @@ def check_release_documentation_contract() -> None:
         "École polytechnique fédérale de Lausanne (EPFL) is the rights holder.",
         "Apache-2.0",
         "CITATION.cff",
+        "Application-specific certificate tooling and paper-specific constructions",
     )
     errors.extend(
         f"docs/releases/v0.1.0.md is missing the release marker: {marker}"
