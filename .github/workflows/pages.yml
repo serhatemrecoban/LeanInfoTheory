@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       publish:
-        description: Deploy the validated artifact to GitHub Pages (requires explicit release approval)
+        description: Deploy the validated artifact to GitHub Pages (requires explicit publication approval)
         required: true
         default: false
         type: boolean
@@ -18,12 +18,24 @@ concurrency:
 
 jobs:
   prepare:
-    name: Build and validate Pages artifact
+    name: Build current site with frozen v0.1.0 API
     runs-on: ubuntu-latest
     timeout-minutes: 360
     steps:
       - name: Checkout
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Verify publication branch and immutable release tag
+        run: |
+          test "$GITHUB_REF" = "refs/heads/master"
+          test "$GITHUB_SHA" = "$(git rev-parse HEAD)"
+          git fetch --no-tags origin refs/heads/master:refs/remotes/origin/master
+          test "$(git rev-parse HEAD)" = "$(git rev-parse refs/remotes/origin/master)"
+          test "$(git rev-parse v0.1.0)" = "bcd9090ea2720fe14b0a3e168c76ebeef1dafd47"
+          test "$(git rev-parse 'v0.1.0^{commit}')" = "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f"
 
       - name: Check static release contract
         run: python scripts/validate_release.py static
@@ -38,15 +50,43 @@ jobs:
           lint: "false"
           use-mathlib-cache: "true"
 
-      - name: Build and validate signature-bearing API documentation
+      - name: Checkout immutable v0.1.0 source
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: 0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f
+          path: .lake/v0.1.0-source
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Set up the immutable v0.1.0 toolchain and mathlib cache
+        uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596 # v1
+        with:
+          lake-package-directory: .lake/v0.1.0-source
+          auto-config: "false"
+          build: "false"
+          test: "false"
+          lint: "false"
+          use-mathlib-cache: "true"
+
+      - name: Build and validate immutable v0.1.0 API documentation
+        working-directory: .lake/v0.1.0-source
         env:
           DOCGEN_SRC: github
         run: python scripts/validate_release.py api-docs
 
-      - name: Assemble exact-commit Pages artifact
-        run: python scripts/stage_website.py release
+      - name: Assemble and validate immutable v0.1.0 website artifact
+        working-directory: .lake/v0.1.0-source
+        run: |
+          python scripts/stage_website.py release
+          python scripts/check_website.py --site-root .lake/website-stage/LeanInfoTheory --mode publishable
 
-      - name: Validate publishable Pages artifact
+      - name: Compose current project pages with immutable v0.1.0 API
+        run: >-
+          python scripts/stage_website.py maintenance
+          --frozen-source-root .lake/v0.1.0-source
+          --frozen-site-root .lake/v0.1.0-source/.lake/website-stage/LeanInfoTheory
+
+      - name: Validate current-site and immutable-version boundary
         run: python scripts/check_website.py --site-root .lake/website-stage/LeanInfoTheory --mode publishable
 
       - name: Upload Pages artifact without deploying

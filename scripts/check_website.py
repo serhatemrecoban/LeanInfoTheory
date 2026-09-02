@@ -9,6 +9,7 @@ import html
 import json
 import posixpath
 import re
+import subprocess
 import sys
 from html.parser import HTMLParser
 from pathlib import Path, PurePosixPath
@@ -21,6 +22,10 @@ VERSION_ROUTE = "docs/v0.1.0"
 STAGE_METADATA = "leaninfotheory-stage.json"
 ROOT_STAGE_METADATA = "website-stage.json"
 PREVIEW_MARKER = "NOT_FOR_PUBLICATION.txt"
+VERSION_TAG_OBJECT = "bcd9090ea2720fe14b0a3e168c76ebeef1dafd47"
+VERSION_SOURCE_COMMIT = "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f"
+VERSION_STAGE_SCHEMA = "lean-info-theory.website-stage.v1"
+COMPOSITION_STAGE_SCHEMA = "lean-info-theory.website-stage.v2"
 HTML_LINK_RE = re.compile(r"\b(?:href|src)\s*=\s*([\"'])(.*?)\1", re.IGNORECASE)
 HTML_ID_RE = re.compile(r"\b(?:id|name)\s*=\s*([\"'])(.*?)\1", re.IGNORECASE)
 HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
@@ -39,9 +44,7 @@ FILE_URL_LITERAL_RE = re.compile(
     r"|/(?:home|Users|tmp)/[^/\s\"'<>]+/)",
     re.IGNORECASE,
 )
-PROJECT_BLOB_RE = re.compile(
-    r"https://github\.com/serhatemrecoban/LeanInfoTheory/blob/([^/]+)/"
-)
+URL_TOKEN_RE = re.compile(r"https?:[^\"'<>\s]+", re.IGNORECASE)
 CURATED_THEOREM_PAGE = "theorems.html"
 CURATED_INDEX_PATH = "docs/declaration_index.json"
 EXPECTED_CURATED_DECLARATION_COUNT = 28
@@ -76,6 +79,147 @@ TEXT_SAFETY_SUFFIXES = {
     ".txt",
     ".xml",
 }
+
+
+def tree_digest(root: Path) -> tuple[str, int, int, int]:
+    """Fingerprint a staged directory exactly as the staging script does."""
+
+    digest = hashlib.sha256()
+    file_count = 0
+    html_count = 0
+    byte_count = 0
+    for path in sorted(
+        root.rglob("*"), key=lambda candidate: candidate.relative_to(root).as_posix()
+    ):
+        if path.is_dir():
+            continue
+        if not path.is_file():
+            raise OSError(f"unsupported staged entry: {path}")
+        relative = path.relative_to(root).as_posix()
+        content = path.read_bytes()
+        digest.update(relative.encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(content)
+        digest.update(b"\0")
+        file_count += 1
+        html_count += path.suffix.lower() == ".html"
+        byte_count += len(content)
+    return digest.hexdigest(), file_count, html_count, byte_count
+
+
+def git_head() -> str:
+    result = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=ROOT,
+        text=True,
+        encoding="utf-8",
+        capture_output=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        raise OSError("could not resolve the current Git commit")
+    return result.stdout.strip()
+
+
+def is_positive_int(value: object) -> bool:
+    return isinstance(value, int) and not isinstance(value, bool) and value > 0
+
+
+class URLAttributeParser(HTMLParser):
+    """Collect browser-decoded href/src values, including unquoted attributes."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.values: list[str] = []
+
+    def record(self, attrs: list[tuple[str, str | None]]) -> None:
+        for name, value in attrs:
+            if name.casefold() in {"href", "src"} and value is not None:
+                self.values.append(value)
+
+    def handle_starttag(
+        self, _tag: str, attrs: list[tuple[str, str | None]]
+    ) -> None:
+        self.record(attrs)
+
+    def handle_startendtag(
+        self, _tag: str, attrs: list[tuple[str, str | None]]
+    ) -> None:
+        self.record(attrs)
+
+
+def project_blob_links(source: str):
+    """Yield normalized LeanInfoTheory GitHub blob refs and repository paths."""
+
+    decoded = html.unescape(source)
+    tokens = [(match.group(0), False) for match in URL_TOKEN_RE.finditer(decoded)]
+    parser = URLAttributeParser()
+    parser.feed(source)
+    for value in parser.values:
+        browser_value = value.replace("\t", "").replace("\r", "").replace("\n", "")
+        if browser_value != value:
+            tokens.extend(
+                (match.group(0), False) for match in URL_TOKEN_RE.finditer(browser_value)
+            )
+        stripped_value = browser_value.strip()
+        if re.match(r"^[\\/]{2,}", stripped_value):
+            normalized_authority = stripped_value.lstrip("\\/")
+            tokens.append((f"https://{normalized_authority}", True))
+    for token, protocol_relative in tokens:
+        scheme, _separator, raw_rest = token.partition(":")
+        normalized_rest = raw_rest.replace("\\", "/").lstrip("/")
+        try:
+            parsed = urlsplit(f"{scheme}://{normalized_rest}")
+            hostname = parsed.hostname
+        except ValueError:
+            continue
+        if hostname is None:
+            continue
+        decoded_hostname = hostname
+        for _ in range(5):
+            next_hostname = unquote(decoded_hostname)
+            if next_hostname == decoded_hostname:
+                break
+            decoded_hostname = next_hostname
+        try:
+            idna_hostname = decoded_hostname.encode("idna").decode("ascii")
+        except UnicodeError:
+            continue
+        if idna_hostname.rstrip(".").casefold() != "github.com":
+            continue
+        if decoded_hostname.rstrip(".").casefold() != "github.com":
+            raise ValueError("GitHub URL host uses a noncanonical Unicode spelling")
+        if protocol_relative:
+            raise ValueError("GitHub URL uses a protocol-relative authority")
+        if (
+            not raw_rest.startswith("//")
+            or raw_rest.startswith("///")
+            or "\\" in raw_rest
+        ):
+            raise ValueError("GitHub URL does not use canonical // authority syntax")
+        if parsed.scheme.casefold() != "https":
+            raise ValueError("GitHub project URL does not use HTTPS")
+        if decoded_hostname.endswith("."):
+            raise ValueError("GitHub URL host has a noncanonical trailing dot")
+        decoded_path = parsed.path
+        for _ in range(5):
+            next_path = unquote(decoded_path)
+            if next_path == decoded_path:
+                break
+            decoded_path = next_path
+        else:
+            raise ValueError("GitHub URL path uses excessive nested percent-encoding")
+        if "\\" in decoded_path:
+            raise ValueError("GitHub URL path contains a backslash")
+        segments = decoded_path.split("/")
+        if any(segment in {".", ".."} for segment in segments):
+            raise ValueError("GitHub URL path contains a dot segment")
+        if len(segments) < 6:
+            continue
+        prefix = tuple(part.casefold() for part in segments[1:4])
+        if prefix != ("serhatemrecoban", "leaninfotheory", "blob"):
+            continue
+        yield segments[4], "/".join(segments[5:])
 
 REQUIRED_JSON = (
     "blueprint/module_graph.json",
@@ -444,6 +588,7 @@ class WebsiteValidator:
         self.curated_declaration_count = 0
         self.total_bytes = 0
         self.metadata: dict[str, object] | None = None
+        self.version_metadata: dict[str, object] | None = None
 
     def error(self, message: str) -> None:
         self.errors.append(message)
@@ -518,6 +663,30 @@ class WebsiteValidator:
         """Return the declaration-index fragment used by the website generator."""
         slug = re.sub(r"[^A-Za-z0-9_-]+", "-", name).strip("-")
         return f"decl-{slug}"
+
+    @staticmethod
+    def is_versioned_path(relative: str) -> bool:
+        return relative == VERSION_ROUTE or relative.startswith(VERSION_ROUTE + "/")
+
+    def curated_source_ref(self) -> str:
+        if self.mode != "publishable" or self.metadata is None:
+            return "v0.1.0"
+        if self.metadata.get("schema") == COMPOSITION_STAGE_SCHEMA:
+            return str(self.metadata.get("site_source_identity", ""))
+        return str(self.metadata.get("source_identity", ""))
+
+    def expected_project_ref(self, relative: str, project_path: str) -> str | None:
+        """Return the required ref for a staged project link, if one is fixed."""
+
+        if self.mode != "publishable" or self.metadata is None:
+            return None
+        if self.metadata.get("schema") != COMPOSITION_STAGE_SCHEMA:
+            return str(self.metadata.get("source_identity", ""))
+        if self.is_versioned_path(relative):
+            return str(self.metadata.get("api_source_identity", ""))
+        if project_path.endswith(".lean"):
+            return str(self.metadata.get("site_source_identity", ""))
+        return None
 
     def validate_curated_theorem_links(self) -> None:
         """Match every hand-curated theorem row to the source-derived index."""
@@ -626,14 +795,12 @@ class WebsiteValidator:
                 f"{EXPECTED_CURATED_DECLARATION_COUNT} curated rows, found {len(rows)}"
             )
 
-        expected_ref = "v0.1.0"
-        if self.mode == "publishable":
-            if self.metadata is None:
-                self.error(
-                    f"{CURATED_THEOREM_PAGE}: publishable validation has no stage metadata"
-                )
-                return
-            expected_ref = str(self.metadata.get("source_identity", ""))
+        if self.mode == "publishable" and self.metadata is None:
+            self.error(
+                f"{CURATED_THEOREM_PAGE}: publishable validation has no stage metadata"
+            )
+            return
+        expected_ref = self.curated_source_ref()
 
         seen_fragments: set[str] = set()
         valid_rows = 0
@@ -816,11 +983,10 @@ class WebsiteValidator:
 
         root_metadata_path = self.site_root / ROOT_STAGE_METADATA
         try:
-            metadata_bytes = metadata_path.read_bytes()
+            version_metadata_bytes = metadata_path.read_bytes()
             root_metadata_bytes = root_metadata_path.read_bytes()
-            if root_metadata_bytes != metadata_bytes:
-                self.error("root and versioned staged metadata are not byte-identical")
-            metadata = json.loads(metadata_bytes.decode("utf-8"))
+            version_metadata = json.loads(version_metadata_bytes.decode("utf-8"))
+            root_metadata = json.loads(root_metadata_bytes.decode("utf-8"))
         except FileNotFoundError:
             self.error(
                 f"missing staged metadata: {ROOT_STAGE_METADATA} and/or "
@@ -833,12 +999,81 @@ class WebsiteValidator:
         except json.JSONDecodeError as exc:
             self.error(f"invalid staged metadata: {exc}")
             return
-        if not isinstance(metadata, dict):
-            self.error("staged metadata is not a JSON object")
+        if not isinstance(root_metadata, dict) or not isinstance(version_metadata, dict):
+            self.error("root and versioned staged metadata must be JSON objects")
             return
-        self.metadata = metadata
-        expected = {
-            "schema": "lean-info-theory.website-stage.v1",
+        self.metadata = root_metadata
+        self.version_metadata = version_metadata
+
+        root_schema = root_metadata.get("schema")
+        if root_schema == VERSION_STAGE_SCHEMA:
+            if root_metadata_bytes != version_metadata_bytes:
+                self.error("legacy root and versioned staged metadata are not byte-identical")
+        elif root_schema == COMPOSITION_STAGE_SCHEMA:
+            if self.mode != "publishable":
+                self.error("maintenance composition metadata is valid only when publishable")
+            expected_root = {
+                "version": "v0.1.0",
+                "route": "/docs/v0.1.0/",
+                "mode": "maintenance",
+                "publishable": True,
+                "site_policy": "current-master",
+                "api_policy": "immutable-version",
+                "api_source_identity": VERSION_SOURCE_COMMIT,
+                "release_tag": "v0.1.0",
+                "release_tag_object": VERSION_TAG_OBJECT,
+                "version_metadata_schema": VERSION_STAGE_SCHEMA,
+            }
+            for key, value in expected_root.items():
+                if root_metadata.get(key) != value:
+                    self.error(
+                        f"composition metadata {key}: expected {value!r}, "
+                        f"found {root_metadata.get(key)!r}"
+                    )
+            site_identity = str(root_metadata.get("site_source_identity", ""))
+            if EXACT_COMMIT_RE.fullmatch(site_identity) is None:
+                self.error("composition metadata has no exact current-site commit")
+            try:
+                observed_head = git_head()
+            except OSError as exc:
+                self.error(str(exc))
+            else:
+                if site_identity != observed_head:
+                    self.error(
+                        "composition current-site identity does not match checkout HEAD: "
+                        f"{site_identity!r} != {observed_head!r}"
+                    )
+            if not is_positive_int(
+                root_metadata.get("rewritten_current_site_source_links")
+            ):
+                self.error("composition metadata records no current-site source rewrites")
+            metadata_digest = hashlib.sha256(version_metadata_bytes).hexdigest()
+            if root_metadata.get("version_metadata_sha256") != metadata_digest:
+                self.error("composition metadata does not match frozen version metadata")
+            try:
+                route_digest, route_files, route_html, route_bytes = tree_digest(version)
+            except OSError as exc:
+                self.error(f"could not fingerprint frozen version route: {exc}")
+            else:
+                observed_route = {
+                    "version_route_sha256": route_digest,
+                    "version_route_files": route_files,
+                    "version_route_html_files": route_html,
+                    "version_route_bytes": route_bytes,
+                }
+                for key, value in observed_route.items():
+                    if root_metadata.get(key) != value:
+                        self.error(
+                            f"composition metadata {key}: expected observed {value!r}, "
+                            f"found {root_metadata.get(key)!r}"
+                        )
+            if not is_positive_int(root_metadata.get("version_project_source_links")):
+                self.error("composition metadata records no frozen API source links")
+        else:
+            self.error(f"unsupported root staged metadata schema: {root_schema!r}")
+
+        expected_version = {
+            "schema": VERSION_STAGE_SCHEMA,
             "version": "v0.1.0",
             "route": "/docs/v0.1.0/",
             "supported_modules": 31,
@@ -852,10 +1087,11 @@ class WebsiteValidator:
             "lean_revision": LEAN_REVISION,
             "mathlib_revision": MATHLIB_REVISION,
         }
-        for key, value in expected.items():
-            if metadata.get(key) != value:
+        for key, value in expected_version.items():
+            if version_metadata.get(key) != value:
                 self.error(
-                    f"staged metadata {key}: expected {value!r}, found {metadata.get(key)!r}"
+                    f"versioned metadata {key}: expected {value!r}, "
+                    f"found {version_metadata.get(key)!r}"
                 )
         for relative in REQUIRED_RUNTIME:
             if f"{VERSION_ROUTE}/{relative}" not in self.files:
@@ -868,34 +1104,43 @@ class WebsiteValidator:
 
         marker = version / PREVIEW_MARKER
         if self.mode == "preview":
-            if metadata.get("mode") != "preview" or metadata.get("publishable") is not False:
+            if (
+                version_metadata.get("mode") != "preview"
+                or version_metadata.get("publishable") is not False
+            ):
                 self.error("preview metadata is not explicitly nonpublishable")
-            if metadata.get("source_mode") != "file":
+            if version_metadata.get("source_mode") != "file":
                 self.error("preview metadata does not record file-mode generation")
             if not marker.is_file():
                 self.error("preview is missing its NOT_FOR_PUBLICATION marker")
-            if int(metadata.get("sanitized_file_source_links", 0)) <= 0:
+            if not is_positive_int(version_metadata.get("sanitized_file_source_links")):
                 self.error("preview did not record sanitized local source links")
         else:
-            if metadata.get("mode") != "release" or metadata.get("publishable") is not True:
-                self.error("publishable metadata is not explicitly release-mode")
-            if metadata.get("source_mode") != "github":
-                self.error("publishable metadata does not record GitHub source mode")
-            identity = str(metadata.get("source_identity", ""))
-            if EXACT_COMMIT_RE.fullmatch(identity) is None:
-                self.error("publishable metadata does not use an exact source commit")
+            if (
+                version_metadata.get("mode") != "release"
+                or version_metadata.get("publishable") is not True
+            ):
+                self.error("versioned publishable metadata is not release-mode")
+            if version_metadata.get("source_mode") != "github":
+                self.error("versioned publishable metadata does not record GitHub mode")
+            identity = str(version_metadata.get("source_identity", ""))
+            if identity != VERSION_SOURCE_COMMIT:
+                self.error(
+                    "v0.1.0 metadata is not pinned to the immutable release commit: "
+                    f"{identity!r}"
+                )
             if marker.exists():
                 self.error("publishable artifact contains NOT_FOR_PUBLICATION")
 
-        external_runtime = metadata.get("external_runtime")
+        external_runtime = version_metadata.get("external_runtime")
         if external_runtime != list(EXPECTED_EXTERNAL_RUNTIME):
             self.error("staged external-runtime inventory differs from the reviewed contract")
-        if metadata.get("generated_static_assets") != list(EXPECTED_GENERATED_STATIC_ASSETS):
+        if version_metadata.get("generated_static_assets") != list(EXPECTED_GENERATED_STATIC_ASSETS):
             self.error("staged generated-asset inventory differs from the reviewed contract")
         for key in ("api_doc_relevant_sha256", "doc_tree_sha256"):
-            if SHA256_RE.fullmatch(str(metadata.get(key, ""))) is None:
+            if SHA256_RE.fullmatch(str(version_metadata.get(key, ""))) is None:
                 self.error(f"staged metadata has no valid {key}")
-        license_records = metadata.get("license_records")
+        license_records = version_metadata.get("license_records")
         if not isinstance(license_records, list):
             self.error("staged licence inventory is not a list")
         else:
@@ -999,14 +1244,36 @@ class WebsiteValidator:
             self.error(f"{relative}: contains a machine-local filesystem path")
         if MUTABLE_GITHUB_RE.search(source):
             self.error(f"{relative}: contains a mutable GitHub source link")
+        try:
+            project_links = list(project_blob_links(source))
+        except ValueError as exc:
+            self.error(f"{relative}: contains an unsafe GitHub URL: {exc}")
+            return
+        if any(ref.casefold() in {"master", "main", "head"} for ref, _ in project_links):
+            self.error(f"{relative}: contains a mutable GitHub source link")
         if self.mode == "publishable":
             assert self.metadata is not None
-            identity = str(self.metadata.get("source_identity", ""))
-            for ref in PROJECT_BLOB_RE.findall(source):
-                if ref != identity:
+            for ref, project_path in project_links:
+                expected = self.expected_project_ref(relative, project_path)
+                if expected is not None and ref != expected:
                     self.error(
-                        f"{relative}: project source link uses {ref!r}, expected exact {identity}"
+                        f"{relative}: project source link uses {ref!r}, "
+                        f"expected exact {expected}"
                     )
+                    continue
+                if (
+                    expected is None
+                    and self.metadata.get("schema") == COMPOSITION_STAGE_SCHEMA
+                ):
+                    allowed = {
+                        "v0.1.0",
+                        str(self.metadata.get("site_source_identity", "")),
+                        str(self.metadata.get("api_source_identity", "")),
+                    }
+                    if ref not in allowed:
+                        self.error(
+                            f"{relative}: non-source project link uses unreviewed ref {ref!r}"
+                        )
 
     def validate_links(self) -> None:
         for relative in sorted(self.files):

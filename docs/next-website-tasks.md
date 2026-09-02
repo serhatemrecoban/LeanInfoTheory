@@ -30,8 +30,8 @@
   no concrete root-`NOTICE` requirement; the exact licence inventory remains
   the distribution record.
 - Pages publication is manual-only. Preview staging is deliberately
-  unpublishable; release staging requires a clean GitHub-source build bound to
-  exact `HEAD`.
+  unpublishable; immutable release staging is bound to the exact `v0.1.0`
+  source commit.
 
 ## Release publication controls
 
@@ -41,11 +41,17 @@
   `10.5281/zenodo.22229599` and all-versions DOI
   `10.5281/zenodo.22229598`; the tracked homepage and citation page carry those
   identifiers.
-- Ordinary pushes cannot deploy. The current release-mode staging rewrites
-  versioned API source links to the workflow commit, so a `publish=true`
-  dispatch from an advanced post-release `master` is prohibited.
-- A later live citation update needs a separately reviewed staging design that
-  preserves every `v0.1.0` API source link at the immutable release commit.
+- Ordinary pushes cannot deploy. The post-release maintenance composer uses
+  current `master` for the unversioned homepage, roadmap, citation, theorem,
+  and source-inventory pages while rebuilding `/docs/v0.1.0/` from exact
+  release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`.
+- Root metadata records the current-site and frozen-API identities separately.
+  The checker fingerprints the copied version route, requires all versioned
+  project links to use the release commit, and requires current unversioned
+  Lean source links to use the website commit.
+- Run the workflow first with `publish=false`, review the prepared artifact,
+  and use `publish=true` only after explicit approval. This permits current
+  project-status updates without ever rebinding `/docs/v0.1.0/`.
 
 ## Later milestones
 

@@ -25,10 +25,10 @@ The evolving default branch now carries the issued version DOI in
 `CITATION.cff`, README, and tracked website citation sources. The immutable tag,
 tagged CFF, GitHub Release, and Zenodo archive remain unchanged. This
 post-release metadata work changes no Lean source, supported declaration,
-public import, toolchain, dependency, or licence. Any later live-site update
-must preserve the versioned API source-link binding to the immutable release
-commit; the current release-mode Pages workflow is therefore not published
-from an advanced post-release `master`.
+public import, toolchain, dependency, or licence. Post-release Pages staging
+now composes the current tracked site with an API artifact rebuilt at the
+immutable release commit, so the homepage can report current project status
+without rebinding `/docs/v0.1.0/`.
 
 ## Post-release Zenodo and DOI verification — complete
 
@@ -1024,9 +1024,10 @@ release-facing local staging and navigation pass without a redesign.
 
 The existing declaration index is source-derived and remains distinct from the
 signature-bearing doc-gen output. Development uses an ignored, versioned,
-explicitly unpublishable preview; release staging instead requires clean exact-
-commit source links and the guarded manual publication workflow. The dependency map remains module-
-level rather than theorem-level leanblueprint. Website wording distinguishes
+explicitly unpublishable preview. Immutable release staging requires the clean
+release checkout; maintenance staging composes that frozen route with current
+project pages through the guarded manual workflow. The dependency map remains
+module-level rather than theorem-level leanblueprint. Website wording distinguishes
 proved, generated locally, staged, published, planned, and future work.
 
 The generated references describe the v0.1.0 source tree:
@@ -1039,10 +1040,12 @@ checker passes across 15 HTML files and two generated JSON files. The separate
 staged checker results are recorded above. Commit `1eef228` remains the
 historical pre-release mathematical checkpoint; the immutable `v0.1.0` release
 carries the certificate-free generated state, and its website was deployed from
-exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`. The current
-release-mode Pages workflow must not deploy from an advanced post-release
-`master` because that would rebind versioned API source links away from the
-immutable release commit. Step 8 changed no generated website content.
+exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`. The manual
+Pages workflow now rebuilds that frozen route from the exact release checkout,
+then combines it with current `master` pages under separately checked source
+identities and a frozen-route digest. This supports current homepage/status
+updates while `/docs/v0.1.0/` remains immutable. Step 8 changed no generated
+website content.
 
 ## Important Design Constraints
 

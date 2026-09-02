@@ -75,8 +75,10 @@ tag/Release workflow and nothing else; the later
 `f0d06dfab4f411ced312294e63e96bb67bba859b` reconciliation remains an
 intermediate history point. The Pages workflow remains manual-only, requires a
 `publish` boolean that defaults to `false`, and guards deployment separately.
-It must not publish from an advanced post-release `master` unless staging still
-binds the versioned `v0.1.0` API source links to the immutable release commit.
+Its post-release maintenance path takes unversioned project-status pages from
+current `master` and rebuilds `/docs/v0.1.0/` from the exact release checkout.
+Separate current-site/frozen-API identities, a full route digest, and
+path-scoped link checks prevent the versioned API from being rebound.
 
 The release surface has a five-module lightweight root, a 31-module full
 Shannon umbrella, 601 documented supported declarations, 92 root exports, and
@@ -148,7 +150,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 | --- | --- |
 | Last updated | 2026-09-02 |
 | Last fully validated mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the released `v0.1.0` source is exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f` |
-| Repository transition state | `v0.1.0` is published from immutable tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47`, deployed at the exact release commit, and archived as Zenodo record `22229599`. This revision carries post-release DOI metadata only; the tag, Release, archive, Lean source, and public API remain unchanged |
+| Repository transition state | `v0.1.0` is published from immutable tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` and archived as Zenodo record `22229599`. The evolving default branch carries the current project pages and DOI metadata, while maintenance staging preserves `/docs/v0.1.0/` from exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`; the tag, Release, archive, Lean source, and public API remain unchanged |
 | Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
 | mathlib baseline | `v0.1.0` uses input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474` |
 | Source-snapshot phase | Post-release `v0.1.x` maintenance; publication date `2026-09-01`; version DOI `10.5281/zenodo.22229599`; Project B Chunks 1–8 remain checkpointed; no later theorem phase is selected |
@@ -1064,10 +1066,11 @@ certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ### `v0.1.0` release and maintenance status
 
-**This revision contains the post-release DOI metadata for the published
-`v0.1.0` library.** The immutable release source remains exact commit
-`0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`; this default-branch update changes
-no Lean source or frozen public surface. Step 14 fixed every legal/provenance
+**This revision contains the post-release DOI metadata and durable website
+composition boundary for the published `v0.1.0` library.** The immutable release
+source remains exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`;
+this default-branch update changes no Lean source or frozen public surface.
+Step 14 fixed every legal/provenance
 and Zenodo-route decision, and the final `date-released` value is
 `2026-09-01`. The fulfilled release contract freezes Lean and mathlib at
 `v4.33.1`, keeps nats canonical with opt-in base conversion, assigns certificate
@@ -1168,14 +1171,18 @@ review is complete and found no remaining issue after its corrections were
 re-reviewed.
 
 The automatic Lean-version tag/release workflow is permanently absent after the
-Step 15 safety-only commit. The candidate's approved Pages replacement has no
-push trigger and requires an explicit `publish=true` manual dispatch before
-deployment. The `v0.1.0` tag, immutable GitHub Release, exact-commit website,
+Step 15 safety-only commit. The manual-only Pages workflow has no push trigger
+and requires an explicit `publish=true` dispatch before deployment. The
+historical release deployment was built entirely at the release commit; current
+maintenance deployments instead compose current unversioned project pages with
+the exact-release versioned API. The `v0.1.0` tag, immutable GitHub Release,
 Zenodo record `22229599`, version DOI `10.5281/zenodo.22229599`, and structured
 institutional `RightsHolder` are verified. The current workflow is not used to
-publish from post-release `master` because release-mode staging binds the
-versioned API source links to the workflow commit. `ShannonCert` remains outside
-this repository. The Step 3 migration required compatibility edits across
+publish one-identity artifacts from post-release `master`. Instead, maintenance
+staging rebuilds the versioned API in the exact release checkout and composes
+it with current unversioned project pages under separate identities and a
+checked route digest. `ShannonCert` remains outside this repository. The Step 3
+migration required compatibility edits across
 22 Lean files, but the independent audit found no public signature,
 assumption, namespace, attribute, import, dependency-boundary, or root-import
 change; the Step 3 plan-health review then left the 17-step sequence intact.

@@ -59,8 +59,18 @@ immutable GitHub Release, Zenodo archive, Lean source, frozen public API,
 toolchain, licence, source notices, and absence of `.zenodo.json` remain
 unchanged. The current Pages release mode must not publish from an advanced
 post-release `master`, because it binds versioned API source links to the
-workflow commit rather than the immutable release commit; a safe live-site
-citation update requires a separate staging decision.
+workflow commit rather than the immutable release commit.
+
+The project lead then selected the durable website boundary: the unversioned
+homepage and project pages follow current `master`, prominently identify the
+latest stable release and DOI, and link current Lean inventory entries to the
+exact website commit; `/docs/v0.1.0/` remains permanently frozen to release
+commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`. The manual Pages workflow
+therefore rebuilds and validates a complete release artifact in a separate
+exact-commit checkout, copies only its versioned API route into the current
+site, and records separate current-site and frozen-API identities plus a full
+route digest. Ordinary pushes still cannot deploy, and this implementation
+does not itself authorize a `publish=true` run.
 
 ## Step-by-Step Summary
 

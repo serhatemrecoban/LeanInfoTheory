@@ -204,8 +204,9 @@ LeanInfoTheory release work.
   adoption feedback.
 - Keep version-specific citations on DOI `10.5281/zenodo.22229599` and use
   concept DOI `10.5281/zenodo.22229598` for all-versions references.
-- Design any post-release Pages update so the versioned `v0.1.0` API continues
-  to bind source links to the immutable release commit.
+- Maintain the post-release Pages split: unversioned project-status pages
+  follow current `master`, while `/docs/v0.1.0/` is rebuilt from and remains
+  source-linked to the immutable release commit.
 - Consider a theorem-level blueprint and PDF after release documentation is
   stable.
 

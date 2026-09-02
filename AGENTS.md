@@ -231,10 +231,14 @@ python scripts/check_website.py --site-root .lake/website-stage/LeanInfoTheory -
 Serve `.lake/website-stage` and inspect `/LeanInfoTheory/` so local testing uses
 the GitHub Pages project subpath. Preview staging requires the two-pass API-doc
 attestation, removes machine-local source links, and writes
-`NOT_FOR_PUBLICATION.txt`. `stage_website.py release` is reserved for a clean
-exact-commit GitHub-source build; it does not deploy. The Pages workflow is
-manual-only, and its `publish` input must remain false unless the user has
-explicitly approved publication.
+`NOT_FOR_PUBLICATION.txt`. `stage_website.py release` is reserved for the clean
+immutable `v0.1.0` checkout and does not deploy. Post-release publication uses
+`stage_website.py maintenance`: it combines the current tracked `home_page/`
+with the separately rebuilt and validated `v0.1.0` route, records current-site
+and frozen-API commit identities independently, and pins unversioned Lean
+source links to the current site commit. The Pages workflow is manual-only,
+and its `publish` input must remain false unless the user has explicitly
+approved publication.
 
 After approved public declarations or imports change, deliberately regenerate
 the versioned public-API manifest and source-derived website artifacts, then
@@ -258,18 +262,16 @@ same-name signature fingerprints. The separate generated API pages render the
 current elaborated types and validate declaration coverage, but do not by
 themselves freeze those types. Do not overclaim any of these artifacts.
 
-Before any accumulated toolchain or website release-candidate change reaches
-the default branch, land and remotely verify a separately approved safety-only
-workflow change based directly on `origin/master`. Its allowed repository diff
-is the deletion of the automatic tag/release workflow and either deletion of
-the old Pages workflow or replacement by a self-contained inert/manual-only
-workflow with no deploy job or deployment permission. It must exclude the
-pre-existing local `4aa2c79` commit and every candidate file, retaining the old
-toolchain and site content. Add the functional final Pages workflow only with
-the release candidate. Do not combine the safety landing with that candidate
-push. Before publication, GitHub's immutable-Releases setting must be enabled
-and verified. A Pages deployment from `master` is acceptable only when the
-workflow run's exact `head_sha` equals the immutable release tag commit.
+The pre-release publication-safety landing permanently removed the automatic
+tag/release workflow. That workflow must remain absent. Pages must remain
+manual-only, with a boolean `publish` input that defaults to false and a
+separately guarded deploy job. A post-release Pages deployment from `master`
+is acceptable only when the workflow rebuilds `/docs/v0.1.0/` from exact
+release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`, validates that
+frozen artifact independently, and composes it with the current tracked site
+without rebinding versioned project links. The staged root metadata must record
+the current-site and frozen-API identities separately, and the publishable
+checker must verify the frozen route digest and source-link boundary.
 
 ## Local references
 

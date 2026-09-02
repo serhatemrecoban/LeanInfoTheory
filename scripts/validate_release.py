@@ -281,7 +281,7 @@ EXPECTED_WORKFLOWS = frozenset(
 # reviewed publication interlock. Any edit, including a seemingly harmless
 # trigger, permission, job, or guard change, requires a deliberate hash update.
 EXPECTED_PAGES_WORKFLOW_SHA256 = (
-    "4a7e426f5fdf61ffd428503ac9364efdece71a11b9df7354c00e963643ed407c"
+    "c1f2c1080d0e1c587401faa7468db30a6c60e088e40805c75d12432543f85e52"
 )
 
 TEXT_SUFFIXES = {
@@ -851,24 +851,26 @@ license: Apache-2.0"""
             "bcd9090ea2720fe14b0a3e168c76ebeef1dafd47",
             "10.5281/zenodo.22229599",
             "10.5281/zenodo.22229598",
-            "current release-mode Pages workflow is therefore not published",
+            "homepage can report current project status without rebinding `/docs/v0.1.0/`",
         ),
         ROOT / "docs" / "lean-info-theory-living-summary.md": (
             "`v0.1.0` release and maintenance",
             "The release was published on 2026-09-01 from exact commit",
             "10.5281/zenodo.22229599",
-            "must not publish from an advanced post-release `master`",
+            "current-site/frozen-API identities",
             "no Zenodo account or integration action is performed by an agent",
         ),
         ROOT / "docs" / "roadmap.md": (
             "LeanInfoTheory `v0.1.0` was published on 2026-09-01",
             "10.5281/zenodo.22229599",
             "post-release DOI propagation are complete",
+            "unversioned project-status pages follow current `master`",
         ),
         ROOT / "docs" / "next-website-tasks.md": (
             "Release publication controls",
             "The immutable `v0.1.0` GitHub Release and exact-commit Pages site were published",
-            "a `publish=true` dispatch from an advanced post-release `master` is prohibited",
+            "current `master` for the unversioned homepage",
+            "This permits current project-status updates without ever rebinding `/docs/v0.1.0/`",
         ),
         ROOT / "home_page" / "license.html": (
             "Serhat Emre Coban is the author, software creator, and project lead",
@@ -885,6 +887,7 @@ license: Apache-2.0"""
             'href="https://doi.org/10.5281/zenodo.22229598"',
             'src="https://zenodo.org/badge/DOI/10.5281/zenodo.22229598.svg"',
             'href="https://doi.org/10.5281/zenodo.22229599"',
+            "Latest stable release: <code>v0.1.0</code>",
         ),
     }
     for path, markers in decision_surface_markers.items():
@@ -1209,7 +1212,16 @@ def check_release_interlock() -> None:
         "publish:",
         "default: false",
         "if: ${{ inputs.publish }}",
+        "fetch-depth: 0",
+        'refs/heads/master',
+        'test "$GITHUB_SHA" = "$(git rev-parse HEAD)"',
+        "refs/remotes/origin/master",
+        "bcd9090ea2720fe14b0a3e168c76ebeef1dafd47",
+        "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f",
         "python scripts/stage_website.py release",
+        "python scripts/stage_website.py maintenance",
+        "--frozen-source-root .lake/v0.1.0-source",
+        "--frozen-site-root .lake/v0.1.0-source/.lake/website-stage/LeanInfoTheory",
         "--mode publishable",
         "path: .lake/website-stage/LeanInfoTheory",
         "actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b",
@@ -1217,6 +1229,31 @@ def check_release_interlock() -> None:
     for marker in pages_markers:
         if marker not in pages:
             hits.append(f".github/workflows/pages.yml: missing manual Pages marker {marker!r}")
+    website_boundary_markers = {
+        ROOT / "scripts" / "stage_website.py": (
+            "lean-info-theory.website-stage.v2",
+            "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f",
+            "bcd9090ea2720fe14b0a3e168c76ebeef1dafd47",
+            "assemble_maintenance",
+            "api_source_identity",
+            "rewritten_current_site_source_links",
+        ),
+        ROOT / "scripts" / "check_website.py": (
+            "lean-info-theory.website-stage.v2",
+            "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f",
+            "site_source_identity",
+            "api_source_identity",
+            "version_route_sha256",
+        ),
+    }
+    for path, markers in website_boundary_markers.items():
+        source = path.read_text(encoding="utf-8")
+        for marker in markers:
+            if marker not in source:
+                hits.append(
+                    f"{path.relative_to(ROOT).as_posix()}: "
+                    f"missing current/frozen website boundary marker {marker!r}"
+                )
     if re.search(r"(?m)^\s{2}push\s*:", pages):
         hits.append(".github/workflows/pages.yml: Pages publication must not have a push trigger")
     if "enablement: true" in pages:

@@ -230,12 +230,26 @@ the full sorted-message SHA-256
 `bf8682253b1141fa6d97226f32d94fe599e4af7e4f69d8e363609f2155cfdd12`;
 any count, kind, or message drift is blocking until reviewed.
 
-`release` staging is intentionally stricter: it accepts only a clean checkout
-whose generated source mode is `github`, requires the recorded identity to be
-the exact `HEAD`, and replaces project tag links with that same 40-character
-commit. The Pages workflow is manual-only and prepares a checked publishable
-artifact before a separately gated deploy job. Step 12 did not run that mode,
-publish Pages, or establish remote runner-capacity evidence.
+`release` staging is intentionally frozen: it accepts only the clean immutable
+`v0.1.0` checkout at
+`0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`, requires GitHub-mode doc-gen
+output for that exact commit, and produces the self-contained versioned API
+artifact. Post-release `maintenance` staging then copies the current tracked
+`home_page/`, pins its Lean source links to the current clean `master` commit,
+and inserts the already validated `/docs/v0.1.0/` tree byte-for-byte. Root
+composition metadata records the current-site identity and frozen API identity
+separately and hashes the entire frozen route; the version route retains its
+original release metadata.
+
+The Pages workflow therefore uses two checkouts: current `master` supplies the
+unversioned project-status pages, while the exact release commit supplies the
+signature-bearing `v0.1.0` API. The publishable checker requires every project
+source link below `/docs/v0.1.0/` to use the release commit and every deployed
+unversioned Lean source link to use the current site commit. Mutable
+`master`/`main`/`HEAD` blob links remain forbidden. The workflow remains
+manual-only, prepares and uploads a checked artifact when `publish=false`, and
+runs the separately permissioned deploy job only after the user explicitly
+selects `publish=true`.
 
 ## Third-party provenance
 
