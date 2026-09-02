@@ -2,12 +2,17 @@
 
 This roadmap records planned technical milestones. Chunk 8 is complete through
 `C8.24`, checkpointed as commit `1eef228`, pushed, remotely build-validated,
-and deployed. Release-candidate source preparation is represented in this
-snapshot. Exact candidate identity, qualification evidence, independent-review
-result, and publication state are external; this tracked roadmap does not claim
-them. The certificate subsystem is assigned downstream and removed from
-the `v0.1.0` library surface, the public import architecture normalized, and the
-nats-first scalar units API documented with maintained conversion consumers.
+and deployed. LeanInfoTheory `v0.1.0` was published on 2026-09-01 from exact
+commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`, with an immutable annotated
+tag, successful tag-triggered validation, and exact-commit Pages deployment.
+Zenodo record [`22229599`](https://zenodo.org/records/22229599) archives the
+release under version DOI
+[`10.5281/zenodo.22229599`](https://doi.org/10.5281/zenodo.22229599); the
+all-versions DOI is
+[`10.5281/zenodo.22229598`](https://doi.org/10.5281/zenodo.22229598). The
+certificate subsystem is assigned downstream and removed from the `v0.1.0`
+library surface, the public import architecture normalized, and the nats-first
+scalar units API documented with maintained conversion consumers.
 The `v0.1.x` public surface is frozen at 31 supported modules, 601
 project-owned declarations, 92 lightweight-root exports, and 94 reviewed
 `simp` declarations; all 13 development, example, and reference anchors remain
@@ -32,9 +37,10 @@ ingestion with a DOI-free immutable tag. Step 14 is complete with the approved
 `2026-09-01` publication date. Step 15 permanently removed the automatic
 tag/Release workflow in safety-only commit `81ffef3`; `f0d06df` is the
 intermediate reconciliation point. The guarded Pages replacement is manual-only
-and cannot deploy on branch push. The controlled publication procedure requires
-exact-candidate qualification, independent review of the unchanged commit, and
-explicit Step 18 authorization. No later mathematical phase has been selected.
+and cannot deploy on branch push. Exact-candidate qualification, independent
+review, explicit publication approval, archival verification, structured EPFL
+`RightsHolder` metadata, and post-release DOI propagation are complete. No
+later mathematical phase has been selected.
 
 ## Now
 
@@ -194,11 +200,12 @@ LeanInfoTheory release work.
 
 ## 3 Months
 
-- Preserve exact-SHA clean-checkout, external-consumer, automatic
-  GitHub--Zenodo integration-preflight, remote documentation-capacity, and
-  independent-review gates for `v0.1.0` publication.
-- Publish `v0.1.0` and its Zenodo deposit only after all release gates pass and
-  the project lead gives explicit approval.
+- Preserve source compatibility throughout `0.1.x` and respond to downstream
+  adoption feedback.
+- Keep version-specific citations on DOI `10.5281/zenodo.22229599` and use
+  concept DOI `10.5281/zenodo.22229598` for all-versions references.
+- Design any post-release Pages update so the versioned `v0.1.0` API continues
+  to bind source links to the immutable release commit.
 - Consider a theorem-level blueprint and PDF after release documentation is
   stable.
 

@@ -30,6 +30,38 @@ For source-derived current inventories, consult the
 layout, validation commands, and local-reference policy are summarized in
 `AGENTS.md` and the living summary.
 
+## `v0.1.0` Release and DOI Milestone
+
+On 2026-09-01, after two independent final reviews of exact candidate
+`0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`, the project lead explicitly
+authorized publication. Immutable GitHub Releases was enabled, annotated tag
+object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` was pushed, the GitHub Release
+was published, the tag-triggered release gates passed, and the exact-commit
+Pages artifact was manually deployed.
+
+The GitHub--Zenodo integration initially timed out. A manual redelivery of the
+single `release.published` event was accepted with HTTP 202 and produced Zenodo
+record [`22229599`](https://zenodo.org/records/22229599). The version DOI is
+[`10.5281/zenodo.22229599`](https://doi.org/10.5281/zenodo.22229599), and the
+all-versions DOI is
+[`10.5281/zenodo.22229598`](https://doi.org/10.5281/zenodo.22229598). The
+maintainer added the ROR-normalized École Polytechnique Fédérale de Lausanne
+organization as contributor type `RightsHolder`; Zenodo and DataCite expose the
+same structured record. The 897,807-byte archive and MD5
+`13d5c49c9519d86e20335ab6a5be3bfd` were independently checked, and all 110
+files match the immutable tag byte-for-byte.
+
+On 2026-09-02, the project lead authorized post-release DOI propagation to the
+evolving default-branch `CITATION.cff`, README, and tracked website citation
+sources. The version DOI belongs in the versioned CFF; the concept DOI is used
+only as an all-versions/project-level link. The tag, tagged DOI-free CFF,
+immutable GitHub Release, Zenodo archive, Lean source, frozen public API,
+toolchain, licence, source notices, and absence of `.zenodo.json` remain
+unchanged. The current Pages release mode must not publish from an advanced
+post-release `master`, because it binds versioned API source links to the
+workflow commit rather than the immutable release commit; a safe live-site
+citation update requires a separate staging decision.
+
 ## Step-by-Step Summary
 
 ### 1. Initial Project Scaffold
@@ -6316,8 +6348,7 @@ metadata and authorized its local application before Step 4. LeanInfoTheory is
 recorded as an EPFL/MIL research software project with ECOLE POLYTECHNIQUE
 FEDERALE DE LAUSANNE (EPFL), Switzerland, Mathematics of Information Laboratory
 (MIL), as copyright holder and Serhat Emre Coban as author, software creator,
-and project lead. Apache-2.0 remains the licence. This does not claim approval
-by EPFL, MIL, or EPFL TTO.
+and project lead. Apache-2.0 remains the licence.
 
 A provenance audit found 51 tracked Lean files. All are project-authored: 47
 had the old personal notice and four had no header (`LeanInfoTheory.lean` and

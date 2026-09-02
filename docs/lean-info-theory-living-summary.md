@@ -56,8 +56,8 @@ trust, website, and hygiene gates all pass. The checkpoint is pushed, and its
 exact-SHA Lean build/placeholder and Pages deployment workflows both pass. No
 later theorem phase has been selected.
 
-**[Decision] `v0.1.0` release preparation.** The approved release target is
-recorded in [`docs/v0.1-release-contract.md`](v0.1-release-contract.md). It
+**[Current] `v0.1.0` release and maintenance.** The fulfilled release contract
+is recorded in [`docs/v0.1-release-contract.md`](v0.1-release-contract.md). It
 selects a certificate-free finite-information-theory library surface, canonical
 nats with opt-in scalar conversion, Lean/mathlib `v4.33.1`, and versioned
 signature-bearing API documentation. Certificate representation and checking
@@ -65,17 +65,18 @@ belong downstream; reusable finite-family, entropy, channel, KL, Markov,
 independence, data-processing, and sufficiency mathematics remains upstream.
 `ShannonCert` has not been accessed or modified.
 
-The source effects of release-preparation Steps 1–16 are incorporated in this
-snapshot. The standalone Step 15 safety commit
+The release was published on 2026-09-01 from exact commit
+`0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`. Annotated tag object
+`bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` peels to that commit; the GitHub
+Release is immutable, and the tag-triggered routine gates and exact-commit
+Pages deployment passed. The standalone Step 15 safety commit
 `81ffef37402909481c5dea51a42973dee9a79ae6` permanently removed the automatic
 tag/Release workflow and nothing else; the later
-`f0d06dfab4f411ced312294e63e96bb67bba859b` reconciliation is an intermediate
-history point rather than the candidate identity. This snapshot's Pages
-workflow is manual-only, requires a `publish` boolean that defaults to `false`,
-and guards deployment separately. Exact candidate identity, remote validation
-evidence, the Step 17 verdict, and live publication state are external records
-and are not asserted by this source snapshot. Publication still requires an
-unchanged candidate, independent review, and explicit Step 18 authorization.
+`f0d06dfab4f411ced312294e63e96bb67bba859b` reconciliation remains an
+intermediate history point. The Pages workflow remains manual-only, requires a
+`publish` boolean that defaults to `false`, and guards deployment separately.
+It must not publish from an advanced post-release `master` unless staging still
+binds the versioned `v0.1.0` API source links to the immutable release commit.
 
 The release surface has a five-module lightweight root, a 31-module full
 Shannon umbrella, 601 documented supported declarations, 92 root exports, and
@@ -92,12 +93,14 @@ safety, metadata, and repository hygiene.
 Emre Coban is the sole software creator with affiliation `EPFL, Mathematics of
 Information Laboratory`; Apache-2.0 remains the licence. `CITATION.cff` is
 canonical, `.zenodo.json` and a redundant `NOTICE` remain absent, and the
-tagged CFF is DOI-free. The fixed Europe/Zurich publication date is
-`2026-09-01`. The tracked source state is final for exact-SHA qualification.
-Clean exact-commit and external-consumer reproduction, remote nonpublishing
-CI/API-doc/Pages evidence, licence detection, the independent verdict, and the
-read-only Zenodo-integration preflight are recorded outside the immutable
-source snapshot.
+tagged CFF is DOI-free. The evolving default-branch CFF records version DOI
+`10.5281/zenodo.22229599`; the all-versions DOI is
+`10.5281/zenodo.22229598`. Zenodo record `22229599` and DataCite carry the
+structured institutional `RightsHolder`, and the 897,807-byte archive matches
+all 110 files in the immutable tag byte-for-byte. The fixed Europe/Zurich
+publication date is `2026-09-01`. Post-release DOI propagation changes no Lean
+source, public API, toolchain, dependency, licence, tagged file, or release
+asset.
 
 **[Decision] Architectural rules that must be preserved.**
 
@@ -143,12 +146,12 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-08-28 |
-| Last fully validated mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the release-candidate source state is represented by this revision and exact-SHA evidence is external |
-| Repository transition state | This revision contains the `v0.1.0` release-candidate source state. Step 15 safety commit `81ffef37402909481c5dea51a42973dee9a79ae6` and intermediate reconciliation `f0d06dfab4f411ced312294e63e96bb67bba859b` remain historical facts; live tag, Release, deployment, Zenodo, DOI, and validation status are deliberately not asserted here |
+| Last updated | 2026-09-02 |
+| Last fully validated mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the released `v0.1.0` source is exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f` |
+| Repository transition state | `v0.1.0` is published from immutable tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47`, deployed at the exact release commit, and archived as Zenodo record `22229599`. This revision carries post-release DOI metadata only; the tag, Release, archive, Lean source, and public API remain unchanged |
 | Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
 | mathlib baseline | `v0.1.0` uses input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474` |
-| Source-snapshot phase | `v0.1.0` release-candidate source; publication date `2026-09-01`; Project B Chunks 1–8 remain checkpointed; no later theorem phase is selected; external qualification and publication status are not encoded in this snapshot |
+| Source-snapshot phase | Post-release `v0.1.x` maintenance; publication date `2026-09-01`; version DOI `10.5281/zenodo.22229599`; Project B Chunks 1–8 remain checkpointed; no later theorem phase is selected |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -1059,17 +1062,17 @@ certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
 
-### Release-candidate source status
+### `v0.1.0` release and maintenance status
 
-**This revision contains the `v0.1.0` release-candidate source state.** Step 14
-fixed every legal/provenance and Zenodo-route decision; the later approved date
-amendment fixes `date-released: 2026-09-01`. The release contract freezes Lean and
-mathlib at `v4.33.1`, keeps nats canonical with opt-in base conversion, assigns
-certificate representations and checking to downstream projects, and preserves
-the completed legal-attribution checkpoint plus independent prepublication
-review. Exact candidate identity, qualification results, and publication state
-remain external so this tracked snapshot does not become stale or self-
-referential.
+**This revision contains the post-release DOI metadata for the published
+`v0.1.0` library.** The immutable release source remains exact commit
+`0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`; this default-branch update changes
+no Lean source or frozen public surface. Step 14 fixed every legal/provenance
+and Zenodo-route decision, and the final `date-released` value is
+`2026-09-01`. The fulfilled release contract freezes Lean and mathlib at
+`v4.33.1`, keeps nats canonical with opt-in base conversion, assigns certificate
+representations and checking to downstream projects, and preserves the
+completed legal-attribution and independent-review checkpoints.
 
 Step 6 preserves the Step 5 public import architecture. `LeanInfoTheory` directly imports
 only `Probability.Finite` and `InformationMeasures`; the import-only
@@ -1125,10 +1128,12 @@ free tree. Lake now describes a finite discrete information-theory package,
 includes the Reservoir `math` keyword, and declares `fixedToolchain = true` in
 both configuration and manifest. The shared static gate parses and checks the
 exact package/library/dependency metadata, canonical Apache-2.0 licence,
-reviewed CFF fields and sole author, exact release date and absent DOI, README
+reviewed CFF fields and sole author, exact release date, README
 AI/legal/citation wording, and the reviewed absence of `NOTICE` and
-`.zenodo.json`. CFF schema validation, provenance, author spelling, and the
-then-current 44 exact headers passed. Step 14 later finalized all corresponding
+`.zenodo.json`. At Step 9 it also required an absent DOI; the post-release gate
+requires the exact issued version DOI. CFF schema validation, provenance,
+author spelling, and the then-current 44 exact headers passed. Step 14 later
+finalized all corresponding
 decisions, initially fixed `date-released` as `2026-08-27`, and extended the
 header audit to the 45-file tree including the documentation shim. The project
 lead superseded that initial date on 2026-08-28 with `2026-09-01`; no other
@@ -1140,9 +1145,11 @@ toolchain contract, lightweight/full/focused import guidance, supported scope,
 nats and guarded-KL conventions, limitations, `0.1.x` compatibility, and
 maintained reproduction commands. The release-candidate pass converted the versioned
 [`docs/releases/v0.1.0.md`](releases/v0.1.0.md) and README to timeless final
-release prose; transient commit, CI, publication, and DOI state belongs in the
-external validation and release records. The release date is `2026-09-01`, and
-the immutable tag remains DOI-free. Five marked README examples compile independently
+release prose; while the candidate was frozen, transient commit, CI,
+publication, and DOI state belonged only in external validation and release
+records. This post-release revision now records the completed publication and
+DOI propagation without changing the immutable source snapshot. The release
+date is `2026-09-01`, and the immutable tag remains DOI-free. Five marked README examples compile independently
 with warnings as errors through the shared local/CI validator; the static gate
 also checks release-document markers and local links. No new example module was
 needed, so the 44-module/90-edge/716-declaration source inventory and the
@@ -1163,9 +1170,12 @@ re-reviewed.
 The automatic Lean-version tag/release workflow is permanently absent after the
 Step 15 safety-only commit. The candidate's approved Pages replacement has no
 push trigger and requires an explicit `publish=true` manual dispatch before
-deployment. Live tag, Release, website, Zenodo, and DOI status is intentionally
-external to this snapshot; `ShannonCert` remains outside this repository. The Step 3
-migration required compatibility edits across
+deployment. The `v0.1.0` tag, immutable GitHub Release, exact-commit website,
+Zenodo record `22229599`, version DOI `10.5281/zenodo.22229599`, and structured
+institutional `RightsHolder` are verified. The current workflow is not used to
+publish from post-release `master` because release-mode staging binds the
+versioned API source links to the workflow commit. `ShannonCert` remains outside
+this repository. The Step 3 migration required compatibility edits across
 22 Lean files, but the independent audit found no public signature,
 assumption, namespace, attribute, import, dependency-boundary, or root-import
 change; the Step 3 plan-health review then left the 17-step sequence intact.
@@ -1458,6 +1468,22 @@ not reproduce textbook prose or proofs.
   exact-SHA workflows succeeded
 
 ### Release-preparation validation history
+
+On 2026-09-01, the project lead explicitly authorized publication after two
+independent final reviews passed candidate
+`0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`. Immutable GitHub Releases was
+enabled, annotated tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47`
+was pushed, the GitHub Release was published, the tag-triggered routine gates
+passed, and the exact-commit Pages artifact was manually deployed. Zenodo
+accepted a redelivered `release.published` event, archived the release as record
+`22229599`, and registered version DOI `10.5281/zenodo.22229599` and concept DOI
+`10.5281/zenodo.22229598`. The maintainer added the ROR-normalized École
+Polytechnique Fédérale de Lausanne contributor with type `RightsHolder`; both
+Zenodo and DataCite expose that structured metadata. The archive checksum and
+all 110 file contents match the immutable tag. On 2026-09-02, the project lead
+authorized version-DOI propagation to the evolving default-branch CFF, README,
+and tracked website sources without changing the tag, Release, archive, or Lean
+API.
 
 On 2026-08-28, after corrective candidate
 `7989d54aefdf1ccaf8172ca9408e01cf0a5d645b` had passed its local, ordinary-

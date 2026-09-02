@@ -2,6 +2,7 @@
 
 [![Lean build and release gates](https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/lean_action_ci.yml/badge.svg)](https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/lean_action_ci.yml)
 [![Deploy website](https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/pages.yml/badge.svg)](https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/pages.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22229598.svg)](https://doi.org/10.5281/zenodo.22229598)
 
 Lean-certified finite discrete information theory over mathlib probability mass
 functions.
@@ -26,10 +27,14 @@ a reusable finite-information-theory foundation and the source-compatibility
 baseline for the `0.1.x` line. Its scope is deliberately foundational: this
 release does not claim a complete formalization of information theory or of any
 particular textbook or research paper.
-The release date is `2026-09-01` in Europe/Zurich. Under the approved automatic
-post-release GitHub--Zenodo route, the tagged `CITATION.cff` and immutable
-GitHub Release will intentionally contain no DOI; Zenodo issues the version DOI
-after ingesting the Release.
+The release date is `2026-09-01` in Europe/Zurich. Zenodo archived the immutable
+GitHub Release and issued the version DOI
+[`10.5281/zenodo.22229599`](https://doi.org/10.5281/zenodo.22229599). The
+all-versions DOI is
+[`10.5281/zenodo.22229598`](https://doi.org/10.5281/zenodo.22229598). The tagged
+`CITATION.cff` and GitHub Release intentionally remain DOI-free; the evolving
+default-branch citation metadata records the issued version DOI without moving
+the tag.
 
 The supported `0.1.x` surface contains 31 modules, 601 documented
 project-owned declarations, 92 lightweight-root exports, and 94 reviewed
@@ -355,23 +360,21 @@ and validates an artifact on manual dispatch but deploys only when its Boolean
 The release procedure freezes one exact candidate commit, validates it locally,
 from a clean checkout, through an external Lake consumer, and through remote
 nonpublishing gates, then subjects that same SHA to an independent final review.
-After that review, publication still requires explicit authorization. Only then
-may the maintainer enable and verify immutable GitHub Releases, create the
-annotated `v0.1.0` tag, publish the GitHub Release, allow Zenodo ingestion, and
-deploy the prepared site. The Pages run's `head_sha` must equal the immutable
-tag commit.
+After that review, publication required separate explicit authorization. The
+maintainer then enabled immutable GitHub Releases, created the annotated
+`v0.1.0` tag, published the GitHub Release, allowed Zenodo ingestion, and
+deployed the prepared site. The release tag and deployed versioned API both
+resolve to commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`.
 
-The approved automatic integration will ingest the immutable GitHub Release
-and issue the version DOI afterward. `CITATION.cff` remains the canonical
-repository metadata source; no `.zenodo.json` is used. École polytechnique
-fédérale de Lausanne (EPFL) will be recorded as `RightsHolder` directly in
-Zenodo after ingestion. Before accepting that record, verify its software type,
-title `LeanInfoTheory`, version `0.1.0`, actual release date, Apache-2.0 licence,
-repository URL, sole creator Serhat Emre Coban, exact creator affiliation
-`EPFL, Mathematics of Information Laboratory`, and the exact institutional
-`RightsHolder`. The issued DOI and any later default-branch
-`CITATION.cff`, README, or website citation update are post-release state, not
-part of the immutable `v0.1.0` snapshot.
+The approved automatic integration archived the immutable GitHub Release as
+[Zenodo record `22229599`](https://zenodo.org/records/22229599).
+`CITATION.cff` remains the canonical repository metadata source; no
+`.zenodo.json` is used. Zenodo and DataCite record École Polytechnique Fédérale
+de Lausanne as the structured `RightsHolder`, while Serhat Emre Coban remains
+the sole creator with affiliation `EPFL, Mathematics of Information
+Laboratory`. The archived ZIP was verified byte-for-byte against the immutable
+tag. The issued DOI and later default-branch citation updates are post-release
+state and do not alter the `v0.1.0` snapshot.
 
 The approved tag must not be moved. Any post-release correction belongs in a
 documented follow-up release. Tag signing is preferred when an appropriate
@@ -381,8 +384,8 @@ maintainer signing identity is available, but it is not a `v0.1.0` blocker.
 
 The `v0.1.x` mathematical and public-import surface is frozen as documented.
 No later theorem chunk is selected automatically. Post-release work includes
-DOI propagation, documentation maintenance, and separately planned additions
-to the reusable finite-information-theory library. See
+documentation maintenance, `0.1.x` compatibility work, and separately planned
+additions to the reusable finite-information-theory library. See
 [docs/roadmap.md](docs/roadmap.md).
 
 ## AI-assisted development
@@ -414,7 +417,9 @@ holder. The project is licensed under the Apache License, Version 2.0; see
 ## Citation
 
 Please use the release metadata in [CITATION.cff](CITATION.cff) when citing
-LeanInfoTheory. Its approved `date-released` value is `2026-09-01`. The tagged
-`v0.1.0` CFF intentionally remains DOI-free under the
-automatic post-release Zenodo route; the issued version DOI will be added only
-to the later default-branch `CITATION.cff`, README, and website metadata.
+LeanInfoTheory. Its `date-released` value is `2026-09-01`, and its version DOI
+is [`10.5281/zenodo.22229599`](https://doi.org/10.5281/zenodo.22229599). For a
+version-independent reference to all LeanInfoTheory releases, use
+[`10.5281/zenodo.22229598`](https://doi.org/10.5281/zenodo.22229598). The
+immutable tagged `v0.1.0` CFF intentionally remains DOI-free; the evolving
+default-branch CFF carries the issued version DOI without changing the tag.

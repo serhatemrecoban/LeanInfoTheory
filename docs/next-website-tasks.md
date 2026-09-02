@@ -35,16 +35,17 @@
 
 ## Release publication controls
 
-- The tracked candidate contains completed release staging and the guarded
-  manual-only Pages workflow.
-- Exact-commit GitHub-source generation, publishable-site checking, remote
-  capacity evidence, and reassessment of the 111 imported-dependency advisories
-  belong to the external candidate-validation record.
-- Ordinary pushes cannot deploy. A `publish=true` dispatch requires explicit
-  Step 18 authorization and proof that its ref and SHA equal the validated tag
-  commit.
-- No tracked website text asserts that a GitHub Release, Pages deployment,
-  Zenodo record, or DOI exists.
+- The immutable `v0.1.0` GitHub Release and exact-commit Pages site were
+  published from commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`.
+- Zenodo record `22229599` supplies version DOI
+  `10.5281/zenodo.22229599` and all-versions DOI
+  `10.5281/zenodo.22229598`; the tracked homepage and citation page carry those
+  identifiers.
+- Ordinary pushes cannot deploy. The current release-mode staging rewrites
+  versioned API source links to the workflow commit, so a `publish=true`
+  dispatch from an advanced post-release `master` is prohibited.
+- A later live citation update needs a separately reviewed staging design that
+  preserves every `v0.1.0` API source link at the immutable release commit.
 
 ## Later milestones
 

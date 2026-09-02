@@ -1,27 +1,49 @@
 # Current Lean State
 
-## `v0.1.0` release-candidate source state
+## `v0.1.0` released state
 
-This tracked snapshot contains the reversible library, documentation, metadata,
-workflow, and website work required for the `v0.1.0` candidate. Exact candidate
-identity, remote run identifiers, clean-checkout and external-consumer evidence,
-the independent Step 17 verdict, and live publication state are deliberately
-external records: writing them here would change the commit under review.
+LeanInfoTheory `v0.1.0` was published on 2026-09-01 from exact commit
+`0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`. Annotated tag object
+`bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` peels to that commit, and the
+GitHub Release is immutable. The tag-triggered release gates and the manually
+approved Pages deployment both passed at the release commit. Ordinary branch
+pushes still cannot create a tag, GitHub Release, or Pages deployment.
 
-The source history includes the Step 15 safety-only commit
-`81ffef37402909481c5dea51a42973dee9a79ae6`, which permanently removed the
-automatic tag/Release workflow without carrying candidate content or creating
-publication state. The later
-`f0d06dfab4f411ced312294e63e96bb67bba859b` reconciliation is an intermediate
-history point, not this candidate's identity. This snapshot's Pages workflow is
-manual-only; `publish` is required, defaults to `false`, and guards the separate
-deployment job. Ordinary branch pushes cannot create a tag, GitHub Release, or
-Pages deployment.
+Zenodo archived the tagged GitHub Release as record
+[`22229599`](https://zenodo.org/records/22229599). The version DOI is
+[`10.5281/zenodo.22229599`](https://doi.org/10.5281/zenodo.22229599), and the
+all-versions DOI is
+[`10.5281/zenodo.22229598`](https://doi.org/10.5281/zenodo.22229598). Zenodo and
+DataCite record Serhat Emre Coban as the sole creator with affiliation
+`EPFL, Mathematics of Information Laboratory`, Apache-2.0 as the licence, and
+École Polytechnique Fédérale de Lausanne as the structured `RightsHolder`.
+The 897,807-byte Zenodo archive has MD5
+`13d5c49c9519d86e20335ab6a5be3bfd` and matches the immutable tag's 110 tracked
+files byte-for-byte.
 
-This source snapshot neither authorizes nor asserts publication. Immutable
-GitHub Releases may be enabled, and `v0.1.0` may be tagged, released, deployed,
-and ingested by Zenodo, only after the unchanged exact commit passes independent
-Step 17 validation and the project lead explicitly authorizes Step 18.
+The evolving default branch now carries the issued version DOI in
+`CITATION.cff`, README, and tracked website citation sources. The immutable tag,
+tagged CFF, GitHub Release, and Zenodo archive remain unchanged. This
+post-release metadata work changes no Lean source, supported declaration,
+public import, toolchain, dependency, or licence. Any later live-site update
+must preserve the versioned API source-link binding to the immutable release
+commit; the current release-mode Pages workflow is therefore not published
+from an advanced post-release `master`.
+
+## Post-release Zenodo and DOI verification — complete
+
+The automatic GitHub--Zenodo route completed successfully after one manually
+redelivered `release.published` event was accepted with HTTP 202. The public
+record and both DOIs resolve, the structured institutional `RightsHolder` is
+registered in DataCite with ROR identifier `02s376052`, and the archived ZIP's
+size, checksum, filename, and complete contents were independently checked.
+Zenodo's tag-form version `v0.1.0` is the conventional equivalent of the CFF
+semantic version `0.1.0` and remains unchanged.
+
+The post-release update deliberately adds only the version DOI
+`10.5281/zenodo.22229599` to the default-branch CFF. The concept DOI remains a
+separate all-versions link in README and website prose. `.zenodo.json` remains
+absent, and no new Zenodo version or deposit is created.
 
 ## Release-preparation Step 14 — complete
 
@@ -29,34 +51,38 @@ On August 27, 2026, the project lead confirmed that no other person contributed
 copyrightable code or documentation and approved the automatic post-release
 GitHub--Zenodo integration route. `CITATION.cff` remains the canonical metadata
 source, `.zenodo.json` remains absent, and the immutable `v0.1.0` GitHub Release
-and tagged CFF will intentionally be DOI-free. After Zenodo ingestion, the
-maintainer will record École polytechnique fédérale de Lausanne (EPFL) as
-`RightsHolder` directly in Zenodo and later add the issued version DOI to the
-default-branch `CITATION.cff`, README, and website without moving the tag.
+and tagged CFF intentionally remain DOI-free. The completed post-release
+outcome is recorded above: Zenodo carries the structured institutional
+`RightsHolder`, and the evolving default branch carries the issued version DOI
+without moving the tag.
 
 The canonical software creator remains Serhat Emre Coban, with affiliation
 `EPFL, Mathematics of Information Laboratory`; the licence remains Apache-2.0.
 The exact 45-file EPFL/MIL source notice remains unchanged. The final audit
 found no copied or vendored source, missing third-party attribution, or
-concrete root-`NOTICE` requirement. No statement claims approval by EPFL, MIL,
-or EPFL TTO.
+concrete root-`NOTICE` requirement.
 
 The project lead initially fixed the Europe/Zurich GitHub Release publication
 date as `2026-08-27`. On August 28, 2026, the project lead superseded that
 initial choice with `2026-09-01`. `CITATION.cff` now records the approved
 `2026-09-01` `date-released` value. This amendment changes no authorship,
 rights-holder, licence, DOI-route, or institutional-approval decision. Step 14
-is complete, but the exact candidate must be requalified before Step 17.
+was complete at that checkpoint, but the exact candidate still had to be
+requalified before Step 17.
 
-Focused Step 14 validation passes: all 45 source header/trust checks, canonical
-Apache-2.0, the exact sole-author dated CFF template, isolated CFF 1.2.0
-schema validation, the metadata and complete static gates, and all five README
-examples with warnings as errors. After the release-date amendment, the current
-CFF SHA-256 is
+At the Step 14 checkpoint, focused validation passed all 45 source header/trust
+checks, canonical Apache-2.0, the exact sole-author dated DOI-free CFF template,
+isolated CFF 1.2.0 schema validation, the metadata and complete static gates,
+and all five README examples with warnings as errors. After the release-date
+amendment, that candidate CFF's SHA-256 was
 `68ec75662faa89cd8e880ec23df38ce1fc2b8ad52754f853c71ec29d69e6c34b`.
 The refreshed ignored preview passes its complete checker at 5,520 HTML files,
 2,951,158 links/assets, two generated JSON files, and 654,016,718 bytes, with
 the unchanged exact 111-advisory fingerprint. No external state changed.
+
+The post-release DOI-bearing CFF has SHA-256
+`0548fee5b1abd3c383c559997d91652968ce26ac443d2c1bbd45880b2e4e30a5` and
+independently validates under CFF 1.2.0.
 
 ### Retained Step 13 checkpoint
 
@@ -156,9 +182,11 @@ LeanInfoTheory `0.1.0` as a finite discrete information-theory library, restores
 the Reservoir `math` keyword, and sets `fixedToolchain = true`; the regenerated
 manifest records the same flag. The static validator now checks the exact Lake
 package/library/dependency metadata, manifest consistency, canonical
-Apache-2.0 licence, sole-author CFF fields, exact release date and absent DOI,
-README AI/legal/citation disclosure, institutional-approval wording, and the
-reviewed absence of `NOTICE` and `.zenodo.json`.
+Apache-2.0 licence, sole-author CFF fields, exact release date, README
+AI/legal/citation disclosure, institutional-approval wording, and the reviewed
+absence of `NOTICE` and `.zenodo.json`. At the Step 9 checkpoint it also
+required an absent DOI; the post-release validator now requires the exact
+issued version DOI.
 
 The Step 9 preliminary legal re-audit covered the then-current 44 library Lean
 files rather than treating the August 25 51-file checkpoint as current. Step 11
@@ -169,7 +197,7 @@ of a concrete `NOTICE` requirement. It also fixed the canonical CFF affiliation
 and selected the automatic post-release DOI route. The project lead supplied
 `2026-08-27` as the publication date, completing Step 14. That initial date was
 superseded on August 28 by the approved `2026-09-01` publication date; the
-date-only amendment restarts exact-candidate qualification without reopening
+date-only amendment restarted exact-candidate qualification without reopening
 the legal and provenance decisions.
 
 Step 9's final local validation passed the 2,605-job default build, the
@@ -190,7 +218,7 @@ and reported no Step 9 blocker.
 
 Step 10 replaced the maintainer-history-heavy README with a release-facing
 entry point while retaining the approved long-form AI disclosure and legal
-metadata. It now documents the exact future `v0.1.0` Lake Git dependency,
+metadata. It documented the then-future `v0.1.0` Lake Git dependency,
 fixed Lean/mathlib `v4.33.1` compatibility, lightweight/full/focused import
 choices, supported mathematical scope, nats-first conversion policy, the
 guarded real-KL boundary, limitations, `0.1.x` compatibility, maintained build
@@ -1009,10 +1037,12 @@ example-only instance `ThreePoint.instFintype`. Both generators report current
 rendered text under repeated non-mutating checks, and the tracked-source website
 checker passes across 15 HTML files and two generated JSON files. The separate
 staged checker results are recorded above. Commit `1eef228` remains the
-historical pre-release mathematical checkpoint; this release-candidate snapshot
-carries the certificate-free generated state. Website deployment remains a
-separately authorized Step 18 action. Step 8 changed no generated website
-content.
+historical pre-release mathematical checkpoint; the immutable `v0.1.0` release
+carries the certificate-free generated state, and its website was deployed from
+exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`. The current
+release-mode Pages workflow must not deploy from an advanced post-release
+`master` because that would rebind versioned API source links away from the
+immutable release commit. Step 8 changed no generated website content.
 
 ## Important Design Constraints
 

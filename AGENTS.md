@@ -301,10 +301,11 @@ workflow run's exact `head_sha` equals the immutable release tag commit.
   software creators.
 - `CITATION.cff` is the canonical release metadata source and uses the
   affiliation `EPFL, Mathematics of Information Laboratory`. Under the
-  approved automatic post-release GitHub--Zenodo route, the tagged CFF remains
-  DOI-free and no `.zenodo.json` is added. The approved `v0.1.0` publication
-  date is `2026-09-01`; if that day changes before publication, update every
-  release-date surface and revalidate before freezing the candidate.
+  approved automatic post-release GitHub--Zenodo route, the immutable tagged
+  CFF remains DOI-free and no `.zenodo.json` is added. The evolving default-
+  branch CFF records the `v0.1.0` version DOI
+  `10.5281/zenodo.22229599`; the all-versions DOI is
+  `10.5281/zenodo.22229598`. The `v0.1.0` publication date is `2026-09-01`.
 - Do not create, register, link, or configure a Zenodo account for the project
   lead. When a signed-in account is required for the integration preflight, ask
   the project lead to create or connect it, then inspect it read-only unless a

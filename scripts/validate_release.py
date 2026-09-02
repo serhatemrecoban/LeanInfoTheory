@@ -705,6 +705,7 @@ type: software
 title: "LeanInfoTheory"
 version: "0.1.0"
 date-released: 2026-09-01
+doi: "10.5281/zenodo.22229599"
 authors:
   - family-names: "Coban"
     given-names: "Serhat Emre"
@@ -723,6 +724,7 @@ url: "https://serhatemrecoban.github.io/LeanInfoTheory/"
         'title: "LeanInfoTheory"',
         'version: "0.1.0"',
         "date-released: 2026-09-01",
+        'doi: "10.5281/zenodo.22229599"',
         'family-names: "Coban"',
         'given-names: "Serhat Emre"',
         'affiliation: "EPFL, Mathematics of Information Laboratory"',
@@ -747,10 +749,18 @@ license: Apache-2.0"""
         errors.append(
             "CITATION.cff must contain exactly one date-released value: 2026-09-01"
         )
-    if re.search(r"(?m)^\s*doi\s*:", citation, re.IGNORECASE):
-        errors.append("CITATION.cff DOI must remain absent under the approved post-release route")
-    if re.search(r"(?mi)^\s*type\s*:\s*doi\s*$", citation):
-        errors.append("CITATION.cff DOI identifier must remain absent under the approved post-release route")
+    citation_dois = re.findall(
+        r'(?mi)^\s*doi\s*:\s*["\']?([^"\'\s#]+)["\']?\s*$', citation
+    )
+    if citation_dois != ["10.5281/zenodo.22229599"]:
+        errors.append(
+            "CITATION.cff must contain exactly the v0.1.0 version DOI: "
+            "10.5281/zenodo.22229599"
+        )
+    if "10.5281/zenodo.22229598" in citation:
+        errors.append(
+            "CITATION.cff must use the version DOI, not the all-versions DOI"
+        )
 
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     readme_flat = " ".join(readme.split())
@@ -762,11 +772,14 @@ license: Apache-2.0"""
         "LeanInfoTheory is an EPFL research software project from the Mathematics of Information Laboratory",
         "authored and led by Serhat Emre Coban",
         "École polytechnique fédérale de Lausanne (EPFL), the project rights holder",
-        "approved automatic post-release GitHub--Zenodo route",
+        "Zenodo archived the immutable GitHub Release and issued the version DOI",
+        "10.5281/zenodo.22229599",
+        "10.5281/zenodo.22229598",
+        "[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22229598.svg)](https://doi.org/10.5281/zenodo.22229598)",
         "`CITATION.cff` remains the canonical repository metadata source; no `.zenodo.json` is used",
-        "will be recorded as `RightsHolder` directly in Zenodo after ingestion",
-        "tagged `CITATION.cff` and immutable GitHub Release will intentionally contain no DOI",
-        "Its approved `date-released` value is `2026-09-01`",
+        "Zenodo and DataCite record École Polytechnique Fédérale de Lausanne as the structured `RightsHolder`",
+        "tagged `CITATION.cff` and GitHub Release intentionally remain DOI-free",
+        "Its `date-released` value is `2026-09-01`",
         "[CITATION.cff](CITATION.cff)",
     )
     for marker in readme_markers:
@@ -792,6 +805,7 @@ license: Apache-2.0"""
 
     decision_surface_markers = {
         ROOT / "docs" / "v0.1-release-contract.md": (
+            "Status: **Fulfilled for the published `v0.1.0` release**",
             "the rights holder is École polytechnique fédérale de Lausanne (EPFL)",
             "the software-author affiliation is `EPFL, Mathematics of Information Laboratory`",
             "The approved Zenodo route is automatic post-release GitHub ingestion.",
@@ -807,49 +821,70 @@ license: Apache-2.0"""
             "an agent must not create an account or alter the integration without explicit authorization",
             "Before accepting the ingested Zenodo record, verify its software type",
             "as a contributor of type `RightsHolder`",
+            "## Post-release outcome",
+            "10.5281/zenodo.22229599",
+            "10.5281/zenodo.22229598",
         ),
         ROOT / "docs" / "v0.1-legal-metadata-audit.md": (
-            "Step 14 complete; publication date `2026-09-01`",
+            "Status: **Release and post-release DOI metadata complete**",
             "creator/software author: Serhat Emre Coban",
             "affiliation: `EPFL, Mathematics of Information Laboratory`",
             "rights holder: École polytechnique fédérale de Lausanne (EPFL)",
-            "The approved deposit route is automatic post-release GitHub--Zenodo ingestion.",
-            "`.zenodo.json` remains absent",
-            "tagged CFF intentionally remain DOI-free",
+            "the approved deposit plan was automatic post-release GitHub--Zenodo ingestion",
+            "`.zenodo.json` and `NOTICE` remain absent",
+            "The tagged CFF and immutable Release remain DOI-free",
             "This closes the sole remaining Step 14 decision",
             "Step 15 publication-safety record",
             "immutable GitHub Releases was not enabled",
-            "This audit authorizes no publication",
-            "deliberately not encoded in the tagged source snapshot",
+            "Historical prepublication controls at the Step 14 checkpoint",
+            "At that checkpoint, this audit authorized no publication",
+            "completed outcome is recorded at the top of this audit",
+            "## Post-release Zenodo and DOI outcome",
+            "10.5281/zenodo.22229599",
+            "10.5281/zenodo.22229598",
         ),
         ROOT / "docs" / "current-lean-state.md": (
             "Release-preparation Step 14 — complete",
-            "Step 14 is complete",
-            "`v0.1.0` release-candidate source state",
-            "Exact candidate identity, remote run identifiers, clean-checkout and external-consumer evidence",
-            "This source snapshot neither authorizes nor asserts publication",
-            "81ffef37402909481c5dea51a42973dee9a79ae6",
-            "f0d06dfab4f411ced312294e63e96bb67bba859b",
+            "`v0.1.0` released state",
+            "Post-release Zenodo and DOI verification — complete",
+            "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f",
+            "bcd9090ea2720fe14b0a3e168c76ebeef1dafd47",
+            "10.5281/zenodo.22229599",
+            "10.5281/zenodo.22229598",
+            "current release-mode Pages workflow is therefore not published",
         ),
         ROOT / "docs" / "lean-info-theory-living-summary.md": (
-            "The source effects of release-preparation Steps 1–16 are incorporated in this snapshot",
-            "Exact candidate identity, remote validation evidence, the Step 17 verdict, and live publication state are external records",
+            "`v0.1.0` release and maintenance",
+            "The release was published on 2026-09-01 from exact commit",
+            "10.5281/zenodo.22229599",
+            "must not publish from an advanced post-release `master`",
             "no Zenodo account or integration action is performed by an agent",
         ),
         ROOT / "docs" / "roadmap.md": (
-            "Release-candidate source preparation is represented in this snapshot",
-            "this tracked roadmap does not claim them",
+            "LeanInfoTheory `v0.1.0` was published on 2026-09-01",
+            "10.5281/zenodo.22229599",
+            "post-release DOI propagation are complete",
         ),
         ROOT / "docs" / "next-website-tasks.md": (
             "Release publication controls",
-            "No tracked website text asserts that a GitHub Release, Pages deployment, Zenodo record, or DOI exists",
+            "The immutable `v0.1.0` GitHub Release and exact-commit Pages site were published",
+            "a `publish=true` dispatch from an advanced post-release `master` is prohibited",
         ),
         ROOT / "home_page" / "license.html": (
             "Serhat Emre Coban is the author, software creator, and project lead",
             "polytechnique fédérale de Lausanne (EPFL) is the project rights holder",
-            "approved automatic post-release GitHub--Zenodo route",
-            "tagged CFF remains DOI-free",
-            "The approved release date is <code>2026-09-01</code>",
+            '<meta name="citation_doi" content="10.5281/zenodo.22229599">',
+            "immutable tagged CFF remains DOI-free",
+            "The release date is <code>2026-09-01</code>",
+            "10.5281/zenodo.22229599",
+            "10.5281/zenodo.22229598",
+            "structured <code>RightsHolder</code>",
+        ),
+        ROOT / "home_page" / "index.html": (
+            '<meta name="citation_doi" content="10.5281/zenodo.22229599">',
+            'href="https://doi.org/10.5281/zenodo.22229598"',
+            'src="https://zenodo.org/badge/DOI/10.5281/zenodo.22229598.svg"',
+            'href="https://doi.org/10.5281/zenodo.22229599"',
         ),
     }
     for path, markers in decision_surface_markers.items():
@@ -860,6 +895,13 @@ license: Apache-2.0"""
                     f"{path.relative_to(ROOT).as_posix()} is missing a reviewed release decision/status marker: {marker}"
                 )
 
+    for path in (ROOT / "home_page" / "index.html", ROOT / "home_page" / "license.html"):
+        source = path.read_text(encoding="utf-8")
+        if source.count('name="citation_doi"') != 1:
+            errors.append(
+                f"{path.relative_to(ROOT).as_posix()} must contain exactly one citation_doi meta tag"
+            )
+
     if (ROOT / "NOTICE").exists():
         errors.append("NOTICE exists without a reviewed attribution requirement")
     if (ROOT / ".zenodo.json").exists():
@@ -869,8 +911,8 @@ license: Apache-2.0"""
         raise ValidationError("package/legal metadata failed:\n" + "\n".join(errors))
     print(
         "package/legal metadata passed: LeanInfoTheory 0.1.0, fixed Lean/mathlib "
-        "v4.33.1, Apache-2.0, sole CFF author, canonical CFF/post-release DOI route, "
-        "release date 2026-09-01; Steps 14-15 complete and release documentation ready"
+        "v4.33.1, Apache-2.0, sole CFF author, exact version DOI, "
+        "release date 2026-09-01, and DOI-bearing default-branch documentation"
     )
 
 
@@ -978,7 +1020,7 @@ def check_release_documentation_contract() -> None:
         "docs/releases/v0.1.0.md",
         "ordinary branch pushes cannot",
         "create a tag, GitHub Release, or Pages deployment",
-        "enable and verify immutable GitHub Releases",
+        "enabled immutable GitHub Releases",
     )
     errors = [
         f"README.md is missing the release-documentation marker: {marker}"
