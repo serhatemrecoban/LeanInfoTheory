@@ -53,8 +53,31 @@ independence with the n-way entropy-additivity equality case. All new heavy
 owners remain opt-in, and the root and certificate trust boundary are
 unchanged. Generated/public references and the independent build, consumer,
 trust, website, and hygiene gates all pass. The checkpoint is pushed, and its
-exact-SHA Lean build/placeholder and Pages deployment workflows both pass. No
-later theorem phase has been selected.
+exact-SHA Lean build/placeholder and Pages deployment workflows both pass.
+Post-release mathematical planning is authorized: the proposed
+[C9--C24 chunk map, revision 2](plans/post-release-chunk-map.md) awaits review.
+Its accepted second-review clarifications are recorded under C18/C23 and
+Section 8. The separately authorized review-workflow installation is documented
+in [the protocol](review-protocol.md) and [operations](review-operations.md).
+The lead approved the exact [seven-step C9 plan, revision 2](plans/post-release-chunk-09.md).
+C9.01--C9.06 completed independent review, reconciliation and durable private
+closure. The current C9.07 request passed exact predecessor-source and step-order
+checks. C9.07 is open for cumulative closeout preparation. Both selected helpers
+and their private permanent consumers are present: current coverage is 603
+supported declarations in 31 modules, with 94 simp declarations and 92 facade
+aliases unchanged. The frozen release retains 601 declarations.
+
+The [maintained C9 handoff](handoffs/chunk-9.md) records delivered APIs, imports,
+source/review references, validation commands and remaining-work dispositions.
+C9.06's accepted report satisfied all three criteria; its two nonmaterial process
+findings were reconciled with final-source disclosure/impact evidence. Historical
+dispatch-order and reviewer read-only noncompliance remain explicitly recorded.
+
+C9.07's separately authorized clean checkpoint, complete routine suite, fresh
+cumulative fixture matrix, current two-pass file-mode doc-gen and fresh full-chunk
+independent review remain pending. Earlier component passes are dated evidence,
+not substitutes for these gates. Closure remains subject to the private completion
+record. C10 and later chunks remain proposed and require separate authorization.
 
 **[Current] `v0.1.0` release and maintenance.** The fulfilled release contract
 is recorded in [`docs/v0.1-release-contract.md`](v0.1-release-contract.md). It
@@ -125,7 +148,12 @@ asset.
    API checkpoint.
 8. Add helpers, aliases, bundled structures, and symmetric theorem variants
    only after concrete proof or consumer pressure.
-9. For Lean changes, run focused builds while iterating and the maintained
+9. Treat predictable API discovery as a design objective. Before reproving a
+   result, follow the source/index/API-doc/module/mathlib/Lean-search process in
+   [`docs/downstream-api-feedback.md`](downstream-api-feedback.md), verify any
+   candidate with a compiling probe, and retain only deduplicated actionable
+   downstream friction upstream.
+10. For Lean changes, run focused builds while iterating and the maintained
    milestone suite before a checkpoint.
 
 **Source order.** Read current source first, then current checked-in plans and
@@ -136,6 +164,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Task | Read next |
 | --- | --- |
+| Post-release mathematical planning | The proposed [C9--C24 map](plans/post-release-chunk-map.md), [reference register](references.md), Sections 3, 7, and 11-16, and the relevant current Lean dependency closure; detailed C9 revision 2 is approved; C9.01--C9.06 are durably closed; C9.07 is preparing the [maintained handoff](handoffs/chunk-9.md), authorized clean checkpoint, cumulative validation and full-chunk review |
 | Chunk 8 review or later-phase intake | The completed Chunk 8 plan; Sections 3, 6-9, 11-14, and 16; the three Chunk 8 mathematical owners, two maintained example owners, semantic/examples aggregates, and current Future Work Notes 9, 14-18, and 24 |
 | Review of an existing Lean theorem | Sections 3, 7, 9, and 16; the owning source module and its direct imports |
 | API or module review | Sections 7, 9, 10, 11, and Future Work Notes 2-4, 14-16, 18, and 26 |
@@ -148,12 +177,12 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-09-02 |
+| Last updated | 2026-09-12 |
 | Last fully validated mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the released `v0.1.0` source is exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f` |
 | Repository transition state | `v0.1.0` is published from immutable tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` and archived as Zenodo record `22229599`. The evolving default branch carries the current project pages and DOI metadata, while maintenance staging preserves `/docs/v0.1.0/` from exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`; the tag, Release, archive, Lean source, and public API remain unchanged |
 | Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
 | mathlib baseline | `v0.1.0` uses input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474` |
-| Source-snapshot phase | Post-release `v0.1.x` maintenance; publication date `2026-09-01`; version DOI `10.5281/zenodo.22229599`; Project B Chunks 1–8 remain checkpointed; no later theorem phase is selected |
+| Source-snapshot phase | Post-release `v0.1.x` maintenance; publication date `2026-09-01`; version DOI `10.5281/zenodo.22229599`; Project B Chunks 1–8 remain checkpointed; C9--C24 map remains proposed; detailed C9 revision 2 is approved; C9.01--C9.06 are durably closed; C9.07 closeout is open with both selected helpers delivered, while the authorized clean checkpoint, cumulative validation and full-chunk review remain pending |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -424,8 +453,8 @@ Use this order when claims disagree:
 - pair and triple marginals with pointwise mass and support infrastructure;
 - algebraic conditional entropy, mutual information, and conditional mutual
   information;
-- pair/triple chain rules, symmetry, self-information identities, and standard
-  entropy-difference forms;
+- pair/triple chain rules, symmetry, self-information identities, standard
+  entropy-difference forms, and the auxiliary-variable entropy/MI decomposition;
 - dependent finite-family laws with finite `Finset` atoms, PMF/source entropy,
   conditional entropy, MI, CMI, pair/triple compatibility, and binary plus
   duplicate-tolerant ordered entropy, MI, and conditional-MI chain rules;
@@ -458,7 +487,8 @@ Representative owners are `Shannon.Entropy`, `Shannon.InfoMeasures`,
 - common-base channel conditional KL, its finite weighted-fiber semantics,
   joint KL chain rule, and support-guarded Real forms;
 - ordinary and conditional independence, including bridges to mathlib
-  `ProbabilityTheory.IndepFun`;
+  `ProbabilityTheory.IndepFun`, and deterministic right postprocessing for
+  arbitrary PMF source/observed types (left processing follows by symmetry);
 - dependent finite-family mutual independence, restriction and pair
   compatibility, and n-way entropy equality;
 - zero MI/CMI and entropy equality cases.
@@ -607,31 +637,36 @@ claim a general measure-theoretic formalization of the whole subject.
 | `LeanInfoTheory.Basic` | Non-stable project metadata and roadmap vocabulary | No |
 | `LeanInfoTheory.Probability.Finite` | Reusable PMF real-mass, finite-bind, map, support, and pure-law helpers | Yes |
 | `LeanInfoTheory.Shannon.Entropy` | Entropy, entropy of pushforwards, joint entropy, zero and relabeling facts | Yes, through `InformationMeasures` |
-| `LeanInfoTheory.Shannon.InfoMeasures` | Marginals, conditional entropy, MI, CMI, random-variable forms, core rewrites | Yes, through `InformationMeasures` |
+| `LeanInfoTheory.Shannon.InfoMeasures` | Marginals, conditional entropy, MI, CMI, random-variable forms, core rewrites and auxiliary-variable decomposition | Yes, through `InformationMeasures` |
 | `LeanInfoTheory.InformationMeasures` | Explicit convenience re-export from `Shannon` into `LeanInfoTheory` | Yes |
 | `LeanInfoTheory` | Lightweight public aggregate only | Root |
 | `LeanInfoTheory.Shannon` | Import-only complete supported mathematical umbrella | No; subsumes the root |
 
-After Step 7, the verified source-derived inventory contains 44 modules, 90
-local import edges, 5 root-reachable modules, 39 separate-import modules, and
-716 declarations (715 documented plus one explicit example-only instance).
-The root directly imports exactly `Probability.Finite` and
-`InformationMeasures`; its closure has five modules. It does not import bounds, units,
-finite-family or mixture modules, log-sum/concavity modules, semantic bridges,
-channel modules, examples, or mathlib coding anchors.
+The current source-derived inventory contains 46 modules, 94 local import
+edges, 5 root-reachable modules, 41 separate-import modules, and 718 indexed
+declarations (717 documented plus one example-only instance). The root directly
+imports exactly `Probability.Finite` and `InformationMeasures`; its closure has
+five modules. It excludes heavy semantic, channel, coding and example imports.
 
 The `LeanInfoTheory.Shannon` umbrella directly imports the root, `Shannon.Fano`,
-`Shannon.SemanticBridge`, and `Shannon.Units`. Its 31-module closure contains
-the complete supported mathematical stack and excludes the 13 non-stable
-`Basic`, example, and `MathlibFragments` anchors. The new non-stable
-`Examples.Units` consumer does not change that closure.
+`Shannon.SemanticBridge`, and `Shannon.Units`. Its 31-module supported closure
+excludes all 15 non-stable `Basic`, example, and `MathlibFragments` anchors.
+`Examples.IndependenceProcessing` imports only focused Independence;
+`Examples.InformationDecomposition` imports only lightweight InfoMeasures.
+Only `Examples` imports these private consumer modules.
 
-The exact supported closure contains 601 documented project-owned public
-declarations: 535 theorems, 56 definitions, nine abbreviations, and one named
-instance. `InformationMeasures` preserves 92 explicit root convenience exports,
-and 94 supported declarations carry reviewed `simp` attributes. See the
-[`v0.1.x` public API contract](v0.1-public-api.md) and deterministic
-[`v0.1-public-api.json`](v0.1-public-api.json) manifest.
+The exact current supported closure contains 603 documented project-owned public
+declarations: 537 theorems, 56 definitions,
+9 abbreviations and 1 named instance. The 92 facade exports and 94 reviewed simp declarations remain exact.
+The historical [`v0.1.x` contract](v0.1-public-api.md), frozen
+[`v0.1-public-api.json`](v0.1-public-api.json) and
+[structural type artifact](compatibility/README.md) retain 601 declarations.
+The separate [`current-public-api.json`](current-public-api.json) records the
+two approved additions: `Shannon.isIndependentOf_comp_right` in the opt-in
+Independence owner and `Shannon.mutualInfoOf_condEntropyOf_decomposition`
+in lightweight InfoMeasures. The second name is canonically root-visible through
+its existing owner; the 92 facade aliases remain unchanged. Neither the frozen
+baseline nor reviewed import/attribute policy is regenerated to authorize growth.
 
 ### Opt-in finite and semantic layers
 
@@ -655,7 +690,7 @@ and 94 supported declarations carry reviewed `simp` attributes. See the
 | `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily` | Finite-family Shannon inequalities |
 | `LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL` | Common-base channel conditional KL, finite weighted semantics, joint KL chain rule, and guarded Real forms |
 | `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence` | Dependent-family mutual independence, restriction/pair laws, and n-way entropy equality characterization |
-| `LeanInfoTheory.Shannon.SemanticBridge.Independence` | Ordinary/conditional independence and equality characterizations |
+| `LeanInfoTheory.Shannon.SemanticBridge.Independence` | PMF-first ordinary/conditional independence, arbitrary-type deterministic postprocessing, zero MI/CMI, and entropy equality cases |
 | `LeanInfoTheory.Shannon.SemanticBridge.Markov` | Markov predicates, total conditional channel, factorization, MI DPI |
 | `LeanInfoTheory.Shannon.SemanticBridge.Sufficiency` | Fixed-prior and family sufficiency core, directly importing `Markov` |
 | `LeanInfoTheory.Shannon.SemanticBridge.DataProcessing` | PMF-kernel bridge, posterior KL decomposition, KL DPI, entropy growth |
@@ -700,6 +735,8 @@ justify it.
   `Convexity`, `ConditionalKL`, and `Units` are separately importable.
   `Examples.Convexity`, `Examples.ConditionalKL`, and `Examples.Units` contain
   only private maintained regression consumers.
+  `Examples.IndependenceProcessing` and `Examples.InformationDecomposition`
+  likewise contain only private C9 consumers, using their focused owners.
 - `Examples` aggregates the maintained mathematical examples.
 - `MathlibFragments` is an opt-in import checklist for binary/q-ary entropy,
   KL, KL chain rules, PMF constructions, and Kraft-McMillan. It intentionally
@@ -717,9 +754,15 @@ justify it.
   concerns and are not part of the LeanInfoTheory API.
 - Existing descriptive theorem names are stable. Compatibility aliases are
   additive and review-driven.
-- The exact supported names, owners, kinds, reviewed attributes, module paths,
+- The exact released names, owners, kinds, reviewed attributes, module paths,
   and 92 root exports are frozen in
   [`v0.1-public-api.json`](v0.1-public-api.json).
+- Predictable API discovery is a stable design objective. The canonical
+  post-release intake and triage process is
+  [`downstream-api-feedback.md`](downstream-api-feedback.md); Future Work Note
+  14 remains the theorem-development naming watchlist, historical decision
+  record, and source of standing alias-review criteria rather than serving as
+  a second downstream feedback log.
 
 ### Generated documentation and website pipeline
 
@@ -731,6 +774,8 @@ scripts/check_api_docs.py
 scripts/generate_website_blueprint.py
 scripts/generate_website_api_index.py
 scripts/generate_v0_1_public_api.py
+scripts/generate_current_public_api.py
+scripts/compatibility/export_retained_api.py
 scripts/check_website.py
 ```
 
@@ -743,15 +788,23 @@ provide the canonical release gate and produce or validate:
 
 The isolated `docbuild/` environment additionally pins `doc-gen4` `v4.33.1` at
 commit `e2af49a7b7e5e1a9224008c1f15e7aa4f58a4015` without adding documentation
-tooling to the downstream runtime graph. Step 11's checker requires exactly 31
+tooling to the downstream runtime graph. Historically, Step 11's checker required 31
 supported module pages and 601 declarations with rendered signatures, 92
 canonical export targets, 13 non-stable exclusions, and zero equation rows in
 the approved `DISABLE_EQUATIONS=1` mode. Disabling equations omits only optional
 equation pages; signatures, docstrings, attributes, and sorry markers remain.
-No signature-fingerprint file is committed. The public manifest and canonical
-targets jointly record the 92 root aliases.
+The C9.01 retained artifact now records exact-release structural types separately
+from the untouched historical manifest. It preserves complete binders and universe
+parameters. C9.02 adds the standalone current compatibility checker; its focused
+qualification passed all 17 expected fixture outcomes. C9.03 completed current
+trust/API-doc integration; C9.04 completed cumulative gate qualification and
+independent review/reconciliation and durable closure. Current source contains
+both selected C9 helpers; current checks derive complete coverage separately
+from the historical 601-declaration baseline. The
+public manifest and canonical targets jointly record
+the 92 root aliases. Type equality does not establish unchanged bodies or semantics.
 
-The validated local file-linked output is unpublished and contains 5,521 files
+The historically validated local file-linked output is unpublished and contains 5,521 files
 totalling 624.6 MiB. Its configuration stamp keys generation mode, source
 identity, and equation policy; targeted invalidation preserves compiled
 dependencies. A first pass after cleaning the documentation build also removed
@@ -765,6 +818,8 @@ Full generation is therefore outside ordinary push/pull-request CI and runs
 only as a conditional `workflow_dispatch` `api_docs` release gate with a
 360-minute maximum; exact-candidate remote capacity is recorded by the Step 16
 validation report, while routine CI keeps static pin and configuration checks.
+Those historical output counts and digests do not validate the C9.06 source.
+Its changed documentation identity requires the C9.07 two-pass doc-gen refresh.
 
 For the completed Chunk 6 checkpoint, the tracked regenerated references
 report:
@@ -1055,6 +1110,12 @@ These are intentional current contracts, not claims of maximal generality.
 
 ### Automation gaps
 
+C9's structural retained-type checks preserve binders, assumptions and imports;
+equal types do not establish unchanged definition bodies or mathematical meaning.
+Current documentation fingerprints detect changed inputs, not semantic equivalence.
+The [C9 handoff](handoffs/chunk-9.md) separates these permanent limits from pending
+final cumulative validation and the separately authorized publication route.
+
 - No theorem-level blueprint pipeline. Full doc-gen is a manual release gate;
   remote capacity and exact-commit GitHub-source reproduction are external
   candidate-validation evidence.
@@ -1063,6 +1124,47 @@ Certificate search, coefficient solving, primitive autotagging, and external
 certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
+
+### Post-release programme planning
+
+**[Proposed, 2026-09-11]** The project lead authorized a long-term map and
+reference registration for complementary library work plus five packages:
+TV/coupling, quantitative inequalities/continuity, products/block information,
+finite-iid fixed-length source coding, and finite-channel capacity/converses.
+The [revision 2 map](plans/post-release-chunk-map.md) proposes 16 chunks,
+C9--C24, with dependency-aware endpoints and an independent qualification
+chunk. It does not approve production statements, new module names, or a
+release version. Source coding is to reach a complete operational theorem;
+channel achievability remains outside the proposed scope.
+
+Revision 2 reconciles the independent and self-reviews while retaining the
+chunk IDs. It clarifies three distinct compatibility obligations, constructor/
+semantic import direction, the finite-block AEP and coding contracts, and true
+dependencies. Section 6 of the map owns uncertain release-size calibration;
+roughly 1,200 supported declarations is a cross-check on the doubling ambition,
+not a quota. Section 8 records review dispositions. None of these estimates or
+proposed endpoints changes the current mathematical inventory.
+
+The second-review follow-up clarifies C23's arbitrary above-capacity premise
+without assuming bounded rates and records C18's exact MI gap/output-independence
+criterion as a preferred optional refinement. The 16-chunk structure and
+required endpoints are unchanged; these are planning decisions, not new results.
+
+The project lead separately authorized adapting/installing the working PFR-C02
+review mechanism on 2026-09-11. `tools/lit_review/` and the
+[protocol](review-protocol.md)/[operations](review-operations.md) own that opt-in
+workflow; ignored `.lit-review/` stores its private records. The inherited core
+is retained, with library-specific source, identity, rubric and validator bindings.
+The installation alone granted no mathematical authority. The lead subsequently
+approved detailed C9 revision 2 and selected its steps individually: C9.01--C9.06
+are durably closed, and C9.07 prepares cumulative closeout. This actual C9 task
+owns its persistent reviewer and [maintained handoff](handoffs/chunk-9.md).
+The later map remains proposed. C9 changes current coverage by exactly two
+supported helpers; released counts, downstream pins and dependency pins remain
+unchanged. No publication or downstream adoption is established by local work.
+Exact reference versions and selected sections are recorded in
+[`references.md`](references.md); detailed chunk assignments are not duplicated
+in this summary.
 
 ### `v0.1.0` release and maintenance status
 
@@ -1190,8 +1292,8 @@ The later Step 13 checkpoint amended that sequence to 18 steps for a separate
 remote-safety landing.
 
 **Project B Chunk 8 is complete through `C8.24`, checkpointed as `1eef228`,
-pushed, remotely build-validated, and deployed. No later theorem phase has
-been selected.**
+pushed, remotely build-validated, and deployed. Later work has a proposed
+long-term map, but no approved theorem implementation plan.**
 
 Chunks 5--8 are checkpointed as `ec78829`, `7b5f0db`, `5e616d8`, and
 `1eef228`. The
@@ -1245,9 +1347,24 @@ claim which external gate has completed.
 
 ### Next review point
 
-The next review should choose scope rather than infer it from roadmap order.
-Deferred Future Work remains governed by its recorded pressure triggers rather
-than becoming automatic post-chunk work.
+C9.01--C9.06 completed independent review, reconciliation and durable private
+closure. The current C9.07 request passed exact predecessor-source and step-order
+checks. C9.07 is open for cumulative closeout preparation. Both selected helpers
+and their private permanent consumers are present: current coverage is 603
+supported declarations in 31 modules, with 94 simp declarations and 92 facade
+aliases unchanged. The frozen release retains 601 declarations.
+
+The [maintained C9 handoff](handoffs/chunk-9.md) records delivered APIs, imports,
+source/review references, validation commands and remaining-work dispositions.
+C9.06's accepted report satisfied all three criteria; its two nonmaterial process
+findings were reconciled with final-source disclosure/impact evidence. Historical
+dispatch-order and reviewer read-only noncompliance remain explicitly recorded.
+
+C9.07's separately authorized clean checkpoint, complete routine suite, fresh
+cumulative fixture matrix, current two-pass file-mode doc-gen and fresh full-chunk
+independent review remain pending. Earlier component passes are dated evidence,
+not substitutes for these gates. Closure remains subject to the private completion
+record. C10 and later chunks remain proposed and require separate authorization.
 
 ## 13. Future-Work Register
 
@@ -1263,6 +1380,7 @@ again.
 | Note | Work |
 | --- | --- |
 | Unnumbered | **Chunk 8 is complete through `C8.24` and checkpointed as `1eef228`.** Its 18-declaration API, generated references, complete validation evidence, exact-SHA Lean workflow, and Pages deployment pass; any later theorem phase requires a separate decision. |
+| Unnumbered | **C9 closeout open:** C9.01--C9.06 are durably closed; C9.07 prepares cumulative qualification and review under the approved detailed plan. The [C9--C24 map](plans/post-release-chunk-map.md) remains proposed for later chunks. Its assignments do not close or renumber standing notes. |
 | 29 | **Finite-Fano phase checkpointed.** Commit `ec78829` completes the approved phase; its evidence-based Fano follow-ups remain open and deferred. |
 
 Note 29 also preserves proof-pressure triggers from `C5.08`-`C5.11` and
@@ -1279,13 +1397,23 @@ later work, not reasons to expand the frozen Chunk 5 API retroactively.
 | 17-18 | Run milestone checks and preserve completed chunk/module boundaries. |
 | 26 | Do not split `SemanticBridge.Independence` solely because of file size. |
 
+Future Work Note 14 remains the theorem-development naming/alias watchlist,
+historical decision record, and source of standing review criteria.
+Deduplicated post-`v0.1.0` downstream discovery friction is owned by
+[`downstream-api-feedback.md`](downstream-api-feedback.md), while raw search
+attempts remain in the downstream project that observed them. C9 retains both
+approved helper names, adds no aliases or simp rules, and preserves owner/import
+boundaries. Notes 9 and 14--18 remain standing; their C9 dispositions, owners and
+reopening triggers are consolidated in the [handoff](handoffs/chunk-9.md#remaining-work-and-c10).
+Note 25 closes only its deterministic right-processing slice.
+
 ### Later Chapter 2 and finite-foundation work
 
 | Note | Work |
 | --- | --- |
 | 38 | **Partially discharged later milestone.** Permanent stochastic examples exercise the PMF-facing results; add a matrix bridge only when majorization/Birkhoff consumers exist. |
 | 39 | Plan canonical/minimal sufficiency, support-aware statistic comparison, and later iid/count-statistic or measurable extensions. |
-| Unnumbered | Chunk 7 now owns finite log-sum, KL convexity, entropy concavity, and MI input/channel convexity. Assign Pinsker, tensorization, topology, continuity, and any broader equality/generalization layer to later focused phases before implementation. |
+| Unnumbered | Chunk 7 owns finite log-sum, KL convexity, entropy concavity, and MI input/channel convexity. The proposed C9--C24 map assigns bounded Pinsker, tensorization, topology, and continuity work; broader equality/generalization layers retain their separate triggers. No proposed endpoint is implemented by that assignment. |
 
 The finite-family phase is complete, independently validated, and checkpointed
 as `7b5f0db`. Chunk 8 now closes the approved finite conditional-CMI,
@@ -1304,6 +1432,11 @@ The completed finite-Fano theorem layer excludes channel powers, stationary
 processes, entropy rates, capacity, AEP, typicality, method of types,
 source/channel coding, and nontrivial network converses. These remain later
 roadmap work rather than hidden parts of Chunks 5-8.
+The proposed post-release map selects finite blocks, finite-iid AEP,
+fixed-length source coding, information capacity, and a weak channel converse;
+stationary processes, entropy rates, types, channel achievability, and network
+theorems remain outside it. Note 5's variable-length/Kraft-McMillan work is not
+discharged by selecting fixed-length coding.
 
 ### Downstream certificate work
 
@@ -1323,7 +1456,7 @@ not pending LeanInfoTheory release work.
 | Note | Triggered question |
 | --- | --- |
 | 21 | Add a coherent injective MI relabeling family only after repeated augmentation proofs. |
-| 25 | Add ordinary-independence conveniences only for concrete downstream proofs. |
+| 25 | **Partially discharged by C9.05:** deterministic postprocessing has the approved theorem and private consumers. Additional atom-level, constant/self-independence or public orientation conveniences remain consumer-triggered. |
 | 27 | Add conditional-independence symmetry, closure, or representation conveniences only at their recorded consumer triggers. |
 
 ### Other proof-pressure-deferred API work
@@ -1358,7 +1491,7 @@ not pending LeanInfoTheory release work.
 
 | Note | Work |
 | --- | --- |
-| 9 | Stage and maintain the local signature-bearing API docs; later add theorem-level leanblueprint data, a blueprint PDF, and optional equation-expanded pages if justified. Also consider a structured source for repeated status fragments and complete verified module-summary metadata. |
+| 9 | Maintain current local signature-bearing API docs separately from frozen-route staging; C9.07's real two-pass refresh remains pending. Later add theorem-level leanblueprint data, a blueprint PDF, and optional equation-expanded pages if justified. Also consider a structured source for repeated status fragments and complete verified module-summary metadata. |
 | 10 | Add `CONTRIBUTING.md`, beginner tasks, issue labels, and upstream guidance before broad contributor outreach. |
 | 28 | Later improve opt-in example pedagogy: the side-information recovery example, `KLTop` absolute-continuity notation, and, only if compact, matched numerical Boolean examples exhibiting strict MI input concavity and channel convexity. Preserve existing declarations and avoid new core helpers solely for pedagogy. |
 
@@ -1398,6 +1531,18 @@ These are not approved theorem tasks until assigned to a focused phase.
   ownership. See Sections 6 and 8.
 
 ## 15. Textbook and Reference Coverage
+
+### Registered post-release sources
+
+The [mathematical reference register](references.md), added on 2026-09-11,
+records exact local files, edition dates, hashes, selected sections, and
+source-model adaptations. It distinguishes Cover--Thomas 1991 (`CT91`), the
+historically used Polyanskiy--Wu 2022 draft (`PW22`), the preferred 2024 planning
+draft (`PW24`), Sason's version-pinned maximal-coupling paper (`SA13`), and
+Levin--Peres second edition (`LP17`). Relevant sections informed the proposed
+post-release map; neither registration nor planning means an entire source has
+been read or formalized. The older section-number citations below remain
+historical anchors, not references silently transferred to the newer draft.
 
 ### Reviewed during this reconciliation
 
@@ -2071,8 +2216,9 @@ include pre-Step-4 modules that no longer belong to LeanInfoTheory.
 3. invokes the pinned `lean-action` commit for an explicit warning-as-error
    default build and mathlib cache setup;
 4. invokes the shared maintained eight-target warning-as-error build;
-5. runs the environment-level 31-module API/import/simp/root-export checks and
-   both the 601-declaration public and all-project-constant axiom audits; and
+5. runs fresh retained compatibility and complete current API/import/simp/root-
+   export checks, with public and all-project-constant axiom audits (currently
+   603 supported declarations; the retained baseline remains 601); and
 6. finishes with the shared hygiene gate.
 
 The Pages workflow uses the same non-mutating static contract before uploading
@@ -2115,12 +2261,59 @@ Both runs succeeded for the exact source checkpoint. The following
 documentation-only reconciliation records that remote state without changing
 the validated Lean/source baseline.
 
+### C9.01 local tooling validation
+
+At C9.01, the source and dependency identities of the then-unchanged mathematical
+library matched the release. Two exports after the isolated release's own warning-as-error build
+and one export after a fresh current build agree byte-for-byte on all 601 retained
+types. Three real compiling source mutations preserve names while changing a
+premise, binder name or binder implicitness; each changes exactly the intended
+type. Restoring the source and rebuilding reproduces the original export.
+See [the compatibility evidence](compatibility/README.md) and
+[step notes](plans/post-release-chunk-09-notes.md) for commands, exact identities,
+original-evidence locations and failure disclosures. Current/frozen generation
+checks and exporter tests are focused C9.01 checks. They do not replace C9.04's
+cumulative qualification or C9.07's clean-checkpoint/full-suite/API-doc duties.
+
+### C9.02 standalone compatibility
+
+```powershell
+python -B scripts/validate_release.py compatibility
+python -B scripts/compatibility/test_current_policy.py
+python -B scripts/compatibility/test_public_api_compatibility.py
+python -B scripts/compatibility/run_compatibility_fixtures.py
+```
+
+The standalone command derives source inventory and runs its own current build
+before retained signatures and compiled import/alias/attribute checks. It
+preserves source hashes and original outputs in `.lake/compatibility/`; the real
+fixture runner uses an owned ignored source copy. Consult the
+[compatibility guide](compatibility/README.md) for strictness, policy records and
+the same-type semantic limitation. The Python suites distinguish synthetic and
+mocked checks from actual Lean evidence. Qualification and review status is in
+the [C9.02 handoff](plans/post-release-chunk-09-notes.md#c902-implementation-and-prepared-handoff-2026-09-12).
+C9.03 completed default/trust/API-doc integration. C9.04's completed combined
+qualification is recorded in its dated [qualification table](compatibility/c9-04-qualification.md)
+and [handoff](plans/post-release-chunk-09-notes.md#c904-qualification-and-prepared-handoff-2026-09-12).
+Dated C9.06 theorem/consumer evidence is recorded separately in the
+[step handoff](plans/post-release-chunk-09-notes.md#c906-information-decomposition-and-prepared-handoff-2026-09-12); the dated C9.05 evidence remains historical.
+
+### C9.07 cumulative closeout preparation
+
+The exact C9.06 final source was unchanged when C9.07 was selected. Both helper
+proofs and permanent consumers remain in that source. The
+[maintained chunk handoff](handoffs/chunk-9.md) separates actual earlier evidence
+from the required fresh clean-checkpoint suite, cumulative fixtures, file-mode
+doc-gen and full-chunk review. Safe component checks may support preparation;
+only the actual private completion record can establish C9.07 closure.
+
 ### Generated documentation and website checks
 
 Use:
 
 ```powershell
 python scripts/generate_v0_1_public_api.py --check
+python scripts/generate_current_public_api.py --check
 python scripts/generate_website_blueprint.py --check
 python scripts/generate_website_api_index.py --check
 python scripts/validate_release.py static
@@ -2132,13 +2325,15 @@ The separate, potentially multi-hour signature-documentation gate is:
 python scripts/validate_release.py api-docs
 ```
 
-Run it only for the approved manual release gate or focused local Step 11
-validation, not as an ordinary push/pull-request check. The static command above
+Run it for an explicitly selected API-documentation milestone, including C9.07,
+or the approved manual release gate, not as an ordinary push/pull-request check.
+C9.07 requires a fresh two-pass current file-mode result after the authorized
+clean checkpoint; set the pinned Windows `LEANINFOTHEORY_ZIG` prerequisite. The static command above
 checks the immutable documentation-tool pins and configuration without
 regenerating the 624.6-MiB output.
 
-The currently tracked pre-Step-4 generated artifacts record the historical
-Chunk 8 surface:
+The historical pre-release-Step-4 generated artifacts recorded the then-current
+Chunk 8 surface (these are not the current files):
 
 - 51 modules and 100 local import edges;
 - 11 root-reachable and 40 separately importable modules;
@@ -2153,13 +2348,15 @@ artifacts byte-for-byte on the second pass and rechecked counts, source links,
 unique anchors, module summaries, aggregate imports, root reachability, private
 helper exclusion, and website consistency.
 
-Steps 4--7 changed and then froze that source surface. The current source-
-derived website artifacts, which are distinct from Step 11 doc-gen, contain
-44 modules, 90 local edges, 5 root-reachable modules, 39 separate-import
-modules, and 716 declarations (715 documented plus one explicit example-only
-instance). The separate `v0.1.x` manifest records the 31 supported modules,
-601 supported declarations, 94 reviewed `simp` declarations, and 92 root
-exports.
+Steps 4--7 froze the historical release surface. After C9.06, the current
+source-derived website artifacts contain 46 modules, 94 local edges,
+5 root-reachable modules, 41 separate-import modules, and 718 declarations
+(717 documented plus one example-only instance). The current manifest records
+31 supported modules, 603 supported declarations, 94 reviewed simp declarations,
+and 92 facade exports. The frozen release manifest retains its 601 declarations.
+The current source index is distinct from signature-bearing doc-gen output;
+the new source invalidates old current-doc attestations. Real final-source
+two-pass doc-gen remains C9.07 work.
 Deployment status is checked from the Pages workflow after push rather than
 inferred from local content. The public site is:
 `https://serhatemrecoban.github.io/LeanInfoTheory/`.
@@ -2242,6 +2439,10 @@ inferred from local content. The public site is:
 - [Foundation conventions](foundation-conventions.md): stable mathematical and
   import conventions.
 - [Roadmap](roadmap.md): public near-, medium-, and long-term milestones.
+- [Downstream API feedback](downstream-api-feedback.md): canonical intake and
+  triage for deduplicated post-release discoverability evidence.
+- [Chunk 9 handoff](handoffs/chunk-9.md): delivered growth gates/helpers, exact
+  evidence references, pending cumulative closeout and remaining-work triggers.
 - [Chunk 5 plan](plans/chapter2-chunk-05.md): approved step contracts and
   implementation outcomes for the completed finite-Fano phase.
 - [Chunk 6 plan](plans/chapter2-chunk-06.md): approved finite-family,

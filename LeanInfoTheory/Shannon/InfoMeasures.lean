@@ -1117,6 +1117,29 @@ theorem mutualInfoOf_eq_entropyOf_sub_condEntropyOf_swap
     _ = entropyOf p Y - condEntropyOf p Y X :=
       mutualInfoOf_eq_entropyOf_sub_condEntropyOf p Y X
 
+/--
+Decompose `I(Y;Z)` through an auxiliary variable `X`.
+
+In canonical nats,
+`I(Y;Z) = H(Y|X) - I(X;Z|Y) - H(Y|(X,Z)) + I(X;Z)`,
+where `(X,Z)` is the ordered conditioning pair. The source type is arbitrary;
+only the three observed alphabets are finite.
+-/
+theorem mutualInfoOf_condEntropyOf_decomposition
+    {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
+    [Fintype alpha] [Fintype beta] [Fintype gamma]
+    (p : PMF omega) (X : omega → alpha) (Y : omega → beta) (Z : omega → gamma) :
+    mutualInfoOf p Y Z =
+      condEntropyOf p Y X - condMutualInfoOf p X Z Y -
+        condEntropyOf p Y (fun omega => (X omega, Z omega)) +
+        mutualInfoOf p X Z := by
+  simp only [mutualInfoOf_eq, condEntropyOf_eq, condMutualInfoOf_eq]
+  rw [jointEntropyOf_swap p X Y, jointEntropyOf_swap p Y Z,
+    jointEntropyOf_swap p (fun omega => (X omega, Z omega)) Y,
+    entropyOf_prodAssoc p X Z Y]
+  unfold jointEntropyOf
+  ring
+
 /-- A diagonal joint law has mutual information equal to its source entropy. -/
 @[simp]
 theorem mutualInfo_map_diag

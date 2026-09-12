@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate generated doc-gen4 output against the frozen v0.1 public API."""
+"""Validate generated doc-gen4 output against the exact current public API."""
 
 from __future__ import annotations
 
@@ -12,19 +12,22 @@ import sqlite3
 import subprocess
 import sys
 from dataclasses import dataclass, field
+from contextlib import closing
 from html.parser import HTMLParser
 from pathlib import Path, PurePosixPath
 from urllib.parse import unquote, urlsplit
 
 import generate_website_api_index as api_index
+import api_doc_identity
+import current_api
+from check_public_api_compatibility import strict_json
 
 
 ROOT = Path(__file__).resolve().parents[1]
 BUILD_ROOT = ROOT / "docbuild" / ".lake" / "build"
 DOC_ROOT = BUILD_ROOT / "doc"
 DOC_MANIFEST = BUILD_ROOT / "doc-manifest.json"
-PUBLIC_API = ROOT / "docs" / "v0.1-public-api.json"
-PUBLIC_API_SCHEMA = "lean-info-theory.public-api.v0.1.v1"
+DOC_CONFIG = BUILD_ROOT / "api-doc-build-config.json"
 REPOSITORY_URL = "https://github.com/serhatemrecoban/LeanInfoTheory"
 
 REQUIRED_OUTPUTS = (
@@ -75,6 +78,8 @@ class DeclarationBlock:
     classes: set[str]
     header_text: list[str] = field(default_factory=list)
     type_text: list[str] = field(default_factory=list)
+    doc_text: list[str] = field(default_factory=list)
+    attribute_text: list[str] = field(default_factory=list)
     source_href: str | None = None
 
 
@@ -89,6 +94,9 @@ class ModulePageParser(HTMLParser):
         self.header_depth: int | None = None
         self.type_depth: int | None = None
         self.source_depth: int | None = None
+        self.doc_depth: int | None = None
+        self.attribute_depth: int | None = None
+        self.header_finished = False
         self.declarations: dict[str, list[DeclarationBlock]] = {}
 
     @staticmethod
@@ -110,6 +118,7 @@ class ModulePageParser(HTMLParser):
         ):
             self.current = DeclarationBlock(attributes["id"], classes)
             self.declaration_depth = depth
+            self.header_finished = False
 
         if self.current is not None:
             if tag == "div" and "decl_header" in classes:
@@ -118,6 +127,15 @@ class ModulePageParser(HTMLParser):
                 self.type_depth = depth
             if tag == "div" and "gh_link" in classes:
                 self.source_depth = depth
+            if tag == "div" and "attributes" in classes:
+                self.attribute_depth = depth
+            # Pinned DocGen4/Output/Module.lean emits Markdown blocks directly
+            # after decl_header, before generated equations/instance details.
+            # Count only these direct blocks, never navigation or boilerplate.
+            if self.header_finished and depth == self.declaration_depth + 2 \
+                    and tag in {"p", "ul", "ol", "blockquote", "pre", "table",
+                                "h1", "h2", "h3", "h4", "h5", "h6"}:
+                self.doc_depth = depth
             if (
                 tag == "a"
                 and self.source_depth is not None
@@ -143,6 +161,10 @@ class ModulePageParser(HTMLParser):
             self.current.header_text.append(data)
         if self.type_depth is not None:
             self.current.type_text.append(data)
+        if self.doc_depth is not None:
+            self.current.doc_text.append(data)
+        if self.attribute_depth is not None:
+            self.current.attribute_text.append(data)
 
     def handle_endtag(self, tag: str) -> None:
         if not self.stack:
@@ -156,8 +178,16 @@ class ModulePageParser(HTMLParser):
             self.type_depth = None
         if self.header_depth == depth:
             self.header_depth = None
+            self.header_finished = True
+        if self.doc_depth == depth:
+            self.doc_depth = None
+        if self.attribute_depth == depth:
+            self.attribute_depth = None
         if self.source_depth == depth:
             self.source_depth = None
+            self.doc_depth = None
+            self.attribute_depth = None
+            self.header_finished = False
         if self.current is not None and self.declaration_depth == depth:
             self.declarations.setdefault(self.current.name, []).append(self.current)
             self.current = None
@@ -181,10 +211,7 @@ def module_source(module: str) -> str:
 
 
 def load_public_api() -> dict[str, object]:
-    data = json.loads(PUBLIC_API.read_text(encoding="utf-8"))
-    if data.get("schema") != PUBLIC_API_SCHEMA:
-        raise DocumentationError(f"unexpected public API schema: {data.get('schema')!r}")
-    return data
+    return current_api.load_current_manifest()
 
 
 def load_generated_manifest() -> set[str]:
@@ -300,7 +327,7 @@ def check_equations_disabled() -> None:
     if not database.is_file():
         raise DocumentationError(f"missing doc-gen database: {database.relative_to(ROOT)}")
     try:
-        with sqlite3.connect(f"file:{database.as_posix()}?mode=ro", uri=True) as connection:
+        with closing(sqlite3.connect(f"file:{database.as_posix()}?mode=ro", uri=True)) as connection:
             row = connection.execute("SELECT COUNT(*) FROM definition_equations").fetchone()
     except sqlite3.Error as exc:
         raise DocumentationError(f"could not inspect doc-gen equation policy: {exc}") from exc
@@ -314,6 +341,12 @@ def check_equations_disabled() -> None:
 
 def check_api_docs(source_mode: str) -> None:
     public_api = load_public_api()
+    configuration = strict_json(DOC_CONFIG.read_bytes())
+    if not isinstance(configuration, dict):
+        raise DocumentationError("API-doc build configuration must be an object")
+    api_doc_identity.verify_configuration(configuration)
+    if configuration.get("source_mode") != source_mode:
+        raise DocumentationError("requested source mode differs from API-doc build configuration")
     generated = load_generated_manifest()
     check_equations_disabled()
 
@@ -335,7 +368,7 @@ def check_api_docs(source_mode: str) -> None:
         missing = sorted(expected_pages - generated_local_pages)
         extra = sorted(generated_local_pages - expected_pages)
         raise DocumentationError(
-            "generated local module closure differs from the frozen supported closure: "
+            "generated local module closure differs from the current supported closure: "
             f"missing={missing}, extra={extra}"
         )
 
@@ -365,10 +398,17 @@ def check_api_docs(source_mode: str) -> None:
     pages = {module: parse_module_page(module_page(module)) for module in supported_modules}
     source_index = {decl.name: decl for decl in api_index.all_declarations()}
     declarations = list(public_api["declarations"])
-    if len(declarations) != 601:
-        raise DocumentationError(
-            f"expected 601 frozen declarations, found {len(declarations)}"
-        )
+    expected_by_module = {module: {entry["name"] for entry in declarations
+                                   if entry["module"] == module}
+                          for module in supported_modules}
+    for module, blocks_by_name in pages.items():
+        expected = expected_by_module[module]
+        actual = set(blocks_by_name)
+        if actual != expected:
+            raise DocumentationError(
+                f"{module}: generated declaration coverage differs from current inventory: "
+                f"missing={sorted(expected - actual)}, extra={sorted(actual - expected)}"
+            )
 
     head = git_head() if source_mode == "github" else None
     checked_names: set[str] = set()
@@ -393,6 +433,12 @@ def check_api_docs(source_mode: str) -> None:
             raise DocumentationError(f"{name}: incomplete rendered declaration header: {header!r}")
         if not rendered_type:
             raise DocumentationError(f"{name}: rendered declaration type is empty")
+        if not normalize_text(block.doc_text):
+            raise DocumentationError(f"{name}: rendered declaration docstring is empty")
+        attributes = normalize_text(block.attribute_text)
+        rendered_simp = bool(re.search(r"(?:@\[|,)\s*simp(?:\s*[,\]]|\s+)", attributes))
+        if rendered_simp != ("simp" in declaration["attributes"]):
+            raise DocumentationError(f"{name}: rendered simp membership differs from current reviewed inventory")
         source = source_index.get(name)
         if source is None or source.module != module:
             raise DocumentationError(f"{name}: source inventory owner differs from {module}")
@@ -406,13 +452,11 @@ def check_api_docs(source_mode: str) -> None:
         )
 
     exports = list(public_api["root_exports"])
-    if len(exports) != 92:
-        raise DocumentationError(f"expected 92 root exports, found {len(exports)}")
     for export in exports:
         alias = str(export["alias"])
         target = str(export["target"])
         if target not in checked_names:
-            raise DocumentationError(f"{alias}: export target is outside the frozen API: {target}")
+            raise DocumentationError(f"{alias}: export target is outside the current API: {target}")
         target_module = str(next(item["module"] for item in declarations if item["name"] == target))
         if len(pages[target_module].get(target, [])) != 1:
             raise DocumentationError(f"{alias}: canonical target has no generated anchor: {target}")
@@ -445,11 +489,19 @@ def check_api_docs(source_mode: str) -> None:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-mode", choices=("file", "github"), required=True)
+    parser.add_argument("--build-root", type=Path,
+                        help="inspect this build directory directly (also used by isolated HTML fixtures)")
     return parser.parse_args()
 
 
 def main() -> int:
+    global BUILD_ROOT, DOC_ROOT, DOC_MANIFEST, DOC_CONFIG
     args = parse_args()
+    if args.build_root is not None:
+        BUILD_ROOT = args.build_root.resolve(strict=True)
+        DOC_ROOT = BUILD_ROOT / "doc"
+        DOC_MANIFEST = BUILD_ROOT / "doc-manifest.json"
+        DOC_CONFIG = BUILD_ROOT / "api-doc-build-config.json"
     try:
         check_api_docs(args.source_mode)
     except (DocumentationError, OSError, ValueError, json.JSONDecodeError) as exc:

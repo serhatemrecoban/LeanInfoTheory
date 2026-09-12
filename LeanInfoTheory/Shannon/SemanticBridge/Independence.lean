@@ -18,7 +18,9 @@ import Mathlib.Probability.Independence.Basic
 This file introduces PMF-first independence predicates for the finite Shannon
 API. A joint law is independent when it equals the independent product of its
 marginals; random-variable independence applies that predicate to the mapped
-joint law. The file characterizes zero finite mutual information by these
+joint law. Deterministic processing of either variable preserves independence,
+with the right-processing theorem and existing symmetry covering both sides.
+The file characterizes zero finite mutual information by these
 predicates, closes the pair-level entropy equality cases governed by
 independence, and develops conditional independence through a proof-independent
 cross-product definition, its positive-fiber characterization, and the
@@ -207,6 +209,23 @@ theorem isIndependentOf_iff_map_eq_indepProd
       p.map (fun omega => (X omega, Y omega)) =
         indepProd (p.map X) (p.map Y) := by
   simp [IsIndependentOf, IsIndependent]
+
+/--
+Deterministic processing of the right variable preserves independence.
+
+The source and observed types are arbitrary: the PMF mapped-law proof needs no
+finiteness, measurable-space, or injectivity assumptions on the processing map.
+-/
+theorem isIndependentOf_comp_right
+    {omega : Type u} {alpha : Type v} {beta : Type w} {gamma : Type x}
+    (p : PMF omega) (X : omega → alpha) (Y : omega → beta)
+    (f : beta → gamma) (hXY : IsIndependentOf p X Y) :
+    IsIndependentOf p X (fun omega => f (Y omega)) := by
+  rw [isIndependentOf_iff_map_eq_indepProd] at hXY ⊢
+  simpa only [indepProd, PMF.map_bind, PMF.map_comp, Function.comp_def] using
+    congrArg
+      (fun q : PMF (alpha × beta) => q.map (fun z => (z.1, f z.2)))
+      hXY
 
 /--
 The PMF mapped-law definition of random-variable independence agrees with

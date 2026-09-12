@@ -87,12 +87,39 @@ to an approved plan.
 - Reuse mathlib and existing project declarations before creating local
   alternatives. Search the pinned mathlib version when upstream ownership is
   plausible.
+- Design the API for predictable discovery through consistent theorem
+  families, stable vocabulary, focused ownership, generated documentation,
+  and standard Lean search. Before adding or reproving a result, search
+  proportionately in the source, generated index/API docs, likely focused or
+  umbrella modules, pinned mathlib, and available tools such as `#check`,
+  `#print`, `exact?`, `apply?`, `#loogle`, or `#search`. Verify candidates with
+  a check, print, or small compiling probe; do not add a production dependency
+  or custom search system merely to obtain theorem search.
+- Treat the [`v0.1.x` public API contract](docs/v0.1-public-api.md) and its
+  frozen manifest as the historical compatibility baseline. Use
+  `docs/current-public-api.json` for exact current coverage and
+  `docs/compatibility/current-api-policy.json` for separately reviewed growth
+  approvals; generated inventory never supplies approval. A `0.1.x` patch must
+  not remove or rename supported declarations or silently change their
+  signatures, assumptions, semantics, root exports, reviewed attributes, or
+  import boundaries. Compatible additions are allowed; a necessary breaking
+  change requires an explicit migration decision and a later minor release.
+  Compare proposals with the manifest and review naming, assumptions,
+  ownership, imports, documentation, and downstream effect.
 - Keep one-off proof machinery private or local. Promote helpers, aliases,
   symmetric variants, structures, and abstractions only after real production
   or consumer pressure.
-- Preserve correct public names during active theorem work. Record unusually
-  long, hard-to-discover, or representation-exposing names in Future Work Note
-  14 and make compatibility-preserving alias decisions at planned API reviews.
+- Preserve the released naming vocabulary where applicable: PMF-facing versus
+  random-variable-facing `...`/`...Of`, `fst`/`snd` rather than
+  `first`/`second`, established `cond`, `mutualInfo`, and `condMutualInfo`
+  abbreviations, conventional `_eq_`, `_iff_`, `_le_`, `_nonneg`, and
+  `_chain_rule` forms, and explicit map or argument orientation where symmetry
+  would be ambiguous. Preserve supported names during active theorem work.
+  Future Work Note 14 remains the theorem-development naming/alias watchlist;
+  record newly added awkward names there and deduplicated downstream search
+  friction in
+  [`docs/downstream-api-feedback.md`](docs/downstream-api-feedback.md). Add
+  aliases only after evidence-based review.
 - Keep chain rules, symmetry, and representation-changing identities explicit
   unless a reviewed, terminating `[simp]` policy justifies an attribute.
 - Do not add certificate representations, parsers, checking DSLs, adapters, or
@@ -121,13 +148,23 @@ to an approved plan.
 - Each implementation prompt addresses one approved step. Complete and validate
   that step, report its result, and stop.
 - Do not begin a later step automatically.
-- If a discovery invalidates or materially changes later steps, stop for a
-  plan-health review rather than continuing against a stale plan.
+- If discoveries affect later steps, review plan health. Resolve justified
+  in-scope proof or advisory-plan adjustments with evidence and updated notes;
+  ask the lead before changing mathematical meaning, required scope, important
+  public contracts, acceptance policy, or dependency pins.
 - Record deferred ideas and proof-pressure triggers without pulling them into
   the active step.
 - Chunk completion requires an independent validation pass against its approved
   completion criteria, including builds, architecture, API, documentation, and
   repository hygiene as applicable.
+- For explicit **with review** or plan-review requests, follow
+  [`docs/review-protocol.md`](docs/review-protocol.md) and
+  [`docs/review-operations.md`](docs/review-operations.md). The implementation
+  task uses native tools and its own persistent chunk reviewer; ordinary
+  discussion, inspection, and reviewer work do not recursively invoke it.
+  Private `.lit-review/` records are durable state, not cleanup scratch. One
+  eligible message selects one approved step; reserve the final step for
+  cumulative closeout and a maintained next-chunk handoff before final capture.
 
 ## Canonical-document ownership
 
@@ -192,8 +229,9 @@ text to LF so Lake manifests remain byte-stable in ordinary Windows checkouts.
 The default command runs non-mutating generated-artifact checks, the default
 Lake build, the eight-target warning-as-error build, independently compiles all
 marked README Lean examples with warnings as errors, checks exact direct-import
-closures for all supported modules, audits the frozen public API/root exports
-and reviewed `simp` set, runs the full project axiom audit, checks exact
+closures for all current supported modules, rebuilds and compares retained
+signatures/imports/root exports against the release contract, audits exact current
+inventory/owners and reviewed `simp` sets, runs the full project axiom audit, checks exact
 package/preliminary legal and release-documentation metadata, checks the
 website, and performs final repository hygiene. It is the routine suite and
 deliberately does not run the full signature-bearing API-documentation build.
@@ -220,8 +258,14 @@ only from a clean exact-commit checkout. Ordinary push and pull-request CI do
 not run this expensive gate; it is a separate conditional `workflow_dispatch`
 job after the routine gates.
 
-After a successful file-mode API-doc gate, assemble and check the ignored local
-website preview with:
+Inspect current file-mode API-doc output directly in
+`docbuild/.lake/build/doc/`. Its v2 configuration and two-pass attestation include
+the exact current manifest/contract and source-content fingerprint; signature,
+body and docstring edits invalidate old evidence even when names/counts do not
+change. Source-content changes preserve incremental caches; link-mode changes
+invalidate mode-sensitive output. Current output is refused before copying to the
+historical `v0.1.0` route. Only an exact release checkout's historical file-mode
+output can use this local website preview procedure:
 
 ```powershell
 python scripts/stage_website.py preview
@@ -241,24 +285,33 @@ and its `publish` input must remain false unless the user has explicitly
 approved publication.
 
 After approved public declarations or imports change, deliberately regenerate
-the versioned public-API manifest and source-derived website artifacts, then
+the current public-API manifest and source-derived website artifacts, then
 run the non-mutating static gate before the complete suite:
 
 ```powershell
-python scripts/generate_v0_1_public_api.py
+python scripts/generate_current_public_api.py
+python scripts/generate_v0_1_public_api.py --check
 python scripts/generate_website_blueprint.py
 python scripts/generate_website_api_index.py
 python scripts/validate_release.py static
 ```
 
-The two website generators and the public-API generator all support `--check`
+The two website generators and the current public-API generator support `--check`
 without modifying an intentionally dirty tree. The validator checks each
 generated artifact twice, preserves permanent mathematical examples as the
 primary consumers, and uses generated Lean environment probes only for
 architecture and trust regression. Delete disposable proof spikes before a
 milestone report. The generated module graph is module-level, the declaration
-index is not full Lean doc-gen, and the `v0.1` manifest does not enforce
-same-name signature fingerprints. The separate generated API pages render the
+index is not full Lean doc-gen. Preserve the frozen `v0.1` manifest; its old
+generator entry point now verifies historical identity without writing in either
+mode. C9.01 retains historical types in a separate
+[compatibility artifact](docs/compatibility/README.md). The standalone
+`compatibility` command rebuilds its own input; `trust` and the default suite
+include it and retain exact current environment/import/attribute and all-project
+axiom checks. `static` checks current source inventory and reviewed policy without
+claiming compiled compatibility. The source index labels its links as current
+development; maintenance staging pins unversioned source links to its site commit.
+The separate generated API pages render the
 current elaborated types and validate declaration coverage, but do not by
 themselves freeze those types. Do not overclaim any of these artifacts.
 

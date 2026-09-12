@@ -1238,19 +1238,26 @@ class WebsiteValidator:
                 self.error(message)
 
     def validate_text_safety(self, relative: str, source: str) -> None:
+        development_index = self.mode == "source" and relative == "docs/api-index.html"
         if FILE_URL_LITERAL_RE.search(source):
             self.error(f"{relative}: contains a local file URL")
         if MACHINE_LOCAL_PATH_RE.search(source):
             self.error(f"{relative}: contains a machine-local filesystem path")
-        if MUTABLE_GITHUB_RE.search(source):
+        if MUTABLE_GITHUB_RE.search(source) and not development_index:
             self.error(f"{relative}: contains a mutable GitHub source link")
         try:
             project_links = list(project_blob_links(source))
         except ValueError as exc:
             self.error(f"{relative}: contains an unsafe GitHub URL: {exc}")
             return
-        if any(ref.casefold() in {"master", "main", "head"} for ref, _ in project_links):
+        if any(ref.casefold() in {"master", "main", "head"}
+               and not (development_index and ref == "master"
+                        and (path == "LeanInfoTheory.lean" or path.startswith("LeanInfoTheory/"))
+                        and path.endswith(".lean"))
+               for ref, path in project_links):
             self.error(f"{relative}: contains a mutable GitHub source link")
+        if development_index and "Source links target current" not in source:
+            self.error(f"{relative}: current development source links need their explicit context")
         if self.mode == "publishable":
             assert self.metadata is not None
             for ref, project_path in project_links:

@@ -1,6 +1,6 @@
 # API documentation build
 
-LeanInfoTheory's release API documentation is generated from the elaborated
+LeanInfoTheory's current and historical API documentation is generated from the elaborated
 Lean environment with [`doc-gen4`](https://github.com/leanprover/doc-gen4).
 The build is deliberately separate from the library package: downstream users
 still acquire only LeanInfoTheory and its pinned mathlib dependency.
@@ -36,24 +36,24 @@ The command builds the exact module facet
 `+LeanInfoTheory.Shannon:docs` twice and checks byte stability of the relevant
 output across the incremental pass. It requires:
 
-- exactly the 31 supported local module pages in the full Shannon closure;
-- all 601 supported project declarations, each exactly once, with a rendered
-  declaration header and nonempty type;
+- exactly the supported local module pages in the current full Shannon closure;
+- every current supported project declaration exactly once, with a rendered
+  declaration header, nonempty type and docstring, and reviewed simp markup;
 - source ownership consistent with the source-derived inventory;
-- all 92 lightweight-root exports to resolve to documented canonical targets;
+- every reviewed lightweight-root export to have its documented canonical target;
 - no `sorried` declaration block in a supported local page;
-- exclusion of all 13 non-stable `Basic`, example, and reference modules;
+- exclusion of every current non-stable `Basic`, example, and reference module;
 - the standard doc-gen runtime/search assets named by the checker; and
 - zero rows in doc-gen4's optional definition-equation table.
 
 The 92 `LeanInfoTheory.*` convenience exports do not receive independent
 doc-gen declaration blocks because Lean `export` commands do not create new
 environment constants. The exact export table in
-[`v0.1-public-api.json`](v0.1-public-api.json) and the generated page for each
+[`current-public-api.json`](current-public-api.json) and the generated page for each
 canonical target jointly document that façade.
 
 Doc-gen also emits documentation for imported Lean, Lake, Std, and mathlib
-modules. Those dependency pages are not part of the 31-module LeanInfoTheory
+modules. Those dependency pages are not part of the current LeanInfoTheory
 support claim. Likewise, doc generation is not the proof-completeness gate:
 the maintained source, build, axiom, and placeholder checks remain
 authoritative because doc-gen can technically render declarations that use
@@ -65,12 +65,17 @@ headers, types, documentation text, source links, or direct `sorried` markers.
 Equation rows are outside the v0.1 documentation contract, and the checker
 requires their count to be exactly zero.
 
-The versioned public-API manifest records declaration names, kinds, owners,
-attributes, and exports, but it does not contain type/signature fingerprints.
-The generated pages therefore show and validate nonempty signatures for the
-current elaborated tree without creating a committed type fingerprint or
-independently freezing signatures. Signature and assumption changes remain
-governed by the compatibility policy and explicit API review.
+The current manifest is schema-validated by exact comparison with a fresh
+source-derived generation; the checker also validates the separately reviewed
+growth policy. Regeneration cannot approve new imports or attributes. Current
+coverage has no historical count ceiling. The 31/601/92/13 counts remain exact
+for the historical `v0.1.0` route, whose frozen manifest is unchanged.
+
+The generated pages document elaborated signatures. The separate
+[retained structural contract](compatibility/README.md) protects released
+signatures and assumptions; neither rendered HTML nor equal type fingerprints
+establish unchanged definition bodies or mathematical semantics. Source review
+and the maintained trust/consumer checks remain necessary.
 
 ### Windows native-build prerequisite
 
@@ -113,7 +118,8 @@ and the forwarding helper is compiled through the docbuild-scoped Lean
 The maintained command always chooses a source mode explicitly:
 
 - With `DOCGEN_SRC` unset, it uses `file` links. This is the development and
-  local-preview mode; its output is local and must not be published.
+  local-inspection mode; its output is local and must not be published. Inspect
+  current output directly under `docbuild/.lake/build/doc/`.
 - With `DOCGEN_SRC=github`, it requires a completely clean checkout and checks
   every project declaration link against the repository's exact 40-character
   `HEAD`, source path, and a valid bounded line range containing the exact
@@ -123,19 +129,48 @@ The maintained command always chooses a source mode explicitly:
   `main`, and `HEAD` are rejected. In `file` mode every link must resolve to
   the exact local source file.
 
-The build records its doc-gen, Lean, mathlib, source-mode/source-identity, and
-equation configuration. If that stamp changes, the validator invalidates only
-the mode-sensitive documentation database, data, manifest, and HTML before
-rebuilding, rather than reusing links from a prior configuration. On Windows,
+The v2 build configuration records doc-gen, Lean, mathlib, source mode/identity,
+equation policy, and `api_identity` from `scripts/api_doc_identity.py`.
+That identity binds raw current-manifest and retained-contract bytes, frozen
+baseline identity, all local Lean source (including bodies and docstrings), root
+and nested build configuration/locks, the documentation shim, and the explicitly
+listed checker/generator/compatibility inputs. It records every fingerprint input
+and verifies the installed pinned documentation Git dependencies. A local checkout
+path alone is not a content identity.
+
+The checker revalidates this identity against the current source before using
+the output. The two-pass attestation repeats the configuration; the validator
+checks source/configuration/dependency equality again before issuing it. Signature,
+body or docstring changes invalidate stale evidence even with unchanged manifest
+entries. Source-content changes invalidate the attestation/configuration stamp
+while retaining incremental build caches. Source-link mode, equation or compiler
+configuration changes invalidate the generated mode-sensitive database, data,
+manifest and HTML. On Windows,
 the pinned Zig and docbuild-scoped Lean prerequisites are checked before that
 targeted invalidation, so a missing or invalid prerequisite does not discard a
-valid prior documentation output.
+valid prior documentation output. A failed rebuild leaves no success attestation.
 
 The release-candidate gate runs GitHub mode from a clean exact commit. Tag
 publication and live-link verification remain explicitly approved publication
 and post-publication work.
 
+## C9 current milestone preparation
+
+Current source has 603 documented declarations across 31 supported module
+pages, with 92 canonical export targets and 15 excluded non-stable modules.
+These are current inventory expectations, not a claim that fresh HTML has been
+built. C9.07 requires the real two-pass file-mode gate, verification of both new
+theorem signatures and the current v2 source-content attestation, alongside its
+separately authorized clean checkpoint, complete routine suite, full fixture
+matrix and cumulative independent review. Those checks and closure remain
+pending in the [maintained handoff](handoffs/chunk-9.md). Synthetic HTML fixtures
+and previous release output do not supply this current milestone evidence.
+Do not stage growing output under `/docs/v0.1.0/`.
+
 ## Verified local result and cost
+
+The following measurements describe historical release-preparation output;
+they do not validate the current C9 source.
 
 The completed Step 11 file-mode run produced 31 supported LeanInfoTheory module
 pages, 601 rendered-signature declarations, 92 resolved canonical export
@@ -176,7 +211,16 @@ Generated output is intentionally ignored under:
 docbuild/.lake/build/doc/
 ```
 
-The raw doc-gen tree is an input, not the website artifact. Step 12 added
+Current v2 docbuild output is for direct inspection and is refused before any
+copy into `/docs/v0.1.0/`, even while its names and counts still equal the release.
+Legacy v1 preview is accepted only with an exact, clean release checkout and
+matching local source identity. A new published current API route is outside C9.
+The unversioned declaration index labels its `master` source links as current
+development and warns that dirty local lines may differ. Maintenance staging
+rebinds those links to its exact site commit; publishable checks still reject
+mutable source links.
+
+The historical raw doc-gen tree was an input, not the website artifact. Step 12 added
 [`stage_website.py`](../scripts/stage_website.py), which assembles the tracked
 site and the generated reference under the Pages-shaped project subpath
 `.lake/website-stage/LeanInfoTheory/`. Preview mode requires the checked
@@ -189,7 +233,7 @@ unverified branch links.
 Staging also requires `api-doc-build-attestation.json`. The API-doc gate removes
 any previous attestation before it starts and writes a replacement only after
 both checked passes, repository-state preservation, and digest equality have
-succeeded. The current attestation binds all 5,521 copied input files to
+succeeded. That historical attestation bound all 5,521 copied input files to
 SHA-256 `838335fb72d891ad9e6dd090e1556ed225c13b1408b754ed8a8da32f12b34fbe`
 and records the supported-surface digest
 `fa46bbc0de9359ea1e14e79d9e3bce9ac425f33cb2e9efb54086a4e28d6730fe`.
@@ -204,7 +248,8 @@ route back from every generated page. The tracked route contains an explicit
 placeholder so the checked source tree never pretends to contain the ignored
 624.6 MiB artifact.
 
-Assemble and validate the local preview after a successful documentation build:
+For an exact historical release checkout only, assemble and validate its local
+preview after a successful historical documentation build:
 
 ```powershell
 python scripts/stage_website.py preview

@@ -6,8 +6,8 @@
     "Semantic bridge layer",
     "Non-stable anchors"
   ],
-  "local_edge_count": 90,
-  "module_count": 44,
+  "local_edge_count": 94,
+  "module_count": 46,
   "modules": [
     {
       "external_imports": [],
@@ -174,7 +174,7 @@
       "name": "LeanInfoTheory.Shannon.InfoMeasures",
       "path": "LeanInfoTheory/Shannon/InfoMeasures.lean",
       "root_reachable": true,
-      "summary": "Marginals, conditional entropy, mutual information, conditional mutual information, and orientation lemmas."
+      "summary": "Marginals, conditional entropy, mutual information, conditional mutual information, orientation lemmas, and the auxiliary-variable information decomposition."
     },
     {
       "external_imports": [
@@ -343,7 +343,7 @@
       "name": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
       "path": "LeanInfoTheory/Shannon/SemanticBridge/Independence.lean",
       "root_reachable": false,
-      "summary": "PMF-first ordinary/conditional independence, zero MI/CMI, and entropy equality cases."
+      "summary": "PMF-first ordinary/conditional independence, arbitrary-type deterministic postprocessing, zero MI/CMI, and entropy equality cases."
     },
     {
       "external_imports": [
@@ -439,6 +439,8 @@
         "LeanInfoTheory.Examples.Convexity",
         "LeanInfoTheory.Examples.Fano",
         "LeanInfoTheory.Examples.FiniteFamily",
+        "LeanInfoTheory.Examples.IndependenceProcessing",
+        "LeanInfoTheory.Examples.InformationDecomposition",
         "LeanInfoTheory.Examples.KLTop",
         "LeanInfoTheory.Examples.StochasticChannels",
         "LeanInfoTheory.Examples.SufficientStatistics",
@@ -448,7 +450,7 @@
       "name": "LeanInfoTheory.Examples",
       "path": "LeanInfoTheory/Examples.lean",
       "root_reachable": false,
-      "summary": "Non-stable aggregate for maintained conditional-KL, convexity, finite-family, support-sensitive, Markov, channel, sufficiency, Fano, and units regression consumers."
+      "summary": "Non-stable aggregate for maintained conditional-KL, convexity, finite-family, independence-processing, information-decomposition, support-sensitive, Markov, channel, sufficiency, Fano, and units regression consumers."
     },
     {
       "external_imports": [],
@@ -508,6 +510,28 @@
       "path": "LeanInfoTheory/Examples/FiniteFamily.lean",
       "root_reachable": false,
       "summary": "Homogeneous and dependent-alphabet finite-family examples covering conditional-MI chains, product laws, and pairwise-but-not-mutual independence."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.Independence"
+      ],
+      "name": "LeanInfoTheory.Examples.IndependenceProcessing",
+      "path": "LeanInfoTheory/Examples/IndependenceProcessing.lean",
+      "root_reachable": false,
+      "summary": "Private arbitrary-PMF consumers for non-injective and constant independence postprocessing, infinite types, symmetry, and finite zero mutual information."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.InfoMeasures"
+      ],
+      "name": "LeanInfoTheory.Examples.InformationDecomposition",
+      "path": "LeanInfoTheory/Examples/InformationDecomposition.lean",
+      "root_reachable": false,
+      "summary": "Private lightweight consumers for the auxiliary-variable MI decomposition, algebraic zero terms, singleton variables, and sparse joint laws."
     },
     {
       "external_imports": [],
@@ -586,5 +610,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 5,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 39
+  "separate_import_count": 41
 }

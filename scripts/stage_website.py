@@ -362,6 +362,11 @@ def validate_inputs(
         require_unredirected_tree(path, label="staging input")
 
     config = load_json(DOC_CONFIG)
+    if config.get("schema") == "lean-info-theory.api-doc-build-config.v2":
+        raise StagingError(
+            "current API documentation cannot be staged under frozen v0.1.0; "
+            "inspect the current file-linked docbuild output directly"
+        )
     expected_config = {
         "schema": "lean-info-theory.api-doc-build-config.v1",
         "docgen_revision": DOCGEN_REVISION,
@@ -380,6 +385,14 @@ def validate_inputs(
             raise StagingError(
                 f"preview mode requires file-mode doc-gen output, found {source_mode!r}"
             )
+        # A legacy path-only stamp cannot establish that current same-count
+        # source still describes the release. Only the clean exact historical
+        # source checkout may reuse this legacy frozen-preview route.
+        require_clean_checkout(ROOT, label="historical preview")
+        if exact_commit(ROOT) != VERSION_SOURCE_COMMIT:
+            raise StagingError("legacy preview requires the exact immutable v0.1.0 source checkout")
+        if config.get("source_identity") != str(ROOT.resolve()):
+            raise StagingError("legacy preview source identity does not match this historical checkout")
         return config, None, validate_attestation(
             config, doc_source=DOC_SOURCE, attestation_path=DOC_ATTESTATION
         )

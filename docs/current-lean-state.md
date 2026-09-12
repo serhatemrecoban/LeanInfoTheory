@@ -1,5 +1,26 @@
 # Current Lean State
 
+## Current C9 closeout preparation
+
+C9.01--C9.06 completed independent review, reconciliation and durable private
+closure. The current C9.07 request passed exact predecessor-source and step-order
+checks. C9.07 is open for cumulative closeout preparation. Both selected helpers
+and their private permanent consumers are present: current coverage is 603
+supported declarations in 31 modules, with 94 simp declarations and 92 facade
+aliases unchanged. The frozen release retains 601 declarations.
+
+The [maintained C9 handoff](handoffs/chunk-9.md) records delivered APIs, imports,
+source/review references, validation commands and remaining-work dispositions.
+C9.06's accepted report satisfied all three criteria; its two nonmaterial process
+findings were reconciled with final-source disclosure/impact evidence. Historical
+dispatch-order and reviewer read-only noncompliance remain explicitly recorded.
+
+C9.07's separately authorized clean checkpoint, complete routine suite, fresh
+cumulative fixture matrix, current two-pass file-mode doc-gen and fresh full-chunk
+independent review remain pending. Earlier component passes are dated evidence,
+not substitutes for these gates. Closure remains subject to the private completion
+record. C10 and later chunks remain proposed and require separate authorization.
+
 ## `v0.1.0` released state
 
 LeanInfoTheory `v0.1.0` was published on 2026-09-01 from exact commit
@@ -2049,12 +2070,18 @@ If Lean declarations or imports change, also refresh and check the website
 reference artifacts:
 
 ```powershell
-python scripts/generate_v0_1_public_api.py
+python scripts/generate_current_public_api.py
+python scripts/generate_v0_1_public_api.py --check
 python scripts/generate_website_blueprint.py
 python scripts/generate_website_api_index.py
-python scripts/validate_release.py
+python scripts/validate_release.py static
 ```
 
-The release validator checks all five generated artifacts non-mutatingly,
+The historical generator now verifies frozen identity without writing; see the
+[historical/current artifact instructions](compatibility/README.md). Run the
+complete `python scripts/validate_release.py` suite after an authorized clean
+checkpoint, as required by `AGENTS.md`.
+
+The release validator checks generated artifacts non-mutatingly,
 alongside the maintained builds, frozen API and import boundaries, proof
 dependencies, website, and repository hygiene.

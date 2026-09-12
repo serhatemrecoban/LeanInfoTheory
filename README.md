@@ -36,7 +36,7 @@ all-versions DOI is
 default-branch citation metadata records the issued version DOI without moving
 the tag.
 
-The supported `0.1.x` surface contains 31 modules, 601 documented
+The released `v0.1.0` surface contains 31 modules, 601 documented
 project-owned declarations, 92 lightweight-root exports, and 94 reviewed
 `simp` declarations. Maintained release validation rejects proof placeholders
 and permits only `propext`, `Classical.choice`, and `Quot.sound` as axioms.
@@ -44,6 +44,21 @@ Signature-bearing API documentation covers all 601 supported declarations at
 the versioned `/docs/v0.1.0/` route, with source links bound to the exact
 release commit. The release process also validates a clean exact checkout and
 a minimal external Lake consumer.
+
+Current development coverage is 603 documented declarations in 31 supported
+modules, with 94 reviewed `simp` declarations and 92 root aliases, recorded in
+[`docs/current-public-api.json`](docs/current-public-api.json). C9 added exactly
+`Shannon.isIndependentOf_comp_right` in focused Independence and
+`Shannon.mutualInfoOf_condEntropyOf_decomposition` in lightweight InfoMeasures,
+with private permanent consumers. C9.07 cumulative closeout is in preparation;
+the [maintained handoff](docs/handoffs/chunk-9.md) records its pending clean
+checkpoint, complete routine suite, full fixtures, real current doc-gen,
+independent review and closure. Compatible additions may extend coverage;
+the released counts and
+[`frozen manifest`](docs/v0.1-public-api.json) remain historical. Current
+validation compares retained signatures and reviewed boundaries independently
+from exact current inventory, imports, attributes, documentation and trust.
+See the [compatibility checks](docs/compatibility/README.md) for their limits.
 
 See the [release roadmap](docs/roadmap.md), the
 [current Lean state](docs/current-lean-state.md), and the
@@ -190,7 +205,8 @@ Focused semantic submodules remain supported imports when the full bridge is
 unnecessary. The exact supported list and every frozen project-owned
 declaration are recorded in the
 [`v0.1.x` public API contract](docs/v0.1-public-api.md) and its
-[machine-readable manifest](docs/v0.1-public-api.json).
+[frozen release manifest](docs/v0.1-public-api.json). The
+[current manifest](docs/current-public-api.json) records development coverage.
 
 `LeanInfoTheory.Basic`, `LeanInfoTheory.MathlibFragments`, and the
 `LeanInfoTheory.Examples` hierarchy are maintained development, reference, and
@@ -289,8 +305,9 @@ aggregate builds all maintained examples. The
 and semantic choices. The source-derived
 [declaration index](home_page/docs/api-index.html) remains a lightweight
 supplement. The separate [signature-bearing API documentation
-gate](docs/api-documentation.md) renders the complete supported surface at the
-stable versioned route. The supporting website is
+gate](docs/api-documentation.md) renders the current supported surface for local
+inspection. The published `/docs/v0.1.0/` route remains bound to the released
+601-declaration source. The supporting website is
 <https://serhatemrecoban.github.io/LeanInfoTheory/>.
 
 ## Reproducing maintained builds
@@ -308,7 +325,7 @@ python scripts/validate_release.py
 
 The validator runs the default build and the eight-target warning-as-error
 build, compiles every marked README example independently, verifies every
-supported direct-import closure, checks the frozen API, root exports, `simp`
+supported direct-import closure, checks the retained API, root exports, `simp`
 surface, and approved axiom allowlist, scans for proof placeholders and
 implementation shortcuts, checks generated artifacts and the website twice,
 and finishes with strict repository hygiene. Run it from a clean checkout: it
@@ -317,12 +334,19 @@ checkout policy keeps Lake manifests byte-stable on Windows as well as Unix.
 This routine suite deliberately excludes the much heavier signature-bearing
 documentation build.
 
+On the development branch, `static` checks the exact generated current inventory
+and reviewed growth policy, while `trust` also runs standalone retained
+compatibility and audits every compiled project constant, including private and
+non-stable code. Regeneration cannot approve an import or attribute change.
+
 Useful focused commands are:
 
 ```sh
 python scripts/validate_release.py documentation
 python scripts/validate_release.py focused LeanInfoTheory.Shannon.FiniteFamily
 python scripts/validate_release.py static
+python scripts/validate_release.py compatibility
+python scripts/validate_release.py trust
 ```
 
 At release and documentation milestones, run the separate API-documentation
@@ -336,9 +360,13 @@ Linux uses a system `cc`. On Windows this command requires the exact reviewed
 `zig.exe` from the official Zig 0.16.0 x86_64 archive, supplied through
 `LEANINFOTHEORY_ZIG`; the validator checks both its version and SHA-256. This is
 a build-only prerequisite, not a LeanInfoTheory dependency. The command defaults
-to local `file:` source links, so its raw output is not publishable. The staging
-tool removes those links for a clearly marked local preview; it does not turn
-that preview into a release artifact. A clean exact-commit release reproduction
+to local `file:` source links, so its raw output is not publishable. Inspect
+current development output directly under `docbuild/.lake/build/doc/`.
+Its source-content attestation is invalidated by signature, body or docstring
+changes even if the current manifest is unchanged. Current output cannot be
+staged as `/docs/v0.1.0/`; historical preview/release staging requires the exact
+release source, and maintenance combines a separately validated frozen route.
+A clean exact-commit release reproduction
 instead sets `DOCGEN_SRC=github`. See the
 [API-documentation build contract](docs/api-documentation.md) for the exact
 compiler hash, source-link rules, output boundary, and measured cost.

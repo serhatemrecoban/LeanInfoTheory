@@ -13,13 +13,13 @@ all-versions DOI is
 certificate subsystem is assigned downstream and removed from the `v0.1.0`
 library surface, the public import architecture normalized, and the nats-first
 scalar units API documented with maintained conversion consumers.
-The `v0.1.x` public surface is frozen at 31 supported modules, 601
-project-owned declarations, 92 lightweight-root exports, and 94 reviewed
-`simp` declarations; all 13 development, example, and reference anchors remain
-non-stable.
-The verified mathematical source inventory is 44 modules, 90 local edges, 5
-root-reachable modules, 39 separate-import modules, and 716 declarations. Public API
-curation changed no Lean source. The maintained trust and CI gates and the
+The released `v0.1.0` compatibility baseline contains 31 supported modules,
+601 project-owned declarations, 92 lightweight-root exports and 94 reviewed
+`simp` declarations; its 13 development, example and reference anchors were
+non-stable. Its historical source inventory was 44 modules, 90 local edges,
+5 root-reachable modules, 39 separate-import modules and 716 declarations.
+Release API curation changed no Lean source. These historical counts are not
+current-development ceilings. The maintained trust and CI gates and the
 toolchain-fixed package/preliminary legal metadata are locally validated;
 release-facing installation, import, scope, units, limitations, compatibility,
 and final versioned release documentation is in place, and five exact README examples
@@ -39,8 +39,45 @@ tag/Release workflow in safety-only commit `81ffef3`; `f0d06df` is the
 intermediate reconciliation point. The guarded Pages replacement is manual-only
 and cannot deploy on branch push. Exact-candidate qualification, independent
 review, explicit publication approval, archival verification, structured EPFL
-`RightsHolder` metadata, and post-release DOI propagation are complete. No
-later mathematical phase has been selected.
+`RightsHolder` metadata, and post-release DOI propagation are complete.
+The separately approved [C9 plan](plans/post-release-chunk-09.md) has delivered
+growth-aware validation and exactly two generic helpers through closed steps
+C9.01--C9.06. Current source contains 603 documented supported declarations in
+31 owners, 94 reviewed simp declarations and 92 root aliases; its generated
+inventory contains 46 local modules, 94 local edges, 5 root-reachable modules,
+41 separate-import modules and 718 indexed declarations (717 documented).
+C9.07 cumulative closeout is in preparation. Its authorized clean checkpoint,
+complete routine suite, fresh complete fixtures, real current two-pass doc-gen,
+cumulative independent review and closure remain pending; the
+[maintained handoff](handoffs/chunk-9.md) tracks those obligations. C10--C24
+remain proposed; neither C9 work nor this roadmap starts a later chunk.
+
+## Proposed Post-Release Programme
+
+The [long-term chunk map](plans/post-release-chunk-map.md) proposes 16 chunks,
+C9--C24: bounded complementary work; finite TV and coupling; quantitative
+inequalities and continuity; products and block information; complete finite-iid
+fixed-length source coding; finite-channel information capacity and a weak
+coding converse; and independent release qualification. Channel achievability
+is outside this programme. Dependencies, completion criteria, deferred work,
+and future-work-note assignments live in that map, not in this overview.
+
+Revision 2 reconciles the independent and self-reviews: it distinguishes
+required dependencies from optional proof routes, separates growth-compatible
+validation from optional helper intake, and makes the AEP/coding interfaces
+explicit. Package-boundary reviews will also assess the roughly doubled-release
+ambition by reusable mathematical content, with about 1,200 supported
+declarations only an uncertain cross-check, not a quota.
+
+The later programme remains a proposal for project-lead review, not an approved
+execution plan or a release/date commitment. The separately authorized
+[review workflow](review-operations.md) is installed. Detailed C9 revision 2
+and its separately selected steps own current C9 execution; that authority does
+not approve C10--C24. Each later chunk still requires its own approved plan,
+reviewer and eligible step requests.
+The [reference register](references.md) identifies the selected sources and
+distinguishes the 2022 and 2024 Polyanskiy--Wu drafts. The calendar horizons
+below remain broad aspirations, not delivery deadlines for the proposed chunks.
 
 ## Now
 
@@ -200,8 +237,9 @@ LeanInfoTheory release work.
 
 ## 3 Months
 
-- Preserve source compatibility throughout `0.1.x` and respond to downstream
-  adoption feedback.
+- Preserve source compatibility throughout `0.1.x` and triage downstream
+  adoption evidence through the focused
+  [API-feedback process](downstream-api-feedback.md).
 - Keep version-specific citations on DOI `10.5281/zenodo.22229599` and use
   concept DOI `10.5281/zenodo.22229598` for all-versions references.
 - Maintain the post-release Pages split: unversioned project-status pages
@@ -213,8 +251,8 @@ LeanInfoTheory release work.
 ## 6 Months
 
 - Prepare focused mathlib PRs for generic finite-measure lemmas.
-- Select later finite information-theory mathematics through a separate
-  readiness and planning process.
+- Review the proposed post-release chunk map, then use separately approved
+  detailed plans and dependency checks for its mathematical phases.
 - Keep certificate constraints and recognizable certificate-driven converse
   applications in downstream projects.
 

@@ -42,6 +42,37 @@ SITE_ROOT = ROOT / "home_page"
 
 
 class CuratedTheoremLinkTests(unittest.TestCase):
+    def test_development_index_links_remain_local_source_context_only(self) -> None:
+        source = (SITE_ROOT / "docs/api-index.html").read_text(encoding="utf-8")
+        self.assertIn("/blob/master/LeanInfoTheory/", source)
+        self.assertIn("Source links target current", source)
+        local = WebsiteValidator(SITE_ROOT, "source")
+        local.validate_text_safety("docs/api-index.html", source)
+        self.assertEqual(local.errors, [])
+        misplaced = WebsiteValidator(SITE_ROOT, "source")
+        misplaced.validate_text_safety("docs/v0.1.0/index.html", source)
+        self.assertTrue(any("mutable GitHub" in error for error in misplaced.errors))
+        preview = WebsiteValidator(SITE_ROOT, "preview")
+        preview.validate_text_safety("docs/api-index.html", source)
+        self.assertTrue(any("mutable GitHub" in error for error in preview.errors))
+
+    def test_maintenance_pins_current_index_and_preserves_frozen_links(self) -> None:
+        (ROOT / "tmp").mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(prefix="c903-index-", dir=ROOT / "tmp") as raw:
+            site = Path(raw)
+            current = site / "docs/api-index.html"
+            frozen = site / "docs/v0.1.0/index.html"
+            current.parent.mkdir(parents=True)
+            frozen.parent.mkdir(parents=True)
+            current.write_text((SITE_ROOT / "docs/api-index.html").read_text(encoding="utf-8"), encoding="utf-8")
+            frozen.write_text('<a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/v0.1.0/LeanInfoTheory.lean">frozen</a>', encoding="utf-8")
+            original_frozen = frozen.read_bytes()
+            site_commit = "a" * 40
+            self.assertGreater(rewrite_current_site_source_refs(site, site_commit), 0)
+            self.assertNotIn("/blob/master/", current.read_text(encoding="utf-8"))
+            self.assertIn("/blob/" + site_commit + "/", current.read_text(encoding="utf-8"))
+            self.assertEqual(frozen.read_bytes(), original_frozen)
+
     def test_checked_in_catalogue_matches_declaration_index(self) -> None:
         validator = WebsiteValidator(SITE_ROOT, "source")
         validator.run()

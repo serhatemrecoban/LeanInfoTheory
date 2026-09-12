@@ -1,0 +1,12 @@
+{
+  "schema": "lean-info-theory.current-api-policy.v1",
+  "baseline_identity": {
+    "release_commit": "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f",
+    "release_tag": "v0.1.0",
+    "manifest_path": "docs/v0.1-public-api.json",
+    "git_blob_sha256": "3201ced98b4516e9ef4bda166e75f667f47fe61e530d85af235b410894a7dd03"
+  },
+  "import_approvals": [],
+  "simp_additions": [],
+  "root_export_additions": []
+}

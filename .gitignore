@@ -4,3 +4,6 @@ planning-history-extracted.txt
 /info theory e-books/
 __pycache__/
 *.pyc
+/.lit-review/
+/tools/lit_review/core/evidence/
+/tools/lit_review/core/fixtures/runs/

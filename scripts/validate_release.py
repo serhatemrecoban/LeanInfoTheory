@@ -24,10 +24,12 @@ from typing import Iterable, Mapping, Sequence
 
 import generate_website_api_index as api_index
 import generate_website_blueprint as blueprint
+import current_api
+import api_doc_identity
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PUBLIC_API_PATH = ROOT / "docs" / "v0.1-public-api.json"
+PUBLIC_API_PATH = ROOT / "docs" / "current-public-api.json"
 RELEASE_NOTES_PATH = ROOT / "docs" / "releases" / "v0.1.0.md"
 RELEASE_DOCUMENTATION_PHASE = "release-ready"
 DOCBUILD_ROOT = ROOT / "docbuild"
@@ -1276,6 +1278,7 @@ def check_release_interlock() -> None:
 def check_generated_artifacts() -> None:
     commands = (
         (sys.executable, "scripts/generate_v0_1_public_api.py", "--check"),
+        (sys.executable, "scripts/generate_current_public_api.py", "--check"),
         (sys.executable, "scripts/generate_website_blueprint.py", "--check"),
         (sys.executable, "scripts/generate_website_api_index.py", "--check"),
     )
@@ -1347,10 +1350,7 @@ def check_hygiene(*, require_clean: bool = False) -> None:
 
 
 def load_public_manifest() -> dict[str, object]:
-    data = json.loads(PUBLIC_API_PATH.read_text(encoding="utf-8"))
-    if data.get("schema") != "lean-info-theory.public-api.v0.1.v1":
-        raise ValidationError(f"unexpected public API schema: {data.get('schema')!r}")
-    return data
+    return current_api.load_current_manifest()
 
 
 def module_closure(root: str) -> set[str]:
@@ -1678,23 +1678,32 @@ run_cmd do
   logInfo m!"all-project axiom audit passed: {{localConstantCount}} local constants, axioms {{usedAxioms.toList}}"
 """
     run_lean_probe(
-        "all 44 modules and every compiled project constant axiom audit",
+        f"all {len(all_modules)} modules and every compiled project constant axiom audit",
         source,
         show_output=True,
     )
 
 
 def check_trust_contract() -> None:
+    before = current_validation_identity()
+    check_lean_source()
+    manifest = load_public_manifest()
+    # This gate builds its own current supported closure and checks retained
+    # signatures, reviewed source/compiled imports, aliases and focused simp.
+    # Freshness is not inferred from an earlier caller's successful Lake build.
+    run_command(
+        (sys.executable, "scripts/check_public_api_compatibility.py"),
+        label="retained compatibility and current reviewed boundaries before trust",
+    )
     run_command(
         (sys.executable, "scripts/generate_v0_1_public_api.py", "--check"),
-        label="confirm reviewed public manifest before trust probes",
+        label="confirm historical manifest preservation before trust probes",
     )
     run_command(
         (sys.executable, "scripts/generate_website_blueprint.py", "--check"),
         label="confirm checked module graph before trust probes",
     )
     run_maintained_build()
-    manifest = load_public_manifest()
     declarations = list(manifest["declarations"])
     supported_modules = set(str(module) for module in manifest["supported_modules"])
     non_stable_modules = set(str(module) for module in manifest["non_stable_modules"])
@@ -1723,7 +1732,18 @@ def check_trust_contract() -> None:
     check_supported_environment(manifest, non_stable_names, private_names)
     check_root_boundary(manifest)
     check_all_project_axioms()
-    print("frozen public API trust and import-boundary contract passed")
+    if current_validation_identity() != before:
+        raise ValidationError("source/configuration/dependencies changed during current trust probes")
+    print("retained compatibility and exact current API/trust/import contract passed")
+
+
+def current_validation_identity() -> dict:
+    """Bind the maintained trust sequence, including its current manifest reader."""
+    compatibility = current_api.compatibility
+    files = compatibility.source_identity()
+    for relative in ("scripts/current_api.py", "docs/current-public-api.json"):
+        files[relative] = raw_sha256(ROOT / relative)
+    return {"files": files, "dependencies": compatibility.retained.dependency_identity(ROOT)}
 
 
 def unique_targets(targets: Iterable[str]) -> list[str]:
@@ -1956,7 +1976,7 @@ def write_api_doc_attestation(
     byte_count: int,
 ) -> None:
     attestation = {
-        "schema": "lean-info-theory.api-doc-attestation.v1",
+        "schema": "lean-info-theory.api-doc-attestation.v2",
         "configuration": dict(configuration),
         "relevant_output_sha256": relevant_digest,
         "doc_tree_sha256": tree_digest,
@@ -1985,13 +2005,14 @@ def api_doc_build_configuration(source_mode: str) -> dict[str, object]:
         if re.fullmatch(r"[0-9a-f]{40}", source_identity) is None:
             raise ValidationError(f"git HEAD is not a full commit hash: {source_identity!r}")
     return {
-        "schema": "lean-info-theory.api-doc-build-config.v1",
+        "schema": "lean-info-theory.api-doc-build-config.v2",
         "docgen_revision": DOCGEN_REVISION,
         "lean_revision": LEAN_REVISION,
         "mathlib_revision": MATHLIB_REVISION,
         "source_mode": source_mode,
         "source_identity": source_identity,
         "disable_equations": True,
+        "api_identity": api_doc_identity.current_doc_identity(),
     }
 
 
@@ -2030,12 +2051,20 @@ def prepare_api_doc_build_configuration(configuration: Mapping[str, object]) -> 
     if DOCBUILD_CONFIG_STAMP.is_file():
         recorded = json.loads(DOCBUILD_CONFIG_STAMP.read_text(encoding="utf-8"))
         if recorded != configuration:
-            print(
-                "API-doc source/equation configuration changed; invalidating only the "
-                "generated documentation database and HTML",
-                flush=True,
+            # Content is evidence identity, not a reason to discard unaffected
+            # doc-gen data. Lake tracks source changes in incremental builds.
+            mode_keys = (
+                "schema", "docgen_revision", "lean_revision", "mathlib_revision",
+                "source_mode", "source_identity", "disable_equations",
             )
-            invalidate_mode_sensitive_api_doc_output()
+            if any(recorded.get(key) != configuration.get(key) for key in mode_keys):
+                print("API-doc source-link/equation mode changed; invalidating generated database and HTML",
+                      flush=True)
+                invalidate_mode_sensitive_api_doc_output()
+            elif DOCBUILD_ATTESTATION.exists():
+                print("API-doc source content changed; invalidating attestation, preserving incremental caches",
+                      flush=True)
+                DOCBUILD_ATTESTATION.unlink()
             write_api_doc_build_configuration(configuration)
         return
     existing_mode_sensitive_output = any(
@@ -2112,6 +2141,8 @@ def run_api_docs() -> None:
             f"before fingerprint: {before_state}\nafter fingerprint: {after_state}"
         )
     tree_digest, file_count, html_count, byte_count = api_doc_tree_digest()
+    if api_doc_build_configuration(source_mode) != configuration:
+        raise ValidationError("API-doc source/configuration/dependencies changed during build/check sequence")
     write_api_doc_attestation(
         configuration,
         digests[0],
@@ -2134,6 +2165,12 @@ def run_api_docs() -> None:
 
 def run_static_contract() -> None:
     check_lean_source()
+    manifest = load_public_manifest()
+    print(
+        "current source policy passed: "
+        f"{manifest['supported_module_count']} supported modules, "
+        f"{manifest['declaration_count']} documented declarations; inventory is not approval"
+    )
     check_release_metadata()
     check_release_documentation_contract()
     check_toolchain_contract()
@@ -2155,6 +2192,7 @@ def parse_args() -> argparse.Namespace:
             "static",
             "metadata",
             "trust",
+            "compatibility",
             "build",
             "maintained-build",
             "documentation",
@@ -2189,6 +2227,10 @@ def main() -> int:
             if args.targets:
                 raise ValidationError("trust does not accept Lake targets")
             check_trust_contract()
+        elif args.command == "compatibility":
+            if args.targets:
+                raise ValidationError("compatibility does not accept Lake targets")
+            run_command((sys.executable, "scripts/check_public_api_compatibility.py"))
         elif args.command == "build":
             run_complete_build(args.targets)
         elif args.command == "maintained-build":
@@ -2230,4 +2272,6 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
     raise SystemExit(main())

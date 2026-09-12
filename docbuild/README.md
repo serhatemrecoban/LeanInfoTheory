@@ -34,7 +34,31 @@ system `cc`; downstream library users need neither compiler setup.
 The maintained documentation build disables doc-gen4's optional equation
 extraction and validates that the database contains zero equation rows.
 Rendered declaration names, headers, types, documentation, and source links are
-unaffected. The checked local result covers 31 supported module pages, all 601
-supported declarations, 92 canonical export targets, and all 13 non-stable
-exclusions. Generated types document the current tree; they are not committed
-signature fingerprints.
+unaffected. Expected pages, declarations, canonical export targets and non-stable
+exclusions come from the schema-validated, source-matching
+[`current manifest`](../docs/current-public-api.json) and reviewed growth policy.
+The historical v0.1.0 result was 31 pages, 601 declarations, 92 targets and 13
+exclusions; these are not current count ceilings.
+
+The v2 build configuration and two-pass attestation identify current source
+content, manifest/retained-contract bytes, build/checker inputs and pinned
+dependencies. A signature, definition body or docstring edit invalidates old
+evidence even if manifest entries are unchanged. Content changes preserve
+incremental caches; link-mode changes invalidate generated mode-sensitive output.
+Inspect current file-mode output directly here: it cannot be staged under the
+frozen `/docs/v0.1.0/` route. The separate frozen release/maintenance procedures
+retain their exact identities and publication guards. Generated types document
+the current tree; retained structural fingerprints and source review govern
+compatibility, and matching types do not establish unchanged semantics.
+
+## C9 current milestone preparation
+
+C9.07 is preparing the current 603-declaration/31-module milestone, with 92
+canonical export targets and 15 excluded non-stable modules. The real two-pass
+file-mode build and source-content attestation remain pending, together with
+the authorized clean checkpoint, complete routine suite, full fixtures,
+cumulative independent review and closure. See the
+[maintained handoff](../docs/handoffs/chunk-9.md) for actual status. Existing
+synthetic fixtures and historical release HTML are not evidence that this
+current build passed. Keep the pinned environment and direct-inspection route
+above; no current publication or frozen-route staging is authorized.

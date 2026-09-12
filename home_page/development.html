@@ -42,20 +42,24 @@ python scripts/validate_release.py focused LeanInfoTheory.Shannon.SemanticBridge
       </p>
 
       <h2>Website Generation</h2>
-      <pre><code>python scripts/generate_v0_1_public_api.py
+      <pre><code>python scripts/generate_current_public_api.py
+python scripts/generate_v0_1_public_api.py --check
 python scripts/generate_website_blueprint.py
 python scripts/generate_website_api_index.py
-python scripts/stage_website.py preview
-python scripts/check_website.py --site-root .lake/website-stage/LeanInfoTheory --mode preview
 python scripts/validate_release.py static</code></pre>
       <p>
         Run these after changing Lean imports, public declarations, or doc
         comments. They regenerate the website's module-level dependency map,
         source-derived declaration index, and machine-readable module/declaration
         JSON data.
-        The staging command assembles the ignored doc-gen tree under the
-        versioned <code>docs/v0.1.0/</code> route, removes machine-local source
-        URLs, and marks the artifact nonpublishable. The static gate reruns every
+        The old v0.1 generator verifies frozen bytes without writing. Current
+        inventory does not approve import or attribute growth; those decisions
+        belong in the reviewed current API policy. Inspect current file-linked
+        doc-gen output directly in <code>docbuild/.lake/build/doc/</code>:
+        its source-content attestation cannot be staged as frozen
+        <code>docs/v0.1.0/</code>. Historical preview/release staging requires
+        exact release source; maintenance composes a separately validated frozen
+        route with the current site. The static gate reruns every
         generator in non-mutating <code>--check</code> mode, validates generated
         JSON and the tracked website, and fails if the artifacts are stale. CI
         uses the same gate. Release-mode staging is reserved for a clean exact-
