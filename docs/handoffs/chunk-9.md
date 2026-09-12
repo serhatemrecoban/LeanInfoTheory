@@ -1,12 +1,15 @@
 # Chunk 9 maintained handoff
 
-**Status, 2026-09-12:** C9.01--C9.06 are durably closed. C9.07 is open for
-cumulative closeout preparation under the [approved revision-2 plan](../plans/post-release-chunk-09.md).
-The clean checkpoint requires separate lead authorization. The complete routine
-suite, fresh cumulative fixtures, current two-pass file-mode API documentation,
-fresh full-chunk independent review and final private closure remain pending.
-This maintained document records readiness and evidence locations; only the actual
-private completion record establishes closure. Preparing it does not start C10.
+**Status basis, 2026-09-12:** C9.01--C9.06 are durably closed. C9.07 is the
+selected cumulative closeout step under the [approved revision-2 plan](../plans/post-release-chunk-09.md).
+This maintained snapshot records delivered source, prepared canonical reconciliation
+and the required validation/review sequence. Actual source-bound C9.07 records
+determine gate results and readiness; only the actual private completion record
+establishes closure. Requirements below are not claims that a gate has passed.
+The lead authorized the proposed exact 94-file local checkpoint in the retained
+response; actual commit/source identity belongs in the execution evidence.
+A narrow C9.07 amendment is a parent interpretation of necessary authorized step
+work, not additional explicit user text. No push, publication or C10 is authorized.
 
 ## Delivered surface
 
@@ -58,7 +61,7 @@ The additional source-index instance is example-only. The 603 supported entries
 comprise 537 theorems, 56 definitions, 9 abbreviations and 1 instance. Counts are
 inventory observations, not approval quotas or claims of new theorem-family breadth.
 C9.06's actual compiled audit covered 1,400 local constants across 46 modules;
-that is dated native evidence, distinct from both inventories and the pending
+that is dated native evidence, distinct from both inventories and the required
 C9.07 cumulative rerun.
 
 - Historical release: `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`.
@@ -101,7 +104,7 @@ Section 3.5 fixture to its actual implementation and evidence boundary.
 | C9-GROW-05 | Exact current doc coverage, content-bound v2 configuration/attestation and pre-copy current-as-frozen refusal. | Actual two-pass current file-mode doc-gen, both new signatures, all current pages, source/config/dependency identity and complete HTML/staleness/staging regressions. |
 | C9-GROW-06 | Real retained and growth source-copy runners; C9.04 passed all 17 retained and 4 growth outcomes plus complementary component cases. | Fresh complete runners and component matrix, original negative diagnostics and fixture/production restoration evidence. |
 | C9-MATH-01/02; C9-CONSUMER-01/02 | Both exact approved helpers and focused private consumers passed C9.05/C9.06 build, API/import/trust and independent review. | Cumulative source/type/meaning review, applicable earlier originals, current routine consumers and actual new doc-gen signatures. |
-| C9.07-R1/R2/R3 | Earlier closures exist; canonical reconciliation and this handoff are prepared. | All current evidence above, no unresolved material concern, authorized clean candidate, fresh full-chunk review and final evidence/dispositions. Still pending. |
+| C9.07-R1/R2/R3 | Earlier closures exist; canonical reconciliation and this handoff are prepared. | All applicable current evidence above; reconciled earlier findings; no unresolved material self-review concern; authorized clean candidate; prepared documents/handoff and remaining-work dispositions. These establish readiness for fresh full-chunk review. That review, its reconciliation and final private closure are subsequent required postconditions. |
 
 Structural equality does not certify unchanged definition bodies, the meaning of
 referenced constants, notation or mathematical intent. Strict fingerprints may
@@ -116,10 +119,12 @@ read-only instructions are not OS isolation or authenticated origin guarantees.
 ## Validation and review procedure
 
 Finish source/docs, component validation, retained self-review and separate
-reassessment first. Obtain the lead's explicit clean-checkpoint authority, then
-run this complete schedule from the Desktop checkout. Serialize all commands
-that produce Lean/Lake artifacts. Save actual streams, command, actor, duration,
-exit status, source/configuration/dependency identities and limitations privately.
+reassessment before freezing the candidate. Use the lead-authorized exact
+94-file checkpoint scope; retain any necessary narrow C9.07 amendment decision
+and actual clean commit identity separately. Run this complete schedule from the
+Desktop checkout. Serialize all commands that produce Lean/Lake artifacts. Save
+actual streams, command, actor, duration, exit status, source/configuration/dependency
+identities and limitations privately.
 
 ```text
 python -B scripts/validate_release.py
@@ -156,16 +161,18 @@ restored source runs static/compatibility, not a second full all-project audit.
 For API docs set `DOCGEN_SRC=file`, keep `DISABLE_EQUATIONS=1`, and set
 `LEANINFOTHEORY_ZIG` to the verified official Windows Zig 0.16.0 executable
 (SHA-256 `086ce9d47ba42f33a514e1a6e04eb1d4a8fa1d75e0868e0213caad447c91e864`).
-The executable path must be located and verified at execution; it is not currently
-supplied by this task's environment. The old v1 config/attestation is historical.
+Locate and verify the executable at execution; retain its actual path and digest
+privately. Old v1 config/attestation is historical and cannot establish this gate.
 Inspect newly generated output directly under `docbuild/.lake/build/doc`; do not
 stage it as `/docs/v0.1.0/`. Current source/config/dependencies must match both
 passes and the resulting v2 attestation. See the [API-doc instructions](../api-documentation.md)
 for the exact input fingerprint and source-mode boundary. Local output is unpublished.
 
 Only after readiness evidence exists, prepare cumulative R and the full neutral
-request using the installed [protocol](../review-protocol.md) and
-[operations](../review-operations.md). Persist dispatch intent **before** the actual
+request against every C9-GROW, C9-MATH and C9-CONSUMER contract, all earlier step
+outcomes and reconciled histories, and C9.07-R1/R2/R3. Follow the installed
+[protocol](../review-protocol.md) and [operations](../review-operations.md).
+Persist dispatch intent **before** the actual
 native send. Preserve an empty receipt as uncertain without blind resend; obtain
 the actual bound completion, preserve originals and explicitly reconcile even a
 clean report. Corrections require supported owned edits, reassessment and fresh
@@ -214,32 +221,53 @@ and four maintained generated files were rewritten with identical bytes. Initial
 timestamp preservation was not established. A corrected reviewer probe must redirect
 every concrete HTML_OUTPUT/JSON_OUTPUT path, not just a shared directory constant.
 
+The preparation boundary record
+`.lit-review/setup/c9-07-preparation-boundary-20260912.json` preserves four earlier
+finding histories. Its registry is parent-recorded history, not a new independent
+assessment. The latest recorded dispositions at preparation are RESOLVED on their
+recorded source scopes; C9.07 must establish cumulative source applicability.
+
+| Finding | Actual origin and scope | Retained disposition boundary |
+| --- | --- | --- |
+| `lit-finding:C9.02-complete-real-fixture-qualification` | SELF; MEDIUM/material. The complete real 17-case qualification, same-type-body consumer and final restoration were an evidence gap, not a demonstrated implementation defect. | Earlier resolution records completed original evidence and renewed source applicability; it does not replace the required C9.07 rerun. |
+| `lit-finding:C9.03-self-test-scratch` | SELF; low/nonmaterial. Two tempfile tests required a missing scratch parent. Supporting reproduction redirected only `validator.ROOT`; it was not a fresh whole-checkout/Lean failure. | The two parent-directory fixes, corrected checks and later independent repetition resolved that bounded defect; preserve the original failure and its mocked boundary. |
+| `lit-finding:c906-dispatch-order` | INDEPENDENT_LIT_OBSERVED; LOW/nonmaterial. The ordering rule/refusal was assessed independently; chronology was explicitly parent-reported. | Disclosure/impact/follow-up was resolved; late intent never became compliant pre-send intent. |
+| `lit-finding:c906-reviewer-write-boundary` | INDEPENDENT_LIT_OBSERVED; LOW/nonmaterial. Four identical-byte maintained rewrites preceded the reviewer probe failure. | Preserved originals, source-impact checks and corrected isolated evidence resolved the follow-up; they do not establish initial read-only or timestamp compliance. |
+
 The C9.07 entry records are `c9-07-inspect-20260912.json`,
 `c9-07-api-20260912.json`, `c9-07-conditional-precheck-20260912.json`,
 `c9-07-conditional-request-20260912.json` and
 `c9-07-conditional-disposition-20260912.json`. The precheck verified exact
 predecessor-source equality, same binding, approved normative plan and step order.
-Fresh cumulative results and the eventual R/F/closure will be retained separately;
-their absence cannot be filled by this handoff or an earlier favorable report.
+Actual cumulative command results, source/configuration/dependency identities,
+self-review and reassessment, R, native dispatch/completion, original reports,
+accepted captures, reconciliations, final criteria and F/closure are retained in
+C9.07's private execution records. Read those records to determine current status.
+Neither this handoff nor an earlier favorable report supplies missing evidence;
+no future identifier or PASS result is predicted here. The parent maintains a concise source-bound evidence index at
+`.lit-review/setup/c9-07-cumulative-evidence-20260912.json` and the final outcome at
+`.lit-review/setup/c9-07-completion-20260912.json`; consult each only when it exists.
 
 ## Remaining work and C10
 
 | Item | Disposition | Owner and trigger | Next-chunk implication |
 | --- | --- | --- | --- |
-| C9.07 clean checkpoint and all readiness gates | Required and pending; prepare a concrete reviewed source/document candidate first. | Lead authorizes checkpoint; C9 parent runs complete routine suite, full fixtures and real docs. | C9 closeout prerequisite remains unsatisfied until actual results and closure. |
-| Fresh cumulative review, corrections, final criteria/F/closure | Required and pending; preserve every original and reassessment, including negatives. | Actual C9 parent and bound reviewer after readiness evidence exists. | Earlier step reviews cannot substitute; no C10 transition. |
+| C9.07 clean checkpoint and all readiness gates | Required before initial R; actual clean source, routine/fixture/doc-gen results and their applicability determine readiness. | Lead authorized the proposed exact 94-file checkpoint; C9 parent records any narrow amendment judgment and runs the gates. | Actual readiness evidence and private closure are prerequisites for any later transition. |
+| Fresh cumulative review, corrections, final criteria/F/closure | Required after readiness; preserve every original, reconciliation and reassessment, including negatives. Actual private records determine completion. | Actual C9 parent and bound reviewer after readiness evidence exists. | Earlier step reviews cannot substitute; C10 still requires its own explicit selection. |
 | Native bootstrap schema mismatch | Supported collaboration binding is now in use; original refusal and creation evidence remain historical. | C9 parent retains binding; use supported recovery if runtime/binding becomes unavailable. | Each later actual chunk creates its own reviewer; C9 reviewer is not transferred. |
-| Note 9: broader docs/publication/blueprint/equations/status tooling | Current inventory and source-identity checks delivered; local final docs pending; broader work deferred. | Documentation maintainer, on separately approved publication or demonstrated documentation need. | Local readiness does not publish a current route or imply a new release. |
+| Note 9: broader docs/publication/blueprint/equations/status tooling | Current inventory and source-identity checks delivered; real final-source local docs are a required C9.07 gate; broader work deferred. | Documentation maintainer, on separately approved publication or demonstrated documentation need. | Local readiness does not publish a current route or imply a new release. |
 | Note 14: names and aliases | Both selected names retained; no rename/symmetric/short alias added. | API maintainer, on concrete recurring discovery or consumer friction in feedback register. | C10 follows naming/reuse discipline, without a quota or migration. |
 | Notes 15--16: simp and chain rules | Reviewed 94-member set retained; new helpers and chain-rule orientation remain explicit. | API/theorem maintainer, on demonstrated terminating reduction in permanent consumers. | Standing policy remains open; no automatic entropy expansion. |
-| Notes 17--18: validation and module boundaries | Earlier steps validated; cumulative gates pending; existing owners and lightweight root preserved. | Chunk parent at each milestone; architecture maintainer and lead for an import exception. | C10 needs its own validation contract and focused PMF boundary. |
+| Notes 17--18: validation and module boundaries | Earlier steps validated; cumulative gates required with actual results recorded privately; existing owners and lightweight root preserved. | Chunk parent at each milestone; architecture maintainer and lead for an import exception. | C10 needs its own validation contract and focused PMF boundary. |
 | Note 25: further independence conveniences | Selected right-processing slice delivered; atom-level, constant/self and additional public orientations deferred. | API maintainer, on repeated independent consumer need. | These optional variants do not enlarge C10's prerequisites. |
 | Signature/semantic blind spot | Permanent disclosed limitation, with source/API review and consumers. | Every implementation parent/reviewer whenever definitions or their dependencies change. | Matching types/counts never establish intended meaning. |
 | Broader Future Work Notes | Preserve existing ownership, category and trigger in living summary/project log. | Relevant future chunk or maintainer after its own approval. | No broad closure, renumbering or unrequested theorem family. |
 | PFR/ShannonCert integration | Remains downstream; no new access or adoption evidence. | Downstream owner at its own integration/version decision. | No downstream edit or pin change implied. |
 | C10 finite TV and later programme | Proposed, unselected. Re-read exact registered sources and current pinned PMF/channel APIs. | Lead selects its actual parent, exact detailed plan and step; that parent binds its own reviewer. | Settle TV convention, finite assumptions, ownership and reuse at C10 intake; later map contracts remain unchanged. |
 
-Resume C9.07 in this same task and Desktop checkout. First inspect actual workflow
-state and current source, then continue only its pending authorized work. Preserve
-the original `.lit-review/` records across compaction and checkpointing. A request
-for another step does not supply checkpoint authority or close C9 automatically.
+Inspect actual C9.07 completion state and current source in this same task and
+Desktop checkout. If the step remains open, continue only its remaining authorized
+work; an actual closure must not be reopened merely because this captured handoff
+uses requirements wording. Preserve original `.lit-review/` records across
+compaction and checkpointing. A later step requires its own explicit selection;
+C9's checkpoint authority neither starts C10 nor authorizes publication.

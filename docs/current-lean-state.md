@@ -1,10 +1,10 @@
 # Current Lean State
 
-## Current C9 closeout preparation
+## Current C9 source and closeout requirements
 
 C9.01--C9.06 completed independent review, reconciliation and durable private
 closure. The current C9.07 request passed exact predecessor-source and step-order
-checks. C9.07 is open for cumulative closeout preparation. Both selected helpers
+checks. C9.07 is the selected cumulative closeout step. Both selected helpers
 and their private permanent consumers are present: current coverage is 603
 supported declarations in 31 modules, with 94 simp declarations and 92 facade
 aliases unchanged. The frozen release retains 601 declarations.
@@ -15,11 +15,13 @@ C9.06's accepted report satisfied all three criteria; its two nonmaterial proces
 findings were reconciled with final-source disclosure/impact evidence. Historical
 dispatch-order and reviewer read-only noncompliance remain explicitly recorded.
 
-C9.07's separately authorized clean checkpoint, complete routine suite, fresh
-cumulative fixture matrix, current two-pass file-mode doc-gen and fresh full-chunk
-independent review remain pending. Earlier component passes are dated evidence,
-not substitutes for these gates. Closure remains subject to the private completion
-record. C10 and later chunks remain proposed and require separate authorization.
+C9.07 requires the complete routine suite, fresh cumulative fixtures and real
+two-pass current file-mode doc-gen on an authorized clean candidate before fresh
+full-chunk review. Earlier component passes do not replace these gates. Actual
+source-bound C9.07 validation and review records determine results; closure is
+subject to the actual private completion record. This snapshot records delivered
+source and the prepared handoff, without certifying completion. C10 and later
+chunks remain proposed and require separate authorization.
 
 ## `v0.1.0` released state
 

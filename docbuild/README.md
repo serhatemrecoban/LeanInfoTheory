@@ -51,14 +51,15 @@ retain their exact identities and publication guards. Generated types document
 the current tree; retained structural fingerprints and source review govern
 compatibility, and matching types do not establish unchanged semantics.
 
-## C9 current milestone preparation
+## C9 current milestone requirements
 
-C9.07 is preparing the current 603-declaration/31-module milestone, with 92
-canonical export targets and 15 excluded non-stable modules. The real two-pass
-file-mode build and source-content attestation remain pending, together with
-the authorized clean checkpoint, complete routine suite, full fixtures,
-cumulative independent review and closure. See the
-[maintained handoff](../docs/handoffs/chunk-9.md) for actual status. Existing
-synthetic fixtures and historical release HTML are not evidence that this
-current build passed. Keep the pinned environment and direct-inspection route
-above; no current publication or frozen-route staging is authorized.
+C9.07 requires the current 603-declaration/31-module milestone, with 92 canonical
+export targets and 15 excluded non-stable modules. The real two-pass file-mode
+build and source-content attestation must pass, together with the complete
+routine suite and fixtures on an authorized clean candidate, before cumulative
+independent review. Review reconciliation and private closure remain mandatory
+postconditions. The [maintained handoff](../docs/handoffs/chunk-9.md) identifies
+the actual source-bound records that determine results and closure status.
+Synthetic fixtures and historical release HTML cannot establish this current
+build's result. Keep the pinned environment and direct-inspection route above;
+no current publication or frozen-route staging is authorized.

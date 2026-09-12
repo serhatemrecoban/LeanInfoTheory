@@ -50,10 +50,12 @@ modules, with 94 reviewed `simp` declarations and 92 root aliases, recorded in
 [`docs/current-public-api.json`](docs/current-public-api.json). C9 added exactly
 `Shannon.isIndependentOf_comp_right` in focused Independence and
 `Shannon.mutualInfoOf_condEntropyOf_decomposition` in lightweight InfoMeasures,
-with private permanent consumers. C9.07 cumulative closeout is in preparation;
-the [maintained handoff](docs/handoffs/chunk-9.md) records its pending clean
-checkpoint, complete routine suite, full fixtures, real current doc-gen,
-independent review and closure. Compatible additions may extend coverage;
+with private permanent consumers. The C9.07
+[maintained handoff](docs/handoffs/chunk-9.md) records delivered source and the
+required clean-checkpoint validation, complete fixtures, real current doc-gen,
+independent review and private closure. Actual source-bound C9.07 records determine
+those gates' results; this snapshot does not certify completion.
+Compatible additions may extend coverage;
 the released counts and
 [`frozen manifest`](docs/v0.1-public-api.json) remain historical. Current
 validation compares retained signatures and reviewed boundaries independently

@@ -13,7 +13,7 @@ evidence and pre-closure wording. C9.06's actual completion is
 `f30aff1842d2b3b3fc95aca37eda1e2a5e4484b26694371ed7a7ef482c4fd559`. The fresh installed
 inspect/API commands and conditional precheck found exact source equality,
 the same approved normative plan and the same actual parent/reviewer binding.
-The lead's exact step-7 message was retained and accepted once; C9.07 is open.
+The lead's exact step-7 message was retained and accepted once, selecting C9.07.
 
 The [maintained chunk handoff](../handoffs/chunk-9.md) consolidates delivered APIs,
 current versus released counts, commands, source/review identities and standing
@@ -25,13 +25,15 @@ the actual maintained command is
 documented in the [C9.04 qualification](../compatibility/c9-04-qualification.md).
 No wrapper is added solely to match that advisory command spelling.
 
-The complete routine suite requires a separately authorized clean checkpoint.
-The final cumulative fixture matrix and actual two-pass current file-mode doc-gen
-then establish evidence before the fresh full-chunk review request. Old doc-gen
-output/configuration cannot establish current-source attestation. Safe component
-checks and retained self-review/reassessment may support checkpoint preparation;
-they do not satisfy C9.07-R2 or authorize a commit. C9.07 closure, its final F,
-and every C10 action remain pending.
+The lead authorized the proposed exact 94-file local checkpoint in the retained
+response; that response alone does not establish a commit or any validation result.
+The complete routine suite, final cumulative fixture matrix and real two-pass
+current file-mode doc-gen must pass on the authorized clean candidate before the
+fresh full-chunk review request. Old doc-gen output cannot establish current-source
+attestation. Actual source-bound C9.07 records determine validation, review and
+reconciliation results; the actual private completion record alone establishes
+closure. Prepared prose and earlier component evidence do not satisfy C9.07-R2.
+C10 remains unselected; no push or publication follows from checkpoint authority.
 
 ## C9.06 information decomposition and prepared handoff, 2026-09-12
 

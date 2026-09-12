@@ -154,17 +154,18 @@ The release-candidate gate runs GitHub mode from a clean exact commit. Tag
 publication and live-link verification remain explicitly approved publication
 and post-publication work.
 
-## C9 current milestone preparation
+## C9 current milestone requirements
 
 Current source has 603 documented declarations across 31 supported module
 pages, with 92 canonical export targets and 15 excluded non-stable modules.
-These are current inventory expectations, not a claim that fresh HTML has been
-built. C9.07 requires the real two-pass file-mode gate, verification of both new
-theorem signatures and the current v2 source-content attestation, alongside its
-separately authorized clean checkpoint, complete routine suite, full fixture
-matrix and cumulative independent review. Those checks and closure remain
-pending in the [maintained handoff](handoffs/chunk-9.md). Synthetic HTML fixtures
-and previous release output do not supply this current milestone evidence.
+These are current inventory expectations; only actual gate output establishes
+rendered coverage. C9.07 requires the real two-pass file-mode gate, verification
+of both new theorem signatures and the current v2 source-content attestation,
+alongside complete routine validation and fixtures on an authorized clean
+candidate before cumulative independent review. Actual source-bound results and
+private closure status are determined by the records described in the
+[maintained handoff](handoffs/chunk-9.md). Synthetic HTML fixtures and previous
+release output do not supply this current milestone evidence.
 Do not stage growing output under `/docs/v0.1.0/`.
 
 ## Verified local result and cost

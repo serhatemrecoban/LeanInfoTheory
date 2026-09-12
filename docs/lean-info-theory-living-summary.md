@@ -62,7 +62,7 @@ in [the protocol](review-protocol.md) and [operations](review-operations.md).
 The lead approved the exact [seven-step C9 plan, revision 2](plans/post-release-chunk-09.md).
 C9.01--C9.06 completed independent review, reconciliation and durable private
 closure. The current C9.07 request passed exact predecessor-source and step-order
-checks. C9.07 is open for cumulative closeout preparation. Both selected helpers
+checks. C9.07 is the selected cumulative closeout step. Both selected helpers
 and their private permanent consumers are present: current coverage is 603
 supported declarations in 31 modules, with 94 simp declarations and 92 facade
 aliases unchanged. The frozen release retains 601 declarations.
@@ -73,11 +73,13 @@ C9.06's accepted report satisfied all three criteria; its two nonmaterial proces
 findings were reconciled with final-source disclosure/impact evidence. Historical
 dispatch-order and reviewer read-only noncompliance remain explicitly recorded.
 
-C9.07's separately authorized clean checkpoint, complete routine suite, fresh
-cumulative fixture matrix, current two-pass file-mode doc-gen and fresh full-chunk
-independent review remain pending. Earlier component passes are dated evidence,
-not substitutes for these gates. Closure remains subject to the private completion
-record. C10 and later chunks remain proposed and require separate authorization.
+C9.07 requires the complete routine suite, fresh cumulative fixtures and real
+two-pass current file-mode doc-gen on an authorized clean candidate before fresh
+full-chunk review. Earlier component passes do not replace these gates. Actual
+source-bound C9.07 validation and review records determine results; closure is
+subject to the actual private completion record. This snapshot records delivered
+source and the prepared handoff, without certifying completion. C10 and later
+chunks remain proposed and require separate authorization.
 
 **[Current] `v0.1.0` release and maintenance.** The fulfilled release contract
 is recorded in [`docs/v0.1-release-contract.md`](v0.1-release-contract.md). It
@@ -164,7 +166,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Task | Read next |
 | --- | --- |
-| Post-release mathematical planning | The proposed [C9--C24 map](plans/post-release-chunk-map.md), [reference register](references.md), Sections 3, 7, and 11-16, and the relevant current Lean dependency closure; detailed C9 revision 2 is approved; C9.01--C9.06 are durably closed; C9.07 is preparing the [maintained handoff](handoffs/chunk-9.md), authorized clean checkpoint, cumulative validation and full-chunk review |
+| Post-release mathematical planning | The proposed [C9--C24 map](plans/post-release-chunk-map.md), [reference register](references.md), Sections 3, 7, and 11-16, and the relevant current Lean dependency closure; detailed C9 revision 2 is approved; C9.01--C9.06 are durably closed; the [maintained C9.07 handoff](handoffs/chunk-9.md) records required cumulative validation/review and the authority for actual results/closure |
 | Chunk 8 review or later-phase intake | The completed Chunk 8 plan; Sections 3, 6-9, 11-14, and 16; the three Chunk 8 mathematical owners, two maintained example owners, semantic/examples aggregates, and current Future Work Notes 9, 14-18, and 24 |
 | Review of an existing Lean theorem | Sections 3, 7, 9, and 16; the owning source module and its direct imports |
 | API or module review | Sections 7, 9, 10, 11, and Future Work Notes 2-4, 14-16, 18, and 26 |
@@ -178,11 +180,11 @@ temporary handoffs. See Section 4 for the conflict protocol.
 | Field | Value |
 | --- | --- |
 | Last updated | 2026-09-12 |
-| Last fully validated mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the released `v0.1.0` source is exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f` |
+| Recorded pre-C9 mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the released `v0.1.0` source is exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f` |
 | Repository transition state | `v0.1.0` is published from immutable tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` and archived as Zenodo record `22229599`. The evolving default branch carries the current project pages and DOI metadata, while maintenance staging preserves `/docs/v0.1.0/` from exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`; the tag, Release, archive, Lean source, and public API remain unchanged |
 | Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
 | mathlib baseline | `v0.1.0` uses input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474` |
-| Source-snapshot phase | Post-release `v0.1.x` maintenance; publication date `2026-09-01`; version DOI `10.5281/zenodo.22229599`; Project B Chunks 1–8 remain checkpointed; C9--C24 map remains proposed; detailed C9 revision 2 is approved; C9.01--C9.06 are durably closed; C9.07 closeout is open with both selected helpers delivered, while the authorized clean checkpoint, cumulative validation and full-chunk review remain pending |
+| Source-snapshot phase | Post-release `v0.1.x` maintenance; publication date `2026-09-01`; version DOI `10.5281/zenodo.22229599`; Project B Chunks 1–8 remain checkpointed; C9--C24 map remains proposed; detailed C9 revision 2 is approved; C9.01--C9.06 are durably closed; both selected helpers are delivered; C9.07 closeout requires source-bound clean-checkpoint validation and full-chunk review, with completion established only by its actual private record |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -1113,7 +1115,7 @@ These are intentional current contracts, not claims of maximal generality.
 C9's structural retained-type checks preserve binders, assumptions and imports;
 equal types do not establish unchanged definition bodies or mathematical meaning.
 Current documentation fingerprints detect changed inputs, not semantic equivalence.
-The [C9 handoff](handoffs/chunk-9.md) separates these permanent limits from pending
+The [C9 handoff](handoffs/chunk-9.md) separates these permanent limits from required
 final cumulative validation and the separately authorized publication route.
 
 - No theorem-level blueprint pipeline. Full doc-gen is a manual release gate;
@@ -1157,7 +1159,7 @@ workflow; ignored `.lit-review/` stores its private records. The inherited core
 is retained, with library-specific source, identity, rubric and validator bindings.
 The installation alone granted no mathematical authority. The lead subsequently
 approved detailed C9 revision 2 and selected its steps individually: C9.01--C9.06
-are durably closed, and C9.07 prepares cumulative closeout. This actual C9 task
+are durably closed, and C9.07 owns cumulative closeout. This actual C9 task
 owns its persistent reviewer and [maintained handoff](handoffs/chunk-9.md).
 The later map remains proposed. C9 changes current coverage by exactly two
 supported helpers; released counts, downstream pins and dependency pins remain
@@ -1349,7 +1351,7 @@ claim which external gate has completed.
 
 C9.01--C9.06 completed independent review, reconciliation and durable private
 closure. The current C9.07 request passed exact predecessor-source and step-order
-checks. C9.07 is open for cumulative closeout preparation. Both selected helpers
+checks. C9.07 is the selected cumulative closeout step. Both selected helpers
 and their private permanent consumers are present: current coverage is 603
 supported declarations in 31 modules, with 94 simp declarations and 92 facade
 aliases unchanged. The frozen release retains 601 declarations.
@@ -1360,11 +1362,13 @@ C9.06's accepted report satisfied all three criteria; its two nonmaterial proces
 findings were reconciled with final-source disclosure/impact evidence. Historical
 dispatch-order and reviewer read-only noncompliance remain explicitly recorded.
 
-C9.07's separately authorized clean checkpoint, complete routine suite, fresh
-cumulative fixture matrix, current two-pass file-mode doc-gen and fresh full-chunk
-independent review remain pending. Earlier component passes are dated evidence,
-not substitutes for these gates. Closure remains subject to the private completion
-record. C10 and later chunks remain proposed and require separate authorization.
+C9.07 requires the complete routine suite, fresh cumulative fixtures and real
+two-pass current file-mode doc-gen on an authorized clean candidate before fresh
+full-chunk review. Earlier component passes do not replace these gates. Actual
+source-bound C9.07 validation and review records determine results; closure is
+subject to the actual private completion record. This snapshot records delivered
+source and the prepared handoff, without certifying completion. C10 and later
+chunks remain proposed and require separate authorization.
 
 ## 13. Future-Work Register
 
@@ -1380,7 +1384,7 @@ again.
 | Note | Work |
 | --- | --- |
 | Unnumbered | **Chunk 8 is complete through `C8.24` and checkpointed as `1eef228`.** Its 18-declaration API, generated references, complete validation evidence, exact-SHA Lean workflow, and Pages deployment pass; any later theorem phase requires a separate decision. |
-| Unnumbered | **C9 closeout open:** C9.01--C9.06 are durably closed; C9.07 prepares cumulative qualification and review under the approved detailed plan. The [C9--C24 map](plans/post-release-chunk-map.md) remains proposed for later chunks. Its assignments do not close or renumber standing notes. |
+| Unnumbered | **C9 closeout requirements:** C9.01--C9.06 are durably closed; C9.07 owns cumulative qualification and review under the approved detailed plan, with actual status determined by its source-bound private records. The [C9--C24 map](plans/post-release-chunk-map.md) remains proposed for later chunks. Its assignments do not close or renumber standing notes. |
 | 29 | **Finite-Fano phase checkpointed.** Commit `ec78829` completes the approved phase; its evidence-based Fano follow-ups remain open and deferred. |
 
 Note 29 also preserves proof-pressure triggers from `C5.08`-`C5.11` and
@@ -1491,7 +1495,7 @@ not pending LeanInfoTheory release work.
 
 | Note | Work |
 | --- | --- |
-| 9 | Maintain current local signature-bearing API docs separately from frozen-route staging; C9.07's real two-pass refresh remains pending. Later add theorem-level leanblueprint data, a blueprint PDF, and optional equation-expanded pages if justified. Also consider a structured source for repeated status fragments and complete verified module-summary metadata. |
+| 9 | Maintain current local signature-bearing API docs separately from frozen-route staging; C9.07 requires a real two-pass result bound to its final source. Later add theorem-level leanblueprint data, a blueprint PDF, and optional equation-expanded pages if justified. Also consider a structured source for repeated status fragments and complete verified module-summary metadata. |
 | 10 | Add `CONTRIBUTING.md`, beginner tasks, issue labels, and upstream guidance before broad contributor outreach. |
 | 28 | Later improve opt-in example pedagogy: the side-information recovery example, `KLTop` absolute-continuity notation, and, only if compact, matched numerical Boolean examples exhibiting strict MI input concavity and channel convexity. Preserve existing declarations and avoid new core helpers solely for pedagogy. |
 
@@ -2298,7 +2302,7 @@ and [handoff](plans/post-release-chunk-09-notes.md#c904-qualification-and-prepar
 Dated C9.06 theorem/consumer evidence is recorded separately in the
 [step handoff](plans/post-release-chunk-09-notes.md#c906-information-decomposition-and-prepared-handoff-2026-09-12); the dated C9.05 evidence remains historical.
 
-### C9.07 cumulative closeout preparation
+### C9.07 cumulative closeout requirements
 
 The exact C9.06 final source was unchanged when C9.07 was selected. Both helper
 proofs and permanent consumers remain in that source. The
@@ -2356,7 +2360,8 @@ source-derived website artifacts contain 46 modules, 94 local edges,
 and 92 facade exports. The frozen release manifest retains its 601 declarations.
 The current source index is distinct from signature-bearing doc-gen output;
 the new source invalidates old current-doc attestations. Real final-source
-two-pass doc-gen remains C9.07 work.
+two-pass doc-gen is a required C9.07 gate; only actual source-bound output
+establishes its result.
 Deployment status is checked from the Pages workflow after push rather than
 inferred from local content. The public site is:
 `https://serhatemrecoban.github.io/LeanInfoTheory/`.
@@ -2442,7 +2447,7 @@ inferred from local content. The public site is:
 - [Downstream API feedback](downstream-api-feedback.md): canonical intake and
   triage for deduplicated post-release discoverability evidence.
 - [Chunk 9 handoff](handoffs/chunk-9.md): delivered growth gates/helpers, exact
-  evidence references, pending cumulative closeout and remaining-work triggers.
+  evidence references, cumulative closeout requirements and remaining-work triggers.
 - [Chunk 5 plan](plans/chapter2-chunk-05.md): approved step contracts and
   implementation outcomes for the completed finite-Fano phase.
 - [Chunk 6 plan](plans/chapter2-chunk-06.md): approved finite-family,

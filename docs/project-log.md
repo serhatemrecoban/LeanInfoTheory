@@ -23,14 +23,17 @@ all pins remain unchanged. No additional mathematical implementation is selected
 The prior process findings remain accepted: late dispatch recording does not
 repair the original ordering violation, and identical-byte reviewer rewrites do
 not establish read-only compliance. Original failures and final-source follow-up
-dispositions are preserved. C9.07 will record intent before its actual native
+dispositions are preserved. C9.07 requires recorded intent before an actual native
 send; any reviewer generation probe must redirect every concrete output path.
 
-The clean checkpoint needs separate lead authorization. The complete routine
-suite, fresh cumulative fixture matrix, actual two-pass current file-mode docs,
-fresh full-chunk independent review and exact-source private closure remain pending.
-Safe component checks and self-review support preparation only. No commit,
-publication or C10 transition is established by this entry.
+The lead authorized the proposed exact 94-file local checkpoint in the retained
+response. Necessary narrow C9.07 amendments are a parent interpretation of the
+authorized step work, not additional explicit user text. A commit and its clean
+state require actual Git evidence. The complete routine suite, fresh cumulative
+fixtures and real two-pass current file-mode docs must pass on the authorized
+candidate before fresh full-chunk review. Actual source-bound C9.07 records
+establish results, reconciliations and private closure; this entry does not itself
+certify those outcomes. Publication and C10 remain separately controlled.
 
 ## C9.06 derived information decomposition, 2026-09-12
 
@@ -8914,8 +8917,8 @@ resolution.
     expanded doc-gen remains cost-gated.
 
     C9.07 disposition (2026-09-12): current inventory/source links and content-bound
-    doc validation are implemented; the fresh final two-pass milestone remains
-    pending. Current output stays local and cannot occupy the frozen release route.
+    doc validation are implemented; a fresh final-source two-pass result is required
+    for the local milestone. Current output cannot occupy the frozen release route.
     The documentation maintainer owns separately approved publication, theorem-level
     blueprint/equation work and recurring-status tooling when justified. See the
     [C9 handoff](handoffs/chunk-9.md#remaining-work-and-c10); this note stays open.
@@ -11044,11 +11047,11 @@ resolution.
     checks when public declarations or imports changed.
 
     C9.07 disposition (2026-09-12): use `python -B scripts/validate_release.py`
-    at the separately authorized clean checkpoint, plus the cumulative fixture
-    matrix and actual two-pass `api-docs` gate. The historical target lists below
-    describe their old phases; current targets are owned by `validate_release.py
-    targets`. The C9 parent owns the pending gates, the lead owns checkpoint
-    approval, and every later chunk retains the milestone-validation obligation.
+    at the authorized clean checkpoint, plus the cumulative fixture matrix and
+    actual two-pass `api-docs` gate. The historical target lists below describe
+    their old phases; current targets are owned by `validate_release.py targets`.
+    The C9 parent owns these gates and evidence; the lead controls checkpoint
+    scope, and every later chunk retains the milestone-validation obligation.
 
     Project B Chunk 1 followed this policy: targeted builds supported Steps 1
     through 13, and Step 14 then ran the complete ten-target suite, regenerated

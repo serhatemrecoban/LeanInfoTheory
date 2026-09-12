@@ -98,7 +98,8 @@ Add an entry only for genuine friction. Use these fields:
   All three independent criteria were satisfied; two nonmaterial process findings
   were reconciled with final-source disclosure/impact evidence, preserving their
   original claims and historical noncompliance. C9.07 cumulative qualification
-  and review remain open in the [chunk handoff](handoffs/chunk-9.md).
+  and review are required; the [chunk handoff](handoffs/chunk-9.md) identifies
+  the actual source-bound records that determine their results and closure.
 - Downstream task/version: the [existing bounded intake](plans/post-release-chunk-map.md#c9-post-release-complementary-work)
   records `PerfectFunctionalRepresentations.mutualInfoOf_eq_pfr_decomposition`
   and its structural specialization. The consumed LeanInfoTheory commit is not

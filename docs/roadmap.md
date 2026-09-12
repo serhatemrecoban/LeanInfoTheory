@@ -46,11 +46,12 @@ C9.01--C9.06. Current source contains 603 documented supported declarations in
 31 owners, 94 reviewed simp declarations and 92 root aliases; its generated
 inventory contains 46 local modules, 94 local edges, 5 root-reachable modules,
 41 separate-import modules and 718 indexed declarations (717 documented).
-C9.07 cumulative closeout is in preparation. Its authorized clean checkpoint,
-complete routine suite, fresh complete fixtures, real current two-pass doc-gen,
-cumulative independent review and closure remain pending; the
-[maintained handoff](handoffs/chunk-9.md) tracks those obligations. C10--C24
-remain proposed; neither C9 work nor this roadmap starts a later chunk.
+C9.07 owns cumulative closeout. Its complete routine suite, fresh complete
+fixtures and real current two-pass doc-gen must pass on an authorized clean
+candidate before full-chunk review; review reconciliation and private closure
+are subsequent required postconditions. The
+[maintained handoff](handoffs/chunk-9.md) gives the evidence and status authority.
+C10--C24 remain proposed; neither C9 work nor this roadmap starts a later chunk.
 
 ## Proposed Post-Release Programme
 

@@ -3,7 +3,7 @@
 **Status:** Long-term map, revision 2, 2026-09-11. C10--C24 remain proposed; detailed C9 revision 2 was separately approved.
 **Review follow-up:** C18/C23 clarifications accepted for this map; the 16-chunk structure is unchanged.
 **Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md) and eligible step requests own C9 execution.
-**Execution:** C9.01--C9.06 are closed. C9.07 cumulative closeout is in preparation; its authorized clean checkpoint, complete routine suite, full fixtures, real current doc-gen, consolidated independent review and closure remain pending. [Maintained handoff](../handoffs/chunk-9.md). No C10 or later implementation is selected.
+**Execution:** C9.01--C9.06 are closed. C9.07 owns cumulative closeout; its [maintained handoff](../handoffs/chunk-9.md) records required clean-checkpoint validation, complete fixtures, real current doc-gen, full-chunk review and private closure. Actual source-bound C9.07 records determine results and completion. No C10 or later implementation is selected.
 **Map-intake baseline inspected:** `master` at `80ea016c7ac64bb5bd79b2f769227a3fb2ccc3b3`,
 with the existing uncommitted post-release documentation/discoverability work
 preserved. The immutable `v0.1.0` mathematical baseline remains
@@ -124,9 +124,10 @@ evidence-backed list of generic API gaps without importing application semantics
 six growth-gate components and the two selected generic helpers through closed
 C9.01--C9.06. Current source contains 603 supported declarations in 31 owners,
 with the historical 601-entry baseline, 94 simp names and 92 facade aliases
-preserved. C9.07 is preparing cumulative qualification and the
-[maintained handoff](../handoffs/chunk-9.md); no final-checkpoint, fresh complete
-fixture, real current doc-gen, cumulative review or closure pass is claimed.
+preserved. C9.07 owns cumulative qualification and the
+[maintained handoff](../handoffs/chunk-9.md). Its required clean-checkpoint,
+fixture, current doc-gen, review and closure results are established only by
+actual source-bound C9.07 records.
 
 The following two bands retain the original bounded planning intake and its
 motivation. They are not a second active implementation plan; current authority
@@ -151,13 +152,13 @@ separated current generation, strict retained structural types and exact current
 coverage. The historical inventory remains unchanged; current generation never
 authorizes import or attribute growth. The original baseline-preservation and
 same-name type/assumption requirements are implemented, subject to C9.07's
-still-pending cumulative qualification. Record the chosen check's limits: compilation against old statements
+required cumulative qualification. Record the chosen check's limits: compilation against old statements
 does not establish semantic equivalence of changed definitions. Retain explicit
 source/API review. Do not prescribe a new fingerprinting framework here. Test
 both directions in disposable fixtures: a compatible addition passes, while a
 deliberately broken retained contract is detected. C9.04 supplied the first
 complete pre-helper qualification; its dated evidence remains distinct from
-C9.07's pending final cumulative rerun. This map does not substitute for either
+C9.07's required final cumulative rerun. This map does not substitute for either
 validation point or the approved C9 operating contract.
 
 **Bounded helper intake.** The authorized planning inspection covers the two
