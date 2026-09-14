@@ -48,6 +48,22 @@ Pages maintenance workflow. The complete clean-checkpoint suite must pass
 before push; deployment success remains subject to the actual workflow result.
 Search Console account verification and public outreach remain separate.
 
+Publication completed at source checkpoint
+`7537af70ab644655b678fd428ad038aa6bf83506`. The complete clean local suite passed
+default/maintained builds, nine examples, 31 direct import probes, all 601
+retained signatures, and the 1,400-constant axiom audit. The push included the
+two existing C9 commits as approved. [Remote CI](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/34863514713)
+and [guarded Pages maintenance](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/34863515519)
+passed. The latter performed both immutable API-doc passes and checked the
+composed 5,525-page site, retaining the existing 111 dependency-link advisories.
+All nine curated pages and the sitemap were checked live, as were the four
+guide API links and their exact release-source targets. Published metadata
+distinguishes the site checkpoint from the original `v0.1.0` API commit.
+No release identity, Lean source, or workflow was changed by this visibility
+pass. The successful workflow's upstream Node.js runtime deprecation advisories
+are recorded in the visibility record for later maintenance. Search Console
+verification and outreach still require separate owner action.
+
 ## C9.07 cumulative closeout preparation, 2026-09-12
 
 C9.01--C9.06 have actual durable private closures. C9.06 closed at

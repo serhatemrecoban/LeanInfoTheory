@@ -1131,12 +1131,16 @@ certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 **[Current, 2026-09-14]** The lead authorized stronger library positioning,
 README/website improvements, practical guides, and discovery metadata. GitHub's
-description and eight topics are updated. Local work adds five guides, four
+description and eight topics are updated. Published work adds five guides, four
 Lean examples maintained by the documentation gate, and a nine-page sitemap
 with canonical and social metadata. See the [visibility record](website-visibility.md)
 for the dated baseline, validation scope, account actions, and announcement draft.
-These source changes are not a Pages deployment. Search Console verification,
-publication and community outreach remain distinct follow-ups; no ranking or
+The source checkpoint `7537af70ab644655b678fd428ad038aa6bf83506` passed the
+complete local suite and [remote CI](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/34863514713).
+The approved [Pages deployment](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/34863515519)
+succeeded, and all nine curated pages and the sitemap were checked live.
+The published metadata pins the API to the original `v0.1.0` release commit.
+Search Console verification and community outreach remain follow-ups; no ranking or
 assistant-recommendation improvement has been measured. This does not select
 a mathematical chunk or change the frozen release API.
 

@@ -4,16 +4,21 @@
 
 The lead authorized stronger positioning and discovery work without changing
 mathematical scope. GitHub's About description and eight topics are live.
-The local README and homepage now lead with the usable library, with five
+The published README and homepage now lead with the usable library, with five
 practical guides, four maintained Lean examples, nine curated canonical/social
 metadata entries, and a project sitemap. See the
 [visibility record](website-visibility.md) for the baseline and owner actions.
 
-Remaining: review/commit the local changes, resolve the two earlier unpushed
-commits before pushing, and use the existing guarded Pages maintenance flow.
-Then verify the project in Search Console, submit the sitemap, and review a
-community announcement. Account verification, deployment, outreach, and search
-results are not claimed complete. Do not alter the frozen v0.1.0 API route.
+Checkpoint `7537af7` and the two existing C9 commits were pushed with approval.
+The complete local suite, remote CI, and guarded Pages maintenance deployment
+passed. Live checks confirmed the nine curated pages, sitemap, and immutable
+release-source links. See the visibility record for exact run references.
+
+Remaining: verify the project in Search Console, submit the sitemap, and review
+a community announcement. Account verification, outreach, and search results
+are not claimed complete. Review the recorded upstream Actions runtime
+deprecation advisories in a separate maintenance change; do not alter the frozen
+v0.1.0 API route or bypass publication guards.
 
 ## Completed in the current website-improvement pass
 

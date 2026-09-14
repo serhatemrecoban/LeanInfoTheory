@@ -29,7 +29,7 @@ GitHub's description and eight topics were updated and read back through its
 API: `lean4`, `mathlib`, `information-theory`, `formal-verification`,
 `theorem-proving`, `entropy`, `probability`, and `mathematics`.
 
-Prepared local changes:
+Implemented and published changes:
 
 - Confident README and homepage introductions, with release procedures folded
   away from the getting-started path rather than erased.
@@ -53,18 +53,27 @@ and four guide examples with warnings as errors, static checks including
 two-pass generated-artifact checks, 34 website tests, and 40 other validator
 regressions. Seven pages passed browser layout checks at widths 1440, 390,
 and 320; screenshots were inspected. All four published guide deep links
-returned HTTP 200. The clean-checkpoint suite and full staged publication gate
-remain for the publication checkpoint, not waived by these component passes.
+returned HTTP 200. The complete clean-checkpoint suite subsequently passed at
+`7537af70ab644655b678fd428ad038aa6bf83506`: default and maintained builds,
+nine examples, all 31 import probes, all 601 retained signatures, and the
+1,400-constant axiom audit. Only the standard three permitted axioms occurred.
 
-The GitHub About changes are live. The README and website changes remain local
-until committed/pushed and the guarded Pages maintenance workflow is approved
-and run. The starting checkout already had two unrelated unpushed commits;
-this visibility pass does not silently publish them. No tag,
-release, DOI, frozen route, workflow, or dependency pin is changed here.
+The lead approved the push, including the two existing C9 commits, and guarded
+Pages publication. [Remote CI](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/34863514713)
+and [Pages maintenance](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/34863515519)
+passed at that exact checkpoint. The latter rebuilt and checked the immutable
+API twice, then validated the composed site: 5,525 HTML files and 3,102,711
+links/assets, with the existing 111 imported-dependency link advisories.
+Live checks confirmed all nine curated pages and the sitemap, and release-pinned
+source links on the four API pages used by the guides. The public
+`website-stage.json` identifies site commit `7537af7` separately from API commit
+`0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`. GitHub About, README, and website
+changes are now live. No tag, release, DOI, workflow, or dependency pin changed.
 
-The lead subsequently approved the checkpoint, push including the two existing
-C9 commits, and guarded Pages publication. Execution must retain the complete
-clean-tree and frozen-API publication gates; approval is not a deployment result.
+The successful workflow reported upstream Node.js 20 deprecation advisories for
+the pinned deploy action and the upload action's nested artifact dependency;
+GitHub ran them using Node.js 24. Review those pins in a separate maintenance
+change without weakening publication guards. They did not fail this deployment.
 
 For Google Search Console, the owner should sign in and add the URL-prefix
 property `https://serhatemrecoban.github.io/LeanInfoTheory/`. If it is not
