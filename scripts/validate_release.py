@@ -26,6 +26,7 @@ import generate_website_api_index as api_index
 import generate_website_blueprint as blueprint
 import current_api
 import api_doc_identity
+import website_discovery
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -1159,6 +1160,14 @@ def check_documentation_examples() -> None:
             label=f"README example {index}/{len(examples)}: {example_id}",
         )
     print(f"independently compiled {len(examples)} README examples with warnings as errors")
+    for example_id, source in website_discovery.read_guide_examples():
+        run_command(
+            ("lake", "env", "lean", "-DwarningAsError=true", "--stdin"),
+            input_text=source,
+            capture_output=True,
+            label=f"website guide example: {example_id}",
+        )
+    print("independently compiled four website guide examples with warnings as errors")
 
 
 def check_release_interlock() -> None:
@@ -1287,6 +1296,7 @@ def check_generated_artifacts() -> None:
             run_command(command, label=f"generated-artifact check pass {pass_number}")
     run_command((sys.executable, "scripts/check_website.py", "--mode", "source"))
     run_command((sys.executable, "scripts/test_check_website.py"))
+    run_command((sys.executable, "scripts/website_discovery.py"))
     print("generated artifact text is current on two independent render passes")
 
 

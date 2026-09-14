@@ -228,7 +228,8 @@ unstaged, or unignored untracked paths. The root `.gitattributes` fixes tracked
 text to LF so Lake manifests remain byte-stable in ordinary Windows checkouts.
 The default command runs non-mutating generated-artifact checks, the default
 Lake build, the eight-target warning-as-error build, independently compiles all
-marked README Lean examples with warnings as errors, checks exact direct-import
+marked README Lean examples and the four maintained website-guide examples with
+warnings as errors, checks exact direct-import
 closures for all current supported modules, rebuilds and compares retained
 signatures/imports/root exports against the release contract, audits exact current
 inventory/owners and reviewed `simp` sets, runs the full project axiom audit, checks exact

@@ -150,6 +150,40 @@ a:hover {
   margin-top: 0;
 }
 
+.main-content pre {
+  max-width: 100%;
+  padding: 1rem;
+  overflow-x: auto;
+  color: #243746;
+  background: #f6f8fa;
+  border: 1px solid #dce6ea;
+  border-radius: 4px;
+}
+
+.main-content pre code {
+  font-size: 0.875rem;
+  white-space: pre;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.notation-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.notation-table th,
+.notation-table td {
+  padding: 0.65rem 0.4rem;
+  border-bottom: 1px solid #dce6ea;
+  text-align: left;
+}
+
+.notation-table th:first-child {
+  width: 30%;
+}
+
 .main-content li + li {
   margin-top: 0.15rem;
 }

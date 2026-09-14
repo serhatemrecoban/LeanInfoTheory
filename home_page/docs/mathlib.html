@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LeanInfoTheory and mathlib: Finite Information Theory in Lean</title>
+    <meta name="description" content="How LeanInfoTheory complements mathlib with a dedicated finite-PMF Shannon API, semantic bridges, focused imports, and reusable information-theoretic theorems.">
+    <link rel="canonical" href="https://serhatemrecoban.github.io/LeanInfoTheory/docs/mathlib.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LeanInfoTheory">
+    <meta property="og:title" content="LeanInfoTheory and mathlib: Finite Information Theory in Lean">
+    <meta property="og:description" content="How LeanInfoTheory complements mathlib with a dedicated finite-PMF Shannon API, semantic bridges, focused imports, and reusable information-theoretic theorems.">
+    <meta property="og:url" content="https://serhatemrecoban.github.io/LeanInfoTheory/docs/mathlib.html">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="LeanInfoTheory and mathlib: Finite Information Theory in Lean">
+    <meta name="twitter:description" content="How LeanInfoTheory complements mathlib with a dedicated finite-PMF Shannon API, semantic bridges, focused imports, and reusable information-theoretic theorems.">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Built on mathlib</h1>
+      <p class="project-tagline">LeanInfoTheory: information theory in Lean 4.</p>
+      <nav class="project-links" aria-label="Project links">
+        <a href="../" class="btn">Home</a>
+        <a href="./" class="btn">Guides</a>
+        <a href="v0.1.0/" class="btn">API Reference</a>
+        <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
+      </nav>
+    </header>
+    <main id="content" class="main-content" role="main">
+      <p class="lead">LeanInfoTheory builds on mathlib's probability and analysis foundations to provide a dedicated library for finite Shannon information theory. It is a companion library, not a replacement for mathlib.</p>
+      <h2>Shared probability foundations</h2>
+      <p>Laws are mathlib <code>PMF</code>s. Random-variable distributions use <code>PMF.map</code>, stochastic channels use <code>PMF.bind</code>, and canonical relative entropy uses mathlib's measure-theoretic <code>InformationTheory.klDiv</code>. This shared vocabulary lets proofs reuse the surrounding Lean ecosystem.</p>
+      <h2>A coherent finite-information-theory API</h2>
+      <p>LeanInfoTheory adds finite-PMF entropy and information measures, conditional-law and KL interpretations, textbook identities and inequalities, finite channels and Markov structure, finite-family results, and sufficient-statistic characterizations. The library also connects Boolean-PMF entropy to mathlib's binary entropy.</p>
+      <p>The <a href="../theorems.html">theorem map</a> provides mathematical entry points. The <a href="v0.1.0/">v0.1.0 reference</a> contains all 601 supported project-owned declarations, with exact signatures and source links. Imported dependency pages are navigable reference material, not extra LeanInfoTheory declarations.</p>
+      <h2>Imports matched to your proof</h2>
+      <p>The lightweight <code>LeanInfoTheory</code> root exposes core PMF and elementary information-measure APIs. Heavier semantic, KL, channel, and finite-family results are opt-in. Use <code>LeanInfoTheory.Shannon</code> for the complete supported stack, or a <a href="../module-guide.html">focused module</a> for a more targeted dependency.</p>
+      <h2>Version and trust boundaries</h2>
+      <p>LeanInfoTheory v0.1.0 is pinned to Lean and mathlib v4.33.1. The release rejects proof placeholders and audits project proof dependencies, allowing the standard Lean axioms <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code>. Machine checking establishes a formal consequence of the stated assumptions; it does not by itself establish that a statement captures a paper's intended meaning.</p>
+      <p>See <a href="getting-started.html">installation</a>, <a href="information-measures.html">notation and conventions</a>, and the <a href="research-projects.html">research-project guide</a>.</p>
+      <footer class="site-footer">
+        <p><a href="./">All guides</a> &middot; <a href="../license.html">License and citation</a> &middot; <a href="../">LeanInfoTheory</a></p>
+      </footer>
+    </main>
+  </body>
+</html>

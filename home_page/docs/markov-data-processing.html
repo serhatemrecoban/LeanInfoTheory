@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Markov Chains and Data Processing in Lean 4 | LeanInfoTheory</title>
+    <meta name="description" content="Prove mutual-information data processing and zero conditional mutual information from a finite Markov triple using LeanInfoTheory's checked Lean 4 API.">
+    <link rel="canonical" href="https://serhatemrecoban.github.io/LeanInfoTheory/docs/markov-data-processing.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LeanInfoTheory">
+    <meta property="og:title" content="Markov Chains and Data Processing in Lean 4 | LeanInfoTheory">
+    <meta property="og:description" content="Prove mutual-information data processing and zero conditional mutual information from a finite Markov triple using LeanInfoTheory's checked Lean 4 API.">
+    <meta property="og:url" content="https://serhatemrecoban.github.io/LeanInfoTheory/docs/markov-data-processing.html">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Markov Chains and Data Processing in Lean 4 | LeanInfoTheory">
+    <meta name="twitter:description" content="Prove mutual-information data processing and zero conditional mutual information from a finite Markov triple using LeanInfoTheory's checked Lean 4 API.">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Markov Chains</h1>
+      <p class="project-tagline">LeanInfoTheory: information theory in Lean 4.</p>
+      <nav class="project-links" aria-label="Project links">
+        <a href="../" class="btn">Home</a>
+        <a href="./" class="btn">Guides</a>
+        <a href="v0.1.0/" class="btn">API Reference</a>
+        <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
+      </nav>
+    </header>
+    <main id="content" class="main-content" role="main">
+      <p class="lead">Turn a Markov hypothesis into a machine-checked information inequality. LeanInfoTheory exposes the familiar chain X &rarr; Y &rarr; Z through <code>IsMarkovChainOf p X Y Z</code>.</p>
+      <h2>Information cannot increase along a Markov chain</h2>
+      <p>The following complete example proves I(X;Z) &le; I(X;Y). Only the variable alphabets are assumed finite; the source type <code>Omega</code> is not.</p>
+      <pre><code class="language-lean" data-lean-example="guide-data-processing">import LeanInfoTheory.Shannon.SemanticBridge.Markov
+
+open LeanInfoTheory.Shannon
+
+example {Omega A B C : Type}
+    [Fintype A] [Fintype B] [Fintype C]
+    (p : PMF Omega) (X : Omega -&gt; A)
+    (Y : Omega -&gt; B) (Z : Omega -&gt; C)
+    (h : IsMarkovChainOf p X Y Z) :
+    mutualInfoOf p X Z &lt;= mutualInfoOf p X Y := by
+  exact mutualInfoOf_dataProcessing p X Y Z h</code></pre>
+      <h2>The zero conditional-information characterization</h2>
+      <p>The same chain is equivalent to I(X;Z | Y) = 0. Notice the order: <code>Y</code> is the middle variable in the chain, but the final conditioning argument in conditional mutual information.</p>
+      <pre><code class="language-lean" data-lean-example="guide-markov-zero-cmi">import LeanInfoTheory.Shannon.SemanticBridge.Markov
+
+open LeanInfoTheory.Shannon
+
+example {Omega A B C : Type}
+    [Fintype A] [Fintype B] [Fintype C]
+    (p : PMF Omega) (X : Omega -&gt; A)
+    (Y : Omega -&gt; B) (Z : Omega -&gt; C)
+    (h : IsMarkovChainOf p X Y Z) :
+    condMutualInfoOf p X Z Y = 0 := by
+  exact (condMutualInfoOf_eq_zero_iff_isMarkovChainOf p X Y Z).mpr h</code></pre>
+      <p>The equivalence also works in the other direction: its <code>.mp</code> direction recovers the Markov condition from zero conditional mutual information.</p>
+      <h2>Stochastic channels and stronger results</h2>
+      <p>Finite channels are ordinary functions <code>A -&gt; PMF B</code>; an input law <code>p</code> produces the output law <code>p.bind W</code>. The library also provides channel composition, KL contraction, posterior decompositions, and equality and recovery characterizations. These have their own assumptions; start with the <a href="../module-guide.html">module guide</a> and inspect the exact statements.</p>
+      <p>For this guide's two results, use the <a href="https://serhatemrecoban.github.io/LeanInfoTheory/docs/v0.1.0/LeanInfoTheory/Shannon/SemanticBridge/Markov.html">versioned Markov reference</a>. The basic mathematical source is Cover and Thomas (1991), Section 2.8, with the information identities of Sections 2.4-2.5.</p>
+      <footer class="site-footer">
+        <p><a href="./">All guides</a> &middot; <a href="../license.html">License and citation</a> &middot; <a href="../">LeanInfoTheory</a></p>
+      </footer>
+    </main>
+  </body>
+</html>

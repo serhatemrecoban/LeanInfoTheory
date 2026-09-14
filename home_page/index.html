@@ -4,10 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
-    <title>LeanInfoTheory | Lean-certified information theory</title>
+    <title>LeanInfoTheory | Information Theory Library for Lean 4</title>
+    <link rel="canonical" href="https://serhatemrecoban.github.io/LeanInfoTheory/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LeanInfoTheory">
+    <meta property="og:title" content="LeanInfoTheory | Information Theory Library for Lean 4">
+    <meta property="og:description" content="A machine-checked information theory library for Lean 4 and mathlib. 601 public declarations covering entropy, mutual information, KL divergence, channels, and more.">
+    <meta property="og:url" content="https://serhatemrecoban.github.io/LeanInfoTheory/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="LeanInfoTheory | Information Theory Library for Lean 4">
+    <meta name="twitter:description" content="A machine-checked information theory library for Lean 4 and mathlib. 601 public declarations covering entropy, mutual information, KL divergence, channels, and more.">
     <meta
       name="description"
-      content="A Lean 4 and mathlib library for finite information measures, channels, and semantic bridge theorems."
+      content="A machine-checked information theory library for Lean 4 and mathlib. 601 public declarations covering entropy, mutual information, KL divergence, channels, and more."
     >
     <meta name="citation_title" content="LeanInfoTheory">
     <meta name="citation_author" content="Coban, Serhat Emre">
@@ -21,7 +30,7 @@
     <header class="page-header" role="banner">
       <h1 class="project-name">LeanInfoTheory</h1>
       <h2 class="project-tagline">
-        A Lean 4 and mathlib library for finite information theory.
+        A machine-checked information theory library for Lean 4.
       </h2>
       <p class="project-authors">
         <a href="https://serhatemrecoban.github.io/" target="_blank" rel="noopener noreferrer">
@@ -29,6 +38,7 @@
         </a>
       </p>
       <nav class="project-links" aria-label="Project links">
+        <a href="docs/getting-started.html" class="btn">Get Started</a>
         <a href="docs/" class="btn">Docs</a>
         <a href="theorems.html" class="btn">Theorems</a>
         <a href="blueprint/" class="btn">Blueprint</a>
@@ -62,32 +72,40 @@
           Latest stable release: <code>v0.1.0</code>, the first LeanInfoTheory
           public-library baseline, archived as
           <a href="https://doi.org/10.5281/zenodo.22229599"><code>10.5281/zenodo.22229599</code></a>.
-          The supported scope
-          covers finite PMF and dependent finite-family information
-          measures, ordered conditional-MI chain rules, finite-family mutual
-           independence, zero-safe finite log-sum and PMF mixtures, entropy
-           concavity, KL joint convexity, common-base conditional KL, MI
-           input-law concavity and channel convexity, finite stochastic channels,
-           finite Fano inequalities, data processing, and sufficient statistics.
+          <strong>601 documented public declarations. 31 supported modules.
+          Ready to use in your own Lean project.</strong>
         </p>
       </section>
 
       <section class="project-summary" aria-labelledby="summary-heading">
-        <h2 id="summary-heading">Project Summary</h2>
+        <h2 id="summary-heading">A foundation for your next formalization</h2>
         <p>
-          LeanInfoTheory is a Lean 4/mathlib library for finite discrete
-          information theory. The current formalization covers entropy,
-          conditional entropy, mutual information, conditional mutual
-          information, independence and Markov characterizations, finite
-          stochastic-channel data processing, deterministic-decoder Fano,
-          dependent finite-family entropy and mutual independence, finite
-           log-sum, entropy concavity, KL joint convexity, common-base
-           conditional KL, MI input-law concavity and channel convexity. The
-           goal is a reusable, proof-complete foundation that downstream Lean
-           projects can consume through focused public imports, the lightweight
-           <code>LeanInfoTheory</code> root, or the complete import-only
-           <code>LeanInfoTheory.Shannon</code> umbrella.
+          Put machine-checked information theory to work. LeanInfoTheory is a
+          reusable Lean 4 and mathlib library for finite discrete information
+          theory, bringing entropy, mutual information, KL divergence, channels,
+          Markov chains, data processing, Fano inequalities, and sufficient
+          statistics into one substantial mathematical toolkit.
         </p>
+        <p>
+          Build research formalizations and information-theoretic software on
+          proved foundations. Install the tagged release, choose a focused
+          import, and reuse the results in your own proofs. Every formal theorem
+          is checked by Lean against its stated assumptions; the maintained
+          release validation rejects proof placeholders.
+        </p>
+        <p>
+          <a href="docs/getting-started.html">Install and prove your first result</a>
+          or explore <a href="docs/research-projects.html">the research-project guide</a>.
+        </p>
+      </section>
+
+      <section aria-labelledby="guides-heading">
+        <h2 id="guides-heading">From familiar mathematics to Lean proofs</h2>
+        <ul>
+          <li><a href="docs/information-measures.html">Entropy, mutual information, and KL divergence</a>: notation, assumptions, and working examples.</li>
+          <li><a href="docs/markov-data-processing.html">Markov chains and data processing</a>: turn conditional independence into information inequalities.</li>
+          <li><a href="docs/mathlib.html">LeanInfoTheory and mathlib</a>: a dedicated finite-information-theory API on shared probability foundations.</li>
+        </ul>
       </section>
 
       <section aria-labelledby="dashboard-heading">

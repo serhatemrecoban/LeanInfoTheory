@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Getting Started with Information Theory in Lean 4 | LeanInfoTheory</title>
+    <meta name="description" content="Install LeanInfoTheory v0.1.0 with Lake and prove your first entropy result. A practical quick start for Lean 4 and mathlib users.">
+    <link rel="canonical" href="https://serhatemrecoban.github.io/LeanInfoTheory/docs/getting-started.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LeanInfoTheory">
+    <meta property="og:title" content="Getting Started with Information Theory in Lean 4 | LeanInfoTheory">
+    <meta property="og:description" content="Install LeanInfoTheory v0.1.0 with Lake and prove your first entropy result. A practical quick start for Lean 4 and mathlib users.">
+    <meta property="og:url" content="https://serhatemrecoban.github.io/LeanInfoTheory/docs/getting-started.html">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Getting Started with Information Theory in Lean 4 | LeanInfoTheory">
+    <meta name="twitter:description" content="Install LeanInfoTheory v0.1.0 with Lake and prove your first entropy result. A practical quick start for Lean 4 and mathlib users.">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Getting Started</h1>
+      <p class="project-tagline">LeanInfoTheory: information theory in Lean 4.</p>
+      <nav class="project-links" aria-label="Project links">
+        <a href="../" class="btn">Home</a>
+        <a href="./" class="btn">Guides</a>
+        <a href="v0.1.0/" class="btn">API Reference</a>
+        <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
+      </nav>
+    </header>
+    <main id="content" class="main-content" role="main">
+      <p class="lead">Start with a released library, not a blank file. LeanInfoTheory gives your Lean project a substantial, reusable foundation for finite discrete information theory.</p>
+      <h2>Install the stable release</h2>
+      <p>These guides target <strong>LeanInfoTheory v0.1.0</strong>, with Lean and mathlib <strong>v4.33.1</strong>. You need Lean's Elan/Lake toolchain and Git. For a new project, create a Lean library project with Lake or your editor; for an existing project, check dependency compatibility first.</p>
+      <p>Set your project's <code>lean-toolchain</code> to:</p>
+      <pre><code>leanprover/lean4:v4.33.1</code></pre>
+      <p>Add this dependency to <code>lakefile.toml</code>:</p>
+      <pre><code>[[require]]
+name = "LeanInfoTheory"
+git = "https://github.com/serhatemrecoban/LeanInfoTheory"
+rev = "v0.1.0"</code></pre>
+      <p>From your project directory, resolve dependencies, retrieve the mathlib cache, and build:</p>
+      <pre><code>lake update
+lake exe cache get
+lake build</code></pre>
+      <p>The release fixes its toolchain. Do not mix incompatible Lean or mathlib versions, and do not replace the version tag with <code>master</code> for a reproducible research project.</p>
+      <h2>Prove your first result</h2>
+      <p>A deterministic law has zero entropy. This is a complete Lean example:</p>
+      <pre><code class="language-lean" data-lean-example="guide-entropy-pure">import LeanInfoTheory
+
+open LeanInfoTheory.Shannon
+
+example : entropy (PMF.pure false) = 0 := by
+  exact entropy_pure false</code></pre>
+      <p>Put the example in a Lean file in your project and check it with your editor or <code>lake env lean YourFile.lean</code>. The library supplies the theorem; your proof applies it to the law concentrated at <code>false</code>.</p>
+      <h2>Choose an import</h2>
+      <p><code>import LeanInfoTheory</code> gives you the lightweight PMF and elementary information-measure layer. <code>import LeanInfoTheory.Shannon</code> loads the complete supported mathematical stack. For a smaller dependency closure, use the <a href="../module-guide.html">focused module guide</a>.</p>
+      <h2>Where next?</h2>
+      <ul>
+        <li><a href="information-measures.html">Translate entropy, mutual information, and KL notation into Lean.</a></li>
+        <li><a href="markov-data-processing.html">Prove data processing from a Markov hypothesis.</a></li>
+        <li><a href="research-projects.html">Build a research formalization on the library.</a></li>
+        <li><a href="v0.1.0/">Search the versioned API reference.</a></li>
+      </ul>
+      <footer class="site-footer">
+        <p><a href="./">All guides</a> &middot; <a href="../license.html">License and citation</a> &middot; <a href="../">LeanInfoTheory</a></p>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -11,6 +11,7 @@ import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
+from website_discovery import PAGES, DiscoveryPage, check_discovery, read_guide_examples
 
 from check_website import (
     COMPOSITION_STAGE_SCHEMA,
@@ -828,6 +829,39 @@ class VersionedWebsiteBoundaryTests(unittest.TestCase):
             ),
         ):
             self.assertEqual(validate_current_maintenance_checkout(), self.SITE_COMMIT)
+
+
+class DiscoveryTests(unittest.TestCase):
+    def test_live_source_metadata_and_examples(self) -> None:
+        check_discovery(SITE_ROOT)
+        self.assertEqual(len(read_guide_examples(SITE_ROOT)), 4)
+
+    def test_html_entities_decode_to_lean(self) -> None:
+        page = DiscoveryPage()
+        page.feed('<code class="language-lean" data-lean-example="x">A -&gt; B &times; C</code>')
+        self.assertEqual(page.examples, [("x", "A -> B \u00d7 C\n")])
+
+    def test_missing_metadata_duplicate_urls_and_unmarked_examples_fail(self) -> None:
+        cases = (
+            ("index.html", 'rel="canonical"', 'rel="alternate"'),
+            ("docs/index.html", 'property="og:title"', 'property="other"'),
+            ("index.html", '<meta name="twitter:card"', '<meta name="robots" content="noindex"><meta name="twitter:card"'),
+            ("sitemap.xml", "</urlset>", '<url><loc>https://serhatemrecoban.github.io/LeanInfoTheory/</loc></url></urlset>'),
+            ("docs/getting-started.html", 'data-lean-example="guide-entropy-pure"', ''),
+        )
+        for relative, old, new in cases:
+            with self.subTest(relative=relative, change=old), tempfile.TemporaryDirectory() as raw:
+                site = Path(raw)
+                for path in (*PAGES, "sitemap.xml"):
+                    target = site / path
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copyfile(SITE_ROOT / path, target)
+                target = site / relative
+                source = target.read_text(encoding="utf-8")
+                self.assertIn(old, source)
+                target.write_text(source.replace(old, new, 1), encoding="utf-8")
+                with self.assertRaises(ValueError):
+                    check_discovery(site)
 
 
 if __name__ == "__main__":

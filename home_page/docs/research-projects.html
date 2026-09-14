@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formalize an Information Theory Paper in Lean | LeanInfoTheory</title>
+    <meta name="description" content="Build an information-theory research formalization on LeanInfoTheory: pin a release, map statements to the API, preserve assumptions, and contribute reusable results.">
+    <link rel="canonical" href="https://serhatemrecoban.github.io/LeanInfoTheory/docs/research-projects.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LeanInfoTheory">
+    <meta property="og:title" content="Formalize an Information Theory Paper in Lean | LeanInfoTheory">
+    <meta property="og:description" content="Build an information-theory research formalization on LeanInfoTheory: pin a release, map statements to the API, preserve assumptions, and contribute reusable results.">
+    <meta property="og:url" content="https://serhatemrecoban.github.io/LeanInfoTheory/docs/research-projects.html">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Formalize an Information Theory Paper in Lean | LeanInfoTheory">
+    <meta name="twitter:description" content="Build an information-theory research formalization on LeanInfoTheory: pin a release, map statements to the API, preserve assumptions, and contribute reusable results.">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Research Projects</h1>
+      <p class="project-tagline">LeanInfoTheory: information theory in Lean 4.</p>
+      <nav class="project-links" aria-label="Project links">
+        <a href="../" class="btn">Home</a>
+        <a href="./" class="btn">Guides</a>
+        <a href="v0.1.0/" class="btn">API Reference</a>
+        <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
+      </nav>
+    </header>
+    <main id="content" class="main-content" role="main">
+      <p class="lead">Spend your formalization effort on the new mathematics. LeanInfoTheory supplies reusable information-theoretic foundations for research projects and downstream software.</p>
+      <h2>Start with a dependency, not a copy</h2>
+      <p>Create a separate Lean project and <a href="getting-started.html">depend on v0.1.0 through Lake</a>. Keep the resolved manifest and toolchain under version control. A later library upgrade should be deliberate, followed by a full build of your own project.</p>
+      <h2>Map paper statements to existing results</h2>
+      <ol>
+        <li>List the paper's definitions, theorem statements, and assumptions. Distinguish the target manuscript from supplementary proof sources.</li>
+        <li>Match basic identities and inequalities to the <a href="../theorems.html">theorem highlights</a> and <a href="v0.1.0/">release API</a>, then verify candidate names in a compiling Lean file.</li>
+        <li>Keep paper-specific structures and constructions in your project. Propose a library addition when a missing result is independently useful.</li>
+        <li>Build one coherent theorem step at a time, including concrete and degenerate examples. Independently review statements as well as proof completion.</li>
+      </ol>
+      <h2>Check the mathematical contract</h2>
+      <ul>
+        <li><strong>Alphabet scope:</strong> the release targets finite discrete information theory, not general continuous entropy.</li>
+        <li><strong>Units:</strong> canonical quantities use nats; convert explicitly if the paper uses bits.</li>
+        <li><strong>Support:</strong> distinguish global assumptions from properties needed only on positive-probability events.</li>
+        <li><strong>Conditioning:</strong> track argument order and null fibers; a total conditional law's fallback is not evidence about a probability-zero event.</li>
+        <li><strong>KL:</strong> keep infinity and real-valued conversion separate.</li>
+      </ul>
+      <h2>What the release provides</h2>
+      <p>Entropy and information identities, finite-family algebra, independence and Markov characterizations, stochastic data processing, finite Fano inequalities, convexity, and sufficiency are available now. Capacity, AEP, coding theorems, and a dedicated finite-PMF total-variation/coupling API are outside v0.1.0.</p>
+      <h2>Applications and collaboration</h2>
+      <p>A paper formalization and an entropy-inequality certificate application are natural downstream uses. They are not part of this release, and this guide does not claim a completed public case study. Public case studies can be linked here when their authors are ready to publish them.</p>
+      <p>For a missing theorem, confusing name, or import problem, <a href="https://github.com/serhatemrecoban/LeanInfoTheory/issues">open an issue</a> with the library version, intended mathematical statement, relevant source section, and a minimal Lean example when possible.</p>
+      <footer class="site-footer">
+        <p><a href="./">All guides</a> &middot; <a href="../license.html">License and citation</a> &middot; <a href="../">LeanInfoTheory</a></p>
+      </footer>
+    </main>
+  </body>
+</html>

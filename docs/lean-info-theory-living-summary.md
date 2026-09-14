@@ -1127,6 +1127,19 @@ certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
 
+### Public visibility pass
+
+**[Current, 2026-09-14]** The lead authorized stronger library positioning,
+README/website improvements, practical guides, and discovery metadata. GitHub's
+description and eight topics are updated. Local work adds five guides, four
+Lean examples maintained by the documentation gate, and a nine-page sitemap
+with canonical and social metadata. See the [visibility record](website-visibility.md)
+for the dated baseline, validation scope, account actions, and announcement draft.
+These source changes are not a Pages deployment. Search Console verification,
+publication and community outreach remain distinct follow-ups; no ranking or
+assistant-recommendation improvement has been measured. This does not select
+a mathematical chunk or change the frozen release API.
+
 ### Post-release programme planning
 
 **[Proposed, 2026-09-11]** The project lead authorized a long-term map and

@@ -5,6 +5,49 @@ detail. It is not meant to list every small command or proof attempt. It should
 help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
+## Public visibility and practical guides, 2026-09-14
+
+The lead authorized a confident, evidence-based visibility pass. GitHub's
+About description now identifies a machine-checked information-theory library
+for Lean 4/mathlib; eight relevant topics were added and verified remotely.
+The local README and homepage lead with usable capabilities and the released
+601-declaration, 31-module surface. Release and contributor procedures remain
+available in collapsed README sections rather than being deleted.
+
+Five public-facing guides cover installation, information measures,
+Markov/data processing, research projects, and mathlib integration. Four
+independent Lean examples are now compiled by the existing documentation gate.
+Nine curated pages have consistent canonical and social metadata and a sitemap;
+the host robots policy already allows crawling. The
+[visibility record](website-visibility.md) records the baseline, announcement
+draft, source guidance, and account/publication follow-ups. Future Work Note 9
+is only advanced by user-facing documentation; its theorem-level blueprint work
+remains deferred. Note 10's broader contributor onboarding remains open.
+
+Validation passed: focused Markov/Theorems build (2,753 jobs); all five README
+and four guide examples with warnings as errors; static release checks and
+two-pass generated-artifact checks; 34 website tests and 40 additional validator
+regressions; the four published deep API links returned HTTP 200. Browser checks
+covered seven pages at widths 1440, 390, and 320 with no tested layout overflow;
+homepage and guide screenshots were inspected. A mobile notation table was
+improved after inspection. An initial source-link failure was fixed by pointing
+guide deep links to the existing published immutable reference, not by weakening
+the checker or adding generated API files to the source tree.
+
+No Lean source, API manifest, toolchain, dependency, release identity, or workflow
+changed. The complete clean-checkpoint suite and full Pages preparation were
+not run for this uncommitted content pass. No commit, push, Pages deployment,
+Search Console verification, announcement, or recurring monitor was performed.
+Two earlier C9 commits were already unpushed at intake; their publication is
+not silently bundled into this pass. The new local pages are not yet live, and
+no search-ranking or assistant-recommendation improvement is claimed.
+
+The lead subsequently approved committing and pushing this visibility work
+together with the two existing C9 commits, and publication through the guarded
+Pages maintenance workflow. The complete clean-checkpoint suite must pass
+before push; deployment success remains subject to the actual workflow result.
+Search Console account verification and public outreach remain separate.
+
 ## C9.07 cumulative closeout preparation, 2026-09-12
 
 C9.01--C9.06 have actual durable private closures. C9.06 closed at

@@ -4,8 +4,39 @@
 [![Deploy website](https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/pages.yml/badge.svg)](https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/pages.yml)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22229598.svg)](https://doi.org/10.5281/zenodo.22229598)
 
-Lean-certified finite discrete information theory over mathlib probability mass
-functions.
+**A machine-checked information theory library for Lean 4.**
+
+Build your next formalization on a substantial foundation of Shannon information
+theory: entropy, mutual information, KL divergence, channels, Markov chains, data
+processing, Fano inequalities, and sufficient statistics. LeanInfoTheory brings
+these tools together in a reusable finite-discrete API built on mathlib.
+
+**601 documented public declarations. 31 supported modules. A versioned release
+you can use today.** Definitions and theorems are checked by Lean; the release
+validation rejects proof placeholders. Stable release: **v0.1.0**.
+License: **Apache-2.0**.
+
+[Get started](#installation) ·
+[Practical guides](https://serhatemrecoban.github.io/LeanInfoTheory/docs/) ·
+[API reference](https://serhatemrecoban.github.io/LeanInfoTheory/docs/v0.1.0/) ·
+[Theorem highlights](https://serhatemrecoban.github.io/LeanInfoTheory/theorems.html)
+
+## What you can build
+
+- **Research formalizations:** reuse information identities, inequalities, and
+  equality characterizations in your own mathematical arguments.
+- **Channel and inference proofs:** work with finite stochastic channels,
+  conditional independence, data processing, and sufficient statistics.
+- **Information-theoretic tools:** build downstream applications on checked
+  mathematical results, without adding application-specific machinery to the
+  library itself.
+
+Start with [getting started](home_page/docs/getting-started.html),
+[information measures](home_page/docs/information-measures.html), or
+[Markov chains and data processing](home_page/docs/markov-data-processing.html).
+The [research-project guide](home_page/docs/research-projects.html) explains how
+to choose a release, map paper statements to APIs, and keep new mathematics in
+the right project.
 
 ## Positioning
 
@@ -19,6 +50,9 @@ Certificate representations, parsers, checking DSLs, import adapters, and
 application demonstrations belong to downstream projects. Paper-specific
 constructions also remain downstream. Broadly reusable information-theory
 results stay in LeanInfoTheory when their ownership and assumptions are general.
+
+<details>
+<summary>Release details, validation, and current development</summary>
 
 ## Release
 
@@ -66,6 +100,8 @@ See the [release roadmap](docs/roadmap.md), the
 [current Lean state](docs/current-lean-state.md), and the
 [`v0.1.0` release notes](docs/releases/v0.1.0.md) for the precise scope and
 validation contract.
+
+</details>
 
 ## Installation
 
@@ -286,6 +322,14 @@ source-compatibility baseline for `0.1.x`, not a permanent API freeze.
 
 ## Examples and documentation
 
+- [Getting started with information theory in Lean](home_page/docs/getting-started.html).
+- [Entropy, mutual information, and KL divergence](home_page/docs/information-measures.html).
+- [Markov chains and data processing](home_page/docs/markov-data-processing.html).
+- [Formalizing a research paper](home_page/docs/research-projects.html).
+- [LeanInfoTheory and mathlib](home_page/docs/mathlib.html).
+
+Maintained Lean examples include:
+
 - [`LeanInfoTheory.Examples.Units`](LeanInfoTheory/Examples/Units.lean) covers
   arbitrary-base, entropy, MI, CMI, and guarded real-KL conversion.
 - [`LeanInfoTheory.Examples.SupportSensitive`](LeanInfoTheory/Examples/SupportSensitive.lean)
@@ -311,6 +355,9 @@ gate](docs/api-documentation.md) renders the current supported surface for local
 inspection. The published `/docs/v0.1.0/` route remains bound to the released
 601-declaration source. The supporting website is
 <https://serhatemrecoban.github.io/LeanInfoTheory/>.
+
+<details>
+<summary>Contributor build and release procedures</summary>
 
 ## Reproducing maintained builds
 
@@ -409,6 +456,8 @@ state and do not alter the `v0.1.0` snapshot.
 The approved tag must not be moved. Any post-release correction belongs in a
 documented follow-up release. Tag signing is preferred when an appropriate
 maintainer signing identity is available, but it is not a `v0.1.0` blocker.
+
+</details>
 
 ## Roadmap
 

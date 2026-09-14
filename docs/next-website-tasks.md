@@ -1,5 +1,20 @@
 # Next Website Tasks
 
+## Visibility pass, 2026-09-14
+
+The lead authorized stronger positioning and discovery work without changing
+mathematical scope. GitHub's About description and eight topics are live.
+The local README and homepage now lead with the usable library, with five
+practical guides, four maintained Lean examples, nine curated canonical/social
+metadata entries, and a project sitemap. See the
+[visibility record](website-visibility.md) for the baseline and owner actions.
+
+Remaining: review/commit the local changes, resolve the two earlier unpushed
+commits before pushing, and use the existing guarded Pages maintenance flow.
+Then verify the project in Search Console, submit the sitemap, and review a
+community announcement. Account verification, deployment, outreach, and search
+results are not claimed complete. Do not alter the frozen v0.1.0 API route.
+
 ## Completed in the current website-improvement pass
 
 - Step 1: navigation and generated-artifact terminology.
