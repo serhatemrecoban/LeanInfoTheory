@@ -13,7 +13,7 @@
     "release_commit": "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f",
     "release_tag": "v0.1.0"
   },
-  "declaration_count": 603,
+  "declaration_count": 628,
   "declarations": [
     {
       "attributes": [],
@@ -3515,6 +3515,24 @@
     },
     {
       "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.abs_sum_sub_le_mul_totalVariation"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.abs_sum_sub_le_totalVariation_of_mem_Icc"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.abs_toOuterMeasure_sub_le_totalVariation"
+    },
+    {
+      "attributes": [],
       "kind": "def",
       "module": "LeanInfoTheory.Probability.FiniteMixture",
       "name": "PMF.binaryMixture"
@@ -3788,6 +3806,18 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.ofReal_totalVariation_eq_sum_sub"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.sum_min_eq_ofReal_one_sub_totalVariation"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Probability.Finite",
       "name": "PMF.sum_toReal"
     },
@@ -3812,6 +3842,12 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.toOuterMeasure_toReal_eq_sum"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Probability.Finite",
       "name": "PMF.toReal_le_one"
     },
@@ -3820,27 +3856,141 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Probability.Finite",
       "name": "PMF.toReal_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_bind_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_comm"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_eq_one_iff_disjoint_support"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_eq_one_sub_sum_min"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_eq_sum_pos"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_eq_sum_sub_min"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_eq_toOuterMeasure_sub"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_eq_zero_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_isGreatest_abs_event"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_isGreatest_event"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_isGreatest_unitInterval"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_le_one"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_map_equiv"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_map_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_self"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_triangle"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.two_mul_totalVariation_isGreatest_bounded"
     }
   ],
-  "documented_declaration_count": 603,
+  "documented_declaration_count": 628,
   "full_umbrella": "LeanInfoTheory.Shannon",
   "kind_counts": {
     "abbrev": 9,
-    "def": 56,
+    "def": 57,
     "instance": 1,
-    "theorem": 537
+    "theorem": 561
   },
   "lightweight_root": "LeanInfoTheory",
   "lightweight_root_direct_imports": [
     "LeanInfoTheory.InformationMeasures",
     "LeanInfoTheory.Probability.Finite"
   ],
-  "local_module_count": 46,
+  "local_module_count": 49,
   "namespace_counts": {
     "LeanInfoTheory.Shannon": 559,
-    "PMF": 44
+    "PMF": 69
   },
-  "non_stable_module_count": 15,
+  "non_stable_module_count": 17,
   "non_stable_modules": [
     "LeanInfoTheory.Basic",
     "LeanInfoTheory.Examples",
@@ -3855,6 +4005,8 @@
     "LeanInfoTheory.Examples.StochasticChannels",
     "LeanInfoTheory.Examples.SufficientStatistics",
     "LeanInfoTheory.Examples.SupportSensitive",
+    "LeanInfoTheory.Examples.TotalVariation",
+    "LeanInfoTheory.Examples.TotalVariationChannels",
     "LeanInfoTheory.Examples.Units",
     "LeanInfoTheory.MathlibFragments"
   ],
@@ -4237,13 +4389,14 @@
     "Declaration types and assumptions remain governed by the Lean source and signature-bearing API documentation."
   ],
   "simp_declaration_count": 94,
-  "supported_module_count": 31,
+  "supported_module_count": 32,
   "supported_modules": [
     "LeanInfoTheory",
     "LeanInfoTheory.InformationMeasures",
     "LeanInfoTheory.Probability.Finite",
     "LeanInfoTheory.Probability.FiniteChannel",
     "LeanInfoTheory.Probability.FiniteMixture",
+    "LeanInfoTheory.Probability.TotalVariation",
     "LeanInfoTheory.Shannon",
     "LeanInfoTheory.Shannon.BinaryEntropy",
     "LeanInfoTheory.Shannon.Entropy",

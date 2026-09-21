@@ -40,18 +40,29 @@ intermediate reconciliation point. The guarded Pages replacement is manual-only
 and cannot deploy on branch push. Exact-candidate qualification, independent
 review, explicit publication approval, archival verification, structured EPFL
 `RightsHolder` metadata, and post-release DOI propagation are complete.
-The separately approved [C9 plan](plans/post-release-chunk-09.md) has delivered
-growth-aware validation and exactly two generic helpers through closed steps
-C9.01--C9.06. Current source contains 603 documented supported declarations in
-31 owners, 94 reviewed simp declarations and 92 root aliases; its generated
-inventory contains 46 local modules, 94 local edges, 5 root-reachable modules,
-41 separate-import modules and 718 indexed declarations (717 documented).
-C9.07 owns cumulative closeout. Its complete routine suite, fresh complete
-fixtures and real current two-pass doc-gen must pass on an authorized clean
-candidate before full-chunk review; review reconciliation and private closure
-are subsequent required postconditions. The
-[maintained handoff](handoffs/chunk-9.md) gives the evidence and status authority.
-C10--C24 remain proposed; neither C9 work nor this roadmap starts a later chunk.
+C9 is complete through C9.07 by its actual private completion record at source
+checkpoint `8ee0337b20c320c384d5637de852da7f4ee09728`. The
+[maintained C9 handoff](handoffs/chunk-9.md) preserves delivered APIs, evidence
+and remaining-work dispositions; its captured pre-closure wording does not reopen
+that completed chunk.
+
+The approved [C10 plan, revision 2](plans/post-release-chunk-10.md) is active.
+C10.01--C10.06 and their reviews are complete by their actual private completion
+records. The current request selects C10.07 for cumulative validation, a fresh
+full-chunk review and the [maintained C10 handoff](handoffs/chunk-10.md).
+The delivered finite-PMF TV owner has 25 documented declarations, with attained
+events, overlap/residual identities, sharp bounded tests and map/channel
+contraction. Private consumers cover the shared Boolean family, exact
+maximizing-event Boolean reduction, degenerate alphabets and joint projections.
+Current coverage is 628 documented supported declarations in 32 owners, with
+94 reviewed simp declarations and 92 facade aliases unchanged.
+The authorized initial clean-candidate suite and real two-pass current file-mode
+API docs passed. A fresh full-chunk review assessed all 19 approved criteria;
+its original report and criterion assessments were explicitly reconciled.
+Final amended-candidate validation, exact API-doc/review applicability and
+completion are established by C10.07's source-bound private records.
+This maintained chronology does not itself certify closure.
+C11--C24 remain proposed and require separate approval.
 
 ## Proposed Post-Release Programme
 
@@ -72,10 +83,11 @@ declarations only an uncertain cross-check, not a quota.
 
 The later programme remains a proposal for project-lead review, not an approved
 execution plan or a release/date commitment. The separately authorized
-[review workflow](review-operations.md) is installed. Detailed C9 revision 2
-and its separately selected steps own current C9 execution; that authority does
-not approve C10--C24. Each later chunk still requires its own approved plan,
-reviewer and eligible step requests.
+[review workflow](review-operations.md) is installed. C9 is closed. The separately
+approved C10 plan and the explicitly selected
+C10.07 request govern current work. C10.01--C10.06 are complete; the final
+step owns cumulative qualification and the maintained handoff;
+C11--C24 still require their own approved plans and execution authority.
 The [reference register](references.md) identifies the selected sources and
 distinguishes the 2022 and 2024 Polyanskiy--Wu drafts. The calendar horizons
 below remain broad aspirations, not delivery deadlines for the proposed chunks.

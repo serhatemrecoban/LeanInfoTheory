@@ -1,5 +1,5 @@
 {
-  "declaration_count": 718,
+  "declaration_count": 743,
   "declarations": [
     {
       "doc": "Public project name used by documentation and the website.",
@@ -1590,6 +1590,256 @@
       "name": "PMF.binaryMixture_one",
       "path": "LeanInfoTheory/Probability/FiniteMixture.lean",
       "short_name": "binaryMixture_one"
+    },
+    {
+      "doc": "Total variation of finite PMFs, normalized as half the L1 distance of real masses.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 51,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation"
+    },
+    {
+      "doc": "Total variation is nonnegative.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 55,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_nonneg",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_nonneg"
+    },
+    {
+      "doc": "Total variation of probability laws is at most one.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 60,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_le_one",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_le_one"
+    },
+    {
+      "doc": "A PMF has zero total variation from itself.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 74,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_self",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_self"
+    },
+    {
+      "doc": "Total variation is symmetric in its two PMFs.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 78,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_comm",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_comm"
+    },
+    {
+      "doc": "Two finite PMFs have zero total variation exactly when they are equal.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 84,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_eq_zero_iff",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_eq_zero_iff"
+    },
+    {
+      "doc": "Total variation satisfies the triangle inequality.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 101,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_triangle",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_triangle"
+    },
+    {
+      "doc": "On a finite type, event probability is the sum of the real masses in the event.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 111,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.toOuterMeasure_toReal_eq_sum",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "toOuterMeasure_toReal_eq_sum"
+    },
+    {
+      "doc": "Total variation is the total excess mass where the first law dominates the second.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 122,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_eq_sum_pos",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_eq_sum_pos"
+    },
+    {
+      "doc": "The discrepancy of any event is bounded by total variation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 159,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.abs_toOuterMeasure_sub_le_totalVariation",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "abs_toOuterMeasure_sub_le_totalVariation"
+    },
+    {
+      "doc": "The event where the first law has at least as much mass attains total variation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 169,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_eq_toOuterMeasure_sub",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_eq_toOuterMeasure_sub"
+    },
+    {
+      "doc": "Total variation is the greatest signed discrepancy among all events.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 181,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_isGreatest_event",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_isGreatest_event"
+    },
+    {
+      "doc": "Total variation is the greatest absolute discrepancy among all events.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 190,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_isGreatest_abs_event",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_isGreatest_abs_event"
+    },
+    {
+      "doc": "Total variation is the first law's mass remaining after removing the common minimum.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 202,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_eq_sum_sub_min",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_eq_sum_sub_min"
+    },
+    {
+      "doc": "Total variation is one minus the common mass of the two finite laws.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 212,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_eq_one_sub_sum_min",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_eq_one_sub_sum_min"
+    },
+    {
+      "doc": "The ENNReal common mass is the finite overlap complement of total variation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 217,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.sum_min_eq_ofReal_one_sub_totalVariation",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "sum_min_eq_ofReal_one_sub_totalVariation"
+    },
+    {
+      "doc": "Total variation is the ENNReal total of the first law's truncated excess masses.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 230,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.ofReal_totalVariation_eq_sum_sub",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "ofReal_totalVariation_eq_sum_sub"
+    },
+    {
+      "doc": "Two finite laws have total variation one exactly when their supports are disjoint.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 241,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_eq_one_iff_disjoint_support",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_eq_one_iff_disjoint_support"
+    },
+    {
+      "doc": "A test taking values in a closed interval has discrepancy at most its width times TV.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 295,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.abs_sum_sub_le_totalVariation_of_mem_Icc",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "abs_sum_sub_le_totalVariation_of_mem_Icc"
+    },
+    {
+      "doc": "A test bounded in absolute value by `M` has discrepancy at most `2 * M` times TV.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 307,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.abs_sum_sub_le_mul_totalVariation",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "abs_sum_sub_le_mul_totalVariation"
+    },
+    {
+      "doc": "Total variation is the greatest absolute discrepancy of tests valued in `[0, 1]`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 335,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_isGreatest_unitInterval",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_isGreatest_unitInterval"
+    },
+    {
+      "doc": "Twice total variation is the greatest absolute discrepancy of tests bounded by one.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 381,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.two_mul_totalVariation_isGreatest_bounded",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "two_mul_totalVariation_isGreatest_bounded"
+    },
+    {
+      "doc": "Applying the same finite channel to two laws cannot increase total variation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 403,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_bind_le",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_bind_le"
+    },
+    {
+      "doc": "A deterministic map cannot increase total variation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 433,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_map_le",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_map_le"
+    },
+    {
+      "doc": "Relabeling a finite alphabet by an equivalence preserves total variation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 438,
+      "module": "LeanInfoTheory.Probability.TotalVariation",
+      "name": "PMF.totalVariation_map_equiv",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "short_name": "totalVariation_map_equiv"
     },
     {
       "doc": "The entropy of a Boolean PMF is the binary entropy of its `true` mass. The identity includes the endpoint laws without separate positivity assumptions.",
@@ -7182,12 +7432,12 @@
       "short_name": "entropyOf_div_log"
     }
   ],
-  "documented_count": 717,
+  "documented_count": 742,
   "kind_counts": {
-    "Definition": 110,
+    "Definition": 111,
     "Inductive": 4,
     "Instance": 2,
-    "Theorem": 602
+    "Theorem": 626
   },
   "modules": [
     "LeanInfoTheory.Basic",
@@ -7201,6 +7451,7 @@
     "LeanInfoTheory.Probability.Finite",
     "LeanInfoTheory.Probability.FiniteChannel",
     "LeanInfoTheory.Probability.FiniteMixture",
+    "LeanInfoTheory.Probability.TotalVariation",
     "LeanInfoTheory.Shannon.BinaryEntropy",
     "LeanInfoTheory.Shannon.Entropy",
     "LeanInfoTheory.Shannon.EntropyBounds",

@@ -6,7 +6,40 @@
     "manifest_path": "docs/v0.1-public-api.json",
     "git_blob_sha256": "3201ced98b4516e9ef4bda166e75f667f47fe61e530d85af235b410894a7dd03"
   },
-  "import_approvals": [],
+  "import_approvals": [
+    {
+      "owner": "LeanInfoTheory.Probability.TotalVariation",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.Finite"
+        ],
+        "external": [
+          "Mathlib.Tactic.Linarith"
+        ]
+      },
+      "rationale": "The approved focused probability owner provides half-L1 finite PMF total variation and its six core laws; Linarith handles scalar arithmetic without a separate Ring import.",
+      "consumer": "LeanInfoTheory.Examples.TotalVariation independently imports the owner and checks self-distance, separation and distinct pure Boolean distance one.",
+      "approval_reference": "Approved Chunk 10 plan revision 2, Sections 3.1 and 5 / C10.01-BOUNDARY (docs/plans/post-release-chunk-10.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-20. Authority intake: .lit-review/setup/c10-01-authority-intake-20260920.json."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon",
+      "kind": "umbrella_addition",
+      "imports": {
+        "local": [
+          "LeanInfoTheory",
+          "LeanInfoTheory.Probability.TotalVariation",
+          "LeanInfoTheory.Shannon.Fano",
+          "LeanInfoTheory.Shannon.SemanticBridge",
+          "LeanInfoTheory.Shannon.Units"
+        ],
+        "external": []
+      },
+      "rationale": "The approved full mathematical umbrella exposes finite total variation while the lightweight root and its retained import boundary stay unchanged.",
+      "consumer": "Full-stack users import LeanInfoTheory.Shannon; the independently importing total-variation consumer verifies focused access.",
+      "approval_reference": "Approved Chunk 10 plan revision 2, Sections 3.1 and 5 / C10.01-BOUNDARY (docs/plans/post-release-chunk-10.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-20. Authority intake: .lit-review/setup/c10-01-authority-intake-20260920.json."
+    }
+  ],
   "simp_additions": [],
   "root_export_additions": []
 }

@@ -79,18 +79,28 @@ the versioned `/docs/v0.1.0/` route, with source links bound to the exact
 release commit. The release process also validates a clean exact checkout and
 a minimal external Lake consumer.
 
-Current development coverage is 603 documented declarations in 31 supported
+Current development coverage is 628 documented declarations in 32 supported
 modules, with 94 reviewed `simp` declarations and 92 root aliases, recorded in
-[`docs/current-public-api.json`](docs/current-public-api.json). C9 added exactly
-`Shannon.isIndependentOf_comp_right` in focused Independence and
-`Shannon.mutualInfoOf_condEntropyOf_decomposition` in lightweight InfoMeasures,
-with private permanent consumers. The C9.07
-[maintained handoff](docs/handoffs/chunk-9.md) records delivered source and the
-required clean-checkpoint validation, complete fixtures, real current doc-gen,
-independent review and private closure. Actual source-bound C9.07 records determine
-those gates' results; this snapshot does not certify completion.
-Compatible additions may extend coverage;
-the released counts and
+[`docs/current-public-api.json`](docs/current-public-api.json). Completed C9
+added two generic helpers. Completed C10.01 adds finite-PMF total variation and
+its six core laws; completed C10.02 adds attained events and finite event
+interoperability. Completed C10.03 adds overlap/residual identities and disjoint
+support. Completed C10.04 adds sharp bounded-test inequalities and attained
+greatest values. Completed C10.05 adds map/common-channel contraction and
+equivalence invariance. Completed C10.06 connects the public API through private
+parameterized Boolean, exact event-reduction, degenerate-alphabet and joint-
+projection consumers, alongside the fixed noisy-channel example. The focused import is
+`LeanInfoTheory.Probability.TotalVariation`; the lightweight root is unchanged.
+The [C10 plan](docs/plans/post-release-chunk-10.md) is approved. C10.07's initial
+clean suite, real two-pass current API documentation and fresh cumulative review
+have succeeded, with the review explicitly reconciled. The
+[C10 handoff](docs/handoffs/chunk-10.md) records delivered interfaces and evidence;
+final amended-candidate validation, exact API-doc/review applicability and
+completion are established by C10.07's source-bound private records.
+This maintained chronology does not itself certify closure. C11 requires separate approval. The
+[C9 handoff](docs/handoffs/chunk-9.md) remains the completed prerequisite's context.
+
+Compatible additions extend current coverage; the released counts and
 [`frozen manifest`](docs/v0.1-public-api.json) remain historical. Current
 validation compares retained signatures and reviewed boundaries independently
 from exact current inventory, imports, attributes, documentation and trust.

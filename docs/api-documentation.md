@@ -154,24 +154,29 @@ The release-candidate gate runs GitHub mode from a clean exact commit. Tag
 publication and live-link verification remain explicitly approved publication
 and post-publication work.
 
-## C9 current milestone requirements
+## Current C10 milestone evidence and applicability
 
-Current source has 603 documented declarations across 31 supported module
-pages, with 92 canonical export targets and 15 excluded non-stable modules.
-These are current inventory expectations; only actual gate output establishes
-rendered coverage. C9.07 requires the real two-pass file-mode gate, verification
-of both new theorem signatures and the current v2 source-content attestation,
-alongside complete routine validation and fixtures on an authorized clean
-candidate before cumulative independent review. Actual source-bound results and
-private closure status are determined by the records described in the
-[maintained handoff](handoffs/chunk-9.md). Synthetic HTML fixtures and previous
-release output do not supply this current milestone evidence.
-Do not stage growing output under `/docs/v0.1.0/`.
+The initial C10.07 gate completed both real file-mode passes, covering 628
+documented declarations across 32 supported module pages, 92 canonical export
+targets, 17 excluded non-stable modules and all 25 TV declarations. The current
+v2 source-content attestation and original process results are identified in the
+[C10 handoff](handoffs/chunk-10.md) and source-bound private records.
+The clean routine suite and fresh full-chunk review also succeeded, with the
+original review explicitly reconciled. Final amended-candidate validation, exact
+API-doc/review applicability and completion are established by C10.07's
+source-bound private records. This maintained chronology does not itself certify
+closure. Counts and stale output do not qualify changed inputs. No current output is staged under
+`/docs/v0.1.0/` or published by this work.
+
+Historical C9.07 qualified the then-current 603 declarations, 31 owners,
+92 export targets and 15 non-stable exclusions. Its [handoff](handoffs/chunk-9.md)
+and private closure preserve that result. C10's added owner, declarations and
+consumers invalidate reuse of the old current-source attestation.
 
 ## Verified local result and cost
 
 The following measurements describe historical release-preparation output;
-they do not validate the current C9 source.
+they do not validate the current C10 source.
 
 The completed Step 11 file-mode run produced 31 supported LeanInfoTheory module
 pages, 601 rendered-signature declarations, 92 resolved canonical export
@@ -215,7 +220,7 @@ docbuild/.lake/build/doc/
 Current v2 docbuild output is for direct inspection and is refused before any
 copy into `/docs/v0.1.0/`, even while its names and counts still equal the release.
 Legacy v1 preview is accepted only with an exact, clean release checkout and
-matching local source identity. A new published current API route is outside C9.
+matching local source identity. A new published current API route requires separate authorization.
 The unversioned declaration index labels its `master` source links as current
 development and warns that dirty local lines may differ. Maintenance staging
 rebinds those links to its exact site commit; publishable checks still reject

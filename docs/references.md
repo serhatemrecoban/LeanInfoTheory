@@ -74,6 +74,13 @@ August 16, 2024 prepublication version. The source footer identifies the date.
 - [Author-hosted PDF](https://people.lids.mit.edu/yp/homepage/data/itbook-export.pdf).
   This URL can change; the local hash identifies the copy inspected here.
 - Section 7.3, Theorem 7.7: total variation characterizations and coupling.
+- Recorded C10 use: Theorem 7.7(a), equation (7.18), printed pages 122--123 /
+  PDF pages 147--148, supplies attained event and bounded-test forms. C10 uses
+  half-L1 probability normalization, with constants 1 for unit-interval tests
+  and 2 for signed-unit tests. The displayed mathematics resolves the proof
+  prose's inequality-direction ambiguity. Coupling in part (b) is C11 scope;
+  C10's [handoff](handoffs/chunk-10.md#mathematical-sources-and-adaptations)
+  records the finite-algebra adaptations and actual reading evidence.
 - Section 7.4, Theorem 7.10: Pinsker via binary reduction; its full
   f-divergence/joint-range programme is not selected.
 - Section 4.5, Proposition 4.8: finite entropy continuity; Section 4.7,
@@ -122,6 +129,12 @@ edition, with contributions by Elizabeth L. Wilmer, 2017.
 - [Author-hosted second edition](https://pages.uoregon.edu/dlevin/MARKOV/mcmt2e.pdf).
 - Sections 4.1--4.2, especially Proposition 4.7: finite TV, coupling
   inequality, and attainment. These are the initial relevant sections.
+- Recorded C10 use: Definition (4.1), Proposition 4.2, Remark 4.3 and
+  Proposition 4.5 in Section 4.1, printed pages 47--49 / PDF pages 63--65,
+  agree with the delivered half-L1, attained-event and sharp-test interfaces.
+  Section 4.2's overlap identity is used without constructing a coupling;
+  Proposition 4.7's coupling witness remains C11 work. C10 consistently uses
+  the non-strict dominating event; tied atoms contribute zero.
 - Chapter 5 is optional background for later coupling applications, not a
   Markov-process or mixing-time commitment. The proposed finite gluing law
   will be proved using conditional PMFs; no unverified numbered gluing theorem

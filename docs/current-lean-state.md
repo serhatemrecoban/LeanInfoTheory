@@ -1,27 +1,47 @@
 # Current Lean State
 
-## Current C9 source and closeout requirements
+## C10.07 cumulative total-variation closeout candidate
 
-C9.01--C9.06 completed independent review, reconciliation and durable private
-closure. The current C9.07 request passed exact predecessor-source and step-order
-checks. C9.07 is the selected cumulative closeout step. Both selected helpers
-and their private permanent consumers are present: current coverage is 603
-supported declarations in 31 modules, with 94 simp declarations and 92 facade
-aliases unchanged. The frozen release retains 601 declarations.
+C9 is complete through C9.07 by its actual private completion record at source
+checkpoint `8ee0337b20c320c384d5637de852da7f4ee09728`. The
+[maintained C9 handoff](handoffs/chunk-9.md) preserves delivered APIs, evidence
+and remaining-work dispositions; its captured pre-closure wording does not reopen
+that completed chunk.
 
-The [maintained C9 handoff](handoffs/chunk-9.md) records delivered APIs, imports,
-source/review references, validation commands and remaining-work dispositions.
-C9.06's accepted report satisfied all three criteria; its two nonmaterial process
-findings were reconciled with final-source disclosure/impact evidence. Historical
-dispatch-order and reviewer read-only noncompliance remain explicitly recorded.
+The approved [C10 plan, revision 2](plans/post-release-chunk-10.md) is active.
+C10.01--C10.06 and their reviews are complete by their actual private completion
+records. The current request selects C10.07 for cumulative validation, a fresh
+full-chunk review and the [maintained C10 handoff](handoffs/chunk-10.md).
+The delivered finite-PMF TV owner has 25 documented declarations, with attained
+events, overlap/residual identities, sharp bounded tests and map/channel
+contraction. Private consumers cover the shared Boolean family, exact
+maximizing-event Boolean reduction, degenerate alphabets and joint projections.
+Current coverage is 628 documented supported declarations in 32 owners, with
+94 reviewed simp declarations and 92 facade aliases unchanged.
+The authorized initial clean-candidate suite and real two-pass current file-mode
+API docs passed. A fresh full-chunk review assessed all 19 approved criteria;
+its original report and criterion assessments were explicitly reconciled.
+Final amended-candidate validation, exact API-doc/review applicability and
+completion are established by C10.07's source-bound private records.
+This maintained chronology does not itself certify closure.
+C11--C24 remain proposed and require separate approval.
 
-C9.07 requires the complete routine suite, fresh cumulative fixtures and real
-two-pass current file-mode doc-gen on an authorized clean candidate before fresh
-full-chunk review. Earlier component passes do not replace these gates. Actual
-source-bound C9.07 validation and review records determine results; closure is
-subject to the actual private completion record. This snapshot records delivered
-source and the prepared handoff, without certifying completion. C10 and later
-chunks remain proposed and require separate authorization.
+`Probability.TotalVariation` imports only `Probability.Finite` and
+`Mathlib.Tactic.Linarith`. The full Shannon umbrella exposes it alongside its
+four retained imports. `Examples.TotalVariation` imports only the focused owner
+and privately checks the core laws, events, Finset coercions and Boolean
+pushforwards, followed by generic overlap/residual normalization premises,
+equal/disjoint endpoints and sparse three-point overlap. Bounded-test consumers
+also check generic signed greatest values, sharp Boolean witnesses and degenerate
+interval/radius cases. The separate private `Examples.TotalVariationChannels`
+imports the TV and raw `Probability.FiniteChannel` owners to exercise deterministic
+and stochastic processing, exact Boolean contraction, channel composition and
+joint-law projection. The focused TV consumer additionally connects its shared
+Boolean family and exact generic event reduction, with degenerate-alphabet cases.
+All 25 public TV declarations are exercised without promoting example helpers.
+The non-stable Examples aggregate imports both consumers. Neither adds an import
+to the TV owner or either mathematical umbrella. The lightweight root retains
+its five-module closure; the frozen release retains 601 declarations in 31 modules.
 
 ## `v0.1.0` released state
 

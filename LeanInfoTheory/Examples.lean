@@ -20,6 +20,8 @@ import LeanInfoTheory.Examples.KLTop
 import LeanInfoTheory.Examples.StochasticChannels
 import LeanInfoTheory.Examples.SufficientStatistics
 import LeanInfoTheory.Examples.SupportSensitive
+import LeanInfoTheory.Examples.TotalVariation
+import LeanInfoTheory.Examples.TotalVariationChannels
 import LeanInfoTheory.Examples.Units
 
 /-!
@@ -28,9 +30,11 @@ import LeanInfoTheory.Examples.Units
 This import-only aggregate gathers the separately usable common-cause,
 conditional-KL, convexity, Fano, finite-family, independence-processing,
 information-decomposition, infinite-KL, stochastic-channel, sufficient-statistics,
-and support-sensitive examples. It
-also includes representative arbitrary-base, bits, and guarded real-KL unit
-conversions. It remains outside both public mathematical umbrellas. The examples
+support-sensitive, and finite total-variation examples, including integrated
+Boolean families, exact event reductions, deterministic and stochastic processing,
+and joint projections. It also includes representative arbitrary-base, bits, and
+guarded real-KL unit conversions. It remains outside both public mathematical
+umbrellas. The examples
 are maintained regression consumers, not stable library API for the `0.1.x`
 series.
 -/

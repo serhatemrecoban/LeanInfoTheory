@@ -1,9 +1,9 @@
 # Post-Release Chunk Map: Quantitative and Operational Information Theory
 
-**Status:** Long-term map, revision 2, 2026-09-11. C10--C24 remain proposed; detailed C9 revision 2 was separately approved.
+**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-09-21. Detailed C9 and C10 revision-2 plans were separately approved; C11--C24 remain proposed.
 **Review follow-up:** C18/C23 clarifications accepted for this map; the 16-chunk structure is unchanged.
-**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md) and eligible step requests own C9 execution.
-**Execution:** C9.01--C9.06 are closed. C9.07 owns cumulative closeout; its [maintained handoff](../handoffs/chunk-9.md) records required clean-checkpoint validation, complete fixtures, real current doc-gen, full-chunk review and private closure. Actual source-bound C9.07 records determine results and completion. No C10 or later implementation is selected.
+**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md) and eligible step requests own their respective execution.
+**Execution:** C9 and C10.01--C10.06 are closed by their actual private completion records. C10.07's explicitly authorized initial clean suite, real current two-pass API documentation and fresh 19-criterion cumulative review have succeeded; the original review was reconciled. The [maintained C10 handoff](../handoffs/chunk-10.md) records the evidence boundaries. Final amended-candidate validation, exact API-doc/review applicability and completion are established by C10.07's source-bound private records; this maintained chronology does not itself certify closure. The [C9 handoff](../handoffs/chunk-9.md) remains prior context. No C11 or later work is selected.
 **Map-intake baseline inspected:** `master` at `80ea016c7ac64bb5bd79b2f769227a3fb2ccc3b3`,
 with the existing uncommitted post-release documentation/discoverability work
 preserved. The immutable `v0.1.0` mathematical baseline remains
@@ -192,6 +192,12 @@ review. This does not permit leaving an approved required result unfinished,
 declaring the chunk complete prematurely, or starting C10 automatically.
 
 ### C10. Finite total variation
+
+**Current execution:** the [approved detailed plan](post-release-chunk-10.md)
+governs C10.01--C10.06's delivered source and the selected C10.07 closeout.
+The [handoff](../handoffs/chunk-10.md) distinguishes public TV ingredients from
+private normalization/binary-reduction consumers and records downstream boundaries.
+The contract below remains the mathematical scope; current counts are not quotas.
 
 **Goal:** A small finite-PMF comparison layer independent of entropy and KL.
 

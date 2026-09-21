@@ -5,6 +5,253 @@ detail. It is not meant to list every small command or proof attempt. It should
 help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
+## C10.07 cumulative closeout candidate, 2026-09-21
+
+The conditional request selected C10.07 after verifying C10.06's actual closure,
+all four satisfied criteria, reconciled independent review and exact final-source
+match. The six implemented steps and their reviews remain complete. This final
+step preserves their mathematical source, public contracts, imports, attributes,
+current inventory and the frozen release.
+
+The [maintained C10 handoff](handoffs/chunk-10.md) records all 25 public TV
+declarations by family, the private consumer interfaces, source/reference and
+review identities, and remaining-work owners and triggers. Current canonical
+status, the map and the two API-documentation guides are reconciled with this
+closeout candidate. C11 owns coupling construction and endpoint normalization;
+C13 owns the KL side of binary reduction. Notes 9 and 14--18 remain standing;
+no speculative aliases, simp rules or global note closure is introduced.
+
+The lead explicitly authorized the concrete local checkpoint, committed as
+`d8cc00050d98aa5f1fad4d7395d886957728bef2`. The initial complete clean routine suite
+and real two-pass current file-mode API-doc gate then passed. A fresh cumulative
+independent review assessed all 19 approved criteria; its original report and
+criterion assessments were explicitly reconciled. The [implementation notes](plans/post-release-chunk-10-notes.md)
+retain actual command results, original evidence and source-applicability limits.
+Final chronology amendments require an authorized clean candidate, a fresh complete
+routine suite and exact API-doc/review applicability before final capture and
+supported private closure. Source-bound private records establish the actual
+final validation, applicability and completion; this maintained chronology does
+not itself certify closure. No post-F edit is used to insert closure. No push, publication or C11 work is included.
+
+## C10.06 integrated finite consumers and API readiness, 2026-09-21
+
+The conditional request selected only C10.06 after verifying C10.05's actual
+private closure and exact final-source match. Public TV source, assumptions,
+imports, attributes and supported inventory remain unchanged.
+
+The two private consumers connect a shared explicit Boolean parameter family
+to half-L1 distance, attaining events, overlap, sharp tests and deterministic
+contraction. A generic maximizing-event Boolean pushforward preserves TV using
+the event/preimage and map interfaces. Degenerate alphabets, joint projections
+and the remaining public core interfaces complete the consumer coverage; the
+existing noisy-channel strict contraction is retained.
+
+Current generation, warning-free focused compilation, static checks, full trust
+with fresh compiled compatibility and release-documentation checks passed.
+The original independent report satisfies all four C10.06 criteria with no
+findings and has been explicitly reconciled. Only the review chronology in
+the implementation notes and this log changes after review; fresh final static and
+complete captured-input comparison support final closure. The [implementation notes](plans/post-release-chunk-10-notes.md)
+record source choices and actual evidence. Captured status is provisional;
+supported private closure establishes completion. C10.07 remains unselected;
+no clean checkpoint, commit, push or publication is included.
+
+## C10.05 deterministic and stochastic processing, 2026-09-20
+
+The conditional request selected only C10.05 after verifying C10.04's actual
+private closure and exact final-source match. The approved contracts remain
+unchanged: common-bind and arbitrary-map contraction, and equivalence invariance.
+
+The selected finite-sum proof expands bind in real coordinates, bounds the
+absolute sum, exchanges the finite sums and uses each channel row's unit mass.
+Map specializes to pure rows; inverse-map contraction gives relabeling equality.
+The new private channel consumer separately imports TV and FiniteChannel, with
+noninjective, constant, identity/relabeling and composition cases plus the Boolean
+retain-3/4 flip-1/4 channel's exact TV decrease from one to one half.
+
+The final five-target focused build passed without warnings after private
+consumer linter refinements. The compiled audit passed for all 601 retained
+types and exact current boundaries at 628 declarations; its applicability after
+the private-only refinements is checked against all 65 inputs and unchanged
+dependencies. Generated references and initial static validation passed, as did
+all 33 support source-audit checks. Final pre-review static validation and
+the parent source audit passed. The independent reviewer returned an original
+report satisfying both C10.05 criteria with no findings; its evidence and the
+compiled-compatibility applicability assessment have been explicitly reconciled.
+The root, TV imports, reviewed policy and frozen release remain unchanged.
+
+The [implementation notes](plans/post-release-chunk-10-notes.md) retain proof
+choices, original check evidence, preserved failures/warnings and review
+reconciliation. Only review chronology changes after the reviewed source.
+Fresh final static validation, complete source-applicability verification and
+supported private closure establish completion; captured status is provisional
+until that closure. Full trust, clean-suite and API-doc qualification remain
+later obligations. C10.06 and later remain unselected. No commit, push or
+publication is included.
+
+## C10.04 sharp bounded tests, 2026-09-20
+
+The conditional request selected only C10.04 after C10.03's actual private
+closure and exact final-source match were verified. The approved mathematical
+contracts and seven-step structure remain unchanged.
+
+The bounded-test interface adds an arbitrary closed-interval bound, the signed
+radius bound with constant 2*M, and greatest absolute values for unit-interval
+and signed-unit tests. Explicit indicator and sign witnesses attain TV and
+2*TV. The selected finite-sum proof shifts by the lower endpoint and uses
+positive excess mass, avoiding interval-width division and strictness premises.
+Private consumers derive both generic signed greatest-value forms from the
+public API and exercise sharp Boolean witnesses and degenerate cases.
+
+The corrected four-target focused build passed without warnings (3071 jobs),
+including the complete owner and separately importing examples. The original
+failed candidate build and native support check remain retained; their two
+proof-script fixes changed neither contracts nor assumptions. Final pre-review
+static validation and all 24 source-boundary audit checks passed. The independent
+reviewer freshly compiled the complete owner and separate consumer with warnings
+as errors, checked the four public signatures and permitted axiom sets for all
+21 theorems, and passed fresh generated-reference checks. Its original report
+satisfies both C10.04 criteria with no findings and has been explicitly reconciled.
+
+The [implementation notes](plans/post-release-chunk-10-notes.md) retain proof
+choices, original validation evidence, the same-request factual supplement and
+review reconciliation. Only review chronology changes after the reviewed source.
+Fresh final static validation, complete source-applicability verification and
+supported private closure establish completion; captured status remains
+provisional until that closure. Current complete compiled compatibility and
+cumulative trust/clean-suite/API-doc qualification are not claimed for this step.
+C10.05 and later remain unselected. No commit, push or publication is included.
+
+## C10.03 overlap, residual masses and disjoint support, 2026-09-20
+
+The conditional request selected C10.03 only after C10.02's actual private closure
+and exact final-source match were verified. The approved plan's mathematical
+contracts remain unchanged; its editorial status now identifies this step.
+
+Five public theorems connect TV with real and ENNReal overlap/residual totals and
+characterize distance one by disjoint actual supports. The proof reuses the
+positive-part formula, finite mass normalization, guarded ENNReal conversions
+and existing truncated-subtraction lemmas. There are no new imports, attributes,
+public helpers or support/positivity assumptions. Private consumers check generic
+normalization premises, equal/disjoint endpoints and sparse three-point laws
+whose TV, overlap and both residual totals are one half. No normalized law or
+coupling is constructed.
+
+The full owner and separately importing consumer passed native warning-as-error
+stdin checks. The final four-target maintained build passed without warnings
+(3071 jobs), after two sparse-example scalar obligations were corrected. Generated
+references now record 621 supported declarations in 32 modules, with the root,
+frozen release, reviewed attributes and dependency pins preserved. The final
+pre-review static gate and conversion/source audit passed. The independent
+reviewer freshly compiled the full owner and separate consumer with warnings
+as errors, checked the five public signatures and permitted axioms for all
+seventeen theorems, and passed fresh generated-reference checks. Its original
+report satisfies both C10.03 criteria with no findings and has been explicitly
+reconciled. The unsuccessful optional source-path lookup remains recorded as
+a failed inspection; subsequent native checks resolved the declaration question.
+
+The [implementation notes](plans/post-release-chunk-10-notes.md) retain proof
+decisions, original check evidence and review reconciliation. Only review
+chronology changes after the reviewed source. Fresh final static validation,
+complete source-applicability verification and supported private closure
+establish completion; captured status remains provisional until that closure.
+Current full compiled compatibility and cumulative trust/clean-suite/API-doc
+qualification are not claimed for this step. C10.04 and later remain unselected.
+No commit, push, publication or subsequent step is included.
+
+## C10.02 attaining events and finite event interoperability, 2026-09-20
+
+The lead selected C10.02 with review conditional on C10.01 being complete. The
+actual C10.01 closure and exact final-source match were checked before the
+conditional request was consumed. No later step is selected.
+
+The TV owner gains exactly the six approved event theorems. Existing PMF outer
+measure events expand into finite real sums, arbitrary signed/absolute event
+discrepancies are bounded by TV, and the event where `q a <= p a` in real masses
+explicitly attains TV. Both signed and absolute ranges have TV as their greatest
+element. A private pointwise positive-part argument replaces complement
+bookkeeping; there are no new imports, simp rules, support or measurability
+assumptions, or public helpers. The non-strict witness includes ties correctly.
+
+Private consumers exercise empty/full events, generic Finset coercions, all-tied
+laws, a Boolean pair with masses `(3/4,1/4)` and `(1/4,3/4)`, and the generic
+event-indicator pushforward/preimage interface. TV preservation of the maximizing
+event's Boolean reduction remains C10.06. Generated references record 616
+documented supported declarations in 32 modules, 731 indexed declarations
+(730 documented), unchanged 98 local edges, root closure, 94 reviewed simp
+declarations and 92 facade aliases. The frozen release remains unchanged.
+
+The final four-target focused build passed without warnings (3071 jobs), and
+the separate native warning-as-error compile of the entire permanent consumer
+passed with no diagnostics. Original failed probes and initial linter warnings
+are retained; their fixes change only proof syntax or private consumer instances.
+The pre-review static gate also passed, checking the current generated references,
+policy, website and dirty-tree hygiene. The independent reviewer freshly compiled
+the entire owner and separate consumer with warnings as errors, checked the six
+new signatures and permitted axioms for all twelve core/event theorems, and
+passed fresh generated-reference checks. Its original report satisfies all three
+C10.02 criteria with no findings and has been explicitly reconciled. Parent and
+reviewer checks retain their separate provenance; the review's corrected console
+encoding failure remains recorded as a failed inspection, not passing evidence.
+
+The [implementation notes](plans/post-release-chunk-10-notes.md) retain proof
+decisions, original check evidence and review reconciliation. Only review
+chronology changes after the reviewed source. Final static validation, exact
+source-applicability verification and supported private closure establish
+C10.02 completion; captured status remains provisional until that closure.
+Current full compiled compatibility and cumulative trust/clean-suite/API-doc
+qualification are not claimed for this step. C10.03 and later remain unselected.
+No commit, push, publication or subsequent step is included.
+
+## C10.01 finite total-variation core, 2026-09-20
+
+C9 is complete through C9.07 by its actual private completion record at source
+checkpoint `8ee0337b20c320c384d5637de852da7f4ee09728`. The
+[maintained C9 handoff](handoffs/chunk-9.md) preserves delivered APIs, evidence
+and remaining-work dispositions; its captured pre-closure wording does not reopen
+that completed chunk.
+
+The approved [C10 plan, revision 2](plans/post-release-chunk-10.md) is active;
+only C10.01 is selected. Its source defines finite-PMF total variation with
+half-L1 normalization and supplies nonnegativity, the upper bound one,
+self-distance, symmetry, separation and the triangle inequality. The generated
+inventory records 610 documented supported declarations in 32 owners, with
+94 reviewed simp declarations and 92 facade aliases unchanged. Source and
+documents are prepared for validation and independent review; closure is subject
+to the actual C10.01 private completion record. C10.02--C10.07 are unselected;
+C11--C24 remain proposed and require separate approval.
+
+`Probability.TotalVariation` imports only `Probability.Finite` and
+`Mathlib.Tactic.Linarith`. The full Shannon umbrella exposes it alongside its
+four retained imports. `Examples.TotalVariation` imports only the focused owner
+and privately checks self-distance, separation by recovering pure-law masses,
+and distance one between distinct pure Boolean laws. The non-stable Examples
+aggregate imports these consumers. The lightweight root retains its five-module
+closure. The frozen release retains 601 declarations in 31 supported modules.
+
+The early native warning-as-error preflight timed out after 120 seconds with
+no diagnostic in its first invocation. An unchanged-input single-worker run
+then exited 0 in 96.4 seconds. Both results are retained; the timeout is an
+operational limit, not a proof result. The implementation uses only Linarith
+from the plan's candidate tactic imports; Ring is unnecessary for its scalar
+proofs. The full approved public contracts and later consumer requirements
+remain unchanged. The current API and both website references were regenerated;
+the frozen manifest check succeeded.
+
+The five-target warning-as-error build, refreshed static gate and standalone
+compiled compatibility passed. All 601 retained types match; current compiled
+coverage is 610 declarations across 32 supported modules. The persistent reviewer
+independently compiled the TV owner, checked its signatures and permitted axioms,
+and passed fresh generated-reference checks. Its original report satisfies all
+three C10.01 criteria with no findings and has been explicitly reconciled.
+
+Source and documents are validation ready; final source applicability, final
+static validation and the actual private completion record establish step closure.
+The [implementation notes](plans/post-release-chunk-10-notes.md) preserve exact
+scope, provenance and limitations. Later trust/clean-suite/API-doc milestones
+remain with their approved steps. No later step, commit, push or publication is
+included.
+
 ## Public visibility and practical guides, 2026-09-14
 
 The lead authorized a confident, evidence-based visibility pass. GitHub's

@@ -6,8 +6,8 @@
     "Semantic bridge layer",
     "Non-stable anchors"
   ],
-  "local_edge_count": 94,
-  "module_count": 46,
+  "local_edge_count": 101,
+  "module_count": 49,
   "modules": [
     {
       "external_imports": [],
@@ -58,6 +58,19 @@
       "summary": "Binary PMF mixtures with NNReal weights and exact endpoint laws; general finite selectors use PMF.bind."
     },
     {
+      "external_imports": [
+        "Mathlib.Tactic.Linarith"
+      ],
+      "layer": "Shared foundation",
+      "local_imports": [
+        "LeanInfoTheory.Probability.Finite"
+      ],
+      "name": "LeanInfoTheory.Probability.TotalVariation",
+      "path": "LeanInfoTheory/Probability/TotalVariation.lean",
+      "root_reachable": false,
+      "summary": "Half-L1 total variation of finite PMFs, core laws, attained events, overlap and residual masses, disjoint support, sharp bounded tests, and map/common-channel contraction."
+    },
+    {
       "external_imports": [],
       "layer": "Finite Shannon layer",
       "local_imports": [
@@ -74,6 +87,7 @@
       "layer": "Finite Shannon layer",
       "local_imports": [
         "LeanInfoTheory",
+        "LeanInfoTheory.Probability.TotalVariation",
         "LeanInfoTheory.Shannon.Fano",
         "LeanInfoTheory.Shannon.SemanticBridge",
         "LeanInfoTheory.Shannon.Units"
@@ -445,12 +459,14 @@
         "LeanInfoTheory.Examples.StochasticChannels",
         "LeanInfoTheory.Examples.SufficientStatistics",
         "LeanInfoTheory.Examples.SupportSensitive",
+        "LeanInfoTheory.Examples.TotalVariation",
+        "LeanInfoTheory.Examples.TotalVariationChannels",
         "LeanInfoTheory.Examples.Units"
       ],
       "name": "LeanInfoTheory.Examples",
       "path": "LeanInfoTheory/Examples.lean",
       "root_reachable": false,
-      "summary": "Non-stable aggregate for maintained conditional-KL, convexity, finite-family, independence-processing, information-decomposition, support-sensitive, Markov, channel, sufficiency, Fano, and units regression consumers."
+      "summary": "Non-stable aggregate for maintained conditional-KL, convexity, finite-family, independence-processing, information-decomposition, support-sensitive, total-variation, Markov, channel, sufficiency, Fano, and units regression consumers."
     },
     {
       "external_imports": [],
@@ -583,6 +599,29 @@
       "external_imports": [],
       "layer": "Non-stable anchors",
       "local_imports": [
+        "LeanInfoTheory.Probability.TotalVariation"
+      ],
+      "name": "LeanInfoTheory.Examples.TotalVariation",
+      "path": "LeanInfoTheory/Examples/TotalVariation.lean",
+      "root_reachable": false,
+      "summary": "Private finite-TV consumers connecting a parameterized Boolean family, exact maximizing-event binary reduction, overlap and sharp tests, with normalization and degenerate-alphabet cases."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Probability.FiniteChannel",
+        "LeanInfoTheory.Probability.TotalVariation"
+      ],
+      "name": "LeanInfoTheory.Examples.TotalVariationChannels",
+      "path": "LeanInfoTheory/Examples/TotalVariationChannels.lean",
+      "root_reachable": false,
+      "summary": "Private finite-TV processing consumers for noninjective maps, constant collapse, relabeling, Boolean noise, channel composition, and joint-law projections."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
         "LeanInfoTheory.Shannon.SemanticBridge.KL",
         "LeanInfoTheory.Shannon.Units"
       ],
@@ -610,5 +649,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 5,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 41
+  "separate_import_count": 44
 }

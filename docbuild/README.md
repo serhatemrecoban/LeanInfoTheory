@@ -51,15 +51,21 @@ retain their exact identities and publication guards. Generated types document
 the current tree; retained structural fingerprints and source review govern
 compatibility, and matching types do not establish unchanged semantics.
 
-## C9 current milestone requirements
+## Current C10 milestone evidence and applicability
 
-C9.07 requires the current 603-declaration/31-module milestone, with 92 canonical
-export targets and 15 excluded non-stable modules. The real two-pass file-mode
-build and source-content attestation must pass, together with the complete
-routine suite and fixtures on an authorized clean candidate, before cumulative
-independent review. Review reconciliation and private closure remain mandatory
-postconditions. The [maintained handoff](../docs/handoffs/chunk-9.md) identifies
-the actual source-bound records that determine results and closure status.
-Synthetic fixtures and historical release HTML cannot establish this current
-build's result. Keep the pinned environment and direct-inspection route above;
-no current publication or frozen-route staging is authorized.
+The initial C10.07 gate completed both real file-mode passes for the current
+628-declaration/32-module surface, with 92 canonical export targets, 17 excluded
+non-stable modules and all 25 TV signatures. Its current v2 source-content
+attestation and original process results are identified in the
+[C10 handoff](../docs/handoffs/chunk-10.md) and source-bound private records.
+The clean routine suite and fresh cumulative review also succeeded; the original
+review was explicitly reconciled. Final amended-candidate validation, exact
+API-doc/review applicability and completion are established by C10.07's
+source-bound private records. This maintained chronology does not itself certify
+closure. Neither old output nor matching counts substitute for applicable
+content-bound evidence.
+
+C9.07's 603/31/92/15 milestone is historical and retained in its
+[handoff](../docs/handoffs/chunk-9.md). Its old current-source attestation does not
+cover the C10 owner and consumers. Keep current local output separate from the
+frozen release route; no staging or publication is included.
