@@ -6,8 +6,8 @@
     "Semantic bridge layer",
     "Non-stable anchors"
   ],
-  "local_edge_count": 101,
-  "module_count": 49,
+  "local_edge_count": 110,
+  "module_count": 52,
   "modules": [
     {
       "external_imports": [],
@@ -20,6 +20,18 @@
       "path": "LeanInfoTheory.lean",
       "root_reachable": true,
       "summary": "Lightweight public root import for finite PMF and Shannon APIs."
+    },
+    {
+      "external_imports": [],
+      "layer": "Shared foundation",
+      "local_imports": [
+        "LeanInfoTheory.Probability.FiniteChannel",
+        "LeanInfoTheory.Probability.TotalVariation"
+      ],
+      "name": "LeanInfoTheory.Probability.Coupling",
+      "path": "LeanInfoTheory/Probability/Coupling.lean",
+      "root_reachable": false,
+      "summary": "Generic coupling interface, finite coupling inequality and an actual common-mass PMF with exact marginals and ENNReal/Real disagreement attaining total variation."
     },
     {
       "external_imports": [
@@ -87,6 +99,7 @@
       "layer": "Finite Shannon layer",
       "local_imports": [
         "LeanInfoTheory",
+        "LeanInfoTheory.Probability.Coupling",
         "LeanInfoTheory.Probability.TotalVariation",
         "LeanInfoTheory.Shannon.Fano",
         "LeanInfoTheory.Shannon.SemanticBridge",
@@ -451,6 +464,8 @@
         "LeanInfoTheory.Examples.CommonCause",
         "LeanInfoTheory.Examples.ConditionalKL",
         "LeanInfoTheory.Examples.Convexity",
+        "LeanInfoTheory.Examples.Coupling",
+        "LeanInfoTheory.Examples.CouplingFano",
         "LeanInfoTheory.Examples.Fano",
         "LeanInfoTheory.Examples.FiniteFamily",
         "LeanInfoTheory.Examples.IndependenceProcessing",
@@ -466,7 +481,7 @@
       "name": "LeanInfoTheory.Examples",
       "path": "LeanInfoTheory/Examples.lean",
       "root_reachable": false,
-      "summary": "Non-stable aggregate for maintained conditional-KL, convexity, finite-family, independence-processing, information-decomposition, support-sensitive, total-variation, Markov, channel, sufficiency, Fano, and units regression consumers."
+      "summary": "Non-stable aggregate for maintained conditional-KL, convexity, coupling, finite-family, independence-processing, information-decomposition, support-sensitive, total-variation, Markov, channel, sufficiency, Fano, and units regression consumers."
     },
     {
       "external_imports": [],
@@ -503,6 +518,30 @@
       "path": "LeanInfoTheory/Examples/Convexity.lean",
       "root_reachable": false,
       "summary": "Private maintained regressions for finite log-sum, mixtures, entropy concavity, KL convexity, and mutual-information input-law concavity and channel convexity."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Probability.Coupling"
+      ],
+      "name": "LeanInfoTheory.Examples.Coupling",
+      "path": "LeanInfoTheory/Examples/Coupling.lean",
+      "root_reachable": false,
+      "summary": "Private focused-import consumers for elementary couplings, the coupling inequality, actual constructor marginals and exact disagreement, including attained optimality, swapped, equal, disjoint, sparse, asymmetric and degenerate laws, plus strict fair-Boolean comparison."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Probability.Coupling",
+        "LeanInfoTheory.Shannon.Fano",
+        "LeanInfoTheory.Shannon.SemanticBridge.Product"
+      ],
+      "name": "LeanInfoTheory.Examples.CouplingFano",
+      "path": "LeanInfoTheory/Examples/CouplingFano.lean",
+      "root_reachable": false,
+      "summary": "Private consumers applying existing Fano to the actual maximal coupling and its coordinate swap with exact TV error, ordered marginals and equal/subsingleton endpoints, plus independent-product rectangle and measure interoperability."
     },
     {
       "external_imports": [],
@@ -649,5 +688,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 5,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 44
+  "separate_import_count": 47
 }

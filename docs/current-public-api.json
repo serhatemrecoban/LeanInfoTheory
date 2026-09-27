@@ -13,7 +13,7 @@
     "release_commit": "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f",
     "release_tag": "v0.1.0"
   },
-  "declaration_count": 628,
+  "declaration_count": 638,
   "declarations": [
     {
       "attributes": [],
@@ -3515,6 +3515,24 @@
     },
     {
       "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.IsCoupling"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.IsCoupling.map_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.IsCoupling.totalVariation_le"
+    },
+    {
+      "attributes": [],
       "kind": "theorem",
       "module": "LeanInfoTheory.Probability.TotalVariation",
       "name": "PMF.abs_sum_sub_le_mul_totalVariation"
@@ -3756,6 +3774,30 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.exists_isCoupling"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.isCoupling_channelJoint_const"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.isCoupling_map_diag"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.isCoupling_maximalCoupling"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Probability.Finite",
       "name": "PMF.map_apply_eq_zero_of_notMem_range"
     },
@@ -3770,6 +3812,24 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Probability.Finite",
       "name": "PMF.map_apply_of_injective"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.maximalCoupling"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.maximalCoupling_toOuterMeasure_ne"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.maximalCoupling_toOuterMeasure_ne_toReal"
     },
     {
       "attributes": [
@@ -3972,31 +4032,33 @@
       "name": "PMF.two_mul_totalVariation_isGreatest_bounded"
     }
   ],
-  "documented_declaration_count": 628,
+  "documented_declaration_count": 638,
   "full_umbrella": "LeanInfoTheory.Shannon",
   "kind_counts": {
     "abbrev": 9,
-    "def": 57,
+    "def": 59,
     "instance": 1,
-    "theorem": 561
+    "theorem": 569
   },
   "lightweight_root": "LeanInfoTheory",
   "lightweight_root_direct_imports": [
     "LeanInfoTheory.InformationMeasures",
     "LeanInfoTheory.Probability.Finite"
   ],
-  "local_module_count": 49,
+  "local_module_count": 52,
   "namespace_counts": {
     "LeanInfoTheory.Shannon": 559,
-    "PMF": 69
+    "PMF": 79
   },
-  "non_stable_module_count": 17,
+  "non_stable_module_count": 19,
   "non_stable_modules": [
     "LeanInfoTheory.Basic",
     "LeanInfoTheory.Examples",
     "LeanInfoTheory.Examples.CommonCause",
     "LeanInfoTheory.Examples.ConditionalKL",
     "LeanInfoTheory.Examples.Convexity",
+    "LeanInfoTheory.Examples.Coupling",
+    "LeanInfoTheory.Examples.CouplingFano",
     "LeanInfoTheory.Examples.Fano",
     "LeanInfoTheory.Examples.FiniteFamily",
     "LeanInfoTheory.Examples.IndependenceProcessing",
@@ -4389,10 +4451,11 @@
     "Declaration types and assumptions remain governed by the Lean source and signature-bearing API documentation."
   ],
   "simp_declaration_count": 94,
-  "supported_module_count": 32,
+  "supported_module_count": 33,
   "supported_modules": [
     "LeanInfoTheory",
     "LeanInfoTheory.InformationMeasures",
+    "LeanInfoTheory.Probability.Coupling",
     "LeanInfoTheory.Probability.Finite",
     "LeanInfoTheory.Probability.FiniteChannel",
     "LeanInfoTheory.Probability.FiniteMixture",

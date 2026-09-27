@@ -46,23 +46,40 @@ checkpoint `8ee0337b20c320c384d5637de852da7f4ee09728`. The
 and remaining-work dispositions; its captured pre-closure wording does not reopen
 that completed chunk.
 
-The approved [C10 plan, revision 2](plans/post-release-chunk-10.md) is active.
-C10.01--C10.06 and their reviews are complete by their actual private completion
-records. The current request selects C10.07 for cumulative validation, a fresh
-full-chunk review and the [maintained C10 handoff](handoffs/chunk-10.md).
-The delivered finite-PMF TV owner has 25 documented declarations, with attained
-events, overlap/residual identities, sharp bounded tests and map/channel
-contraction. Private consumers cover the shared Boolean family, exact
-maximizing-event Boolean reduction, degenerate alphabets and joint projections.
-Current coverage is 628 documented supported declarations in 32 owners, with
-94 reviewed simp declarations and 92 facade aliases unchanged.
-The authorized initial clean-candidate suite and real two-pass current file-mode
-API docs passed. A fresh full-chunk review assessed all 19 approved criteria;
-its original report and criterion assessments were explicitly reconciled.
-Final amended-candidate validation, exact API-doc/review applicability and
-completion are established by C10.07's source-bound private records.
-This maintained chronology does not itself certify closure.
-C11--C24 remain proposed and require separate approval.
+C10 is complete through C10.07 at source checkpoint
+`37b4ba90d1ab321645f80cacef475f10a3a6ba43`, by its actual private completion
+record. The [C10 handoff](handoffs/chunk-10.md) preserves its delivered 25-declaration
+TV API and evidence; its provisional chronology does not reopen the completed chunk.
+
+The approved [C11 plan, revision 2](plans/post-release-chunk-11.md) is active.
+C11.01--C11.05 and their reviews are complete by their source-bound private
+records, most recently `.lit-review/setup/c11-05-completion-20260926.json`.
+The conditional request selected C11.06 after verifying that closure and its
+exact final source. This final step prepares cumulative qualification and the
+[maintained C11 handoff](handoffs/chunk-11.md).
+
+The reviewed mathematical candidate provides ten public coupling declarations:
+the generic interface and elementary witnesses, the coupling inequality, and an
+actual common-mass witness with exact marginals and disagreement equal to TV.
+Private consumers check attained optimality, the full edge matrix, Fano for the
+same witness and its coordinate swap, and independent-product measure semantics.
+Current coverage is 638 documented declarations in 33 supported owners, with
+94 reviewed simp declarations and 92 facade aliases. Generated references record
+52 modules, 110 local edges, 5 root-reachable and 47 separate-import modules,
+and 753 indexed declarations (752 documented and one example-only instance).
+
+C11.06 preserves the reviewed Lean source and public contracts.
+The lead explicitly authorized the exact local checkpoint and necessary
+C11.06-only amendments. Initial checkpoint
+`2147dd3449af620f41d9bed8d37c5be8252f20e8` passed the clean complete routine
+suite and real two-pass current file-mode API-doc gate; the
+[maintained C11 handoff](handoffs/chunk-11.md) identifies original results and the
+actual Coupling-page inspection. Any amended candidate requires renewed complete
+routine validation and exact API-doc applicability. C11.06's source-bound private
+records establish the fresh all-17-criterion review, original-report
+reconciliation, final validation and review applicability, final capture and
+closure. This maintained chronology does not itself certify completion.
+C12--C24 remain proposed and unselected.
 
 ## Proposed Post-Release Programme
 
@@ -83,11 +100,11 @@ declarations only an uncertain cross-check, not a quota.
 
 The later programme remains a proposal for project-lead review, not an approved
 execution plan or a release/date commitment. The separately authorized
-[review workflow](review-operations.md) is installed. C9 is closed. The separately
-approved C10 plan and the explicitly selected
-C10.07 request govern current work. C10.01--C10.06 are complete; the final
-step owns cumulative qualification and the maintained handoff;
-C11--C24 still require their own approved plans and execution authority.
+[review workflow](review-operations.md) is installed. C9 and C10 are complete.
+C11.01--C11.05 are complete with review. The separately approved C11 revision-2
+plan and selected C11.06 request govern cumulative qualification and the
+maintained handoff; final closure remains subject to its private completion record.
+C12--C24 still require their own approved plans and execution authority.
 The [reference register](references.md) identifies the selected sources and
 distinguishes the 2022 and 2024 Polyanskiy--Wu drafts. The calendar horizons
 below remain broad aspirations, not delivery deadlines for the proposed chunks.

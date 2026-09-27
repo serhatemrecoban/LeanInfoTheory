@@ -81,6 +81,11 @@ August 16, 2024 prepublication version. The source footer identifies the date.
   prose's inequality-direction ambiguity. Coupling in part (b) is C11 scope;
   C10's [handoff](handoffs/chunk-10.md#mathematical-sources-and-adaptations)
   records the finite-algebra adaptations and actual reading evidence.
+- Recorded C11 use: Section 7.3, Theorem 7.7(b), equation (7.20), printed
+  pages 122--123 / PDF pages 147--148, and overlap equation (7.3), printed
+  page 116 / PDF page 141. The actual finite-PMF witness attains disagreement
+  equal to TV. The [C11 handoff](handoffs/chunk-11.md) records the finite event
+  convention, endpoint handling and remaining-work boundaries.
 - Section 7.4, Theorem 7.10: Pinsker via binary reduction; its full
   f-divergence/joint-range programme is not selected.
 - Section 4.5, Proposition 4.8: finite entropy continuity; Section 4.7,
@@ -111,6 +116,10 @@ The local copy is arXiv `1209.5259v5`, dated July 23, 2013.
 - Sections I--II, Theorems 1--3: maximal coupling, disagreement equal to TV,
   and the finite entropy-difference bound using Fano. This is the proposed
   bounded intake, not a commitment to the whole paper.
+- Recorded C11 use: Section I, Theorem 1 and equations (3)--(9), printed/PDF
+  pages 2--3; Theorem 2 and equation (10), page 3. The finite construction uses
+  the common diagonal mass and an independent residual matrix, with explicit
+  zero/unit-TV endpoints. Section II's continuity result remains C14 work.
 - Section II credits prior entropy-continuity results; cite the actual route
   used without claiming that every ingredient originated in this paper.
 - Uses natural logarithms. Distinguish a bound at exact TV distance from a
@@ -135,6 +144,11 @@ edition, with contributions by Elizabeth L. Wilmer, 2017.
   Section 4.2's overlap identity is used without constructing a coupling;
   Proposition 4.7's coupling witness remains C11 work. C10 consistently uses
   the non-strict dominating event; tied atoms contribute zero.
+- Recorded C11 use: Section 4.2, Proposition 4.7, Remark 4.8 and equations
+  (4.8)--(4.13), printed pages 50--52 / PDF pages 66--68, with the definition
+  on printed page 49 / PDF page 65. The universal coupling inequality and an
+  actual attaining law are delivered; no general gluing or process theorem is
+  attributed to this section.
 - Chapter 5 is optional background for later coupling applications, not a
   Markov-process or mixing-time commitment. The proposed finite gluing law
   will be proved using conditional PMFs; no unverified numbered gluing theorem

@@ -37,11 +37,11 @@
         <h2 id="metrics-heading">Current Index</h2>
 
         <div class="metric-grid">
-          <div class="metric-card"><strong>743</strong><span>non-private source declarations</span></div>
-          <div class="metric-card"><strong>36</strong><span>modules with declarations</span></div>
-          <div class="metric-card"><strong>626</strong><span>theorems and lemmas</span></div>
-          <div class="metric-card"><strong>111</strong><span>definitions and abbrevs</span></div>
-          <div class="metric-card"><strong>742</strong><span>with doc comments</span></div>
+          <div class="metric-card"><strong>753</strong><span>non-private source declarations</span></div>
+          <div class="metric-card"><strong>37</strong><span>modules with declarations</span></div>
+          <div class="metric-card"><strong>634</strong><span>theorems and lemmas</span></div>
+          <div class="metric-card"><strong>113</strong><span>definitions and abbrevs</span></div>
+          <div class="metric-card"><strong>752</strong><span>with doc comments</span></div>
         </div>
 
       </section>
@@ -56,10 +56,10 @@
             </tr>
           </thead>
           <tbody>
-<tr><td>Definition</td><td>111</td></tr>
+<tr><td>Definition</td><td>113</td></tr>
 <tr><td>Inductive</td><td>4</td></tr>
 <tr><td>Instance</td><td>2</td></tr>
-<tr><td>Theorem</td><td>626</td></tr>
+<tr><td>Theorem</td><td>634</td></tr>
           </tbody>
         </table>
       </section>
@@ -192,6 +192,16 @@
 <tr id="decl-LeanInfoTheory-Examples-SupportSensitive-recoverWithSideInfo"><td><code>LeanInfoTheory.Examples.SupportSensitive.recoverWithSideInfo</code></td><td>Definition</td><td><code>LeanInfoTheory.Examples.SupportSensitive</code></td><td>A decoder that reconstructs `recoveryX` using the side information.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Examples/SupportSensitive.lean#L182">line 182</a></td></tr>
 <tr id="decl-LeanInfoTheory-Examples-SupportSensitive-forgetSecond_loses_entropy"><td><code>LeanInfoTheory.Examples.SupportSensitive.forgetSecond_loses_entropy</code></td><td>Theorem</td><td><code>LeanInfoTheory.Examples.SupportSensitive</code></td><td>Without side information, `forgetSecond` does not preserve entropy.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Examples/SupportSensitive.lean#L186">line 186</a></td></tr>
 <tr id="decl-LeanInfoTheory-Examples-SupportSensitive-sideInfo_preserves_condEntropy"><td><code>LeanInfoTheory.Examples.SupportSensitive.sideInfo_preserves_condEntropy</code></td><td>Theorem</td><td><code>LeanInfoTheory.Examples.SupportSensitive</code></td><td>Side information restores the exact conditional-entropy equality contract.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Examples/SupportSensitive.lean#L205">line 205</a></td></tr>
+<tr id="decl-PMF-IsCoupling"><td><code>PMF.IsCoupling</code></td><td>Definition</td><td><code>LeanInfoTheory.Probability.Coupling</code></td><td>A joint law couples `p` and `q` when its first and second pushforwards are exactly `p` and `q`, respectively. The joint law is the first argument.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/Coupling.lean#L48">line 48</a></td></tr>
+<tr id="decl-PMF-isCoupling_channelJoint_const"><td><code>PMF.isCoupling_channelJoint_const</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.Coupling</code></td><td>The joint law of a constant channel is a coupling of its input and output laws.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/Coupling.lean#L53">line 53</a></td></tr>
+<tr id="decl-PMF-exists_isCoupling"><td><code>PMF.exists_isCoupling</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.Coupling</code></td><td>Any two supplied PMFs have a coupling, witnessed by the independent joint law.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/Coupling.lean#L60">line 60</a></td></tr>
+<tr id="decl-PMF-isCoupling_map_diag"><td><code>PMF.isCoupling_map_diag</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.Coupling</code></td><td>Mapping a law to the diagonal couples that law with itself.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/Coupling.lean#L65">line 65</a></td></tr>
+<tr id="decl-PMF-IsCoupling-map_swap"><td><code>PMF.IsCoupling.map_swap</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.Coupling</code></td><td>Swapping a coupling&#x27;s coordinates reverses its two prescribed marginal laws.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/Coupling.lean#L74">line 74</a></td></tr>
+<tr id="decl-PMF-IsCoupling-totalVariation_le"><td><code>PMF.IsCoupling.totalVariation_le</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.Coupling</code></td><td>Total variation is at most the probability that the coupled coordinates differ. The event uses first-versus-second coordinate order. This is the coupling inequality from Levin--Peres, Section 4.2, Proposition 4.7, for finite PMFs.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/Coupling.lean#L86">line 86</a></td></tr>
+<tr id="decl-PMF-maximalCoupling"><td><code>PMF.maximalCoupling</code></td><td>Definition</td><td><code>LeanInfoTheory.Probability.Coupling</code></td><td>The finite common-mass coupling of `p` and `q`, with first marginal `p` and second marginal `q`. At zero TV it is the diagonal law. At positive TV it puts the common minimum on the diagonal and couples the residual masses independently. This is the flattened construction of Sason, Section I, equations (5)--(8).</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/Coupling.lean#L169">line 169</a></td></tr>
+<tr id="decl-PMF-isCoupling_maximalCoupling"><td><code>PMF.isCoupling_maximalCoupling</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.Coupling</code></td><td>The common-mass construction has the two prescribed marginals, including zero and unit total variation, without any support or cardinality restriction.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/Coupling.lean#L178">line 178</a></td></tr>
+<tr id="decl-PMF-maximalCoupling_toOuterMeasure_ne"><td><code>PMF.maximalCoupling_toOuterMeasure_ne</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.Coupling</code></td><td>The common-mass coupling disagrees with probability exactly total variation in `ENNReal`, with the event ordered first coordinate versus second coordinate. This is the attained coupling bound of Sason, Section I, Theorem 2.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/Coupling.lean#L271">line 271</a></td></tr>
+<tr id="decl-PMF-maximalCoupling_toOuterMeasure_ne_toReal"><td><code>PMF.maximalCoupling_toOuterMeasure_ne_toReal</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.Coupling</code></td><td>The real disagreement probability of the common-mass coupling is total variation. Together with `IsCoupling.totalVariation_le`, this proves attainment of the smallest disagreement among all couplings of the supplied laws.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/Coupling.lean#L290">line 290</a></td></tr>
 <tr id="decl-PMF-toReal_nonneg"><td><code>PMF.toReal_nonneg</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.Finite</code></td><td>Each atom of a `PMF` has nonnegative real mass.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/Finite.lean#L34">line 34</a></td></tr>
 <tr id="decl-PMF-toReal_le_one"><td><code>PMF.toReal_le_one</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.Finite</code></td><td>Each atom of a `PMF` has real mass at most one.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/Finite.lean#L38">line 38</a></td></tr>
 <tr id="decl-PMF-sum_toReal"><td><code>PMF.sum_toReal</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.Finite</code></td><td>On a finite type, the real masses of a `PMF` sum to one.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/Finite.lean#L42">line 42</a></td></tr>

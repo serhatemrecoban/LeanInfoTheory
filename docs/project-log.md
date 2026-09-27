@@ -5,6 +5,210 @@ detail. It is not meant to list every small command or proof attempt. It should
 help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
+## C11.06 authorized checkpoint and initial cumulative gates, 2026-09-27
+
+The lead approved the exact 24-file local checkpoint and necessary C11.06-only
+amendments. Initial checkpoint `2147dd3449af620f41d9bed8d37c5be8252f20e8`
+was clean and preserved the reviewed mathematical source and current API.
+`.lit-review/setup/c11-06-full-checkpoint-20260927/result.json` records the clean complete routine suite (exit 0,
+`1983.359` seconds); `.lit-review/setup/c11-06-api-docs-recovered-20260927/result.json` records both real checked file-mode
+API-doc passes (`234.8s and 19.9s`). `.lit-review/setup/c11-06-api-doc-inspection-utf8-20260927.json` records the actual new owner,
+all ten public declarations and the v2 source/configuration attestation.
+The maintained C11 handoff preserves the observed coverage and original evidence.
+
+The first API-doc run failed its semantic check because the generated manifest
+omitted the new Coupling HTML page, although Coupling and Shannon docInfo rebuilt.
+The original failure remains at
+`.lit-review/setup/c11-06-api-docs-checkpoint-20260927/result.json`. The recovery
+record `.lit-review/setup/c11-06-doc-marker-recovery-20260927.json` preserves the
+bytes of exactly three ignored Shannon HTML completion-marker/hash/trace files
+before their invalidation. The complete two-pass rerun passed at
+`.lit-review/setup/c11-06-api-docs-recovered-20260927/result.json`. No maintained
+source, validator, dependency pin or API contract changed. Both attempts replayed
+upstream Qq docInfo warnings for `mkLambdaQ` and `withLetHave`; all current
+supported signatures passed the successful rerun's semantic checks.
+
+The first page inspector saved all ten successful declaration checks before its
+console output failed on a Unicode symbol. The same read-only inspector passed
+with Python UTF-8 output; the original inspection and the console-error
+observation remain preserved beside the successful inspection record.
+
+The current-document amendment records completed initial checks. Complete routine
+validation must be repeated on the amended clean candidate, and exact API-doc
+applicability must be established. The fresh all-17-criterion original report,
+explicit reconciliation, final validation/review applicability, final capture and
+closure are established by C11.06's source-bound private records. This entry
+neither predicts their identities nor certifies completion. No later chunk, push
+or publication is included.
+
+## C11.06 cumulative candidate and handoff preparation, 2026-09-27
+
+The conditional step-6 request was selected after verifying C11.05's actual
+completion record, all three satisfied criteria, reconciled original report and
+exact final source. C11.01--C11.05 and their reviews are complete; only the final
+C11.06 closeout is selected. The reviewed mathematical source is preserved.
+
+The maintained [C11 handoff](handoffs/chunk-11.md) records the ten public coupling
+contracts, focused imports, both private consumers, construction choices,
+mathematical sources, prior review evidence and remaining-work owners/triggers.
+Canonical status, the README, reference register and API-doc guidance now
+distinguish the 638-declaration/33-owner candidate from historical C9/C10 and
+release counts. The generated public API, imports and attributes are unchanged
+by this documentation step. C12 transport/gluing and C14 continuity remain
+separate, unselected programmes.
+
+The exact source/document candidate is being prepared for a scoped local
+checkpoint approval. Required clean routine validation, actual current two-pass
+file-mode API docs and fresh independent review of all 17 approved criteria
+remain pending. Original evidence, subsequent reconciliation, final applicability
+and completion belong to the source-bound C11.06 private records. This entry
+does not certify closure or authorize a commit, push, publication or later chunk.
+
+## C11.05 Fano interoperability and integrated API readiness, 2026-09-26
+
+C11.05 was selected with review after verifying C11.04's completion record,
+`.lit-review/setup/c11-04-completion-20260926.json`, and exact predecessor source.
+C11.01--C11.04 remain complete. Only C11.05 is selected; C11.06 cumulative
+qualification and closeout remain unselected.
+
+The separate private `Examples.CouplingFano` consumer uses the actual
+`PMF.maximalCoupling p q` and its coordinate swap. Both enter the existing
+`condEntropy_fano` theorem with identity-decoder error exactly TV. The consumer
+checks all four ordered marginal equalities, disagreement-event transport,
+equal/subsingleton endpoints and constant `channelJoint` equality with
+`Shannon.indepProd`. The existing rectangle and full product-measure bridges
+are consumed with their actual measurable-space premises.
+
+The new consumer imports only Coupling, Fano and Product, and joins the
+non-stable Examples aggregate. All its helpers remain private; the mathematical
+owners, public theorem contracts, aliases and simp sets are unchanged. This
+step consumes the existing Fano bounds without adding continuity results.
+
+Current generated totals are 52 modules, 110 local edges, 5 root-reachable and
+47 separate-import modules, with 753 indexed declarations (752 documented and
+one example-only instance). The supported surface remains 638 documented
+declarations in 33 owners, with 19 non-stable modules excluded, 94 reviewed simp
+declarations and 92 aliases.
+
+This entry records source readiness only. Focused builds of the consumers,
+Fano, Product and aggregates, generated/static checks, documentation and full
+trust require applicable evidence. Validation, independent review and exact
+completion belong to the source-bound C11.05 private records. This step does
+not authorize a commit, push or publication.
+
+## C11.04 exact disagreement and maximality, 2026-09-26
+
+C11.04 was selected with review after verifying C11.03's exact predecessor
+source and completion record, `.lit-review/setup/c11-03-completion-20260926.json`.
+All three predecessor criteria were satisfied, and the clean independent report
+was reconciled. C11.01--C11.03 remain complete; only C11.04 is selected.
+
+The source adds `PMF.maximalCoupling_toOuterMeasure_ne` and
+`PMF.maximalCoupling_toOuterMeasure_ne_toReal`. The actual common-mass law's
+disagreement is exactly `ENNReal.ofReal (PMF.totalVariation p q)`, then exactly
+TV after conversion to Real. Private proofs identify common-mass agreement,
+use guarded event complements and retain explicit diagonal and disjoint-
+independent endpoint arguments. No public helper, assumption, import, alias or
+simp attribute is added beyond the two approved event theorems.
+
+The focused consumer combines exact marginals and disagreement with the
+universal coupling inequality to express attained optimality. Its actual-witness
+checks cover equal/disjoint and pure endpoints, sparse ternary and asymmetric
+Boolean disagreement, alongside swapped marginals and degenerate alphabets.
+The source surface has 638 documented supported declarations in 33 owners;
+753 declarations are indexed, 752 documented. The 94 simp declarations,
+92 aliases and existing import/root boundaries are unchanged.
+
+This entry records source readiness only. Fresh focused builds, generated/static
+checks, guarded-conversion audit, compiled compatibility and full trust require
+applicable evidence. Validation, independent review and exact completion belong
+to the source-bound C11.04 private records. C11.05 Fano interoperability and
+C11.06 cumulative closeout remain unselected. This step does not authorize a
+commit, push or publication.
+
+## C11.03 coupling construction and exact marginals, 2026-09-26
+
+C11.03 was selected with review after checking C11.02's actual completion record,
+reconciled review and exact predecessor source. C11.01--C11.02 remain complete;
+their uncommitted source is preserved. Only C11.03 is active.
+
+The source adds `PMF.maximalCoupling` and `PMF.isCoupling_maximalCoupling`.
+At zero TV the constructor uses the diagonal law; at positive TV it uses
+`PMF.ofFintype` on the common diagonal mass plus the residual product divided
+by TV. Private row and column proofs establish unit mass and exact marginals
+without a TV<1 premise. Generic private identities identify the actual law
+at TV=0 and TV=1, and sparse ternary checks verify the middle diagonal and
+first-to-last residual atoms, each of mass one half.
+
+The focused example owner consumes the public constructor and marginal theorem
+without unfolding normalization machinery. Its cases cover generic and swapped
+marginals, equal and disjoint laws, pure endpoints, sparse ternary and asymmetric
+Boolean inputs, subsingletons and empty alphabets. The source surface has
+636 documented supported declarations in 33 owners, with 94 simp declarations,
+92 aliases and the existing import/root boundaries unchanged.
+
+This entry records source readiness only. Focused builds, generated/static
+checks, denominator/atom audits and constructor trust evidence still require
+applicable results; independent review and final closure belong to the
+source-bound C11.03 private records. Exact disagreement and maximality belong
+to C11.04, despite the constructor's name; Fano interoperability belongs to
+C11.05. Those steps, commits, pushes and publication remain unselected.
+
+## C11.02 coupling inequality, 2026-09-26
+
+The conditional step-2 request was selected after verifying C11.01's actual
+completion record, reconciled original review and exact final-source applicability.
+The uncommitted predecessor is preserved; only C11.02 is active with review.
+
+`PMF.IsCoupling.totalVariation_le` now bounds finite TV by the supplied joint law's
+Real disagreement probability. The proof reuses the attaining-event identity,
+pushforward event transport and guarded finite real-event sums. Its indicator
+bound stays local; no new helper, assumption, import, alias or simp rule is added.
+The mathematical argument agrees with LP17 Section 4.2, Proposition 4.7.
+
+Private focused-import consumers exercise both marginal orientations, diagonal
+and subsingleton equality, disjoint and pure endpoints, asymmetric pure/fair
+laws and explicit strictness for identical independent fair Boolean laws.
+The latter have disagreement `1/2` versus TV and diagonal disagreement zero.
+Current generated coverage is 634 documented supported declarations in 33 owners.
+
+The [implementation notes](plans/post-release-chunk-11-notes.md) record proof
+choices, corrected initial linter warnings and validation boundaries. Fresh
+focused/static and exact theorem-axiom evidence, the independent original review,
+its reconciliation and exact final closure must be established through the
+source-bound private records. This entry records source readiness only.
+C11.03 and later steps, commits, pushes and publication remain unselected.
+
+## C11.01 coupling interface and elementary witnesses, 2026-09-26
+
+The lead accepted the revised [C11 plan](plans/post-release-chunk-11.md) and
+explicitly selected step 1 with review. C10 is complete at intake HEAD
+`37b4ba90d1ab321645f80cacef475f10a3a6ba43` by its actual private record; its
+handoff's provisional chronology does not reopen it. Only C11.01 is selected.
+
+The source adds `PMF.IsCoupling`, independent coupling/existence, diagonal
+coupling and coordinate swap in `Probability.Coupling`. Both coordinate types
+and universes remain generic. Constant `channelJoint` supplies the independent
+witness; map composition supplies diagonal and swap laws. The focused owner
+imports only `FiniteChannel` and `TotalVariation` and adds no new instances,
+aliases or simp rules. The Shannon umbrella exposes it through the actual
+approved growth-policy record; the root retains its five-module closure.
+
+Private `Examples.Coupling` consumers import only the focused owner and exercise
+all five public declarations, ordered marginals, heterogeneous alphabets,
+diagonal laws, repeated swap and empty alphabets. The Examples aggregate imports
+them. Current generated coverage is 633 documented declarations in 33 supported
+owners, with 94 simp declarations and 92 facade aliases unchanged. The frozen
+601-declaration release contract is preserved.
+
+The [implementation notes](plans/post-release-chunk-11-notes.md) record choices
+and validation boundaries. Required focused, generated/static and compiled-
+compatibility evidence, the original independent review, its explicit
+reconciliation and exact final-source closure must be established through the
+source-bound C11.01 private records. This entry remains provisional with respect to closure. Later
+C11 steps, the clean cumulative suite and the new-module API-doc milestone are
+unselected. No commit, push or publication is authorized by this step.
+
 ## C10.07 cumulative closeout candidate, 2026-09-21
 
 The conditional request selected C10.07 after verifying C10.06's actual closure,

@@ -1,6 +1,6 @@
 # Current Lean State
 
-## C10.07 cumulative total-variation closeout candidate
+## C11.06 cumulative qualification and maintained handoff
 
 C9 is complete through C9.07 by its actual private completion record at source
 checkpoint `8ee0337b20c320c384d5637de852da7f4ee09728`. The
@@ -8,27 +8,44 @@ checkpoint `8ee0337b20c320c384d5637de852da7f4ee09728`. The
 and remaining-work dispositions; its captured pre-closure wording does not reopen
 that completed chunk.
 
-The approved [C10 plan, revision 2](plans/post-release-chunk-10.md) is active.
-C10.01--C10.06 and their reviews are complete by their actual private completion
-records. The current request selects C10.07 for cumulative validation, a fresh
-full-chunk review and the [maintained C10 handoff](handoffs/chunk-10.md).
-The delivered finite-PMF TV owner has 25 documented declarations, with attained
-events, overlap/residual identities, sharp bounded tests and map/channel
-contraction. Private consumers cover the shared Boolean family, exact
-maximizing-event Boolean reduction, degenerate alphabets and joint projections.
-Current coverage is 628 documented supported declarations in 32 owners, with
-94 reviewed simp declarations and 92 facade aliases unchanged.
-The authorized initial clean-candidate suite and real two-pass current file-mode
-API docs passed. A fresh full-chunk review assessed all 19 approved criteria;
-its original report and criterion assessments were explicitly reconciled.
-Final amended-candidate validation, exact API-doc/review applicability and
-completion are established by C10.07's source-bound private records.
-This maintained chronology does not itself certify closure.
-C11--C24 remain proposed and require separate approval.
+C10 is complete through C10.07 at source checkpoint
+`37b4ba90d1ab321645f80cacef475f10a3a6ba43`, by its actual private completion
+record. The [C10 handoff](handoffs/chunk-10.md) preserves its delivered 25-declaration
+TV API and evidence; its provisional chronology does not reopen the completed chunk.
+
+The approved [C11 plan, revision 2](plans/post-release-chunk-11.md) is active.
+C11.01--C11.05 and their reviews are complete by their source-bound private
+records, most recently `.lit-review/setup/c11-05-completion-20260926.json`.
+The conditional request selected C11.06 after verifying that closure and its
+exact final source. This final step prepares cumulative qualification and the
+[maintained C11 handoff](handoffs/chunk-11.md).
+
+The reviewed mathematical candidate provides ten public coupling declarations:
+the generic interface and elementary witnesses, the coupling inequality, and an
+actual common-mass witness with exact marginals and disagreement equal to TV.
+Private consumers check attained optimality, the full edge matrix, Fano for the
+same witness and its coordinate swap, and independent-product measure semantics.
+Current coverage is 638 documented declarations in 33 supported owners, with
+94 reviewed simp declarations and 92 facade aliases. Generated references record
+52 modules, 110 local edges, 5 root-reachable and 47 separate-import modules,
+and 753 indexed declarations (752 documented and one example-only instance).
+
+C11.06 preserves the reviewed Lean source and public contracts.
+The lead explicitly authorized the exact local checkpoint and necessary
+C11.06-only amendments. Initial checkpoint
+`2147dd3449af620f41d9bed8d37c5be8252f20e8` passed the clean complete routine
+suite and real two-pass current file-mode API-doc gate; the
+[maintained C11 handoff](handoffs/chunk-11.md) identifies original results and the
+actual Coupling-page inspection. Any amended candidate requires renewed complete
+routine validation and exact API-doc applicability. C11.06's source-bound private
+records establish the fresh all-17-criterion review, original-report
+reconciliation, final validation and review applicability, final capture and
+closure. This maintained chronology does not itself certify completion.
+C12--C24 remain proposed and unselected.
 
 `Probability.TotalVariation` imports only `Probability.Finite` and
-`Mathlib.Tactic.Linarith`. The full Shannon umbrella exposes it alongside its
-four retained imports. `Examples.TotalVariation` imports only the focused owner
+`Mathlib.Tactic.Linarith`. The full Shannon umbrella retains this import and
+its other released imports and adds the focused coupling owner. `Examples.TotalVariation` imports only the focused owner
 and privately checks the core laws, events, Finset coercions and Boolean
 pushforwards, followed by generic overlap/residual normalization premises,
 equal/disjoint endpoints and sparse three-point overlap. Bounded-test consumers
@@ -42,6 +59,29 @@ All 25 public TV declarations are exercised without promoting example helpers.
 The non-stable Examples aggregate imports both consumers. Neither adds an import
 to the TV owner or either mathematical umbrella. The lightweight root retains
 its five-module closure; the frozen release retains 601 declarations in 31 modules.
+
+`Probability.Coupling` imports only `Probability.FiniteChannel` and
+`Probability.TotalVariation`. Its ten declarations include the generic
+interface, elementary witnesses, coupling inequality, actual common-mass
+constructor, exact marginals and ENNReal/Real disagreement formulas. No instances,
+aliases or simp attributes are added. `Examples.Coupling` imports only that owner
+and combines its public marginal and event formulas with the coupling inequality
+to express attained optimality. Its source covers swapped marginals and exact
+disagreement for equal, disjoint, pure, sparse and asymmetric laws, alongside
+subsingleton and empty cases. Constructor machinery, agreement/complement proofs,
+endpoint identities and sparse atom checks stay private in the probability owner.
+The separate private `Examples.CouplingFano` consumer imports only
+`Probability.Coupling`, `Shannon.Fano` and `Shannon.SemanticBridge.Product`.
+It uses the actual maximal witness and its swap, checks all four marginal
+equalities and specializes existing Fano to exact TV error in both directions,
+including equal/subsingleton endpoints. Constant `channelJoint` is identified
+with `Shannon.indepProd` and enters the existing measurable-rectangle and full
+product-measure bridges under their own measurable-space assumptions. The new
+consumer joins only Examples; no public theorem, alias, simp attribute or heavy
+mathematical-owner import is added. See the
+[C11 implementation notes](plans/post-release-chunk-11-notes.md) and source-bound
+private records for completed C11.05 validation and review. C11.06 now owns
+cumulative qualification; its handoff records remaining-work owners and triggers.
 
 ## `v0.1.0` released state
 

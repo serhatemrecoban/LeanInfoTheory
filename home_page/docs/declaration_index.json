@@ -1,5 +1,5 @@
 {
-  "declaration_count": 743,
+  "declaration_count": 753,
   "declarations": [
     {
       "doc": "Public project name used by documentation and the website.",
@@ -1150,6 +1150,106 @@
       "name": "LeanInfoTheory.Examples.SupportSensitive.sideInfo_preserves_condEntropy",
       "path": "LeanInfoTheory/Examples/SupportSensitive.lean",
       "short_name": "sideInfo_preserves_condEntropy"
+    },
+    {
+      "doc": "A joint law couples `p` and `q` when its first and second pushforwards are exactly `p` and `q`, respectively. The joint law is the first argument.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 48,
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.IsCoupling",
+      "path": "LeanInfoTheory/Probability/Coupling.lean",
+      "short_name": "IsCoupling"
+    },
+    {
+      "doc": "The joint law of a constant channel is a coupling of its input and output laws.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 53,
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.isCoupling_channelJoint_const",
+      "path": "LeanInfoTheory/Probability/Coupling.lean",
+      "short_name": "isCoupling_channelJoint_const"
+    },
+    {
+      "doc": "Any two supplied PMFs have a coupling, witnessed by the independent joint law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 60,
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.exists_isCoupling",
+      "path": "LeanInfoTheory/Probability/Coupling.lean",
+      "short_name": "exists_isCoupling"
+    },
+    {
+      "doc": "Mapping a law to the diagonal couples that law with itself.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 65,
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.isCoupling_map_diag",
+      "path": "LeanInfoTheory/Probability/Coupling.lean",
+      "short_name": "isCoupling_map_diag"
+    },
+    {
+      "doc": "Swapping a coupling's coordinates reverses its two prescribed marginal laws.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 74,
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.IsCoupling.map_swap",
+      "path": "LeanInfoTheory/Probability/Coupling.lean",
+      "short_name": "IsCoupling.map_swap"
+    },
+    {
+      "doc": "Total variation is at most the probability that the coupled coordinates differ. The event uses first-versus-second coordinate order. This is the coupling inequality from Levin--Peres, Section 4.2, Proposition 4.7, for finite PMFs.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 86,
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.IsCoupling.totalVariation_le",
+      "path": "LeanInfoTheory/Probability/Coupling.lean",
+      "short_name": "IsCoupling.totalVariation_le"
+    },
+    {
+      "doc": "The finite common-mass coupling of `p` and `q`, with first marginal `p` and second marginal `q`. At zero TV it is the diagonal law. At positive TV it puts the common minimum on the diagonal and couples the residual masses independently. This is the flattened construction of Sason, Section I, equations (5)--(8).",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 169,
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.maximalCoupling",
+      "path": "LeanInfoTheory/Probability/Coupling.lean",
+      "short_name": "maximalCoupling"
+    },
+    {
+      "doc": "The common-mass construction has the two prescribed marginals, including zero and unit total variation, without any support or cardinality restriction.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 178,
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.isCoupling_maximalCoupling",
+      "path": "LeanInfoTheory/Probability/Coupling.lean",
+      "short_name": "isCoupling_maximalCoupling"
+    },
+    {
+      "doc": "The common-mass coupling disagrees with probability exactly total variation in `ENNReal`, with the event ordered first coordinate versus second coordinate. This is the attained coupling bound of Sason, Section I, Theorem 2.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 271,
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.maximalCoupling_toOuterMeasure_ne",
+      "path": "LeanInfoTheory/Probability/Coupling.lean",
+      "short_name": "maximalCoupling_toOuterMeasure_ne"
+    },
+    {
+      "doc": "The real disagreement probability of the common-mass coupling is total variation. Together with `IsCoupling.totalVariation_le`, this proves attainment of the smallest disagreement among all couplings of the supplied laws.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 290,
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.maximalCoupling_toOuterMeasure_ne_toReal",
+      "path": "LeanInfoTheory/Probability/Coupling.lean",
+      "short_name": "maximalCoupling_toOuterMeasure_ne_toReal"
     },
     {
       "doc": "Each atom of a `PMF` has nonnegative real mass.",
@@ -7432,12 +7532,12 @@
       "short_name": "entropyOf_div_log"
     }
   ],
-  "documented_count": 742,
+  "documented_count": 752,
   "kind_counts": {
-    "Definition": 111,
+    "Definition": 113,
     "Inductive": 4,
     "Instance": 2,
-    "Theorem": 626
+    "Theorem": 634
   },
   "modules": [
     "LeanInfoTheory.Basic",
@@ -7448,6 +7548,7 @@
     "LeanInfoTheory.Examples.StochasticChannels",
     "LeanInfoTheory.Examples.SufficientStatistics",
     "LeanInfoTheory.Examples.SupportSensitive",
+    "LeanInfoTheory.Probability.Coupling",
     "LeanInfoTheory.Probability.Finite",
     "LeanInfoTheory.Probability.FiniteChannel",
     "LeanInfoTheory.Probability.FiniteMixture",

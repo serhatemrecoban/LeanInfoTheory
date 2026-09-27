@@ -51,9 +51,45 @@ retain their exact identities and publication guards. Generated types document
 the current tree; retained structural fingerprints and source review govern
 compatibility, and matching types do not establish unchanged semantics.
 
-## Current C10 milestone evidence and applicability
+## Current C11 milestone
 
-The initial C10.07 gate completed both real file-mode passes for the current
+C11 adds `LeanInfoTheory.Probability.Coupling` and its ten public declarations.
+The explicitly authorized initial C11 checkpoint
+`2147dd3449af620f41d9bed8d37c5be8252f20e8` completed both real checked file-mode
+passes: `234.8s and 19.9s`, with 638 declarations, 33 supported module pages,
+92 canonical export targets, 19 non-stable exclusions and zero equation rows.
+`.lit-review/setup/c11-06-api-docs-recovered-20260927/result.json` preserves the original result. `.lit-review/setup/c11-06-api-doc-inspection-utf8-20260927.json` records the
+actual Coupling page, all ten signatures/docstrings and correct ownership.
+The v2 attestation is `docbuild/.lake/build/api-doc-build-attestation.json`, with
+its original source/configuration/dependency evidence retained privately.
+
+The run used local file mode, disabled equation extraction and the reviewed
+Windows Zig executable. The [maintained C11 handoff](../docs/handoffs/chunk-11.md) identifies original evidence
+and applicability limits. Amended candidates require exact attestation
+applicability or a new complete two-pass run. Source-bound C11.06 private records
+establish final validation, cumulative review, reconciliation and closure.
+Current local output must not be staged under the frozen release route.
+
+The first API-doc run failed its semantic check because the generated manifest
+omitted the new Coupling HTML page, although Coupling and Shannon docInfo rebuilt.
+The original failure remains at
+`.lit-review/setup/c11-06-api-docs-checkpoint-20260927/result.json`. The recovery
+record `.lit-review/setup/c11-06-doc-marker-recovery-20260927.json` preserves the
+bytes of exactly three ignored Shannon HTML completion-marker/hash/trace files
+before their invalidation. The complete two-pass rerun passed at
+`.lit-review/setup/c11-06-api-docs-recovered-20260927/result.json`. No maintained
+source, validator, dependency pin or API contract changed. Both attempts replayed
+upstream Qq docInfo warnings for `mkLambdaQ` and `withLetHave`; all current
+supported signatures passed the successful rerun's semantic checks.
+
+The first page inspector saved all ten successful declaration checks before its
+console output failed on a Unicode symbol. The same read-only inspector passed
+with Python UTF-8 output; the original inspection and the console-error
+observation remain preserved beside the successful inspection record.
+
+## Historical C10 milestone evidence and applicability
+
+The initial C10.07 gate completed both real file-mode passes for the then-current
 628-declaration/32-module surface, with 92 canonical export targets, 17 excluded
 non-stable modules and all 25 TV signatures. Its current v2 source-content
 attestation and original process results are identified in the

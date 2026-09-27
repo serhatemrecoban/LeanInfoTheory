@@ -79,26 +79,31 @@ the versioned `/docs/v0.1.0/` route, with source links bound to the exact
 release commit. The release process also validates a clean exact checkout and
 a minimal external Lake consumer.
 
-Current development coverage is 628 documented declarations in 32 supported
+Current development coverage is 638 documented declarations in 33 supported
 modules, with 94 reviewed `simp` declarations and 92 root aliases, recorded in
 [`docs/current-public-api.json`](docs/current-public-api.json). Completed C9
-added two generic helpers. Completed C10.01 adds finite-PMF total variation and
-its six core laws; completed C10.02 adds attained events and finite event
-interoperability. Completed C10.03 adds overlap/residual identities and disjoint
-support. Completed C10.04 adds sharp bounded-test inequalities and attained
-greatest values. Completed C10.05 adds map/common-channel contraction and
-equivalence invariance. Completed C10.06 connects the public API through private
-parameterized Boolean, exact event-reduction, degenerate-alphabet and joint-
-projection consumers, alongside the fixed noisy-channel example. The focused import is
-`LeanInfoTheory.Probability.TotalVariation`; the lightweight root is unchanged.
-The [C10 plan](docs/plans/post-release-chunk-10.md) is approved. C10.07's initial
-clean suite, real two-pass current API documentation and fresh cumulative review
-have succeeded, with the review explicitly reconciled. The
-[C10 handoff](docs/handoffs/chunk-10.md) records delivered interfaces and evidence;
-final amended-candidate validation, exact API-doc/review applicability and
-completion are established by C10.07's source-bound private records.
-This maintained chronology does not itself certify closure. C11 requires separate approval. The
-[C9 handoff](docs/handoffs/chunk-9.md) remains the completed prerequisite's context.
+added two generic helpers. Completed C10 supplies 25 finite total-variation
+declarations, including attained event and bounded-test forms, overlap/residual
+identities and map/common-channel contraction. Its focused import is
+`LeanInfoTheory.Probability.TotalVariation`; the
+[C10 handoff](docs/handoffs/chunk-10.md) records its completed validation and review.
+
+C11.01--C11.05 and their reviews are complete. Import
+`LeanInfoTheory.Probability.Coupling` for the generic `PMF.IsCoupling` predicate,
+independent and diagonal witnesses, swap, the coupling inequality, and
+`PMF.maximalCoupling` with exact marginals and disagreement equal to TV.
+The full Shannon umbrella includes this owner; the lightweight root is unchanged.
+The private `Examples.Coupling` and `Examples.CouplingFano` consumers exercise
+attained optimality, edge cases, Fano in both coordinate orders and existing
+product-measure semantics.
+
+The approved [C11 plan](docs/plans/post-release-chunk-11.md) selects C11.06
+cumulative qualification. Its [maintained handoff](docs/handoffs/chunk-11.md)
+records the interfaces, remaining-work owners and successful initial clean
+routine and current two-pass API-doc checks on the explicitly authorized local
+checkpoint. Source-bound C11.06 private records establish final validation and
+review applicability, fresh cumulative review, reconciliation and chunk closure.
+The [C9 handoff](docs/handoffs/chunk-9.md) retains the earlier prerequisite context.
 
 Compatible additions extend current coverage; the released counts and
 [`frozen manifest`](docs/v0.1-public-api.json) remain historical. Current

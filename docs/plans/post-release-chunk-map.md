@@ -1,9 +1,9 @@
 # Post-Release Chunk Map: Quantitative and Operational Information Theory
 
-**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-09-21. Detailed C9 and C10 revision-2 plans were separately approved; C11--C24 remain proposed.
+**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-09-27. Detailed C9, C10 and C11 revision-2 plans were separately approved; C12--C24 remain proposed.
 **Review follow-up:** C18/C23 clarifications accepted for this map; the 16-chunk structure is unchanged.
-**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md) and eligible step requests own their respective execution.
-**Execution:** C9 and C10.01--C10.06 are closed by their actual private completion records. C10.07's explicitly authorized initial clean suite, real current two-pass API documentation and fresh 19-criterion cumulative review have succeeded; the original review was reconciled. The [maintained C10 handoff](../handoffs/chunk-10.md) records the evidence boundaries. Final amended-candidate validation, exact API-doc/review applicability and completion are established by C10.07's source-bound private records; this maintained chronology does not itself certify closure. The [C9 handoff](../handoffs/chunk-9.md) remains prior context. No C11 or later work is selected.
+**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md) and eligible step requests own their respective execution.
+**Execution:** C9 and C10 are complete by their actual private completion records; C10 closed at `37b4ba90d1ab321645f80cacef475f10a3a6ba43`. The [C10 handoff](../handoffs/chunk-10.md) preserves its evidence. C11.01--C11.05 and their reviews are complete. C11.06 was selected after verifying C11.05's closure and exact final source; it owns cumulative qualification and the [C11 handoff](../handoffs/chunk-11.md). The explicitly authorized initial local checkpoint passed the clean routine suite and real two-pass API-doc gate. The handoff preserves original results; final amended-candidate validation, fresh all-17 review, reconciliation and exact closure are established by source-bound private records. C12 onward remains unselected.
 **Map-intake baseline inspected:** `master` at `80ea016c7ac64bb5bd79b2f769227a3fb2ccc3b3`,
 with the existing uncommitted post-release documentation/discoverability work
 preserved. The immutable `v0.1.0` mathematical baseline remains
@@ -28,9 +28,8 @@ converse; achievability is not hidden in the word "capacity".
 This map assigns mathematical ownership, dependencies, endpoints, and major
 risks. It does not prescribe declaration names, new module filenames, exact
 step counts, or every helper lemma. Those choices belong to independently
-reviewed detailed chunk plans. C9's current disposition is recorded below;
-all later prospective contracts remain proposed, not implemented facts or
-approved production statements.
+reviewed detailed chunk plans. Current execution is recorded above; each later
+prospective contract needs its own detailed approval and selected step request.
 
 The separately authorized review protocol is now installed; its
 [operations](../review-operations.md) remain authoritative. Its setup was an
@@ -194,7 +193,8 @@ declaring the chunk complete prematurely, or starting C10 automatically.
 ### C10. Finite total variation
 
 **Current execution:** the [approved detailed plan](post-release-chunk-10.md)
-governs C10.01--C10.06's delivered source and the selected C10.07 closeout.
+governs the completed C10 source and closeout, established by its actual private
+completion record at `37b4ba90d1ab321645f80cacef475f10a3a6ba43`.
 The [handoff](../handoffs/chunk-10.md) distinguishes public TV ingredients from
 private normalization/binary-reduction consumers and records downstream boundaries.
 The contract below remains the mathematical scope; current counts are not quotas.
@@ -215,6 +215,18 @@ normalization. No topology, general f-divergence hierarchy, or coupling
 construction is required yet. Sources: `LP17` 4.1--4.2; `PW24` 7.3.
 
 ### C11. Couplings and maximal coupling
+
+**Current execution:** the [approved detailed plan, revision 2](post-release-chunk-11.md)
+and selected request govern C11.06 cumulative qualification after verified
+C11.05 closure. All five mathematical steps and their reviews are complete.
+The candidate retains the ten public coupling declarations and both private
+consumers, including Fano on the actual witness and its swap and independent
+product-measure interoperability. The [maintained handoff](../handoffs/chunk-11.md)
+records the delivered contracts, source/review evidence and C12/C14 boundaries.
+The explicitly authorized initial local checkpoint passed the clean routine
+suite and real two-pass API-doc gate. The handoff preserves original results;
+final amended-candidate validation, fresh all-17 review, reconciliation and exact
+closure are established by source-bound private records. No later chunk is selected.
 
 **Goal:** A reusable law-level coupling interface and an attaining witness.
 

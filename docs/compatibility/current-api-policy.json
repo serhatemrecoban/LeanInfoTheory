@@ -28,6 +28,7 @@
       "imports": {
         "local": [
           "LeanInfoTheory",
+          "LeanInfoTheory.Probability.Coupling",
           "LeanInfoTheory.Probability.TotalVariation",
           "LeanInfoTheory.Shannon.Fano",
           "LeanInfoTheory.Shannon.SemanticBridge",
@@ -35,9 +36,23 @@
         ],
         "external": []
       },
-      "rationale": "The approved full mathematical umbrella exposes finite total variation while the lightweight root and its retained import boundary stay unchanged.",
-      "consumer": "Full-stack users import LeanInfoTheory.Shannon; the independently importing total-variation consumer verifies focused access.",
-      "approval_reference": "Approved Chunk 10 plan revision 2, Sections 3.1 and 5 / C10.01-BOUNDARY (docs/plans/post-release-chunk-10.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-20. Authority intake: .lit-review/setup/c10-01-authority-intake-20260920.json."
+      "rationale": "The approved full mathematical umbrella exposes finite total variation and generic coupling while preserving its retained direct imports and the lightweight root boundary.",
+      "consumer": "Full-stack users import LeanInfoTheory.Shannon; the independently importing total-variation and coupling consumers verify focused access.",
+      "approval_reference": "Approved Chunk 10 plan revision 2, Sections 3.1 and 5 / C10.01-BOUNDARY (docs/plans/post-release-chunk-10.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-20. Authority intake: .lit-review/setup/c10-01-authority-intake-20260920.json. Approved Chunk 11 plan revision 2, Sections 3.1 and 4 / C11.01-BOUNDARY (docs/plans/post-release-chunk-11.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-26. Authority intake: .lit-review/setup/c11-execution-approval-context-20260926.json."
+    },
+    {
+      "owner": "LeanInfoTheory.Probability.Coupling",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.FiniteChannel",
+          "LeanInfoTheory.Probability.TotalVariation"
+        ],
+        "external": []
+      },
+      "rationale": "The approved coupling owner supplies the generic joint-law predicate and elementary independent, diagonal and swap witnesses while keeping semantic dependencies outside the probability layer.",
+      "consumer": "LeanInfoTheory.Examples.Coupling independently imports the owner and exercises both marginals, different coordinate types, diagonal coupling, repeated swap and empty-alphabet impossibility.",
+      "approval_reference": "Approved Chunk 11 plan revision 2, Sections 3.1 and 4 / C11.01-BOUNDARY (docs/plans/post-release-chunk-11.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-26. Authority intake: .lit-review/setup/c11-execution-approval-context-20260926.json."
     }
   ],
   "simp_additions": [],
