@@ -84,6 +84,7 @@
           "LeanInfoTheory.Shannon.SemanticBridge.Independence",
           "LeanInfoTheory.Shannon.SemanticBridge.KL",
           "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+          "LeanInfoTheory.Shannon.SemanticBridge.Pinsker",
           "LeanInfoTheory.Shannon.SemanticBridge.Product",
           "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
           "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
@@ -91,9 +92,29 @@
         ],
         "external": []
       },
-      "rationale": "The approved semantic aggregate adds the focused Gluing owner while retaining all prior imports. The full Shannon umbrella reaches gluing through this aggregate; the lightweight root is unchanged.",
-      "consumer": "Full semantic users import LeanInfoTheory.Shannon.SemanticBridge; the separate gluing consumer exercises the focused owner without the umbrella.",
-      "approval_reference": "Approved Chunk 12 plan revision 2, Sections 3.4-3.5 and C12.02-BOUNDARY (docs/plans/post-release-chunk-12.md); project lead approved the plan and requested step 2 with its review process conditional on successful step 1 completion on 2026-10-03. The predecessor condition was verified. Authority intake: .lit-review/setup/c12-02-ingress-20261003.json."
+      "rationale": "The approved semantic aggregate retains its prior imports and adds the focused Pinsker owner. The full Shannon umbrella reaches canonical Pinsker transitively, and the lightweight root remains unchanged.",
+      "consumer": "Focused Gluing and Pinsker consumers exercise their owners; the semantic aggregate exposes both to full-stack consumers.",
+      "approval_reference": "Approved Chunk 12 plan revision 2, Sections 3.4-3.5 and C12.02-BOUNDARY (docs/plans/post-release-chunk-12.md); project lead approved the plan and requested step 2 with its review process conditional on successful step 1 completion on 2026-10-03. The predecessor condition was verified. Authority intake: .lit-review/setup/c12-02-ingress-20261003.json. Approved Chunk 13 plan revision 2, Sections 3.1 and 3.4, C13.01-BOUNDARY (docs/plans/post-release-chunk-13.md); the lead accepted revision 2 and explicitly requested step 1 with its review process on 2026-10-03. Authority intake: .lit-review/setup/c13-01-authority-intake-20261003.json."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.SemanticBridge.Pinsker",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.TotalVariation",
+          "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing"
+        ],
+        "external": [
+          "Mathlib.Analysis.Convex.Deriv",
+          "Mathlib.Analysis.Real.Sqrt",
+          "Mathlib.Analysis.SpecialFunctions.BinaryEntropy",
+          "Mathlib.Tactic.FieldSimp",
+          "Mathlib.Tactic.FunProp"
+        ]
+      },
+      "rationale": "Finite-PMF Pinsker combines existing half-L1 TV and unconditional KL map data processing with private closed-interval binary analysis. The Real and square-root consequences first derive finite KL from support inclusion. Focused analytic and tactic imports support the proofs; no coupling/gluing or root dependency is added. The direct Sqrt import names the owner of the square-root conversion lemma instead of relying on its incidental transitive exposure through derivative analysis. Quantitative independence reuses the existing joint absolute-continuity and MI-as-KL interfaces through the same imports; finite KL is established privately before conversion.",
+      "consumer": "LeanInfoTheory.Examples.Pinsker imports the focused owner and exercises Boolean boundaries, positive three-atom reduction, both finite-KL guards, a sparse reference law, extended-valued event budgets and actual singular counterexamples. LeanInfoTheory.Examples.QuantitativeIndependence imports the same focused owner and checks MI budgets, events, unit-interval and signed tests, arbitrary-source pushforwards and an exact sparse joint with a null marginal row.",
+      "approval_reference": "Approved Chunk 13 plan revision 2, Sections 3.1 and 3.4, C13.01-BOUNDARY (docs/plans/post-release-chunk-13.md); the lead accepted revision 2 and explicitly requested step 1 with its review process on 2026-10-03. Authority intake: .lit-review/setup/c13-01-authority-intake-20261003.json. Approved Chunk 13 plan revision 2, Section 3.2 and C13.02 (docs/plans/post-release-chunk-13.md); the lead requested step 2 with review conditional on successful step 1 completion on 2026-10-03. The condition and exact predecessor source were verified. Authority intake: .lit-review/setup/c13-02-ingress-20261003.json. Approved Chunk 13 plan revision 2, Section 3.3 and C13.03 (docs/plans/post-release-chunk-13.md); the lead requested step 3 with review conditional on successful step 2 completion on 2026-10-03. The condition and exact predecessor source were verified. Authority intake: .lit-review/setup/c13-03-ingress-20261003.json."
     }
   ],
   "simp_additions": [],

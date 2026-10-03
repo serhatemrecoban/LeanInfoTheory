@@ -79,7 +79,7 @@ the versioned `/docs/v0.1.0/` route, with source links bound to the exact
 release commit. The release process also validates a clean exact checkout and
 a minimal external Lake consumer.
 
-Current development coverage is 642 documented declarations in 34 supported
+Current development coverage is 647 documented declarations in 35 supported
 modules, with 94 reviewed `simp` declarations and 92 root aliases, recorded in
 [`docs/current-public-api.json`](docs/current-public-api.json). Completed C9
 added two generic helpers. Completed C10 supplies 25 finite total-variation
@@ -97,7 +97,7 @@ The private `Examples.Coupling` and `Examples.CouplingFano` consumers exercise
 attained optimality, edge cases, Fano in both coordinate orders and existing
 product-measure semantics.
 
-C12.01--C12.03 and their reviews are complete. The same coupling import now
+C12 and its reviews are complete at `492cd6e`. The same coupling import now
 provides heterogeneous coordinate transport and lifting through supplied
 coupling channels, with row conditions only on joint support.
 `Probability.FiniteChannel` provides whole-extension equality on middle support.
@@ -106,14 +106,24 @@ both prescribed pair marginals and only a finite final alphabet. Witness
 selection remains private. Maintained examples prove weighted contraction and
 show that maximal adjacent couplings need not give maximal endpoints after gluing.
 
-The approved [C12 plan](docs/plans/post-release-chunk-12.md) selects C12.04
-cumulative qualification. The [C12 handoff](docs/handoffs/chunk-12.md) records
-contracts, imports, original review evidence and remaining-work triggers.
-The authorized initial checkpoint `44d300c` passed the clean routine suite in a
-separate validation checkout. Corrected focused/static checks and both actual
-current API-doc passes also passed. Final candidate validation, fresh all-13-criterion
-review, reconciliation and closure remain governed by source-bound private records.
-The [C11 handoff](docs/handoffs/chunk-11.md) preserves predecessor evidence.
+The [C12 handoff](docs/handoffs/chunk-12.md) records its completed qualification
+and original evidence. C13.01--C13.03 and their reviews are also complete.
+Import `LeanInfoTheory.Shannon.SemanticBridge.Pinsker` for Pinsker in nats:
+canonical `ENNReal` KL bounds `2 * TV²`, including infinite KL. The Real and
+square-root forms require `p.support ⊆ q.support`. Two further theorems bound
+TV from a joint law to the product of its marginals using its mutual information,
+with no public support or measurable-space assumptions beyond finite alphabets.
+The focused owner is included in the full Shannon umbrella; the root stays light.
+
+The approved [C13 plan](docs/plans/post-release-chunk-13.md) selects C13.04
+cumulative qualification. The lead authorized the 25-file local checkpoint and
+C13.04-only amendments. Initial checkpoint `17fb736a00448ecdd0aa824fd1928713bf716f01`
+passed the clean complete routine suite in 1975.056 seconds; both actual
+API-doc passes and inspection also passed. The
+[C13 handoff](docs/handoffs/chunk-13.md) records contracts, evidence and limits.
+Final amended-candidate validation, cumulative review, reconciliation and closure
+remain governed by source-bound private records. The frozen release below
+retains its historical scope and counts.
 
 Compatible additions extend current coverage; the released counts and
 [`frozen manifest`](docs/v0.1-public-api.json) remain historical. Current
@@ -262,7 +272,8 @@ example {α : Type*} [Finite α]
 | `LeanInfoTheory.Shannon.Fano` | Deterministic decoding error and finite Fano inequalities. |
 | `LeanInfoTheory.Shannon.FiniteFamily` | Dependent finite families and chain-rule algebra. |
 | `LeanInfoTheory.Shannon.Units` | Scalar conversion from nats to another valid base or bits. |
-| `LeanInfoTheory.Shannon.SemanticBridge` | Complete conditional-law, KL, independence, Markov, data-processing, convexity, finite-family, and sufficiency bridge. |
+| `LeanInfoTheory.Shannon.SemanticBridge` | Complete conditional-law, KL, independence, Markov, data-processing, convexity, finite-family, Pinsker and sufficiency bridge. |
+| `LeanInfoTheory.Shannon.SemanticBridge.Pinsker` | Canonical ENNReal Pinsker, support-guarded Real bounds and quantitative independence in nats. |
 
 Focused semantic submodules remain supported imports when the full bridge is
 unnecessary. The exact supported list and every frozen project-owned

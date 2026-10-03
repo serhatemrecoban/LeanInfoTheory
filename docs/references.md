@@ -93,6 +93,23 @@ August 16, 2024 prepublication version. The source footer identifies the date.
   [C12 handoff](handoffs/chunk-12.md) records adaptations and limits.
 - Section 7.4, Theorem 7.10: Pinsker via binary reduction; its full
   f-divergence/joint-range programme is not selected.
+- Recorded C13.01 use: Theorem 7.10, equation (7.27), printed pages
+  126--127 / PDF pages 151--152. The canonical finite-PMF inequality uses
+  nats and half-L1 TV, so its constant is 2. The proof uses C10's attained
+  event and KL map data processing, then closed-interval convexity for the
+  binary estimate, with explicit reference endpoints and singular support.
+  The [C13 implementation notes](plans/post-release-chunk-13-notes.md)
+  record the adaptation and its validation scope.
+- C13.02 derives the Real and square-root forms from that canonical theorem
+  using actual support inclusion and finite KL. The sparse and singular
+  consumers make the guard explicit; no further textbook theorem or stronger
+  support assumption is used.
+- C13.03 applies those bounds to the existing independent product of the
+  joint law's marginals. Existing absolute continuity establishes finite KL
+  before the MI-as-KL identity is used. Event and bounded-test estimates are
+  derived uses of C10, with factor two for signed tests. This adds no separately
+  numbered textbook theorem. The [C13 handoff](handoffs/chunk-13.md) records
+  the delivered contracts, source adaptation and deferred refinements.
 - Section 4.5, Proposition 4.8: finite entropy continuity; Section 4.7,
   Proposition 4.13: finite MI continuity. Sections 5.1--5.2 provide information
   optimization context; general-measure minimax and infinite-alphabet results

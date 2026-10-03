@@ -23,6 +23,7 @@ import LeanInfoTheory.Shannon.SemanticBridge.Markov
 import LeanInfoTheory.Shannon.SemanticBridge.Gluing
 import LeanInfoTheory.Shannon.SemanticBridge.Sufficiency
 import LeanInfoTheory.Shannon.SemanticBridge.DataProcessing
+import LeanInfoTheory.Shannon.SemanticBridge.Pinsker
 import LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL
 import LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL
 
@@ -84,6 +85,9 @@ definitions agree with the textbook/measure-theoretic semantics.
 - finite KL data processing through a common stochastic channel, with
   unconditional `ENNReal`, support-guarded real, deterministic-map, and
   channel-cascade forms;
+- finite-PMF Pinsker in nats, with canonical `ENNReal` KL including singular
+  support, support-guarded Real forms, and mutual-information bounds on TV
+  between a joint law and the product of its marginals;
 - finite-selector KL joint convexity, entropy concavity and mutual-information
   concavity in the input law, and mutual-information convexity in the channel,
   together with binary textbook forms;

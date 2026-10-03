@@ -1,9 +1,9 @@
 # Post-Release Chunk Map: Quantitative and Operational Information Theory
 
-**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-03. Detailed C9--C12 revision-2 plans were separately approved; C13--C24 remain proposed.
+**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-03. Detailed C9--C13 revision-2 plans were separately approved; C14--C24 remain proposed.
 **Review follow-up:** C18/C23 clarifications accepted for this map; the 16-chunk structure is unchanged.
-**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md), [C12 plan](post-release-chunk-12.md) and eligible step requests own their respective execution.
-**Execution:** C9--C11 are complete by their actual private records, most recently C11 at `bbead98`. C12.01--C12.03 and their reviews are complete. Selected C12.04 owns cumulative qualification and the [C12 handoff](../handoffs/chunk-12.md). Authorized initial checkpoint `44d300c` passed the complete routine suite in a separate clean checkout; both actual current API-doc passes also passed. Final candidate validation, fresh all-13 review, reconciliation and closure remain governed by source-bound private records. C13 onward remains unselected.
+**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md), [C12 plan](post-release-chunk-12.md), [C13 plan](post-release-chunk-13.md) and eligible step requests own their respective execution.
+**Execution:** C9--C12 are complete by their actual private records, most recently C12 at `492cd6e`. C13.01--C13.03 and their reviews are complete. Selected C13.04 has explicit 25-file checkpoint and Step-4-only amendment authority. Initial `17fb736a` passed the clean full routine suite; both current API-doc passes and inspection passed. The [C13 handoff](../handoffs/chunk-13.md) records evidence and limits. Amended-candidate validation, fresh all-13-criterion review, reconciliation and closure remain governed by source-bound records. C14 onward remains unselected.
 **Map-intake baseline inspected:** `master` at `80ea016c7ac64bb5bd79b2f769227a3fb2ccc3b3`,
 with the existing uncommitted post-release documentation/discoverability work
 preserved. The immutable `v0.1.0` mathematical baseline remains
@@ -121,7 +121,7 @@ evidence-backed list of generic API gaps without importing application semantics
 
 **Current disposition:** The separately approved detailed plan delivered all
 six growth-gate components and the two selected generic helpers through closed
-C9.01--C9.06. Current source contains 603 supported declarations in 31 owners,
+C9.01--C9.06. That C9 checkpoint contains 603 supported declarations in 31 owners,
 with the historical 601-entry baseline, 94 simp names and 92 facade aliases
 preserved. C9.07 owns cumulative qualification and the
 [maintained handoff](../handoffs/chunk-9.md). Its required clean-checkpoint,
@@ -248,11 +248,11 @@ Theorems 1--2; `LP17` 4.2; `PW24` 7.3.
 
 ### C12. Coupling transport and finite gluing
 
-**Current execution:** the [approved detailed revision-2 plan](post-release-chunk-12.md)
-selects theorem-only gluing with private witness selection. C12.01--C12.03 are
-complete with review; C12.04 cumulative qualification and the
-[maintained handoff](../handoffs/chunk-12.md) are selected. Exact closure depends
-on the required source-bound validation and fresh full-chunk review records.
+**Completed execution:** the [approved detailed revision-2 plan](post-release-chunk-12.md)
+completed through C12.04 with review at `492cd6e`, by the actual private
+completion record. The [maintained handoff](../handoffs/chunk-12.md) preserves
+contracts, original evidence and remaining-work triggers. Its provisional
+chronology does not reopen completed work.
 
 **Delivered mathematical scope:** type-generic coordinate transport and lifting
 through supplied coupling channels, with row marginals required only on actual
@@ -279,21 +279,31 @@ remains consumer-triggered future work in the handoff.
 
 ### C13. Pinsker and quantitative independence
 
-**Goal:** Relate canonical KL and TV without losing the infinite-KL case.
+**Current execution:** the [approved detailed revision-2 plan](post-release-chunk-13.md)
+completed C13.01--C13.03 with review. Selected C13.04 has explicit checkpoint
+and amendment authority; initial `17fb736a00448ecdd0aa824fd1928713bf716f01`
+passed the full routine suite in 1975.056 seconds, and both current
+API-doc passes and inspection passed. The [handoff](../handoffs/chunk-13.md)
+records scope and identity limits. Final amended-candidate validation, fresh
+full-chunk review, reconciliation and closure remain source-bound.
 
-Prove the nats inequality `2 * TV(p,q)^2 <= D(p||q)` with the left side lifted
-to `ENNReal`. Derive Real/square-root corollaries only under an explicit
-finiteness or support contract. The preferred route is event/binary reduction
-via existing KL DPI and a boundary-correct Bernoulli inequality; compare it
-with the current log-sum API at intake rather than assuming a proof route.
-Specialize to a joint law and the product of its marginals to quantify small
-MI as closeness to independence. This is a canonical mathematical consumer,
-not a broad stability theory.
+**Delivered mathematical scope:** five theorems in the focused Pinsker owner:
+canonical `ENNReal.ofReal (2 * TV(p,q)^2) <= D(p||q)`, support-guarded Real
+and square-root forms, and two mutual-information bounds on TV from a joint
+law to its own marginal product. The proof uses attained-event reduction,
+KL map DPI and a closed-interval binary inequality, with separate reference
+boundary cases. Joint-to-product finite KL is proved before conversion.
+No coupling or gluing dependency enters the Pinsker owner.
 
-**Exit:** Singular support and degenerate Bernoulli cases are tested; a
-`top.toReal = 0` false corollary is impossible. Reverse Pinsker, optimal joint
-ranges, other divergences, and refined constants stay deferred. Source:
-`PW24` 7.4, Theorem 7.10; existing MI-as-KL bridge.
+Private consumers cover numerator/reference endpoints, positive three-point
+ties, sparse finite laws, infinite KL and both false unguarded Real corollaries,
+MI/event/test budgets, arbitrary-source random variables and a sparse joint
+with a null marginal row. Signed tests explicitly retain the factor two.
+
+**Exit:** qualify the cumulative candidate and handoff without adding reverse
+Pinsker, optimal joint ranges, other divergences or refined constants. Source:
+`PW24` 7.4, Theorem 7.10 in the registered August 16, 2024 edition; the
+independence consequences derive from the existing MI-as-KL bridge.
 
 ### C14. Quantitative continuity of information measures
 

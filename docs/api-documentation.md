@@ -154,10 +154,26 @@ The release-candidate gate runs GitHub mode from a clean exact commit. Tag
 publication and live-link verification remain explicitly approved publication
 and post-publication work.
 
-## Current C12 milestone
+## Current C13 milestone
+
+C13 adds `Shannon.SemanticBridge.Pinsker` and five public theorems. Current
+coverage is 647 documented declarations in 35 supported owners, with 92
+canonical exports, 94 reviewed simp declarations and 23 non-stable exclusions.
+The new page must retain canonical ENNReal KL, both explicit support guards,
+the constant two and the two MI forms without public measurable-space premises.
+The [C13 handoff](handoffs/chunk-13.md) and private C13.04 records retain the actual
+checks and their limits. Both actual build/check passes succeeded (112.2s and
+14.6s), followed by all-five-declaration inspection and v2 attestation checks.
+The initial missing-Pinsker-page failure and bounded aggregate-marker repair
+remain separately recorded. Exact applicability is checked after amendments.
+C12 output is historical and cannot qualify the new source. The clean routine
+suite and cumulative review remain separate requirements. Current generated
+output stays in `docbuild/.lake/build/doc/`, outside the frozen release route.
+
+## Historical C12 milestone
 
 C12 adds the supported `Shannon.SemanticBridge.Gluing` owner and four public
-theorems across Gluing, Coupling and FiniteChannel. Current coverage is 642
+theorems across Gluing, Coupling and FiniteChannel. That milestone covered 642
 documented declarations in 34 supported modules, with 92 canonical exports,
 94 reviewed simp declarations and 21 non-stable modules excluded.
 C12.04's preparation completed both actual current file-mode passes and

@@ -6,8 +6,8 @@
     "Semantic bridge layer",
     "Non-stable anchors"
   ],
-  "local_edge_count": 117,
-  "module_count": 55,
+  "local_edge_count": 124,
+  "module_count": 58,
   "modules": [
     {
       "external_imports": [],
@@ -246,6 +246,7 @@
         "LeanInfoTheory.Shannon.SemanticBridge.Independence",
         "LeanInfoTheory.Shannon.SemanticBridge.KL",
         "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+        "LeanInfoTheory.Shannon.SemanticBridge.Pinsker",
         "LeanInfoTheory.Shannon.SemanticBridge.Product",
         "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
         "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
@@ -254,7 +255,7 @@
       "name": "LeanInfoTheory.Shannon.SemanticBridge",
       "path": "LeanInfoTheory/Shannon/SemanticBridge.lean",
       "root_reachable": false,
-      "summary": "Import-only aggregate for finite semantic, KL, convexity, conditional-KL, independence, Markov, sufficiency, data-processing, recovery, and finite-family bridges."
+      "summary": "Import-only aggregate for finite semantic, KL, convexity, conditional-KL, independence, Pinsker, quantitative independence, Markov, sufficiency, data-processing, recovery, and finite-family bridges."
     },
     {
       "external_imports": [
@@ -415,6 +416,24 @@
     },
     {
       "external_imports": [
+        "Mathlib.Analysis.Convex.Deriv",
+        "Mathlib.Analysis.Real.Sqrt",
+        "Mathlib.Analysis.SpecialFunctions.BinaryEntropy",
+        "Mathlib.Tactic.FieldSimp",
+        "Mathlib.Tactic.FunProp"
+      ],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Probability.TotalVariation",
+        "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.Pinsker",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Pinsker.lean",
+      "root_reachable": false,
+      "summary": "Finite-PMF Pinsker in nats: canonical ENNReal KL, guarded Real forms, and quantitative independence from mutual information."
+    },
+    {
+      "external_imports": [
         "Mathlib.MeasureTheory.Measure.Prod",
         "Mathlib.Probability.ProbabilityMassFunction.Constructions"
       ],
@@ -485,6 +504,8 @@
         "LeanInfoTheory.Examples.IndependenceProcessing",
         "LeanInfoTheory.Examples.InformationDecomposition",
         "LeanInfoTheory.Examples.KLTop",
+        "LeanInfoTheory.Examples.Pinsker",
+        "LeanInfoTheory.Examples.QuantitativeIndependence",
         "LeanInfoTheory.Examples.StochasticChannels",
         "LeanInfoTheory.Examples.SufficientStatistics",
         "LeanInfoTheory.Examples.SupportSensitive",
@@ -640,6 +661,28 @@
       "external_imports": [],
       "layer": "Non-stable anchors",
       "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.Pinsker"
+      ],
+      "name": "LeanInfoTheory.Examples.Pinsker",
+      "path": "LeanInfoTheory/Examples/Pinsker.lean",
+      "root_reachable": false,
+      "summary": "Private Pinsker consumers for Boolean boundaries, positive tied-event reduction, sparse finite KL, event budgets and singular counterexamples."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.Pinsker"
+      ],
+      "name": "LeanInfoTheory.Examples.QuantitativeIndependence",
+      "path": "LeanInfoTheory/Examples/QuantitativeIndependence.lean",
+      "root_reachable": false,
+      "summary": "Private mutual-information budget, event, unit-interval and signed-test bounds, arbitrary source-law pushforwards, and exact sparse-joint consumers."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
         "LeanInfoTheory.Shannon.EntropyBounds",
         "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing"
       ],
@@ -725,5 +768,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 5,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 50
+  "separate_import_count": 53
 }

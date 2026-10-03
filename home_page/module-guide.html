@@ -62,7 +62,7 @@
         <li><code>LeanInfoTheory.Shannon.InfoMeasures</code>: marginals, conditional entropy, mutual information, conditional mutual information, chain rules, symmetry, and textbook entropy identities.</li>
         <li><code>LeanInfoTheory.Shannon.LogSum</code>: opt-in zero-safe finite <code>EReal</code> log-sum inequality and equality characterization with guarded Real corollaries.</li>
         <li><code>LeanInfoTheory.Shannon.Units</code>: lightweight opt-in scalar conversion from canonical nats to arbitrary valid logarithm bases, with base <code>2</code> named for bits. It remains outside the lightweight root and does not duplicate the information-measure hierarchy.</li>
-        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: import-only bridge entry point for expected self-information, finite conditional laws, KL and conditional-KL formulas, convexity, independence, Markov and sufficiency semantics, recovery, stochastic data processing, pair/triple inequalities, and finite-family semantics.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge</code>: import-only bridge entry point for expected self-information, finite conditional laws, KL and conditional-KL formulas, convexity, independence, Markov and sufficiency semantics, recovery, stochastic data processing, pair/triple inequalities, Pinsker and quantitative independence, and finite-family semantics.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Entropy</code>: focused owner for self-information and finite entropy as expected self-information.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Product</code>: independent-product PMF infrastructure, product-measure bridge lemmas, and joint-law absolute-continuity facts.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.FiniteSums</code>: finite real-sum rewrites for marginals, entropy, and the log-ratio formula for mutual information.</li>
@@ -76,6 +76,7 @@
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Markov</code>: finite Markov predicates and characterizations, total conditional channels, canonical/existential channel factorization, exact information loss, and MI data processing.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Sufficiency</code>: lightweight fixed-prior and model-family sufficiency predicates, information-preservation characterizations, exact full-joint recovery, and finite factorization results.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.DataProcessing</code>: PMF-channel-to-kernel and posterior bridges, exact KL decomposition, finite KL contraction, invariant-law consequences, and doubly stochastic entropy growth.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge.Pinsker</code>: canonical finite-PMF Pinsker in nats, support-guarded Real and square-root bounds, and mutual-information bounds on distance from a joint law to its marginal product.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL</code>: downstream KL preservation and guarded converse theorems for sufficient channels and deterministic statistics.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code>: user-facing semantic theorems, including nonnegativity, zero conditional entropy, deterministic entropy/MI processing, chain-rule variants, and ordinary/conditional inequality bands.</li>
         <li><code>LeanInfoTheory.InformationMeasures</code>: public convenience re-export for the finite information-measure API; theorem-oriented code should usually prefer the canonical <code>LeanInfoTheory.Shannon</code> names.</li>
@@ -89,6 +90,8 @@
         <li><code>LeanInfoTheory.Examples.Fano</code>: opt-in examples covering perfect decoding, the singleton-source edge case, and a fair Boolean source with a constant observation.</li>
         <li><code>LeanInfoTheory.Examples.FiniteFamily</code>: opt-in homogeneous and dependent-alphabet examples exercising ordered entropy/MI/CMI chains, overlap, empty entropy, product laws, and pairwise-but-not-mutual independence.</li>
         <li><code>LeanInfoTheory.Examples.Units</code>: opt-in maintained consumers for arbitrary-base, bits, entropy, MI, CMI, and finiteness-guarded real-KL conversion.</li>
+        <li><code>LeanInfoTheory.Examples.Pinsker</code>: private endpoint, tied-event, sparse finite-KL, budget and singular-support regression consumers.</li>
+        <li><code>LeanInfoTheory.Examples.QuantitativeIndependence</code>: private MI/event/test budgets, arbitrary-source random variables and sparse joint-law regressions.</li>
         <li><code>LeanInfoTheory.Examples</code>: non-stable aggregate for all maintained regression consumers, including information-unit conversions.</li>
         <li><code>LeanInfoTheory.MathlibFragments</code>: non-stable reference anchor for heavier mathlib information-theory and coding imports.</li>
       </ul>

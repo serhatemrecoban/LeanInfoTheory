@@ -51,49 +51,41 @@ C10 is complete through C10.07 at source checkpoint
 record. The [C10 handoff](handoffs/chunk-10.md) preserves its delivered 25-declaration
 TV API and evidence; its provisional chronology does not reopen the completed chunk.
 
-C9, C10 and C11 are complete by their actual private records, most recently
-C11.06 at `bbead98abfd2ac94f95b615652365a65228e49c5`. Their maintained handoffs
-preserve the completed source and review history. C12.01--C12.03 and their
-reviews are also complete. The lead's conditional request selected C12.04 after
-verification of C12.03's closure and exact final source.
+C12 is complete through C12.04 at `492cd6e60c5d6b42a22ef2dcbb45d21067b6d378`,
+by its actual private completion record. The [C12 handoff](handoffs/chunk-12.md)
+preserves contracts and evidence; its captured provisional wording is historical.
+The approved [C13 revision-2 plan](plans/post-release-chunk-13.md) has completed
+C13.01--C13.03 with review. C13.03's full final source inventory matched before
+the conditional request selected C13.04. C13.03's successful completion is recorded
+at `.lit-review/setup/c13-03-completion-20261003.json`.
 
-The approved [C12 revision-2 plan](plans/post-release-chunk-12.md) adds four
-public theorems: `PMF.IsCoupling.map`, `PMF.IsCoupling.bind`,
-`PMF.channelExtension_eq_iff_eq_on_support`, and
-`Shannon.exists_isMarkovChain_with_marginals`. Transport is type-generic and
-requires channel-row marginals only on the supplied joint law's support.
-The extension theorem characterizes equality of whole triple laws by agreement
-on the middle support. Gluing retains both prescribed pair laws and Markov
-structure, with only the final alphabet finite; witness selection stays private.
+C13 delivers five public theorems in `Shannon.SemanticBridge.Pinsker`: canonical
+`ENNReal` Pinsker, support-guarded Real and square-root forms, and two bounds on
+TV between a joint law and the product of its own marginals. All use nats and
+half-L1 TV. The independence forms require only finite alphabets; actual finite
+KL is established privately before the MI bridge. Permanent private consumers
+cover binary endpoints, a positive three-point tied event, sparse finite KL,
+singular counterexamples, MI/event/test budgets, arbitrary-source random variables
+and a sparse joint with a null marginal row. Signed tests retain the factor two.
 
-The two private consumer owners cover heterogeneous and degenerate alphabets,
-genuinely incorrect unsupported channel rows, different positive conditional
-rows, arbitrary null-row changes and endpoint marginals of the same public
-gluing witness. Quantitative consumers compute the weighted disagreement of
-lifted maximal couplings and recover C10 contraction with guarded ENNReal-to-Real
-conversion. The fair/point-mass/fair regression proves both adjacent couplings
-maximal but their Markov gluing has endpoint disagreement `1/2`, strictly above
-endpoint TV and diagonal disagreement, both zero.
+Current coverage is 647 documented declarations in 35 supported owners, with
+94 reviewed simp declarations and 92 root exports. Generated references contain
+58 modules, 124 local edges, five root-reachable and 53 separate-import modules,
+and 762 indexed declarations (761 documented and one example-only instance).
+The [C13 handoff](handoffs/chunk-13.md) records exact contracts, useful imports,
+source adaptations, earlier reviews and remaining-work owners and triggers.
 
-Current coverage is 642 documented declarations in 34 supported owners, with
-94 reviewed simp declarations and 92 root exports. Generated references record
-55 modules, 117 local edges, 5 root-reachable and 50 separate-import modules,
-and 757 indexed declarations (756 documented and one example-only instance).
-The [C12 handoff](handoffs/chunk-12.md) records exact contracts, imports,
-source adaptations, earlier original reviews and remaining-work triggers.
-
-The lead explicitly authorized the exact 35-file local checkpoint, a separate
-clean validation checkout and necessary C12.04-only corrections and final-record
-amendments. Initial checkpoint `44d300c97d86b1fc0f40e9c70eb33a16bbfe3abe`
-passed the complete routine suite in the separate clean checkout. Corrected
-focused/static checks and both actual current file-mode API-doc passes with
-inspection of all four new declarations also passed. The original checkout
-preserves the unrelated website notes outside the checkpoint. The source-bound
-C12.04 records must establish final amended-candidate validation, exact API-doc
-applicability, fresh all-13-criterion review, reconciliation and closure. This
-chronology does not certify those later outcomes. No push, publication, pin change
-or C13--C24 work is authorized.
-The unrelated website notes remain outside the candidate.
+The lead explicitly authorized the 25-file local checkpoint, a separate clean
+validation checkout and necessary C13.04-only amendments. Initial checkpoint
+`17fb736a00448ecdd0aa824fd1928713bf716f01` passed the complete routine suite in
+1975.056 seconds. The two actual API-doc passes and all-five-declaration
+inspection also passed. The [C13 handoff](handoffs/chunk-13.md) records evidence
+and the primary/clean source-identity distinction.
+Final amended-candidate routine validation, exact API-doc applicability,
+cumulative review, original-report reconciliation and closure remain governed
+by the source-bound C13.04 records.
+The unrelated website notes remain excluded; C14--C24 remain unselected and
+publication is separate.
 
 ## Proposed Post-Release Programme
 
@@ -115,11 +107,11 @@ declarations only an uncertain cross-check, not a quota.
 The later programme remains a proposal for project-lead review, not an approved
 execution plan or a release/date commitment. The separately authorized
 [review workflow](review-operations.md) is installed. C9 and C10 are complete.
-C11 is complete at `bbead98`. The separately approved C12 revision-2 plan has
-completed C12.01--C12.03 with review. Selected C12.04 governs cumulative
-qualification and the maintained handoff; final closure is established by its
-private completion record. C13--C24 still require their own approved plans and
-execution authority.
+C11 is complete at `bbead98`, and C12 at `492cd6e`. C13 revision 2 is approved;
+C13.01--C13.03 and their reviews are complete. Selected C13.04 governs cumulative
+qualification and the maintained handoff. Its exact final validation, review and
+closure remain pending until established by source-bound private records. C14--C24 require their
+own approved plans and execution requests.
 The [reference register](references.md) identifies the selected sources and
 distinguishes the 2022 and 2024 Polyanskiy--Wu drafts. The calendar horizons
 below remain broad aspirations, not delivery deadlines for the proposed chunks.

@@ -21,6 +21,8 @@ import LeanInfoTheory.Examples.FiniteFamily
 import LeanInfoTheory.Examples.IndependenceProcessing
 import LeanInfoTheory.Examples.InformationDecomposition
 import LeanInfoTheory.Examples.KLTop
+import LeanInfoTheory.Examples.Pinsker
+import LeanInfoTheory.Examples.QuantitativeIndependence
 import LeanInfoTheory.Examples.StochasticChannels
 import LeanInfoTheory.Examples.SufficientStatistics
 import LeanInfoTheory.Examples.SupportSensitive
@@ -59,4 +61,15 @@ arbitrary-base, bits, and guarded real-KL unit conversions. It remains outside
 both public mathematical umbrellas. The examples are maintained regression
 consumers, not stable library API for the `0.1.x`
 series.
+
+The focused Pinsker consumers cover Boolean endpoint and support cases and
+a positive three-atom law pair whose attaining event contains a tied atom,
+with exact total variation and KL values and Boolean TV preservation. They
+also exercise both supplied finite-KL guards, a sparse reference law, an
+event bound from an extended-valued KL budget, and actual counterexamples
+to unguarded Real and square-root Pinsker inequalities.
+Quantitative-independence consumers turn a mutual-information budget into
+total-variation, event and bounded-test estimates, including the factor two
+for signed tests. They cover arbitrary source-law pushforwards, independent
+and degenerate endpoints, and an exact sparse joint with a null marginal row.
 -/

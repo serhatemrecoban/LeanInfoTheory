@@ -5,6 +5,150 @@ detail. It is not meant to list every small command or proof attempt. It should
 help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
+## C13.04 initial clean qualification, 2026-10-03
+
+The lead authorized the exact 25-file local checkpoint, separate clean validation
+checkout and necessary Step-4-only amendments. Initial checkpoint
+`17fb736a00448ecdd0aa824fd1928713bf716f01` passed the complete routine suite in
+1975.056 seconds. All 25 checkpointed files match primary and clean bytes;
+the unrelated website notes remain excluded and untouched. The
+[C13 notes](plans/post-release-chunk-13-notes.md) and
+[handoff](handoffs/chunk-13.md) record the checkpoint evidence and the distinction
+between the primary API-doc result's 83 raw inputs/file paths and the clean
+checkout's historical EOL differences.
+
+The existing API-doc counts, five-declaration inspection and v2 attestation
+remain as recorded. Final amended-candidate routine validation, exact API-doc
+applicability, fresh all-13-criterion review, original-report reconciliation and
+closure remain governed by source-bound C13.04 records. No later chunk or
+publication is selected. The following preparation entry retains its original
+pre-authorization chronology.
+
+## C13.04 cumulative qualification preparation, 2026-10-03
+
+C13.03 and its review completed under private closure
+`9a6105e02101b696ff9c81aed49be4bc45d6f8bb15f2fb7bce59ee9cea2a5823`.
+The full final source inventory matched before the conditional request selected
+C13.04. Earlier candidate wording remains historical. This final step adds no
+mathematical scope; the five public theorems and both private consumers retain
+the completed Step 3 source.
+
+The [maintained C13 handoff](handoffs/chunk-13.md) records exact contracts,
+imports, guarded conversions, endpoint/sparse consumers, source adaptations,
+earlier reviews and deferred owners/triggers. Canonical context, current counts,
+module guidance, roadmap and API-doc guides are reconciled against source.
+The [C13 notes](plans/post-release-chunk-13-notes.md) retain Step 4 validation
+evidence and limits. The focused build, five README and four website-guide
+examples passed. Both actual API-doc build/check passes passed (112.2s and
+14.6s); all five declaration blocks and the v2 attestation were inspected.
+The reproduced stale aggregate-marker failure and exact three-file cache repair
+remain retained separately. The complete routine suite requires separate authority for
+a scoped local checkpoint and clean validation checkout. The fresh full-chunk
+review, reconciliation and private closure follow qualification. The unrelated
+website notes remain preserved outside the candidate; C14 stays unselected.
+
+## C13.03 quantitative-independence candidate, 2026-10-03
+
+C13.02 and its review completed under private closure
+`31dc66de21bc880aa46603992511519cc1a128a90670bc06830185361a961808`.
+The complete final source inventory matched before the conditional request
+selected C13.03. Earlier candidate wording below remains historical.
+
+The focused Pinsker owner adds the two approved MI-to-TV theorems for a joint
+law versus its own marginal product. Actual finite KL is derived privately
+from joint absolute continuity before the guarded conversions and MI bridge.
+Both public statements retain independent universes and require only finite
+alphabets. The owner now has exactly five public declarations, with no new
+imports or attributes in this step and the earlier proofs unchanged.
+
+The new private `Examples.QuantitativeIndependence` imports only this owner.
+Consumers cover MI budgets, events, unit-interval and signed tests (the latter
+with factor two), arbitrary-source random variables, independent/zero-MI and
+degenerate-coordinate cases. A fair diagonal law in `Fin 3 × Bool` proves its
+null row, exact marginals, TV `1/2`, MI `log 2`, finite KL and both exact KL
+representations before consuming both bounds. The
+[implementation notes](plans/post-release-chunk-13-notes.md) retain proof choices
+and original diagnostics.
+
+Generation reports 647 public declarations in 35 owners, 94 reviewed simp
+declarations, 92 root exports and 762 indexed declarations (761 documented).
+The root retains its two imports and five-module closure. The seven-target
+focused build and static check passed. The full trust gate passed in 953.423
+seconds: all 601 retained signatures, all 35 supported import closures and
+1,906 compiled local constants across 58 modules, with only the three permitted
+axioms. All five public signatures and their axiom lists also passed a strict
+focused check. Original failures, repairs and final-source checks are retained
+privately with source identities. Independent review and final capture remain
+required before private closure; C13.04, a checkpoint
+and publication are unselected. The unrelated website notes are preserved.
+
+## C13.02 guarded Pinsker candidate, 2026-10-03
+
+C13.01 and its independent review completed under private closure
+`0bd0f6d203cde547d593721e70672471c1c644f96fdf1d1043ca451d73f4cfda`.
+Its full final inventory matched before the conditional request selected only
+C13.02. Earlier candidate wording below remains historical.
+
+The focused Pinsker owner adds the two approved public consequences:
+`two_mul_totalVariation_sq_le_toReal_klDiv` and
+`totalVariation_le_sqrt_toReal_klDiv`. Explicit support inclusion establishes
+finite KL before conversion. The square-root consequence reuses the existing
+mathlib lemma with a direct `Real.Sqrt` import. The canonical proof is unchanged.
+
+Private consumers prove exact sparse Fin 3 values for `(1,0,0)` versus
+`(1/2,1/2,0)`, use both guards, and derive an event discrepancy bound from an
+ENNReal KL budget. Distinct pure Bool laws formally refute both unguarded Real
+bounds. Equal, pure, singleton and empty cases remain explicit. A local linter
+suppression preserves the exact approved private Fintype budget signature.
+The [implementation notes](plans/post-release-chunk-13-notes.md) record these
+choices and retained diagnostics.
+
+Generation reports 645 public declarations in 35 owners, 94 reviewed simp
+declarations, 92 root exports, and 760 indexed declarations (759 documented).
+The root still has two direct imports and a five-module closure. The six-target
+focused build and static gate passed. The full trust gate passed in 1169.603
+seconds: 601 retained signatures, all 35 import closures and all 1,857 compiled
+local constants across 57 modules, using only the permitted three axioms.
+Original diagnostics and passing results are retained privately. Independent
+review and final source capture remain required before private closure; no later
+step, checkpoint or publication is selected. The unrelated website notes are
+preserved.
+
+## C13.01 canonical Pinsker candidate, 2026-10-03
+
+The lead accepted C13 revision 2 and requested step 1 with review. C12 is
+complete at `492cd6e` by its private completion record; its retained candidate
+wording below is historical. The approved C13 contracts are unchanged, and
+reasoned proof choices are recorded in the [implementation notes](plans/post-release-chunk-13-notes.md).
+
+The new `Shannon.SemanticBridge.Pinsker` owner proves
+`ofReal_two_mul_totalVariation_sq_le_klDiv`: twice squared half-L1 TV is at
+most canonical ENNReal KL in nats, including singular support and infinite KL.
+Closed-interval binary convexity, zero-reference branches, exact TV event
+reduction and existing map DPI stay private. This is one public theorem,
+with no support guard, new simp attribute or coupling/gluing dependency.
+
+The focused private consumer covers both binary parameter orders, equality,
+numerator and reference endpoints, empty and singleton alphabets, and the
+positive pair `(1/2,1/4,1/4)` versus `(1/4,1/4,1/2)`. It proves the tied
+attaining event, exact TV and finite KL, indicator masses, TV preservation
+and canonical use. Current generation has 643 supported declarations in
+35 owners, 94 reviewed simp declarations and 92 root exports; the root still
+has its two direct imports and five-module closure. The source index has
+57 modules, 122 local edges and 758 declarations, of which 757 are documented.
+
+Maintained focused builds passed for the owner, semantic/full aggregates,
+root, consumer and Examples aggregate. The initial consumer build exposed
+one long-line style warning; the corrected build passed with no proof change.
+Static generation/policy checks passed. The full trust gate passed in
+1185.629 seconds, including all 601 retained signatures, 35 import closures,
+643 public declarations, 94 simp declarations, 92 root exports and all
+1,819 compiled local constants across 57 modules. Only the three permitted
+axioms were reported. Original results and earlier diagnostics are preserved
+privately. Independent review, reconciliation and final source capture remain
+required before private closure. No later step or public release is selected,
+and the unrelated website notes remain untouched.
+
 ## C12.04 authorized checkpoint and initial complete routine gate, 2026-10-03
 
 The lead explicitly approved the exact 35-file local checkpoint, a separate

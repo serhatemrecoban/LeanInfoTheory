@@ -37,11 +37,11 @@
         <h2 id="metrics-heading">Current Index</h2>
 
         <div class="metric-grid">
-          <div class="metric-card"><strong>757</strong><span>non-private source declarations</span></div>
-          <div class="metric-card"><strong>38</strong><span>modules with declarations</span></div>
-          <div class="metric-card"><strong>638</strong><span>theorems and lemmas</span></div>
+          <div class="metric-card"><strong>762</strong><span>non-private source declarations</span></div>
+          <div class="metric-card"><strong>39</strong><span>modules with declarations</span></div>
+          <div class="metric-card"><strong>643</strong><span>theorems and lemmas</span></div>
           <div class="metric-card"><strong>113</strong><span>definitions and abbrevs</span></div>
-          <div class="metric-card"><strong>756</strong><span>with doc comments</span></div>
+          <div class="metric-card"><strong>761</strong><span>with doc comments</span></div>
         </div>
 
       </section>
@@ -59,7 +59,7 @@
 <tr><td>Definition</td><td>113</td></tr>
 <tr><td>Inductive</td><td>4</td></tr>
 <tr><td>Instance</td><td>2</td></tr>
-<tr><td>Theorem</td><td>638</td></tr>
+<tr><td>Theorem</td><td>643</td></tr>
           </tbody>
         </table>
       </section>
@@ -704,6 +704,11 @@
 <tr id="decl-LeanInfoTheory-Shannon-mutualInfo_channelComp_le"><td><code>LeanInfoTheory.Shannon.mutualInfo_channelComp_le</code></td><td>Theorem</td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Markov</code></td><td>Mutual information contracts along a two-stage finite channel cascade.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Markov.lean#L725">line 725</a></td></tr>
 <tr id="decl-LeanInfoTheory-Shannon-mutualInfo_channel_cascade_le"><td><code>LeanInfoTheory.Shannon.mutualInfo_channel_cascade_le</code></td><td>Theorem</td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Markov</code></td><td>Textbook-facing alias for mutual-information contraction along a channel cascade.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Markov.lean#L735">line 735</a></td></tr>
 <tr id="decl-LeanInfoTheory-Shannon-mutualInfo_channel_map_output_le"><td><code>LeanInfoTheory.Shannon.mutualInfo_channel_map_output_le</code></td><td>Theorem</td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Markov</code></td><td>Deterministically mapping every output law of a finite channel cannot increase its input-output mutual information.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Markov.lean#L747">line 747</a></td></tr>
+<tr id="decl-LeanInfoTheory-Shannon-ofReal_two_mul_totalVariation_sq_le_klDiv"><td><code>LeanInfoTheory.Shannon.ofReal_two_mul_totalVariation_sq_le_klDiv</code></td><td>Theorem</td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Pinsker</code></td><td>Pinsker&#x27;s inequality in nats: twice the square of the half-L1 total variation is at most KL divergence. The inequality uses canonical `ENNReal` KL and includes singular support and infinite divergence without additional guards.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Pinsker.lean#L194">line 194</a></td></tr>
+<tr id="decl-LeanInfoTheory-Shannon-two_mul_totalVariation_sq_le_toReal_klDiv"><td><code>LeanInfoTheory.Shannon.two_mul_totalVariation_sq_le_toReal_klDiv</code></td><td>Theorem</td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Pinsker</code></td><td>Real-valued Pinsker&#x27;s inequality in nats, under support inclusion. The support guard ensures KL is finite before converting it with `ENNReal.toReal`.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Pinsker.lean#L227">line 227</a></td></tr>
+<tr id="decl-LeanInfoTheory-Shannon-totalVariation_le_sqrt_toReal_klDiv"><td><code>LeanInfoTheory.Shannon.totalVariation_le_sqrt_toReal_klDiv</code></td><td>Theorem</td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Pinsker</code></td><td>Total variation is at most the square root of half the Real-valued KL divergence in nats. Support inclusion excludes infinite KL, whose `ENNReal.toReal` is zero.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Pinsker.lean#L242">line 242</a></td></tr>
+<tr id="decl-LeanInfoTheory-Shannon-two_mul_totalVariation_sq_le_mutualInfo"><td><code>LeanInfoTheory.Shannon.two_mul_totalVariation_sq_le_mutualInfo</code></td><td>Theorem</td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Pinsker</code></td><td>Mutual information in nats bounds twice the squared total variation from the product of the joint law&#x27;s marginals. Joint-to-product KL is always finite on finite alphabets, including when some marginal masses vanish.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Pinsker.lean#L274">line 274</a></td></tr>
+<tr id="decl-LeanInfoTheory-Shannon-totalVariation_le_sqrt_mutualInfo"><td><code>LeanInfoTheory.Shannon.totalVariation_le_sqrt_mutualInfo</code></td><td>Theorem</td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Pinsker</code></td><td>A joint law&#x27;s total variation from the product of its marginals is at most the square root of half its mutual information in nats. No support or measurable-space assumptions are needed beyond the finite alphabets.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Pinsker.lean#L292">line 292</a></td></tr>
 <tr id="decl-LeanInfoTheory-Shannon-indepProd"><td><code>LeanInfoTheory.Shannon.indepProd</code></td><td>Definition</td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Product</code></td><td>Independent product of two probability mass functions. Mathematically, this is the law of `(X, Y)` when `X` has law `p`, `Y` has law `q`, and the two variables are independent.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Product.lean#L44">line 44</a></td></tr>
 <tr id="decl-LeanInfoTheory-Shannon-indepProd_apply"><td><code>LeanInfoTheory.Shannon.indepProd_apply</code></td><td>Theorem</td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Product</code></td><td>The atom mass of an independent product is the product of the two atom masses.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Product.lean#L68">line 68</a></td></tr>
 <tr id="decl-LeanInfoTheory-Shannon-indepProd_apply_eq_zero_iff"><td><code>LeanInfoTheory.Shannon.indepProd_apply_eq_zero_iff</code></td><td>Theorem</td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Product</code></td><td>An atom of the independent product has zero mass exactly when one of the two coordinate atoms has zero mass.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Shannon/SemanticBridge/Product.lean#L83">line 83</a></td></tr>

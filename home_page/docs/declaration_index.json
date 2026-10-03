@@ -1,5 +1,5 @@
 {
-  "declaration_count": 757,
+  "declaration_count": 762,
   "declarations": [
     {
       "doc": "Public project name used by documentation and the website.",
@@ -6272,6 +6272,56 @@
       "short_name": "mutualInfo_channel_map_output_le"
     },
     {
+      "doc": "Pinsker's inequality in nats: twice the square of the half-L1 total variation is at most KL divergence. The inequality uses canonical `ENNReal` KL and includes singular support and infinite divergence without additional guards.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 194,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Pinsker",
+      "name": "LeanInfoTheory.Shannon.ofReal_two_mul_totalVariation_sq_le_klDiv",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Pinsker.lean",
+      "short_name": "ofReal_two_mul_totalVariation_sq_le_klDiv"
+    },
+    {
+      "doc": "Real-valued Pinsker's inequality in nats, under support inclusion. The support guard ensures KL is finite before converting it with `ENNReal.toReal`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 227,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Pinsker",
+      "name": "LeanInfoTheory.Shannon.two_mul_totalVariation_sq_le_toReal_klDiv",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Pinsker.lean",
+      "short_name": "two_mul_totalVariation_sq_le_toReal_klDiv"
+    },
+    {
+      "doc": "Total variation is at most the square root of half the Real-valued KL divergence in nats. Support inclusion excludes infinite KL, whose `ENNReal.toReal` is zero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 242,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Pinsker",
+      "name": "LeanInfoTheory.Shannon.totalVariation_le_sqrt_toReal_klDiv",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Pinsker.lean",
+      "short_name": "totalVariation_le_sqrt_toReal_klDiv"
+    },
+    {
+      "doc": "Mutual information in nats bounds twice the squared total variation from the product of the joint law's marginals. Joint-to-product KL is always finite on finite alphabets, including when some marginal masses vanish.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 274,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Pinsker",
+      "name": "LeanInfoTheory.Shannon.two_mul_totalVariation_sq_le_mutualInfo",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Pinsker.lean",
+      "short_name": "two_mul_totalVariation_sq_le_mutualInfo"
+    },
+    {
+      "doc": "A joint law's total variation from the product of its marginals is at most the square root of half its mutual information in nats. No support or measurable-space assumptions are needed beyond the finite alphabets.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 292,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Pinsker",
+      "name": "LeanInfoTheory.Shannon.totalVariation_le_sqrt_mutualInfo",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Pinsker.lean",
+      "short_name": "totalVariation_le_sqrt_mutualInfo"
+    },
+    {
       "doc": "Independent product of two probability mass functions. Mathematically, this is the law of `(X, Y)` when `X` has law `p`, `Y` has law `q`, and the two variables are independent.",
       "kind": "def",
       "kind_label": "Definition",
@@ -7572,12 +7622,12 @@
       "short_name": "entropyOf_div_log"
     }
   ],
-  "documented_count": 756,
+  "documented_count": 761,
   "kind_counts": {
     "Definition": 113,
     "Inductive": 4,
     "Instance": 2,
-    "Theorem": 638
+    "Theorem": 643
   },
   "modules": [
     "LeanInfoTheory.Basic",
@@ -7613,6 +7663,7 @@
     "LeanInfoTheory.Shannon.SemanticBridge.Independence",
     "LeanInfoTheory.Shannon.SemanticBridge.KL",
     "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+    "LeanInfoTheory.Shannon.SemanticBridge.Pinsker",
     "LeanInfoTheory.Shannon.SemanticBridge.Product",
     "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
     "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
