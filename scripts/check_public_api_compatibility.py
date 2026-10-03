@@ -357,7 +357,7 @@ def run_compatibility(evidence: RunEvidence) -> dict:
     match = re.search(r"version 4\.33\.1,.*commit ([0-9a-f]{7,40})", version)
     require(match is not None and LEAN_COMMIT.startswith(match.group(1)),
             f"unexpected effective Lean compiler: {version}")
-    evidence.run("build", ["lake", "-KwarningAsError=true", "build", "LeanInfoTheory.Shannon"])
+    evidence.run("build", ["lake", "--wfail", "build", "LeanInfoTheory.Shannon"])
     exported = evidence.run("retained", ["lake", "env", "lean", "-DwarningAsError=true", "--run",
                                         str(retained.EXPORTER), str(frozen.FROZEN_PATH)])
     compare_types(baseline, exported, manifest)

@@ -20,6 +20,7 @@ import LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily
 import LeanInfoTheory.Shannon.SemanticBridge.Independence
 import LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence
 import LeanInfoTheory.Shannon.SemanticBridge.Markov
+import LeanInfoTheory.Shannon.SemanticBridge.Gluing
 import LeanInfoTheory.Shannon.SemanticBridge.Sufficiency
 import LeanInfoTheory.Shannon.SemanticBridge.DataProcessing
 import LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL
@@ -61,6 +62,8 @@ definitions agree with the textbook/measure-theoretic semantics.
   positive-fiber, zero-CMI, and reversal characterizations and the Markov law
   for channel-generated triples, its canonical and existential channel-
   factorization converses, and the exact mutual-information loss identity;
+- gluing two pair laws with a common middle marginal into one Markov triple,
+  with finiteness required only for the final coordinate alphabet;
 - `IsSufficientStatisticOf`, the fixed-prior reverse-Markov sufficiency
   predicate, together with `statisticTripleLawOf`, its induced parameter-
   statistic-observation law, its information-preservation characterizations,

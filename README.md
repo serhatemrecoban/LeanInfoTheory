@@ -79,7 +79,7 @@ the versioned `/docs/v0.1.0/` route, with source links bound to the exact
 release commit. The release process also validates a clean exact checkout and
 a minimal external Lake consumer.
 
-Current development coverage is 638 documented declarations in 33 supported
+Current development coverage is 642 documented declarations in 34 supported
 modules, with 94 reviewed `simp` declarations and 92 root aliases, recorded in
 [`docs/current-public-api.json`](docs/current-public-api.json). Completed C9
 added two generic helpers. Completed C10 supplies 25 finite total-variation
@@ -88,7 +88,7 @@ identities and map/common-channel contraction. Its focused import is
 `LeanInfoTheory.Probability.TotalVariation`; the
 [C10 handoff](docs/handoffs/chunk-10.md) records its completed validation and review.
 
-C11.01--C11.05 and their reviews are complete. Import
+C11 and its reviews are complete at `bbead98`. Import
 `LeanInfoTheory.Probability.Coupling` for the generic `PMF.IsCoupling` predicate,
 independent and diagonal witnesses, swap, the coupling inequality, and
 `PMF.maximalCoupling` with exact marginals and disagreement equal to TV.
@@ -97,13 +97,23 @@ The private `Examples.Coupling` and `Examples.CouplingFano` consumers exercise
 attained optimality, edge cases, Fano in both coordinate orders and existing
 product-measure semantics.
 
-The approved [C11 plan](docs/plans/post-release-chunk-11.md) selects C11.06
-cumulative qualification. Its [maintained handoff](docs/handoffs/chunk-11.md)
-records the interfaces, remaining-work owners and successful initial clean
-routine and current two-pass API-doc checks on the explicitly authorized local
-checkpoint. Source-bound C11.06 private records establish final validation and
-review applicability, fresh cumulative review, reconciliation and chunk closure.
-The [C9 handoff](docs/handoffs/chunk-9.md) retains the earlier prerequisite context.
+C12.01--C12.03 and their reviews are complete. The same coupling import now
+provides heterogeneous coordinate transport and lifting through supplied
+coupling channels, with row conditions only on joint support.
+`Probability.FiniteChannel` provides whole-extension equality on middle support.
+Import `LeanInfoTheory.Shannon.SemanticBridge.Gluing` for a Markov triple with
+both prescribed pair marginals and only a finite final alphabet. Witness
+selection remains private. Maintained examples prove weighted contraction and
+show that maximal adjacent couplings need not give maximal endpoints after gluing.
+
+The approved [C12 plan](docs/plans/post-release-chunk-12.md) selects C12.04
+cumulative qualification. The [C12 handoff](docs/handoffs/chunk-12.md) records
+contracts, imports, original review evidence and remaining-work triggers.
+The authorized initial checkpoint `44d300c` passed the clean routine suite in a
+separate validation checkout. Corrected focused/static checks and both actual
+current API-doc passes also passed. Final candidate validation, fresh all-13-criterion
+review, reconciliation and closure remain governed by source-bound private records.
+The [C11 handoff](docs/handoffs/chunk-11.md) preserves predecessor evidence.
 
 Compatible additions extend current coverage; the released counts and
 [`frozen manifest`](docs/v0.1-public-api.json) remain historical. Current

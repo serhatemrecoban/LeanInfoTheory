@@ -14,6 +14,8 @@ import LeanInfoTheory.Examples.ConditionalKL
 import LeanInfoTheory.Examples.Convexity
 import LeanInfoTheory.Examples.Coupling
 import LeanInfoTheory.Examples.CouplingFano
+import LeanInfoTheory.Examples.CouplingGluing
+import LeanInfoTheory.Examples.CouplingTransport
 import LeanInfoTheory.Examples.Fano
 import LeanInfoTheory.Examples.FiniteFamily
 import LeanInfoTheory.Examples.IndependenceProcessing
@@ -41,6 +43,17 @@ common-mass constructor's ordered marginals, exact disagreement and attained
 optimality for sparse and degenerate laws. A separate semantic consumer applies
 Fano to that actual witness and its coordinate swap with exact TV error, including
 equal and subsingleton laws, and reuses independent-product measure semantics.
+Focused transport consumers check coordinate maps, supplied coupling channels,
+deterministic specialization and a channel with incorrect unused-row marginals.
+They also lift the actual maximal input coupling through maximal row couplings,
+derive its exact weighted disagreement, and recover stochastic and deterministic
+contraction, including degenerate cases.
+Gluing consumers retain both prescribed pair laws, derive the endpoint coupling
+from the same triple, and check that changing a null-fiber fallback leaves the
+whole triple unchanged while positive conditional rows can differ.
+The fair/pure/fair Boolean regression proves both adjacent couplings maximal,
+then computes the same Markov witness's independent endpoints and their strictly
+larger disagreement than the diagonal coupling.
 It also includes representative
 arbitrary-base, bits, and guarded real-KL unit conversions. It remains outside
 both public mathematical umbrellas. The examples are maintained regression

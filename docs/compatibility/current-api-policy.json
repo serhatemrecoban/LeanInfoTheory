@@ -53,6 +53,47 @@
       "rationale": "The approved coupling owner supplies the generic joint-law predicate and elementary independent, diagonal and swap witnesses while keeping semantic dependencies outside the probability layer.",
       "consumer": "LeanInfoTheory.Examples.Coupling independently imports the owner and exercises both marginals, different coordinate types, diagonal coupling, repeated swap and empty-alphabet impossibility.",
       "approval_reference": "Approved Chunk 11 plan revision 2, Sections 3.1 and 4 / C11.01-BOUNDARY (docs/plans/post-release-chunk-11.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-26. Authority intake: .lit-review/setup/c11-execution-approval-context-20260926.json."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.SemanticBridge.Gluing",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Shannon.SemanticBridge.Markov"
+        ],
+        "external": []
+      },
+      "rationale": "The approved separate semantic owner glues consistent pair PMFs through existing Markov conditional-channel reconstruction, requiring only a finite final alphabet. It imports Markov only and leaves raw probability owners lightweight.",
+      "consumer": "LeanInfoTheory.Examples.CouplingGluing imports this owner and Coupling directly, preserves both pair laws, derives the same-triple endpoint coupling and checks whole-law null-fiber invariance.",
+      "approval_reference": "Approved Chunk 12 plan revision 2, Sections 3.4-3.5 and C12.02-BOUNDARY (docs/plans/post-release-chunk-12.md); project lead approved the plan and requested step 2 with its review process conditional on successful step 1 completion on 2026-10-03. The predecessor condition was verified. Authority intake: .lit-review/setup/c12-02-ingress-20261003.json."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.SemanticBridge",
+      "kind": "umbrella_addition",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+          "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL",
+          "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+          "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+          "LeanInfoTheory.Shannon.SemanticBridge.Entropy",
+          "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+          "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+          "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+          "LeanInfoTheory.Shannon.SemanticBridge.Gluing",
+          "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+          "LeanInfoTheory.Shannon.SemanticBridge.KL",
+          "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+          "LeanInfoTheory.Shannon.SemanticBridge.Product",
+          "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+          "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
+          "LeanInfoTheory.Shannon.SemanticBridge.Theorems"
+        ],
+        "external": []
+      },
+      "rationale": "The approved semantic aggregate adds the focused Gluing owner while retaining all prior imports. The full Shannon umbrella reaches gluing through this aggregate; the lightweight root is unchanged.",
+      "consumer": "Full semantic users import LeanInfoTheory.Shannon.SemanticBridge; the separate gluing consumer exercises the focused owner without the umbrella.",
+      "approval_reference": "Approved Chunk 12 plan revision 2, Sections 3.4-3.5 and C12.02-BOUNDARY (docs/plans/post-release-chunk-12.md); project lead approved the plan and requested step 2 with its review process conditional on successful step 1 completion on 2026-10-03. The predecessor condition was verified. Authority intake: .lit-review/setup/c12-02-ingress-20261003.json."
     }
   ],
   "simp_additions": [],

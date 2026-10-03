@@ -86,6 +86,11 @@ August 16, 2024 prepublication version. The source footer identifies the date.
   page 116 / PDF page 141. The actual finite-PMF witness attains disagreement
   equal to TV. The [C11 handoff](handoffs/chunk-11.md) records the finite event
   convention, endpoint handling and remaining-work boundaries.
+- Recorded C12 use: Section 7.3, Theorem 7.7(b), equation (7.20), printed
+  pages 122--123 / PDF pages 147--148, for coupling conventions and the attained
+  disagreement bound. Transport, finite gluing and the quantitative regressions
+  are derived uses of existing PMF/channel algebra. The
+  [C12 handoff](handoffs/chunk-12.md) records adaptations and limits.
 - Section 7.4, Theorem 7.10: Pinsker via binary reduction; its full
   f-divergence/joint-range programme is not selected.
 - Section 4.5, Proposition 4.8: finite entropy continuity; Section 4.7,
@@ -144,14 +149,19 @@ edition, with contributions by Elizabeth L. Wilmer, 2017.
   Section 4.2's overlap identity is used without constructing a coupling;
   Proposition 4.7's coupling witness remains C11 work. C10 consistently uses
   the non-strict dominating event; tied atoms contribute zero.
+- Recorded C12 use: Section 4.2 definition and Example 4.6, printed pages
+  49--50 / PDF pages 65--66; Proposition 4.7, Remark 4.8 and equations
+  (4.8)--(4.13), printed pages 50--52 / PDF pages 66--68. These establish
+  the convention; the [C12 handoff](handoffs/chunk-12.md) distinguishes the
+  delivered derived gluing and consumer proofs from numbered source theorems.
 - Recorded C11 use: Section 4.2, Proposition 4.7, Remark 4.8 and equations
   (4.8)--(4.13), printed pages 50--52 / PDF pages 66--68, with the definition
   on printed page 49 / PDF page 65. The universal coupling inequality and an
   actual attaining law are delivered; no general gluing or process theorem is
   attributed to this section.
 - Chapter 5 is optional background for later coupling applications, not a
-  Markov-process or mixing-time commitment. The proposed finite gluing law
-  will be proved using conditional PMFs; no unverified numbered gluing theorem
+  Markov-process or mixing-time commitment. The C12 finite gluing law
+  is proved using conditional PMFs; no unverified numbered gluing theorem
   is attributed to this book.
 
 ## Other available background

@@ -147,7 +147,7 @@ class FreshnessOrchestrationTests(unittest.TestCase):
         self.assertEqual(result["outcome"], "PASS")
         self.assertEqual(self.evidence.writes["source-before.json"], self.evidence.writes["source-after.json"])
         build = self.evidence.commands[1]["command"]
-        self.assertEqual(build, ["lake", "-KwarningAsError=true", "build", "LeanInfoTheory.Shannon"])
+        self.assertEqual(build, ["lake", "--wfail", "build", "LeanInfoTheory.Shannon"])
 
     def test_failed_build_cannot_export_or_pass_old_artifacts(self):
         with self.assertRaisesRegex(ValueError, "build failed"):

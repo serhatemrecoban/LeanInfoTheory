@@ -51,7 +51,23 @@ retain their exact identities and publication guards. Generated types document
 the current tree; retained structural fingerprints and source review govern
 compatibility, and matching types do not establish unchanged semantics.
 
-## Current C11 milestone
+## Current C12 milestone
+
+C12 adds the supported `Shannon.SemanticBridge.Gluing` owner and four public
+theorems across Gluing, Coupling and FiniteChannel. Current coverage is 642
+documented declarations in 34 supported modules, with 92 canonical exports,
+94 reviewed simp declarations and 21 non-stable modules excluded.
+C12.04's preparation completed both actual current file-mode passes and
+inspection of all four new declarations, including the new Gluing page.
+The initial stale aggregate-HTML-marker failure and bounded recovery are retained
+separately from that success; exact applicability must be checked after changes.
+The [C12 handoff](../docs/handoffs/chunk-12.md) and private C12.04 evidence retain the exact
+source/configuration identity, output attestation, observations and failures.
+Earlier C11 output is historical evidence and does not qualify the C12 source.
+The full clean routine suite and fresh cumulative review are separate duties.
+Current output stays local and separate from the frozen release route.
+
+## Historical C11 milestone
 
 C11 adds `LeanInfoTheory.Probability.Coupling` and its ten public declarations.
 The explicitly authorized initial C11 checkpoint

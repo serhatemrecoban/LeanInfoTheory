@@ -5,6 +5,170 @@ detail. It is not meant to list every small command or proof attempt. It should
 help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
+## C12.04 authorized checkpoint and initial complete routine gate, 2026-10-03
+
+The lead explicitly approved the exact 35-file local checkpoint, a separate
+clean validation checkout and necessary C12.04-only corrections and final-record
+amendments. Initial commit `44d300c97d86b1fc0f40e9c70eb33a16bbfe3abe` was created
+on `master`. The original checkout preserves the unrelated website notes without
+staging, committing, restoring or hiding them. A separate detached checkout at
+that commit used ordinary copies of the nine pinned dependencies and caches.
+The recorded comparison covers all 203 tracked files and verifies all nine runtime dependency revisions and clean working trees in both checkouts. The only logical source difference is the excluded website notes. Four nonmathematical files differ only in CRLF/LF bytes: `docs/plans/post-release-chunk-09-notes.md`, `docs/v0.1-public-api.json`, `home_page/blueprint/dep_graph_document.html` and `home_page/blueprint/module_graph.json`. All mathematical source, tooling and configuration bytes match; the original working files were preserved.
+
+The complete maintained routine suite returned exit 0 in 1731.262
+seconds; `.lit-review/setup/c12-04-full-checkpoint-20261003/result.json` retains the exact original result and output.
+The audit checked 601 retained signatures, all 34 supported import closures, 642 supported declarations, 94 reviewed simp declarations, 92 root exports and all 1,746 compiled local constants across 55 modules. The only reported axioms were `propext`, `Classical.choice` and `Quot.sound`.
+The earlier two actual current file-mode API-doc passes ran in the original
+checkout and remain separate evidence. The [C12 handoff](handoffs/chunk-12.md)
+records both locations, results and applicability limits.
+
+The remaining documentation amendments stay within the approved scope. Any
+amendment requires the repeated complete suite and exact API-doc applicability.
+Fresh independent review against all 13 criteria, original-report reconciliation,
+R-to-F applicability, final capture and private closure remain required. No later
+outcome, push, publication, dependency change or later chunk is claimed here.
+
+## C12.04 cumulative candidate and handoff preparation, 2026-10-03
+
+C12.03 and its review process completed with all three criteria satisfied under
+closure `baa6ba14e2ce1cd9a353104abde88ba22ebfa8d93e0576aa6079dc652d317a06`.
+Its original report had no findings. The exact final source matched before the
+lead's conditional request selected only C12.04. All ten earlier-step criteria
+and their original reports remain historical source-bound evidence.
+
+The [C12 handoff](handoffs/chunk-12.md) records the four public theorems,
+minimal imports, private consumers, theorem-only witness choice, whole-law
+null-fiber invariance, maximality limits, exact references and deferred owners.
+Canonical context, the README, roadmap, map, reference register and API-doc
+guidance are reconciled against the 642-declaration/34-owner source. Historical
+C11 handoff and release records remain unchanged. No mathematical scope is added.
+
+The cumulative audit identified that the validator's `-KwarningAsError=true`
+is a Lake configuration option, with no corresponding handler in this package.
+Earlier successful build logs remain successful compilations, but that option
+alone does not establish warning rejection. An isolated fixture confirmed that
+`--wfail` rejects fresh and replayed warnings and accepts clean source. Maintained
+validator, compatibility/export/fixture and CI build invocations now use that
+flag; direct Lean flags and all publication guards remain unchanged. Eight
+validation tests and fourteen compatibility tests passed, including real warning
+fixtures through both validator build entry points. Original diagnostics and
+the correction belong to C12.04's private evidence.
+
+The complete candidate is prepared for an exact, separately authorized local
+checkpoint arrangement that preserves and excludes `docs/next-website-tasks.md`.
+Corrected focused/static checks, eleven retained-export tests, both actual
+current file-mode API-doc passes and direct inspection of all four new declarations
+passed. The initial stale aggregate HTML marker failure and narrow three-file
+recovery remain recorded. Clean full routine validation, fresh independent
+all-13-criterion review, reconciliation and private closure remain required.
+This preparation does not certify their outcome or authorize a commit, push,
+publication or later chunk.
+
+## C12.03 quantitative coupling consumer candidate, 2026-10-03
+
+C12.02 and its review process completed with all four criteria satisfied,
+under private closure `e54a76bcc47a23b94c6c126502ef43853349af76b14e20f658db43fbce4c39a8`.
+The current source matched that final capture before the lead's conditional
+request selected C12.03 with review. The approved four-theorem public surface
+and its import boundaries are retained.
+
+The private transport consumer lifts the actual maximal input coupling through
+maximal couplings of the two channel rows. Its ENNReal event formula is the
+finite weighted sum of row TV distances. Termwise non-top proofs, finite event
+values and TV nonnegativity justify the Real formula. Diagonal rows contribute
+zero; each off-diagonal row contributes at most its input mass. Together with
+the universal coupling inequality and exact input disagreement, this proves
+the required contraction chain. C10's bind and deterministic map contraction
+apply to the same output laws. Equal inputs, constant stochastic rows and
+subsingleton output alphabets have zero lifted disagreement.
+
+The private fair/pure/fair Boolean gluing regression proves the two supplied
+adjacent couplings attain their TV distances of one half. It obtains a triple
+from the public theorem and identifies that same witness using its pair laws
+and Markov factorization. Its supported-middle atoms have mass one quarter;
+unsupported-middle atoms vanish. Its endpoints are independent fair bits with
+disagreement one half, strictly above endpoint TV and diagonal disagreement,
+both zero. Arbitrary changes to the null middle row preserve the whole triple.
+
+These are derived consumers of the approved API. The targeted LP17 Section 4.2
+and PW24 Section 7.3 reread confirms the coupling convention and universal
+disagreement bound; neither book is credited with a separately numbered theorem
+for these particular consumers. No helper is promoted to the public surface.
+The inventory retains 642 documented declarations in 34 owners, 94 reviewed
+simp declarations and 92 root exports. Source-derived artifacts remain subject
+to the maintained generator checks.
+
+The [C12 notes](plans/post-release-chunk-12-notes.md) record proof choices and
+plan health. Focused, static, documentation and trust checks, the original
+independent report, reconciliation and the private completion record establish
+C12.03 closure; this candidate entry does not certify their outcome in advance.
+C12.04 remains unselected, and no commit or publication is included.
+
+## C12.02 null-fiber invariance and gluing candidate, 2026-10-03
+
+C12.01 and its review process completed with all three criteria satisfied,
+under private closure `e02ead2410aa3633d0a3baa575dc3c9fbee2dc3f991f659c451bbfb1a81e4265`.
+The current source matched that final capture before the lead's conditional
+request selected C12.02 with review. Earlier failed attempts remain preserved.
+
+The raw-channel owner adds `channelExtension_eq_iff_eq_on_support`, with no
+new imports or finiteness assumptions. Equality of the whole triple law is
+equivalent to equality of channel rows on the second marginal's support.
+The separate `Shannon.SemanticBridge.Gluing` owner imports only Markov and
+adds `exists_isMarkovChain_with_marginals`. It extends the first pair law by
+the existing total conditional channel of the swapped second pair law, with
+only the final alphabet finite. It returns both exact pair marginals and
+Markov structure. No public constructor, composition operation, uniqueness
+wrapper, attribute or root alias is added.
+
+Approved growth records cover the new semantic owner and its aggregate import.
+The root, raw probability imports and C12.01 declarations remain unchanged.
+The generated inventory has 642 documented declarations in 34 owners, with
+94 reviewed simp declarations and 92 root exports. The graph has 55 modules
+and 117 local edges, with five root-reachable modules; the source index has
+757 declarations, 756 documented. The historical release manifest is unchanged.
+The [C12 notes](plans/post-release-chunk-12-notes.md) record the private proof
+choices and maintained consumers. Validation, review reconciliation and actual
+C12.02 closure are established by its private records; this source entry is
+prepared before those final records and does not itself certify completion.
+No commit, push, publication, dependency change or C12.03 work is included.
+
+## C12.01 transport candidate and focused consumers, 2026-10-03
+
+The lead accepted detailed C12 revision 2 and selected only C12.01 with review.
+The coupling owner adds `PMF.IsCoupling.map` and `PMF.IsCoupling.bind`: coordinate
+transport and lifting through supplied coupling channels, with independent
+coordinate universes and correct row marginals required only on joint support.
+Both proofs reuse existing PMF map/bind algebra and the raw channel support
+interface. No import, stable declaration, simp attribute or root alias changes.
+
+`Examples.CouplingTransport` imports only the coupling owner and obtains both
+output marginals, identifies deterministic lifting with coordinate transport,
+checks map composition and swapping, and covers heterogeneous noninjective,
+pure, singleton and impossible empty inputs. Its fair diagonal Bool law has
+an unused off-diagonal channel row with both marginals wrong despite supported
+individual coordinates; the new lifting theorem still proves the correct
+output marginals, and the entire lifted joint remains unchanged.
+
+The current generated surface has 640 documented declarations in 33 supported
+owners, 94 reviewed simp declarations and 92 root aliases. The graph has 53
+modules and 112 local edges, with the same five-module root closure. The source
+index has 755 declarations, 754 documented. The frozen v0.1 manifest is preserved.
+The [C12 notes](plans/post-release-chunk-12-notes.md) record proof choices and
+validation limits. Step completion is subject to applicable validation, the
+bound reviewer's original report, reconciliation and the private completion
+record; this candidate entry does not claim that closure has already happened.
+
+The initial owner build was stopped after a stall; a single-threaded direct
+warning-as-error compilation passed. The first consumer compile exposed three
+local normalization issues; the corrected consumer also compiled with warnings
+as errors. These attempts remain distinct from the maintained validation gates.
+The first workflow ingress used an incorrect authority schema and started no
+step. Its rejection remains retained; under the lead's explicit discretion
+instruction, the corrected supported entry point processed the same actual
+request as a labeled local correction, preserving every review obligation.
+No commit, push, dependency change or later step was authorized.
+
 ## C11.06 authorized checkpoint and initial cumulative gates, 2026-09-27
 
 The lead approved the exact 24-file local checkpoint and necessary C11.06-only

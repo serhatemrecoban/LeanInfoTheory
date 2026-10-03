@@ -242,9 +242,9 @@ def main(argv=None) -> int:
         originals = make_source_copy(source)
         setup = workspace / "setup"
         setup.mkdir()
-        run(["lake", "-KwarningAsError=true", "build", "LeanInfoTheory.Shannon"], source, setup, "baseline-build")
+        run(["lake", "--wfail", "build", "LeanInfoTheory.Shannon"], source, setup, "baseline-build")
         if "same_type_body" in args.cases:
-            run(["lake", "-KwarningAsError=true", "build", "LeanInfoTheory.Examples.Units"], source, setup,
+            run(["lake", "--wfail", "build", "LeanInfoTheory.Examples.Units"], source, setup,
                 "baseline-semantic-consumer")
         for case in args.cases:
             for rel, raw in originals.items():
@@ -254,7 +254,7 @@ def main(argv=None) -> int:
             # A genuinely current baseline owner is needed immediately before
             # preserving its old artifacts for the standalone stale-input case.
             if case == "stale_artifact":
-                run(["lake", "-KwarningAsError=true", "build", "LeanInfoTheory.Shannon"], source, out, "old-artifact-build")
+                run(["lake", "--wfail", "build", "LeanInfoTheory.Shannon"], source, out, "old-artifact-build")
                 olean = source / ".lake/build/lib/lean" / Path(OWNER).with_suffix(".olean")
                 old_olean = check.sha256(olean.read_bytes())
             should_pass, diagnostic = mutate(case, source)
@@ -266,7 +266,7 @@ def main(argv=None) -> int:
                 (out / "stale-artifact-before.json").write_bytes(check.encode({"path": str(olean), "sha256": old_olean,
                     "no_build_after_mutation": True, "source_sha256": check.sha256((source / OWNER).read_bytes())}))
             elif case != "unchanged":
-                run(["lake", "-KwarningAsError=true", "build", "LeanInfoTheory.Shannon"], source, out, "compiling-mutation")
+                run(["lake", "--wfail", "build", "LeanInfoTheory.Shannon"], source, out, "compiling-mutation")
             # Generation is real, but never supplies approval. Name/owner changes
             # with no exported facade dependency still produce a valid inventory.
             run([sys.executable, "-B", "scripts/generate_current_public_api.py"], source, out, "generate-current")
@@ -304,7 +304,7 @@ def main(argv=None) -> int:
             if case == "same_type_body":
                 check.require((source / "docs/current-public-api.json").read_bytes() == originals["docs/current-public-api.json"],
                               "same-type body fixture unexpectedly changed manifest entries")
-                consumer = run(["lake", "-KwarningAsError=true", "build", "LeanInfoTheory.Examples.Units"], source,
+                consumer = run(["lake", "--wfail", "build", "LeanInfoTheory.Examples.Units"], source,
                                out, "semantic-consumer", expected=None)
                 check.require(consumer["exit_code"] != 0, "changed bits semantics unexpectedly passed the existing units consumer")
                 consumer_output = ((out / "semantic-consumer.stdout").read_bytes()

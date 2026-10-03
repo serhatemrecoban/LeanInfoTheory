@@ -6,8 +6,8 @@
     "Semantic bridge layer",
     "Non-stable anchors"
   ],
-  "local_edge_count": 110,
-  "module_count": 52,
+  "local_edge_count": 117,
+  "module_count": 55,
   "modules": [
     {
       "external_imports": [],
@@ -31,7 +31,7 @@
       "name": "LeanInfoTheory.Probability.Coupling",
       "path": "LeanInfoTheory/Probability/Coupling.lean",
       "root_reachable": false,
-      "summary": "Generic coupling interface, finite coupling inequality and an actual common-mass PMF with exact marginals and ENNReal/Real disagreement attaining total variation."
+      "summary": "Generic coupling interface, coordinate transport and lifting through supported channel couplings, finite coupling inequality and an actual common-mass PMF attaining total variation."
     },
     {
       "external_imports": [
@@ -242,6 +242,7 @@
         "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
         "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
         "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+        "LeanInfoTheory.Shannon.SemanticBridge.Gluing",
         "LeanInfoTheory.Shannon.SemanticBridge.Independence",
         "LeanInfoTheory.Shannon.SemanticBridge.KL",
         "LeanInfoTheory.Shannon.SemanticBridge.Markov",
@@ -360,6 +361,17 @@
       "summary": "Finite real-sum rewrites and mutual-information log-ratio formulas."
     },
     {
+      "external_imports": [],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.Markov"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.Gluing",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/Gluing.lean",
+      "root_reachable": false,
+      "summary": "A Markov triple with both prescribed pair marginals, using a common middle law and only a finite final alphabet; witness selection remains private."
+    },
+    {
       "external_imports": [
         "Mathlib.Probability.Independence.Basic"
       ],
@@ -466,6 +478,8 @@
         "LeanInfoTheory.Examples.Convexity",
         "LeanInfoTheory.Examples.Coupling",
         "LeanInfoTheory.Examples.CouplingFano",
+        "LeanInfoTheory.Examples.CouplingGluing",
+        "LeanInfoTheory.Examples.CouplingTransport",
         "LeanInfoTheory.Examples.Fano",
         "LeanInfoTheory.Examples.FiniteFamily",
         "LeanInfoTheory.Examples.IndependenceProcessing",
@@ -542,6 +556,29 @@
       "path": "LeanInfoTheory/Examples/CouplingFano.lean",
       "root_reachable": false,
       "summary": "Private consumers applying existing Fano to the actual maximal coupling and its coordinate swap with exact TV error, ordered marginals and equal/subsingleton endpoints, plus independent-product rectangle and measure interoperability."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Probability.Coupling",
+        "LeanInfoTheory.Shannon.SemanticBridge.Gluing"
+      ],
+      "name": "LeanInfoTheory.Examples.CouplingGluing",
+      "path": "LeanInfoTheory/Examples/CouplingGluing.lean",
+      "root_reachable": false,
+      "summary": "Private consumers retaining both pair laws and endpoints of the public gluing witness, varying conditional rows, whole-law null-fiber invariance and failure of endpoint maximality."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Probability.Coupling"
+      ],
+      "name": "LeanInfoTheory.Examples.CouplingTransport",
+      "path": "LeanInfoTheory/Examples/CouplingTransport.lean",
+      "root_reachable": false,
+      "summary": "Private consumers for heterogeneous coordinate transport, unsupported channel rows and weighted maximal-coupling contraction, with guarded real event values and degenerate cases."
     },
     {
       "external_imports": [],
@@ -688,5 +725,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 5,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 47
+  "separate_import_count": 50
 }

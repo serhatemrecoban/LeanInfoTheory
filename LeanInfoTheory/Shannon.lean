@@ -22,7 +22,7 @@ import LeanInfoTheory.Shannon.Units
 This import-only umbrella gathers the complete supported mathematical stack for
 LeanInfoTheory `0.1.x`. It subsumes the lightweight `LeanInfoTheory` root and
 adds the focused finite-channel, entropy-bound, Fano, finite-family, semantic,
-KL, Markov, sufficiency, convexity, total-variation, coupling, and unit-conversion
+KL, Markov, gluing, sufficiency, convexity, total-variation, coupling, and unit-conversion
 modules.
 
 It deliberately excludes `LeanInfoTheory.Basic`, `LeanInfoTheory.Examples`, and

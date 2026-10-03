@@ -154,7 +154,7 @@ def reproduce(source: Path) -> bytes:
     if sha256(raw_manifest) != frozen.GIT_BLOB_SHA256:
         raise ValueError("release Git blob disagrees with frozen identity")
     manifest = json.loads(raw_manifest)
-    build_output = command(["lake", "-KwarningAsError=true", "build", "LeanInfoTheory.Shannon"], source)
+    build_output = command(["lake", "--wfail", "build", "LeanInfoTheory.Shannon"], source)
     print(build_output.decode("utf-8", errors="replace").rstrip(), file=sys.stderr)
     invocation = ["lake", "env", "lean", "--run", str(EXPORTER), str(source / "docs/v0.1-public-api.json")]
     first = command(invocation, source)

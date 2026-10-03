@@ -284,7 +284,7 @@ EXPECTED_WORKFLOWS = frozenset(
 # reviewed publication interlock. Any edit, including a seemingly harmless
 # trigger, permission, job, or guard change, requires a deliberate hash update.
 EXPECTED_PAGES_WORKFLOW_SHA256 = (
-    "c1f2c1080d0e1c587401faa7468db30a6c60e088e40805c75d12432543f85e52"
+    "cacffee202989c85f21d5cb0f4f534930f53ddacc2268d27681132cac5875cff"
 )
 
 TEXT_SUFFIXES = {
@@ -1766,7 +1766,7 @@ def unique_targets(targets: Iterable[str]) -> list[str]:
 
 def run_maintained_build(extra_targets: Sequence[str] = ()) -> None:
     targets = unique_targets([*MAINTAINED_TARGETS, *extra_targets])
-    run_command(("lake", "-KwarningAsError=true", "build", *targets))
+    run_command(("lake", "--wfail", "build", *targets))
 
 
 def run_complete_build(extra_targets: Sequence[str] = ()) -> None:
@@ -2257,7 +2257,7 @@ def main() -> int:
         elif args.command == "focused":
             if not args.targets:
                 raise ValidationError("focused requires at least one Lake target")
-            run_command(("lake", "-KwarningAsError=true", "build", *unique_targets(args.targets)))
+            run_command(("lake", "--wfail", "build", *unique_targets(args.targets)))
         elif args.command == "hygiene":
             if args.targets:
                 raise ValidationError("hygiene does not accept Lake targets")

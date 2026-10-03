@@ -1,9 +1,9 @@
 # Post-Release Chunk Map: Quantitative and Operational Information Theory
 
-**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-09-27. Detailed C9, C10 and C11 revision-2 plans were separately approved; C12--C24 remain proposed.
+**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-03. Detailed C9--C12 revision-2 plans were separately approved; C13--C24 remain proposed.
 **Review follow-up:** C18/C23 clarifications accepted for this map; the 16-chunk structure is unchanged.
-**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md) and eligible step requests own their respective execution.
-**Execution:** C9 and C10 are complete by their actual private completion records; C10 closed at `37b4ba90d1ab321645f80cacef475f10a3a6ba43`. The [C10 handoff](../handoffs/chunk-10.md) preserves its evidence. C11.01--C11.05 and their reviews are complete. C11.06 was selected after verifying C11.05's closure and exact final source; it owns cumulative qualification and the [C11 handoff](../handoffs/chunk-11.md). The explicitly authorized initial local checkpoint passed the clean routine suite and real two-pass API-doc gate. The handoff preserves original results; final amended-candidate validation, fresh all-17 review, reconciliation and exact closure are established by source-bound private records. C12 onward remains unselected.
+**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md), [C12 plan](post-release-chunk-12.md) and eligible step requests own their respective execution.
+**Execution:** C9--C11 are complete by their actual private records, most recently C11 at `bbead98`. C12.01--C12.03 and their reviews are complete. Selected C12.04 owns cumulative qualification and the [C12 handoff](../handoffs/chunk-12.md). Authorized initial checkpoint `44d300c` passed the complete routine suite in a separate clean checkout; both actual current API-doc passes also passed. Final candidate validation, fresh all-13 review, reconciliation and closure remain governed by source-bound private records. C13 onward remains unselected.
 **Map-intake baseline inspected:** `master` at `80ea016c7ac64bb5bd79b2f769227a3fb2ccc3b3`,
 with the existing uncommitted post-release documentation/discoverability work
 preserved. The immutable `v0.1.0` mathematical baseline remains
@@ -86,7 +86,7 @@ recommended order, not a chain of mandatory whole-chunk dependencies.
 | C9 | Complementary | Reviewed generic downstream helpers and growth-ready compatibility gates | Existing library and concrete downstream evidence |
 | C10 | 1 | Finite TV characterizations and map/channel contraction | Existing PMF/channel core |
 | C11 | 1 | Couplings and maximal coupling with disagreement exactly TV | C10 |
-| C12 | 1 | Coupling transport, finite gluing, and composition | C11; existing conditional-channel reconstruction |
+| C12 | 1 | Coupling transport and finite gluing with private witness selection | C11; existing conditional-channel reconstruction |
 | C13 | 2 | Pinsker and bounded quantitative independence consequences | C10; existing KL/DPI |
 | C14 | 2 | Quantitative entropy, conditional-entropy, and MI continuity | C10--C11; existing Fano/entropy algebra |
 | C15 | 2 | Finite-simplex topology and continuous information objectives | C10 for the TV/topology comparison; pinned convex/topological mathlib |
@@ -216,17 +216,10 @@ construction is required yet. Sources: `LP17` 4.1--4.2; `PW24` 7.3.
 
 ### C11. Couplings and maximal coupling
 
-**Current execution:** the [approved detailed plan, revision 2](post-release-chunk-11.md)
-and selected request govern C11.06 cumulative qualification after verified
-C11.05 closure. All five mathematical steps and their reviews are complete.
-The candidate retains the ten public coupling declarations and both private
-consumers, including Fano on the actual witness and its swap and independent
-product-measure interoperability. The [maintained handoff](../handoffs/chunk-11.md)
-records the delivered contracts, source/review evidence and C12/C14 boundaries.
-The explicitly authorized initial local checkpoint passed the clean routine
-suite and real two-pass API-doc gate. The handoff preserves original results;
-final amended-candidate validation, fresh all-17 review, reconciliation and exact
-closure are established by source-bound private records. No later chunk is selected.
+**Current execution:** C11 is complete through C11.06 at `bbead98`, by its actual
+private completion record. The [maintained C11 handoff](../handoffs/chunk-11.md)
+preserves delivered interfaces and validation/review history; its captured
+pre-closure wording does not reopen C11. C12 has a separately approved plan.
 
 **Goal:** A reusable law-level coupling interface and an attaining witness.
 
@@ -255,35 +248,34 @@ Theorems 1--2; `LP17` 4.2; `PW24` 7.3.
 
 ### C12. Coupling transport and finite gluing
 
-**Goal:** Make coupling witnesses composable and useful with the existing
-channel vocabulary.
+**Current execution:** the [approved detailed revision-2 plan](post-release-chunk-12.md)
+selects theorem-only gluing with private witness selection. C12.01--C12.03 are
+complete with review; C12.04 cumulative qualification and the
+[maintained handoff](../handoffs/chunk-12.md) are selected. Exact closure depends
+on the required source-bound validation and fresh full-chunk review records.
 
-Include coordinate-map transport, lifting through supplied coupling channels,
-and finite gluing: pair laws on `A x B` and `B x C` with the same `B` marginal
-extend to a triple law with both prescribed pairs. Construct the conditionally
-independent extension through existing total conditional channels, proving
-that arbitrary choices on null middle fibers do not affect the resulting law.
-Obtain a coupling of the endpoints by projection. If composition is exposed as
-a public operation, supply its identity and associativity contracts under
-consistent middle marginals; otherwise keep witness selection private and
-publish the gluing theorem. Resolve that choice in the detailed plan.
-If the proof uses the heavier Markov reconstruction module, its owner must be
-a separately importing semantic bridge, not a dependency of the low-level
-coupling constructor. No stable declaration move is presumed.
+**Delivered mathematical scope:** type-generic coordinate transport and lifting
+through supplied coupling channels, with row marginals required only on actual
+joint support; whole-extension equality iff rows agree on middle support; and
+existence of a Markov triple with both supplied pair laws and only `[Finite C]`.
+The Gluing owner imports Markov separately from the low-level coupling owner.
+No public selected composition operation or uniqueness theorem is exposed.
+Any future operation needs separately approved identity, associativity and
+reassociation contracts before publication.
 
-Composition is not claimed to preserve maximality. Reserve one small regression
-for the detailed plan: on a common two-point alphabet, take the first and
-third laws uniform and the middle law a point mass. Both adjacent couplings
-are maximal, with disagreement `1/2`; their conditionally independent gluing
-has independent endpoints and disagreement `1/2`, while endpoint TV is zero.
-This is a proposed finite counterexample consumer, not a theorem already
-formalized or an additional optimal-transport programme.
+Private consumers obtain endpoint marginals from that same public witness,
+check varying supported rows and null fallback independence, and compute exact
+weighted disagreement for maximal channel lifting to recover C10 contraction.
+The fair/point-mass/fair Boolean regression is now proved: both adjacent
+couplings are maximal, while the Markov gluing has independent fair endpoints
+and disagreement `1/2`, strictly above endpoint TV zero. This concerns the
+conditionally independent witness, not every gluing of those pair laws.
 
-**Exit:** A three-law consumer composes couplings and tracks both marginals;
-channel transport agrees with C10's contraction surface. This is finite gluing,
-not optimal transport, a category library, or process-level coalescence.
-Sources: coupling vocabulary in `LP17` 4.2/`PW24` 7.3; construction reconciled
-with current project conditional-channel laws.
+**Exit:** qualify the exact cumulative candidate and handoff without adding
+optimal transport, category or process-coupling scope. Sources: coupling
+vocabulary in `LP17` 4.2/`PW24` 7.3; the new results are derived from existing
+project PMF and conditional-channel laws. The optional endpoint union bound
+remains consumer-triggered future work in the handoff.
 
 ### C13. Pinsker and quantitative independence
 

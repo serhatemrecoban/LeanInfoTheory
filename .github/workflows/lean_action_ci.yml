@@ -36,7 +36,7 @@ jobs:
         with:
           auto-config: "false"
           build: "true"
-          build-args: "-KwarningAsError=true"
+          build-args: "--wfail"
           test: "false"
           lint: "false"
           use-mathlib-cache: "true"
@@ -72,7 +72,7 @@ jobs:
         with:
           auto-config: "false"
           build: "true"
-          build-args: "-KwarningAsError=true"
+          build-args: "--wfail"
           test: "false"
           lint: "false"
           use-mathlib-cache: "true"

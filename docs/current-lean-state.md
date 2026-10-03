@@ -1,6 +1,6 @@
 # Current Lean State
 
-## C11.06 cumulative qualification and maintained handoff
+## C12.04 cumulative qualification and maintained handoff
 
 C9 is complete through C9.07 by its actual private completion record at source
 checkpoint `8ee0337b20c320c384d5637de852da7f4ee09728`. The
@@ -13,35 +13,49 @@ C10 is complete through C10.07 at source checkpoint
 record. The [C10 handoff](handoffs/chunk-10.md) preserves its delivered 25-declaration
 TV API and evidence; its provisional chronology does not reopen the completed chunk.
 
-The approved [C11 plan, revision 2](plans/post-release-chunk-11.md) is active.
-C11.01--C11.05 and their reviews are complete by their source-bound private
-records, most recently `.lit-review/setup/c11-05-completion-20260926.json`.
-The conditional request selected C11.06 after verifying that closure and its
-exact final source. This final step prepares cumulative qualification and the
-[maintained C11 handoff](handoffs/chunk-11.md).
+C9, C10 and C11 are complete by their actual private records, most recently
+C11.06 at `bbead98abfd2ac94f95b615652365a65228e49c5`. Their maintained handoffs
+preserve the completed source and review history. C12.01--C12.03 and their
+reviews are also complete. The lead's conditional request selected C12.04 after
+verification of C12.03's closure and exact final source.
 
-The reviewed mathematical candidate provides ten public coupling declarations:
-the generic interface and elementary witnesses, the coupling inequality, and an
-actual common-mass witness with exact marginals and disagreement equal to TV.
-Private consumers check attained optimality, the full edge matrix, Fano for the
-same witness and its coordinate swap, and independent-product measure semantics.
-Current coverage is 638 documented declarations in 33 supported owners, with
-94 reviewed simp declarations and 92 facade aliases. Generated references record
-52 modules, 110 local edges, 5 root-reachable and 47 separate-import modules,
-and 753 indexed declarations (752 documented and one example-only instance).
+The approved [C12 revision-2 plan](plans/post-release-chunk-12.md) adds four
+public theorems: `PMF.IsCoupling.map`, `PMF.IsCoupling.bind`,
+`PMF.channelExtension_eq_iff_eq_on_support`, and
+`Shannon.exists_isMarkovChain_with_marginals`. Transport is type-generic and
+requires channel-row marginals only on the supplied joint law's support.
+The extension theorem characterizes equality of whole triple laws by agreement
+on the middle support. Gluing retains both prescribed pair laws and Markov
+structure, with only the final alphabet finite; witness selection stays private.
 
-C11.06 preserves the reviewed Lean source and public contracts.
-The lead explicitly authorized the exact local checkpoint and necessary
-C11.06-only amendments. Initial checkpoint
-`2147dd3449af620f41d9bed8d37c5be8252f20e8` passed the clean complete routine
-suite and real two-pass current file-mode API-doc gate; the
-[maintained C11 handoff](handoffs/chunk-11.md) identifies original results and the
-actual Coupling-page inspection. Any amended candidate requires renewed complete
-routine validation and exact API-doc applicability. C11.06's source-bound private
-records establish the fresh all-17-criterion review, original-report
-reconciliation, final validation and review applicability, final capture and
-closure. This maintained chronology does not itself certify completion.
-C12--C24 remain proposed and unselected.
+The two private consumer owners cover heterogeneous and degenerate alphabets,
+genuinely incorrect unsupported channel rows, different positive conditional
+rows, arbitrary null-row changes and endpoint marginals of the same public
+gluing witness. Quantitative consumers compute the weighted disagreement of
+lifted maximal couplings and recover C10 contraction with guarded ENNReal-to-Real
+conversion. The fair/point-mass/fair regression proves both adjacent couplings
+maximal but their Markov gluing has endpoint disagreement `1/2`, strictly above
+endpoint TV and diagonal disagreement, both zero.
+
+Current coverage is 642 documented declarations in 34 supported owners, with
+94 reviewed simp declarations and 92 root exports. Generated references record
+55 modules, 117 local edges, 5 root-reachable and 50 separate-import modules,
+and 757 indexed declarations (756 documented and one example-only instance).
+The [C12 handoff](handoffs/chunk-12.md) records exact contracts, imports,
+source adaptations, earlier original reviews and remaining-work triggers.
+
+The lead explicitly authorized the exact 35-file local checkpoint, a separate
+clean validation checkout and necessary C12.04-only corrections and final-record
+amendments. Initial checkpoint `44d300c97d86b1fc0f40e9c70eb33a16bbfe3abe`
+passed the complete routine suite in the separate clean checkout. Corrected
+focused/static checks and both actual current file-mode API-doc passes with
+inspection of all four new declarations also passed. The original checkout
+preserves the unrelated website notes outside the checkpoint. The source-bound
+C12.04 records must establish final amended-candidate validation, exact API-doc
+applicability, fresh all-13-criterion review, reconciliation and closure. This
+chronology does not certify those later outcomes. No push, publication, pin change
+or C13--C24 work is authorized.
+The unrelated website notes remain outside the candidate.
 
 `Probability.TotalVariation` imports only `Probability.Finite` and
 `Mathlib.Tactic.Linarith`. The full Shannon umbrella retains this import and
@@ -61,7 +75,8 @@ to the TV owner or either mathematical umbrella. The lightweight root retains
 its five-module closure; the frozen release retains 601 declarations in 31 modules.
 
 `Probability.Coupling` imports only `Probability.FiniteChannel` and
-`Probability.TotalVariation`. Its ten declarations include the generic
+`Probability.TotalVariation`. Its twelve declarations include coordinate and
+support-aware channel transport alongside the generic
 interface, elementary witnesses, coupling inequality, actual common-mass
 constructor, exact marginals and ENNReal/Real disagreement formulas. No instances,
 aliases or simp attributes are added. `Examples.Coupling` imports only that owner
@@ -80,7 +95,7 @@ product-measure bridges under their own measurable-space assumptions. The new
 consumer joins only Examples; no public theorem, alias, simp attribute or heavy
 mathematical-owner import is added. See the
 [C11 implementation notes](plans/post-release-chunk-11-notes.md) and source-bound
-private records for completed C11.05 validation and review. C11.06 now owns
+private records for completed C11 validation and review. C12.04 owns current
 cumulative qualification; its handoff records remaining-work owners and triggers.
 
 ## `v0.1.0` released state

@@ -70,16 +70,18 @@ C10 is complete through C10.07 at source checkpoint
 record. The [C10 handoff](handoffs/chunk-10.md) preserves its delivered 25-declaration
 TV API and evidence; its provisional chronology does not reopen the completed chunk.
 
-The approved [C11 plan, revision 2](plans/post-release-chunk-11.md) is active.
+The approved [C11 plan, revision 2](plans/post-release-chunk-11.md) is complete
+through C11.06 by its private closure at `bbead98`. The following paragraphs
+retain its checkpoint and validation history.
 C11.01--C11.05 and their reviews are complete by their private records, most
 recently `.lit-review/setup/c11-05-completion-20260926.json`. The completed
 predecessor and its exact source were verified before selecting C11.06 with review.
 The cumulative candidate retains the ten public coupling declarations and both
 private consumer owners, including the actual maximal witness and its swap in
 Fano with exact TV error and independent-product measure interoperability.
-The current generated supported surface remains 638 documented declarations in
-33 owners, with 94 reviewed simp declarations and 92 facade aliases. The inventory
-records 52 modules, 110 local edges, 5 root-reachable and 47 separate-import
+The C11 cumulative candidate recorded 638 documented declarations in
+33 owners, with 94 reviewed simp declarations and 92 facade aliases. Its baseline inventory
+recorded 52 modules, 110 local edges, 5 root-reachable and 47 separate-import
 modules, with 753 indexed declarations (752 documented and one example-only instance).
 The lead explicitly authorized the exact local checkpoint and necessary
 C11.06-only amendments. Initial checkpoint
@@ -91,8 +93,14 @@ routine validation and exact API-doc applicability. C11.06's source-bound privat
 records establish the fresh all-17-criterion review, original-report
 reconciliation, final validation and review applicability, final capture and
 closure. This maintained chronology does not itself certify completion.
-C12--C24 remain proposed and unselected.
-The handoff records delivered contracts, prior evidence and C12/C14 prerequisites.
+C12.01--C12.03 and their review processes are complete by their verified
+private records. The lead selected C12.04 after its predecessor condition and
+exact source comparison passed. Its authorized initial checkpoint `44d300c`
+passed the complete routine suite in a separate clean checkout; current two-pass
+API documentation also passed. Final candidate validation, fresh all-13 review,
+reconciliation and closure remain subject to C12.04's private records. The
+[C12 handoff](handoffs/chunk-12.md) records delivered contracts, evidence and
+remaining-work owners. C13--C24 remain unselected.
 The cumulative step adds no mathematical API or continuity result.
 
 **[Current] `v0.1.0` release and maintenance.** The fulfilled release contract
@@ -180,7 +188,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Task | Read next |
 | --- | --- |
-| Post-release mathematics | The approved [C11 plan](plans/post-release-chunk-11.md), [reference register](references.md), Sections 3, 7, 11--16 and actual Lean dependencies; C9 and C10 are complete by their private records and maintained handoffs; C11.01--C11.05 are complete with review; only C11.06 cumulative closeout is selected, with its required gates, fresh review and exact completion status to be read from the source-bound private records |
+| Post-release mathematics | The approved [C12 plan](plans/post-release-chunk-12.md), [C12 notes](plans/post-release-chunk-12-notes.md), [reference register](references.md), Sections 3, 7, 11--16 and actual Lean dependencies; C9--C11 are complete by their private records; C12.01--C12.03 are complete and C12.04 cumulative qualification is selected; consult the [C12 handoff](handoffs/chunk-12.md) and private execution records |
 | Chunk 8 review or later-phase intake | The completed Chunk 8 plan; Sections 3, 6-9, 11-14, and 16; the three Chunk 8 mathematical owners, two maintained example owners, semantic/examples aggregates, and current Future Work Notes 9, 14-18, and 24 |
 | Review of an existing Lean theorem | Sections 3, 7, 9, and 16; the owning source module and its direct imports |
 | API or module review | Sections 7, 9, 10, 11, and Future Work Notes 2-4, 14-16, 18, and 26 |
@@ -193,12 +201,12 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-09-26 |
+| Last updated | 2026-10-03 |
 | Recorded pre-C9 mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the released `v0.1.0` source is exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f` |
 | Repository transition state | `v0.1.0` is published from immutable tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` and archived as Zenodo record `22229599`. The evolving default branch carries the current project pages and DOI metadata, while maintenance staging preserves `/docs/v0.1.0/` from exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`; the tag, Release, archive, released Lean source, and frozen public API remain unchanged |
 | Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
 | mathlib baseline | `v0.1.0` uses input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474` |
-| Source-snapshot phase | Post-release `v0.1.x` development; C9 and C10 complete by their actual private records; detailed C11 revision 2 approved, C11.01--C11.05 complete with review; C11.06 cumulative closeout selected with unchanged Lean/public API; explicitly authorized initial checkpoint and successful clean routine/two-pass API-doc checks; amended-candidate validation, fresh all-17 review, reconciliation and exact closure established by private records; consult the maintained C11 handoff and private records; C12--C24 proposed and unselected |
+| Source-snapshot phase | Post-release `v0.1.x`; C9--C11 complete, most recently C11 at `bbead98`; C12 revision 2 approved, C12.01--C12.03 complete with review, C12.04 cumulative qualification selected; exact validation, review and closure established by private records; C13--C24 unselected |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -518,6 +526,27 @@ C11.06 owns cumulative qualification; its handoff records the initial successful
 gates, while source-bound private records establish final validation, fresh
 review, reconciliation and closure.
 
+C12.01 adds coordinate-map transport and supplied-channel lifting through
+`PMF.IsCoupling.map` and `PMF.IsCoupling.bind`, without finite or measurable
+assumptions. Lifting uses the joint support, which may be smaller than the
+product of marginal supports. Its private minimal-import consumer checks this
+distinction with a swapped pure row whose two marginals are wrong at an unused
+pair, while the lifted joint remains the same fair diagonal law.
+
+C12.02 adds type-generic whole-extension equality exactly when channels agree
+on the second marginal's support. The separate semantic Gluing owner extends
+two pair laws with a common middle marginal into a Markov triple with both
+exact pair laws, requiring only `[Finite gamma]`. Its private consumer obtains
+the endpoint coupling from that same witness and tests distinct positive rows
+and whole-triple invariance under changing a null fallback.
+
+C12.03's private consumers lift actual maximal input and row couplings, identify
+the lifted disagreement with a weighted sum of row TV distances, and prove the
+stochastic contraction chain with guarded ENNReal-to-Real conversions. The
+fair/pure/fair gluing regression proves both adjacent couplings maximal, then
+computes independent endpoints of that same Markov triple. Its disagreement is
+one half, strictly above both endpoint TV and diagonal-coupling disagreement.
+
 ### Finite Shannon layer
 
 **[Current]** Implemented over finite PMFs and finite-valued pushforwards:
@@ -725,16 +754,16 @@ claim a general measure-theoretic formalization of the whole subject.
 | `LeanInfoTheory.Basic` | Non-stable project metadata and roadmap vocabulary | No |
 | `LeanInfoTheory.Probability.Finite` | Reusable PMF real-mass, finite-bind, map, support, and pure-law helpers | Yes |
 | `LeanInfoTheory.Probability.TotalVariation` | Half-L1 finite-PMF total variation, core laws, attained events, overlap/residual identities, disjoint support, sharp bounded tests and map/channel contraction, in `PMF` | No |
-| `LeanInfoTheory.Probability.Coupling` | Generic coupling interface, finite coupling inequality and actual common-mass constructor with exact marginals and disagreement, in `PMF` | No |
+| `LeanInfoTheory.Probability.Coupling` | Generic coupling interface, support-aware map/channel transport, finite coupling inequality and actual maximal constructor, in `PMF` | No |
 | `LeanInfoTheory.Shannon.Entropy` | Entropy, entropy of pushforwards, joint entropy, zero and relabeling facts | Yes, through `InformationMeasures` |
 | `LeanInfoTheory.Shannon.InfoMeasures` | Marginals, conditional entropy, MI, CMI, random-variable forms, core rewrites and auxiliary-variable decomposition | Yes, through `InformationMeasures` |
 | `LeanInfoTheory.InformationMeasures` | Explicit convenience re-export from `Shannon` into `LeanInfoTheory` | Yes |
 | `LeanInfoTheory` | Lightweight public aggregate only | Root |
 | `LeanInfoTheory.Shannon` | Import-only complete supported mathematical umbrella | No; subsumes the root |
 
-The current generated cumulative C11 inventory contains 52 modules, 110 local import
-edges, 5 root-reachable modules, 47 separate-import modules, and 753 indexed
-declarations (752 documented plus one example-only instance). The root directly
+The current generated cumulative C12 inventory contains 55 modules, 117 local import
+edges, 5 root-reachable modules, 50 separate-import modules, and 757 indexed
+declarations (756 documented plus one example-only instance). The root directly
 imports exactly `Probability.Finite` and `InformationMeasures`.
 
 `Probability.TotalVariation` imports only `Probability.Finite` and
@@ -755,7 +784,7 @@ to the TV owner or either mathematical umbrella. The lightweight root retains
 its five-module closure; the frozen release retains 601 declarations in 31 modules.
 
 `Probability.Coupling` directly imports only `Probability.FiniteChannel` and
-`Probability.TotalVariation`. Its ten declarations add no aliases, instances
+`Probability.TotalVariation`. Its twelve declarations add no aliases, instances
 or simp attributes. The constructor machinery, agreement/complement proofs,
 endpoint identities and sparse atom checks remain private. `Examples.Coupling`
 imports only that owner and consumes its public constructor, marginals and
@@ -765,18 +794,20 @@ exact-event formulas without unfolding it. The separate private
 aggregate. It consumes both marginal orientations, Fano and measure-product
 semantics. The root retains its five-module closure.
 
-The current generated supported closure remains 638 documented public declarations:
-569 theorems, 59 definitions, 9 abbreviations and 1 named instance. It excludes
-all 19 non-stable development, example and reference anchors; C11.05 adds only
-private consumers. C11.06 retains this Lean/public API candidate while qualifying
-the cumulative source and documentation. The current manifest includes C9's two approved helpers, C10.01's seven declarations and
+The current generated supported closure contains 642 documented public declarations:
+573 theorems, 59 definitions, 9 abbreviations and 1 named instance. It excludes
+all 21 non-stable development, example and reference modules. C12.04 retains
+this mathematical surface while qualifying the cumulative source and documentation. The current manifest includes C9's two approved helpers, C10.01's seven declarations and
 C10.02's six event theorems, C10.03's five overlap/residual theorems and
 C10.04's four bounded-test theorems, C10.05's three processing theorems and
 C11.01's coupling predicate and four elementary theorems, C11.02's coupling
 inequality, C11.03's constructor and exact-marginal theorem, and C11.04's two
-exact-disagreement theorems.
+exact-disagreement theorems. C12 adds two coupling-transport theorems, the
+whole-extension support iff and one semantic gluing existence theorem.
+`Examples.CouplingTransport` imports only Coupling; `Examples.CouplingGluing`
+imports Coupling and Gluing. Both stay outside the mathematical umbrellas.
 The [growth approval policy](compatibility/current-api-policy.json) records the
-new TV and coupling owners' direct imports and the full umbrella additions against the lead's
+TV, Coupling and Gluing owners' direct imports and approved aggregate additions against the lead's
 approved plan and step request. Generation does not supply approval.
 The historical [contract](v0.1-public-api.md), [frozen manifest](v0.1-public-api.json)
 and [structural type artifact](compatibility/README.md) remain unchanged.
@@ -805,6 +836,7 @@ and [structural type artifact](compatibility/README.md) remain unchanged.
 | `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence` | Dependent-family mutual independence, restriction/pair laws, and n-way entropy equality characterization |
 | `LeanInfoTheory.Shannon.SemanticBridge.Independence` | PMF-first ordinary/conditional independence, arbitrary-type deterministic postprocessing, zero MI/CMI, and entropy equality cases |
 | `LeanInfoTheory.Shannon.SemanticBridge.Markov` | Markov predicates, total conditional channel, factorization, MI DPI |
+| `LeanInfoTheory.Shannon.SemanticBridge.Gluing` | Existence of a Markov triple with prescribed pair marginals; only the final alphabet finite; imports Markov |
 | `LeanInfoTheory.Shannon.SemanticBridge.Sufficiency` | Fixed-prior and family sufficiency core, directly importing `Markov` |
 | `LeanInfoTheory.Shannon.SemanticBridge.DataProcessing` | PMF-kernel bridge, posterior KL decomposition, KL DPI, entropy growth |
 | `LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL` | Downstream exact-recovery and KL equality integration |
@@ -1239,7 +1271,53 @@ certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
 
-### C11.06 cumulative validation, fresh review and maintained handoff
+### C12.04 cumulative qualification and handoff
+
+C9, C10 and C11 are complete by their actual private records, most recently
+C11.06 at `bbead98abfd2ac94f95b615652365a65228e49c5`. Their maintained handoffs
+preserve the completed source and review history. C12.01--C12.03 and their
+reviews are also complete. The lead's conditional request selected C12.04 after
+verification of C12.03's closure and exact final source.
+
+The approved [C12 revision-2 plan](plans/post-release-chunk-12.md) adds four
+public theorems: `PMF.IsCoupling.map`, `PMF.IsCoupling.bind`,
+`PMF.channelExtension_eq_iff_eq_on_support`, and
+`Shannon.exists_isMarkovChain_with_marginals`. Transport is type-generic and
+requires channel-row marginals only on the supplied joint law's support.
+The extension theorem characterizes equality of whole triple laws by agreement
+on the middle support. Gluing retains both prescribed pair laws and Markov
+structure, with only the final alphabet finite; witness selection stays private.
+
+The two private consumer owners cover heterogeneous and degenerate alphabets,
+genuinely incorrect unsupported channel rows, different positive conditional
+rows, arbitrary null-row changes and endpoint marginals of the same public
+gluing witness. Quantitative consumers compute the weighted disagreement of
+lifted maximal couplings and recover C10 contraction with guarded ENNReal-to-Real
+conversion. The fair/point-mass/fair regression proves both adjacent couplings
+maximal but their Markov gluing has endpoint disagreement `1/2`, strictly above
+endpoint TV and diagonal disagreement, both zero.
+
+Current coverage is 642 documented declarations in 34 supported owners, with
+94 reviewed simp declarations and 92 root exports. Generated references record
+55 modules, 117 local edges, 5 root-reachable and 50 separate-import modules,
+and 757 indexed declarations (756 documented and one example-only instance).
+The [C12 handoff](handoffs/chunk-12.md) records exact contracts, imports,
+source adaptations, earlier original reviews and remaining-work triggers.
+
+The lead explicitly authorized the exact 35-file local checkpoint, a separate
+clean validation checkout and necessary C12.04-only corrections and final-record
+amendments. Initial checkpoint `44d300c97d86b1fc0f40e9c70eb33a16bbfe3abe`
+passed the complete routine suite in the separate clean checkout. Corrected
+focused/static checks and both actual current file-mode API-doc passes with
+inspection of all four new declarations also passed. The original checkout
+preserves the unrelated website notes outside the checkpoint. The source-bound
+C12.04 records must establish final amended-candidate validation, exact API-doc
+applicability, fresh all-13-criterion review, reconciliation and closure. This
+chronology does not certify those later outcomes. No push, publication, pin change
+or C13--C24 work is authorized.
+The unrelated website notes remain outside the candidate.
+
+### Completed C11.06 validation and handoff history
 
 C9 is complete through C9.07 by its actual private completion record at source
 checkpoint `8ee0337b20c320c384d5637de852da7f4ee09728`. The
@@ -1252,16 +1330,18 @@ C10 is complete through C10.07 at source checkpoint
 record. The [C10 handoff](handoffs/chunk-10.md) preserves its delivered 25-declaration
 TV API and evidence; its provisional chronology does not reopen the completed chunk.
 
-The approved [C11 plan, revision 2](plans/post-release-chunk-11.md) is active.
+The approved [C11 plan, revision 2](plans/post-release-chunk-11.md) is complete
+through C11.06 by its private closure at `bbead98`. The following paragraphs
+retain its checkpoint and validation history.
 C11.01--C11.05 and their reviews are complete by their private records, most
 recently `.lit-review/setup/c11-05-completion-20260926.json`. The completed
 predecessor and its exact source were verified before selecting C11.06 with review.
 The cumulative candidate retains the ten public coupling declarations and both
 private consumer owners, including the actual maximal witness and its swap in
 Fano with exact TV error and independent-product measure interoperability.
-The current generated supported surface remains 638 documented declarations in
-33 owners, with 94 reviewed simp declarations and 92 facade aliases. The inventory
-records 52 modules, 110 local edges, 5 root-reachable and 47 separate-import
+The C11 cumulative candidate recorded 638 documented declarations in
+33 owners, with 94 reviewed simp declarations and 92 facade aliases. Its baseline inventory
+recorded 52 modules, 110 local edges, 5 root-reachable and 47 separate-import
 modules, with 753 indexed declarations (752 documented and one example-only instance).
 The lead explicitly authorized the exact local checkpoint and necessary
 C11.06-only amendments. Initial checkpoint
@@ -1273,8 +1353,14 @@ routine validation and exact API-doc applicability. C11.06's source-bound privat
 records establish the fresh all-17-criterion review, original-report
 reconciliation, final validation and review applicability, final capture and
 closure. This maintained chronology does not itself certify completion.
-C12--C24 remain proposed and unselected.
-The handoff records delivered contracts, prior evidence and C12/C14 prerequisites.
+C12.01--C12.03 and their review processes are complete by their verified
+private records. The lead selected C12.04 after its predecessor condition and
+exact source comparison passed. Its authorized initial checkpoint `44d300c`
+passed the complete routine suite in a separate clean checkout; current two-pass
+API documentation also passed. Final candidate validation, fresh all-13 review,
+reconciliation and closure remain subject to C12.04's private records. The
+[C12 handoff](handoffs/chunk-12.md) records delivered contracts, evidence and
+remaining-work owners. C13--C24 remain unselected.
 The cumulative step adds no mathematical API or continuity result.
 
 ### Public visibility pass
@@ -1331,10 +1417,11 @@ C10 is complete at `37b4ba90d1ab321645f80cacef475f10a3a6ba43`, with evidence
 in its private completion record and [handoff](handoffs/chunk-10.md). The lead
 approved C11 revision 2; C11.01--C11.05 are complete with review. The next
 request selected C11.06 after its predecessor closure and source were verified.
-The actual C11 task uses its own persistent reviewer. A fresh assessment of all
-17 cumulative criteria and explicit reconciliation remain required; earlier step
-reviews do not replace them. C12--C24 remain proposed and unselected; local review
-closure does not establish publication or downstream adoption.
+The actual C11 task completed its cumulative review and reconciliation through
+its own persistent reviewer and private records. C12 uses its own bound reviewer
+for the approved revision-2 plan, with C12.01--C12.03 complete and C12.04 selected.
+C13--C24 remain unselected. Local review closure establishes no publication or
+downstream adoption.
 Exact reference versions and selected sections are recorded in
 [`references.md`](references.md); detailed chunk assignments are not duplicated
 in this summary.
@@ -1345,7 +1432,7 @@ in this summary.
 composition boundary for the published `v0.1.0` library.** The immutable release
 source remains exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`;
 the historical DOI/website update changed no Lean source or frozen public surface.
-Current C11 development is described separately above.
+Current C12 development is described separately above.
 Step 14 fixed every legal/provenance
 and Zenodo-route decision, and the final `date-released` value is
 `2026-09-01`. The fulfilled release contract freezes Lean and mathlib at
@@ -1466,8 +1553,8 @@ The later Step 13 checkpoint amended that sequence to 18 steps for a separate
 remote-safety landing.
 
 **Project B Chunk 8 is complete through `C8.24`, checkpointed as `1eef228`,
-pushed, remotely build-validated, and deployed. Later work has a proposed
-long-term map, but no approved theorem implementation plan.**
+pushed, remotely build-validated, and deployed.** Subsequent C9--C11 work is
+complete; C12 has its own approved plan and selected cumulative closeout.
 
 Chunks 5--8 are checkpointed as `ec78829`, `7b5f0db`, `5e616d8`, and
 `1eef228`. The
@@ -1532,16 +1619,18 @@ C10 is complete through C10.07 at source checkpoint
 record. The [C10 handoff](handoffs/chunk-10.md) preserves its delivered 25-declaration
 TV API and evidence; its provisional chronology does not reopen the completed chunk.
 
-The approved [C11 plan, revision 2](plans/post-release-chunk-11.md) is active.
+The approved [C11 plan, revision 2](plans/post-release-chunk-11.md) is complete
+through C11.06 by its private closure at `bbead98`. The following paragraphs
+retain its checkpoint and validation history.
 C11.01--C11.05 and their reviews are complete by their private records, most
 recently `.lit-review/setup/c11-05-completion-20260926.json`. The completed
 predecessor and its exact source were verified before selecting C11.06 with review.
 The cumulative candidate retains the ten public coupling declarations and both
 private consumer owners, including the actual maximal witness and its swap in
 Fano with exact TV error and independent-product measure interoperability.
-The current generated supported surface remains 638 documented declarations in
-33 owners, with 94 reviewed simp declarations and 92 facade aliases. The inventory
-records 52 modules, 110 local edges, 5 root-reachable and 47 separate-import
+The C11 cumulative candidate recorded 638 documented declarations in
+33 owners, with 94 reviewed simp declarations and 92 facade aliases. Its baseline inventory
+recorded 52 modules, 110 local edges, 5 root-reachable and 47 separate-import
 modules, with 753 indexed declarations (752 documented and one example-only instance).
 The lead explicitly authorized the exact local checkpoint and necessary
 C11.06-only amendments. Initial checkpoint
@@ -1553,8 +1642,14 @@ routine validation and exact API-doc applicability. C11.06's source-bound privat
 records establish the fresh all-17-criterion review, original-report
 reconciliation, final validation and review applicability, final capture and
 closure. This maintained chronology does not itself certify completion.
-C12--C24 remain proposed and unselected.
-The handoff records delivered contracts, prior evidence and C12/C14 prerequisites.
+C12.01--C12.03 and their review processes are complete by their verified
+private records. The lead selected C12.04 after its predecessor condition and
+exact source comparison passed. Its authorized initial checkpoint `44d300c`
+passed the complete routine suite in a separate clean checkout; current two-pass
+API documentation also passed. Final candidate validation, fresh all-13 review,
+reconciliation and closure remain subject to C12.04's private records. The
+[C12 handoff](handoffs/chunk-12.md) records delivered contracts, evidence and
+remaining-work owners. C13--C24 remain unselected.
 The cumulative step adds no mathematical API or continuity result.
 
 ## 13. Future-Work Register
@@ -1571,7 +1666,7 @@ again.
 | Note | Work |
 | --- | --- |
 | Unnumbered | **Chunk 8 is complete through `C8.24` and checkpointed as `1eef228`.** Its 18-declaration API, generated references, complete validation evidence, exact-SHA Lean workflow, and Pages deployment pass; any later theorem phase requires a separate decision. |
-| Unnumbered | **C11.06 cumulative closeout:** C10 and C11.01--C11.05 are complete by their private records; the approved [C11 plan](plans/post-release-chunk-11.md) and current request select only C11.06 with review. The [maintained handoff](handoffs/chunk-11.md) records the unchanged public contracts, private consumers, prior evidence and remaining owners. The explicitly authorized initial checkpoint passed the clean routine suite and real two-pass API-doc gate. Source-bound private records establish amended-candidate validation, fresh all-17-criterion review, reconciliation and closure. C12--C24 remain proposed and unselected. Standing notes are not closed or renumbered. |
+| Unnumbered | **C12.04 cumulative qualification selected:** C11 is complete at `bbead98`, and C12.01--C12.03 are complete with review. The [C12 handoff](handoffs/chunk-12.md) records the four public contracts, private consumers, source and review evidence, and remaining-work owners/triggers. Clean routine validation, current API docs, fresh all-13 review and private closure determine completion. C13--C24 remain unselected; standing notes retain their scope. |
 | 29 | **Finite-Fano phase checkpointed.** Commit `ec78829` completes the approved phase; its evidence-based Fano follow-ups remain open and deferred. |
 
 Note 29 also preserves proof-pressure triggers from `C5.08`-`C5.11` and
@@ -1665,7 +1760,7 @@ not pending LeanInfoTheory release work.
 | 22 | Add a general real-KL zero iff under explicit `klDiv != top` only after repeated branch-elimination proofs. |
 | 23 | Generalize uniform-reference KL to infinite ambient alphabets only when finite-support consumers need it. |
 | 24 | Extract strict-Jensen equality infrastructure only after another extremization proof repeats it. |
-| 30 | **Partially discharged.** `PMF.channelJoint_eq_iff_eq_on_support` was promoted; broader weighted null-fiber laws or opposite reconstruction orientation still require repeated use. |
+| 30 | **Partially discharged.** `PMF.channelJoint_eq_iff_eq_on_support` and C12's `PMF.channelExtension_eq_iff_eq_on_support` handle induced joint and whole triple laws. Broader weighted null-fiber laws and opposite reconstruction orientation still require repeated use. |
 | 31 | Add a product-channel constructor only after a second independent-channel consumer. |
 | 32 | Add subtractive or reversed Markov information-loss forms only after quantitative proofs require them. |
 | 33 | **Partially discharged.** The conditional-entropy DPI equality branches are complete; strict-loss variants remain consumer-deferred. |
@@ -2595,9 +2690,9 @@ The separate, potentially multi-hour signature-documentation gate is:
 python scripts/validate_release.py api-docs
 ```
 
-Run it for an explicitly selected API-documentation milestone, including C11.06,
+Run it for an explicitly selected API-documentation milestone, including C12.04,
 or the approved manual release gate, not as an ordinary push/pull-request check.
-C11.06 requires a real two-pass current file-mode result on its authorized
+C12.04 requires a real two-pass current file-mode result on its exact
 candidate; set the pinned Windows `LEANINFOTHEORY_ZIG` prerequisite. The static command above
 checks the immutable documentation-tool pins and configuration without
 regenerating the 624.6-MiB output.
@@ -2618,10 +2713,10 @@ artifacts byte-for-byte on the second pass and rechecked counts, source links,
 unique anchors, module summaries, aggregate imports, root reachability, private
 helper exclusion, and website consistency.
 
-Steps 4--7 froze the historical release surface. Current generated cumulative C11 totals
-are 52 modules, 110 local edges, 5 root-reachable modules, 47 separate-import
-modules and 753 declarations (752 documented). The supported surface remains
-33 modules, 638 documented declarations, 94 reviewed simp declarations and
+Steps 4--7 froze the historical release surface. Current generated cumulative C12 totals
+are 55 modules, 117 local edges, 5 root-reachable modules, 50 separate-import
+modules and 757 declarations (756 documented). The supported surface contains
+34 modules, 642 documented declarations, 94 reviewed simp declarations and
 92 facade exports. The frozen release retains 601 declarations.
 The source index is distinct from signature-bearing doc-gen. C10's completed
 routine/API-doc checks and reconciled cumulative review remain evidence for
@@ -2631,6 +2726,15 @@ evidence. C11.06's initial clean routine suite and real two-pass current API-doc
 gate passed on the authorized checkpoint. The [C11 handoff](handoffs/chunk-11.md)
 preserves original results; source-bound private records establish applicability
 to amendments, fresh all-17-criterion review, reconciliation and exact completion.
+C12.01--C12.03 have completed source-bound reviews and validation records.
+The C12.03 full trust audit covered 55 modules and 1,746 local constants, using
+only `propext`, `Classical.choice` and `Quot.sound`. C12.04's corrected
+focused/static checks and actual current two-pass API docs with declaration
+inspection passed. The authorized initial checkpoint `44d300c` also passed the
+complete routine suite in the separate clean validation checkout. Final amended
+candidate validation, exact documentation applicability and the fresh cumulative
+review remain governed by source-bound records. Its [handoff](handoffs/chunk-12.md)
+distinguishes prior and current evidence and records the warning-enforcement audit.
 Deployment status is checked from the Pages workflow after push rather than
 inferred from local content. The public site is:
 `https://serhatemrecoban.github.io/LeanInfoTheory/`.

@@ -13,7 +13,7 @@
     "release_commit": "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f",
     "release_tag": "v0.1.0"
   },
-  "declaration_count": 638,
+  "declaration_count": 642,
   "declarations": [
     {
       "attributes": [],
@@ -1334,6 +1334,12 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.EntropyBounds",
       "name": "LeanInfoTheory.Shannon.entropy_uniformOfFintype"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.Gluing",
+      "name": "LeanInfoTheory.Shannon.exists_isMarkovChain_with_marginals"
     },
     {
       "attributes": [],
@@ -3523,6 +3529,18 @@
       "attributes": [],
       "kind": "theorem",
       "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.IsCoupling.bind"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Coupling",
+      "name": "PMF.IsCoupling.map"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Coupling",
       "name": "PMF.IsCoupling.map_swap"
     },
     {
@@ -3666,6 +3684,12 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Probability.FiniteChannel",
       "name": "PMF.channelExtension_deterministicChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteChannel",
+      "name": "PMF.channelExtension_eq_iff_eq_on_support"
     },
     {
       "attributes": [
@@ -4032,25 +4056,25 @@
       "name": "PMF.two_mul_totalVariation_isGreatest_bounded"
     }
   ],
-  "documented_declaration_count": 638,
+  "documented_declaration_count": 642,
   "full_umbrella": "LeanInfoTheory.Shannon",
   "kind_counts": {
     "abbrev": 9,
     "def": 59,
     "instance": 1,
-    "theorem": 569
+    "theorem": 573
   },
   "lightweight_root": "LeanInfoTheory",
   "lightweight_root_direct_imports": [
     "LeanInfoTheory.InformationMeasures",
     "LeanInfoTheory.Probability.Finite"
   ],
-  "local_module_count": 52,
+  "local_module_count": 55,
   "namespace_counts": {
-    "LeanInfoTheory.Shannon": 559,
-    "PMF": 79
+    "LeanInfoTheory.Shannon": 560,
+    "PMF": 82
   },
-  "non_stable_module_count": 19,
+  "non_stable_module_count": 21,
   "non_stable_modules": [
     "LeanInfoTheory.Basic",
     "LeanInfoTheory.Examples",
@@ -4059,6 +4083,8 @@
     "LeanInfoTheory.Examples.Convexity",
     "LeanInfoTheory.Examples.Coupling",
     "LeanInfoTheory.Examples.CouplingFano",
+    "LeanInfoTheory.Examples.CouplingGluing",
+    "LeanInfoTheory.Examples.CouplingTransport",
     "LeanInfoTheory.Examples.Fano",
     "LeanInfoTheory.Examples.FiniteFamily",
     "LeanInfoTheory.Examples.IndependenceProcessing",
@@ -4451,7 +4477,7 @@
     "Declaration types and assumptions remain governed by the Lean source and signature-bearing API documentation."
   ],
   "simp_declaration_count": 94,
-  "supported_module_count": 33,
+  "supported_module_count": 34,
   "supported_modules": [
     "LeanInfoTheory",
     "LeanInfoTheory.InformationMeasures",
@@ -4478,6 +4504,7 @@
     "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
     "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
     "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+    "LeanInfoTheory.Shannon.SemanticBridge.Gluing",
     "LeanInfoTheory.Shannon.SemanticBridge.Independence",
     "LeanInfoTheory.Shannon.SemanticBridge.KL",
     "LeanInfoTheory.Shannon.SemanticBridge.Markov",
