@@ -5,6 +5,238 @@ detail. It is not meant to list every small command or proof attempt. It should
 help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
+## C14.04 initial checkpoint qualification, 2026-10-08
+
+The lead explicitly approved the prepared 23-file local checkpoint, necessary
+C14.04-only amendments and reuse of the existing clean validation checkout.
+Initial checkpoint `ca079e2d11ecccffbe2b91fe1848be5bad3541f2` passed the complete
+maintained routine suite in 3256.611 seconds. The actual two-pass current
+API-doc gate and six-declaration inspection also passed. Existing incremental
+caches were used. The [handoff](handoffs/chunk-14.md) records the source identities,
+protected website-note exclusion, two historical CRLF/LF distinctions and
+separate primary API-attestation limits. Earlier failures remain preserved.
+
+This records initial-checkpoint qualification, not completed cumulative review
+or a later amendment's success. Every amended candidate requires renewed full
+routine validation and exact API-doc applicability. All-twelve-criterion review,
+reconciliation, final-source applicability and completion remain governed by
+the private source-bound records. No push, publication, dependency change or
+C15 work follows from this local checkpoint approval.
+
+## C14.04 cumulative qualification preparation, 2026-10-08 (historical)
+
+The following entry preserves preparation before checkpoint authorization;
+the later qualification entry above supersedes its pending-authority wording.
+
+C14.01--C14.03 and their reviews are complete. The parent verified all 219
+entries of Step 3's exact final inventory before accepting the conditional
+Step 4 request. Step 3's private completion record resolves its candidate
+wording below. Its full trust, focused, signature and static gates passed;
+all three original reviewer assessments were satisfied without findings.
+
+The [C14 handoff](handoffs/chunk-14.md) records the six delivered interfaces,
+permanent consumers, exact-versus-budget distinction, per-alphabet caps,
+source/validation/review provenance and remaining-work owners and triggers.
+Canonical current-state documents and module/API guidance are reconciled.
+No Lean declaration, mathematical contract or dependency is changed in Step 4.
+
+<!-- c14-04-validation:start -->
+Fresh six-target warning-as-error compilation passed (3.836s),
+as did the maintained documentation contract with five README and four website
+guide examples (157.728s), and static/generated/site validation
+(12.218s). Final non-mutating static validation is required after these
+result-recording prose edits; its exact result is retained privately.
+The actual source-stable current file-mode API-documentation gate passed
+(731.686s total; build/check passes 160.9s and 22.0s).
+All six rendered declaration signatures, assumptions, useful docstrings, owner
+source links and the full Shannon umbrella were inspected. The v2 source,
+configuration and two-pass attestation are retained under
+`.lit-review/setup/c14-04-api-doc-inspection-20261008.json`; exact post-edit
+applicability is required and recorded separately. Existing reviewed Zig 0.16.0,
+pinned doc-gen dependencies and incremental caches were used, not a cold rebuild.
+
+The initial missing-Continuity-page failure is retained separately. The parent
+preserved and invalidated exactly three ignored Shannon aggregate HTML marker
+files after reproducing the stale-marker failure. That initial attempt also
+overlapped tracked prose edits and two owned EOL normalizations; its exact API
+inputs were unchanged, but it is failed evidence only. The successful rerun
+kept the entire candidate unchanged. No source, pin or validator was changed
+for the recovery. The two upstream Qq extraction warnings were replayed in
+doc-gen logs; both complete maintained semantic checks passed.
+
+The clean full routine, explicit scoped checkpoint authority, fresh independent
+review of all twelve criteria, reconciliation, final source applicability and
+private closure remain pending. Nothing is staged or committed; unrelated website
+notes remain untouched. C15--C24, push and publication remain unselected.
+<!-- c14-04-validation:end -->
+
+## C14.03 joint-law continuity candidate, 2026-10-07
+
+Verified C14.02 review closure and exact final-source applicability preceded
+acceptance of the lead's conditional Step 3 request. Two public inequalities
+now extend capped entropy budgets to conditional entropy and mutual information.
+They use existing joint/marginal entropy identities and TV projection bounds,
+independent universes and each whole-alphabet cardinality without support or
+extra budget assumptions. The focused owner retains its two direct imports.
+
+Private consumers establish the planned sparse diagonal/independent/pure laws,
+both fixed- and changing-marginal comparisons, and exact mixed-threshold values.
+They exercise generic approximation, actual marginal budget weakening, singleton
+and empty coordinates, swap orientation and arbitrary-source RV applications.
+Note 14 retains the two systematic names without aliases; Note 29's private
+helper promotion trigger is not met. No additional public helper is justified.
+
+<!-- c14-03-validation:start -->
+The strict owner build and final six-target owner/consumer/aggregate check passed.
+The exact-contract probe verified the approved independently universe-polymorphic
+signatures and permitted axioms. The maintained `trust` gate passed in
+1729.329s: all 601 retained types, 653 supported declarations in 36
+owners, 94 reviewed simp declarations, 92 root exports, and 2042 project
+constants with only `propext`, `Classical.choice` and `Quot.sound`.
+Existing incremental caches were used. Original attempts, commands, outputs
+and source hashes are retained under `.lit-review/setup/c14-03-*`.
+Final static validation, original independent review, reconciliation and
+source-bound private closure remain separate gates. The clean routine and
+two-pass API-documentation milestone remain C14.04.
+<!-- c14-03-validation:end -->
+
+The [C14 notes](plans/post-release-chunk-14-notes.md) retain proof decisions,
+development corrections and evidence limits. Earlier steps remain complete by
+their private records; this candidate awaits its own review and closure. Later
+steps, checkpoints and publication remain unselected.
+
+## C14.02 capped entropy-budget candidate, 2026-10-07
+
+After verified C14.01 closure and exact final-source applicability, the lead's
+conditional Step 2 request selected only C14.02. The focused owner adds the
+capped scalar definition, monotonicity on all nonnegative budgets and the
+entropy-budget theorem. Private q-ary normalization and entropy-range proofs
+preserve the approved assumptions and existing import boundary. Threshold
+equality uses the raw branch; larger budgets saturate, including budgets above
+one. Permanent consumers cover exact binary/ternary values, the raw-substitution
+counterexample, noninjective output-law contraction and public-monotonicity
+budget weakening across the ternary threshold.
+
+The focused owner and six maintained owner/consumer/aggregate targets passed
+with warnings treated as errors, and the parent exact-contract/axiom probe
+passed. The maintained `trust` gate passed in 2698.175s: all 601 retained
+types, 651 supported declarations in 36 owners, 94 reviewed simp declarations,
+92 root exports, and 1984 project constants with only `propext`,
+`Classical.choice` and `Quot.sound`. Existing incremental caches were used.
+Original attempts, failures, source hashes and outputs are retained under
+`.lit-review/setup/c14-02-*`. Final static validation, original independent
+review, reconciliation and private source-bound closure remain separate gates.
+The clean routine and two-pass API-documentation milestone remain C14.04.
+
+The [C14 notes](plans/post-release-chunk-14-notes.md) retain proof decisions and
+development corrections. Growth policy, generated references and canonical
+context describe the three additions; no aliases or public scalar helpers are
+introduced. Candidate prose remains subject to actual private closure. Later
+steps and any commit, push or publication remain unselected.
+
+## C14.01 exact-TV entropy candidate, 2026-10-07
+
+The lead accepted revision 2, instructed evidence-based adaptation and selected
+Step 1 with review. The execution session records that exact authority and
+baseline independently of the incomplete revision-1 PLAN admission. Only
+C14.01 is selected; the unchanged unrelated website notes remain protected.
+
+`Shannon.Continuity` adds
+`abs_entropy_sub_le_binEntropy_add_totalVariation_mul_log`, with only a finite
+alphabet and two PMFs. The proof uses the same actual maximal coupling and its
+swap, both exact identity-decoder errors, both signed entropy orientations and
+existing Fano. Four local bridges remain private. Nat subtraction precedes
+the Real cast, giving the documented singleton/empty extension of SA13 II,
+Theorem 3. Exact TV must not be replaced by an upper estimate without the
+later capped-bound argument.
+
+`Examples.Continuity` independently imports only the new owner. Required
+regressions apply the public theorem in both orders and establish exact
+zero/one TV, equal and singleton laws, impossible empty laws, pure/fair Bool
+with gap `log 2` and TV `1/2`, and pure/uniform `Fin 3` with TV `2/3`, gap
+`log 3` and exact threshold equality. The pure ternary input has zero masses.
+The full Shannon umbrella exposes the owner; the lightweight root and global
+simp set remain unchanged. Growth policy and generated references track the
+one public addition. No capped scalar definition or later-step theorem is added.
+
+Focused warning-as-error owner/consumer/aggregate validation and the exact
+signature/axiom check passed. The full trust gate passed in 6916.613s,
+including all 601 retained signatures and 1930 project constants. Original
+consumer simplification and evidence-script failures remain separately retained;
+they are not recast as successes. No semantic plan adjustment was required.
+
+The [C14 notes](plans/post-release-chunk-14-notes.md) retain the actual validation
+and review evidence. This candidate's completion remains subject to its private
+source-bound closure; the final receipt is not inserted by editing captured
+documents after F. No commit, push or publication is authorized.
+
+## C14 proposed continuity plan revision 2, 2026-10-04
+
+After read-only review and a separately supplied General Assistant report, the
+lead authorized choosing and applying the most useful suggestions. The
+[revision-2 plan](plans/post-release-chunk-14.md) preserves four steps and six
+proposed public declarations. It selects pure/uniform `Fin 3` for the nonzero
+logarithmic term and threshold, retains diagonal/product joint laws for nonzero
+MI, and adds product-versus-pure for changing marginals and mixed cap branches.
+It requires explicit branch evaluations and direct public-monotonicity use,
+spells out proposed Lean signatures, moves the specific product-cardinality
+rewrite into advisory notes, and clarifies C15's separate approval boundary.
+Additional ternary law families and speculative public scalar helpers are not
+required; the [notes](plans/post-release-chunk-14-notes.md) record each decision.
+
+The bound reviewer's original revision-1 report found no material defect and
+assessed all twelve proposed criteria as adequately specified. It is preserved,
+but the file-referencing native dispatch failed the adapter's exact-text receipt
+check, so formal admission remains incomplete. The General Assistant's supplied
+report independently recommended approval and reported successful probe reruns;
+those checks remain attributed to that report, without a fresh parent rerun.
+Neither review is implementation qualification or approval of revision 2.
+Old review records are not rewritten or rebound to the revised source.
+
+Only planning/canonical documentation changed. No production Lean, public
+policy, dependency, generated artifact or review rule changed, and the unrelated
+website notes remain preserved. Revision 2 is proposed; implementation and a
+fresh formal revision-2 review remain unselected.
+The static release validator passed in 9.653 seconds; original output is
+retained in `.lit-review/setup/c14-r2-static-20261004.json`. Read-only
+signature/formula and step-order inspection found no inconsistency. This is
+planning-document validation, not completed Lean implementation evidence.
+
+## C14 initialization and proposed continuity plan, 2026-10-04
+
+The lead authorized planning only. The actual checkout remains on `master`
+at `ebe48eaea4282b1e4f245f8f45440bc930b8df73`; the unrelated website notes
+are preserved. C13.04's actual private completion record establishes all
+four C13 steps complete. Intake compared its final F with all 217 captured
+real files and the environment: no mismatch. All nine installed dependency
+records match, and the fresh source-derived API check confirms 647 documented
+declarations in 35 owners, 94 reviewed simp declarations and 92 root exports.
+Older pre-closure C13 prose remains historical.
+
+The [proposed C14 plan](plans/post-release-chunk-14.md) has four steps:
+exact-TV entropy continuity; a capped monotone budget bound; conditional-entropy
+and MI consequences with explicit joint/marginal cardinalities; and cumulative
+qualification, fresh independent review, reconciliation and maintained handoff.
+It follows maximal coupling plus existing Fano, without Pinsker/gluing or
+C15 topology dependencies. SA13 Section II, Theorem 3 and its complete
+threshold discussion were read in the registered version and visually checked.
+
+Three disposable warning-as-error Lean probes passed: both coupling/Fano
+orientations and the exact absolute entropy bound including degeneracies;
+scalar monotonicity, threshold value and capped-budget endpoints; and
+conditional/MI algebra from assumed entropy bounds plus both actual marginal
+TV contractions. The [advisory notes](plans/post-release-chunk-14-notes.md)
+record source/output evidence, earlier failures and the distinction between
+these probes and unimplemented production contracts/consumers.
+
+The installed workflow's `inspect` and `api` commands ran from this checkout.
+The actual C14 parent bound its own persistent `/root/c14_reviewer` through
+the supported collaboration transport, requesting `gpt-6-astra` / `ultra`
+with no copied history. Original native results are retained; effective
+settings remain unknown. The reviewer is bootstrapped to wait. Formal plan
+review has not been requested, the proposal is not approved, and no C14 step,
+commit, push, publication or dependency change has begun.
+
 ## C13.04 initial clean qualification, 2026-10-03
 
 The lead authorized the exact 25-file local checkpoint, separate clean validation
@@ -10088,6 +10320,32 @@ resolution.
     add no alias. Existing source and private consumers support discoverability;
     reopen only on concrete independent consumer friction through the feedback
     register. The API maintainer owns that review; C10 inherits the standing rule.
+
+    C14.01 disposition (2026-10-07): retain
+    `abs_entropy_sub_le_binEntropy_add_totalVariation_mul_log`. Its long name
+    exposes the exact bound's terms and distinguishes it from the planned
+    upper-budget family. Add no short, symmetric or RV alias; the focused
+    private consumers establish direct use, and no independent downstream
+    search-friction report has been received. Reopen through the API maintainer
+    only on concrete repeated consumer evidence.
+
+    C14.02 disposition (2026-10-07): retain `entropyContinuityBound`,
+    `entropyContinuityBound_mono` and `abs_entropy_sub_le_entropyContinuityBound`.
+    The scalar name distinguishes a usable upper-budget bound from the exact-TV
+    expression. The generic weakening and noninjective-map consumers use the
+    public names directly; no alias, extra scalar API or simp attribute is added.
+    Reopen only on repeated independent consumer friction through the API
+    maintainer; private q-ary reuse alone does not trigger Note 29 promotion.
+
+    C14.03 disposition (2026-10-07): retain
+    `abs_condEntropy_sub_le_entropyContinuityBound` and
+    `abs_mutualInfo_sub_le_entropyContinuityBound`. Both extend the established
+    entropy-budget naming family and use its binder order. Generic, sparse,
+    singleton, swap and RV consumers apply these names directly. Add no alias,
+    public wrapper or simp attribute; no independent downstream friction has
+    been reported. The API maintainer may reopen on repeated concrete consumer
+    evidence; direct reuse of existing entropy/TV interfaces does not justify
+    new helper promotion.
 
     Post-`v0.1.0` ownership is now split deliberately rather than duplicated:
     this note remains the theorem-development naming/alias watchlist,

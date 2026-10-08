@@ -1,9 +1,9 @@
 # Post-Release Chunk Map: Quantitative and Operational Information Theory
 
-**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-03. Detailed C9--C13 revision-2 plans were separately approved; C14--C24 remain proposed.
+**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-08. Detailed C9--C14 revision-2 plans were separately approved; C15--C24 remain proposed.
 **Review follow-up:** C18/C23 clarifications accepted for this map; the 16-chunk structure is unchanged.
-**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md), [C12 plan](post-release-chunk-12.md), [C13 plan](post-release-chunk-13.md) and eligible step requests own their respective execution.
-**Execution:** C9--C12 are complete by their actual private records, most recently C12 at `492cd6e`. C13.01--C13.03 and their reviews are complete. Selected C13.04 has explicit 25-file checkpoint and Step-4-only amendment authority. Initial `17fb736a` passed the clean full routine suite; both current API-doc passes and inspection passed. The [C13 handoff](../handoffs/chunk-13.md) records evidence and limits. Amended-candidate validation, fresh all-13-criterion review, reconciliation and closure remain governed by source-bound records. C14 onward remains unselected.
+**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md), [C12 plan](post-release-chunk-12.md), [C13 plan](post-release-chunk-13.md), [C14 plan](post-release-chunk-14.md) and eligible step requests own their respective execution.
+**Execution:** C9--C13 are complete by their private records, most recently C13.04 at `ebe48eaea4282b1e4f245f8f45440bc930b8df73`. C14's [revision-2 plan](post-release-chunk-14.md) is approved; C14.01--C14.03 and their reviews are complete by `.lit-review/setup/c14-03-completion-20261007.json`. All 219 Step 3 final-source entries matched before C14.04 was selected on 2026-10-08. Current two-pass API-documentation qualification and inspection passed. The lead authorized the 23-file local checkpoint, necessary C14.04-only amendments and clean-checkout reuse; initial checkpoint `ca079e2` passed the complete routine suite. Final-candidate qualification, cumulative all-12-criterion review and closure remain subject to source-bound private records. The [C14 handoff](../handoffs/chunk-14.md) preserves contracts and evidence limits. C15--C24 remain unselected.
 **Map-intake baseline inspected:** `master` at `80ea016c7ac64bb5bd79b2f769227a3fb2ccc3b3`,
 with the existing uncommitted post-release documentation/discoverability work
 preserved. The immutable `v0.1.0` mathematical baseline remains
@@ -279,13 +279,12 @@ remains consumer-triggered future work in the handoff.
 
 ### C13. Pinsker and quantitative independence
 
-**Current execution:** the [approved detailed revision-2 plan](post-release-chunk-13.md)
-completed C13.01--C13.03 with review. Selected C13.04 has explicit checkpoint
-and amendment authority; initial `17fb736a00448ecdd0aa824fd1928713bf716f01`
-passed the full routine suite in 1975.056 seconds, and both current
-API-doc passes and inspection passed. The [handoff](../handoffs/chunk-13.md)
-records scope and identity limits. Final amended-candidate validation, fresh
-full-chunk review, reconciliation and closure remain source-bound.
+**Completed execution:** the [approved detailed revision-2 plan](post-release-chunk-13.md)
+completed through C13.04 at `ebe48eaea4282b1e4f245f8f45440bc930b8df73`, by
+its source-bound private completion record. The [handoff](../handoffs/chunk-13.md)
+retains initial checkpoint `17fb736a00448ecdd0aa824fd1928713bf716f01`, its
+1975.056-second routine validation, API-doc evidence and source-identity limits
+as history. That initial-checkpoint chronology does not reopen C13.
 
 **Delivered mathematical scope:** five theorems in the focused Pinsker owner:
 canonical `ENNReal.ofReal (2 * TV(p,q)^2) <= D(p||q)`, support-guarded Real
@@ -306,6 +305,26 @@ Pinsker, optimal joint ranges, other divergences or refined constants. Source:
 independence consequences derive from the existing MI-as-KL bridge.
 
 ### C14. Quantitative continuity of information measures
+
+**Approved revision 2; C14.04 selected (2026-10-08):** The [detailed C14 plan](post-release-chunk-14.md)
+and [advisory notes](post-release-chunk-14-notes.md) retain the ternary threshold,
+changing-marginal and mixed-branch consumers, explicit public monotonicity and
+exact declaration contracts. C14.01--C14.03 and their reviews are complete by
+private records, most recently `.lit-review/setup/c14-03-completion-20261007.json`.
+All 219 Step 3 final-source entries matched before the conditional Step 4 request
+was accepted. The focused owner contains all six planned declarations, with
+private sparse joint-law, degeneracy, swap and arbitrary-source RV consumers.
+
+C14.04 now owns cumulative qualification and the [maintained handoff](../handoffs/chunk-14.md).
+Current two-pass API-documentation qualification and inspection passed.
+The lead authorized the prepared 23-file local checkpoint, necessary C14.04-only
+amendments and clean-checkout reuse. Initial checkpoint `ca079e2` passed the
+complete routine suite; any amended candidate requires renewed qualification.
+Cumulative all-12-criterion review, reconciliation and private closure remain
+subject to source-bound records. The historical
+revision-1 PLAN admission limitation and separately attributed advisory review
+remain distinct from approved revision-2 execution. C15--C24, push, publication
+and dependency changes remain unselected.
 
 **Goal:** Convert joint-law closeness into explicit information bounds.
 

@@ -32,10 +32,10 @@
       <section aria-labelledby="metrics-heading">
         <h2 id="metrics-heading">Current Graph</h2>
         <div class="metric-grid">
-          <div class="metric-card"><strong>58</strong><span>local modules</span></div>
-          <div class="metric-card"><strong>124</strong><span>local import edges</span></div>
+          <div class="metric-card"><strong>60</strong><span>local modules</span></div>
+          <div class="metric-card"><strong>129</strong><span>local import edges</span></div>
           <div class="metric-card"><strong>5</strong><span>root-reachable modules</span></div>
-          <div class="metric-card"><strong>53</strong><span>separate-import modules</span></div>
+          <div class="metric-card"><strong>55</strong><span>separate-import modules</span></div>
         </div>
       </section>
 
@@ -53,9 +53,9 @@
           <tbody>
 <tr><td>Root import</td><td>1</td><td>1</td><td>0</td></tr>
 <tr><td>Shared foundation</td><td>5</td><td>1</td><td>4</td></tr>
-<tr><td>Finite Shannon layer</td><td>11</td><td>3</td><td>8</td></tr>
+<tr><td>Finite Shannon layer</td><td>12</td><td>3</td><td>9</td></tr>
 <tr><td>Semantic bridge layer</td><td>18</td><td>0</td><td>18</td></tr>
-<tr><td>Non-stable anchors</td><td>23</td><td>0</td><td>23</td></tr>
+<tr><td>Non-stable anchors</td><td>24</td><td>0</td><td>24</td></tr>
           </tbody>
         </table>
       </section>
@@ -82,6 +82,7 @@
 <tr><td><code>LeanInfoTheory.InformationMeasures</code></td><td>Finite Shannon layer</td><td><span class="status-pill proved">root reachable</span></td><td>Convenience re-export for the finite information-measure API.</td><td><code>LeanInfoTheory/InformationMeasures.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon</code></td><td>Finite Shannon layer</td><td><span class="status-pill separate">separate import</span></td><td>Import-only umbrella for the complete supported finite information-theory stack.</td><td><code>LeanInfoTheory/Shannon.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.BinaryEntropy</code></td><td>Finite Shannon layer</td><td><span class="status-pill separate">separate import</span></td><td>Boolean-PMF entropy bridge to mathlib&#x27;s Real.binEntropy.</td><td><code>LeanInfoTheory/Shannon/BinaryEntropy.lean</code></td></tr>
+<tr><td><code>LeanInfoTheory.Shannon.Continuity</code></td><td>Finite Shannon layer</td><td><span class="status-pill separate">separate import</span></td><td>Exact and upper-budget total-variation entropy continuity in nats, with a capped monotone scalar bound and derived conditional-entropy and mutual-information bounds using each whole-alphabet size.</td><td><code>LeanInfoTheory/Shannon/Continuity.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.Entropy</code></td><td>Finite Shannon layer</td><td><span class="status-pill proved">root reachable</span></td><td>Finite Shannon entropy, entropy of finite-valued random variables, and first entropy invariance theorems.</td><td><code>LeanInfoTheory/Shannon/Entropy.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.EntropyBounds</code></td><td>Finite Shannon layer</td><td><span class="status-pill separate">separate import</span></td><td>Sharp alphabet/support entropy bounds and their uniform-law equality cases.</td><td><code>LeanInfoTheory/Shannon/EntropyBounds.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.EntropyConcavity</code></td><td>Finite Shannon layer</td><td><span class="status-pill separate">separate import</span></td><td>Finite-selector entropy concavity and its binary interior-weight equality characterization, proved directly by Jensen.</td><td><code>LeanInfoTheory/Shannon/EntropyConcavity.lean</code></td></tr>
@@ -112,6 +113,7 @@
 <tr><td><code>LeanInfoTheory.Examples</code></td><td>Non-stable anchors</td><td><span class="status-pill separate">non-stable</span></td><td>Non-stable aggregate for maintained conditional-KL, convexity, coupling, finite-family, independence-processing, information-decomposition, support-sensitive, total-variation, Markov, channel, sufficiency, Fano, and units regression consumers.</td><td><code>LeanInfoTheory/Examples.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Examples.CommonCause</code></td><td>Non-stable anchors</td><td><span class="status-pill separate">non-stable</span></td><td>Noisy binary common-cause example for conditional independence and Markov factorization.</td><td><code>LeanInfoTheory/Examples/CommonCause.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Examples.ConditionalKL</code></td><td>Non-stable anchors</td><td><span class="status-pill separate">non-stable</span></td><td>Private maintained regressions for common-base conditional KL across null, active, finite, infinite, and guarded Real cases.</td><td><code>LeanInfoTheory/Examples/ConditionalKL.lean</code></td></tr>
+<tr><td><code>LeanInfoTheory.Examples.Continuity</code></td><td>Non-stable anchors</td><td><span class="status-pill separate">non-stable</span></td><td>Private focused-import continuity consumers for exact distances, capped budgets, sparse joint laws, changing marginals and mixed thresholds, degeneracy, swapped conditioning and arbitrary-source finite-valued RVs.</td><td><code>LeanInfoTheory/Examples/Continuity.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Examples.Convexity</code></td><td>Non-stable anchors</td><td><span class="status-pill separate">non-stable</span></td><td>Private maintained regressions for finite log-sum, mixtures, entropy concavity, KL convexity, and mutual-information input-law concavity and channel convexity.</td><td><code>LeanInfoTheory/Examples/Convexity.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Examples.Coupling</code></td><td>Non-stable anchors</td><td><span class="status-pill separate">non-stable</span></td><td>Private focused-import consumers for elementary couplings, the coupling inequality, actual constructor marginals and exact disagreement, including attained optimality, swapped, equal, disjoint, sparse, asymmetric and degenerate laws, plus strict fair-Boolean comparison.</td><td><code>LeanInfoTheory/Examples/Coupling.lean</code></td></tr>
 <tr><td><code>LeanInfoTheory.Examples.CouplingFano</code></td><td>Non-stable anchors</td><td><span class="status-pill separate">non-stable</span></td><td>Private consumers applying existing Fano to the actual maximal coupling and its coordinate swap with exact TV error, ordered marginals and equal/subsingleton endpoints, plus independent-product rectangle and measure interoperability.</td><td><code>LeanInfoTheory/Examples/CouplingFano.lean</code></td></tr>
@@ -153,8 +155,9 @@
 <tr><td><code>LeanInfoTheory.Probability.FiniteMixture</code></td><td><code>LeanInfoTheory.Probability.Finite</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Probability.TotalVariation</code></td><td><code>LeanInfoTheory.Probability.Finite</code></td><td>1</td></tr>
 <tr><td><code>LeanInfoTheory.InformationMeasures</code></td><td><code>LeanInfoTheory.Shannon.Entropy</code><br><code>LeanInfoTheory.Shannon.InfoMeasures</code></td><td>0</td></tr>
-<tr><td><code>LeanInfoTheory.Shannon</code></td><td><code>LeanInfoTheory</code><br><code>LeanInfoTheory.Probability.Coupling</code><br><code>LeanInfoTheory.Probability.TotalVariation</code><br><code>LeanInfoTheory.Shannon.Fano</code><br><code>LeanInfoTheory.Shannon.SemanticBridge</code><br><code>LeanInfoTheory.Shannon.Units</code></td><td>0</td></tr>
+<tr><td><code>LeanInfoTheory.Shannon</code></td><td><code>LeanInfoTheory</code><br><code>LeanInfoTheory.Probability.Coupling</code><br><code>LeanInfoTheory.Probability.TotalVariation</code><br><code>LeanInfoTheory.Shannon.Continuity</code><br><code>LeanInfoTheory.Shannon.Fano</code><br><code>LeanInfoTheory.Shannon.SemanticBridge</code><br><code>LeanInfoTheory.Shannon.Units</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.BinaryEntropy</code></td><td><code>LeanInfoTheory.Shannon.Entropy</code></td><td>1</td></tr>
+<tr><td><code>LeanInfoTheory.Shannon.Continuity</code></td><td><code>LeanInfoTheory.Probability.Coupling</code><br><code>LeanInfoTheory.Shannon.Fano</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.Entropy</code></td><td><code>LeanInfoTheory.Probability.Finite</code></td><td>2</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.EntropyBounds</code></td><td><code>LeanInfoTheory.Shannon.Entropy</code></td><td>2</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.EntropyConcavity</code></td><td><code>LeanInfoTheory.Probability.FiniteMixture</code><br><code>LeanInfoTheory.Shannon.Entropy</code></td><td>1</td></tr>
@@ -182,9 +185,10 @@
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL</code></td><td><code>LeanInfoTheory.Shannon.SemanticBridge.DataProcessing</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code></td><td><code>LeanInfoTheory.Shannon.SemanticBridge.KL</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Basic</code></td><td><span class="muted">none</span></td><td>0</td></tr>
-<tr><td><code>LeanInfoTheory.Examples</code></td><td><code>LeanInfoTheory.Examples.CommonCause</code><br><code>LeanInfoTheory.Examples.ConditionalKL</code><br><code>LeanInfoTheory.Examples.Convexity</code><br><code>LeanInfoTheory.Examples.Coupling</code><br><code>LeanInfoTheory.Examples.CouplingFano</code><br><code>LeanInfoTheory.Examples.CouplingGluing</code><br><code>LeanInfoTheory.Examples.CouplingTransport</code><br><code>LeanInfoTheory.Examples.Fano</code><br><code>LeanInfoTheory.Examples.FiniteFamily</code><br><code>LeanInfoTheory.Examples.IndependenceProcessing</code><br><code>LeanInfoTheory.Examples.InformationDecomposition</code><br><code>LeanInfoTheory.Examples.KLTop</code><br><code>LeanInfoTheory.Examples.Pinsker</code><br><code>LeanInfoTheory.Examples.QuantitativeIndependence</code><br><code>LeanInfoTheory.Examples.StochasticChannels</code><br><code>LeanInfoTheory.Examples.SufficientStatistics</code><br><code>LeanInfoTheory.Examples.SupportSensitive</code><br><code>LeanInfoTheory.Examples.TotalVariation</code><br><code>LeanInfoTheory.Examples.TotalVariationChannels</code><br><code>LeanInfoTheory.Examples.Units</code></td><td>0</td></tr>
+<tr><td><code>LeanInfoTheory.Examples</code></td><td><code>LeanInfoTheory.Examples.CommonCause</code><br><code>LeanInfoTheory.Examples.ConditionalKL</code><br><code>LeanInfoTheory.Examples.Continuity</code><br><code>LeanInfoTheory.Examples.Convexity</code><br><code>LeanInfoTheory.Examples.Coupling</code><br><code>LeanInfoTheory.Examples.CouplingFano</code><br><code>LeanInfoTheory.Examples.CouplingGluing</code><br><code>LeanInfoTheory.Examples.CouplingTransport</code><br><code>LeanInfoTheory.Examples.Fano</code><br><code>LeanInfoTheory.Examples.FiniteFamily</code><br><code>LeanInfoTheory.Examples.IndependenceProcessing</code><br><code>LeanInfoTheory.Examples.InformationDecomposition</code><br><code>LeanInfoTheory.Examples.KLTop</code><br><code>LeanInfoTheory.Examples.Pinsker</code><br><code>LeanInfoTheory.Examples.QuantitativeIndependence</code><br><code>LeanInfoTheory.Examples.StochasticChannels</code><br><code>LeanInfoTheory.Examples.SufficientStatistics</code><br><code>LeanInfoTheory.Examples.SupportSensitive</code><br><code>LeanInfoTheory.Examples.TotalVariation</code><br><code>LeanInfoTheory.Examples.TotalVariationChannels</code><br><code>LeanInfoTheory.Examples.Units</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Examples.CommonCause</code></td><td><code>LeanInfoTheory.Shannon.SemanticBridge.Markov</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Examples.ConditionalKL</code></td><td><code>LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL</code></td><td>0</td></tr>
+<tr><td><code>LeanInfoTheory.Examples.Continuity</code></td><td><code>LeanInfoTheory.Shannon.Continuity</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Examples.Convexity</code></td><td><code>LeanInfoTheory.Probability.FiniteMixture</code><br><code>LeanInfoTheory.Shannon.EntropyConcavity</code><br><code>LeanInfoTheory.Shannon.LogSum</code><br><code>LeanInfoTheory.Shannon.SemanticBridge.Convexity</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Examples.Coupling</code></td><td><code>LeanInfoTheory.Probability.Coupling</code></td><td>0</td></tr>
 <tr><td><code>LeanInfoTheory.Examples.CouplingFano</code></td><td><code>LeanInfoTheory.Probability.Coupling</code><br><code>LeanInfoTheory.Shannon.Fano</code><br><code>LeanInfoTheory.Shannon.SemanticBridge.Product</code></td><td>0</td></tr>

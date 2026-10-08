@@ -101,14 +101,33 @@ contracts, validation and remaining-work owners. The lead accepted the
 reviews are complete, most recently by
 `.lit-review/setup/c13-03-completion-20261003.json`. C13.03's exact final source
 was verified before the lead's conditional C13.04 request was accepted.
-C13.04 selects cumulative qualification and the [C13 handoff](handoffs/chunk-13.md).
+C13.04 selected cumulative qualification and the [C13 handoff](handoffs/chunk-13.md).
 The lead authorized the 25-file checkpoint, separate clean validation checkout
 and C13.04-only amendments. Initial checkpoint
 `17fb736a00448ecdd0aa824fd1928713bf716f01` passed the full routine suite in
 1975.056 seconds. The [C13 notes](plans/post-release-chunk-13-notes.md)
-retain evidence and limits; amended-candidate validation, cumulative review,
-reconciliation and closure remain subject to source-bound records.
-C14--C24 remain unselected.
+retain the initial-checkpoint evidence and limits; subsequent validation,
+review and closure are established by C13.04's source-bound completion record.
+C13.04 is now verified complete at `ebe48eaea4282b1e4f245f8f45440bc930b8df73`
+by `.lit-review/setup/c13-04-completion-20261003.json`; the paragraphs above
+retain captured pre-closure history. The lead accepted the
+[C14 revision-2 plan](plans/post-release-chunk-14.md). C14.01--C14.03 and their
+reviews are complete, most recently by
+`.lit-review/setup/c14-03-completion-20261007.json`. All 219 captured entries
+matched Step 3's final source before the conditional C14.04 request was accepted
+on 2026-10-08. The focused `Shannon.Continuity` owner contains the six planned
+declarations: exact entropy, the capped scalar bound and monotonicity, and
+entropy/conditional-entropy/MI budget bounds. Private consumers exercise sparse
+joint laws, changing marginals, mixed thresholds, degeneracy, swap orientation
+and arbitrary-source RVs. The [C14 handoff](handoffs/chunk-14.md) records delivered
+contracts and remaining-work boundaries; the [notes](plans/post-release-chunk-14-notes.md)
+retain original evidence and the historical revision-1 review limitation.
+C14.04 is selected. The lead authorized the prepared 23-file local checkpoint,
+necessary C14.04-only amendments and clean-checkout reuse. Initial checkpoint
+`ca079e2` passed the complete routine suite; current two-pass API-documentation
+qualification and inspection also passed. Final-candidate qualification,
+cumulative all-12-criterion review, reconciliation and closure remain subject
+to source-bound private records. C15--C24 remain unselected.
 
 **[Current] `v0.1.0` release and maintenance.** The fulfilled release contract
 is recorded in [`docs/v0.1-release-contract.md`](v0.1-release-contract.md). It
@@ -195,7 +214,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Task | Read next |
 | --- | --- |
-| Post-release mathematics | The approved [C13 plan](plans/post-release-chunk-13.md), [C13 notes](plans/post-release-chunk-13-notes.md), [reference register](references.md), Sections 3, 7, 11--16 and actual Lean dependencies; C9--C12 are complete by their private records; C13.01--C13.03 are complete and C13.04 cumulative qualification is selected with review; consult the [C12 handoff](handoffs/chunk-12.md) for prerequisite history |
+| Post-release mathematics | The approved [C14 plan](plans/post-release-chunk-14.md), [notes](plans/post-release-chunk-14-notes.md), [handoff](handoffs/chunk-14.md), [reference register](references.md), Sections 3, 7, 11--16 and actual Lean dependencies; C9--C13 and C14.01--C14.03 are complete by private records. C14.04 with review is selected; its authorized initial checkpoint passed the full routine, while final-candidate qualification, cumulative review and closure remain subject to source-bound records. C15--C24 are unselected. |
 | Chunk 8 review or later-phase intake | The completed Chunk 8 plan; Sections 3, 6-9, 11-14, and 16; the three Chunk 8 mathematical owners, two maintained example owners, semantic/examples aggregates, and current Future Work Notes 9, 14-18, and 24 |
 | Review of an existing Lean theorem | Sections 3, 7, 9, and 16; the owning source module and its direct imports |
 | API or module review | Sections 7, 9, 10, 11, and Future Work Notes 2-4, 14-16, 18, and 26 |
@@ -208,12 +227,12 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-10-03 |
+| Last updated | 2026-10-08 |
 | Recorded pre-C9 mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the released `v0.1.0` source is exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f` |
 | Repository transition state | `v0.1.0` is published from immutable tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` and archived as Zenodo record `22229599`. The evolving default branch carries the current project pages and DOI metadata, while maintenance staging preserves `/docs/v0.1.0/` from exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`; the tag, Release, archive, released Lean source, and frozen public API remain unchanged |
 | Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
 | mathlib baseline | `v0.1.0` uses input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474` |
-| Source-snapshot phase | Post-release `v0.1.x`; C9--C12 complete, most recently C12 at `492cd6e`; C13.01--C13.03 complete; C13.04 selected with review and explicit checkpoint/amendment authority; initial `17fb736a` clean routine and current two-pass API docs passed; amended-candidate validation, cumulative review, reconciliation and closure remain subject to source-bound records; C14--C24 unselected |
+| Source-snapshot phase | Post-release `v0.1.x`; C9--C13 and C14.01--C14.03 are complete by private records. All 219 Step 3 final-source entries matched before C14.04 was selected on 2026-10-08. The lead authorized the 23-file local checkpoint, necessary C14.04-only amendments and clean-checkout reuse; initial checkpoint `ca079e2` passed the complete routine. Final-candidate qualification, cumulative all-12-criterion review and closure remain subject to source-bound records; C15--C24 are unselected. |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -693,6 +712,32 @@ result. C11.05 is complete by its private record. The C11.06 initial gates cover
 the complete chunk; final applicability and the required fresh all-criterion
 review are established by its source-bound private records.
 
+C14.01 adds `abs_entropy_sub_le_binEntropy_add_totalVariation_mul_log` in
+`Shannon.Continuity`. For any two laws on a finite alphabet it bounds the
+absolute entropy difference by `h(TV) + TV * log(card - 1)` in nats, with Nat
+subtraction before casting. It needs no full support, cardinal lower bound or
+extra nonemptiness assumption. Its four coupling/Fano helpers remain private;
+the focused owner directly imports only Coupling and Fano. Permanent private
+consumers establish zero/maximal TV, empty/singleton behavior, the pure/fair
+Boolean gap and the pure/uniform `Fin 3` threshold equality. A bound at an
+upper TV estimate uses C14.02's `entropyContinuityBound`: zero for cardinality
+at most one, the raw expression up to and including `1 - 1/m`, then `log m`.
+`entropyContinuityBound_mono` holds on all nonnegative real budgets, and
+`abs_entropy_sub_le_entropyContinuityBound` needs only `TV(p,q) <= epsilon`,
+deriving budget nonnegativity and local nonemptiness internally. No upper bound
+on epsilon or full-support premise is imposed. The q-ary bridge and scalar
+endpoint/range proofs remain private. Consumers explicitly cross the ternary
+threshold and apply TV contraction through a noninjective map using output
+cardinality. C14.03 adds `abs_condEntropy_sub_le_entropyContinuityBound` and
+`abs_mutualInfo_sub_le_entropyContinuityBound`. For joint laws on A x B, they
+bound conditional-entropy change by `B_(m*n) + B_n` and MI change by
+`B_m + B_n + B_(m*n)` at the same TV upper budget. Coordinate universes are
+independent; each term uses its own ambient alphabet and threshold. The proofs
+use existing entropy identities and projection contractions without new helpers
+or imports. Sparse D/I/P consumers establish changing marginal values, mixed
+branches, singleton reductions and arbitrary-source RV applications; no
+pointwise continuity of conditional PMFs at null fibers is claimed.
+
 ### Downstream certificate consumers
 
 **[Current]** LeanInfoTheory owns the reusable mathematics needed by downstream
@@ -768,9 +813,9 @@ claim a general measure-theoretic formalization of the whole subject.
 | `LeanInfoTheory` | Lightweight public aggregate only | Root |
 | `LeanInfoTheory.Shannon` | Import-only complete supported mathematical umbrella | No; subsumes the root |
 
-The current generated cumulative C12 inventory contains 55 modules, 117 local import
-edges, 5 root-reachable modules, 50 separate-import modules, and 757 indexed
-declarations (756 documented plus one example-only instance). The root directly
+The current generated C14 inventory contains 60 modules, 129 local import
+edges, 5 root-reachable modules, 55 separate-import modules, and 768 indexed
+declarations (767 documented plus one example-only instance). The root directly
 imports exactly `Probability.Finite` and `InformationMeasures`.
 
 `Probability.TotalVariation` imports only `Probability.Finite` and
@@ -801,12 +846,15 @@ exact-event formulas without unfolding it. The separate private
 aggregate. It consumes both marginal orientations, Fano and measure-product
 semantics. The root retains its five-module closure.
 
-The current generated supported closure contains 647 documented public declarations:
-578 theorems, 59 definitions, 9 abbreviations and 1 named instance. It excludes
-all 23 non-stable development, example and reference modules. C13.01 adds the
+The current generated supported closure contains 653 documented public declarations:
+583 theorems, 60 definitions, 9 abbreviations and 1 named instance. It excludes
+all 24 non-stable development, example and reference modules. C13.01 adds the
 canonical Pinsker theorem; C13.02 adds its support-guarded Real and square-root
 forms, and C13.03 adds two mutual-information bounds on TV to the joint law's
-own marginal product, all in the same focused semantic owner. The current manifest
+own marginal product, all in the same focused semantic owner. C14.01 adds the
+exact-TV entropy theorem in the separate `Shannon.Continuity` owner; C14.02
+adds its capped scalar definition, monotonicity and entropy-budget theorem, and
+C14.03 adds conditional-entropy and MI budget bounds. The current manifest
 includes C9's two approved helpers, C10.01's seven declarations and
 C10.02's six event theorems, C10.03's five overlap/residual theorems and
 C10.04's four bounded-test theorems, C10.05's three processing theorems and
@@ -817,7 +865,7 @@ whole-extension support iff and one semantic gluing existence theorem.
 `Examples.CouplingTransport` imports only Coupling; `Examples.CouplingGluing`
 imports Coupling and Gluing. Both stay outside the mathematical umbrellas.
 The [growth approval policy](compatibility/current-api-policy.json) records the
-TV, Coupling, Gluing and Pinsker owners' direct imports and approved aggregate
+TV, Coupling, Gluing, Pinsker and Continuity owners' direct imports and approved aggregate
 additions against the lead's approved plan and step request. Generation does not supply approval.
 The historical [contract](v0.1-public-api.md), [frozen manifest](v0.1-public-api.json)
 and [structural type artifact](compatibility/README.md) remain unchanged.
@@ -830,6 +878,7 @@ and [structural type artifact](compatibility/README.md) remain unchanged.
 | `LeanInfoTheory.Shannon.Units` | Scalar conversion from canonical nats to arbitrary valid logarithm bases and bits |
 | `LeanInfoTheory.Shannon.BinaryEntropy` | Boolean-PMF entropy bridge to mathlib `Real.binEntropy` |
 | `LeanInfoTheory.Shannon.Fano` | Type-generic decoding error and finite exact/weak Fano inequalities and corollaries |
+| `LeanInfoTheory.Shannon.Continuity` | Exact-TV entropy difference through maximal coupling/Fano; capped scalar modulus, monotonicity on nonnegative budgets and entropy/conditional-entropy/MI bounds from an upper TV estimate |
 | `LeanInfoTheory.Shannon.FiniteFamily` | Dependent finite-family laws, finite-atom entropy/MI/CMI algebra, pair/triple compatibility, and binary/ordered entropy, MI, and conditional-MI chain rules |
 | `LeanInfoTheory.Probability.FiniteMixture` | Binary PMF mixtures with `NNReal` weights and exact endpoint laws; general selectors use `PMF.bind` |
 | `LeanInfoTheory.Shannon.LogSum` | Zero-safe `EReal` finite log-sum inequality/equality and guarded Real corollaries |
@@ -1281,15 +1330,48 @@ certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
 
-### C13.04 cumulative qualification and maintained handoff
+### C14.04 cumulative qualification and maintained handoff, 2026-10-08
+
+The [approved C14 plan](plans/post-release-chunk-14.md) separates exact entropy,
+capped budgets, derived joint-law bounds and cumulative qualification.
+C14.01--C14.03 and their reviews are complete by private records, most recently
+`.lit-review/setup/c14-03-completion-20261007.json`. All 219 Step 3 final-source
+entries matched before the conditional Step 4 request was accepted. The six
+planned public declarations and all permanent private consumers are present.
+The [C14 handoff](handoffs/chunk-14.md) preserves exact contracts, import choices,
+evidence limits and remaining-work owners; the [notes](plans/post-release-chunk-14-notes.md)
+retain the proof decisions and actual validation attempts.
+
+C14.04 has an explicitly authorized 23-file local checkpoint, necessary
+C14.04-only amendment authority and clean-checkout reuse. Initial checkpoint
+`ca079e2` passed the complete routine suite; the current two-pass API-doc gate
+and all-six-declaration inspection also passed. Any amended candidate requires
+renewed complete routine validation and exact API-doc applicability. Fresh
+cumulative review of all 12 criteria, reconciliation, final-source applicability
+and private closure must be established by the source-bound records; this
+pre-closure entry does not itself certify completion.
+C15--C24 remain unselected. Preserve unrelated website notes, dependency pins,
+the lightweight root and Notes 14/29's existing proof-pressure triggers.
+Push and publication require separate authority.
+
+Current coverage is 653 documented public declarations in 36 supported owners,
+with 94 reviewed simp declarations, 92 root exports and 24 non-stable modules.
+The graph has 60 modules, 129 local edges, five root-reachable and 55 separate-import
+modules; the index has 768 declarations, 767 documented and one example-only instance.
+The C14 parent retains its own persistent reviewer; the historical revision-1
+PLAN admission limitation remains distinct from approved revision-2 execution.
+The predecessor sections below retain historical qualification chronology.
+
+### Historical C13.04 qualification and maintained handoff
 
 C12 is complete through C12.04 at `492cd6e60c5d6b42a22ef2dcbb45d21067b6d378`,
 by its actual private completion record. The [C12 handoff](handoffs/chunk-12.md)
 preserves contracts and evidence; its captured provisional wording is historical.
-The approved [C13 revision-2 plan](plans/post-release-chunk-13.md) has completed
-C13.01--C13.03 with review. C13.03's full final source inventory matched before
-the conditional request selected C13.04. C13.03's successful completion is recorded
-at `.lit-review/setup/c13-03-completion-20261003.json`.
+The approved [C13 revision-2 plan](plans/post-release-chunk-13.md) is complete
+through C13.04 at `ebe48eaea4282b1e4f245f8f45440bc930b8df73`, by
+`.lit-review/setup/c13-04-completion-20261003.json`. The following checkpoint
+figures and validation chronology are historical; the [C13 handoff](handoffs/chunk-13.md)
+retains their source identities and limits.
 
 C13 delivers five public theorems in `Shannon.SemanticBridge.Pinsker`: canonical
 `ENNReal` Pinsker, support-guarded Real and square-root forms, and two bounds on
@@ -1300,8 +1382,8 @@ cover binary endpoints, a positive three-point tied event, sparse finite KL,
 singular counterexamples, MI/event/test budgets, arbitrary-source random variables
 and a sparse joint with a null marginal row. Signed tests retain the factor two.
 
-Current coverage is 647 documented declarations in 35 supported owners, with
-94 reviewed simp declarations and 92 root exports. Generated references contain
+At the C13 checkpoint, coverage was 647 documented declarations in 35 supported owners,
+with 94 reviewed simp declarations and 92 root exports. Its generated references contained
 58 modules, 124 local edges, five root-reachable and 53 separate-import modules,
 and 762 indexed declarations (761 documented and one example-only instance).
 The [C13 handoff](handoffs/chunk-13.md) records exact contracts, useful imports,
@@ -1313,10 +1395,11 @@ validation checkout and necessary C13.04-only amendments. Initial checkpoint
 1975.056 seconds. The two actual API-doc passes and all-five-declaration
 inspection also passed. The [C13 handoff](handoffs/chunk-13.md) records evidence
 and the primary/clean source-identity distinction.
-Final amended-candidate routine validation, exact API-doc applicability,
-cumulative review, original-report reconciliation and closure remain governed
-by the source-bound C13.04 records.
-The unrelated website notes remain excluded; C14--C24 remain unselected and
+The source-bound C13.04 records subsequently established final validation,
+review, reconciliation and closure at `ebe48eaea4282b1e4f245f8f45440bc930b8df73`;
+the initial-checkpoint evidence above is retained as history.
+The unrelated website notes remain excluded. C14.04 now owns cumulative
+qualification of the continuity family; C15--C24 remain unselected, and
 publication is separate.
 
 
@@ -1324,7 +1407,7 @@ publication is separate.
 
 The following is retained preparation history. C12 subsequently completed at
 `492cd6e` by its actual private completion record; pending wording below does
-not reopen C12 or override the current C13 selection.
+not reopen C12 or override the current C14.04 selection.
 
 
 C9, C10 and C11 are complete by their actual private records, most recently
@@ -1415,14 +1498,15 @@ contracts, validation and remaining-work owners. The lead accepted the
 reviews are complete, most recently by
 `.lit-review/setup/c13-03-completion-20261003.json`. C13.03's exact final source
 was verified before the lead's conditional C13.04 request was accepted.
-C13.04 selects cumulative qualification and the [C13 handoff](handoffs/chunk-13.md).
+C13.04 selected cumulative qualification and the [C13 handoff](handoffs/chunk-13.md).
 The lead authorized the 25-file checkpoint, separate clean validation checkout
 and C13.04-only amendments. Initial checkpoint
 `17fb736a00448ecdd0aa824fd1928713bf716f01` passed the full routine suite in
 1975.056 seconds. The [C13 notes](plans/post-release-chunk-13-notes.md)
-retain evidence and limits; amended-candidate validation, cumulative review,
-reconciliation and closure remain subject to source-bound records.
-C14--C24 remain unselected.
+retain the initial-checkpoint evidence and limits; subsequent validation,
+review and closure are established by C13.04's source-bound completion record.
+C13 subsequently completed at `ebe48eae`; C14.01--C14.03 are complete and
+C14.04 is selected. C15--C24 remain unselected.
 
 ### Public visibility pass
 
@@ -1480,8 +1564,12 @@ approved C11 revision 2; C11.01--C11.05 are complete with review. The next
 request selected C11.06 after its predecessor closure and source were verified.
 The actual C11 task completed its cumulative review and reconciliation through
 its own persistent reviewer and private records. C12 completed through its
-own reviewer and private records. C13 uses its own bound reviewer for the approved revision-2 plan; C13.01--C13.03 are complete and C13.04 is selected.
-C14--C24 remain unselected. Local review closure establishes
+own reviewer and private records. C13 completed at `ebe48eae` through its own
+bound reviewer. C14.01--C14.03 and their reviews are complete; C14.04 is selected
+with its own persistent reviewer. Its authorized initial checkpoint passed the
+full routine; final-candidate qualification, cumulative review and closure remain
+subject to its source-bound private records.
+C15--C24 remain unselected. Local review closure establishes
 no publication or downstream adoption.
 Exact reference versions and selected sections are recorded in
 [`references.md`](references.md); detailed chunk assignments are not duplicated
@@ -1493,7 +1581,7 @@ in this summary.
 composition boundary for the published `v0.1.0` library.** The immutable release
 source remains exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`;
 the historical DOI/website update changed no Lean source or frozen public surface.
-Current C13 qualification is described separately above.
+Current C14.04 qualification is described separately above.
 Step 14 fixed every legal/provenance
 and Zenodo-route decision, and the final `date-released` value is
 `2026-09-01`. The fulfilled release contract freezes Lean and mathlib at
@@ -1614,8 +1702,8 @@ The later Step 13 checkpoint amended that sequence to 18 steps for a separate
 remote-safety landing.
 
 **Project B Chunk 8 is complete through `C8.24`, checkpointed as `1eef228`,
-pushed, remotely build-validated, and deployed.** Subsequent C9--C11 work is
-complete; C12 has its own approved plan and selected cumulative closeout.
+pushed, remotely build-validated, and deployed.** Subsequent C9--C13 and
+C14.01--C14.03 work is complete; C14.04 selects cumulative qualification.
 
 Chunks 5--8 are checkpointed as `ec78829`, `7b5f0db`, `5e616d8`, and
 `1eef228`. The
@@ -1669,6 +1757,14 @@ claim which external gate has completed.
 
 ### Next review point
 
+Selected C14.04 requires fresh cumulative review of all 12 approved criteria.
+Its authorized initial checkpoint passed the full routine, and current two-pass
+API-documentation qualification passed. Review readiness still requires the
+final candidate's applicable validation, finished [handoff](handoffs/chunk-14.md)
+and reconciliation; source-bound private records establish the eventual review
+and closure. The following paragraphs retain predecessor history and do not
+reopen completed chunks.
+
 C9 is complete through C9.07 by its actual private completion record at source
 checkpoint `8ee0337b20c320c384d5637de852da7f4ee09728`. The
 [maintained C9 handoff](handoffs/chunk-9.md) preserves delivered APIs, evidence
@@ -1711,14 +1807,15 @@ contracts, validation and remaining-work owners. The lead accepted the
 reviews are complete, most recently by
 `.lit-review/setup/c13-03-completion-20261003.json`. C13.03's exact final source
 was verified before the lead's conditional C13.04 request was accepted.
-C13.04 selects cumulative qualification and the [C13 handoff](handoffs/chunk-13.md).
+C13.04 selected cumulative qualification and the [C13 handoff](handoffs/chunk-13.md).
 The lead authorized the 25-file checkpoint, separate clean validation checkout
 and C13.04-only amendments. Initial checkpoint
 `17fb736a00448ecdd0aa824fd1928713bf716f01` passed the full routine suite in
 1975.056 seconds. The [C13 notes](plans/post-release-chunk-13-notes.md)
-retain evidence and limits; amended-candidate validation, cumulative review,
-reconciliation and closure remain subject to source-bound records.
-C14--C24 remain unselected.
+retain the initial-checkpoint evidence and limits; subsequent validation,
+review and closure are established by C13.04's source-bound completion record.
+C13 subsequently completed at `ebe48eae`; C14.01--C14.03 are complete and
+C14.04 is selected. C15--C24 remain unselected.
 
 ## 13. Future-Work Register
 
@@ -1734,7 +1831,7 @@ again.
 | Note | Work |
 | --- | --- |
 | Unnumbered | **Chunk 8 is complete through `C8.24` and checkpointed as `1eef228`.** Its 18-declaration API, generated references, complete validation evidence, exact-SHA Lean workflow, and Pages deployment pass; any later theorem phase requires a separate decision. |
-| Unnumbered | **C13.04 cumulative qualification selected:** C12 is complete at `492cd6e`; C13.01--C13.03 and their reviews are complete. The approved [C13 plan](plans/post-release-chunk-13.md), [notes](plans/post-release-chunk-13-notes.md) and [handoff](handoffs/chunk-13.md) govern the five delivered bounds, required validation and fresh full-chunk review. C14--C24 remain unselected; standing notes retain their scope. |
+| Unnumbered | **C14.04 cumulative qualification selected:** C14.01--C14.03 and their reviews are complete; all 219 Step 3 final-source entries matched before selection. The approved [plan](plans/post-release-chunk-14.md), [notes](plans/post-release-chunk-14-notes.md) and [handoff](handoffs/chunk-14.md) record the authorized initial checkpoint and successful full routine, with final-candidate qualification, all-12-criterion review and closure governed by source-bound private records. C15--C24 remain unselected. |
 | 29 | **Finite-Fano phase checkpointed.** Commit `ec78829` completes the approved phase; its evidence-based Fano follow-ups remain open and deferred. |
 
 Note 29 also preserves proof-pressure triggers from `C5.08`-`C5.11` and
@@ -1774,13 +1871,14 @@ completed coupling source without closing or renumbering those notes.
 | --- | --- |
 | 38 | **Partially discharged later milestone.** Permanent stochastic examples exercise the PMF-facing results; add a matrix bridge only when majorization/Birkhoff consumers exist. |
 | 39 | Plan canonical/minimal sufficiency, support-aware statistic comparison, and later iid/count-statistic or measurable extensions. |
-| Unnumbered | Chunk 7 owns finite log-sum, KL convexity, entropy concavity, and MI input/channel convexity. Approved C13 selects the bounded Pinsker family, with C13.01--C13.03 complete and only C13.04 currently selected. The map assigns later tensorization, topology and continuity work; broader equality/generalization layers retain their separate triggers. |
+| Unnumbered | Chunk 7 owns finite log-sum, KL convexity, entropy concavity, and MI input/channel convexity. C13's bounded Pinsker family and qualification are complete. C14.01--C14.03 with review are complete; C14.04 selects cumulative qualification of the six-declaration continuity family. Later tensorization and finite-simplex topology/qualitative continuity retain their separate approval and pressure triggers. |
 
 The finite-family phase is complete, independently validated, and checkpointed
-as `7b5f0db`. Chunk 8 now closes the approved finite conditional-CMI,
+as `7b5f0db`. Completed Chunk 8 closed the approved finite conditional-CMI,
 conditional-KL chain-rule, and mutual-independence equality gaps without
-adding topology or continuity. Approved C13 now owns the bounded Pinsker work.
-Topology, continuity, tensorization, global indexed-family independence and
+adding topology or continuity. Completed C13 supplies bounded Pinsker results;
+approved C14 supplies the bounded quantitative continuity family.
+Finite-simplex topology and qualitative continuity, tensorization, global indexed-family independence and
 broader conditional-KL variants remain separate future phases governed by
 their recorded pressure and approval rules.
 
@@ -1981,7 +2079,95 @@ not reproduce textbook prose or proofs.
 
 ## 16. Validation State
 
-### Current C13 qualification
+### Current C14.04 qualification
+
+<!-- c14-04-validation:start -->
+Fresh six-target warning-as-error compilation passed (3.836s),
+as did the maintained documentation contract with five README and four website
+guide examples (157.728s), and static/generated/site validation
+(12.218s). Final non-mutating static validation is required after these
+result-recording prose edits; its exact result is retained privately.
+The actual source-stable current file-mode API-documentation gate passed
+(731.686s total; build/check passes 160.9s and 22.0s).
+All six rendered declaration signatures, assumptions, useful docstrings, owner
+source links and the full Shannon umbrella were inspected. The v2 source,
+configuration and two-pass attestation are retained under
+`.lit-review/setup/c14-04-api-doc-inspection-20261008.json`; exact post-edit
+applicability is required and recorded separately. Existing reviewed Zig 0.16.0,
+pinned doc-gen dependencies and incremental caches were used, not a cold rebuild.
+
+The initial missing-Continuity-page failure is retained separately. The parent
+preserved and invalidated exactly three ignored Shannon aggregate HTML marker
+files after reproducing the stale-marker failure. That initial attempt also
+overlapped tracked prose edits and two owned EOL normalizations; its exact API
+inputs were unchanged, but it is failed evidence only. The successful rerun
+kept the entire candidate unchanged. No source, pin or validator was changed
+for the recovery. The two upstream Qq extraction warnings were replayed in
+doc-gen logs; both complete maintained semantic checks passed.
+
+The lead authorized the prepared 23-file local checkpoint, necessary C14.04-only
+amendments and reuse of the clean validation checkout. Initial checkpoint
+`ca079e2d11ecccffbe2b91fe1848be5bad3541f2` passed the complete routine suite in
+3256.611 seconds, using existing pinned dependencies and incremental
+caches. The [handoff](handoffs/chunk-14.md) records the exact clean/primary
+source distinctions and separate API-attestation limits; unrelated website
+notes remain untouched and excluded from the checkpoint.
+
+Every amended candidate requires renewed complete routine validation and exact
+API-doc applicability. Fresh cumulative review of all twelve criteria,
+reconciliation, final-source applicability and closure must be established by
+the private source-bound records. This entry records initial-checkpoint
+qualification without certifying future gates. The eventual completion record
+and user report resolve this pre-closure wording; no post-F edit is required.
+C15--C24, push and publication remain unselected.
+<!-- c14-04-validation:end -->
+
+### Historical C14.03 qualification
+
+<!-- c14-03-validation:start -->
+The strict owner build and final six-target owner/consumer/aggregate check passed.
+The exact-contract probe verified the approved independently universe-polymorphic
+signatures and permitted axioms. The maintained `trust` gate passed in
+1729.329s: all 601 retained types, 653 supported declarations in 36
+owners, 94 reviewed simp declarations, 92 root exports, and 2042 project
+constants with only `propext`, `Classical.choice` and `Quot.sound`.
+Existing incremental caches were used. Original attempts, commands, outputs
+and source hashes are retained under `.lit-review/setup/c14-03-*`.
+Static validation, original independent review, reconciliation and private closure
+subsequently completed by `.lit-review/setup/c14-03-completion-20261007.json`.
+The clean routine and current two-pass API-documentation milestone belong to
+selected C14.04; its current status is recorded above.
+<!-- c14-03-validation:end -->
+
+### Historical C14.02 qualification
+
+The focused owner and six maintained owner/consumer/aggregate targets passed
+with warnings treated as errors, and the parent exact-contract/axiom probe
+passed. The maintained `trust` gate passed in 2698.175s: all 601 retained
+types, 651 supported declarations in 36 owners, 94 reviewed simp declarations,
+92 root exports, and 1984 project constants with only `propext`,
+`Classical.choice` and `Quot.sound`. Existing incremental caches were used.
+Original attempts, failures, source hashes and outputs are retained under
+`.lit-review/setup/c14-02-*`. Final static validation, original independent
+review, reconciliation and private source-bound closure remain separate gates.
+The clean routine and two-pass API-documentation milestone remain C14.04.
+
+### Historical C14.01 qualification
+
+The exact-TV owner, permanent continuity and retained CouplingFano consumers,
+full Shannon/Examples aggregates and lightweight root passed focused compilation
+with warnings as errors. The exact exported signature and axiom probe passed.
+Full `trust` passed in 6916.613s, retaining all 601 historical types,
+36 supported import closures, 94 reviewed simp declarations and 92 root exports;
+the all-project audit covers 1930 constants with only the three permitted
+axioms. The current manifest has 648 supported declarations.
+The [C14 notes](plans/post-release-chunk-14-notes.md) retain original checks,
+development failures, cache and evidence-script limitations. Final static/review
+and closure receipts remain authoritative; this captured candidate prose does
+not itself certify completion. Clean routine/API-doc qualification remains
+C14.04. C14.01 closed successfully before the exact-source C14.02 intake.
+
+### Historical C13 qualification
 
 C13.01--C13.03 and their reviews are complete. Step 3's focused/static/trust
 and strict signature checks passed, including all 601 retained signatures,
@@ -1999,9 +2185,9 @@ and C13.04-only amendments. Initial checkpoint
 1975.056 seconds. API-doc evidence remains bound to the primary checkout's
 83 raw source inputs and file-source paths; the [handoff](handoffs/chunk-13.md)
 records the clean checkout's historical EOL differences.
-Final amended-candidate routine validation, exact API-doc applicability,
-cumulative review, original-report reconciliation and closure remain governed
-by the source-bound C13.04 records.
+The source-bound C13.04 records subsequently established final validation,
+review, reconciliation and closure at `ebe48eaea4282b1e4f245f8f45440bc930b8df73`;
+the initial-checkpoint evidence above is retained as history.
 
 
 ### `v0.1.0` versions and historical mathematical baseline
@@ -2782,9 +2968,9 @@ The separate, potentially multi-hour signature-documentation gate is:
 python scripts/validate_release.py api-docs
 ```
 
-Run it for an explicitly selected API-documentation milestone, including C13.04,
+Run it for an explicitly selected API-documentation milestone, including C14.04,
 or the approved manual release gate, not as an ordinary push/pull-request check.
-C13.04 requires a real two-pass current file-mode result on its exact
+C14.04 requires a real two-pass current file-mode result on its exact
 candidate; set the pinned Windows `LEANINFOTHEORY_ZIG` prerequisite. The static command above
 checks the immutable documentation-tool pins and configuration without
 regenerating the API-doc output.
@@ -2916,6 +3102,9 @@ inferred from local content. The public site is:
 - [Chunk 11 handoff](handoffs/chunk-11.md): ten public coupling declarations,
   private consumers, prior evidence and limits, pending cumulative closeout, and
   C12/C14 prerequisites and remaining-work owners.
+- [Chunk 14 handoff](handoffs/chunk-14.md): six continuity declarations, private
+  mathematical consumers, completed Step 1--3 evidence, pending C14.04 cumulative
+  qualification and remaining-work owners/triggers.
 - [Chunk 5 plan](plans/chapter2-chunk-05.md): approved step contracts and
   implementation outcomes for the completed finite-Fano phase.
 - [Chunk 6 plan](plans/chapter2-chunk-06.md): approved finite-family,

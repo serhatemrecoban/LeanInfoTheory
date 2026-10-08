@@ -11,6 +11,7 @@ Author: Serhat Emre Coban
 
 import LeanInfoTheory.Examples.CommonCause
 import LeanInfoTheory.Examples.ConditionalKL
+import LeanInfoTheory.Examples.Continuity
 import LeanInfoTheory.Examples.Convexity
 import LeanInfoTheory.Examples.Coupling
 import LeanInfoTheory.Examples.CouplingFano
@@ -72,4 +73,7 @@ Quantitative-independence consumers turn a mutual-information budget into
 total-variation, event and bounded-test estimates, including the factor two
 for signed tests. They cover arbitrary source-law pushforwards, independent
 and degenerate endpoints, and an exact sparse joint with a null marginal row.
+The focused continuity consumers apply the exact-TV entropy bound in both
+orders, check empty/singleton and zero/maximal-distance cases, and establish
+the nonzero binary and ternary threshold gaps with exact masses and distances.
 -/

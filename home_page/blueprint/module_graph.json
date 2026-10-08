@@ -6,8 +6,8 @@
     "Semantic bridge layer",
     "Non-stable anchors"
   ],
-  "local_edge_count": 124,
-  "module_count": 58,
+  "local_edge_count": 129,
+  "module_count": 60,
   "modules": [
     {
       "external_imports": [],
@@ -101,6 +101,7 @@
         "LeanInfoTheory",
         "LeanInfoTheory.Probability.Coupling",
         "LeanInfoTheory.Probability.TotalVariation",
+        "LeanInfoTheory.Shannon.Continuity",
         "LeanInfoTheory.Shannon.Fano",
         "LeanInfoTheory.Shannon.SemanticBridge",
         "LeanInfoTheory.Shannon.Units"
@@ -122,6 +123,18 @@
       "path": "LeanInfoTheory/Shannon/BinaryEntropy.lean",
       "root_reachable": false,
       "summary": "Boolean-PMF entropy bridge to mathlib's Real.binEntropy."
+    },
+    {
+      "external_imports": [],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Probability.Coupling",
+        "LeanInfoTheory.Shannon.Fano"
+      ],
+      "name": "LeanInfoTheory.Shannon.Continuity",
+      "path": "LeanInfoTheory/Shannon/Continuity.lean",
+      "root_reachable": false,
+      "summary": "Exact and upper-budget total-variation entropy continuity in nats, with a capped monotone scalar bound and derived conditional-entropy and mutual-information bounds using each whole-alphabet size."
     },
     {
       "external_imports": [
@@ -494,6 +507,7 @@
       "local_imports": [
         "LeanInfoTheory.Examples.CommonCause",
         "LeanInfoTheory.Examples.ConditionalKL",
+        "LeanInfoTheory.Examples.Continuity",
         "LeanInfoTheory.Examples.Convexity",
         "LeanInfoTheory.Examples.Coupling",
         "LeanInfoTheory.Examples.CouplingFano",
@@ -539,6 +553,17 @@
       "path": "LeanInfoTheory/Examples/ConditionalKL.lean",
       "root_reachable": false,
       "summary": "Private maintained regressions for common-base conditional KL across null, active, finite, infinite, and guarded Real cases."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.Continuity"
+      ],
+      "name": "LeanInfoTheory.Examples.Continuity",
+      "path": "LeanInfoTheory/Examples/Continuity.lean",
+      "root_reachable": false,
+      "summary": "Private focused-import continuity consumers for exact distances, capped budgets, sparse joint laws, changing marginals and mixed thresholds, degeneracy, swapped conditioning and arbitrary-source finite-valued RVs."
     },
     {
       "external_imports": [],
@@ -768,5 +793,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 5,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 53
+  "separate_import_count": 55
 }

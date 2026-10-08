@@ -1,6 +1,40 @@
 # Current Lean State
 
-## C13.04 cumulative qualification and maintained handoff
+## C14.04 cumulative qualification and maintained handoff — selected
+
+C9--C13 are complete by their source-bound private records; C13 completed at
+`ebe48eaea4282b1e4f245f8f45440bc930b8df73`. The approved
+[C14 revision-2 plan](plans/post-release-chunk-14.md) has completed C14.01--C14.03
+with review, most recently by `.lit-review/setup/c14-03-completion-20261007.json`.
+All 219 entries of Step 3's final source inventory matched before the conditional
+C14.04 request was accepted on 2026-10-08.
+
+The six public declarations in `Shannon.Continuity` give the exact-TV entropy
+bound, a capped scalar bound monotone on all nonnegative budgets, and entropy,
+conditional-entropy and mutual-information budget bounds. Private consumers
+cover binary and ternary endpoints, sparse joint laws, changing marginals,
+mixed thresholds, budget weakening, degeneracy, swap and arbitrary-source RVs.
+The [C14 handoff](handoffs/chunk-14.md) records contracts, evidence limits and
+remaining-work owners; the [notes](plans/post-release-chunk-14-notes.md) retain
+implementation decisions and original validation attempts.
+
+Current coverage is 653 documented public declarations in 36 supported owners,
+with 94 reviewed simp declarations, 92 root exports and 24 non-stable modules.
+The generated graph has 60 modules, 129 local edges, five root-reachable and
+55 separate-import modules. Its declaration index has 768 entries: 767 documented
+and one example-only instance. The lightweight root and dependency pins are unchanged.
+
+C14.04 has an explicitly authorized 23-file local checkpoint, necessary
+C14.04-only amendment authority and clean-checkout reuse. Initial checkpoint
+`ca079e2` passed the complete routine suite; the current two-pass API-doc gate
+and all-six-declaration inspection also passed. The handoff records exact
+source and evidence limits. Any amended candidate requires renewed full routine
+validation and exact API-doc applicability. Fresh cumulative review of all
+12 criteria, reconciliation and private closure remain subject to source-bound
+records; this pre-closure snapshot does not itself certify completion.
+C15--C24 remain unselected; push and publication require separate authority.
+
+## Historical C13.04 qualification and maintained handoff
 
 C9 is complete through C9.07 by its actual private completion record at source
 checkpoint `8ee0337b20c320c384d5637de852da7f4ee09728`. The
@@ -16,10 +50,11 @@ TV API and evidence; its provisional chronology does not reopen the completed ch
 C12 is complete through C12.04 at `492cd6e60c5d6b42a22ef2dcbb45d21067b6d378`,
 by its actual private completion record. The [C12 handoff](handoffs/chunk-12.md)
 preserves contracts and evidence; its captured provisional wording is historical.
-The approved [C13 revision-2 plan](plans/post-release-chunk-13.md) has completed
-C13.01--C13.03 with review. C13.03's full final source inventory matched before
-the conditional request selected C13.04. C13.03's successful completion is recorded
-at `.lit-review/setup/c13-03-completion-20261003.json`.
+The approved [C13 revision-2 plan](plans/post-release-chunk-13.md) is complete
+through C13.04 at `ebe48eaea4282b1e4f245f8f45440bc930b8df73`, by
+`.lit-review/setup/c13-04-completion-20261003.json`. The following checkpoint
+figures and validation chronology are historical; the [C13 handoff](handoffs/chunk-13.md)
+retains their source identities and limits.
 
 C13 delivers five public theorems in `Shannon.SemanticBridge.Pinsker`: canonical
 `ENNReal` Pinsker, support-guarded Real and square-root forms, and two bounds on
@@ -30,8 +65,8 @@ cover binary endpoints, a positive three-point tied event, sparse finite KL,
 singular counterexamples, MI/event/test budgets, arbitrary-source random variables
 and a sparse joint with a null marginal row. Signed tests retain the factor two.
 
-Current coverage is 647 documented declarations in 35 supported owners, with
-94 reviewed simp declarations and 92 root exports. Generated references contain
+At the C13 checkpoint, coverage was 647 documented declarations in 35 supported owners,
+with 94 reviewed simp declarations and 92 root exports. Its generated references contained
 58 modules, 124 local edges, five root-reachable and 53 separate-import modules,
 and 762 indexed declarations (761 documented and one example-only instance).
 The [C13 handoff](handoffs/chunk-13.md) records exact contracts, useful imports,
@@ -43,10 +78,11 @@ validation checkout and necessary C13.04-only amendments. Initial checkpoint
 1975.056 seconds. The two actual API-doc passes and all-five-declaration
 inspection also passed. The [C13 handoff](handoffs/chunk-13.md) records evidence
 and the primary/clean source-identity distinction.
-Final amended-candidate routine validation, exact API-doc applicability,
-cumulative review, original-report reconciliation and closure remain governed
-by the source-bound C13.04 records.
-The unrelated website notes remain excluded; C14--C24 remain unselected and
+The source-bound C13.04 records subsequently established final validation,
+review, reconciliation and closure at `ebe48eaea4282b1e4f245f8f45440bc930b8df73`;
+the initial-checkpoint evidence above is retained as history.
+The unrelated website notes remain excluded. C14.04 now owns cumulative
+qualification of the continuity family; C15--C24 remain unselected, and
 publication is separate.
 
 `Probability.TotalVariation` imports only `Probability.Finite` and
@@ -88,7 +124,7 @@ consumer joins only Examples; no public theorem, alias, simp attribute or heavy
 mathematical-owner import is added. See the
 [C11 implementation notes](plans/post-release-chunk-11-notes.md) and source-bound
 private records for completed C11 validation and review. C12 is complete;
-its handoff records remaining-work owners and triggers. C13.04 owns current
+its handoff records remaining-work owners and triggers. C14.04 owns current
 cumulative qualification without reopening the earlier chunks.
 
 ## `v0.1.0` released state
@@ -597,7 +633,7 @@ audit, and final hygiene checks are current. The milestone is checkpointed as
 commit `ec78829`. Canonical/minimal sufficiency and larger iid examples are
 deferred by Future Work Note 39.
 
-## Current Project B Boundary: Chunk 8 Checkpointed And Remotely Validated
+## Historical Project B Boundary: Chunk 8 Checkpointed And Remotely Validated
 
 The approved 24-step Chunk 8 plan is
 `docs/plans/chapter2-chunk-08.md`; `C8.01`--`C8.24` are complete in checkpointed

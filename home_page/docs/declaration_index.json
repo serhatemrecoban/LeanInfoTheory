@@ -1,5 +1,5 @@
 {
-  "declaration_count": 762,
+  "declaration_count": 768,
   "declarations": [
     {
       "doc": "Public project name used by documentation and the website.",
@@ -1980,6 +1980,66 @@
       "name": "LeanInfoTheory.Shannon.entropy_bool",
       "path": "LeanInfoTheory/Shannon/BinaryEntropy.lean",
       "short_name": "entropy_bool"
+    },
+    {
+      "doc": "The absolute entropy difference is bounded by binary entropy plus the alphabet-size term at the exact total variation distance. This is Sason's maximal-coupling bound (SA13, Section II, Theorem 3), with entropy in nats and total variation normalized as half the L1 distance. The logarithm uses Nat subtraction before casting to Real. No lower bound on the alphabet cardinality is required: on a singleton, both entropies and total variation are zero; an empty alphabet carries no PMF. The distance on the right is exact. Replacing it by an upper estimate requires a separate monotonicity argument, since the displayed expression need not increase throughout the unit interval.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 102,
+      "module": "LeanInfoTheory.Shannon.Continuity",
+      "name": "LeanInfoTheory.Shannon.abs_entropy_sub_le_binEntropy_add_totalVariation_mul_log",
+      "path": "LeanInfoTheory/Shannon/Continuity.lean",
+      "short_name": "abs_entropy_sub_le_binEntropy_add_totalVariation_mul_log"
+    },
+    {
+      "doc": "A monotone entropy-continuity bound for an alphabet of size `m`, in nats. For `m \u2265 2`, this is binary entropy plus `epsilon * log (m - 1)` through `1 - 1 / m`, including equality, and `log m` above that threshold. Nat subtraction precedes the Real cast. The bound is zero for `m \u2264 1`; the zero-cardinality case is only a scalar convention, since an empty alphabet carries no PMF. Approximation guarantees concern nonnegative real budgets; negative arguments have no such interpretation.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 175,
+      "module": "LeanInfoTheory.Shannon.Continuity",
+      "name": "LeanInfoTheory.Shannon.entropyContinuityBound",
+      "path": "LeanInfoTheory/Shannon/Continuity.lean",
+      "short_name": "entropyContinuityBound"
+    },
+    {
+      "doc": "The entropy-continuity bound is monotone on all nonnegative real budgets.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 199,
+      "module": "LeanInfoTheory.Shannon.Continuity",
+      "name": "LeanInfoTheory.Shannon.entropyContinuityBound_mono",
+      "path": "LeanInfoTheory/Shannon/Continuity.lean",
+      "short_name": "entropyContinuityBound_mono"
+    },
+    {
+      "doc": "An upper estimate for total variation controls the entropy difference by the monotone capped bound for the whole common alphabet. The premise itself implies `0 \u2264 epsilon`; no upper restriction on `epsilon` is required. Below the scalar threshold the proof uses the exact-distance inequality and q-ary monotonicity. Above it, entropy lies between zero and the logarithm of the alphabet cardinality. Singleton alphabets give zero, and no extra nonemptiness or support premise is imposed.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 252,
+      "module": "LeanInfoTheory.Shannon.Continuity",
+      "name": "LeanInfoTheory.Shannon.abs_entropy_sub_le_entropyContinuityBound",
+      "path": "LeanInfoTheory/Shannon/Continuity.lean",
+      "short_name": "abs_entropy_sub_le_entropyContinuityBound"
+    },
+    {
+      "doc": "An upper estimate for joint total variation bounds the change in conditional entropy of the first coordinate given the second. The joint and second-marginal entropy terms use their respective whole-alphabet capped bounds at the same budget. No support or additional nonemptiness premise is required.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 287,
+      "module": "LeanInfoTheory.Shannon.Continuity",
+      "name": "LeanInfoTheory.Shannon.abs_condEntropy_sub_le_entropyContinuityBound",
+      "path": "LeanInfoTheory/Shannon/Continuity.lean",
+      "short_name": "abs_condEntropy_sub_le_entropyContinuityBound"
+    },
+    {
+      "doc": "An upper estimate for joint total variation bounds the change in mutual information by the sum of the two marginal and joint entropy bounds. Each term uses its own whole-alphabet cardinality, so their saturation thresholds may differ. No support or additional nonemptiness premise is required.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 310,
+      "module": "LeanInfoTheory.Shannon.Continuity",
+      "name": "LeanInfoTheory.Shannon.abs_mutualInfo_sub_le_entropyContinuityBound",
+      "path": "LeanInfoTheory/Shannon/Continuity.lean",
+      "short_name": "abs_mutualInfo_sub_le_entropyContinuityBound"
     },
     {
       "doc": "Shannon entropy, in nats, of a finite probability mass function.",
@@ -7622,12 +7682,12 @@
       "short_name": "entropyOf_div_log"
     }
   ],
-  "documented_count": 761,
+  "documented_count": 767,
   "kind_counts": {
-    "Definition": 113,
+    "Definition": 114,
     "Inductive": 4,
     "Instance": 2,
-    "Theorem": 643
+    "Theorem": 648
   },
   "modules": [
     "LeanInfoTheory.Basic",
@@ -7644,6 +7704,7 @@
     "LeanInfoTheory.Probability.FiniteMixture",
     "LeanInfoTheory.Probability.TotalVariation",
     "LeanInfoTheory.Shannon.BinaryEntropy",
+    "LeanInfoTheory.Shannon.Continuity",
     "LeanInfoTheory.Shannon.Entropy",
     "LeanInfoTheory.Shannon.EntropyBounds",
     "LeanInfoTheory.Shannon.EntropyConcavity",

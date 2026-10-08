@@ -51,10 +51,37 @@ retain their exact identities and publication guards. Generated types document
 the current tree; retained structural fingerprints and source review govern
 compatibility, and matching types do not establish unchanged semantics.
 
-## Current C13 milestone
+## Current C14 milestone
 
-C13 adds `Shannon.SemanticBridge.Pinsker` and five public theorems. Current
-coverage is 647 documented declarations in 35 supported owners, with 92
+C14 adds `Shannon.Continuity` and six public declarations. Current coverage is
+653 documented declarations in 36 supported owners, with 92 root exports,
+94 reviewed simp declarations and 24 non-stable exclusions. Inspect the exact-TV
+entropy statement, total capped scalar definition, monotonicity on nonnegative
+budgets and the three entropy/conditional-entropy/MI budget statements. Preserve
+Nat subtraction, independent coordinate universes, the sole TV-budget premise,
+and separate joint/marginal cardinalities and thresholds.
+
+<!-- c14-04-api-docs:start -->
+Both actual current file-mode build/check passes passed (160.9s and 22.0s),
+followed by inspection of all six new declaration blocks and the full Shannon
+umbrella against the v2 source/configuration identity and two-pass attestation.
+The original missing-Continuity-page failure and bounded three-marker repair
+remain separately recorded. The recovered run kept all tracked/unignored source
+unchanged. Later result-recording prose does not alter the exact API inputs;
+applicability is checked separately. Existing pinned dependencies/caches were used.
+The clean routine, cumulative review and closure remain pending.
+<!-- c14-04-api-docs:end -->
+
+The [C14 handoff](../docs/handoffs/chunk-14.md) records source/configuration identities,
+original checks, failures and limits. Current output stays in
+`docbuild/.lake/build/doc/`, outside the frozen release route. Exact applicability
+must be checked after any source amendment; caches may be reused without calling
+this a cold rebuild.
+
+## Historical C13 milestone
+
+C13 added `Shannon.SemanticBridge.Pinsker` and five public theorems. Its milestone
+coverage was 647 documented declarations in 35 supported owners, with 92
 canonical exports, 94 reviewed simp declarations and 23 non-stable exclusions.
 The new page must retain canonical ENNReal KL, both explicit support guards,
 the constant two and the two MI forms without public measurable-space premises.

@@ -30,15 +30,30 @@
           "LeanInfoTheory",
           "LeanInfoTheory.Probability.Coupling",
           "LeanInfoTheory.Probability.TotalVariation",
+          "LeanInfoTheory.Shannon.Continuity",
           "LeanInfoTheory.Shannon.Fano",
           "LeanInfoTheory.Shannon.SemanticBridge",
           "LeanInfoTheory.Shannon.Units"
         ],
         "external": []
       },
-      "rationale": "The approved full mathematical umbrella exposes finite total variation and generic coupling while preserving its retained direct imports and the lightweight root boundary.",
-      "consumer": "Full-stack users import LeanInfoTheory.Shannon; the independently importing total-variation and coupling consumers verify focused access.",
-      "approval_reference": "Approved Chunk 10 plan revision 2, Sections 3.1 and 5 / C10.01-BOUNDARY (docs/plans/post-release-chunk-10.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-20. Authority intake: .lit-review/setup/c10-01-authority-intake-20260920.json. Approved Chunk 11 plan revision 2, Sections 3.1 and 4 / C11.01-BOUNDARY (docs/plans/post-release-chunk-11.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-26. Authority intake: .lit-review/setup/c11-execution-approval-context-20260926.json."
+      "rationale": "The approved full mathematical umbrella exposes finite total variation, generic coupling and exact-TV entropy continuity while preserving its retained direct imports and the lightweight root boundary.",
+      "consumer": "Full-stack users import LeanInfoTheory.Shannon; the independently importing total-variation, coupling and continuity consumers verify focused access.",
+      "approval_reference": "Approved Chunk 10 plan revision 2, Sections 3.1 and 5 / C10.01-BOUNDARY (docs/plans/post-release-chunk-10.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-20. Authority intake: .lit-review/setup/c10-01-authority-intake-20260920.json. Approved Chunk 11 plan revision 2, Sections 3.1 and 4 / C11.01-BOUNDARY (docs/plans/post-release-chunk-11.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-26. Authority intake: .lit-review/setup/c11-execution-approval-context-20260926.json. Approved Chunk 14 plan revision 2, Sections 3.4 and C14.01-BOUNDARY (docs/plans/post-release-chunk-14.md); the lead explicitly requested step 1 with review on 2026-10-07. Authority intake: .lit-review/setup/c14-01-authority-intake-20261007.json."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.Continuity",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.Coupling",
+          "LeanInfoTheory.Shannon.Fano"
+        ],
+        "external": []
+      },
+      "rationale": "The approved C14.01 owner derives the exact absolute entropy difference from the actual maximal coupling, its swap and existing Fano. All decoder/event and signed-orientation glue stays private; no Pinsker, gluing, extra analysis, root export or simp change is needed. C14.02 adds the capped scalar modulus, monotonicity on nonnegative budgets and the entropy-budget bound using already imported q-ary monotonicity and entropy range; all normalization and auxiliary scalar facts remain private. C14.03 adds the approved conditional-entropy and mutual-information budget theorems by existing entropy identities and both projection contractions. Each term uses its own whole-alphabet cap; no helper, import, root or simp expansion is needed.",
+      "consumer": "LeanInfoTheory.Examples.Continuity imports only the focused owner and applies its theorem to both law orders, equal/zero-distance and empty/singleton cases, distinct pure Boolean laws, pure/fair Boolean laws and pure/uniform Fin 3 with exact threshold equality. C14.02 adds exact zero/threshold/saturation and greater-than-one checks, a raw-substitution counterexample, a noninjective output-law contraction and explicit public-monotonicity budget weakening across the ternary threshold. C14.03 adds generic joint-law approximation, sparse Bool-by-Fin3 diagonal/independent/pure comparisons with established information and TV values, changing marginals and mixed cap branches, actual marginal budget weakening, both singleton coordinates, impossible empty coordinates, swap orientation and arbitrary-source finite-valued RV applications.",
+      "approval_reference": "Approved Chunk 14 plan revision 2, Sections 3.1, 3.4-3.5 and C14.01-BOUNDARY (docs/plans/post-release-chunk-14.md); the lead accepted the revision and explicitly requested step 1 with its review process on 2026-10-07. Authority intake: .lit-review/setup/c14-01-authority-intake-20261007.json. This also approves the full Shannon umbrella addition while preserving its retained imports. Approved revision 2 Sections 3.2 and C14.02; conditional Step 2 with review was explicitly requested on 2026-10-07, with successful Step 1 closure and exact source applicability verified before acceptance. Intake: .lit-review/setup/c14-02-ingress-20261007.json. Direct imports are unchanged. Approved revision 2 Sections 3.3-3.5 and C14.03; conditional Step 3 with review explicitly requested on 2026-10-07 after successful Step 2 closure and exact source verification. Intake: .lit-review/setup/c14-03-ingress-20261007.json. Direct imports remain unchanged."
     },
     {
       "owner": "LeanInfoTheory.Probability.Coupling",

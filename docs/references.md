@@ -141,7 +141,40 @@ The local copy is arXiv `1209.5259v5`, dated July 23, 2013.
 - Recorded C11 use: Section I, Theorem 1 and equations (3)--(9), printed/PDF
   pages 2--3; Theorem 2 and equation (10), page 3. The finite construction uses
   the common diagonal mass and an independent residual matrix, with explicit
-  zero/unit-TV endpoints. Section II's continuity result remains C14 work.
+  zero/unit-TV endpoints. Section II's continuity result is the C14 source below.
+- Recorded C14 planning use (2026-10-04): Definition 3/(2), page 1; Theorem
+  2/(10) and the base-e convention, page 3; Section II, Theorem 3/(11), its
+  proof and upper-distance-budget discussion, pages 3--4. The local hash was
+  rechecked and both theorem/proof pages visually inspected. The
+  [C14 plan](plans/post-release-chunk-14.md) records exact-TV versus
+  capped-budget contracts, Nat-cardinality/singleton conventions, and derived
+  conditional-entropy/MI bounds. Compiling feasibility probes are not production
+  implementation or formal plan approval. No sharpness classification or
+  Section III refinement is selected.
+- Recorded C14.01 implementation use (2026-10-07): Section II, Theorem 3/(11)
+  and its complete proof on pages 3--4. `Shannon.Continuity` uses one actual
+  maximal joint PMF and its swap, exact identity-decoder errors, existing Fano
+  and entropy identities. The public theorem extends the conventional
+  cardinal-at-least-two expression to all finite PMFs by the library's Nat
+  subtraction and total-log conventions, with explicit singleton/empty
+  consumers. The threshold discussion explains why this step accepts exact TV
+  only; the capped upper-budget theorem remains C14.02. The ternary example
+  tests equality at `2/3` without asserting a general sharpness classification.
+- Recorded C14.02 implementation use (2026-10-07): the upper-distance-budget
+  discussion following Theorem 3 on pages 3--4 motivates the cap at `log m`.
+  The public scalar modulus equals the raw expression through `1 - 1/m`,
+  including equality, and saturates above it for every nonnegative real budget.
+  Singleton and zero-cardinal scalar conventions are explicit; an empty law
+  remains impossible. Pinned mathlib q-ary monotonicity supplies the interval
+  argument, and the existing entropy range supplies the saturated law bound.
+- Recorded C14.03 implementation use (2026-10-07): the two joint-law bounds
+  are derived library consequences, not separately numbered SA13 theorems.
+  Existing conditional-entropy/MI identities and both projection TV contractions
+  combine the C14.02 entropy-budget result with separate joint/marginal alphabet
+  sizes. No new attribution, optimality claim or null-fiber continuity is made.
+- C14.04 qualification adds no mathematical source claim. The
+  [maintained C14 handoff](handoffs/chunk-14.md) reconciles the exact/capped/derived
+  distinction, implemented consumers, prior evidence and deferred refinements.
 - Section II credits prior entropy-continuity results; cite the actual route
   used without claiming that every ingredient originated in this paper.
 - Uses natural logarithms. Distinguish a bound at exact TV distance from a
