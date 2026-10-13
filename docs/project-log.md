@@ -5,6 +5,255 @@ detail. It is not meant to list every small command or proof attempt. It should
 help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
+## C15.05 cumulative candidate preparation, 2026-10-13
+
+C15.04 and its review completed successfully, with all four criteria satisfied
+and no findings. Its closure and all 232 final-source entries matched before
+the conditional Step 5 request was accepted. C15.05 adds no mathematical API.
+
+The maintained [C15 handoff](handoffs/chunk-15.md) now records the 16 delivered
+declarations, exact useful imports, actual generic MI attainment, connected
+boundary limits and empty/singleton/null-fiber decisions. Canonical status and
+the roadmap's editorial execution header are reconciled. Current names remain
+the approved `continuous_...` family; Note 14 needs no aliases. Under Note 29,
+constructors, compact-image/optimizer applications and boundary helpers remain
+private until concrete independent reuse justifies promotion.
+
+C13--C15 added 27 supported declarations (5 + 6 + 16), including C15's two
+instances and coordinate equations, below the rough 40--100 substantive-growth
+estimate. The handoff distinguishes that inventory from mathematical breadth
+and records reassessment after C18 without adding filler or changing endpoints.
+
+The lead explicitly authorized the exact prepared 20-file local checkpoint,
+necessary C15.05-only amendments within those paths and reuse of the relocated
+clean validation checkout. Initial checkpoint `000aae22bf2db249e0286183b6cd3ebf4e910aba` passed the complete maintained routine suite in 3435.257 seconds.
+The actual command was `python -B scripts/validate_release.py`; original streams,
+results and cross-checkout comparisons are retained under
+`.lit-review/setup/c15-05-20261013/full-checkpoint/`. Existing pinned dependencies
+and incremental caches were used. The clean candidate stayed unchanged and clean.
+The four protected primary paths and two historical CRLF/LF distinctions remain
+explicit in the [C15 handoff](handoffs/chunk-15.md); unrelated relocation and
+website/hygiene work was not checkpointed. Three owned generated/policy files
+were normalized to LF before checkpointing.
+
+The actual two-pass current API-doc gate and rendered inspection passed after
+the separately retained bounded marker recovery. Its source/output applicability
+is established separately from the clean routine. Every amendment requires
+renewed complete clean validation and exact API-doc/source applicability.
+Completed edits, retained self-review/reassessment and earlier-report
+reconciliation precede fresh all-17-criterion review. Its original report,
+reconciliation and source-bound final records establish actual closure; this
+initial qualification is not cumulative acceptance or final completion. No
+later chunk, push or publication is selected.
+
+## C15.04 finite information continuity and actual MI attainment, 2026-10-13
+
+C15.03 completed successfully with its review, all three criteria satisfied and
+no findings. The parent verified every captured final source entry before
+accepting the lead's conditional Step 4 request. Only C15.04 is selected.
+
+The new `Shannon.Topology` owner proves the four approved continuity theorems
+using finite `negMulLog` sums, existing marginal entropy formulas and delivered
+channel-joint continuity. It imports only InfoMeasures and FiniteTopology,
+retains zero masses and independent universes, and adds no helper API, instance,
+alias or simp attribute. The full Shannon umbrella exposes the focused owner;
+the lightweight root and historical API stay unchanged.
+
+The private `Examples.ChannelOptimization` consumer applies mathlib's compact
+extremum theorem to the actual fixed-channel MI objective, supplying delivered
+compactness, public continuity and a pure input from nonemptiness. Its connected
+Boolean family has explicit MI and conditional-entropy limits to zero through
+the pure/fair channel, including a disappearing conditioning marginal.
+Singleton input/output objectives are zero; empty input has no optimizer,
+while nonempty input and empty output admit no channel. Tiny private constructors
+preserve the focused import without a public fixture or optimizer wrapper.
+
+The growth policy records the actual approved revision and conditional intake.
+Regenerated references contain 669 documented declarations in 39 owners, 94 simp
+declarations, 92 root exports and 27 non-stable modules; the graph has 66 modules,
+143 local edges and five root-reachable modules. The source index has 784 entries,
+783 documented and one example-only instance. All eight focused targets,
+both fresh-import instance probes, static, mandatory documentation and full
+trust passed on unchanged source. Trust preserved 601 retained signatures and
+audited all 66 modules/2,198 local constants with only the three permitted
+axioms. Documentation compiled five README and four website guide examples.
+The initial private-alias compiler failure and English-docstring scanner match
+are retained separately from the successful corrected candidate. The
+[C15 notes](plans/post-release-chunk-15-notes.md) record those outcomes,
+helper-probe limits, exact commands and textbook adaptations.
+
+The same bound independent reviewer assessed all four C15.04 criteria satisfied
+with no material or optional findings. It inspected the information proofs,
+actual extremum application, boundary/degeneracy consumers, focused closure,
+policy and source adaptations; independently compared 50 supplied/supplemental
+hashes before and after; rechecked the registered PW24 file and exact pages;
+ran both fresh-import instance probes; re-elaborated the exact owner with
+additional generic, empty, pure-boundary and arbitrary-filter applications and
+axiom checks; re-elaborated the exact consumer; and passed the maintained static
+gate. All its fresh checks passed.
+
+The original report separates these independent checks from parent-run focused,
+documentation and full trust results. Its 50-path hash check does not reconstruct
+the complete source fingerprint; imported artifacts were reused by its stdin
+probes. The parent separately verified all 232 inventory entries and supplied
+the completed trust result before the final report. Neither party claims a
+clean default suite, current API-doc milestone or retrospective per-olean
+attestation. Cooperative review provenance is not OS isolation.
+
+The parent retained the original native report, separately confirmed delivery
+after the empty immediate result, received it and reconciled all four original
+assessments. Self-review and separate reassessment found no actionable
+recommendation. Final updates record evidence and limits in the living summary,
+this log and the C15 notes. Exact source applicability and fresh final checks
+precede supported private closure; this entry itself is not closure. No clean
+checkpoint, current API-doc milestone, later step or publication is selected.
+
+## C15.03 fixed probability-map continuity, 2026-10-13
+
+The lead conditionally selected Step 3 with review. The parent verified C15.02's
+successful closure, all three satisfied criteria and exact final source before
+intake. Only this step is selected; earlier pre-closure entries retain history.
+
+`Probability.FiniteTopology` adds `continuous_bind` and `continuous_map` with
+only finite input and arbitrary output, plus `continuous_channelJoint` for
+arbitrary alphabets. Bind uses the existing guarded real weighted-sum formula;
+map reuses bind, and joint continuity uses the existing coordinate product.
+No new owner, import, instance, public helper, alias or simp rule is needed.
+
+Permanent focused consumers retain independent universes and `Finite`-only
+hypotheses and directly exercise infinite output and infinite input where
+promised. They use actual bind compact images, a nonconstant noninjective
+`Fin 3 → Bool` map with exact sparse-law output, and the prescribed Boolean
+boundary family through a channel with distinct rows. Exact joint/output masses,
+both projections and continuity-based limits connect the input to the joint and
+output laws, including the unused input row and vanishing output mass at zero.
+All constructors remain private with no cross-example, TV or Shannon import.
+
+The initial owner build failed only in elaborating the joint proof's continuous
+product. Goal-directed simplification fixed it, and the corrected owner build
+passed. The first six-target build then found one private joint-limit alias
+unfolding mismatch; explicit unfolding corrects that proof. Both failures are
+retained separately; helper feasibility checks are not formal step review.
+
+All six focused targets, both separate fresh-import instance probes, static and
+the full trust gate then passed on unchanged source. Compatibility preserves
+all 601 retained signatures; current checks cover 665 documented declarations
+in 38 owners, 94 simp declarations, 92 root exports and all 64 modules/2,155
+local constants using only the three permitted axioms. The complete input/output
+inventories agree with the reviewed source. Independent review overlapped the
+serialized trust audit on frozen source; its actual complete result was supplied
+before the final criterion report.
+
+The same bound independent reviewer assessed all three C15.03 criteria satisfied
+with no material or optional findings. It inspected the proofs, permanent
+consumers, imports, policy and pinned APIs; compared 40 supplied/supplemental
+file hashes before and after; independently ran both fresh-import instance and
+generality probes; re-elaborated the exact owner and consumer sources through
+Lean stdin; and passed the maintained static gate. Its initial plan-excerpt
+printing command failed under Windows cp1252; the UTF-8 rerun passed. That
+failure did not invoke Lean or modify source and remains separate evidence.
+
+The original report distinguishes parent-run focused/trust results from those
+independent checks. Its 40-file comparison does not reconstruct the full source
+fingerprint; imported artifacts were reused by its no-output compiler probes.
+The parent separately verified all 230 inventory entries and retained the
+completed trust result. The trust command's maintained target build is not the
+clean default validation suite; no clean-candidate or API-doc milestone is claimed.
+
+The parent preserved the original native report, confirmed delivery after the
+empty immediate result, received it and reconciled all three assessments.
+Self-review and separate reassessment found no actionable recommendation.
+Final updates record evidence and limits in the living summary, this log entry
+and the C15 implementation notes. Source applicability and fresh final checks
+precede supported private closure; this entry itself is not closure. Later
+steps, commits and publication remain unselected.
+
+## C15.02 coordinate and total-variation convergence, 2026-10-13
+
+The lead conditionally requested Step 2 with review. The parent verified the
+C15.01 successful closure, all four satisfied criteria and exact final-source
+identity before selecting C15.02. Only this step is active.
+
+The separate `Probability.TotalVariationTopology` owner adds joint continuity
+of existing half-L1 TV and the arbitrary-filter equivalence between PMF limits
+and TV tending to zero. It imports only the existing TV and finite-topology
+owners. Joint continuity uses finite sums of continuous real coordinates;
+forward convergence composes that continuity, and the converse reuses the
+existing event bound on a singleton. No coordinate-bound
+API, metric instance, alias, simp rule or Shannon dependency is introduced.
+
+The focused private consumers compose both coordinate/TV iff theorems in both
+directions. The closed-unit-interval Boolean family has real masses `1 - t`
+and `t`, pure endpoint at false, exact TV `t`, and explicit limits through the
+public equivalences. Singleton TV and impossible empty limits are also covered.
+The full Shannon and Examples aggregates expose their respective owners;
+current growth policy and generated references are updated. The first owner
+build failed in two composition simplifications; explicit reductions preserve
+the statements, and the failed attempt is retained separately. A second
+five-target attempt compiled the new proofs but failed a strict umbrella
+module-doc line-length warning; wrapping that line fixed it.
+
+All five focused targets, static checks and the complete trust gate then passed
+on unchanged source. The trust audit preserved all 601 retained signatures and
+verified 662 current declarations in 38 owners, 94 simp declarations, 92 root
+exports, and all 64 modules/2,104 constants using only the three permitted axioms.
+The independent review overlapped the serialized trust audit on frozen source;
+its completed result was supplied before the reviewer issued the verdict.
+
+The existing bound reviewer returned all three C15.02 criteria satisfied with
+no findings. Its own source inspection, fresh consumer/interface elaboration and
+static gate are distinguished from the parent-run focused/trust evidence. The
+reviewer retained an initial Unicode output-wrapper failure separately from the
+corrected successful probe. The parent preserved the original report, confirmed
+delivery after the empty native submission response, received and reconciled it.
+Final prose clarifies the proof descriptions and unselected future milestones.
+The mathematical source and contracts are unchanged by this documentation pass;
+final applicability and post-documentation checks precede supported private
+closure. This entry itself is not closure. Later steps remain unselected.
+
+## C15.01 PMF topology and real simplex, 2026-10-12–13
+
+The lead accepted revision 2 and explicitly selected only Step 1 with review.
+The existing C15 reviewer was contacted and confirmed availability with its
+history retained. No formal PLAN review was dispatched or retrospectively claimed.
+C14 completion and baseline applicability were checked against its actual
+private completion and source records; prior workspace hygiene and protected
+website notes are preserved.
+
+`Probability.FiniteTopology` adds seven planned declarations: the named forwarder
+for the existing PMF subtype topology, real-coordinate continuity, the real
+standard-simplex homeomorphism and two coordinate equations, arbitrary-filter
+coordinate convergence, and `Finite` compactness. The no-top atom property
+justifies real conversion at zero as well as positive mass. Empty alphabets
+remain compact without asserting a law exists. The focused permanent consumers
+exercise sparse laws, vertices, both round trips, degeneracy and real-simplex
+coordinate limits. No public helper, alias, simp rule or metric is added.
+
+The Shannon umbrella and current growth policy/generated references expose the
+new owner; the lightweight root remains unchanged. All four focused targets and
+both fresh-import instance probes passed with warnings as errors. The first
+consumer build failed in two private proofs (a `Fin 3` numeral simplification
+and an `ofReal` coercion mismatch); corrected proofs preserve the statements,
+and the original failure and successful rerun remain separate evidence.
+
+The complete trust gate passed: 601 retained signatures, 660 current declarations
+in 37 supported owners, 94 reviewed simp declarations, 92 root exports and an
+all-project audit of 2,082 constants using only the three permitted axioms.
+Parent static validation also passed, including all 34 website-checker tests.
+The successful checks used the same unchanged source inventory. After the
+compiled compatibility stage had passed, independent review overlapped the
+remaining trust audit on frozen source; no required closure gate was waived.
+
+The existing bound reviewer returned the original C15.01 STEP report with all
+four criteria satisfied and no findings. It independently inspected the source
+and ran both fresh-import probes and the static gate, keeping the parent-run
+build/trust evidence explicitly separate. The parent preserved, received and
+reconciled that report. Final documentation corrects stale blanket topology
+deferrals; only the remaining TV/information continuity work is deferred within
+C15. Final source applicability and post-documentation checks must precede the
+supported private completion record; this entry itself is not closure.
+The clean routine/API-doc milestone and later mathematics remain in later steps.
+
 ## C14.04 initial checkpoint qualification, 2026-10-08
 
 The lead explicitly approved the prepared 23-file local checkpoint, necessary
@@ -10320,6 +10569,39 @@ resolution.
     add no alias. Existing source and private consumers support discoverability;
     reopen only on concrete independent consumer friction through the feedback
     register. The API maintainer owns that review; C10 inherits the standing rule.
+
+    C15.05 cumulative disposition (2026-10-13): retain the four C15.04 names
+    `continuous_entropy`, `continuous_condEntropy`, `continuous_mutualInfo`
+    and `continuous_mutualInfo_channelJoint` beside the delivered PMF names.
+    Direct permanent consumers establish their utility without aliases.
+    Under Note 29, keep extremum applications and tiny boundary constructors
+    private; the API maintainer reopens promotion only on independent consumer
+    pressure or recorded repeated discovery friction. Capacity remains C22.
+
+    C15.03 disposition (2026-10-13): retain `continuous_map`, `continuous_bind`
+    and `continuous_channelJoint`, matching the existing construction names.
+    Direct generic and concrete consumers require no alias. Under Note 29,
+    compact-image and boundary-family helpers stay private; repeated tiny
+    constructors preserve focused imports and do not justify a shared fixture.
+    Reopen helper promotion only for independent production pressure.
+
+    C15.02 disposition (2026-10-13): retain `continuous_totalVariation` and
+    `tendsto_iff_totalVariation_tendsto_zero`; the latter parallels the real-
+    coordinate iff and states the limiting TV value explicitly. The focused
+    consumers compose both names directly, so no alias or simp rule is justified.
+    Reopen only on repeated independent discovery friction through the API
+    maintainer. Under Note 29, keep the interval family and its coordinate/TV
+    formulas private; later examples may repeat the tiny constructor as planned.
+    The singleton-event bound is reused directly, with no new helper API.
+
+    C15.01 disposition (2026-10-12): retain `homeomorphStdSimplex` and its
+    two coordinate equations, `continuous_apply_toReal`, and
+    `tendsto_iff_forall_toReal_tendsto`, beside the two named instances.
+    These names expose the upstream simplex and real-coordinate contract;
+    focused consumers use them directly. No alias or simp addition is needed.
+    Reopen only on repeated independent search friction through the API
+    maintainer. Note 29 does not promote the private sparse constructor or
+    consumer-only normalization helper; no production reuse pressure exists.
 
     C14.01 disposition (2026-10-07): retain
     `abs_entropy_sub_le_binEntropy_add_totalVariation_mul_log`. Its long name

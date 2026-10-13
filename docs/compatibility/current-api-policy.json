@@ -29,17 +29,20 @@
         "local": [
           "LeanInfoTheory",
           "LeanInfoTheory.Probability.Coupling",
+          "LeanInfoTheory.Probability.FiniteTopology",
           "LeanInfoTheory.Probability.TotalVariation",
+          "LeanInfoTheory.Probability.TotalVariationTopology",
           "LeanInfoTheory.Shannon.Continuity",
           "LeanInfoTheory.Shannon.Fano",
           "LeanInfoTheory.Shannon.SemanticBridge",
+          "LeanInfoTheory.Shannon.Topology",
           "LeanInfoTheory.Shannon.Units"
         ],
         "external": []
       },
-      "rationale": "The approved full mathematical umbrella exposes finite total variation, generic coupling and exact-TV entropy continuity while preserving its retained direct imports and the lightweight root boundary.",
-      "consumer": "Full-stack users import LeanInfoTheory.Shannon; the independently importing total-variation, coupling and continuity consumers verify focused access.",
-      "approval_reference": "Approved Chunk 10 plan revision 2, Sections 3.1 and 5 / C10.01-BOUNDARY (docs/plans/post-release-chunk-10.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-20. Authority intake: .lit-review/setup/c10-01-authority-intake-20260920.json. Approved Chunk 11 plan revision 2, Sections 3.1 and 4 / C11.01-BOUNDARY (docs/plans/post-release-chunk-11.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-26. Authority intake: .lit-review/setup/c11-execution-approval-context-20260926.json. Approved Chunk 14 plan revision 2, Sections 3.4 and C14.01-BOUNDARY (docs/plans/post-release-chunk-14.md); the lead explicitly requested step 1 with review on 2026-10-07. Authority intake: .lit-review/setup/c14-01-authority-intake-20261007.json."
+      "rationale": "The approved full mathematical umbrella exposes finite total variation, generic coupling and exact-TV entropy continuity while preserving its retained direct imports and the lightweight root boundary. C15.01 adds the approved PMF product/subtype topology and real-simplex compactness owner. C15.02 adds the separate TV/topology bridge to the full umbrella. C15.04 adds the separately focused qualitative finite-information topology owner while preserving the lightweight root.",
+      "consumer": "Full-stack users import LeanInfoTheory.Shannon; the independently importing total-variation, coupling and continuity consumers verify focused access. Examples.ChannelOptimization independently imports the focused Topology owner for actual MI attainment and boundary/degeneracy consumers.",
+      "approval_reference": "Approved Chunk 10 plan revision 2, Sections 3.1 and 5 / C10.01-BOUNDARY (docs/plans/post-release-chunk-10.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-20. Authority intake: .lit-review/setup/c10-01-authority-intake-20260920.json. Approved Chunk 11 plan revision 2, Sections 3.1 and 4 / C11.01-BOUNDARY (docs/plans/post-release-chunk-11.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-26. Authority intake: .lit-review/setup/c11-execution-approval-context-20260926.json. Approved Chunk 14 plan revision 2, Sections 3.4 and C14.01-BOUNDARY (docs/plans/post-release-chunk-14.md); the lead explicitly requested step 1 with review on 2026-10-07. Authority intake: .lit-review/setup/c14-01-authority-intake-20261007.json. Approved C15 revision 2, Sections 3.1/4 and C15.01 (docs/plans/post-release-chunk-15.md); the lead accepted the plan and explicitly requested step 1 with its review process on 2026-10-12. Intake: .lit-review/setup/c15-01-20261012/authority.json. Formal PLAN review was not dispatched; no such acceptance is claimed. Approved C15 revision 2, Sections 3.2, 3.7, 4 and C15.02 (docs/plans/post-release-chunk-15.md); the lead conditionally requested step 2 with its review process on 2026-10-13. C15.01 closure and exact predecessor source were verified before selection. Intake: .lit-review/setup/c15-02-20261013/next-input.json. Approved C15 revision 2, Sections 3.4-3.7, 4 and C15.04 (docs/plans/post-release-chunk-15.md); the lead conditionally requested Step 4 with review on 2026-10-13. Successful C15.03 closure and its entire exact final source were verified before intake. Authority: .lit-review/setup/c15-04-20261013/next-input.json."
     },
     {
       "owner": "LeanInfoTheory.Shannon.Continuity",
@@ -130,6 +133,50 @@
       "rationale": "Finite-PMF Pinsker combines existing half-L1 TV and unconditional KL map data processing with private closed-interval binary analysis. The Real and square-root consequences first derive finite KL from support inclusion. Focused analytic and tactic imports support the proofs; no coupling/gluing or root dependency is added. The direct Sqrt import names the owner of the square-root conversion lemma instead of relying on its incidental transitive exposure through derivative analysis. Quantitative independence reuses the existing joint absolute-continuity and MI-as-KL interfaces through the same imports; finite KL is established privately before conversion.",
       "consumer": "LeanInfoTheory.Examples.Pinsker imports the focused owner and exercises Boolean boundaries, positive three-atom reduction, both finite-KL guards, a sparse reference law, extended-valued event budgets and actual singular counterexamples. LeanInfoTheory.Examples.QuantitativeIndependence imports the same focused owner and checks MI budgets, events, unit-interval and signed tests, arbitrary-source pushforwards and an exact sparse joint with a null marginal row.",
       "approval_reference": "Approved Chunk 13 plan revision 2, Sections 3.1 and 3.4, C13.01-BOUNDARY (docs/plans/post-release-chunk-13.md); the lead accepted revision 2 and explicitly requested step 1 with its review process on 2026-10-03. Authority intake: .lit-review/setup/c13-01-authority-intake-20261003.json. Approved Chunk 13 plan revision 2, Section 3.2 and C13.02 (docs/plans/post-release-chunk-13.md); the lead requested step 2 with review conditional on successful step 1 completion on 2026-10-03. The condition and exact predecessor source were verified. Authority intake: .lit-review/setup/c13-02-ingress-20261003.json. Approved Chunk 13 plan revision 2, Section 3.3 and C13.03 (docs/plans/post-release-chunk-13.md); the lead requested step 3 with review conditional on successful step 2 completion on 2026-10-03. The condition and exact predecessor source were verified. Authority intake: .lit-review/setup/c13-03-ingress-20261003.json."
+    },
+    {
+      "owner": "LeanInfoTheory.Probability.FiniteTopology",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.FiniteChannel"
+        ],
+        "external": [
+          "Mathlib.Analysis.Convex.StdSimplex",
+          "Mathlib.Topology.Homeomorph.Lemmas"
+        ]
+      },
+      "rationale": "C15.01 forwards the existing PMF subtype topology, relates finite PMFs to the existing real simplex, derives finite compactness and arbitrary-filter real-coordinate convergence. No new uniform/metric instance, simp rule, root export or Shannon proof dependency. FiniteChannel is the approved owner dependency for the later C15.03 channel maps. C15.03 adds fixed map/bind continuity with only finite source and arbitrary output, plus fixed-channel joint continuity for arbitrary alphabets, without new imports or instances.",
+      "consumer": "LeanInfoTheory.Examples.FiniteTopology independently imports this owner for sparse coordinates, both round trips, pure vertices, empty/singleton laws and limits. Separate fresh-import focused/umbrella probes check global instances. C15.03 adds direct infinite-output/infinite-input and Finite-only universe-polymorphic signature checks, actual bind compact-image use, a nonconstant noninjective finite map, and connected stochastic-channel mass/projection/boundary-limit consumers.",
+      "approval_reference": "Approved C15 revision 2, Sections 3.1/4 and C15.01 (docs/plans/post-release-chunk-15.md); the lead accepted the plan and explicitly requested step 1 with its review process on 2026-10-12. Intake: .lit-review/setup/c15-01-20261012/authority.json. Formal PLAN review was not dispatched; no such acceptance is claimed. Approved C15 revision 2, Sections 3.3, 3.7, 4 and C15.03; the lead conditionally requested Step 3 with review on 2026-10-13 after successful C15.02 closure and exact predecessor-source verification. Intake: .lit-review/setup/c15-03-20261013/next-input.json. Existing direct imports are unchanged."
+    },
+    {
+      "owner": "LeanInfoTheory.Probability.TotalVariationTopology",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.TotalVariation",
+          "LeanInfoTheory.Probability.FiniteTopology"
+        ],
+        "external": []
+      },
+      "rationale": "C15.02 relates existing finite half-L1 TV to the inherited PMF topology using continuous real atom coordinates and the existing singleton-event bound. No new metric/topology instance or Shannon dependency.",
+      "consumer": "LeanInfoTheory.Examples.TotalVariationTopology imports only this focused owner and composes both convergence iff theorems under arbitrary filters; its Boolean family has exact coordinates and TV and tends to the pure boundary law, with singleton/empty cases.",
+      "approval_reference": "Approved C15 revision 2, Sections 3.2, 3.7, 4 and C15.02 (docs/plans/post-release-chunk-15.md); the lead conditionally requested step 2 with its review process on 2026-10-13. C15.01 closure and exact predecessor source were verified before selection. Intake: .lit-review/setup/c15-02-20261013/next-input.json."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.Topology",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Shannon.InfoMeasures",
+          "LeanInfoTheory.Probability.FiniteTopology"
+        ],
+        "external": []
+      },
+      "rationale": "C15.04 proves continuity of finite entropy, conditional entropy, mutual information and the actual fixed-channel input MI objective using the existing algebraic formulas, continuous negMulLog and finite PMF maps. No TV, coupling, Fano or KL proof dependency, instance, alias or simp rule is added.",
+      "consumer": "LeanInfoTheory.Examples.ChannelOptimization imports only this owner and directly obtains an actual maximizing input from compactness and continuity, proves both connected information limits and exercises empty/singleton input/output cases.",
+      "approval_reference": "Approved C15 revision 2, Sections 3.4-3.7, 4 and C15.04 (docs/plans/post-release-chunk-15.md); the lead conditionally requested Step 4 with review on 2026-10-13. Successful C15.03 closure and its entire exact final source were verified before intake. Authority: .lit-review/setup/c15-04-20261013/next-input.json."
     }
   ],
   "simp_additions": [],

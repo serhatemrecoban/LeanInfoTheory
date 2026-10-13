@@ -1,5 +1,5 @@
 {
-  "declaration_count": 768,
+  "declaration_count": 784,
   "declarations": [
     {
       "doc": "Public project name used by documentation and the website.",
@@ -1722,6 +1722,106 @@
       "short_name": "binaryMixture_one"
     },
     {
+      "doc": "The existing product/subtype topology on PMF atom masses.",
+      "kind": "instance",
+      "kind_label": "Instance",
+      "line": 46,
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.instTopologicalSpace",
+      "path": "LeanInfoTheory/Probability/FiniteTopology.lean",
+      "short_name": "instTopologicalSpace"
+    },
+    {
+      "doc": "Evaluation of a real atom mass is continuous, including at zero mass.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 50,
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.continuous_apply_toReal",
+      "path": "LeanInfoTheory/Probability/FiniteTopology.lean",
+      "short_name": "continuous_apply_toReal"
+    },
+    {
+      "doc": "Finite PMFs are homeomorphic to the real standard simplex by their atom masses.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 59,
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.homeomorphStdSimplex",
+      "path": "LeanInfoTheory/Probability/FiniteTopology.lean",
+      "short_name": "homeomorphStdSimplex"
+    },
+    {
+      "doc": "A PMF's simplex coordinate is its real atom mass.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 82,
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.homeomorphStdSimplex_apply",
+      "path": "LeanInfoTheory/Probability/FiniteTopology.lean",
+      "short_name": "homeomorphStdSimplex_apply"
+    },
+    {
+      "doc": "The inverse simplex map converts each nonnegative coordinate to `ENNReal`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 86,
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.homeomorphStdSimplex_symm_apply",
+      "path": "LeanInfoTheory/Probability/FiniteTopology.lean",
+      "short_name": "homeomorphStdSimplex_symm_apply"
+    },
+    {
+      "doc": "PMFs converge exactly when each real atom mass converges, for any filter.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 90,
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.tendsto_iff_forall_toReal_tendsto",
+      "path": "LeanInfoTheory/Probability/FiniteTopology.lean",
+      "short_name": "tendsto_iff_forall_toReal_tendsto"
+    },
+    {
+      "doc": "PMFs on a finite alphabet form a compact space, also when the alphabet is empty.",
+      "kind": "instance",
+      "kind_label": "Instance",
+      "line": 98,
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.instCompactSpace",
+      "path": "LeanInfoTheory/Probability/FiniteTopology.lean",
+      "short_name": "instCompactSpace"
+    },
+    {
+      "doc": "A fixed channel's output law depends continuously on its finite-source input law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 103,
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.continuous_bind",
+      "path": "LeanInfoTheory/Probability/FiniteTopology.lean",
+      "short_name": "continuous_bind"
+    },
+    {
+      "doc": "Pushforward by a fixed map is continuous for finite source and arbitrary output.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 115,
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.continuous_map",
+      "path": "LeanInfoTheory/Probability/FiniteTopology.lean",
+      "short_name": "continuous_map"
+    },
+    {
+      "doc": "A fixed channel's joint law depends continuously on its input, for arbitrary alphabets.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 120,
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.continuous_channelJoint",
+      "path": "LeanInfoTheory/Probability/FiniteTopology.lean",
+      "short_name": "continuous_channelJoint"
+    },
+    {
       "doc": "Total variation of finite PMFs, normalized as half the L1 distance of real masses.",
       "kind": "def",
       "kind_label": "Definition",
@@ -1970,6 +2070,26 @@
       "name": "PMF.totalVariation_map_equiv",
       "path": "LeanInfoTheory/Probability/TotalVariation.lean",
       "short_name": "totalVariation_map_equiv"
+    },
+    {
+      "doc": "Total variation is jointly continuous on a fixed finite alphabet.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 34,
+      "module": "LeanInfoTheory.Probability.TotalVariationTopology",
+      "name": "PMF.continuous_totalVariation",
+      "path": "LeanInfoTheory/Probability/TotalVariationTopology.lean",
+      "short_name": "continuous_totalVariation"
+    },
+    {
+      "doc": "On a fixed finite alphabet, PMF convergence is equivalent to TV tending to zero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 43,
+      "module": "LeanInfoTheory.Probability.TotalVariationTopology",
+      "name": "PMF.tendsto_iff_totalVariation_tendsto_zero",
+      "path": "LeanInfoTheory/Probability/TotalVariationTopology.lean",
+      "short_name": "tendsto_iff_totalVariation_tendsto_zero"
     },
     {
       "doc": "The entropy of a Boolean PMF is the binary entropy of its `true` mass. The identity includes the endpoint laws without separate positivity assumptions.",
@@ -7622,6 +7742,46 @@
       "short_name": "condEntropyOf_pair_le_add_condEntropyOf"
     },
     {
+      "doc": "Entropy is continuous on finite PMFs, including boundary laws.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 34,
+      "module": "LeanInfoTheory.Shannon.Topology",
+      "name": "LeanInfoTheory.Shannon.continuous_entropy",
+      "path": "LeanInfoTheory/Shannon/Topology.lean",
+      "short_name": "continuous_entropy"
+    },
+    {
+      "doc": "Conditional entropy `H(X | Y)` is continuous as a finite joint-law function.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 42,
+      "module": "LeanInfoTheory.Shannon.Topology",
+      "name": "LeanInfoTheory.Shannon.continuous_condEntropy",
+      "path": "LeanInfoTheory/Shannon/Topology.lean",
+      "short_name": "continuous_condEntropy"
+    },
+    {
+      "doc": "Mutual information is continuous as a finite joint-law function.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 49,
+      "module": "LeanInfoTheory.Shannon.Topology",
+      "name": "LeanInfoTheory.Shannon.continuous_mutualInfo",
+      "path": "LeanInfoTheory/Shannon/Topology.lean",
+      "short_name": "continuous_mutualInfo"
+    },
+    {
+      "doc": "The mutual information of a fixed finite channel is continuous in its input law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 57,
+      "module": "LeanInfoTheory.Shannon.Topology",
+      "name": "LeanInfoTheory.Shannon.continuous_mutualInfo_channelJoint",
+      "path": "LeanInfoTheory/Shannon/Topology.lean",
+      "short_name": "continuous_mutualInfo_channelJoint"
+    },
+    {
       "doc": "Convert a real-valued quantity measured in nats to base-`b` information units. For the usual information-theoretic interpretation the base must satisfy `1 < b`. The definition itself is total because `Real.log` and real division are total in Lean.",
       "kind": "def",
       "kind_label": "Definition",
@@ -7682,12 +7842,12 @@
       "short_name": "entropyOf_div_log"
     }
   ],
-  "documented_count": 767,
+  "documented_count": 783,
   "kind_counts": {
-    "Definition": 114,
+    "Definition": 115,
     "Inductive": 4,
-    "Instance": 2,
-    "Theorem": 648
+    "Instance": 4,
+    "Theorem": 661
   },
   "modules": [
     "LeanInfoTheory.Basic",
@@ -7702,7 +7862,9 @@
     "LeanInfoTheory.Probability.Finite",
     "LeanInfoTheory.Probability.FiniteChannel",
     "LeanInfoTheory.Probability.FiniteMixture",
+    "LeanInfoTheory.Probability.FiniteTopology",
     "LeanInfoTheory.Probability.TotalVariation",
+    "LeanInfoTheory.Probability.TotalVariationTopology",
     "LeanInfoTheory.Shannon.BinaryEntropy",
     "LeanInfoTheory.Shannon.Continuity",
     "LeanInfoTheory.Shannon.Entropy",
@@ -7729,6 +7891,7 @@
     "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
     "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
     "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+    "LeanInfoTheory.Shannon.Topology",
     "LeanInfoTheory.Shannon.Units"
   ],
   "schema": "lean-info-theory.declaration-index.v1",

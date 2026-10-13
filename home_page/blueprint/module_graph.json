@@ -6,8 +6,8 @@
     "Semantic bridge layer",
     "Non-stable anchors"
   ],
-  "local_edge_count": 129,
-  "module_count": 60,
+  "local_edge_count": 143,
+  "module_count": 66,
   "modules": [
     {
       "external_imports": [],
@@ -71,6 +71,20 @@
     },
     {
       "external_imports": [
+        "Mathlib.Analysis.Convex.StdSimplex",
+        "Mathlib.Topology.Homeomorph.Lemmas"
+      ],
+      "layer": "Shared foundation",
+      "local_imports": [
+        "LeanInfoTheory.Probability.FiniteChannel"
+      ],
+      "name": "LeanInfoTheory.Probability.FiniteTopology",
+      "path": "LeanInfoTheory/Probability/FiniteTopology.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [
         "Mathlib.Tactic.Linarith"
       ],
       "layer": "Shared foundation",
@@ -81,6 +95,18 @@
       "path": "LeanInfoTheory/Probability/TotalVariation.lean",
       "root_reachable": false,
       "summary": "Half-L1 total variation of finite PMFs, core laws, attained events, overlap and residual masses, disjoint support, sharp bounded tests, and map/common-channel contraction."
+    },
+    {
+      "external_imports": [],
+      "layer": "Shared foundation",
+      "local_imports": [
+        "LeanInfoTheory.Probability.FiniteTopology",
+        "LeanInfoTheory.Probability.TotalVariation"
+      ],
+      "name": "LeanInfoTheory.Probability.TotalVariationTopology",
+      "path": "LeanInfoTheory/Probability/TotalVariationTopology.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
     },
     {
       "external_imports": [],
@@ -100,10 +126,13 @@
       "local_imports": [
         "LeanInfoTheory",
         "LeanInfoTheory.Probability.Coupling",
+        "LeanInfoTheory.Probability.FiniteTopology",
         "LeanInfoTheory.Probability.TotalVariation",
+        "LeanInfoTheory.Probability.TotalVariationTopology",
         "LeanInfoTheory.Shannon.Continuity",
         "LeanInfoTheory.Shannon.Fano",
         "LeanInfoTheory.Shannon.SemanticBridge",
+        "LeanInfoTheory.Shannon.Topology",
         "LeanInfoTheory.Shannon.Units"
       ],
       "name": "LeanInfoTheory.Shannon",
@@ -229,6 +258,18 @@
       "path": "LeanInfoTheory/Shannon/LogSum.lean",
       "root_reachable": false,
       "summary": "Zero-safe finite EReal log-sum inequality and equality with guarded Real corollaries."
+    },
+    {
+      "external_imports": [],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Probability.FiniteTopology",
+        "LeanInfoTheory.Shannon.InfoMeasures"
+      ],
+      "name": "LeanInfoTheory.Shannon.Topology",
+      "path": "LeanInfoTheory/Shannon/Topology.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
     },
     {
       "external_imports": [
@@ -505,6 +546,7 @@
       "external_imports": [],
       "layer": "Non-stable anchors",
       "local_imports": [
+        "LeanInfoTheory.Examples.ChannelOptimization",
         "LeanInfoTheory.Examples.CommonCause",
         "LeanInfoTheory.Examples.ConditionalKL",
         "LeanInfoTheory.Examples.Continuity",
@@ -515,6 +557,7 @@
         "LeanInfoTheory.Examples.CouplingTransport",
         "LeanInfoTheory.Examples.Fano",
         "LeanInfoTheory.Examples.FiniteFamily",
+        "LeanInfoTheory.Examples.FiniteTopology",
         "LeanInfoTheory.Examples.IndependenceProcessing",
         "LeanInfoTheory.Examples.InformationDecomposition",
         "LeanInfoTheory.Examples.KLTop",
@@ -525,12 +568,24 @@
         "LeanInfoTheory.Examples.SupportSensitive",
         "LeanInfoTheory.Examples.TotalVariation",
         "LeanInfoTheory.Examples.TotalVariationChannels",
+        "LeanInfoTheory.Examples.TotalVariationTopology",
         "LeanInfoTheory.Examples.Units"
       ],
       "name": "LeanInfoTheory.Examples",
       "path": "LeanInfoTheory/Examples.lean",
       "root_reachable": false,
       "summary": "Non-stable aggregate for maintained conditional-KL, convexity, coupling, finite-family, independence-processing, information-decomposition, support-sensitive, total-variation, Markov, channel, sufficiency, Fano, and units regression consumers."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.Topology"
+      ],
+      "name": "LeanInfoTheory.Examples.ChannelOptimization",
+      "path": "LeanInfoTheory/Examples/ChannelOptimization.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
     },
     {
       "external_imports": [],
@@ -653,6 +708,17 @@
       "external_imports": [],
       "layer": "Non-stable anchors",
       "local_imports": [
+        "LeanInfoTheory.Probability.FiniteTopology"
+      ],
+      "name": "LeanInfoTheory.Examples.FiniteTopology",
+      "path": "LeanInfoTheory/Examples/FiniteTopology.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
         "LeanInfoTheory.Shannon.SemanticBridge.Independence"
       ],
       "name": "LeanInfoTheory.Examples.IndependenceProcessing",
@@ -766,6 +832,17 @@
       "external_imports": [],
       "layer": "Non-stable anchors",
       "local_imports": [
+        "LeanInfoTheory.Probability.TotalVariationTopology"
+      ],
+      "name": "LeanInfoTheory.Examples.TotalVariationTopology",
+      "path": "LeanInfoTheory/Examples/TotalVariationTopology.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
         "LeanInfoTheory.Shannon.SemanticBridge.KL",
         "LeanInfoTheory.Shannon.Units"
       ],
@@ -793,5 +870,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 5,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 55
+  "separate_import_count": 61
 }

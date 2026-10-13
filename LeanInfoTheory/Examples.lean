@@ -9,6 +9,7 @@ See the LICENSE file for details.
 Author: Serhat Emre Coban
 -/
 
+import LeanInfoTheory.Examples.ChannelOptimization
 import LeanInfoTheory.Examples.CommonCause
 import LeanInfoTheory.Examples.ConditionalKL
 import LeanInfoTheory.Examples.Continuity
@@ -19,6 +20,7 @@ import LeanInfoTheory.Examples.CouplingGluing
 import LeanInfoTheory.Examples.CouplingTransport
 import LeanInfoTheory.Examples.Fano
 import LeanInfoTheory.Examples.FiniteFamily
+import LeanInfoTheory.Examples.FiniteTopology
 import LeanInfoTheory.Examples.IndependenceProcessing
 import LeanInfoTheory.Examples.InformationDecomposition
 import LeanInfoTheory.Examples.KLTop
@@ -28,6 +30,7 @@ import LeanInfoTheory.Examples.StochasticChannels
 import LeanInfoTheory.Examples.SufficientStatistics
 import LeanInfoTheory.Examples.SupportSensitive
 import LeanInfoTheory.Examples.TotalVariation
+import LeanInfoTheory.Examples.TotalVariationTopology
 import LeanInfoTheory.Examples.TotalVariationChannels
 import LeanInfoTheory.Examples.Units
 
@@ -76,4 +79,12 @@ and degenerate endpoints, and an exact sparse joint with a null marginal row.
 The focused continuity consumers apply the exact-TV entropy bound in both
 orders, check empty/singleton and zero/maximal-distance cases, and establish
 the nonzero binary and ternary threshold gaps with exact masses and distances.
+The finite-topology consumers use the real-simplex bridge on sparse laws and
+pure vertices, both round trips, empty/singleton alphabets and coordinate limits.
+TV-topology consumers connect coordinate and TV limits and approach a pure law
+through a Boolean family with exact coordinates and total variation.
+The channel-optimization consumers obtain an actual maximizing input from
+compactness and continuity. They propagate the same Boolean family to explicit
+zero MI and conditional-entropy limits, including a disappearing conditioning
+marginal, and distinguish singleton and empty input/output alphabets.
 -/

@@ -13,7 +13,7 @@
     "release_commit": "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f",
     "release_tag": "v0.1.0"
   },
-  "declaration_count": 653,
+  "declaration_count": 669,
   "declarations": [
     {
       "attributes": [],
@@ -912,6 +912,30 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL",
       "name": "LeanInfoTheory.Shannon.conditionalKlDiv_self"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Topology",
+      "name": "LeanInfoTheory.Shannon.continuous_condEntropy"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Topology",
+      "name": "LeanInfoTheory.Shannon.continuous_entropy"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Topology",
+      "name": "LeanInfoTheory.Shannon.continuous_mutualInfo"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.Topology",
+      "name": "LeanInfoTheory.Shannon.continuous_mutualInfo_channelJoint"
     },
     {
       "attributes": [],
@@ -3843,6 +3867,36 @@
     },
     {
       "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.continuous_apply_toReal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.continuous_bind"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.continuous_channelJoint"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.continuous_map"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariationTopology",
+      "name": "PMF.continuous_totalVariation"
+    },
+    {
+      "attributes": [],
       "kind": "def",
       "module": "LeanInfoTheory.Probability.FiniteChannel",
       "name": "PMF.deterministicChannel"
@@ -3866,6 +3920,36 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Probability.Coupling",
       "name": "PMF.exists_isCoupling"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.homeomorphStdSimplex"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.homeomorphStdSimplex_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.homeomorphStdSimplex_symm_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "instance",
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.instCompactSpace"
+    },
+    {
+      "attributes": [],
+      "kind": "instance",
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.instTopologicalSpace"
     },
     {
       "attributes": [],
@@ -3988,6 +4072,18 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Probability.Finite",
       "name": "PMF.supportFinset_nonempty"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteTopology",
+      "name": "PMF.tendsto_iff_forall_toReal_tendsto"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.TotalVariationTopology",
+      "name": "PMF.tendsto_iff_totalVariation_tendsto_zero"
     },
     {
       "attributes": [],
@@ -4122,28 +4218,29 @@
       "name": "PMF.two_mul_totalVariation_isGreatest_bounded"
     }
   ],
-  "documented_declaration_count": 653,
+  "documented_declaration_count": 669,
   "full_umbrella": "LeanInfoTheory.Shannon",
   "kind_counts": {
     "abbrev": 9,
-    "def": 60,
-    "instance": 1,
-    "theorem": 583
+    "def": 61,
+    "instance": 3,
+    "theorem": 596
   },
   "lightweight_root": "LeanInfoTheory",
   "lightweight_root_direct_imports": [
     "LeanInfoTheory.InformationMeasures",
     "LeanInfoTheory.Probability.Finite"
   ],
-  "local_module_count": 60,
+  "local_module_count": 66,
   "namespace_counts": {
-    "LeanInfoTheory.Shannon": 571,
-    "PMF": 82
+    "LeanInfoTheory.Shannon": 575,
+    "PMF": 94
   },
-  "non_stable_module_count": 24,
+  "non_stable_module_count": 27,
   "non_stable_modules": [
     "LeanInfoTheory.Basic",
     "LeanInfoTheory.Examples",
+    "LeanInfoTheory.Examples.ChannelOptimization",
     "LeanInfoTheory.Examples.CommonCause",
     "LeanInfoTheory.Examples.ConditionalKL",
     "LeanInfoTheory.Examples.Continuity",
@@ -4154,6 +4251,7 @@
     "LeanInfoTheory.Examples.CouplingTransport",
     "LeanInfoTheory.Examples.Fano",
     "LeanInfoTheory.Examples.FiniteFamily",
+    "LeanInfoTheory.Examples.FiniteTopology",
     "LeanInfoTheory.Examples.IndependenceProcessing",
     "LeanInfoTheory.Examples.InformationDecomposition",
     "LeanInfoTheory.Examples.KLTop",
@@ -4164,6 +4262,7 @@
     "LeanInfoTheory.Examples.SupportSensitive",
     "LeanInfoTheory.Examples.TotalVariation",
     "LeanInfoTheory.Examples.TotalVariationChannels",
+    "LeanInfoTheory.Examples.TotalVariationTopology",
     "LeanInfoTheory.Examples.Units",
     "LeanInfoTheory.MathlibFragments"
   ],
@@ -4546,7 +4645,7 @@
     "Declaration types and assumptions remain governed by the Lean source and signature-bearing API documentation."
   ],
   "simp_declaration_count": 94,
-  "supported_module_count": 36,
+  "supported_module_count": 39,
   "supported_modules": [
     "LeanInfoTheory",
     "LeanInfoTheory.InformationMeasures",
@@ -4554,7 +4653,9 @@
     "LeanInfoTheory.Probability.Finite",
     "LeanInfoTheory.Probability.FiniteChannel",
     "LeanInfoTheory.Probability.FiniteMixture",
+    "LeanInfoTheory.Probability.FiniteTopology",
     "LeanInfoTheory.Probability.TotalVariation",
+    "LeanInfoTheory.Probability.TotalVariationTopology",
     "LeanInfoTheory.Shannon",
     "LeanInfoTheory.Shannon.BinaryEntropy",
     "LeanInfoTheory.Shannon.Continuity",
@@ -4583,6 +4684,7 @@
     "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
     "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
     "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+    "LeanInfoTheory.Shannon.Topology",
     "LeanInfoTheory.Shannon.Units"
   ]
 }
