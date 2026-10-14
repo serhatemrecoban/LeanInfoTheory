@@ -1,5 +1,43 @@
 # Current Lean State
 
+## C16.05 initial checkpoint qualified — final qualification pending, 2026-10-14
+
+C9--C15 and C16.01--C16.04 are complete by their private records. Step 4's
+248 source entries matched before C16.05 admission. The approved
+[revision-2 plan](plans/post-release-chunk-16.md) selects cumulative qualification
+and the [C16 handoff](handoffs/chunk-16.md), with no new mathematical endpoint.
+
+On 2026-10-14 the lead authorized the exact prepared 24-file local checkpoint,
+necessary C16.05-only corrections and final-evidence amendments within those
+paths, and reuse of the inspected clean detached validation checkout. The
+three protected files and pre-existing relocation log entry remain excluded.
+Initial checkpoint `d9a3f32d396cbad91c10c7778b00d0cae50361e3` passed the complete
+maintained clean routine suite; the runner recorded 3293.619 seconds.
+Its exact source/checkout/dependency comparison and retained original streams
+qualify that initial candidate. The separate actual two-pass current file-mode
+API-doc gate and all-three-owner inspection passed on their recorded primary
+source/configuration; the original failure and bounded recovery remain retained.
+
+The surface contains 17 new public declarations in three focused owners: ten
+general product contracts, four iid/general-Fin entries and three existing-family
+bridges. Current coverage is 686 declarations in 42 owners, with 94 reviewed simp
+declarations and 92 root exports. The probability/semantic and root boundaries,
+selected-only finiteness, sparse/empty conventions and retained interfaces are
+unchanged. The handoff supplies exact names, consumers and C17/C18/C19 boundaries.
+
+This qualifies the initial checkpoint, not subsequent amendments. Every
+amended candidate requires complete clean routine revalidation and exact
+API-documentation/source/configuration/dependency applicability. Finished
+owned edits, retained contextual self-review and separate reassessment, and
+earlier-report reconciliation must establish readiness before fresh review
+of all 15 criteria. The original cumulative report, its reconciliation,
+final-source qualification and supported closure remain required. Only
+`.lit-review/setup/c16-05-completion-20261014.json`, when present, and the user report
+establish actual final completion; this captured prose is provisional.
+No later chunk, push or publication is selected.
+
+## Historical snapshot
+
 ## C14.04 cumulative qualification and maintained handoff — selected
 
 C9--C13 are complete by their source-bound private records; C13 completed at

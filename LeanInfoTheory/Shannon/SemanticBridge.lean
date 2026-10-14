@@ -19,6 +19,7 @@ import LeanInfoTheory.Shannon.SemanticBridge.Convexity
 import LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily
 import LeanInfoTheory.Shannon.SemanticBridge.Independence
 import LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence
+import LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct
 import LeanInfoTheory.Shannon.SemanticBridge.Markov
 import LeanInfoTheory.Shannon.SemanticBridge.Gluing
 import LeanInfoTheory.Shannon.SemanticBridge.Sufficiency
@@ -111,7 +112,9 @@ definitions agree with the textbook/measure-theoretic semantics.
   and entropy submodularity, without requiring a finite family index.
 - finite-family mutual independence through pointwise PMF factorization,
   including empty, singleton, restriction, pair compatibility, and exact
-  entropy-additivity characterizations.
+  entropy-additivity characterizations;
+- constructed finite-product laws as family marginals, mutually independent
+  selected families, and independent distinct coordinate random variables.
 
 Keeping this file separate prevents KL divergence, kernels, and related
 measure-theoretic imports from becoming dependencies of the lightweight finite

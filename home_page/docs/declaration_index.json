@@ -1,5 +1,5 @@
 {
-  "declaration_count": 784,
+  "declaration_count": 801,
   "declarations": [
     {
       "doc": "Public project name used by documentation and the website.",
@@ -1722,6 +1722,106 @@
       "short_name": "binaryMixture_one"
     },
     {
+      "doc": "The normalized product of a finite dependent family of finite-alphabet laws.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 45,
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct",
+      "path": "LeanInfoTheory/Probability/FiniteProduct.lean",
+      "short_name": "finiteProduct"
+    },
+    {
+      "doc": "A finite product atom is the product of its component atom masses.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 54,
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct_apply",
+      "path": "LeanInfoTheory/Probability/FiniteProduct.lean",
+      "short_name": "finiteProduct_apply"
+    },
+    {
+      "doc": "An outcome is supported exactly when every selected coordinate is supported.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 60,
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.mem_support_finiteProduct_iff",
+      "path": "LeanInfoTheory/Probability/FiniteProduct.lean",
+      "short_name": "mem_support_finiteProduct_iff"
+    },
+    {
+      "doc": "Evaluating a product law at one coordinate recovers its component law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 86,
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct_map_eval",
+      "path": "LeanInfoTheory/Probability/FiniteProduct.lean",
+      "short_name": "finiteProduct_map_eval"
+    },
+    {
+      "doc": "The product on an empty index type is pure at the unique empty function.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 94,
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct_of_isEmpty",
+      "path": "LeanInfoTheory/Probability/FiniteProduct.lean",
+      "short_name": "finiteProduct_of_isEmpty"
+    },
+    {
+      "doc": "Products of deterministic component laws are deterministic at their tuple.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 103,
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct_pure",
+      "path": "LeanInfoTheory/Probability/FiniteProduct.lean",
+      "short_name": "finiteProduct_pure"
+    },
+    {
+      "doc": "Reindexing a dependent product by an equivalence reindexes its component laws.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 140,
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct_map_reindex",
+      "path": "LeanInfoTheory/Probability/FiniteProduct.lean",
+      "short_name": "finiteProduct_map_reindex"
+    },
+    {
+      "doc": "Selecting coordinates along an embedding gives the product of the selected laws. Injectivity excludes repeated coordinates, whose law need not be a product.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 158,
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct_map_restrict",
+      "path": "LeanInfoTheory/Probability/FiniteProduct.lean",
+      "short_name": "finiteProduct_map_restrict"
+    },
+    {
+      "doc": "A product indexed by a sum splits into its left and right block laws, in that order. The right block is sampled through a constant channel.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 180,
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct_map_sum",
+      "path": "LeanInfoTheory/Probability/FiniteProduct.lean",
+      "short_name": "finiteProduct_map_sum"
+    },
+    {
+      "doc": "The ordered pair of distinct coordinates has the constant-channel joint law of the corresponding component PMFs. The distinctness assumption is essential.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 204,
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct_map_pair",
+      "path": "LeanInfoTheory/Probability/FiniteProduct.lean",
+      "short_name": "finiteProduct_map_pair"
+    },
+    {
       "doc": "The existing product/subtype topology on PMF atom masses.",
       "kind": "instance",
       "kind_label": "Instance",
@@ -1820,6 +1920,46 @@
       "name": "PMF.continuous_channelJoint",
       "path": "LeanInfoTheory/Probability/FiniteTopology.lean",
       "short_name": "continuous_channelJoint"
+    },
+    {
+      "doc": "The law of a finite block of independent coordinates with the same law.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 37,
+      "module": "LeanInfoTheory.Probability.Iid",
+      "name": "PMF.iid",
+      "path": "LeanInfoTheory/Probability/Iid.lean",
+      "short_name": "iid"
+    },
+    {
+      "doc": "Split a finite product into its ordered prefix and suffix product laws.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 41,
+      "module": "LeanInfoTheory.Probability.Iid",
+      "name": "PMF.finiteProduct_map_append_symm",
+      "path": "LeanInfoTheory/Probability/Iid.lean",
+      "short_name": "finiteProduct_map_append_symm"
+    },
+    {
+      "doc": "Concatenate independent product blocks, allowing different coordinate laws.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 56,
+      "module": "LeanInfoTheory.Probability.Iid",
+      "name": "PMF.channelJoint_finiteProduct_map_append",
+      "path": "LeanInfoTheory/Probability/Iid.lean",
+      "short_name": "channelJoint_finiteProduct_map_append"
+    },
+    {
+      "doc": "Permuting the coordinates of an iid block preserves its law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 68,
+      "module": "LeanInfoTheory.Probability.Iid",
+      "name": "PMF.iid_map_perm",
+      "path": "LeanInfoTheory/Probability/Iid.lean",
+      "short_name": "iid_map_perm"
     },
     {
       "doc": "Total variation of finite PMFs, normalized as half the L1 distance of real masses.",
@@ -5465,7 +5605,7 @@
       "doc": "A finite atom of a dependent PMF family is mutually independent when its joint marginal factors pointwise into its one-coordinate marginals. The product is indexed by the subtype of variables selected by `s`. This statement therefore supports dependent component alphabets, arbitrary ambient variable types, empty and singleton atoms, and zero coordinate masses without additional typeclass assumptions.",
       "kind": "def",
       "kind_label": "Definition",
-      "line": 54,
+      "line": 55,
       "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
       "name": "LeanInfoTheory.Shannon.IsMutuallyIndependentFamily",
       "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteFamilyIndependence.lean",
@@ -5475,7 +5615,7 @@
       "doc": "Mutual independence of a finite source-indexed family. This is a thin specialization of `IsMutuallyIndependentFamily` to the joint pushforward law `familyLawOf p X`; it introduces no separate source semantics.",
       "kind": "def",
       "kind_label": "Definition",
-      "line": 67,
+      "line": 68,
       "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
       "name": "LeanInfoTheory.Shannon.IsMutuallyIndependentFamilyOf",
       "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteFamilyIndependence.lean",
@@ -5485,7 +5625,7 @@
       "doc": "Every dependent PMF family is mutually independent on the empty atom.",
       "kind": "theorem",
       "kind_label": "Theorem",
-      "line": 427,
+      "line": 417,
       "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
       "name": "LeanInfoTheory.Shannon.isMutuallyIndependentFamily_empty",
       "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteFamilyIndependence.lean",
@@ -5495,7 +5635,7 @@
       "doc": "Every one-coordinate marginal is mutually independent.",
       "kind": "theorem",
       "kind_label": "Theorem",
-      "line": 463,
+      "line": 453,
       "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
       "name": "LeanInfoTheory.Shannon.isMutuallyIndependentFamily_singleton",
       "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteFamilyIndependence.lean",
@@ -5505,7 +5645,7 @@
       "doc": "For distinct indices, mutual independence of a two-variable source family is exactly independence of the corresponding pair of random variables. Distinctness is essential: when the indices coincide, the selected atom collapses to a singleton and is automatically mutually independent, whereas a random variable need not be independent of itself.",
       "kind": "theorem",
       "kind_label": "Theorem",
-      "line": 644,
+      "line": 634,
       "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
       "name": "LeanInfoTheory.Shannon.isMutuallyIndependentFamilyOf_pair_iff_isIndependentOf",
       "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteFamilyIndependence.lean",
@@ -5515,7 +5655,7 @@
       "doc": "Mutual independence of a finite atom is inherited by each of its subatoms. Here the atom is finite because it is a `Finset`; the additional typeclass assumption says that the ambient family has pointwise-finite coordinate alphabets.",
       "kind": "theorem",
       "kind_label": "Theorem",
-      "line": 667,
+      "line": 657,
       "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
       "name": "LeanInfoTheory.Shannon.isMutuallyIndependentFamily_mono",
       "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteFamilyIndependence.lean",
@@ -5525,7 +5665,7 @@
       "doc": "The entropy of a finite dependent-family marginal is the sum of its one-coordinate entropies exactly when the selected family is mutually independent.",
       "kind": "theorem",
       "kind_label": "Theorem",
-      "line": 705,
+      "line": 695,
       "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
       "name": "LeanInfoTheory.Shannon.familyEntropy_eq_sum_singletons_iff_isMutuallyIndependentFamily",
       "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteFamilyIndependence.lean",
@@ -5535,11 +5675,41 @@
       "doc": "The source-family form of the finite entropy-additivity characterization of mutual independence.",
       "kind": "theorem",
       "kind_label": "Theorem",
-      "line": 803,
+      "line": 793,
       "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
       "name": "LeanInfoTheory.Shannon.familyEntropyOf_eq_sum_singletons_iff_isMutuallyIndependentFamilyOf",
       "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteFamilyIndependence.lean",
       "short_name": "familyEntropyOf_eq_sum_singletons_iff_isMutuallyIndependentFamilyOf"
+    },
+    {
+      "doc": "A selected marginal of a finite product is the product of its selected laws.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 34,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
+      "name": "LeanInfoTheory.Shannon.familyMarginal_finiteProduct",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteProduct.lean",
+      "short_name": "familyMarginal_finiteProduct"
+    },
+    {
+      "doc": "The coordinates of a finite product are mutually independent on every atom.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 43,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
+      "name": "LeanInfoTheory.Shannon.isMutuallyIndependentFamily_finiteProduct",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteProduct.lean",
+      "short_name": "isMutuallyIndependentFamily_finiteProduct"
+    },
+    {
+      "doc": "Evaluations at distinct coordinates of a finite product are independent.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 53,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
+      "name": "LeanInfoTheory.Shannon.isIndependentOf_finiteProduct_eval",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteProduct.lean",
+      "short_name": "isIndependentOf_finiteProduct_eval"
     },
     {
       "doc": "Real-valued first-marginal mass formula. Mathematically, for a finite joint PMF `p` on `alpha \u00d7 beta`, `p_A(a) = sum_b p(a,b)`, now stated after converting all finite masses to real numbers.",
@@ -7842,12 +8012,12 @@
       "short_name": "entropyOf_div_log"
     }
   ],
-  "documented_count": 783,
+  "documented_count": 800,
   "kind_counts": {
-    "Definition": 115,
+    "Definition": 117,
     "Inductive": 4,
     "Instance": 4,
-    "Theorem": 661
+    "Theorem": 676
   },
   "modules": [
     "LeanInfoTheory.Basic",
@@ -7862,7 +8032,9 @@
     "LeanInfoTheory.Probability.Finite",
     "LeanInfoTheory.Probability.FiniteChannel",
     "LeanInfoTheory.Probability.FiniteMixture",
+    "LeanInfoTheory.Probability.FiniteProduct",
     "LeanInfoTheory.Probability.FiniteTopology",
+    "LeanInfoTheory.Probability.Iid",
     "LeanInfoTheory.Probability.TotalVariation",
     "LeanInfoTheory.Probability.TotalVariationTopology",
     "LeanInfoTheory.Shannon.BinaryEntropy",
@@ -7881,6 +8053,7 @@
     "LeanInfoTheory.Shannon.SemanticBridge.Entropy",
     "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
     "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+    "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
     "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
     "LeanInfoTheory.Shannon.SemanticBridge.Gluing",
     "LeanInfoTheory.Shannon.SemanticBridge.Independence",

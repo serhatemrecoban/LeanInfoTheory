@@ -11,6 +11,7 @@ Author: Serhat Emre Coban
 
 import LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily
 import LeanInfoTheory.Shannon.SemanticBridge.Independence
+import LeanInfoTheory.Probability.FiniteProduct
 
 /-!
 # Mutual independence for finite dependent families
@@ -27,9 +28,9 @@ is a `Finset`, so its dependent coordinate product has no chosen ordering; for
 the empty atom, the product of coordinate masses is one.
 
 The private infrastructure below proves the intended dependent-family entropy
-characterization. It keeps the normalized finite product PMF, dependent
-coordinate equivalences, block laws, and induction machinery out of the
-public representation.
+characterization. A private selected-family wrapper reuses the public
+`PMF.finiteProduct` constructor on the coordinate marginals. Dependent coordinate
+equivalences, block laws, and induction machinery remain private.
 -/
 
 open scoped BigOperators ENNReal
@@ -76,19 +77,8 @@ private def familyProduct
     {Var : Type u} {alpha : Var -> Type v}
     [forall i, Fintype (alpha i)]
     (q : PMF ((i : Var) -> alpha i)) (s : Finset Var) :
-    PMF (FamilyOutcome alpha s) := by
-  classical
-  exact
-    PMF.ofFintype
-      (fun x => ∏ i : s, (q.map fun y => y i) (x i))
-      (by
-        rw [← Fintype.prod_sum]
-        apply Finset.prod_eq_one
-        intro i _
-        exact
-          (tsum_fintype
-            (fun j : alpha i => (q.map fun y => y i) j)).symm.trans
-            (q.map fun y => y i).tsum_coe)
+    PMF (FamilyOutcome alpha s) :=
+  PMF.finiteProduct (fun i : s => q.map fun y => y i)
 
 private theorem familyProduct_apply
     {Var : Type u} {alpha : Var -> Type v}

@@ -11,7 +11,9 @@ Author: Serhat Emre Coban
 
 import LeanInfoTheory
 import LeanInfoTheory.Probability.Coupling
+import LeanInfoTheory.Probability.FiniteProduct
 import LeanInfoTheory.Probability.FiniteTopology
+import LeanInfoTheory.Probability.Iid
 import LeanInfoTheory.Probability.TotalVariation
 import LeanInfoTheory.Probability.TotalVariationTopology
 import LeanInfoTheory.Shannon.Continuity
@@ -27,8 +29,9 @@ This import-only umbrella gathers the complete supported mathematical stack for
 LeanInfoTheory `0.1.x`. It subsumes the lightweight `LeanInfoTheory` root and
 adds the focused finite-channel, entropy-bound, Fano, finite-family, semantic,
 KL, Markov, gluing, sufficiency, convexity, total-variation, coupling, finite-simplex
-topology, TV convergence, quantitative entropy continuity, qualitative information
-continuity, and unit-conversion modules.
+topology, finite dependent products, Fin block transports and iid laws, TV
+convergence, quantitative entropy
+continuity, qualitative information continuity, and unit-conversion modules.
 
 It deliberately excludes `LeanInfoTheory.Basic`, `LeanInfoTheory.Examples`, and
 `LeanInfoTheory.MathlibFragments`, which are non-stable development, regression,

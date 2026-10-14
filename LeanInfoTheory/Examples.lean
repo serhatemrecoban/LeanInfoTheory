@@ -20,7 +20,10 @@ import LeanInfoTheory.Examples.CouplingGluing
 import LeanInfoTheory.Examples.CouplingTransport
 import LeanInfoTheory.Examples.Fano
 import LeanInfoTheory.Examples.FiniteFamily
+import LeanInfoTheory.Examples.FiniteProduct
+import LeanInfoTheory.Examples.FiniteProductSemantics
 import LeanInfoTheory.Examples.FiniteTopology
+import LeanInfoTheory.Examples.Iid
 import LeanInfoTheory.Examples.IndependenceProcessing
 import LeanInfoTheory.Examples.InformationDecomposition
 import LeanInfoTheory.Examples.KLTop
@@ -65,6 +68,15 @@ arbitrary-base, bits, and guarded real-KL unit conversions. It remains outside
 both public mathematical umbrellas. The examples are maintained regression
 consumers, not stable library API for the `0.1.x`
 series.
+
+The focused finite-product semantic consumers connect constructed laws to
+existing family marginals and independence predicates, including a full
+three-coordinate non-iid atom, sparse outcomes and distinct coordinate pairs.
+
+The focused iid consumers use general product laws for sparse atoms, support,
+coordinates, injective selection and permutation invariance. They split and
+reconstruct a non-iid block, specialize both transports to iid, and cover zero/one
+lengths, either empty side, singleton alphabets and impossible symbols.
 
 The focused Pinsker consumers cover Boolean endpoint and support cases and
 a positive three-atom law pair whose attaining event contains a tied atom,

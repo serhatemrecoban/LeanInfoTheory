@@ -1,9 +1,9 @@
 # Post-Release Chunk Map: Quantitative and Operational Information Theory
 
-**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-13. Detailed C9--C15 revision-2 plans were separately approved; C16--C24 remain proposed.
+**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-14. Detailed C9--C16 revision-2 plans were separately approved; C17--C24 remain proposed.
 **Review follow-up:** C18/C23 clarifications accepted for this map; the 16-chunk structure is unchanged.
-**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md), [C12 plan](post-release-chunk-12.md), [C13 plan](post-release-chunk-13.md), [C14 plan](post-release-chunk-14.md), [C15 plan](post-release-chunk-15.md) and eligible step requests own their respective execution.
-**Execution:** C9--C14 are complete by their actual private records, most recently C14.04 at `e982ba7cb0ac0460c90777820659482eed4e2b0e`. C15.01--C15.04 and their reviews are complete; all 232 Step 4 final-source entries matched before the conditional C15.05 request was accepted. The [approved C15 plan](post-release-chunk-15.md) now selects cumulative qualification, canonical reconciliation and the [maintained C15 handoff](../handoffs/chunk-15.md). The lead authorized the exact prepared 20-file local checkpoint, C15.05-only amendments within those paths and relocated-checkout reuse. Initial clean routine validation and separate current two-pass API-doc qualification/rendered inspection passed. Each amended candidate needs renewed full routine validation and exact API-doc/source applicability; fresh all-17-criterion review, reconciliation and supported closure remain source-bound obligations. The handoff records measured package growth and remaining-work dispositions. C16--C24, push and publication remain unselected. Later pre-closure execution paragraphs retain history; they do not reopen completed chunks.
+**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md), [C12 plan](post-release-chunk-12.md), [C13 plan](post-release-chunk-13.md), [C14 plan](post-release-chunk-14.md), [C15 plan](post-release-chunk-15.md), [C16 plan](post-release-chunk-16.md) and eligible step requests own their respective execution.
+**Execution:** C9--C15 and C16.01--C16.04 are complete by their private records. C16.05 remains selected for cumulative qualification and the [maintained handoff](../handoffs/chunk-16.md), with no new endpoint. On 2026-10-14 the lead authorized the exact 24-file checkpoint, necessary C16.05-only amendments and inspected-checkout reuse, preserving unrelated exclusions. Initial checkpoint `d9a3f32d396cbad91c10c7778b00d0cae50361e3` passed the complete clean routine (3293.619 seconds recorded by its runner). Separate actual two-pass API-doc qualification and three-owner inspection passed on recorded primary inputs. Each amendment needs complete clean revalidation and exact API applicability; readiness, fresh all-15-criterion review, reconciliation and supported closure remain required. C17--C24, push and publication remain unselected. Older execution paragraphs retain history.
 **Map-intake baseline inspected:** `master` at `80ea016c7ac64bb5bd79b2f769227a3fb2ccc3b3`,
 with the existing uncommitted post-release documentation/discoverability work
 preserved. The immutable `v0.1.0` mathematical baseline remains
@@ -368,6 +368,16 @@ to establish finite-channel attainment. Sources: `PW24` 4.5, Proposition 4.8
 pinned mathlib convex/topological owners for compactness.
 
 ### C16. Finite products and iid block laws
+
+**Current execution:** The [approved detailed revision-2 plan](post-release-chunk-16.md)
+has completed C16.01--C16.04 with review. Its 17 public declarations supply the
+constructor, exact transports, block/iid laws and separate family/independence
+bridges described below. C16.05 retains cumulative qualification and the
+[maintained handoff](../handoffs/chunk-16.md). Its authorized initial checkpoint
+passed the complete clean routine; amended-candidate qualification, fresh
+all-criteria review and source-bound closure remain required. The original goals and future-chunk contracts
+remain unchanged. The measured 17-entry growth includes thin specializations and
+adapters; package-size calibration belongs at C18, not to API padding here.
 
 **Goal:** Construct independent laws from component PMFs and manipulate their
 coordinates without duplicating finite-family semantics.

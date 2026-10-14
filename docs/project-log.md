@@ -5,6 +5,142 @@ detail. It is not meant to list every small command or proof attempt. It should
 help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
+## C16.05 authorized initial checkpoint qualification, 2026-10-14
+
+On 2026-10-14 the lead authorized the exact prepared 24-file local checkpoint,
+necessary C16.05-only corrections and final-evidence amendments within those
+paths, and reuse of the inspected clean detached validation checkout. The
+three protected files and pre-existing relocation log entry remain excluded.
+Initial checkpoint `d9a3f32d396cbad91c10c7778b00d0cae50361e3` passed the complete
+maintained clean routine suite; the runner recorded 3293.619 seconds.
+The actual `python -B scripts/validate_release.py` invocation in the authorized
+clean detached checkout returned exit zero. Exact committed-byte comparison,
+unchanged primary/validation inputs, nine clean pinned dependencies and original
+streams are retained under `.lit-review/setup/c16-05-20261013/full-checkpoint/`.
+The [handoff](handoffs/chunk-16.md) records exclusions, EOL distinctions, exact
+scope and cache limits. No unrelated working bytes were absorbed into the
+checkpoint, and no later mathematical work is selected.
+
+The separate actual two-pass primary file-mode API-doc qualification and owner
+inspection remain bound to their own exact source/configuration and outputs.
+The initial missing-page failure and bounded cache recovery are retained.
+Every amendment requires complete clean routine revalidation and exact API-doc
+applicability. Readiness, fresh review of all 15 criteria, original-report
+reconciliation and final-source closure remain required. Only
+`.lit-review/setup/c16-05-completion-20261014.json`, when present, establishes actual final
+completion. No push or publication is authorized. October 13 preparation and
+qualification entries below retain their historical claims and original bytes.
+
+
+## C16.05 cumulative qualification preparation, 2026-10-13
+
+C16.01--C16.04 and their reviews completed successfully. The parent verified
+all 248 entries of Step 4's final source before admitting the fresh conditional
+Step 5 request. This step adds no mathematical endpoint. The maintained
+[C16 handoff](handoffs/chunk-16.md) records all 17 public additions, exact
+probability/semantic imports, private consumers, reference adaptations and
+separate C17/C18/C19 prerequisites and remaining-work triggers.
+
+Canonical status and roadmap execution prose are reconciled with actual source;
+normative future contracts remain unchanged. The exact owned checkpoint is
+prepared before seeking separately required checkpoint/clean-checkout authority.
+Actual two-pass current file-mode API-doc qualification and inspection of all
+three new owner pages passed. The original stale-HTML failure and exact ignored-
+marker recovery remain retained. Full clean routine validation, fresh all-15-
+criterion review, reconciliation and final-source closure remain required. Actual results belong under `.lit-review/setup/c16-05-20261013/`;
+only `.lit-review/setup/c16-05-completion-20261013.json`, when present,
+establishes completion. Unrelated working bytes remain preserved. No later
+chunk, push or publication is selected.
+
+## C16.04 finite-product semantic compatibility, 2026-10-13
+
+The fresh Step 4 request was admitted after successful Step 3 review closure
+and exact verification of all 246 final-source entries. Only C16.04 is selected.
+The three public bridges connect constructed products to existing family
+marginals, mutual independence and independence of distinct coordinates.
+The older private family constructor reuses the public product. Its public
+interfaces and arbitrary-index semantics are retained.
+
+Private semantic consumers cover sparse heterogeneous laws, empty/singleton/
+two-coordinate atoms and the full three-coordinate non-iid atom, identity-source
+families and independent coordinate pairs. Semantic integration remains separate
+from lightweight probability owners. Required validation passed. Independent review
+satisfied all three criteria with no findings; the parent separately reconciled
+the complete original report and its verification limits. Exact outcomes are
+retained under `.lit-review/setup/c16-04-20261013/`; only the private record
+`.lit-review/setup/c16-04-completion-20261013.json`, when present, establishes
+closure. C16.05, checkpoints, push and publication remain unselected.
+
+## C16.03 finite blocks and iid laws, 2026-10-13
+
+The lead freshly requested Step 3 with review conditional on Step 2 success.
+Its private closure and all 244 final-source entries were verified before
+admission. C16.03 alone is selected; earlier consumed requests remain history.
+
+The new focused Probability.Iid owner adds the thin iid definition, general
+non-iid Fin split/concatenation laws and permutation invariance. Existing
+product/equivalence laws fix prefix/suffix orientation. Private Examples.Iid
+consumers cover sparse words, genuine permutation and injective selection,
+nonidentical 1+2 blocks and inverse transport, iid specialization, zero/one
+lengths, empty sides and singleton alphabets. The root boundary is unchanged.
+
+Required parent validation passed. Independent review satisfied all three criteria
+with no findings; the parent separately reconciled the complete original report
+and its verification limits. Exact outcomes are retained under
+`.lit-review/setup/c16-03-20261013/`; final applicability and the private record
+`.lit-review/setup/c16-03-completion-20261013.json` determine completion.
+No later step, checkpoint, push or publication is selected.
+
+## C16.02 finite-product transports, 2026-10-13
+
+The lead freshly requested Step 2 with review conditional on successful Step 1.
+The parent verified its durable closure and all 244 final-source entries before
+admitting C16.02 alone. Prior consumed messages are not revived.
+
+The focused product owner adds exact restriction/reindexing, sum-split and
+ordered distinct-pair laws. Private predicate/range decomposition proves
+injective restriction; the pair proof reuses Step 1's coordinate split and
+marginal. Four public names follow the existing map vocabulary, with no new
+simp rule, root export or semantic dependency. Private consumers add nested
+selection of a non-iid three-coordinate law, heterogeneous inverse transports,
+empty sides, both pair orientations and the fair-coordinate repetition failure.
+
+All required parent validation passed. Independent review satisfied the three
+selected criteria with no findings; the parent reconciled the complete original
+report and its verification limits. Exact outcomes are retained under
+`.lit-review/setup/c16-02-20261013/`; final applicability and the private record
+`.lit-review/setup/c16-02-completion-20261013.json`, when present, determine
+closure. Full clean and API-documentation qualification remain C16.05 work.
+No later step, checkpoint, push or publication is authorized. Preexisting log
+bytes are preserved outside this insertion, and website-task notes are untouched.
+
+## C16.01 finite dependent products, 2026-10-13
+
+The lead accepted C16 revision 2 and freshly requested Step 1 with review.
+The initial malformed authority argument and subsequent ineligible conditional
+requests remain recorded; corrected intake admitted C16.01 alone. C15 is complete
+at `0af7edcddc99fb01b2ec0658c0e800898b66632a` by its private completion record.
+
+The new focused `Probability.FiniteProduct` owner constructs normalized products
+using `PMF.ofFintype` and finite distributivity. Six public declarations expose
+the constructor, atoms, support, coordinate marginal, empty product and pure
+product. A private coordinate/complement split proves the marginal without any
+future public restriction theorem. The pure-product proof reuses the established
+pure-PMF characterization. Private consumers exercise sparse heterogeneous laws,
+both singleton directions, empty/pure cases and finite selections within an
+infinite ambient family with infinite unselected alphabets.
+
+The approved growth policy records the exact focused imports and full-umbrella
+addition. Generated coverage is 675 supported declarations in 40 owners; root
+exports and reviewed simp sets remain unchanged. Required focused, standalone
+consumer/import, static, documentation and trust/compiled compatibility checks
+passed. Independent review satisfied all three criteria with no findings, and
+the parent reconciled the original report. Evidence and final source applicability
+are retained in `.lit-review/setup/c16-01-20261013/`; closure remains subject to
+`.lit-review/setup/c16-01-completion-20261013.json` when present. No later step,
+checkpoint, push or publication is selected. Existing pending log content is
+preserved; `docs/next-website-tasks.md` remains untouched.
+
 ## C15.05 cumulative candidate preparation, 2026-10-13
 
 C15.04 and its review completed successfully, with all four criteria satisfied

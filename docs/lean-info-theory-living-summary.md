@@ -36,6 +36,21 @@ Status labels used below:
 
 ## 0. AI Assistant Quick Start
 
+**[Current] C16.05 initial qualification, 2026-10-14.** C9--C15 and
+C16.01--C16.04 are complete by private records. Step 4's 248 source entries
+matched before Step 5 admission. The lead authorized the exact 24-file local
+checkpoint, necessary C16.05-only amendments and inspected-checkout reuse.
+Initial checkpoint `d9a3f32d396cbad91c10c7778b00d0cae50361e3` passed the complete
+maintained clean routine suite; the runner recorded 3293.619 seconds.
+The separate actual two-pass API-doc gate and all-three-owner inspection passed
+on their recorded primary source/configuration. The [handoff](handoffs/chunk-16.md)
+and [notes](plans/post-release-chunk-16-notes.md) retain scope, exclusions,
+failure/recovery history and evidence limits. Each amendment requires complete
+clean routine revalidation and exact API applicability. Readiness, fresh review
+of all 15 criteria, reconciliation and final-source closure remain required.
+Only `.lit-review/setup/c16-05-completion-20261014.json`, when present, establishes actual
+final completion. Earlier dated passages retain history; C17--C24 remain unselected.
+
 **[Current] What this project is.** LeanInfoTheory is a Lean 4/mathlib library
 for reusable finite discrete information theory over mathlib `PMF`s, including
 semantic bridges to measures, KL divergence, channels, Markov structure, data
@@ -288,12 +303,12 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-10-13 |
+| Last updated | 2026-10-14 |
 | Recorded pre-C9 mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the released `v0.1.0` source is exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f` |
 | Repository transition state | `v0.1.0` is published from immutable tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` and archived as Zenodo record `22229599`. The evolving default branch carries the current project pages and DOI metadata, while maintenance staging preserves `/docs/v0.1.0/` from exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`; the tag, Release, archive, released Lean source, and frozen public API remain unchanged |
 | Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
 | mathlib baseline | `v0.1.0` uses input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474` |
-| Source-snapshot phase | Post-release `v0.1.x`; C9--C14 and C15.01--C15.04 are complete by private records. C15 revision 2 is accepted; C15.05 selects cumulative qualification, canonical reconciliation and handoff. The lead authorized the exact 20-file local checkpoint, C15.05-only amendments and relocated-checkout reuse. Initial clean routine validation and separate two-pass API-doc qualification/rendered inspection passed; amended-candidate qualification, fresh all-17-criterion review and supported closure remain source-bound obligations. No push, publication or later chunk is selected. |
+| Source-snapshot phase | Post-release `v0.1.x`; C9--C15 and C16.01--C16.04 are complete. C16.05 remains selected. The lead authorized the exact 24-file checkpoint, C16.05-only amendments and inspected-checkout reuse on 2026-10-14. Initial checkpoint `d9a3f32d396cbad91c10c7778b00d0cae50361e3` passed the clean complete routine; separate actual two-pass API-doc qualification/owner inspection passed on recorded primary inputs. Current coverage is 686 declarations in 42 owners. Each amendment needs full clean revalidation and exact API applicability; readiness, fresh all-15-criterion review, reconciliation and supported closure remain required. No push, publication or later chunk is selected. |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -1134,6 +1149,36 @@ website checks pass.
 The source-derived declaration index and module graph are not the Step 11
 doc-gen output and are not theorem-level dependency data.
 
+### C16.01--C16.04 focused products, blocks and semantics
+
+`Probability.FiniteProduct` owns the normalized constructor, atom/support,
+coordinate, empty and pure laws, now followed by `finiteProduct_map_restrict`,
+`finiteProduct_map_reindex`, `finiteProduct_map_sum` and
+`finiteProduct_map_pair`. Its only direct local import is `Probability.FiniteChannel`;
+no project Shannon or topology owner is reached. Range, predicate/complement
+and coordinate splitting helpers remain private. Public maps use exact dependent
+target alphabets and explicit injectivity or distinctness where needed.
+The full Shannon umbrella and Examples aggregate retain the owner and its
+private consumer. `Probability.Iid` now adds the thin constant-family definition,
+the two general non-iid Fin append/split laws and iid permutation invariance.
+Its only direct project import is `Probability.FiniteProduct`; the separate
+private `Examples.Iid` consumer imports only this block owner. Both are included
+in their approved aggregates. The focused semantic owner now supplies selected-marginal, mutual-independence
+and distinct-coordinate independence bridges through the existing predicates.
+The older private family constructor reuses `finiteProduct` while preserving
+the public interfaces. The semantic aggregate and a separate private semantic
+consumer provide opt-in access. Current coverage is 686 declarations in
+42 supported owners. Root imports, five-module root closure, 92 exports and
+94 reviewed simp declarations remain unchanged.
+
+The C16 surface has two definitions and 15 theorems: ten general-product
+contracts, two general Fin-block transports, a thin iid definition, its
+permutation convenience theorem and three semantic adapters. This is measured
+growth, not 17 independent deep results or a target count. No additional helper,
+alias, instance or simp attribute is exported. The [handoff](handoffs/chunk-16.md)
+records exact names and consumers; Notes 14/29 retain consumer-driven reopening
+triggers. Reassess the C16--C18 package after C18 without padding this API.
+
 ## 8. Development History by Phase
 
 ### Pre-roadmap foundation
@@ -1407,6 +1452,61 @@ Certificate search, coefficient solving, primitive autotagging, and external
 certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
+
+### C16.05 initial qualification and handoff, 2026-10-14
+
+The first four steps and reviews are complete; Step 5 adds no mathematics.
+The [handoff](handoffs/chunk-16.md) records all 17 names, exact imports,
+finite-type/support/empty/transport conventions and separate C17/C18/C19 duties.
+The lead's scoped approval covers the exact 24-file checkpoint, necessary
+C16.05-only amendments and the inspected clean validation checkout; protected
+files and the old relocation log entry remain excluded and unchanged.
+
+Initial checkpoint `d9a3f32d396cbad91c10c7778b00d0cae50361e3` passed the complete
+maintained clean routine suite; the runner recorded 3293.619 seconds.
+The separate API-doc qualification and owner inspection remain tied to their
+actual primary inputs and outputs. Every amendment requires complete clean
+routine revalidation and exact API applicability. Finish owned edits, contextual
+self-review, separate reassessment and earlier-report reconciliation before
+fresh cumulative review of all 15 criteria. Reconcile that original report,
+qualify final source and use `.lit-review/setup/c16-05-completion-20261014.json` only when
+actual supported closure exists. No future chunk or publication is selected.
+
+### Historical C16.03 qualification
+
+### C16.03 finite blocks and iid laws, 2026-10-13
+
+Step 3 was freshly selected after successful Step 2 closure and exact source
+verification. The four approved interfaces add a thin iid law, generic Fin
+splitting and concatenation, and iid permutation invariance. Private consumers
+exercise sparse atoms/support, coordinates, injective selection, a genuine
+permutation, nonidentical `1+2` blocks and their inverse transport, iid
+specialization, zero/one lengths, both empty sides and singleton alphabets.
+They explicitly distinguish a general empty product from a nonexistent base
+`PMF Empty`. The [C16 notes](plans/post-release-chunk-16-notes.md) retain proof
+choices and observed validation outcomes. Required validation and independent
+review passed with all three criteria satisfied and no findings. The parent
+separately reconciled the complete original report. Only
+`.lit-review/setup/c16-03-completion-20261013.json`,
+when present, establishes completion. No later step or checkpoint is selected.
+
+### Historical C16.02 finite-product transport, 2026-10-13
+
+The accepted revision-2 plan selects Step 2 after verified Step 1 closure.
+Its four interfaces preserve exact law equalities for injective selection,
+dependent reordering, ordered sum blocks and distinct coordinate pairs.
+The private consumer extends sparse Boolean/ternary data with a nonidentical
+third law; it compares 3-to-2-to-1 selection with direct restriction, retains
+inverse reindex/sum transports, covers empty sides and rejects independence
+for a duplicated fair coordinate through exact atom masses. Independent index
+universes are exercised in generic consumers and the fresh focused import probe.
+The C16 notes retain proof/import decisions and actual evidence limits.
+Required validation and independent review passed with all three criteria
+satisfied and no findings; the original report is separately reconciled. Exact
+checks and source applicability are recorded under
+`.lit-review/setup/c16-02-20261013/`; only
+`.lit-review/setup/c16-02-completion-20261013.json`, when present, establishes
+completion. C16.03--C16.05 remain unselected.
 
 ### C15.05 cumulative qualification and handoff, 2026-10-13
 
@@ -2049,7 +2149,7 @@ again.
 | Note | Work |
 | --- | --- |
 | Unnumbered | **Chunk 8 is complete through `C8.24` and checkpointed as `1eef228`.** Its 18-declaration API, generated references, complete validation evidence, exact-SHA Lean workflow, and Pages deployment pass; any later theorem phase requires a separate decision. |
-| Unnumbered | **C15.05 selected:** C9--C14 and C15.01--C15.04 are complete by private records. The approved [C15 plan](plans/post-release-chunk-15.md), [notes](plans/post-release-chunk-15-notes.md) and [handoff](handoffs/chunk-15.md) govern cumulative qualification, all-17-criterion review and final reconciliation. Later chunks remain unselected. |
+| Unnumbered | **C16.05 selected:** C9--C15 and C16.01--C16.04 are complete by private records. The approved [C16 plan](plans/post-release-chunk-16.md), [notes](plans/post-release-chunk-16-notes.md) and [handoff](handoffs/chunk-16.md) govern cumulative qualification, all-15-criterion review and final reconciliation. Product channels belong to separately planned C17; information identities to C18; supported logarithms/variance/AEP to C19. Later chunks remain unselected. |
 | 29 | **Finite-Fano phase checkpointed.** Commit `ec78829` completes the approved phase; its evidence-based Fano follow-ups remain open and deferred. |
 
 Note 29 also preserves proof-pressure triggers from `C5.08`-`C5.11` and
@@ -2245,6 +2345,14 @@ closure established by its private records. The
 the source adaptations and their limits. The KL side of binary reduction remains
 separate.
 
+C16 reuses the registered PW24 Section 6.1 Theorem 6.1/proof and Section 11.2
+Proposition 11.6/proof as product notation and downstream context. The planning
+notes retain the exact pages, source hash and original visual inspection. Its
+finite PMF normalization/transport proofs do not establish those information or
+AEP results. The [C16 handoff](handoffs/chunk-16.md#mathematical-sources-and-adaptations)
+records the finite-alphabet adaptation and C19's unresolved typicality/support
+convention. Closeout claims no fresh textbook reading.
+
 ### Reviewed during this reconciliation
 
 **Cover and Thomas, Elements of Information Theory, Chapter 2**
@@ -2300,7 +2408,88 @@ not reproduce textbook prose or proofs.
 
 ## 16. Validation State
 
-### Current C15.05 qualification
+**C16.05 initial clean qualification, 2026-10-14.** The exact 24-file checkpoint,
+necessary Step 5 amendments and inspected-checkout reuse were explicitly
+authorized, with protected files and the old relocation entry excluded.
+Initial checkpoint `d9a3f32d396cbad91c10c7778b00d0cae50361e3` passed the complete
+maintained clean routine suite; the runner recorded 3293.619 seconds.
+The clean checkout matched exact committed blobs and remained clean/detached;
+primary/validation inputs, nine pinned root dependencies and authority inputs
+were unchanged. The [handoff](handoffs/chunk-16.md) records cross-checkout byte
+differences, original streams and incremental-cache limits. This is initial
+candidate evidence. Every amendment requires complete clean revalidation and
+exact separate API-doc applicability. Fresh all-15-criterion review,
+reconciliation and final-source closure remain required; captured prose does
+not establish completion or publication readiness.
+
+**C16.05 actual API-doc qualification.** Two current file-mode build/check
+passes and inspection of all 17 declaration blocks/all three owner pages passed.
+The initial gate correctly rejected stale aggregate HTML missing the three new
+pages; exactly three ignored completion-marker files were preserved and
+invalidated before the successful rerun. No source or validation rule changed.
+The [notes](plans/post-release-chunk-16-notes.md) and [handoff](handoffs/chunk-16.md)
+retain actual commands, source/output/dependency identities and cache limits.
+The subsequent authorized initial clean routine is recorded above; it does
+not renew this primary-source/configuration API-doc attestation. Each amendment
+needs exact applicability and complete clean revalidation. Fresh all-15-criterion
+review and final closure remain required. Local output is not publication evidence.
+
+**C16.04 qualification.** Focused warning-as-error builds passed for both
+probability owners, both lightweight consumers, old/new semantic owners and
+consumers, and root/semantic/full/example aggregates. Independent semantic
+consumer compilation and import/universe/generality/axiom probes, static/generated
+checks, documentation and full trust/compiled compatibility also passed. All
+601 retained signatures match; current coverage is 686 declarations in 42 owners,
+with the same 94 simp declarations and 92 root exports. The original independent
+report satisfies all three criteria with no findings and is separately reconciled.
+Fresh reviewer executions and reused parent evidence remain distinct in the
+private record under `.lit-review/setup/c16-04-20261013/`. Final static validation
+and complete source applicability follow bounded documentation edits. C16.05
+retains cumulative clean routine and actual two-pass API-doc qualification.
+This captured chronology does not itself establish closure.
+
+**C16.03 qualification.** Focused warning-as-error builds passed for both
+probability owners, both lightweight consumers and root/full/example aggregates.
+Standalone consumer compilation, the fresh focused Iid import/universe/axiom
+probe, static/generated checks, documentation and full trust/compiled compatibility
+also passed. All 601 retained signatures match; current coverage is 683 declarations
+in 41 owners, with the same 94 simp declarations and 92 root exports. The original
+independent report satisfies all three criteria with no findings and is separately
+reconciled. Its fresh executions and any reused parent evidence remain distinct
+in the private record. Original failed consumer attempts and the owner wrapper
+reporting error remain retained alongside actual passing outcomes under
+`.lit-review/setup/c16-03-20261013/`. Final static validation follows bounded
+post-review documentation edits; explicit full-source applicability supports reused
+compiled checks. Full clean routine and actual two-pass API-doc qualification
+remain C16.05 duties. This captured chronology does not itself assert closure.
+
+**C16.02 qualification.** Focused warning-as-error builds passed for the
+product owner, permanent consumer and root/full/example aggregates. Standalone
+consumer compilation, fresh transport/universe/axiom probes, static/generated
+checks, documentation and full trust/compiled compatibility also passed. Current
+coverage is 679 declarations in 40 owners; all 601 retained signatures match,
+and root exports, reviewed simp sets and the permitted axiom boundary are unchanged.
+The independent original report satisfies all three criteria with no findings;
+its verification limits and reused evidence are distinguished from fresh checks
+in the separate parent reconciliation. Original consumer elaboration failures,
+passing results and source applicability remain under
+`.lit-review/setup/c16-02-20261013/`. Final static checks follow bounded
+post-review documentation edits. Full clean routine and actual two-pass API-doc
+qualification remain C16.05 duties; this captured chronology does not assert closure.
+
+**C16.01 qualification.** Focused warning-as-error builds passed for the
+product owner, permanent consumer and root/full/example aggregates. Standalone
+consumer compilation, a fresh probability-only import probe, current static and
+generated checks, documentation and the full trust/compiled compatibility gate
+also passed. All 601 retained signatures match and the 2,273-constant project
+audit uses only the three permitted axioms. The original independent report
+satisfies all three criteria with no findings and has been separately reconciled.
+Actual commands, failed attempts, successful evidence, final source applicability
+and review records are retained under `.lit-review/setup/c16-01-20261013/`.
+Full clean routine and actual two-pass API-doc qualification remain C16.05 duties.
+Closure is not asserted by this captured chronology.
+
+### Historical C15.05 qualification
 
 The successful C15.04 closure and all 232 captured source entries matched at
 intake. Its retained focused, instance, documentation, static and full trust

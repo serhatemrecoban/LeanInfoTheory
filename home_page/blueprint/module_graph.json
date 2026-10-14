@@ -6,8 +6,8 @@
     "Semantic bridge layer",
     "Non-stable anchors"
   ],
-  "local_edge_count": 143,
-  "module_count": 66,
+  "local_edge_count": 157,
+  "module_count": 72,
   "modules": [
     {
       "external_imports": [],
@@ -71,6 +71,22 @@
     },
     {
       "external_imports": [
+        "Mathlib.Algebra.BigOperators.Ring.Finset",
+        "Mathlib.Data.Fintype.BigOperators",
+        "Mathlib.Logic.Equiv.Basic",
+        "Mathlib.Logic.Equiv.Set"
+      ],
+      "layer": "Shared foundation",
+      "local_imports": [
+        "LeanInfoTheory.Probability.FiniteChannel"
+      ],
+      "name": "LeanInfoTheory.Probability.FiniteProduct",
+      "path": "LeanInfoTheory/Probability/FiniteProduct.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [
         "Mathlib.Analysis.Convex.StdSimplex",
         "Mathlib.Topology.Homeomorph.Lemmas"
       ],
@@ -80,6 +96,19 @@
       ],
       "name": "LeanInfoTheory.Probability.FiniteTopology",
       "path": "LeanInfoTheory/Probability/FiniteTopology.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [
+        "Mathlib.Logic.Equiv.Fin.Basic"
+      ],
+      "layer": "Shared foundation",
+      "local_imports": [
+        "LeanInfoTheory.Probability.FiniteProduct"
+      ],
+      "name": "LeanInfoTheory.Probability.Iid",
+      "path": "LeanInfoTheory/Probability/Iid.lean",
       "root_reachable": false,
       "summary": "Local LeanInfoTheory module."
     },
@@ -126,7 +155,9 @@
       "local_imports": [
         "LeanInfoTheory",
         "LeanInfoTheory.Probability.Coupling",
+        "LeanInfoTheory.Probability.FiniteProduct",
         "LeanInfoTheory.Probability.FiniteTopology",
+        "LeanInfoTheory.Probability.Iid",
         "LeanInfoTheory.Probability.TotalVariation",
         "LeanInfoTheory.Probability.TotalVariationTopology",
         "LeanInfoTheory.Shannon.Continuity",
@@ -295,6 +326,7 @@
         "LeanInfoTheory.Shannon.SemanticBridge.Entropy",
         "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
         "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+        "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
         "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
         "LeanInfoTheory.Shannon.SemanticBridge.Gluing",
         "LeanInfoTheory.Shannon.SemanticBridge.Independence",
@@ -396,6 +428,7 @@
       "external_imports": [],
       "layer": "Semantic bridge layer",
       "local_imports": [
+        "LeanInfoTheory.Probability.FiniteProduct",
         "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
         "LeanInfoTheory.Shannon.SemanticBridge.Independence"
       ],
@@ -403,6 +436,18 @@
       "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteFamilyIndependence.lean",
       "root_reachable": false,
       "summary": "Dependent-family mutual independence, restriction and pair laws, and n-way entropy-additivity equality characterizations."
+    },
+    {
+      "external_imports": [],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Probability.FiniteProduct",
+        "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/FiniteProduct.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
     },
     {
       "external_imports": [],
@@ -557,7 +602,10 @@
         "LeanInfoTheory.Examples.CouplingTransport",
         "LeanInfoTheory.Examples.Fano",
         "LeanInfoTheory.Examples.FiniteFamily",
+        "LeanInfoTheory.Examples.FiniteProduct",
+        "LeanInfoTheory.Examples.FiniteProductSemantics",
         "LeanInfoTheory.Examples.FiniteTopology",
+        "LeanInfoTheory.Examples.Iid",
         "LeanInfoTheory.Examples.IndependenceProcessing",
         "LeanInfoTheory.Examples.InformationDecomposition",
         "LeanInfoTheory.Examples.KLTop",
@@ -708,10 +756,43 @@
       "external_imports": [],
       "layer": "Non-stable anchors",
       "local_imports": [
+        "LeanInfoTheory.Probability.FiniteProduct"
+      ],
+      "name": "LeanInfoTheory.Examples.FiniteProduct",
+      "path": "LeanInfoTheory/Examples/FiniteProduct.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct"
+      ],
+      "name": "LeanInfoTheory.Examples.FiniteProductSemantics",
+      "path": "LeanInfoTheory/Examples/FiniteProductSemantics.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
         "LeanInfoTheory.Probability.FiniteTopology"
       ],
       "name": "LeanInfoTheory.Examples.FiniteTopology",
       "path": "LeanInfoTheory/Examples/FiniteTopology.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Probability.Iid"
+      ],
+      "name": "LeanInfoTheory.Examples.Iid",
+      "path": "LeanInfoTheory/Examples/Iid.lean",
       "root_reachable": false,
       "summary": "Local LeanInfoTheory module."
     },
@@ -870,5 +951,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 5,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 61
+  "separate_import_count": 67
 }

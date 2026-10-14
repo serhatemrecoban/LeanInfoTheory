@@ -115,6 +115,15 @@ August 16, 2024 prepublication version. The source footer identifies the date.
   optimization context; general-measure minimax and infinite-alphabet results
   are not commitments.
 - Section 6.1, Theorem 6.1: block MI and memoryless-channel single-letterization.
+- Recorded C16 use: Section 6.1, Theorem 6.1/proof, printed pages 106--107 /
+  PDF 131--132; Section 11.2, Proposition 11.6/proof, printed pages 217--218 /
+  PDF 242--243, in this exact hashed draft. The planning notes record the
+  original reading and visual inspection. These passages provide product
+  notation and downstream motivation; C16 constructs finite-alphabet PMFs
+  and proves normalization/transport using existing PMF algebra, not those
+  information or AEP results. The [C16 handoff](handoffs/chunk-16.md#mathematical-sources-and-adaptations)
+  records the adaptation and remaining C19 support/strict-versus-closed
+  typicality decisions. Closeout does not claim new textbook inspection.
 - Section 11.1: one-shot source coding; Section 11.2, Proposition 11.6:
   AEP, typicality, and their coding consequence. These sections differ from
   the older draft, which grouped AEP under Section 11.1.

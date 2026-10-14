@@ -13,7 +13,7 @@
     "release_commit": "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f",
     "release_tag": "v0.1.0"
   },
-  "declaration_count": 669,
+  "declaration_count": 686,
   "declarations": [
     {
       "attributes": [],
@@ -1848,6 +1848,12 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
+      "name": "LeanInfoTheory.Shannon.familyMarginal_finiteProduct"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.FiniteFamily",
       "name": "LeanInfoTheory.Shannon.familyMarginal_restrict"
     },
@@ -2216,6 +2222,12 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
+      "name": "LeanInfoTheory.Shannon.isIndependentOf_finiteProduct_eval"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
       "name": "LeanInfoTheory.Shannon.isIndependentOf_iff_indepFun"
     },
@@ -2336,6 +2348,12 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
       "name": "LeanInfoTheory.Shannon.isMutuallyIndependentFamily_empty"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
+      "name": "LeanInfoTheory.Shannon.isMutuallyIndependentFamily_finiteProduct"
     },
     {
       "attributes": [],
@@ -3842,6 +3860,12 @@
       "name": "PMF.channelJoint_eq_iff_eq_on_support"
     },
     {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Iid",
+      "name": "PMF.channelJoint_finiteProduct_map_append"
+    },
+    {
       "attributes": [
         "simp"
       ],
@@ -3924,6 +3948,66 @@
     {
       "attributes": [],
       "kind": "def",
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Iid",
+      "name": "PMF.finiteProduct_map_append_symm"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct_map_eval"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct_map_pair"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct_map_reindex"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct_map_restrict"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct_map_sum"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct_of_isEmpty"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.finiteProduct_pure"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
       "module": "LeanInfoTheory.Probability.FiniteTopology",
       "name": "PMF.homeomorphStdSimplex"
     },
@@ -3938,6 +4022,18 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Probability.FiniteTopology",
       "name": "PMF.homeomorphStdSimplex_symm_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.Iid",
+      "name": "PMF.iid"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.Iid",
+      "name": "PMF.iid_map_perm"
     },
     {
       "attributes": [],
@@ -4036,6 +4132,12 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Probability.FiniteChannel",
       "name": "PMF.mem_support_channelJoint_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.FiniteProduct",
+      "name": "PMF.mem_support_finiteProduct_iff"
     },
     {
       "attributes": [],
@@ -4218,25 +4320,25 @@
       "name": "PMF.two_mul_totalVariation_isGreatest_bounded"
     }
   ],
-  "documented_declaration_count": 669,
+  "documented_declaration_count": 686,
   "full_umbrella": "LeanInfoTheory.Shannon",
   "kind_counts": {
     "abbrev": 9,
-    "def": 61,
+    "def": 63,
     "instance": 3,
-    "theorem": 596
+    "theorem": 611
   },
   "lightweight_root": "LeanInfoTheory",
   "lightweight_root_direct_imports": [
     "LeanInfoTheory.InformationMeasures",
     "LeanInfoTheory.Probability.Finite"
   ],
-  "local_module_count": 66,
+  "local_module_count": 72,
   "namespace_counts": {
-    "LeanInfoTheory.Shannon": 575,
-    "PMF": 94
+    "LeanInfoTheory.Shannon": 578,
+    "PMF": 108
   },
-  "non_stable_module_count": 27,
+  "non_stable_module_count": 30,
   "non_stable_modules": [
     "LeanInfoTheory.Basic",
     "LeanInfoTheory.Examples",
@@ -4251,7 +4353,10 @@
     "LeanInfoTheory.Examples.CouplingTransport",
     "LeanInfoTheory.Examples.Fano",
     "LeanInfoTheory.Examples.FiniteFamily",
+    "LeanInfoTheory.Examples.FiniteProduct",
+    "LeanInfoTheory.Examples.FiniteProductSemantics",
     "LeanInfoTheory.Examples.FiniteTopology",
+    "LeanInfoTheory.Examples.Iid",
     "LeanInfoTheory.Examples.IndependenceProcessing",
     "LeanInfoTheory.Examples.InformationDecomposition",
     "LeanInfoTheory.Examples.KLTop",
@@ -4645,7 +4750,7 @@
     "Declaration types and assumptions remain governed by the Lean source and signature-bearing API documentation."
   ],
   "simp_declaration_count": 94,
-  "supported_module_count": 39,
+  "supported_module_count": 42,
   "supported_modules": [
     "LeanInfoTheory",
     "LeanInfoTheory.InformationMeasures",
@@ -4653,7 +4758,9 @@
     "LeanInfoTheory.Probability.Finite",
     "LeanInfoTheory.Probability.FiniteChannel",
     "LeanInfoTheory.Probability.FiniteMixture",
+    "LeanInfoTheory.Probability.FiniteProduct",
     "LeanInfoTheory.Probability.FiniteTopology",
+    "LeanInfoTheory.Probability.Iid",
     "LeanInfoTheory.Probability.TotalVariation",
     "LeanInfoTheory.Probability.TotalVariationTopology",
     "LeanInfoTheory.Shannon",
@@ -4674,6 +4781,7 @@
     "LeanInfoTheory.Shannon.SemanticBridge.Entropy",
     "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
     "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+    "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
     "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
     "LeanInfoTheory.Shannon.SemanticBridge.Gluing",
     "LeanInfoTheory.Shannon.SemanticBridge.Independence",

@@ -29,7 +29,9 @@
         "local": [
           "LeanInfoTheory",
           "LeanInfoTheory.Probability.Coupling",
+          "LeanInfoTheory.Probability.FiniteProduct",
           "LeanInfoTheory.Probability.FiniteTopology",
+          "LeanInfoTheory.Probability.Iid",
           "LeanInfoTheory.Probability.TotalVariation",
           "LeanInfoTheory.Probability.TotalVariationTopology",
           "LeanInfoTheory.Shannon.Continuity",
@@ -40,9 +42,9 @@
         ],
         "external": []
       },
-      "rationale": "The approved full mathematical umbrella exposes finite total variation, generic coupling and exact-TV entropy continuity while preserving its retained direct imports and the lightweight root boundary. C15.01 adds the approved PMF product/subtype topology and real-simplex compactness owner. C15.02 adds the separate TV/topology bridge to the full umbrella. C15.04 adds the separately focused qualitative finite-information topology owner while preserving the lightweight root.",
-      "consumer": "Full-stack users import LeanInfoTheory.Shannon; the independently importing total-variation, coupling and continuity consumers verify focused access. Examples.ChannelOptimization independently imports the focused Topology owner for actual MI attainment and boundary/degeneracy consumers.",
-      "approval_reference": "Approved Chunk 10 plan revision 2, Sections 3.1 and 5 / C10.01-BOUNDARY (docs/plans/post-release-chunk-10.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-20. Authority intake: .lit-review/setup/c10-01-authority-intake-20260920.json. Approved Chunk 11 plan revision 2, Sections 3.1 and 4 / C11.01-BOUNDARY (docs/plans/post-release-chunk-11.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-26. Authority intake: .lit-review/setup/c11-execution-approval-context-20260926.json. Approved Chunk 14 plan revision 2, Sections 3.4 and C14.01-BOUNDARY (docs/plans/post-release-chunk-14.md); the lead explicitly requested step 1 with review on 2026-10-07. Authority intake: .lit-review/setup/c14-01-authority-intake-20261007.json. Approved C15 revision 2, Sections 3.1/4 and C15.01 (docs/plans/post-release-chunk-15.md); the lead accepted the plan and explicitly requested step 1 with its review process on 2026-10-12. Intake: .lit-review/setup/c15-01-20261012/authority.json. Formal PLAN review was not dispatched; no such acceptance is claimed. Approved C15 revision 2, Sections 3.2, 3.7, 4 and C15.02 (docs/plans/post-release-chunk-15.md); the lead conditionally requested step 2 with its review process on 2026-10-13. C15.01 closure and exact predecessor source were verified before selection. Intake: .lit-review/setup/c15-02-20261013/next-input.json. Approved C15 revision 2, Sections 3.4-3.7, 4 and C15.04 (docs/plans/post-release-chunk-15.md); the lead conditionally requested Step 4 with review on 2026-10-13. Successful C15.03 closure and its entire exact final source were verified before intake. Authority: .lit-review/setup/c15-04-20261013/next-input.json."
+      "rationale": "The approved full mathematical umbrella exposes finite total variation, generic coupling and exact-TV entropy continuity while preserving its retained direct imports and the lightweight root boundary. C15.01 adds the approved PMF product/subtype topology and real-simplex compactness owner. C15.02 adds the separate TV/topology bridge to the full umbrella. C15.04 adds the separately focused qualitative finite-information topology owner while preserving the lightweight root. C16.01 adds the approved focused finite dependent product owner; the root boundary and all retained direct imports remain unchanged. C16.03 adds the approved focused homogeneous Fin block and iid owner, preserving all retained direct imports and the root boundary.",
+      "consumer": "Full-stack users import LeanInfoTheory.Shannon; the independently importing total-variation, coupling and continuity consumers verify focused access. Examples.ChannelOptimization independently imports the focused Topology owner for actual MI attainment and boundary/degeneracy consumers. Examples.FiniteProduct independently exercises its probability-only import. Examples.Iid independently imports Probability.Iid and exercises both non-iid block transports and sparse iid laws.",
+      "approval_reference": "Approved Chunk 10 plan revision 2, Sections 3.1 and 5 / C10.01-BOUNDARY (docs/plans/post-release-chunk-10.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-20. Authority intake: .lit-review/setup/c10-01-authority-intake-20260920.json. Approved Chunk 11 plan revision 2, Sections 3.1 and 4 / C11.01-BOUNDARY (docs/plans/post-release-chunk-11.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-26. Authority intake: .lit-review/setup/c11-execution-approval-context-20260926.json. Approved Chunk 14 plan revision 2, Sections 3.4 and C14.01-BOUNDARY (docs/plans/post-release-chunk-14.md); the lead explicitly requested step 1 with review on 2026-10-07. Authority intake: .lit-review/setup/c14-01-authority-intake-20261007.json. Approved C15 revision 2, Sections 3.1/4 and C15.01 (docs/plans/post-release-chunk-15.md); the lead accepted the plan and explicitly requested step 1 with its review process on 2026-10-12. Intake: .lit-review/setup/c15-01-20261012/authority.json. Formal PLAN review was not dispatched; no such acceptance is claimed. Approved C15 revision 2, Sections 3.2, 3.7, 4 and C15.02 (docs/plans/post-release-chunk-15.md); the lead conditionally requested step 2 with its review process on 2026-10-13. C15.01 closure and exact predecessor source were verified before selection. Intake: .lit-review/setup/c15-02-20261013/next-input.json. Approved C15 revision 2, Sections 3.4-3.7, 4 and C15.04 (docs/plans/post-release-chunk-15.md); the lead conditionally requested Step 4 with review on 2026-10-13. Successful C15.03 closure and its entire exact final source were verified before intake. Authority: .lit-review/setup/c15-04-20261013/next-input.json. Approved C16 revision 2, Sections 3.1/4/5 and C16.01 (docs/plans/post-release-chunk-16.md). The lead accepted the revised plan and freshly requested \"Continue Step 1 with review.\" on 2026-10-13; supported intake accepted only C16.01. Provenance: .lit-review/setup/c16-01-20261013/authority.json and continue-input.json/continue-result.json. The earlier malformed intake and skipped conditional requests remain retained; no revision-2 PLAN review is claimed. Approved C16 revision 2, Sections 3.4/4/5 and C16.03 (docs/plans/post-release-chunk-16.md). The lead freshly requested Step 3 with review conditional on successful Step 2 on 2026-10-13. C16.02 closure and all 244 exact final-source entries were verified before admission. Authority intake: .lit-review/setup/c16-03-20261013/continue-input.json and continue-result.json. No separate revision-2 PLAN review is claimed."
     },
     {
       "owner": "LeanInfoTheory.Shannon.Continuity",
@@ -97,6 +99,7 @@
           "LeanInfoTheory.Shannon.SemanticBridge.Entropy",
           "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
           "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+          "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
           "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
           "LeanInfoTheory.Shannon.SemanticBridge.Gluing",
           "LeanInfoTheory.Shannon.SemanticBridge.Independence",
@@ -110,9 +113,9 @@
         ],
         "external": []
       },
-      "rationale": "The approved semantic aggregate retains its prior imports and adds the focused Pinsker owner. The full Shannon umbrella reaches canonical Pinsker transitively, and the lightweight root remains unchanged.",
-      "consumer": "Focused Gluing and Pinsker consumers exercise their owners; the semantic aggregate exposes both to full-stack consumers.",
-      "approval_reference": "Approved Chunk 12 plan revision 2, Sections 3.4-3.5 and C12.02-BOUNDARY (docs/plans/post-release-chunk-12.md); project lead approved the plan and requested step 2 with its review process conditional on successful step 1 completion on 2026-10-03. The predecessor condition was verified. Authority intake: .lit-review/setup/c12-02-ingress-20261003.json. Approved Chunk 13 plan revision 2, Sections 3.1 and 3.4, C13.01-BOUNDARY (docs/plans/post-release-chunk-13.md); the lead accepted revision 2 and explicitly requested step 1 with its review process on 2026-10-03. Authority intake: .lit-review/setup/c13-01-authority-intake-20261003.json."
+      "rationale": "The approved semantic aggregate retains its prior imports and adds the focused Pinsker owner. The full Shannon umbrella reaches canonical Pinsker transitively, and the lightweight root remains unchanged. C16.04 adds the approved finite-product semantic bridge, preserving all retained imports and the lightweight root boundary.",
+      "consumer": "Focused Gluing and Pinsker consumers exercise their owners; the semantic aggregate exposes both to full-stack consumers. Examples.FiniteProductSemantics independently imports the focused semantic owner and exercises selected-family and distinct-coordinate independence.",
+      "approval_reference": "Approved Chunk 12 plan revision 2, Sections 3.4-3.5 and C12.02-BOUNDARY (docs/plans/post-release-chunk-12.md); project lead approved the plan and requested step 2 with its review process conditional on successful step 1 completion on 2026-10-03. The predecessor condition was verified. Authority intake: .lit-review/setup/c12-02-ingress-20261003.json. Approved Chunk 13 plan revision 2, Sections 3.1 and 3.4, C13.01-BOUNDARY (docs/plans/post-release-chunk-13.md); the lead accepted revision 2 and explicitly requested step 1 with its review process on 2026-10-03. Authority intake: .lit-review/setup/c13-01-authority-intake-20261003.json. Approved C16 revision 2, Sections 3.5/4/5 and C16.04 (docs/plans/post-release-chunk-16.md). The lead freshly requested Step 4 with review conditional on successful Step 3 on 2026-10-13. C16.03 closure and all 246 exact final-source entries were verified before admission. Authority intake: .lit-review/setup/c16-04-20261013/continue-input.json and continue-result.json. No separate revision-2 PLAN review is claimed."
     },
     {
       "owner": "LeanInfoTheory.Shannon.SemanticBridge.Pinsker",
@@ -177,6 +180,68 @@
       "rationale": "C15.04 proves continuity of finite entropy, conditional entropy, mutual information and the actual fixed-channel input MI objective using the existing algebraic formulas, continuous negMulLog and finite PMF maps. No TV, coupling, Fano or KL proof dependency, instance, alias or simp rule is added.",
       "consumer": "LeanInfoTheory.Examples.ChannelOptimization imports only this owner and directly obtains an actual maximizing input from compactness and continuity, proves both connected information limits and exercises empty/singleton input/output cases.",
       "approval_reference": "Approved C15 revision 2, Sections 3.4-3.7, 4 and C15.04 (docs/plans/post-release-chunk-15.md); the lead conditionally requested Step 4 with review on 2026-10-13. Successful C15.03 closure and its entire exact final source were verified before intake. Authority: .lit-review/setup/c15-04-20261013/next-input.json."
+    },
+    {
+      "owner": "LeanInfoTheory.Probability.FiniteProduct",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.FiniteChannel"
+        ],
+        "external": [
+          "Mathlib.Data.Fintype.BigOperators",
+          "Mathlib.Algebra.BigOperators.Ring.Finset",
+          "Mathlib.Logic.Equiv.Basic",
+          "Mathlib.Logic.Equiv.Set"
+        ]
+      },
+      "rationale": "C16.01 constructs normalized finite dependent product PMFs and proves atom/support, coordinate marginal, empty-product and pure-product laws. The coordinate/complement split remains private. Index and fiber universes are independent; no nonemptiness, positivity, full-support, public DecidableEq or new simp premise is added. No project Shannon, information-measure or topology owner is imported. C16.02 adds exact injective restriction, dependent reindexing, ordered sum splitting and distinct-pair laws; private predicate/range splitting reuses upstream equivalences, and pair projection reuses the private coordinate split and public evaluation. No new project dependency, simp attribute or public premise is added.",
+      "consumer": "LeanInfoTheory.Examples.FiniteProduct imports only this owner and privately exercises heterogeneous sparse Boolean/ternary atoms and marginals, zero/support equivalence, empty and singleton round trips, pure laws, impossible empty components, and selected-only finite alphabets over an infinite ambient index with infinite unselected fibers. C16.02 extends this private owner with singleton and nested 3-to-2-to-1 restrictions, heterogeneous reindex/inverse, non-iid sum split/inverse and ordered projections, both empty sides, sparse ordered pairs, independent index universes, and an exact duplicate-coordinate failure.",
+      "approval_reference": "Approved C16 revision 2, Sections 3.1/4/5 and C16.01 (docs/plans/post-release-chunk-16.md). The lead accepted the revised plan and freshly requested \"Continue Step 1 with review.\" on 2026-10-13; supported intake accepted only C16.01. Provenance: .lit-review/setup/c16-01-20261013/authority.json and continue-input.json/continue-result.json. The earlier malformed intake and skipped conditional requests remain retained; no revision-2 PLAN review is claimed. Approved C16 revision 2, Sections 3.2-3.3/4/5 and C16.02. The fresh conditional Step 2 request was admitted on 2026-10-13 after successful C16.01 closure and exact verification of all 244 final-source entries. Authority intake: .lit-review/setup/c16-02-20261013/continue-input.json and continue-result.json."
+    },
+    {
+      "owner": "LeanInfoTheory.Probability.Iid",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.FiniteProduct"
+        ],
+        "external": [
+          "Mathlib.Logic.Equiv.Fin.Basic"
+        ]
+      },
+      "rationale": "C16.03 adds the thin iid specialization, two general non-iid Fin block transport laws and iid permutation invariance. Existing product reindexing/sum splitting and Fin.appendEquiv supply all transports. No second normalization, block datatype, public helper, positivity assumption, simp rule or project semantic dependency is added.",
+      "consumer": "Examples.Iid imports only this owner and privately exercises nondegenerate Boolean and sparse ternary atoms/support/coordinates, genuine permutation and injective selection, a non-iid length-three 1+2 split/reconstruction, iid specialization, zero/one lengths, both empty sides, singleton alphabets and impossible symbols, distinguishing a general empty product from unavailable PMF Empty.",
+      "approval_reference": "Approved C16 revision 2, Sections 3.4/4/5 and C16.03 (docs/plans/post-release-chunk-16.md). The lead freshly requested Step 3 with review conditional on successful Step 2 on 2026-10-13. C16.02 closure and all 244 exact final-source entries were verified before admission. Authority intake: .lit-review/setup/c16-03-20261013/continue-input.json and continue-result.json. No separate revision-2 PLAN review is claimed."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.FiniteProduct",
+          "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence"
+        ],
+        "external": []
+      },
+      "rationale": "The three approved bridges identify selected marginals with finiteProduct, establish existing mutual independence on every selected atom, and establish existing IsIndependentOf for distinct coordinates by reuse of generic product laws. No new independence predicate, measure infrastructure, entropy identity or simp rule is added.",
+      "consumer": "Examples.FiniteProductSemantics exercises heterogeneous sparse Boolean/ternary families, empty/singleton/two/full three-coordinate non-iid atoms, source-family identity and distinct-coordinate indepProd/IsIndependentOf. Existing Examples.FiniteFamily and both lightweight probability consumers remain required checks.",
+      "approval_reference": "Approved C16 revision 2, Sections 3.5/4/5 and C16.04 (docs/plans/post-release-chunk-16.md). The lead freshly requested Step 4 with review conditional on successful Step 3 on 2026-10-13. C16.03 closure and all 246 exact final-source entries were verified before admission. Authority intake: .lit-review/setup/c16-04-20261013/continue-input.json and continue-result.json. No separate revision-2 PLAN review is claimed."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+      "kind": "focused_exception",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.FiniteProduct",
+          "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+          "LeanInfoTheory.Shannon.SemanticBridge.Independence"
+        ],
+        "external": []
+      },
+      "rationale": "The approved downward probability import replaces only the existing private familyProduct constructor with the public finiteProduct. All retained direct imports and public predicates, theorem statements, assumptions and attributes are preserved, including arbitrary ambient index types.",
+      "consumer": "Examples.FiniteProductSemantics exercises heterogeneous sparse Boolean/ternary families, empty/singleton/two/full three-coordinate non-iid atoms, source-family identity and distinct-coordinate indepProd/IsIndependentOf. Existing Examples.FiniteFamily and both lightweight probability consumers remain required checks.",
+      "approval_reference": "Approved C16 revision 2, Sections 3.5/4/5 and C16.04 (docs/plans/post-release-chunk-16.md). The lead freshly requested Step 4 with review conditional on successful Step 3 on 2026-10-13. C16.03 closure and all 246 exact final-source entries were verified before admission. Authority intake: .lit-review/setup/c16-04-20261013/continue-input.json and continue-result.json. No separate revision-2 PLAN review is claimed."
     }
   ],
   "simp_additions": [],
