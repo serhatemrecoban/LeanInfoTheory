@@ -13,7 +13,7 @@
     "release_commit": "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f",
     "release_tag": "v0.1.0"
   },
-  "declaration_count": 686,
+  "declaration_count": 698,
   "declarations": [
     {
       "attributes": [],
@@ -3758,6 +3758,12 @@
       "name": "PMF.channelComp_deterministic_right"
     },
     {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.channelComp_productChannel"
+    },
+    {
       "attributes": [
         "simp"
       ],
@@ -3882,6 +3888,18 @@
       "name": "PMF.channelJoint_map_snd"
     },
     {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.channelJoint_productChannel_map_eval"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.channelJoint_productChannel_map_restrict"
+    },
+    {
       "attributes": [
         "simp"
       ],
@@ -3956,6 +3974,18 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Probability.FiniteProduct",
       "name": "PMF.finiteProduct_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.finiteProduct_bind_productChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.finiteProduct_channelJoint_map"
     },
     {
       "attributes": [],
@@ -4142,8 +4172,50 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.mem_support_productChannel_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.memorylessChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Probability.TotalVariation",
       "name": "PMF.ofReal_totalVariation_eq_sum_sub"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.productChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.productChannel_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.productChannel_deterministicChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.productChannel_map_eval"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.productChannel_map_restrict"
     },
     {
       "attributes": [],
@@ -4320,25 +4392,25 @@
       "name": "PMF.two_mul_totalVariation_isGreatest_bounded"
     }
   ],
-  "documented_declaration_count": 686,
+  "documented_declaration_count": 698,
   "full_umbrella": "LeanInfoTheory.Shannon",
   "kind_counts": {
     "abbrev": 9,
-    "def": 63,
+    "def": 65,
     "instance": 3,
-    "theorem": 611
+    "theorem": 621
   },
   "lightweight_root": "LeanInfoTheory",
   "lightweight_root_direct_imports": [
     "LeanInfoTheory.InformationMeasures",
     "LeanInfoTheory.Probability.Finite"
   ],
-  "local_module_count": 72,
+  "local_module_count": 75,
   "namespace_counts": {
     "LeanInfoTheory.Shannon": 578,
-    "PMF": 108
+    "PMF": 120
   },
-  "non_stable_module_count": 30,
+  "non_stable_module_count": 32,
   "non_stable_modules": [
     "LeanInfoTheory.Basic",
     "LeanInfoTheory.Examples",
@@ -4361,6 +4433,8 @@
     "LeanInfoTheory.Examples.InformationDecomposition",
     "LeanInfoTheory.Examples.KLTop",
     "LeanInfoTheory.Examples.Pinsker",
+    "LeanInfoTheory.Examples.ProductChannel",
+    "LeanInfoTheory.Examples.ProductChannelSemantics",
     "LeanInfoTheory.Examples.QuantitativeIndependence",
     "LeanInfoTheory.Examples.StochasticChannels",
     "LeanInfoTheory.Examples.SufficientStatistics",
@@ -4750,7 +4824,7 @@
     "Declaration types and assumptions remain governed by the Lean source and signature-bearing API documentation."
   ],
   "simp_declaration_count": 94,
-  "supported_module_count": 42,
+  "supported_module_count": 43,
   "supported_modules": [
     "LeanInfoTheory",
     "LeanInfoTheory.InformationMeasures",
@@ -4761,6 +4835,7 @@
     "LeanInfoTheory.Probability.FiniteProduct",
     "LeanInfoTheory.Probability.FiniteTopology",
     "LeanInfoTheory.Probability.Iid",
+    "LeanInfoTheory.Probability.ProductChannel",
     "LeanInfoTheory.Probability.TotalVariation",
     "LeanInfoTheory.Probability.TotalVariationTopology",
     "LeanInfoTheory.Shannon",

@@ -5,6 +5,27 @@ detail. It is not meant to list every small command or proof attempt. It should
 help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
+
+## C17.05 authorized cumulative qualification, 2026-10-16
+
+C17.01--C17.04 and their reviews are complete by actual records. The lead
+authorized the exact nineteen-path local checkpoint, necessary C17.05-only
+amendments and reuse of the inspected clean validation checkout. Checkpoint
+`06c9610be44e8f0d5ecfc6f850a011137db341bc` passed the complete maintained routine in
+3584.820 seconds, with clean/detached validation state and unchanged source
+and runtime pins. Separate actual two-pass file-mode API docs and inspection
+of all twelve new signatures/docstrings passed; the original missing-page
+failure and bounded cache recovery remain recorded.
+
+The [maintained handoff](handoffs/chunk-17.md) records exact product/memoryless
+APIs, lightweight imports, independent/correlated and support/null consumers,
+source adaptations and separate C18/C23 interfaces. This step adds no endpoint.
+The [C17 notes](plans/post-release-chunk-17-notes.md) distinguish initial from
+final amended-candidate qualification, exact API applicability, fresh cumulative
+review/reconciliation and supported closure. Only actual source-bound private
+records and the final user report establish completion; this captured milestone
+is provisional. Unrelated log bytes and three excluded files stay preserved.
+No push, tag, release/publication, pin change or later chunk is authorized.
 ## C16.05 authorized initial checkpoint qualification, 2026-10-14
 
 On 2026-10-14 the lead authorized the exact prepared 24-file local checkpoint,
@@ -15642,6 +15663,17 @@ resolution.
     Chunk 3 Step 19's examples use sequential channels only. They do not form
     a named independent product of two channels, so the product-channel
     constructor still has one production consumer and remains deferred.
+
+    C17.01--C17.04 disposition, 2026-10-16: the constructor and ownership
+    question is discharged by `Probability.ProductChannel`, which reuses
+    C16 `finiteProduct` below Shannon. Its twelve bounded public declarations
+    and independent elementary/semantic consumers cover conditional products,
+    channel algebra and exact joint laws. The old binary MI statement remains
+    unchanged; a private consumer proves exact `indepProd` compatibility.
+    The raw-channel/minimal-API discipline remains a standing guardrail, not
+    an outstanding request to add another product constructor or binary alias.
+    Future naming/alias pressure stays under Note 14. See the maintained
+    [C17 handoff](handoffs/chunk-17.md); C17.05 qualification is still pending.
 
 32. Keep the additive Step 9 Markov information-loss identity as the canonical
     public orientation:

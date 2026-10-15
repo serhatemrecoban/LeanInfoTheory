@@ -28,6 +28,8 @@ import LeanInfoTheory.Examples.IndependenceProcessing
 import LeanInfoTheory.Examples.InformationDecomposition
 import LeanInfoTheory.Examples.KLTop
 import LeanInfoTheory.Examples.Pinsker
+import LeanInfoTheory.Examples.ProductChannel
+import LeanInfoTheory.Examples.ProductChannelSemantics
 import LeanInfoTheory.Examples.QuantitativeIndependence
 import LeanInfoTheory.Examples.StochasticChannels
 import LeanInfoTheory.Examples.SufficientStatistics
@@ -39,6 +41,10 @@ import LeanInfoTheory.Examples.Units
 
 /-!
 # Examples aggregate
+
+Product-channel consumers separate elementary joint/block laws from existing
+family and conditional semantics. They exercise correlated noisy inputs,
+noninjective source maps, supported recovery and null-coordinate changes.
 
 This import-only aggregate gathers the separately usable common-cause,
 conditional-KL, convexity, coupling, Fano, finite-family, independence-processing,

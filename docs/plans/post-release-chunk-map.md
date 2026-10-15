@@ -1,9 +1,9 @@
 # Post-Release Chunk Map: Quantitative and Operational Information Theory
 
-**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-14. Detailed C9--C16 revision-2 plans were separately approved; C17--C24 remain proposed.
+**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-16. Detailed C9--C17 revision-2 plans were separately approved; C18--C24 remain proposed.
 **Review follow-up:** C18/C23 clarifications accepted for this map; the 16-chunk structure is unchanged.
-**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md), [C12 plan](post-release-chunk-12.md), [C13 plan](post-release-chunk-13.md), [C14 plan](post-release-chunk-14.md), [C15 plan](post-release-chunk-15.md), [C16 plan](post-release-chunk-16.md) and eligible step requests own their respective execution.
-**Execution:** C9--C15 and C16.01--C16.04 are complete by their private records. C16.05 remains selected for cumulative qualification and the [maintained handoff](../handoffs/chunk-16.md), with no new endpoint. On 2026-10-14 the lead authorized the exact 24-file checkpoint, necessary C16.05-only amendments and inspected-checkout reuse, preserving unrelated exclusions. Initial checkpoint `d9a3f32d396cbad91c10c7778b00d0cae50361e3` passed the complete clean routine (3293.619 seconds recorded by its runner). Separate actual two-pass API-doc qualification and three-owner inspection passed on recorded primary inputs. Each amendment needs complete clean revalidation and exact API applicability; readiness, fresh all-15-criterion review, reconciliation and supported closure remain required. C17--C24, push and publication remain unselected. Older execution paragraphs retain history.
+**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md), [C12 plan](post-release-chunk-12.md), [C13 plan](post-release-chunk-13.md), [C14 plan](post-release-chunk-14.md), [C15 plan](post-release-chunk-15.md), [C16 plan](post-release-chunk-16.md), [C17 plan](post-release-chunk-17.md) and eligible step requests own their respective execution.
+**Execution:** C9--C16 and C17.01--C17.04 are complete by actual private records. C17.05 owns cumulative qualification and the [maintained handoff](../handoffs/chunk-17.md), with no new endpoint. The nineteen-path local checkpoint/reuse and necessary Step 5 amendments are authorized; initial clean routine and separate actual two-pass current API docs passed. Final amended-candidate validation, all-fifteen-criterion review/reconciliation and supported closure require their actual source-bound records. C18--C24 and release/publication remain unselected. Historical checkpoints do not reopen completed chunks.
 **Map-intake baseline inspected:** `master` at `80ea016c7ac64bb5bd79b2f769227a3fb2ccc3b3`,
 with the existing uncommitted post-release documentation/discoverability work
 preserved. The immutable `v0.1.0` mathematical baseline remains
@@ -61,9 +61,10 @@ The following are existing source anchors, not proposed replacements:
 
 Paths in this table are relative to `LeanInfoTheory/`; Shannon declarations
 live in `LeanInfoTheory.Shannon` unless their namespace is explicitly `PMF`.
-The private `familyProduct` in the mutual-independence owner is a product of
-the marginals of an already supplied law. It is not a supported public
-constructor from arbitrary component PMFs. That distinction motivates C16.
+Historically, private `familyProduct` constructed only the marginals of an
+already supplied law. C16 now supplies the supported `PMF.finiteProduct`
+constructor from arbitrary component PMFs; the private semantic helper reuses
+it. C17 builds raw product channels on that same constructor.
 
 Pinned mathlib source already supplies `PMF.ofFintype`, `stdSimplex`,
 `isCompact_stdSimplex`, `Real.continuous_negMulLog`, variance/Chebyshev results,
@@ -369,15 +370,12 @@ pinned mathlib convex/topological owners for compactness.
 
 ### C16. Finite products and iid block laws
 
-**Current execution:** The [approved detailed revision-2 plan](post-release-chunk-16.md)
-has completed C16.01--C16.04 with review. Its 17 public declarations supply the
-constructor, exact transports, block/iid laws and separate family/independence
-bridges described below. C16.05 retains cumulative qualification and the
-[maintained handoff](../handoffs/chunk-16.md). Its authorized initial checkpoint
-passed the complete clean routine; amended-candidate qualification, fresh
-all-criteria review and source-bound closure remain required. The original goals and future-chunk contracts
-remain unchanged. The measured 17-entry growth includes thin specializations and
-adapters; package-size calibration belongs at C18, not to API padding here.
+**Current execution:** C16 and all five reviews are complete by
+`.lit-review/setup/c16-05-completion-20261014.json`. Its 17 public declarations
+supply the constructor, transports, block/iid laws and separate semantic
+bridges below. The [handoff](../handoffs/chunk-16.md) preserves pre-closure
+wording and exact evidence limits; the actual completion record resolves that
+chronology. Package-size calibration belongs at C18, not to API padding here.
 
 **Goal:** Construct independent laws from component PMFs and manipulate their
 coordinates without duplicating finite-family semantics.
@@ -403,6 +401,15 @@ family interfaces. A general infinite product or a new global independence
 predicate is outside scope. Sources: `PW24` 6.1/11.2; existing family modules.
 
 ### C17. Product channels and memoryless extensions
+
+**Current execution:** The [approved revision-2 plan](post-release-chunk-17.md)
+has completed C17.01--C17.04 with review. Twelve public declarations deliver
+finite dependent/repeated channels, row/restriction and channel algebra, and
+exact arbitrary-input joint projections/independent-input factorization. The
+two private consumer owners exercise correlated inputs, noisy outputs, source
+maps with supported collisions and supported/null-fiber semantics. C17.05
+retains cumulative qualification, fresh all-criteria review and the
+[maintained handoff](../handoffs/chunk-17.md); no information endpoint is added.
 
 **Goal:** Construct block channels independently of the input distribution.
 
@@ -723,7 +730,7 @@ remains in `project-log.md`, and this map owns the detailed chunk assignment.
 | Register owner | Proposed treatment |
 | --- | --- |
 | Note 25 | C9 has real PFR evidence for deterministic-postprocessing independence; other closure/degeneration forms remain consumer-triggered. |
-| Note 31 | C17 supplies planned product-channel consumers. Review the raw-PMF versus Shannon ownership before introducing the constructor. |
+| Note 31 | C17.01--C17.04 supply the lightweight PMF product-channel owner and permanent elementary/semantic consumers, including exact old binary-law compatibility. The constructor/ownership question is discharged; raw-channel and minimal-API rules remain standing guardrails. |
 | Note 29 | C14 and C23 reuse Fano; C23 addresses its coding-application slice. General Fano equality, randomized estimators, and list decoding stay deferred. |
 | Note 5 | C20--C23 address a fixed-length coding slice only; Kraft-McMillan and variable-length coding remain open. |
 | Unnumbered quantitative/block backlog | C10--C19/C22 allocate finite TV/coupling, Pinsker, continuity/topology, tensorization, AEP, and capacity. None is implemented by this allocation. |

@@ -6,8 +6,8 @@
     "Semantic bridge layer",
     "Non-stable anchors"
   ],
-  "local_edge_count": 157,
-  "module_count": 72,
+  "local_edge_count": 165,
+  "module_count": 75,
   "modules": [
     {
       "external_imports": [],
@@ -113,6 +113,17 @@
       "summary": "Local LeanInfoTheory module."
     },
     {
+      "external_imports": [],
+      "layer": "Shared foundation",
+      "local_imports": [
+        "LeanInfoTheory.Probability.Iid"
+      ],
+      "name": "LeanInfoTheory.Probability.ProductChannel",
+      "path": "LeanInfoTheory/Probability/ProductChannel.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
       "external_imports": [
         "Mathlib.Tactic.Linarith"
       ],
@@ -158,6 +169,7 @@
         "LeanInfoTheory.Probability.FiniteProduct",
         "LeanInfoTheory.Probability.FiniteTopology",
         "LeanInfoTheory.Probability.Iid",
+        "LeanInfoTheory.Probability.ProductChannel",
         "LeanInfoTheory.Probability.TotalVariation",
         "LeanInfoTheory.Probability.TotalVariationTopology",
         "LeanInfoTheory.Shannon.Continuity",
@@ -610,6 +622,8 @@
         "LeanInfoTheory.Examples.InformationDecomposition",
         "LeanInfoTheory.Examples.KLTop",
         "LeanInfoTheory.Examples.Pinsker",
+        "LeanInfoTheory.Examples.ProductChannel",
+        "LeanInfoTheory.Examples.ProductChannelSemantics",
         "LeanInfoTheory.Examples.QuantitativeIndependence",
         "LeanInfoTheory.Examples.StochasticChannels",
         "LeanInfoTheory.Examples.SufficientStatistics",
@@ -844,6 +858,30 @@
       "external_imports": [],
       "layer": "Non-stable anchors",
       "local_imports": [
+        "LeanInfoTheory.Probability.ProductChannel"
+      ],
+      "name": "LeanInfoTheory.Examples.ProductChannel",
+      "path": "LeanInfoTheory/Examples/ProductChannel.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Probability.ProductChannel",
+        "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
+        "LeanInfoTheory.Shannon.SemanticBridge.Markov"
+      ],
+      "name": "LeanInfoTheory.Examples.ProductChannelSemantics",
+      "path": "LeanInfoTheory/Examples/ProductChannelSemantics.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
         "LeanInfoTheory.Shannon.SemanticBridge.Pinsker"
       ],
       "name": "LeanInfoTheory.Examples.QuantitativeIndependence",
@@ -951,5 +989,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 5,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 67
+  "separate_import_count": 70
 }

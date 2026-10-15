@@ -36,7 +36,103 @@ Status labels used below:
 
 ## 0. AI Assistant Quick Start
 
-**[Current] C16.05 initial qualification, 2026-10-14.** C9--C15 and
+**[Current] C17.05 authorized cumulative qualification, 2026-10-16.**
+C17.01--C17.04 and their reviews are complete by actual private records.
+The lead authorized the exact nineteen-path local C17 checkpoint, necessary
+C17.05-only amendments within those paths, and reuse of the inspected clean
+detached validation checkout. Initial checkpoint `06c9610be44e8f0d5ecfc6f850a011137db341bc`
+passed the complete maintained clean routine in 3584.820 seconds. The primary
+checkout preserves three excluded files and the unrelated project-log entry.
+
+Fresh actual two-pass current file-mode API documentation passed separately;
+all twelve ProductChannel declaration signatures/docstrings and source links
+were inspected. The [maintained handoff](handoffs/chunk-17.md) records delivered
+APIs, imports, permanent consumers, source adaptations, finite/empty/support/null
+conventions, source applicability and separate C18/C23 interfaces.
+
+Final amended-candidate validation, fresh all-fifteen-criterion review, explicit
+reconciliation and exact closure are established only by their actual records,
+including `.lit-review/setup/c17-05-completion-20261016.json` when present.
+This captured account is provisional and does not itself assert C17 completion.
+Every amendment needs the required clean rerun and exact API applicability.
+No push, tag, release, publication, dependency change or later chunk is authorized.
+
+**[History] C17.04 validated and independently reviewed, 2026-10-15.**
+C17.01--C17.03 are complete by their actual private records. The fresh Step 4
+request selected only three joint-law theorems and private elementary/semantic
+consumers: arbitrary-input coordinate/block joints, independent-input exact joint
+factorization, sparse and zero/one cases, correlated noisy output, noninjective
+source maps and supported reconstruction with unchanged null fallback. Required
+focused, standalone, static, documentation and compiled trust/compatibility gates
+passed. The original independent STEP report satisfies all three criteria with
+no findings and is explicitly reconciled. The [C17 notes](plans/post-release-chunk-17-notes.md)
+distinguish exact evidence, earlier failures, parent and reviewer checks, and
+C18/C23 interfaces. Current inventory is 698 declarations in 43 owners, with
+94 reviewed simp names and 92 root exports. Final applicability and actual closure
+depend on `.lit-review/setup/c17-04-completion-20261015.json`, when present.
+Toolchain, pins, root and unrelated work are preserved. C17.05 cumulative
+qualification, fresh review and maintained handoff remain unselected; no commit,
+release or next-chunk work is authorized.
+
+**[History] C17.03 validated and independently reviewed, 2026-10-15.** C17.01 and
+C17.02 are complete by their actual private records. The fresh conditional
+Step 3 request was admitted after exact predecessor closure/source verification.
+Only `PMF.memorylessChannel` and private finite-block/boundary consumers are
+selected. The thin specialization requires finite outputs and imposes no
+input-law independence. Consumers check nonconstant-input covariance, ordered
+block splitting/reconstruction and both marginals, zero/one lengths, singleton
+outputs and empty/vacuous boundaries through existing product APIs. Focused,
+standalone, static, documentation and compiled trust/compatibility gates passed.
+The original independent STEP report satisfies all three criteria with no
+findings and has been explicitly reconciled; fresh reviewer compilation and
+static checks also passed. Inventory is 695 declarations in 43 owners, with
+94 reviewed simp names and 92 root exports. Final applicability and actual
+completion are established only by
+`.lit-review/setup/c17-03-completion-20261015.json`, when present. See
+[C17 notes](plans/post-release-chunk-17-notes.md) for evidence and limits.
+C17.04--C17.05, commits and release work remain unselected. Toolchain, pins,
+root imports and unrelated work are preserved; cumulative clean-suite and
+API-documentation qualification remain with C17.05.
+
+**[History] C17.02 validated and independently reviewed, 2026-10-15.**
+C17.01 is complete by `.lit-review/setup/c17-01-completion-20261015.json`.
+A fresh conditional Step 2 request was admitted after its closure and exact
+source were verified. The same `Probability.ProductChannel` owner gains the
+three approved independent-processing, composition and deterministic-reduction
+laws; P3 uses heterogeneous sparse inputs, order-sensitive noisy stages and
+existing deterministic channel algebra. Composition requires no finite original
+input alphabet or input-law independence. Focused, standalone, static,
+documentation and compiled trust/compatibility gates passed. The original STEP
+report satisfies all three criteria with no findings and has been explicitly
+reconciled; fresh reviewer compilation also passed. Inventory is 694 declarations
+in 43 owners, with 94 reviewed simp names and 92 root exports. Final applicability
+and actual completion are established only by
+`.lit-review/setup/c17-02-completion-20261015.json`, when present.
+See [C17 notes](plans/post-release-chunk-17-notes.md).
+C17.03--C17.05, release work and commits remain unselected;
+pins, the root and unrelated pending files are preserved.
+
+**[History] C17.01 validated and independently reviewed, 2026-10-15.** C9--C16 are complete; C16's
+actual completion record is `.lit-review/setup/c16-05-completion-20261014.json`
+at `fffd0968640bb4b2cbdf07d9bdcdc573950f0bb1`. The lead accepted
+[C17 revision 2](plans/post-release-chunk-17.md) and selected only its first step
+with review. The focused `Probability.ProductChannel` owner contains five
+raw-channel row and restriction declarations, reusing C16 products with finite outputs and arbitrary
+inputs. Private consumers exercise heterogeneous sparse input-dependent rows,
+finite selection/reindexing, infinite inputs and empty/vacuous boundaries.
+The root, pins and simp policy are unchanged. [C17 notes](plans/post-release-chunk-17-notes.md)
+track earlier failed bounded attempts, subsequent slow completion with unchanged
+pins, and corrected private consumer compilation. Required focused, static,
+documentation and compiled trust/compatibility gates passed. The original STEP
+report satisfies all three criteria with no findings and has been explicitly
+reconciled. Current inventory is 691 declarations in 43 owners, with the existing
+94 reviewed simp names and 92 root exports. Final applicability and actual step
+completion are established by `.lit-review/setup/c17-01-completion-20261015.json`,
+when present. Later steps remain unselected.
+Earlier qualification passages below retain their original chronology and do
+not reopen completed chunks or certify the current candidate.
+
+**[History] C16.05 initial qualification, 2026-10-14.** C9--C15 and
 C16.01--C16.04 are complete by private records. Step 4's 248 source entries
 matched before Step 5 admission. The lead authorized the exact 24-file local
 checkpoint, necessary C16.05-only amendments and inspected-checkout reuse.
@@ -303,12 +399,12 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-10-14 |
+| Last updated | 2026-10-16 |
 | Recorded pre-C9 mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the released `v0.1.0` source is exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f` |
 | Repository transition state | `v0.1.0` is published from immutable tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` and archived as Zenodo record `22229599`. The evolving default branch carries the current project pages and DOI metadata, while maintenance staging preserves `/docs/v0.1.0/` from exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`; the tag, Release, archive, released Lean source, and frozen public API remain unchanged |
 | Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
 | mathlib baseline | `v0.1.0` uses input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474` |
-| Source-snapshot phase | Post-release `v0.1.x`; C9--C15 and C16.01--C16.04 are complete. C16.05 remains selected. The lead authorized the exact 24-file checkpoint, C16.05-only amendments and inspected-checkout reuse on 2026-10-14. Initial checkpoint `d9a3f32d396cbad91c10c7778b00d0cae50361e3` passed the clean complete routine; separate actual two-pass API-doc qualification/owner inspection passed on recorded primary inputs. Current coverage is 686 declarations in 42 owners. Each amendment needs full clean revalidation and exact API applicability; readiness, fresh all-15-criterion review, reconciliation and supported closure remain required. No push, publication or later chunk is selected. |
+| Source-snapshot phase | Post-release `v0.1.x`; C9--C16 and C17.01--C17.04 are complete by actual records. Current library coverage is 698 declarations in 43 supported owners; C17 adds twelve declarations in one owner. The nineteen-path checkpoint/reuse scope is authorized; initial clean qualification and separate actual two-pass API docs passed. Final amended-candidate validation, cumulative review/reconciliation and supported closure are source-bound records, not inferred from this status row. No release or later chunk is selected. |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -718,6 +814,9 @@ conversion merely to restate that finite equivalence.
 - `PMF.deterministicChannel`, `PMF.channelComp`, `PMF.channelJoint`, and
   `PMF.channelExtension`;
 - atom, projection, composition, deterministic, and support laws;
+- finite dependent `PMF.productChannel`, repeated `memorylessChannel`, exact
+  arbitrary-input joint projections and independent-input joint factorization;
+  conditional independence does not require independence of inputs or unconditional outputs;
 - total conditional channels and posterior reconstruction;
 - PMF and random-variable Markov predicates;
 - cross-product, positive-fiber, zero-CMI, reversal, canonical-factorization,
@@ -731,7 +830,7 @@ conversion merely to restate that finite equivalence.
 - invariant-reference contraction and one-step entropy growth under
   uniform-preserving or finite doubly stochastic channels.
 
-The owners are `Probability.FiniteChannel`,
+The owners are `Probability.FiniteChannel`, `Probability.ProductChannel`,
 `SemanticBridge.Markov`, and `SemanticBridge.DataProcessing`.
 
 ### Sufficient statistics and KL equality
@@ -976,6 +1075,7 @@ and [structural type artifact](compatibility/README.md) remain unchanged.
 | `LeanInfoTheory.Shannon.LogSum` | Zero-safe `EReal` finite log-sum inequality/equality and guarded Real corollaries |
 | `LeanInfoTheory.Shannon.EntropyConcavity` | General-selector entropy concavity and binary strict equality, proved directly by Jensen |
 | `LeanInfoTheory.Probability.FiniteChannel` | Raw PMF channel constructions and elementary laws, with no Shannon/KL dependency |
+| `LeanInfoTheory.Probability.ProductChannel` | Finite dependent product and repeated channels; row/restriction, composition, deterministic and exact joint laws; imports only `Probability.Iid` |
 | `LeanInfoTheory.Shannon.SemanticBridge.Entropy` | Self-information and finite entropy as expected self-information |
 | `LeanInfoTheory.Shannon.SemanticBridge.Product` | Independent product PMFs and product-measure bridges |
 | `LeanInfoTheory.Shannon.SemanticBridge.FiniteSums` | Finite real-mass and log-ratio expansions |
@@ -1167,7 +1267,7 @@ in their approved aggregates. The focused semantic owner now supplies selected-m
 and distinct-coordinate independence bridges through the existing predicates.
 The older private family constructor reuses `finiteProduct` while preserving
 the public interfaces. The semantic aggregate and a separate private semantic
-consumer provide opt-in access. Current coverage is 686 declarations in
+consumer provide opt-in access. At C16 closure, coverage was 686 declarations in
 42 supported owners. Root imports, five-module root closure, 92 exports and
 94 reviewed simp declarations remain unchanged.
 
@@ -1178,6 +1278,26 @@ growth, not 17 independent deep results or a target count. No additional helper,
 alias, instance or simp attribute is exported. The [handoff](handoffs/chunk-16.md)
 records exact names and consumers; Notes 14/29 retain consumer-driven reopening
 triggers. Reassess the C16--C18 package after C18 without padding this API.
+
+### C17 product channels and private semantic consumers
+
+The focused `Probability.ProductChannel` owner adds two definitions and ten
+theorems in `PMF`, reusing C16 products and existing raw channel algebra. It
+imports only `Probability.Iid`, with no Shannon, information or topology
+dependency. The full Shannon umbrella imports it; the root remains unchanged.
+`Examples.ProductChannel` imports only this owner, while the separate private
+`Examples.ProductChannelSemantics` imports it and the existing finite-product
+and Markov bridges. Both consumers join only Examples. No new alias, instance
+or simp attribute is exported. Current totals are 698 declarations in 43
+supported owners, 94 reviewed simp names and 92 root exports.
+
+The [handoff](handoffs/chunk-17.md) records exact names and typeclass boundaries:
+finite index/output fibers, arbitrary input fibers except independent-product
+factorization, separate universes, zero masses, finite selections without
+ambient finiteness, empty/vacuous channels and zero/one blocks. Joint laws use
+the actual input distribution. Generic supported recovery uses the swapped
+joint; null fibers retain the output-marginal fallback without conditional
+meaning. C18 information identities and C23 coding endpoints are not delivered.
 
 ## 8. Development History by Phase
 
@@ -1453,7 +1573,29 @@ certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
 
-### C16.05 initial qualification and handoff, 2026-10-14
+### C17.05 authorized cumulative qualification, 2026-10-16
+
+C17.01--C17.04 and their reviews are complete by actual private records.
+The lead authorized the exact nineteen-path local C17 checkpoint, necessary
+C17.05-only amendments within those paths, and reuse of the inspected clean
+detached validation checkout. Initial checkpoint `06c9610be44e8f0d5ecfc6f850a011137db341bc`
+passed the complete maintained clean routine in 3584.820 seconds. The primary
+checkout preserves three excluded files and the unrelated project-log entry.
+
+Fresh actual two-pass current file-mode API documentation passed separately;
+all twelve ProductChannel declaration signatures/docstrings and source links
+were inspected. The [maintained handoff](handoffs/chunk-17.md) records delivered
+APIs, imports, permanent consumers, source adaptations, finite/empty/support/null
+conventions, source applicability and separate C18/C23 interfaces.
+
+Final amended-candidate validation, fresh all-fifteen-criterion review, explicit
+reconciliation and exact closure are established only by their actual records,
+including `.lit-review/setup/c17-05-completion-20261016.json` when present.
+This captured account is provisional and does not itself assert C17 completion.
+Every amendment needs the required clean rerun and exact API applicability.
+No push, tag, release, publication, dependency change or later chunk is authorized.
+
+### Historical C16.05 initial qualification and handoff, 2026-10-14
 
 The first four steps and reviews are complete; Step 5 adds no mathematics.
 The [handoff](handoffs/chunk-16.md) records all 17 names, exact imports,
@@ -2149,7 +2291,7 @@ again.
 | Note | Work |
 | --- | --- |
 | Unnumbered | **Chunk 8 is complete through `C8.24` and checkpointed as `1eef228`.** Its 18-declaration API, generated references, complete validation evidence, exact-SHA Lean workflow, and Pages deployment pass; any later theorem phase requires a separate decision. |
-| Unnumbered | **C16.05 selected:** C9--C15 and C16.01--C16.04 are complete by private records. The approved [C16 plan](plans/post-release-chunk-16.md), [notes](plans/post-release-chunk-16-notes.md) and [handoff](handoffs/chunk-16.md) govern cumulative qualification, all-15-criterion review and final reconciliation. Product channels belong to separately planned C17; information identities to C18; supported logarithms/variance/AEP to C19. Later chunks remain unselected. |
+| Unnumbered | **C17 cumulative qualification:** the [plan](plans/post-release-chunk-17.md), [notes](plans/post-release-chunk-17-notes.md) and [handoff](handoffs/chunk-17.md) govern exact final validation, all-fifteen-criterion review and private closure. The scoped local checkpoint/reuse is authorized and initial qualification passed. C18 information identities, C19 AEP, C22 capacity and C23 coding remain later work requiring separate approval and selection. |
 | 29 | **Finite-Fano phase checkpointed.** Commit `ec78829` completes the approved phase; its evidence-based Fano follow-ups remain open and deferred. |
 
 Note 29 also preserves proof-pressure triggers from `C5.08`-`C5.11` and
@@ -2248,7 +2390,7 @@ not pending LeanInfoTheory release work.
 | 23 | Generalize uniform-reference KL to infinite ambient alphabets only when finite-support consumers need it. |
 | 24 | Extract strict-Jensen equality infrastructure only after another extremization proof repeats it. |
 | 30 | **Partially discharged.** `PMF.channelJoint_eq_iff_eq_on_support` and C12's `PMF.channelExtension_eq_iff_eq_on_support` handle induced joint and whole triple laws. Broader weighted null-fiber laws and opposite reconstruction orientation still require repeated use. |
-| 31 | Add a product-channel constructor only after a second independent-channel consumer. |
+| 31 | **Constructor/ownership question discharged by C17.01--C17.04.** The lightweight PMF owner and independent elementary/semantic consumers retain exact old binary-law compatibility. Raw-channel architecture and minimal API remain standing guardrails; further aliases require Note 14 consumer pressure. |
 | 32 | Add subtractive or reversed Markov information-loss forms only after quantitative proofs require them. |
 | 33 | **Partially discharged.** The conditional-entropy DPI equality branches are complete; strict-loss variants remain consumer-deferred. |
 | 34 | Keep stochastic-channel processing PMF-first until a natural random-variable coupling contract appears. |
@@ -2353,6 +2495,14 @@ AEP results. The [C16 handoff](handoffs/chunk-16.md#mathematical-sources-and-ada
 records the finite-alphabet adaptation and C19's unresolved typicality/support
 convention. Closeout claims no fresh textbook reading.
 
+C17 uses PW24 Sections 6.1 and 19.1 for finite conditional-product and repeated
+channel conventions. The general product allows nonidentical coordinate
+channels; `memorylessChannel` denotes the identical-coordinate specialization.
+The [C17 handoff](handoffs/chunk-17.md#mathematical-sources-and-adaptations)
+records exact pages, source identity and the distinction between conditional
+and input independence. No information bound, capacity or coding theorem is
+claimed from these source passages.
+
 ### Reviewed during this reconciliation
 
 **Cover and Thomas, Elements of Information Theory, Chapter 2**
@@ -2408,7 +2558,21 @@ not reproduce textbook prose or proofs.
 
 ## 16. Validation State
 
-**C16.05 initial clean qualification, 2026-10-14.** The exact 24-file checkpoint,
+**C17.05 initial clean qualification, 2026-10-16.** The lead authorized the
+nineteen-path checkpoint/reuse and necessary C17.05-only amendments. Initial
+checkpoint `06c9610be44e8f0d5ecfc6f850a011137db341bc` passed the complete maintained
+routine in 3584.820 seconds. The clean checkout matched exact committed blobs
+and stayed clean/detached; primary/validation inputs and nine runtime pins stayed
+fixed. Three excluded files, the original relocation log entry and four declared
+EOL-only differences are distinguished; whole raw-checkout identity is not claimed.
+Actual primary two-pass API documentation and twelve-declaration semantic HTML
+inspection passed separately. The original missing-page failure, bounded
+three-marker recovery and unknown effective reviewer settings remain disclosed.
+Final amended-candidate clean validation, original cumulative report and every
+reconciliation must be applicable to the exact final capture before supported
+closure. Those actual records, not this provisional account, establish completion.
+
+**[History] C16.05 initial clean qualification, 2026-10-14.** The exact 24-file checkpoint,
 necessary Step 5 amendments and inspected-checkout reuse were explicitly
 authorized, with protected files and the old relocation entry excluded.
 Initial checkpoint `d9a3f32d396cbad91c10c7778b00d0cae50361e3` passed the complete
@@ -3694,6 +3858,9 @@ inferred from local content. The public site is:
 ## 18. Pointers to Detailed Historical Records
 
 ### Maintained documents
+
+- [Chunk 17 handoff](handoffs/chunk-17.md): delivered product channels, exact
+  consumers and boundaries, pending cumulative qualification and C18/C23 contracts.
 
 - [README](../README.md): public project status and module overview.
 - [Agent instructions](../AGENTS.md): operational and naming rules.

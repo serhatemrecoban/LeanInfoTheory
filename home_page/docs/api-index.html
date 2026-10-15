@@ -37,11 +37,11 @@
         <h2 id="metrics-heading">Current Index</h2>
 
         <div class="metric-grid">
-          <div class="metric-card"><strong>801</strong><span>non-private source declarations</span></div>
-          <div class="metric-card"><strong>46</strong><span>modules with declarations</span></div>
-          <div class="metric-card"><strong>676</strong><span>theorems and lemmas</span></div>
-          <div class="metric-card"><strong>117</strong><span>definitions and abbrevs</span></div>
-          <div class="metric-card"><strong>800</strong><span>with doc comments</span></div>
+          <div class="metric-card"><strong>813</strong><span>non-private source declarations</span></div>
+          <div class="metric-card"><strong>47</strong><span>modules with declarations</span></div>
+          <div class="metric-card"><strong>686</strong><span>theorems and lemmas</span></div>
+          <div class="metric-card"><strong>119</strong><span>definitions and abbrevs</span></div>
+          <div class="metric-card"><strong>812</strong><span>with doc comments</span></div>
         </div>
 
       </section>
@@ -56,10 +56,10 @@
             </tr>
           </thead>
           <tbody>
-<tr><td>Definition</td><td>117</td></tr>
+<tr><td>Definition</td><td>119</td></tr>
 <tr><td>Inductive</td><td>4</td></tr>
 <tr><td>Instance</td><td>4</td></tr>
-<tr><td>Theorem</td><td>676</td></tr>
+<tr><td>Theorem</td><td>686</td></tr>
           </tbody>
         </table>
       </section>
@@ -273,6 +273,18 @@
 <tr id="decl-PMF-finiteProduct_map_append_symm"><td><code>PMF.finiteProduct_map_append_symm</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.Iid</code></td><td>Split a finite product into its ordered prefix and suffix product laws.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/Iid.lean#L41">line 41</a></td></tr>
 <tr id="decl-PMF-channelJoint_finiteProduct_map_append"><td><code>PMF.channelJoint_finiteProduct_map_append</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.Iid</code></td><td>Concatenate independent product blocks, allowing different coordinate laws.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/Iid.lean#L56">line 56</a></td></tr>
 <tr id="decl-PMF-iid_map_perm"><td><code>PMF.iid_map_perm</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.Iid</code></td><td>Permuting the coordinates of an iid block preserves its law.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/Iid.lean#L68">line 68</a></td></tr>
+<tr id="decl-PMF-productChannel"><td><code>PMF.productChannel</code></td><td>Definition</td><td><code>LeanInfoTheory.Probability.ProductChannel</code></td><td>The product of finite-output coordinate channels, evaluated at an input word. No input distribution or independence assumption on inputs is required.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/ProductChannel.lean#L57">line 57</a></td></tr>
+<tr id="decl-PMF-productChannel_apply"><td><code>PMF.productChannel_apply</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.ProductChannel</code></td><td>A product-channel row atom is the product of the coordinate row masses.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/ProductChannel.lean#L62">line 62</a></td></tr>
+<tr id="decl-PMF-mem_support_productChannel_iff"><td><code>PMF.mem_support_productChannel_iff</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.ProductChannel</code></td><td>An output word is supported exactly when each coordinate row supports it.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/ProductChannel.lean#L68">line 68</a></td></tr>
+<tr id="decl-PMF-productChannel_map_eval"><td><code>PMF.productChannel_map_eval</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.ProductChannel</code></td><td>Evaluating a product-channel output at a coordinate recovers that input row.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/ProductChannel.lean#L74">line 74</a></td></tr>
+<tr id="decl-PMF-productChannel_map_restrict"><td><code>PMF.productChannel_map_restrict</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.ProductChannel</code></td><td>Selecting distinct output coordinates gives the selected channel at the selected input. Injectivity excludes repetition of a single output sample.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/ProductChannel.lean#L81">line 81</a></td></tr>
+<tr id="decl-PMF-finiteProduct_bind_productChannel"><td><code>PMF.finiteProduct_bind_productChannel</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.ProductChannel</code></td><td>Processing independent finite input laws coordinatewise gives the product of their output laws. Zero input and channel masses are allowed.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/ProductChannel.lean#L91">line 91</a></td></tr>
+<tr id="decl-PMF-channelComp_productChannel"><td><code>PMF.channelComp_productChannel</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.ProductChannel</code></td><td>Sampling one product channel and then another equals the product of the coordinate composites in that order. Original input alphabets may be infinite.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/ProductChannel.lean#L104">line 104</a></td></tr>
+<tr id="decl-PMF-productChannel_deterministicChannel"><td><code>PMF.productChannel_deterministicChannel</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.ProductChannel</code></td><td>Deterministic coordinate channels form the existing deterministic channel on input words; no input law or finite-input assumption is needed.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/ProductChannel.lean#L113">line 113</a></td></tr>
+<tr id="decl-PMF-memorylessChannel"><td><code>PMF.memorylessChannel</code></td><td>Definition</td><td><code>LeanInfoTheory.Probability.ProductChannel</code></td><td>Repeating one finite-output channel for a finite block. Independence refers to the conditional output row at the supplied input word, not to an input law. At length zero the row is the pure empty output; no positivity is required.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/ProductChannel.lean#L122">line 122</a></td></tr>
+<tr id="decl-PMF-channelJoint_productChannel_map_eval"><td><code>PMF.channelJoint_productChannel_map_eval</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.ProductChannel</code></td><td>The coordinate input-output joint uses the actual input marginal. The input law can be correlated and the input alphabets need not be finite.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/ProductChannel.lean#L130">line 130</a></td></tr>
+<tr id="decl-PMF-channelJoint_productChannel_map_restrict"><td><code>PMF.channelJoint_productChannel_map_restrict</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.ProductChannel</code></td><td>Restricting both words in a product-channel joint gives the selected channel with the restricted actual input law. No input independence is required.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/ProductChannel.lean#L145">line 145</a></td></tr>
+<tr id="decl-PMF-finiteProduct_channelJoint_map"><td><code>PMF.finiteProduct_channelJoint_map</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.ProductChannel</code></td><td>For independent finite inputs, splitting the tuple of coordinate joints gives exactly the joint of the input product and the product channel.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/ProductChannel.lean#L163">line 163</a></td></tr>
 <tr id="decl-PMF-totalVariation"><td><code>PMF.totalVariation</code></td><td>Definition</td><td><code>LeanInfoTheory.Probability.TotalVariation</code></td><td>Total variation of finite PMFs, normalized as half the L1 distance of real masses.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/TotalVariation.lean#L51">line 51</a></td></tr>
 <tr id="decl-PMF-totalVariation_nonneg"><td><code>PMF.totalVariation_nonneg</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.TotalVariation</code></td><td>Total variation is nonnegative.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/TotalVariation.lean#L55">line 55</a></td></tr>
 <tr id="decl-PMF-totalVariation_le_one"><td><code>PMF.totalVariation_le_one</code></td><td>Theorem</td><td><code>LeanInfoTheory.Probability.TotalVariation</code></td><td>Total variation of probability laws is at most one.</td><td><a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/master/LeanInfoTheory/Probability/TotalVariation.lean#L60">line 60</a></td></tr>

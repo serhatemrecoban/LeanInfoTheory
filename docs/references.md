@@ -124,6 +124,16 @@ August 16, 2024 prepublication version. The source footer identifies the date.
   information or AEP results. The [C16 handoff](handoffs/chunk-16.md#mathematical-sources-and-adaptations)
   records the adaptation and remaining C19 support/strict-versus-closed
   typicality decisions. Closeout does not claim new textbook inspection.
+- Recorded C17 use: Section 6.1, Theorem 6.1/proof, printed 106--107 /
+  PDF 131--132; Section 19.1, printed 370--375 / PDF 395--400, especially
+  Definition 19.1 and (19.1)--(19.3), printed 371--372 / PDF 396--397.
+  The [C17 handoff](handoffs/chunk-17.md#mathematical-sources-and-adaptations)
+  records finite dependent conditional products, the identical-coordinate
+  repeated specialization, and conditional versus input independence.
+  C17 proves raw PMF channel/joint laws; the source information, capacity and
+  coding conclusions remain later work. The notes retain earlier reading;
+  closeout preparation rechecked the saved selected-page extraction, not a
+  new visual PDF audit. No matrix-channel replacement is introduced.
 - Section 11.1: one-shot source coding; Section 11.2, Proposition 11.6:
   AEP, typicality, and their coding consequence. These sections differ from
   the older draft, which grouped AEP under Section 11.1.

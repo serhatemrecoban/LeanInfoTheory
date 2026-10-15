@@ -1,6 +1,133 @@
 # Current Lean State
 
-## C16.05 initial checkpoint qualified — final qualification pending, 2026-10-14
+## C17.05 authorized cumulative qualification, 2026-10-16
+
+C17.01--C17.04 and their reviews are complete by actual private records.
+The lead authorized the exact nineteen-path local C17 checkpoint, necessary
+C17.05-only amendments within those paths, and reuse of the inspected clean
+detached validation checkout. Initial checkpoint `06c9610be44e8f0d5ecfc6f850a011137db341bc`
+passed the complete maintained clean routine in 3584.820 seconds. The primary
+checkout preserves three excluded files and the unrelated project-log entry.
+
+Fresh actual two-pass current file-mode API documentation passed separately;
+all twelve ProductChannel declaration signatures/docstrings and source links
+were inspected. The [maintained handoff](handoffs/chunk-17.md) records delivered
+APIs, imports, permanent consumers, source adaptations, finite/empty/support/null
+conventions, source applicability and separate C18/C23 interfaces.
+
+Final amended-candidate validation, fresh all-fifteen-criterion review, explicit
+reconciliation and exact closure are established only by their actual records,
+including `.lit-review/setup/c17-05-completion-20261016.json` when present.
+This captured account is provisional and does not itself assert C17 completion.
+Every amendment needs the required clean rerun and exact API applicability.
+No push, tag, release, publication, dependency change or later chunk is authorized.
+
+## Historical C17.04 joint laws and semantic consumers — validated and reviewed, 2026-10-15
+
+C17.01--C17.03 are complete by their actual private records. The fresh Step 4
+request selected only C17.04 after exact predecessor closure/source checks.
+The three approved public theorems give arbitrary-input coordinate/block joints
+and exact independent-input joint factorization through the existing dependent
+equivalence. Private consumers cover sparse laws, inverse transports, iid
+zero/one blocks, correlated identity/noisy outputs, a nonconstant encoder with
+supported collisions, existing family/binary semantics and supported conditional
+recovery. The two-product null-input comparison preserves the existing fallback.
+Memorylessness constrains conditional rows; input laws remain arbitrary.
+
+Focused, standalone, static, documentation and compiled trust/compatibility checks
+passed on the recorded source. The original independent STEP report satisfies all
+three criteria with no findings and has been explicitly reconciled. See
+[C17 notes](plans/post-release-chunk-17-notes.md) for exact parent/reviewer evidence,
+earlier failures, limitations and C18/C23 producer interfaces. Inventory is 698
+declarations in 43 owners, with 94 reviewed simp names and 92 root exports.
+The earlier nine product-channel declarations, lightweight imports, dependency
+pins and unrelated pending files remain unchanged. Final applicability and actual
+closure are established only by `.lit-review/setup/c17-04-completion-20261015.json`,
+when present. C17.05 retains cumulative clean-suite/API-documentation qualification,
+fresh review, canonical reconciliation and the maintained C17 handoff. No later
+step, commit, release or downstream work is selected.
+
+## Historical C17.03 repeated channels and blocks — validated and reviewed, 2026-10-15
+
+C17.01 and C17.02 are complete by their private completion records. The fresh
+Step 3 request was admitted after exact C17.02 final-source verification. Only
+the thin `PMF.memorylessChannel` definition and private block/boundary consumers
+are selected. The constructor reuses product channels with a constant channel
+family, requiring finite outputs but no input-law independence. Permanent
+consumers exercise nonconstant-input permutation covariance, prefix/suffix
+restriction, ordered nonidentical and repeated block splitting/reconstruction,
+both marginals, zero/one lengths, singleton outputs and empty/vacuous cases.
+The eight earlier owner declarations remain unchanged; no import, simp rule or
+public alias was added. Inventory is 695 declarations in 43 owners, with 94
+reviewed simp names and 92 root exports.
+
+Focused, standalone, static, documentation and compiled trust/compatibility gates
+passed. The original independent STEP report satisfies all three criteria with
+no findings and has been explicitly reconciled. Fresh reviewer focused, owner,
+consumer, probe and static checks also passed. Parent documentation/trust runs
+remain separately attributed, with exact validation-input applicability checked
+by the reviewer. [C17 notes](plans/post-release-chunk-17-notes.md) retain evidence,
+earlier failures and limits. Final applicability and actual closure are
+established only by `.lit-review/setup/c17-03-completion-20261015.json`, when
+present. C17.04--C17.05, commits and release work remain unselected; pins,
+root imports and unrelated pending files are unchanged. Cumulative clean-suite
+and API-documentation duties remain with C17.05.
+
+## Historical C17.02 independent processing and channel algebra — validated and reviewed, 2026-10-15
+
+C17.01 and its review are complete by
+`.lit-review/setup/c17-01-completion-20261015.json`; its exact final source was
+verified before the fresh Step 2 request selected C17.02. The approved additions
+are the independent-input bind law, coordinatewise composition in sampling order,
+and deterministic reduction in the same focused probability owner. Composition
+retains arbitrary original input alphabets. Private P3 consumers exercise sparse
+heterogeneous inputs, stochastic order, arbitrary input laws and deterministic
+pre/postprocessing. Focused, standalone, static, documentation and compiled
+trust/compatibility gates passed. The original independent STEP report satisfies
+all three criteria with no findings and has been explicitly reconciled; its
+fresh focused, owner, consumer and signature/axiom checks also passed. Inventory
+is 694 declarations in 43 owners, with 94 reviewed simp names and 92 root exports.
+[C17 notes](plans/post-release-chunk-17-notes.md) retain actual evidence and limits.
+Final applicability and actual closure are established only by
+`.lit-review/setup/c17-02-completion-20261015.json`, when present.
+C17.03--C17.05, commits and release work remain unselected.
+Pins, the lightweight root and unrelated pending work remain unchanged.
+
+## Historical C17.01 product rows and restriction — validated and reviewed, 2026-10-15
+
+C16 is complete at `fffd0968640bb4b2cbdf07d9bdcdc573950f0bb1` by
+`.lit-review/setup/c16-05-completion-20261014.json`; preserved pre-closure wording
+below is historical. The lead accepted [C17 revision 2](plans/post-release-chunk-17.md)
+and selected only C17.01 with review.
+
+The focused `Probability.ProductChannel` owner contains the raw
+`PMF.productChannel` constructor and its atom, support, coordinate-evaluation
+and injective-restriction laws. It reuses `finiteProduct`, has finite outputs
+and arbitrary input alphabets, and has no input-law premise. Five public names,
+no new simp attributes and no root-import/export change are selected. The full
+Shannon umbrella exposes the owner; private `Examples.ProductChannel` consumers
+exercise sparse heterogeneous input-dependent rows, infinite inputs, nested and
+heterogeneous restrictions, finite selected subtypes, repeated-output failure
+and empty/vacuous cases.
+
+The [C17 notes](plans/post-release-chunk-17-notes.md) retain exact validation,
+review and remaining-work records. After earlier bounded attempts failed, an
+unchanged pinned-runtime build completed the producer in 252 seconds and exposed
+ordinary consumer diagnostics. The corrected private consumer compiled in 27
+seconds. Focused, static, documentation and compiled trust/compatibility checks
+passed, including all 601 retained declaration types and the all-project axiom
+audit. The original independent STEP report satisfies all three criteria with
+no findings and has been explicitly reconciled. The reviewer separately compiled
+the consumer in 257.91 seconds, confirming that a three-minute cutoff can reject
+a successful check. The low-level cause of intermittent latency is unestablished.
+Current inventory is 691 declarations in 43 owners, with 94 reviewed simp names
+and 92 root exports. Final source and closure are established only by
+`.lit-review/setup/c17-01-completion-20261015.json`, when present.
+C17.02--C17.05 remain unselected.
+The full clean routine and two-pass API-documentation milestone are reserved
+for C17.05; no commit, push or publication is authorized.
+
+## Historical C16.05 initial checkpoint qualified — final qualification pending, 2026-10-14
 
 C9--C15 and C16.01--C16.04 are complete by their private records. Step 4's
 248 source entries matched before C16.05 admission. The approved

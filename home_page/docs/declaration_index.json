@@ -1,5 +1,5 @@
 {
-  "declaration_count": 801,
+  "declaration_count": 813,
   "declarations": [
     {
       "doc": "Public project name used by documentation and the website.",
@@ -1960,6 +1960,126 @@
       "name": "PMF.iid_map_perm",
       "path": "LeanInfoTheory/Probability/Iid.lean",
       "short_name": "iid_map_perm"
+    },
+    {
+      "doc": "The product of finite-output coordinate channels, evaluated at an input word. No input distribution or independence assumption on inputs is required.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 57,
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.productChannel",
+      "path": "LeanInfoTheory/Probability/ProductChannel.lean",
+      "short_name": "productChannel"
+    },
+    {
+      "doc": "A product-channel row atom is the product of the coordinate row masses.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 62,
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.productChannel_apply",
+      "path": "LeanInfoTheory/Probability/ProductChannel.lean",
+      "short_name": "productChannel_apply"
+    },
+    {
+      "doc": "An output word is supported exactly when each coordinate row supports it.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 68,
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.mem_support_productChannel_iff",
+      "path": "LeanInfoTheory/Probability/ProductChannel.lean",
+      "short_name": "mem_support_productChannel_iff"
+    },
+    {
+      "doc": "Evaluating a product-channel output at a coordinate recovers that input row.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 74,
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.productChannel_map_eval",
+      "path": "LeanInfoTheory/Probability/ProductChannel.lean",
+      "short_name": "productChannel_map_eval"
+    },
+    {
+      "doc": "Selecting distinct output coordinates gives the selected channel at the selected input. Injectivity excludes repetition of a single output sample.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 81,
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.productChannel_map_restrict",
+      "path": "LeanInfoTheory/Probability/ProductChannel.lean",
+      "short_name": "productChannel_map_restrict"
+    },
+    {
+      "doc": "Processing independent finite input laws coordinatewise gives the product of their output laws. Zero input and channel masses are allowed.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 91,
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.finiteProduct_bind_productChannel",
+      "path": "LeanInfoTheory/Probability/ProductChannel.lean",
+      "short_name": "finiteProduct_bind_productChannel"
+    },
+    {
+      "doc": "Sampling one product channel and then another equals the product of the coordinate composites in that order. Original input alphabets may be infinite.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 104,
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.channelComp_productChannel",
+      "path": "LeanInfoTheory/Probability/ProductChannel.lean",
+      "short_name": "channelComp_productChannel"
+    },
+    {
+      "doc": "Deterministic coordinate channels form the existing deterministic channel on input words; no input law or finite-input assumption is needed.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 113,
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.productChannel_deterministicChannel",
+      "path": "LeanInfoTheory/Probability/ProductChannel.lean",
+      "short_name": "productChannel_deterministicChannel"
+    },
+    {
+      "doc": "Repeating one finite-output channel for a finite block. Independence refers to the conditional output row at the supplied input word, not to an input law. At length zero the row is the pure empty output; no positivity is required.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 122,
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.memorylessChannel",
+      "path": "LeanInfoTheory/Probability/ProductChannel.lean",
+      "short_name": "memorylessChannel"
+    },
+    {
+      "doc": "The coordinate input-output joint uses the actual input marginal. The input law can be correlated and the input alphabets need not be finite.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 130,
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.channelJoint_productChannel_map_eval",
+      "path": "LeanInfoTheory/Probability/ProductChannel.lean",
+      "short_name": "channelJoint_productChannel_map_eval"
+    },
+    {
+      "doc": "Restricting both words in a product-channel joint gives the selected channel with the restricted actual input law. No input independence is required.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 145,
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.channelJoint_productChannel_map_restrict",
+      "path": "LeanInfoTheory/Probability/ProductChannel.lean",
+      "short_name": "channelJoint_productChannel_map_restrict"
+    },
+    {
+      "doc": "For independent finite inputs, splitting the tuple of coordinate joints gives exactly the joint of the input product and the product channel.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 163,
+      "module": "LeanInfoTheory.Probability.ProductChannel",
+      "name": "PMF.finiteProduct_channelJoint_map",
+      "path": "LeanInfoTheory/Probability/ProductChannel.lean",
+      "short_name": "finiteProduct_channelJoint_map"
     },
     {
       "doc": "Total variation of finite PMFs, normalized as half the L1 distance of real masses.",
@@ -8012,12 +8132,12 @@
       "short_name": "entropyOf_div_log"
     }
   ],
-  "documented_count": 800,
+  "documented_count": 812,
   "kind_counts": {
-    "Definition": 117,
+    "Definition": 119,
     "Inductive": 4,
     "Instance": 4,
-    "Theorem": 676
+    "Theorem": 686
   },
   "modules": [
     "LeanInfoTheory.Basic",
@@ -8035,6 +8155,7 @@
     "LeanInfoTheory.Probability.FiniteProduct",
     "LeanInfoTheory.Probability.FiniteTopology",
     "LeanInfoTheory.Probability.Iid",
+    "LeanInfoTheory.Probability.ProductChannel",
     "LeanInfoTheory.Probability.TotalVariation",
     "LeanInfoTheory.Probability.TotalVariationTopology",
     "LeanInfoTheory.Shannon.BinaryEntropy",
