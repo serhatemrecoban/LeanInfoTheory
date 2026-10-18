@@ -21,7 +21,10 @@ A third, biased Boolean coordinate gives a non-iid family whose full
 three-coordinate atom satisfies the public mutual-independence bridge.
 
 Identity-family source semantics and the existing measure independence bridge
-are used directly. No product entropy or self-information identity is needed.
+are used directly. The same triple exercises product and full-family entropy.
+Independent diagonal pairs exercise positive within-pair mutual information:
+two fair pairs give twice log 2. A separate heterogeneous, nonidentical family
+uses the fair, sparse ternary and biased laws without any channel import.
 -/
 
 namespace LeanInfoTheory.Examples.FiniteProductSemantics
@@ -287,6 +290,137 @@ private theorem first_third_independent :
       (fun x => x (Sum.inr ())) :=
   isIndependentOf_finiteProduct_eval tripleComponents
     (i := Sum.inl false) (j := Sum.inr ()) (by decide)
+
+/-! ## Entropy of the same heterogeneous, sparse, non-iid family -/
+
+private theorem triple_entropy_sum :
+    (∑ i, entropy (tripleComponents i)) =
+      entropy fair + entropy sparse + entropy biased := by
+  simp only [Fintype.sum_sum_type, Fintype.sum_bool, Fintype.sum_unique,
+    tripleComponents, components]
+  convert! congrArg (fun x : ℝ => x + entropy biased)
+    (add_comm (entropy sparse) (entropy fair))
+
+private theorem heterogeneous_entropy :
+    entropy tripleLaw = entropy fair + entropy sparse + entropy biased := by
+  have h := entropy_finiteProduct tripleComponents
+  rw [triple_entropy_sum] at h
+  convert! h
+
+private theorem full_family_entropy :
+    familyEntropy tripleLaw fullAtom =
+      entropy fair + entropy sparse + entropy biased := by
+  rw [fullAtom_eq_univ]
+  have h :=
+    (familyEntropy_eq_sum_singletons_iff_isMutuallyIndependentFamily
+      tripleLaw Finset.univ).2
+      (by simpa [fullAtom_eq_univ] using full_mutual_independence)
+  have h' : familyEntropy tripleLaw Finset.univ =
+      ∑ i, entropy (tripleComponents i) := by
+    simpa only [familyEntropy_singleton, entropyOf, tripleLaw,
+      PMF.finiteProduct_map_eval] using h
+  exact h'.trans triple_entropy_sum
+
+private theorem full_family_entropy_eq_word :
+    familyEntropy tripleLaw fullAtom = entropy tripleLaw := by
+  rw [full_family_entropy, heterogeneous_entropy]
+
+private theorem singleton_index_entropy :
+    entropy (PMF.finiteProduct (fun _ : Unit => sparse)) = entropy sparse := by
+  have h := entropy_finiteProduct (fun _ : Unit => sparse)
+  simp only [Fintype.sum_unique] at h
+  convert! h
+
+private theorem singleton_alphabet_entropy :
+    entropy (PMF.finiteProduct (fun _ : Bool => PMF.pure PUnit.unit)) = 0 := by
+  have h := entropy_finiteProduct (fun _ : Bool => PMF.pure PUnit.unit)
+  simp only [entropy_pure, Finset.sum_const_zero] at h
+  convert! h
+
+/-! ## Independent pairs with positive within-pair mutual information -/
+
+private theorem fair_entropy : entropy fair = Real.log 2 := by
+  have hmass (b : Bool) : (fair b).toReal = (2 : ℝ)⁻¹ := by
+    norm_num [fair, PMF.ofFintype_apply]
+  rw [entropy_eq_sum, Fintype.sum_bool]
+  simp only [hmass, Real.negMulLog, Real.log_inv]
+  ring
+
+private def fairPair : PMF (Bool × Bool) := fair.map (fun b => (b, b))
+
+private def independentFairPairs : PMF (Bool → Bool × Bool) :=
+  PMF.finiteProduct (fun _ : Bool => fairPair)
+
+private theorem fair_pair_mutualInfo : mutualInfo fairPair = Real.log 2 := by
+  rw [fairPair, mutualInfo_map_diag, fair_entropy]
+
+private theorem fair_pair_mutualInfo_pos : 0 < mutualInfo fairPair := by
+  rw [fair_pair_mutualInfo]
+  exact Real.log_pos (by norm_num : (1 : ℝ) < 2)
+
+private theorem independent_fair_pairs :
+    IsMutuallyIndependentFamily independentFairPairs Finset.univ :=
+  isMutuallyIndependentFamily_finiteProduct (fun _ : Bool => fairPair) Finset.univ
+
+private theorem fair_pair_coordinate_mutualInfo (i : Bool) :
+    mutualInfo (independentFairPairs.map (fun z => z i)) = Real.log 2 := by
+  rw [independentFairPairs, PMF.finiteProduct_map_eval, fair_pair_mutualInfo]
+
+private theorem independent_fair_pairs_mutualInfo :
+    mutualInfo (independentFairPairs.map
+      (Equiv.arrowProdEquivProdArrow Bool (fun _ => Bool) (fun _ => Bool))) =
+      2 * Real.log 2 := by
+  have h := mutualInfo_map_piProd_eq_sum_of_isMutuallyIndependentFamily
+    independentFairPairs independent_fair_pairs
+  simp only [fair_pair_coordinate_mutualInfo, Fintype.sum_bool] at h
+  rw [← two_mul] at h
+  convert! h
+
+/-! ## A heterogeneous and nonidentical independent pair family -/
+
+private def triplePairComponents (i : Bool ⊕ Unit) :
+    PMF (TripleAlphabet i × TripleAlphabet i) :=
+  (tripleComponents i).map (fun a => (a, a))
+
+private def triplePairLaw :
+    PMF ((i : Bool ⊕ Unit) → TripleAlphabet i × TripleAlphabet i) :=
+  PMF.finiteProduct triplePairComponents
+
+private theorem heterogeneous_pairs_independent :
+    IsMutuallyIndependentFamily triplePairLaw Finset.univ :=
+  isMutuallyIndependentFamily_finiteProduct triplePairComponents Finset.univ
+
+private theorem nonidentical_boolean_pairs :
+    triplePairComponents (Sum.inr ()) ≠ triplePairComponents (Sum.inl false) := by
+  intro h
+  apply biased_ne_fair
+  have hm := congrArg (fun p : PMF (Bool × Bool) => fstMarginal p) h
+  change fstMarginal (biased.map (fun a => (a, a))) =
+    fstMarginal (fair.map (fun a => (a, a))) at hm
+  simp only [fstMarginal, PMF.map_comp, Function.comp_def] at hm
+  change biased.map id = fair.map id at hm
+  simpa only [PMF.map_id] using hm
+
+private theorem sparse_ternary_pair_zero :
+    triplePairComponents (Sum.inl true) ((2 : Fin 3), (2 : Fin 3)) = 0 := by
+  change (sparse.map (fun a => (a, a))) (2, 2) = 0
+  have hdiag : Function.Injective (fun a : Fin 3 => (a, a)) := by
+    intro a b h
+    exact congrArg Prod.fst h
+  rw [PMF.map_apply_of_injective sparse hdiag (2 : Fin 3)]
+  simp [sparse, PMF.ofFintype_apply]
+
+private theorem heterogeneous_pairs_mutualInfo :
+    mutualInfo (triplePairLaw.map
+      (Equiv.arrowProdEquivProdArrow (Bool ⊕ Unit) TripleAlphabet TripleAlphabet)) =
+      entropy fair + entropy sparse + entropy biased := by
+  have h := mutualInfo_map_piProd_eq_sum_of_isMutuallyIndependentFamily
+    triplePairLaw heterogeneous_pairs_independent
+  have hs : (∑ i, mutualInfo (triplePairLaw.map (fun z => z i))) =
+      ∑ i, entropy (tripleComponents i) := by
+    simp only [triplePairLaw, PMF.finiteProduct_map_eval,
+      triplePairComponents, mutualInfo_map_diag]
+  convert! h.trans (hs.trans triple_entropy_sum)
 
 end
 

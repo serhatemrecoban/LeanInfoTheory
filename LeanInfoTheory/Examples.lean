@@ -20,16 +20,20 @@ import LeanInfoTheory.Examples.CouplingGluing
 import LeanInfoTheory.Examples.CouplingTransport
 import LeanInfoTheory.Examples.Fano
 import LeanInfoTheory.Examples.FiniteFamily
+import LeanInfoTheory.Examples.FiniteFamilyInformation
 import LeanInfoTheory.Examples.FiniteProduct
 import LeanInfoTheory.Examples.FiniteProductSemantics
 import LeanInfoTheory.Examples.FiniteTopology
 import LeanInfoTheory.Examples.Iid
+import LeanInfoTheory.Examples.IidInformation
+import LeanInfoTheory.Examples.ProductKL
 import LeanInfoTheory.Examples.IndependenceProcessing
 import LeanInfoTheory.Examples.InformationDecomposition
 import LeanInfoTheory.Examples.KLTop
 import LeanInfoTheory.Examples.Pinsker
 import LeanInfoTheory.Examples.ProductChannel
 import LeanInfoTheory.Examples.ProductChannelSemantics
+import LeanInfoTheory.Examples.ProductChannelInformation
 import LeanInfoTheory.Examples.QuantitativeIndependence
 import LeanInfoTheory.Examples.StochasticChannels
 import LeanInfoTheory.Examples.SufficientStatistics
@@ -42,9 +46,17 @@ import LeanInfoTheory.Examples.Units
 /-!
 # Examples aggregate
 
+Focused family-information consumers apply conditional tuple subadditivity and
+the independent-source MI bound to one common observation. XOR gives a strict
+gap and conditional dependence; heterogeneous variables on an infinite source
+space, separate observation universes and empty/singleton families exercise the
+general random-variable interfaces.
+
 Product-channel consumers separate elementary joint/block laws from existing
 family and conditional semantics. They exercise correlated noisy inputs,
 noninjective source maps, supported recovery and null-coordinate changes.
+Focused information consumers check swapped conditional output entropy with
+actual coordinate marginals, noisy correlated inputs and sparse null-row changes.
 
 This import-only aggregate gathers the separately usable common-cause,
 conditional-KL, convexity, coupling, Fano, finite-family, independence-processing,
@@ -78,6 +90,19 @@ series.
 The focused finite-product semantic consumers connect constructed laws to
 existing family marginals and independence predicates, including a full
 three-coordinate non-iid atom, sparse outcomes and distinct coordinate pairs.
+Independent coordinate pairs retain positive within-pair mutual information;
+a heterogeneous pair family uses the same focused semantic product import.
+
+Product-channel information consumers exercise the arbitrary-input MI bound,
+strict correlated identity processing, correlated constant-output equality,
+heterogeneous independent inputs and iid lengths. The parity triple separates
+pairwise from mutual output independence. Noninjective encoded inputs and
+generic coordinate-objective caps use the actual channel objective.
+
+The focused product-KL consumers exercise heterogeneous sparse supported laws,
+empty and singleton products, singleton alphabets and zero/one iid lengths.
+Overlapping incomparable supports give infinite product KL while coordinate
+Real divergences sum to positive log 2, demonstrating the Real support guard.
 
 The focused iid consumers use general product laws for sparse atoms, support,
 coordinates, injective selection and permutation invariance. They split and

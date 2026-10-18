@@ -36,7 +36,135 @@ Status labels used below:
 
 ## 0. AI Assistant Quick Start
 
-**[Current] C17.05 authorized cumulative qualification, 2026-10-16.**
+**[Current] C18.06 cumulative qualification and handoff, 2026-10-18.**
+C18.01--C18.05 and their reviews are complete by actual private records.
+The C18.05 closure and all 258 captured entries/environment/Git state matched
+before the conditional C18.06 request was admitted on 2026-10-18. Only C18.06
+is selected; its fifteen mathematical theorems are unchanged from Step 5.
+The maintained handoff records the C16--C18 producer/consumer chains. Inventory
+is 713 declarations in 45 owners, with 92 root exports and 94 reviewed simp names.
+
+The lead approved the exact 28-path local checkpoint, necessary C18.06-only
+review/evidence amendments within that scope and reuse of the inspected detached
+validation checkout. Initial checkpoint `8b30dc96e89a9b4e0224b059faed48e19a4e5f1e`
+passed the complete maintained clean routine. The primary checkout preserves
+the three excluded files and the older unrelated project-log entry.
+Fresh actual two-pass current file-mode API documentation passed separately;
+all fifteen signatures, hypotheses, docstrings, owners and source links were
+inspected. The initial missing-page failure and bounded three-marker recovery
+remain recorded with their evidence limits.
+
+This is captured qualification prose. Review readiness, fresh all-twenty-criterion
+independent review, explicit reconciliation and exact final validation/source
+applicability require their actual source-bound records. Supported closure is
+established only by those records and
+`.lit-review/setup/c18-06-completion-20261018.json` when present;
+this account does not certify those later events. Every amendment requires the
+complete maintained clean rerun and exact API applicability.
+C19--C24, push, tag, release, publication and dependency changes remain unselected.
+See the [C18 handoff](handoffs/chunk-18.md) for contracts, evidence limits and
+separate C19/C22/C23 responsibilities.
+
+**[History] C18.05 independent sources, 2026-10-18.**
+C18.01--C18.04 and their reviews are complete by verified private records.
+Only C18.05 of the approved plan is selected. Semantic FiniteFamily now provides
+`condEntropyOf_pi_le_sum`; semantic FiniteFamilyIndependence provides
+`sum_mutualInfoOf_le_mutualInfoOf_pi`. Both retain arbitrary source carriers,
+dependent finite coordinate alphabets and an independently-universed finite
+observation. Conditional tuple subadditivity assumes no conditional independence;
+the MI lower bound assumes only unconditioned full source-family independence.
+The same observation occurs in every summand. Private S1 consumers exercise
+XOR strictness, heterogeneous/separate-universe inputs and empty/singleton families.
+The internal tuple/universe checkpoint and standalone/focused/aggregate,
+static/generated, documentation and compiled compatibility/trust qualification
+passed. Actual proof routes, corrections, actors and limits are in the C18 notes.
+Independent C18.05 STEP review reports no findings and all three criteria SATISFIED; the original report is explicitly reconciled. Final validation, final source capture and source-bound closure remain pending.
+Generated inventory is 713 supported declarations in 45 owners;
+root exports remain 92 and reviewed simp names 94. Actual completion is
+established only by `.lit-review/setup/c18-05-completion-20261018.json` when present. C18.06, commit/push and release
+work remain unselected. See the [C18 notes](plans/post-release-chunk-18-notes.md).
+
+**[History] C18.04 channel MI implementation, 2026-10-17.**
+C18.01--C18.03 and their reviews are complete by verified private records.
+Only C18.04 of the approved plan is selected. The semantic FiniteProduct owner
+adds the general independent-pair MI equality, with positive within-pair dependence
+allowed and separate universes. ProductChannel adds the arbitrary-input bound,
+product-input and iid equalities, exact entropy gap and output-mutual-independence
+iff. All six endpoints retain the approved assumptions and existing focused imports.
+Private E2/C2/C3/H1 consumers cover positive and heterogeneous pairs, noisy and
+strict correlated channels, constant/singleton equality, iid boundaries, parity
+outputs and noninjectively encoded input laws with coordinate-objective caps.
+Standalone/focused/aggregate compilation, static/generated checks, documentation
+examples and compiled compatibility/trust qualification passed. Earlier failures
+and their local corrections remain recorded with original output and snapshots.
+C18.04 and its review are complete by the actual private completion record, freshly verified at C18.05 intake.
+Generated inventory is 711 supported declarations in 45 owners; root exports
+remain 92 and reviewed simp names 94. Actual completion is established only by
+`.lit-review/setup/c18-04-completion-20261017.json` when present. C18.05--C18.06,
+commit/push and release work remain unselected. See the [C18 notes](plans/post-release-chunk-18-notes.md).
+
+**[History] C18.03 conditional-output entropy review reconciliation, 2026-10-17.**
+C18.01 and C18.02 and their reviews are complete by verified private records.
+The lead's conditional request selects only C18.03 after exact predecessor
+closure/source verification. One new endpoint in semantic ProductChannel proves
+conditional output entropy additivity for arbitrary correlated finite inputs,
+with actual coordinate marginals and swapped joints. Private C1 consumers check
+noisy correlated inputs, absent-coordinate row invariance, supported recovery
+and the unchanged null fallback. The owner has three approved direct imports;
+the consumer separately imports Markov for its semantic checks.
+Standalone and focused producer/consumer compilation, aggregate builds,
+static/generated checks, documentation examples and compiled compatibility/trust
+qualification passed. Earlier failures and local corrections remain in the notes.
+Contextual self-review and separate reassessment are complete; the original
+independent report is explicitly reconciled.
+C18.03 and its review are complete by the actual private completion record, freshly verified at C18.04 intake.
+Generated source inventory is 705 declarations in 45 owners; root exports remain
+92 and the simp set 94. See the [C18 notes](plans/post-release-chunk-18-notes.md).
+Actual closure will be established by
+`.lit-review/setup/c18-03-completion-20261017.json` when present.
+C18.04--C18.06 and release work remain unselected.
+
+**[History] C18.02 finite-product KL implementation, 2026-10-17.**
+C18.01 and its review are complete by their actual private record. The lead's
+conditional request was admitted only after exact predecessor source,
+environment and Git verification. The separate ProductKL owner now supplies
+four product/iid KL endpoints: unconditional ENNReal formulas and support-guarded
+Real forms. Binary infinite-value additivity and dependent splitting/induction
+passed the early checkpoint; all four endpoints pass focused compilation.
+Private consumers cover sparse heterogeneous products, actual support,
+incomparable overlapping supports and failure of unguarded Real summation,
+plus empty/singleton and iid length boundaries. Focused producer/consumer and
+aggregate builds, standalone checks, static/generated checks, documentation
+examples and compiled compatibility/trust qualification passed. Independent
+STEP review reports no findings and all four criteria SATISFIED; its original
+report is explicitly reconciled. Final validation and closure are established
+by the actual private completion record.
+Current source inventory is 704 declarations in 44 owners; root exports remain
+92 and the simp set 94. See the [C18 notes](plans/post-release-chunk-18-notes.md).
+Actual closure will be established by
+`.lit-review/setup/c18-02-completion-20261017.json` when present.
+C18.03--C18.06 and release work remain unselected.
+
+**[History] C18.01 product/iid entropy implementation, 2026-10-16.**
+The lead accepted [C18 revision 2](plans/post-release-chunk-18.md) and selected
+only C18.01 with its review process. C17 is complete by the actual predecessor
+record at HEAD `dacb55f97c1f942db929c59e99ea0fb9b8ac7cdd`; its captured provisional
+wording below is historical. The current implementation adds `entropy_finiteProduct` and
+`entropy_iid` in the existing semantic FiniteProduct owner, reusing full-family
+independence. Private consumers exercise a heterogeneous sparse non-iid family,
+positive sparse iid entropy, zero/one lengths, singleton alphabets and a genuinely
+empty product. Focused and standalone compilation, static/generated checks,
+documentation examples and compiled compatibility/trust qualification passed.
+The independent STEP report found no findings and satisfied all three
+criteria; the parent explicitly reconciled it. Source inventory is 700
+declarations in 43 owners; the root
+still exports 92 names and the reviewed simp set remains 94 names.
+The [C18 notes](plans/post-release-chunk-18-notes.md) retain exact evidence and
+limitations. Final validation and closure are established only by
+`.lit-review/setup/c18-01-completion-20261016.json`; this is a pre-capture status.
+C18.02--C18.06, commits, release work and publication remain unselected.
+
+**[History] C17.05 authorized cumulative qualification, 2026-10-16.**
 C17.01--C17.04 and their reviews are complete by actual private records.
 The lead authorized the exact nineteen-path local C17 checkpoint, necessary
 C17.05-only amendments within those paths, and reuse of the inspected clean
@@ -288,7 +416,7 @@ review assessed all four criteria satisfied with no findings. Sections 12/16
 retain the evidence and limits; supported private closure determines completion.
 C15.05 and C16--C24 remain unselected.
 
-**[Current] C15.05, 2026-10-13.** C15.01--C15.04 and their reviews are
+**[History] C15.05, 2026-10-13.** C15.01--C15.04 and their reviews are
 complete by their private records. Step 4 closure is recorded in
 `.lit-review/setup/c15-04-completion-20261013.json`; all 232 final source entries
 matched before conditional Step 5 intake. The [C15 handoff](handoffs/chunk-15.md)
@@ -386,7 +514,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Task | Read next |
 | --- | --- |
-| Post-release mathematics | The approved [C15 plan](plans/post-release-chunk-15.md), [notes](plans/post-release-chunk-15-notes.md), [C14 handoff](handoffs/chunk-14.md), [reference register](references.md), Sections 3, 7, 11--16 and actual Lean dependencies. C9--C14 are complete by private records. C15.01--C15.04 are complete by private records; C15.05 selects cumulative qualification and the [C15 handoff](handoffs/chunk-15.md). Later chunks remain unselected. |
+| Post-release mathematics | Read the approved [C18 plan](plans/post-release-chunk-18.md), [notes](plans/post-release-chunk-18-notes.md), [C18 handoff](handoffs/chunk-18.md), [reference register](references.md), Sections 3, 7, 11--16 and actual Lean dependencies. C9--C17 and C18.01--C18.05 are complete by records. Only C18.06 is selected for cumulative qualification, canonical reconciliation and fresh all-20 review. No later chunk or release is selected. |
 | Chunk 8 review or later-phase intake | The completed Chunk 8 plan; Sections 3, 6-9, 11-14, and 16; the three Chunk 8 mathematical owners, two maintained example owners, semantic/examples aggregates, and current Future Work Notes 9, 14-18, and 24 |
 | Review of an existing Lean theorem | Sections 3, 7, 9, and 16; the owning source module and its direct imports |
 | API or module review | Sections 7, 9, 10, 11, and Future Work Notes 2-4, 14-16, 18, and 26 |
@@ -399,12 +527,12 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-10-16 |
+| Last updated | 2026-10-18 |
 | Recorded pre-C9 mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the released `v0.1.0` source is exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f` |
 | Repository transition state | `v0.1.0` is published from immutable tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` and archived as Zenodo record `22229599`. The evolving default branch carries the current project pages and DOI metadata, while maintenance staging preserves `/docs/v0.1.0/` from exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`; the tag, Release, archive, released Lean source, and frozen public API remain unchanged |
 | Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
 | mathlib baseline | `v0.1.0` uses input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474` |
-| Source-snapshot phase | Post-release `v0.1.x`; C9--C16 and C17.01--C17.04 are complete by actual records. Current library coverage is 698 declarations in 43 supported owners; C17 adds twelve declarations in one owner. The nineteen-path checkpoint/reuse scope is authorized; initial clean qualification and separate actual two-pass API docs passed. Final amended-candidate validation, cumulative review/reconciliation and supported closure are source-bound records, not inferred from this status row. No release or later chunk is selected. |
+| Source-snapshot phase | Post-release `v0.1.x`; C9--C17 and C18.01--C18.05 are complete. C18.06 qualifies 713 declarations/45 owners. The approved initial 28-path checkpoint `8b30dc96e89a9b4e0224b059faed48e19a4e5f1e` passed the complete maintained clean routine; actual two-pass API docs and all-fifteen semantic inspection passed separately. Intake HEAD was `dacb55f97c1f942db929c59e99ea0fb9b8ac7cdd`. Readiness, fresh all-20 review/reconciliation, exact final applicability and supported closure require their actual source-bound records; this captured account does not certify them. Every amendment requires a complete clean rerun and exact API applicability. |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -962,11 +1090,11 @@ claim a general measure-theoretic formalization of the whole subject.
 | Topic | Status and provenance | Representative declarations | Owner and layer | Limitations, downstream use, and remaining work |
 | --- | --- | --- | --- | --- |
 | **2.1 Entropy** | **Substantially complete.** Core predates the eight-chunk programme; zero/equality and units were strengthened in Chunk 1; the maintained Boolean bridge is Chunk 5; release Step 6 names scalar arbitrary-base and bits conversion. | `entropy`, `entropyOf`, `entropy_nonneg`, `entropy_eq_zero_iff`, `entropyOf_eq_zero_iff`, `entropy_eq_integral_selfInfo`, `natsToBase`, `natsToBits`, `entropy_div_log`, `entropy_bool` | `Shannon.Entropy` is lightweight; semantic expectation, units, and `Shannon.BinaryEntropy` are opt-in. | Nats are canonical. The Boolean bridge reuses mathlib `Real.binEntropy`; no parallel base-indexed information-measure hierarchy is maintained. |
-| **2.2 Joint and conditional entropy** | **Substantially complete for pairs, triples, and finite subfamilies.** Core and expected-fiber semantics predate the programme; functional dependence is Chunk 1; pair equality cases use Chunk 2 independence; finite-family atoms are Chunk 6; n-way equality is Chunk 8. Chain-rule work is catalogued under 2.5. | `jointEntropyOf`, `condEntropy`, `familyEntropy`, `familyEntropyOf`, `familyCondEntropy`, `condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd`, `familyEntropy_eq_sum_singletons_iff_isMutuallyIndependentFamily` | Pair/triple algebra in lightweight `InfoMeasures`; dependent finite-atom algebra in opt-in `Shannon.FiniteFamily`; conditional PMFs and equality consequences in semantic modules. | `Var` may be infinite, alphabets may depend on the variable, and entropy is applied only after finite restriction. Null fibers use explicit zero or totality conventions. Mutual independence is selected-atom pointwise factorization, not a global process predicate. |
+| **2.2 Joint and conditional entropy** | **Substantially complete for pairs, triples, and finite subfamilies.** Core and expected-fiber semantics predate the programme; functional dependence is Chunk 1; pair equality cases use Chunk 2 independence; finite-family atoms are Chunk 6; n-way equality is Chunk 8. Chain-rule work is catalogued under 2.5. | `jointEntropyOf`, `condEntropy`, `familyEntropy`, `familyEntropyOf`, `familyCondEntropy`, `condEntropy_eq_sum_sndMarginal_mul_condEntropyFstGivenSnd`, `familyEntropy_eq_sum_singletons_iff_isMutuallyIndependentFamily` | Pair/triple algebra in lightweight `InfoMeasures`; dependent finite-atom algebra in opt-in `Shannon.FiniteFamily`; conditional PMFs and equality consequences in semantic modules. | `Var` may be infinite, alphabets may depend on the variable, and entropy is applied only after finite restriction. Null fibers use explicit zero or totality conventions. C18.05 adds `condEntropyOf_pi_le_sum` for arbitrary source carriers and an independently-universed finite observation. Mutual independence is selected-atom pointwise factorization, not a global process predicate. |
 | **2.3 Relative entropy and mutual information** | **Substantially complete at finite PMF level.** MI/KL bridges predate the programme; support/finiteness, equality, and uniform-reference results are Chunk 2; channel KL is Chunks 3-4; finite joint convexity is Chunk 7; common-base channel conditional KL is Chunk 8. | `mutualInfo`, `mutualInfo_eq_toReal_klDiv_joint_prod_marginals`, `toMeasure_absolutelyContinuous_iff_support_subset`, `klDiv_pmf_ne_top_iff_support_subset`, `klDiv_pmf_eq_zero_iff`, `klDiv_bind_le_sum`, `conditionalKlDiv`, `conditionalKlDiv_eq_sum` | `InfoMeasures` plus heavy `SemanticBridge.KL`, `DataProcessing`, `SemanticBridge.Convexity`, and `SemanticBridge.ConditionalKL`; KL itself is mathlib's `InformationTheory.klDiv`. | Real KL requires support/finiteness guards. The local conditional object compares two PMF channels over one common base; no arbitrary-joint or two-base conditional-KL definition is introduced. |
 | **2.4 Entropy/MI relationships** | **Complete for the finite pair and finite-atom algebraic surfaces.** Symmetry predates the programme; the pair identity family is Chunk 1; overlapping-atom family identities are Chunk 6. | `mutualInfoOf_eq_entropyOf_sub_condEntropyOf`, `mutualInfoOf_swap`, `mutualInfoOf_self`, `familyMutualInfo_eq_entropy_sub_condEntropy`, `familyCondMutualInfo_eq_condEntropy_sub_condEntropy` | Lightweight `Shannon.InfoMeasures` plus opt-in lightweight `Shannon.FiniteFamily`. | Rewrites remain explicit. Reverse-oriented aliases and exhaustive PMF/source mirrors are intentionally not generated without proof pressure. |
 | **2.5 Chain rules** | **Substantially complete for the finite algebraic scope.** Pair/triple rules predate or belong to Chunk 1; Chunk 6 adds binary-union and duplicate-tolerant ordered finite-family entropy/MI rules; Chunk 8 adds the corresponding law/source conditional-MI rules and finite common-base relative-entropy chain rules. | `entropy_chain_rule_left`, `familyEntropy_eq_entropyChain`, `familyMutualInfo_eq_mutualInfoChain`, `familyCondMutualInfo_union_chain_rule`, `familyCondMutualInfo_chain_rule`, `conditionalKlDiv_eq_sum`, `klDiv_channelJoint_eq_add_conditionalKlDiv` | Lightweight pair/triple and finite-family algebra plus opt-in `SemanticBridge.ConditionalKL`. | Ordered family rules permit repeated names, overlaps, and initial conditioning; no automatic permutation, reverse-orientation, or exhaustive source-wrapper families are generated. Conditional KL uses one common numerator base and canonical `ENNReal` values. |
-| **2.6 Jensen and consequences** | **Substantially complete for currently used finite consequences.** Initial alphabet bounds predate the programme; sharp support/equality and pair independence endpoints are Chunks 1-2; finite-family monotonicity, submodularity, conditioning reduction, MI bounds, and n-way subadditivity are Chunk 6; the n-way equality case and finite-family mutual-independence API are Chunk 8. | `entropy_le_log_card`, `entropy_eq_log_card_iff_eq_uniformOfFintype`, `familyEntropy_mono`, `familyEntropy_submodular`, `familyEntropy_le_sum_singletons`, `IsMutuallyIndependentFamily`, `familyEntropy_eq_sum_singletons_iff_isMutuallyIndependentFamily` | Jensen-heavy `EntropyBounds` is opt-in; family inequalities live in `SemanticBridge.FiniteFamily`; equality and factorization live downstream in `SemanticBridge.FiniteFamilyIndependence`. | The project reuses mathlib Jensen/strict concavity rather than formalizing a local general Jensen theorem. The predicate is finite-atom pointwise factorization; no global indexed-family or public measurable-independence bridge is added. |
+| **2.6 Jensen and consequences** | **Substantially complete for currently used finite consequences.** Initial alphabet bounds predate the programme; sharp support/equality and pair independence endpoints are Chunks 1-2; finite-family monotonicity, submodularity, conditioning reduction, MI bounds, and n-way subadditivity are Chunk 6; the n-way equality case and finite-family mutual-independence API are Chunk 8. | `entropy_le_log_card`, `entropy_eq_log_card_iff_eq_uniformOfFintype`, `familyEntropy_mono`, `familyEntropy_submodular`, `familyEntropy_le_sum_singletons`, `IsMutuallyIndependentFamily`, `familyEntropy_eq_sum_singletons_iff_isMutuallyIndependentFamily` | Jensen-heavy `EntropyBounds` is opt-in; family inequalities live in `SemanticBridge.FiniteFamily`; equality and factorization live downstream in `SemanticBridge.FiniteFamilyIndependence`. | The project reuses mathlib Jensen/strict concavity rather than formalizing a local general Jensen theorem. C18.05 adds conditional tuple subadditivity and `sum_mutualInfoOf_le_mutualInfoOf_pi` for one common finite observation. The predicate is finite-atom pointwise factorization; no global indexed-family or public measurable-independence bridge is added. |
 | **2.7 Log-sum and convexity applications** | **Implemented, independently validated, and checkpointed for finite PMFs in Chunk 7.** The scalar, mixture, entropy, KL, and MI theorem layers are complete through `C7.22` in checkpoint `5e616d8`. | `logSum_inequality`, `logSum_eq_iff_exists_constant_ratio`, `real_logSum_inequality_of_support`, `sum_mul_entropy_le_entropy_bind`, `binaryMixture_entropy_eq_iff`, `klDiv_bind_le_sum`, `klDiv_binaryMixture_eq_iff`, `sum_mul_mutualInfo_channelJoint_le`, `mutualInfo_channelMixture_le_sum` | Scalar `Shannon.LogSum`; PMF construction in `Probability.FiniteMixture`; Jensen entropy layer in `Shannon.EntropyConcavity`; KL/MI results in heavy `SemanticBridge.Convexity`. All remain opt-in. | Canonical KL statements are `ENNReal`-valued; Real forms have active support guards. General-selector equality classifications, MI/channel equality cases and finite-family wrappers remain deferred. C15.01 supplies the PMF topology/simplex/compactness foundation; C15.04 adds qualitative finite information continuity and a private actual-attainment consumer. |
 | **2.8 Data processing** | **Substantially complete for finite PMFs and finite-valued random variables.** Deterministic processing is Chunk 1; Markov and stochastic MI/KL DPI are Chunk 3; KL equality/recovery is Chunk 4. | `IsMarkovChainOf`, `mutualInfoOf_markov_chain_rule`, `mutualInfoOf_dataProcessing`, `mutualInfoOf_dataProcessing_eq_iff`, `klDiv_channel_le`, `toReal_klDiv_channel_le` | `SemanticBridge.Markov` and `DataProcessing` are opt-in; the raw channel core is lighter but still outside root. | No general measurable stochastic-variable coupling API. Strict-loss variants and some symmetric forms remain proof-pressure deferred. |
 | **2.9 Second law / stochastic entropy growth** | **Partial.** One-step finite consequences are Chunk 3. | `klDiv_channel_invariant_le`, `toReal_klDiv_channel_invariant_le`, `entropy_le_entropy_bind_of_uniform_invariant`, `entropy_le_entropy_bind_of_doublyStochastic` | Heavy `SemanticBridge.DataProcessing`; examples in `Examples.StochasticChannels`. | No iterated channel powers, stationary-process object, entropy rate, matrix bridge, or Birkhoff/majorization theory. A matrix-facing bridge is deferred by Note 38. |
@@ -989,9 +1117,9 @@ claim a general measure-theoretic formalization of the whole subject.
 | `LeanInfoTheory` | Lightweight public aggregate only | Root |
 | `LeanInfoTheory.Shannon` | Import-only complete supported mathematical umbrella | No; subsumes the root |
 
-The current generated C14 inventory contains 60 modules, 129 local import
-edges, 5 root-reachable modules, 55 separate-import modules, and 768 indexed
-declarations (767 documented plus one example-only instance). The root directly
+The current generated inventory contains 81 modules, 182 local import
+edges, 5 root-reachable modules, 76 separate-import modules, and 828 indexed
+declarations (827 documented and 1 undocumented). The root directly
 imports exactly `Probability.Finite` and `InformationMeasures`.
 
 `Probability.TotalVariation` imports only `Probability.Finite` and
@@ -1022,9 +1150,9 @@ exact-event formulas without unfolding it. The separate private
 aggregate. It consumes both marginal orientations, Fano and measure-product
 semantics. The root retains its five-module closure.
 
-The current generated supported closure contains 669 documented public declarations:
-596 theorems, 61 definitions, 9 abbreviations and 3 named instances. It excludes
-all 27 non-stable development, example and reference modules. C15.01 adds seven
+The current generated supported closure contains 713 documented public declarations:
+636 theorems, 65 definitions, 9 abbreviations and 3 named instances in 45 owners.
+It excludes all 36 non-stable development, example and reference modules. C15.01 adds seven
 declarations in `Probability.FiniteTopology`: the subtype-topology forwarder,
 real-coordinate continuity, real-simplex homeomorphism and its two coordinate
 equations, arbitrary-filter convergence iff and finite compactness instance.
@@ -1082,9 +1210,11 @@ and [structural type artifact](compatibility/README.md) remain unchanged.
 | `LeanInfoTheory.Shannon.SemanticBridge.Conditional` | Positive conditional PMFs and expected fiber formulas |
 | `LeanInfoTheory.Shannon.SemanticBridge.KL` | PMF KL support/equality/uniform-reference results and MI/CMI KL bridges |
 | `LeanInfoTheory.Shannon.SemanticBridge.Theorems` | Nonnegativity, chain rules, processing, functional dependence, and inequality consequences |
-| `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily` | Finite-family Shannon inequalities |
+| `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily` | Finite-family Shannon inequalities and conditional tuple subadditivity for arbitrary source carriers and a separate finite observation |
 | `LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL` | Common-base channel conditional KL, finite weighted semantics, joint KL chain rule, and guarded Real forms |
-| `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence` | Dependent-family mutual independence, restriction/pair laws, and n-way entropy equality characterization |
+| `LeanInfoTheory.Shannon.SemanticBridge.ProductKL` | Finite-product and iid KL additivity, including singular ENNReal values, with actual-support-guarded Real forms |
+| `LeanInfoTheory.Shannon.SemanticBridge.ProductChannel` | Arbitrary-input conditional-output entropy and MI bound, exact output entropy gap and full output independence equality criterion, product-input and iid MI equalities |
+| `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence` | Dependent-family mutual independence, restriction/pair laws, n-way entropy equality and the independent-source MI lower bound for one general finite observation |
 | `LeanInfoTheory.Shannon.SemanticBridge.Independence` | PMF-first ordinary/conditional independence, arbitrary-type deterministic postprocessing, zero MI/CMI, and entropy equality cases |
 | `LeanInfoTheory.Shannon.SemanticBridge.Markov` | Markov predicates, total conditional channel, factorization, MI DPI |
 | `LeanInfoTheory.Shannon.SemanticBridge.Gluing` | Existence of a Markov triple with prescribed pair marginals; only the final alphabet finite; imports Markov |
@@ -1134,6 +1264,8 @@ justify it.
   only private maintained regression consumers.
   `Examples.IndependenceProcessing` and `Examples.InformationDecomposition`
   likewise contain only private C9 consumers, using their focused owners.
+- `Examples.FiniteFamilyInformation` contains only private C18.05 source-tensorization
+  consumers, including XOR strictness and heterogeneous/separate-universe interfaces.
 - `Examples` aggregates the maintained mathematical examples.
 - `MathlibFragments` is an opt-in import checklist for binary/q-ary entropy,
   KL, KL chain rules, PMF constructions, and Kraft-McMillan. It intentionally
@@ -1288,7 +1420,7 @@ dependency. The full Shannon umbrella imports it; the root remains unchanged.
 `Examples.ProductChannel` imports only this owner, while the separate private
 `Examples.ProductChannelSemantics` imports it and the existing finite-product
 and Markov bridges. Both consumers join only Examples. No new alias, instance
-or simp attribute is exported. Current totals are 698 declarations in 43
+or simp attribute is exported. At C17 closure, totals were 698 declarations in 43
 supported owners, 94 reviewed simp names and 92 root exports.
 
 The [handoff](handoffs/chunk-17.md) records exact names and typeclass boundaries:
@@ -1297,7 +1429,102 @@ factorization, separate universes, zero masses, finite selections without
 ambient finiteness, empty/vacuous channels and zero/one blocks. Joint laws use
 the actual input distribution. Generic supported recovery uses the swapped
 joint; null fibers retain the output-marginal fallback without conditional
-meaning. C18 information identities and C23 coding endpoints are not delivered.
+meaning. C18 information identities were not delivered by C17; C23 coding
+endpoints remain separate later work.
+
+### C18 product and iid information
+
+C18.01's implementation extends the existing semantic FiniteProduct owner
+with `entropy_finiteProduct` and `entropy_iid`. Product entropy follows from
+the existing mutual-independence entropy characterization; the full-word
+restriction bridge stays local. The iid theorem is a constant-family
+specialization. The owner adds the approved direct Probability.Iid import,
+and no new supported owner, public helper or simp rule.
+Examples.FiniteProductSemantics connects the same heterogeneous, sparse,
+genuinely non-iid triple to both word and family entropy. The new private
+Examples.IidInformation owner imports only semantic FiniteProduct and covers
+positive sparse iid entropy and degenerate type/length boundaries. Focused
+and standalone compilation, static/generated, documentation and compiled
+compatibility/trust checks passed. Independent review reports no findings and
+all three criteria satisfied; its reconciliation is recorded in the C18 notes.
+C18.01 is closed by its actual private completion record.
+
+C18.02 adds the separate semantic ProductKL owner with exactly four product/iid
+KL endpoints. The ENNReal identities include singular values; Real forms retain
+actual support inclusion. Private equivalence and Option splitting proofs feed
+finite-index induction, using the existing joint chain rule and product laws.
+Only Probability.Iid and ConditionalKL are directly imported; the semantic
+aggregate exposes the owner without changing the lightweight root. No public
+helper or simp rule is added. Focused producer/consumer and aggregate builds,
+standalone checks, static/generated checks, documentation examples and compiled
+compatibility/trust qualification passed. Independent review satisfies all
+four criteria with no findings, and its original report is explicitly reconciled.
+The private ProductKL examples exercise heterogeneous sparse supported laws,
+incomparable overlapping supports, and the failure of unguarded Real summation.
+C18.02 is complete by its actual private record.
+
+C18.03's semantic ProductChannel owner adds only
+`condEntropy_channelJoint_productChannel`. It uses arbitrary finite input laws,
+actual coordinate marginals and swapped input-output joints, with no stronger
+independence, support or nonempty assumption. Its three direct imports are
+Probability.ProductChannel, SemanticBridge.FiniteProduct and SemanticBridge.Convexity.
+Private row-entropy and finite-expectation helpers stay local. The private
+Examples.ProductChannelInformation imports this owner and explicitly
+imports SemanticBridge.Markov for supported reconstruction and null-fallback
+checks. C1 includes genuinely noisy correlated input, absent-coordinate row
+changes preserving joints/information, a null fallback differing from the raw
+row, and empty/singleton indices. Standalone and focused producer/consumer
+compilation, aggregate builds, static/generated checks, documentation examples
+and compiled compatibility/trust qualification passed. Local simplification and
+Pi Fintype specialization corrections changed no public assumptions; initial
+failures remain recorded. Contextual self-review and separate reassessment are complete.
+C18.03 and its review are complete by the actual private completion record, freshly verified at C18.04 intake.
+Root exports and simp policy are unchanged. C18.04 implements channel MI bounds/equalities;
+C18.05 implements general-observation independent-source tensorization in the family owners.
+
+C18.04 adds one independent-pair MI theorem to semantic FiniteProduct and five
+channel-facing MI endpoints to ProductChannel, retaining all direct imports.
+Full-family factorization and finite sum/product marginal transport stay private.
+The exact gap cancels C18.03 conditional entropies; the bound and iff reuse the
+existing output-family entropy inequality and full-independence characterization.
+The independent-input theorem consumes C17's exact tuple-of-pairs joint transport;
+iid is its constant-family specialization. E2 retains positive MI within independent
+pairs and a separate heterogeneous/nonidentical family. C2/C3/H1 provide strictness,
+constant/singleton equality, parity and encoded-law objective interfaces.
+The optional gap and iff are both selected; no total-correlation definition,
+public helper, alias, simp rule, new import or probability/root dependency is added.
+
+C18.05 adds conditional tuple subadditivity in semantic FiniteFamily and the
+independent-source MI lower bound in semantic FiniteFamilyIndependence. Both
+retain arbitrary source carriers and separate coordinate/observation universes.
+Unconditioned mutual independence supplies entropy additivity; conditioning may
+create dependence, as the private XOR consumer demonstrates. No new probability,
+channel, capacity or coding abstraction is introduced. S1 remains private in
+Examples.FiniteFamilyInformation. The source-bound status is recorded in Section 12.
+
+### C16--C18 package assessment at C18.06
+
+The 17 C16, 12 C17 and 15 C18 public additions form four maintained chains:
+finite-product laws feed entropy and support-aware KL; product rows feed
+conditional-output entropy; exact joint transports feed general independent-pair
+and channel MI equalities/bounds; encoded pushforwards feed the same bound even
+with noninjective encoders and correlated codewords. These usable chains, rather
+than the roadmap's estimates, justify the package size. No new abstraction,
+alias, root export or simp rule is needed at closeout.
+
+The [C18 handoff](handoffs/chunk-18.md) separates C19's supported self-information,
+square-integrability/variance and AEP work, C22's actual channel-objective
+optimization using C15 attainment, and C23's encoded-law/DPI/Fano application
+using C22 caps. Repeated private full-word entropy transport is a future focused
+family-API question; duplicate KL equivalence transport now has two production
+uses but needs a dependency-order assessment before promotion. Supported-row
+recovery is reconsidered only for a concrete C23 consumer. Tiny private fixtures
+preserve focused imports and do not themselves justify public aliases.
+
+Both optional channel gap and output-mutual-independence iff were delivered,
+with the parity counterexample required by the iff. The advisory coordinate-swap
+example remains deferred until downstream boundary misuse or convenient fixture
+reuse warrants it. Notes 14/31 remain standing naming/minimal-API guardrails.
 
 ## 8. Development History by Phase
 
@@ -1484,7 +1711,10 @@ review.
   objectives and actual fixed-channel attainment consumer. Global KL likely needs a
   lower-semicontinuity or support-stratified treatment rather than an
   unqualified continuity theorem.
-- Tensorization/single-letterization beyond current pair/triple results.
+- C18.01--C18.05 and their reviews are closed by actual records. C18.06
+  retains fresh cumulative qualification and handoff; those mathematical steps
+  do not discharge its clean routine, actual API-doc gate or all-20 review.
+  C19 AEP, C22 capacity and C23 coding remain distinct later work. See Section 12.
 - Matrix-facing doubly stochastic/majorization/Birkhoff theory.
 - Canonical and minimal sufficient statistics.
 - General measurable sufficiency and larger iid/count-statistic examples.
@@ -1573,7 +1803,91 @@ certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
 
-### C17.05 authorized cumulative qualification, 2026-10-16
+### C18.06 cumulative qualification and handoff, 2026-10-18
+
+C18.01--C18.05 and their reviews are complete by actual private records.
+The C18.05 closure and all 258 captured entries/environment/Git state matched
+before the conditional C18.06 request was admitted on 2026-10-18. Only C18.06
+is selected; its fifteen mathematical theorems are unchanged from Step 5.
+The maintained handoff records the C16--C18 producer/consumer chains. Inventory
+is 713 declarations in 45 owners, with 92 root exports and 94 reviewed simp names.
+
+The lead approved the exact 28-path local checkpoint, necessary C18.06-only
+review/evidence amendments within that scope and reuse of the inspected detached
+validation checkout. Initial checkpoint `8b30dc96e89a9b4e0224b059faed48e19a4e5f1e`
+passed the complete maintained clean routine. The primary checkout preserves
+the three excluded files and the older unrelated project-log entry.
+Fresh actual two-pass current file-mode API documentation passed separately;
+all fifteen signatures, hypotheses, docstrings, owners and source links were
+inspected. The initial missing-page failure and bounded three-marker recovery
+remain recorded with their evidence limits.
+
+This is captured qualification prose. Review readiness, fresh all-twenty-criterion
+independent review, explicit reconciliation and exact final validation/source
+applicability require their actual source-bound records. Supported closure is
+established only by those records and
+`.lit-review/setup/c18-06-completion-20261018.json` when present;
+this account does not certify those later events. Every amendment requires the
+complete maintained clean rerun and exact API applicability.
+C19--C24, push, tag, release, publication and dependency changes remain unselected.
+See the [C18 handoff](handoffs/chunk-18.md) for contracts, evidence limits and
+separate C19/C22/C23 responsibilities.
+
+### Historical C18.05 independent sources and general observation, 2026-10-18
+
+C18.01--C18.04 and their reviews are complete by verified private records.
+Only C18.05 of the approved plan is selected. Semantic FiniteFamily now provides
+`condEntropyOf_pi_le_sum`; semantic FiniteFamilyIndependence provides
+`sum_mutualInfoOf_le_mutualInfoOf_pi`. Both retain arbitrary source carriers,
+dependent finite coordinate alphabets and an independently-universed finite
+observation. Conditional tuple subadditivity assumes no conditional independence;
+the MI lower bound assumes only unconditioned full source-family independence.
+The same observation occurs in every summand. Private S1 consumers exercise
+XOR strictness, heterogeneous/separate-universe inputs and empty/singleton families.
+The internal tuple/universe checkpoint and standalone/focused/aggregate,
+static/generated, documentation and compiled compatibility/trust qualification
+passed. Actual proof routes, corrections, actors and limits are in the C18 notes.
+Independent C18.05 STEP review reports no findings and all three criteria SATISFIED; the original report is explicitly reconciled. Final validation, final source capture and source-bound closure remain pending.
+Generated inventory is 713 supported declarations in 45 owners;
+root exports remain 92 and reviewed simp names 94. Actual completion is
+established only by `.lit-review/setup/c18-05-completion-20261018.json` when present. C18.06, commit/push and release
+work remain unselected. See the [C18 notes](plans/post-release-chunk-18-notes.md).
+
+### Historical C18.04 channel MI implementation, 2026-10-17
+
+C18.01--C18.03 and their reviews are complete by verified private records.
+Only C18.04 of the approved plan is selected. The semantic FiniteProduct owner
+adds the general independent-pair MI equality, with positive within-pair dependence
+allowed and separate universes. ProductChannel adds the arbitrary-input bound,
+product-input and iid equalities, exact entropy gap and output-mutual-independence
+iff. All six endpoints retain the approved assumptions and existing focused imports.
+Private E2/C2/C3/H1 consumers cover positive and heterogeneous pairs, noisy and
+strict correlated channels, constant/singleton equality, iid boundaries, parity
+outputs and noninjectively encoded input laws with coordinate-objective caps.
+Standalone/focused/aggregate compilation, static/generated checks, documentation
+examples and compiled compatibility/trust qualification passed. Earlier failures
+and their local corrections remain recorded with original output and snapshots.
+C18.04 and its review are complete by the actual private completion record, freshly verified at C18.05 intake.
+Generated inventory is 711 supported declarations in 45 owners; root exports
+remain 92 and reviewed simp names 94. Actual completion is established only by
+`.lit-review/setup/c18-04-completion-20261017.json` when present. C18.05--C18.06,
+commit/push and release work remain unselected. See the [C18 notes](plans/post-release-chunk-18-notes.md).
+
+Earlier entries below are historical.
+
+### Historical C18.02 finite-product KL, 2026-10-17
+
+C18.01 and its review are complete by the verified private record. The approved
+[C18 plan](plans/post-release-chunk-18.md) now selects only Step 2. Its binary,
+dependent splitting and finite-index checkpoint and all four KL endpoints
+compile. Focused/standalone, aggregate, static/generated, documentation and
+compiled compatibility/trust qualification passed. Independent review reports
+all four criteria SATISFIED with no findings, and its report is reconciled.
+Final validation and closure are established by the actual private record. The [C18 notes](plans/post-release-chunk-18-notes.md)
+retain exact evidence and the eventual private completion path. Later steps
+and release work are unselected. The C17 account below is historical.
+
+### Historical C17.05 authorized cumulative qualification, 2026-10-16
 
 C17.01--C17.04 and their reviews are complete by actual private records.
 The lead authorized the exact nineteen-path local C17 checkpoint, necessary
@@ -2291,7 +2605,7 @@ again.
 | Note | Work |
 | --- | --- |
 | Unnumbered | **Chunk 8 is complete through `C8.24` and checkpointed as `1eef228`.** Its 18-declaration API, generated references, complete validation evidence, exact-SHA Lean workflow, and Pages deployment pass; any later theorem phase requires a separate decision. |
-| Unnumbered | **C17 cumulative qualification:** the [plan](plans/post-release-chunk-17.md), [notes](plans/post-release-chunk-17-notes.md) and [handoff](handoffs/chunk-17.md) govern exact final validation, all-fifteen-criterion review and private closure. The scoped local checkpoint/reuse is authorized and initial qualification passed. C18 information identities, C19 AEP, C22 capacity and C23 coding remain later work requiring separate approval and selection. |
+| Unnumbered | **C18 product/block information:** C18.01--C18.05 and their reviews are complete by records. C18.06 owns cumulative qualification, fresh all-20 review and the [maintained handoff](handoffs/chunk-18.md). The [plan](plans/post-release-chunk-18.md) and [notes](plans/post-release-chunk-18-notes.md) retain exact criteria and evidence. C19 AEP, C22 capacity and C23 coding remain unselected with separate prerequisites. |
 | 29 | **Finite-Fano phase checkpointed.** Commit `ec78829` completes the approved phase; its evidence-based Fano follow-ups remain open and deferred. |
 
 Note 29 also preserves proof-pressure triggers from `C5.08`-`C5.11` and
@@ -2331,7 +2645,7 @@ completed coupling source without closing or renumbering those notes.
 | --- | --- |
 | 38 | **Partially discharged later milestone.** Permanent stochastic examples exercise the PMF-facing results; add a matrix bridge only when majorization/Birkhoff consumers exist. |
 | 39 | Plan canonical/minimal sufficiency, support-aware statistic comparison, and later iid/count-statistic or measurable extensions. |
-| Unnumbered | Chunk 7 owns finite log-sum, KL convexity, entropy concavity, and MI input/channel convexity. C13 Pinsker and C14 quantitative continuity are complete. C15.01 supplies the topology/simplex foundation; C15.02 supplies the validated TV convergence bridge; C15.03 adds fixed probability-map continuity. C15.04 adds finite information continuity and actual maximizing-input consumers; cumulative qualification remains C15.05. Later tensorization retains its separate trigger. |
+| Unnumbered | Chunk 7 owns finite log-sum, KL convexity, entropy concavity, and MI input/channel convexity. C13 Pinsker and C14 quantitative continuity are complete. C15.01 supplies the topology/simplex foundation; C15.02 supplies the validated TV convergence bridge; C15.03 adds fixed probability-map continuity. C15.04 added finite information continuity and actual maximizing-input consumers; C15.05 completed its cumulative qualification. C18.01 supplies finite-product and iid entropy identities. C18.02 supplies product/iid KL formulas and is complete by its private record. C18.03 supplies arbitrary-input conditional-output entropy with initial producer/C1 qualification passed; contextual self-review and separate reassessment are complete. C18.03 and its review are complete by the actual private completion record, freshly verified at C18.04 intake. C18.04 implements channel MI and is complete by the verified private record. C18.05 implements conditional tuple subadditivity and general-observation independent-source MI tensorization; its current review/closure status is in Section 12. |
 
 The finite-family phase is complete, independently validated, and checkpointed
 as `7b5f0db`. Completed Chunk 8 closed the approved finite conditional-CMI,
@@ -2340,7 +2654,10 @@ adding topology or continuity. Completed C13 supplies bounded Pinsker results;
 completed C14 supplies the bounded quantitative continuity family. C15.01 adds
 the PMF topology/simplex/compactness foundation. C15.02 adds its TV convergence
 bridge; C15.03 adds fixed-channel continuity and C15.04 adds finite
-information continuity and actual MI attainment. Tensorization, global indexed-family
+information continuity and actual MI attainment. C18.03--C18.04 implement the
+selected channel tensorization endpoints; C18.05 implements conditional tuple
+subadditivity and independent-source MI tensorization for one general finite
+observation, with its review/closure status in Section 12. Global indexed-family
 independence and broader conditional-KL variants remain separate future phases
 governed by their recorded pressure and approval rules.
 
@@ -2558,7 +2875,58 @@ not reproduce textbook prose or proofs.
 
 ## 16. Validation State
 
-**C17.05 initial clean qualification, 2026-10-16.** The lead authorized the
+**C18.06 cumulative qualification, 2026-10-18.** Step 5 closed successfully and its final source matched intake. The lead approved the exact 28-path local checkpoint, necessary C18.06-only amendments and existing detached validation-checkout reuse. Initial checkpoint `8b30dc96e89a9b4e0224b059faed48e19a4e5f1e` passed the complete maintained clean routine. Actual two-pass file-mode API documentation and all-fifteen-signature/docstring/source-link inspection passed separately. The initial absent-page failure and bounded three-marker recovery remain recorded with actor attribution; the cache recovery changed no source, pins or validator and did not manually edit or delete the docInfo database. This is local qualification, not cold-build or publication evidence. Readiness, fresh all-20 review/reconciliation, exact final applicability and supported closure require their actual source-bound records, including `.lit-review/setup/c18-06-completion-20261018.json` when present. Every amendment requires the complete maintained clean rerun and exact API applicability.
+
+**[History] C18.05 initial qualification, 2026-10-18.** The internal tuple/universe checkpoint, standalone producer/consumer checks, maintained focused builds and Shannon/Examples aggregates, static/generated checks, documentation examples and full compiled compatibility/trust qualification passed. The [C18 notes](plans/post-release-chunk-18-notes.md) retain actual commands, execution actors, results, corrections and source applicability. These are warm/incremental checks; no cold, clean cumulative or actual two-pass API-documentation claim is made. Independent C18.05 STEP review reports no findings and all three criteria SATISFIED; the original report is explicitly reconciled. Final validation, final source capture and source-bound closure remain pending.
+
+**[History] C18.04 initial qualification, 2026-10-17.** Standalone producer/consumer checks, maintained focused builds of both producers/consumers and Shannon/Examples, static/generated checks, five README and four website-guide examples, and full compiled compatibility/trust qualification passed. The [C18 notes](plans/post-release-chunk-18-notes.md) retain actual commands, actors, results, failures and source applicability. These are warm/incremental checks; no cold, clean cumulative or actual API-documentation claim is made. C18.04 and its review are complete by the actual private completion record, freshly verified at C18.05 intake.
+
+**[History] C18.03 initial qualification, 2026-10-17.** Standalone producer compilation
+passed on attempt 3 (11.887 seconds); standalone C1 compilation passed on
+attempt 2 (12.476 seconds) by the implementation subagent. Parent maintained
+focused/aggregate qualification passed 3103 jobs (47.016 seconds). Static/generated
+checks passed (10.215 seconds), including 81 Lean files, 705 declarations in
+45 owners, 20 HTML files/1149 links and 34 tests. Five README and four website-guide
+examples passed (116.609 seconds); compiled retained/current compatibility and the
+full project axiom audit passed (1520.130 seconds). Exact original outputs and unchanged
+qualification-input hashes remain private evidence. Earlier producer and consumer
+failures and local fixes remain in the [C18 notes](plans/post-release-chunk-18-notes.md).
+Contextual self-review and separate reassessment are complete; the original
+independent report is explicitly reconciled.
+C18.03 and its review are complete by the actual private completion record, freshly verified at C18.04 intake.
+These local warm/incremental gates do not claim cold reproduction, the clean
+cumulative routine or actual two-pass API documentation; the latter duties
+remain C18.06.
+
+**[History] C18.02 initial qualification, 2026-10-17.** The early binary/infinite KL,
+dependent splitting and induction checkpoint passed standalone compilation with
+warnings as errors. All four public endpoints subsequently passed direct and
+maintained focused compilation. Standalone consumer compilation and static
+checks also passed. Parent focused/aggregate builds, all five README and four
+website-guide examples, retained/current compatibility and the full project
+axiom audit passed. Initial failures remain preserved. Contextual self-review
+and separate reassessment are complete. Independent review reports no findings
+and all four criteria SATISFIED; the original report is reconciled. Final static
+checks and exact source/configuration/dependency applicability are prerequisites
+of the actual private C18.02 completion record.
+No clean cumulative or actual two-pass API-documentation claim is made here;
+those duties remain C18.06. See the [C18 notes](plans/post-release-chunk-18-notes.md).
+
+**[History] C18.01 qualification and review, 2026-10-17.** Focused producer/consumer and
+aggregate builds, both standalone consumers, static/generated checks, five
+README and four website-guide examples, retained/current compatibility and
+the full project axiom audit passed. The latter covers 76 modules and 2833
+local constants; all 601 retained types and the current 700-declaration,
+43-owner, 92-root-export and 94-simp boundaries passed. Independent STEP
+review reported no findings and all three criteria satisfied; its original
+checks and limitations remain separate from the parent-executed evidence.
+The report is explicitly reconciled. Final static checks and applicability
+to unchanged Lean/API/configuration/dependencies are prerequisites of the
+private C18.01 completion record. No cold-build, clean cumulative suite or
+actual two-pass API-doc claim is made here; the latter cumulative duties
+remain C18.06. See the [C18 notes](plans/post-release-chunk-18-notes.md).
+
+**[History] C17.05 initial clean qualification, 2026-10-16.** The lead authorized the
 nineteen-path checkpoint/reuse and necessary C17.05-only amendments. Initial
 checkpoint `06c9610be44e8f0d5ecfc6f850a011137db341bc` passed the complete maintained
 routine in 3584.820 seconds. The clean checkout matched exact committed blobs
@@ -3860,7 +4228,7 @@ inferred from local content. The public site is:
 ### Maintained documents
 
 - [Chunk 17 handoff](handoffs/chunk-17.md): delivered product channels, exact
-  consumers and boundaries, pending cumulative qualification and C18/C23 contracts.
+  consumers and boundaries, recorded cumulative qualification and C18/C23 contracts.
 
 - [README](../README.md): public project status and module overview.
 - [Agent instructions](../AGENTS.md): operational and naming rules.

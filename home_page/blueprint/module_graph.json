@@ -6,8 +6,8 @@
     "Semantic bridge layer",
     "Non-stable anchors"
   ],
-  "local_edge_count": 165,
-  "module_count": 75,
+  "local_edge_count": 182,
+  "module_count": 81,
   "modules": [
     {
       "external_imports": [],
@@ -346,6 +346,8 @@
         "LeanInfoTheory.Shannon.SemanticBridge.Markov",
         "LeanInfoTheory.Shannon.SemanticBridge.Pinsker",
         "LeanInfoTheory.Shannon.SemanticBridge.Product",
+        "LeanInfoTheory.Shannon.SemanticBridge.ProductChannel",
+        "LeanInfoTheory.Shannon.SemanticBridge.ProductKL",
         "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
         "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
         "LeanInfoTheory.Shannon.SemanticBridge.Theorems"
@@ -454,6 +456,7 @@
       "layer": "Semantic bridge layer",
       "local_imports": [
         "LeanInfoTheory.Probability.FiniteProduct",
+        "LeanInfoTheory.Probability.Iid",
         "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence"
       ],
       "name": "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
@@ -561,6 +564,31 @@
       "external_imports": [],
       "layer": "Semantic bridge layer",
       "local_imports": [
+        "LeanInfoTheory.Probability.ProductChannel",
+        "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+        "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.ProductChannel",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/ProductChannel.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Probability.Iid",
+        "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.ProductKL",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/ProductKL.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
         "LeanInfoTheory.Shannon.SemanticBridge.Markov"
       ],
       "name": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
@@ -614,16 +642,20 @@
         "LeanInfoTheory.Examples.CouplingTransport",
         "LeanInfoTheory.Examples.Fano",
         "LeanInfoTheory.Examples.FiniteFamily",
+        "LeanInfoTheory.Examples.FiniteFamilyInformation",
         "LeanInfoTheory.Examples.FiniteProduct",
         "LeanInfoTheory.Examples.FiniteProductSemantics",
         "LeanInfoTheory.Examples.FiniteTopology",
         "LeanInfoTheory.Examples.Iid",
+        "LeanInfoTheory.Examples.IidInformation",
         "LeanInfoTheory.Examples.IndependenceProcessing",
         "LeanInfoTheory.Examples.InformationDecomposition",
         "LeanInfoTheory.Examples.KLTop",
         "LeanInfoTheory.Examples.Pinsker",
         "LeanInfoTheory.Examples.ProductChannel",
+        "LeanInfoTheory.Examples.ProductChannelInformation",
         "LeanInfoTheory.Examples.ProductChannelSemantics",
+        "LeanInfoTheory.Examples.ProductKL",
         "LeanInfoTheory.Examples.QuantitativeIndependence",
         "LeanInfoTheory.Examples.StochasticChannels",
         "LeanInfoTheory.Examples.SufficientStatistics",
@@ -770,6 +802,17 @@
       "external_imports": [],
       "layer": "Non-stable anchors",
       "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence"
+      ],
+      "name": "LeanInfoTheory.Examples.FiniteFamilyInformation",
+      "path": "LeanInfoTheory/Examples/FiniteFamilyInformation.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
         "LeanInfoTheory.Probability.FiniteProduct"
       ],
       "name": "LeanInfoTheory.Examples.FiniteProduct",
@@ -807,6 +850,17 @@
       ],
       "name": "LeanInfoTheory.Examples.Iid",
       "path": "LeanInfoTheory/Examples/Iid.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct"
+      ],
+      "name": "LeanInfoTheory.Examples.IidInformation",
+      "path": "LeanInfoTheory/Examples/IidInformation.lean",
       "root_reachable": false,
       "summary": "Local LeanInfoTheory module."
     },
@@ -869,12 +923,35 @@
       "external_imports": [],
       "layer": "Non-stable anchors",
       "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+        "LeanInfoTheory.Shannon.SemanticBridge.ProductChannel"
+      ],
+      "name": "LeanInfoTheory.Examples.ProductChannelInformation",
+      "path": "LeanInfoTheory/Examples/ProductChannelInformation.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
         "LeanInfoTheory.Probability.ProductChannel",
         "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
         "LeanInfoTheory.Shannon.SemanticBridge.Markov"
       ],
       "name": "LeanInfoTheory.Examples.ProductChannelSemantics",
       "path": "LeanInfoTheory/Examples/ProductChannelSemantics.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.ProductKL"
+      ],
+      "name": "LeanInfoTheory.Examples.ProductKL",
+      "path": "LeanInfoTheory/Examples/ProductKL.lean",
       "root_reachable": false,
       "summary": "Local LeanInfoTheory module."
     },
@@ -989,5 +1066,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 5,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 70
+  "separate_import_count": 76
 }

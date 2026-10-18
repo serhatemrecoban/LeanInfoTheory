@@ -154,7 +154,40 @@ The release-candidate gate runs GitHub mode from a clean exact commit. Tag
 publication and live-link verification remain explicitly approved publication
 and post-publication work.
 
-## Current C14 milestone
+## Current C18 milestone
+
+C18 adds fifteen theorems across semantic FiniteProduct, ProductKL,
+ProductChannel, FiniteFamily and FiniteFamilyIndependence. Current source
+coverage is 713 documented declarations in 45 supported owners, with 92 root
+exports, 94 reviewed simp declarations and 36 non-stable exclusions.
+
+<!-- c18-06-api-docs:start -->
+Both actual current file-mode build/check passes passed; the full successful
+gate took 693.925 seconds. The parent inspected all fifteen new
+declaration signatures, hypotheses, docstrings, owners and local source links
+against the v2 content/configuration identity and two-pass attestation. Guarded
+Real KL, swapped conditional-output entropy, actual marginals, full output mutual
+independence, unrestricted length and arbitrary-source/four-universe statements
+match source. This was semantic HTML inspection, not browser visual QA.
+The first missing-page failure and bounded three-marker recovery remain retained.
+All source/configuration/dependency inputs were unchanged during the successful
+gate; evidence-prose changes require separate applicability. Existing caches
+were used. Under the lead's scoped checkpoint/amendment/reuse approval, initial
+checkpoint `8b30dc96e89a9b4e0224b059faed48e19a4e5f1e` passed the complete
+maintained clean routine separately. Readiness, fresh cumulative review,
+reconciliation, exact final applicability and closure require their actual
+source-bound records, including `.lit-review/setup/c18-06-completion-20261018.json`
+when present; this captured account does not certify them. Every amendment
+requires the complete maintained clean rerun and exact API applicability.
+<!-- c18-06-api-docs:end -->
+
+The [C18 handoff](handoffs/chunk-18.md) records captured qualification and evidence boundaries.
+Actual local output stays under `docbuild/.lake/build/doc/`; the frozen v0.1.0
+route, dependencies and build/checker contracts are unchanged. The API gate,
+complete maintained clean routine, cumulative independent review and exact
+closure retain separate evidence and applicability requirements.
+
+## Historical C14 milestone
 
 C14 adds `Shannon.Continuity` and six public declarations. Current coverage is
 653 documented declarations in 36 supported owners, with 92 root exports,

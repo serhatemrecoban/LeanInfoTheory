@@ -37,7 +37,7 @@ open scoped BigOperators ENNReal
 
 namespace LeanInfoTheory.Shannon
 
-universe u v w
+universe u v w z
 
 noncomputable section
 
@@ -801,6 +801,37 @@ theorem familyEntropyOf_eq_sum_singletons_iff_isMutuallyIndependentFamilyOf
   simpa only [familyEntropyOf, IsMutuallyIndependentFamilyOf] using
     familyEntropy_eq_sum_singletons_iff_isMutuallyIndependentFamily
       (familyLawOf p X) s
+
+/-! ## Independent sources and a common observation -/
+
+open Classical in
+/-- For mutually independent source coordinates, the sum of their mutual
+informations with one common finite observation is at most the mutual information
+of the whole tuple with that observation. The source space is arbitrary;
+conditioning on the observation need not preserve independence. -/
+theorem sum_mutualInfoOf_le_mutualInfoOf_pi
+    {I : Type u} {A : I → Type v} {Ω : Type w} {C : Type z}
+    [Fintype I] [∀ i, Fintype (A i)] [Fintype C]
+    (p : PMF Ω) (X : ∀ i, Ω → A i) (Y : Ω → C)
+    (hX : IsMutuallyIndependentFamilyOf p X Finset.univ) :
+    (∑ i, mutualInfoOf p (X i) Y) ≤
+      mutualInfoOf p (fun ω i => X i ω) Y := by
+  classical
+  have hword : familyEntropyOf p X Finset.univ =
+      entropyOf p (fun ω i => X i ω) := by
+    rw [familyEntropyOf_eq_entropyOf]
+    apply entropyOf_comp_injective p (fun ω i => X i ω)
+      (f := (Finset.univ : Finset I).restrict (π := A))
+    intro a b hab
+    funext i
+    exact congrFun hab ⟨i, Finset.mem_univ i⟩
+  have hentropy :=
+    (familyEntropyOf_eq_sum_singletons_iff_isMutuallyIndependentFamilyOf
+      p X Finset.univ).mpr hX
+  simp only [hword, familyEntropyOf_singleton] at hentropy
+  have hcond := condEntropyOf_pi_le_sum p X Y
+  simp only [mutualInfoOf_eq_entropyOf_sub_condEntropyOf, Finset.sum_sub_distrib]
+  linarith
 
 end
 

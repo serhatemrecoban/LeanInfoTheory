@@ -26,6 +26,8 @@ import LeanInfoTheory.Shannon.SemanticBridge.Sufficiency
 import LeanInfoTheory.Shannon.SemanticBridge.DataProcessing
 import LeanInfoTheory.Shannon.SemanticBridge.Pinsker
 import LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL
+import LeanInfoTheory.Shannon.SemanticBridge.ProductKL
+import LeanInfoTheory.Shannon.SemanticBridge.ProductChannel
 import LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL
 
 /-!
@@ -109,12 +111,22 @@ definitions agree with the textbook/measure-theoretic semantics.
 - semantic theorem API: `0 <= I(A;B)`, `0 <= I(A;B|C)`, and the chain rule
   `I(A;B,C) = I(A;C) + I(A;B|C)`.
 - finite-family entropy monotonicity, nonnegative conditional entropy and CMI,
-  and entropy submodularity, without requiring a finite family index.
+  and entropy submodularity, without requiring a finite family index;
+- conditional tuple entropy subadditivity and the independent-source mutual-
+  information lower bound for one common observation, with arbitrary source
+  spaces and separate alphabet and observation universes.
 - finite-family mutual independence through pointwise PMF factorization,
   including empty, singleton, restriction, pair compatibility, and exact
   entropy-additivity characterizations;
 - constructed finite-product laws as family marginals, mutually independent
-  selected families, and independent distinct coordinate random variables.
+  selected families, and independent distinct coordinate random variables;
+- finite-product and iid entropy additivity, and unconditional extended-valued
+  product KL additivity with support-guarded Real forms;
+- conditional output entropy additivity and mutual-information bounds for
+  product channels under arbitrary input laws and actual coordinate marginals;
+- exact output entropy gaps and equality precisely under full output mutual
+  independence, together with general independent-pair, product-input and iid
+  mutual-information equalities.
 
 Keeping this file separate prevents KL divergence, kernels, and related
 measure-theoretic imports from becoming dependencies of the lightweight finite

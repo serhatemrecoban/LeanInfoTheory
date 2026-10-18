@@ -1,9 +1,9 @@
 # Post-Release Chunk Map: Quantitative and Operational Information Theory
 
-**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-16. Detailed C9--C17 revision-2 plans were separately approved; C18--C24 remain proposed.
+**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-18. Detailed C9--C18 revision-2 plans were separately approved; C19--C24 remain proposed.
 **Review follow-up:** C18/C23 clarifications accepted for this map; the 16-chunk structure is unchanged.
-**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md), [C12 plan](post-release-chunk-12.md), [C13 plan](post-release-chunk-13.md), [C14 plan](post-release-chunk-14.md), [C15 plan](post-release-chunk-15.md), [C16 plan](post-release-chunk-16.md), [C17 plan](post-release-chunk-17.md) and eligible step requests own their respective execution.
-**Execution:** C9--C16 and C17.01--C17.04 are complete by actual private records. C17.05 owns cumulative qualification and the [maintained handoff](../handoffs/chunk-17.md), with no new endpoint. The nineteen-path local checkpoint/reuse and necessary Step 5 amendments are authorized; initial clean routine and separate actual two-pass current API docs passed. Final amended-candidate validation, all-fifteen-criterion review/reconciliation and supported closure require their actual source-bound records. C18--C24 and release/publication remain unselected. Historical checkpoints do not reopen completed chunks.
+**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md), [C12 plan](post-release-chunk-12.md), [C13 plan](post-release-chunk-13.md), [C14 plan](post-release-chunk-14.md), [C15 plan](post-release-chunk-15.md), [C16 plan](post-release-chunk-16.md), [C17 plan](post-release-chunk-17.md), [C18 plan](post-release-chunk-18.md) and eligible step requests own their respective execution.
+**Execution:** C9--C17 and C18.01--C18.05 are complete by actual private records. Only C18.06 is selected for cumulative qualification and the [maintained handoff](../handoffs/chunk-18.md); it adds no mathematical endpoint. The lead approved the exact 28-path local checkpoint, necessary C18.06-only amendments and existing detached validation-checkout reuse. Initial checkpoint `8b30dc96e89a9b4e0224b059faed48e19a4e5f1e` passed the complete maintained clean routine; actual two-pass API docs and all-fifteen semantic inspection passed separately. The initial failure and bounded cache recovery are retained. Readiness, fresh all-20 review/reconciliation, exact final applicability and supported closure require actual source-bound records, including `.lit-review/setup/c18-06-completion-20261018.json` when present; this captured account does not certify them. Every amendment requires the complete maintained clean rerun and exact API applicability. C19--C24 and release/publication are unselected. Earlier provisional snapshots do not reopen completed work.
 **Map-intake baseline inspected:** `master` at `80ea016c7ac64bb5bd79b2f769227a3fb2ccc3b3`,
 with the existing uncommitted post-release documentation/discoverability work
 preserved. The immutable `v0.1.0` mathematical baseline remains
@@ -402,14 +402,12 @@ predicate is outside scope. Sources: `PW24` 6.1/11.2; existing family modules.
 
 ### C17. Product channels and memoryless extensions
 
-**Current execution:** The [approved revision-2 plan](post-release-chunk-17.md)
-has completed C17.01--C17.04 with review. Twelve public declarations deliver
-finite dependent/repeated channels, row/restriction and channel algebra, and
-exact arbitrary-input joint projections/independent-input factorization. The
-two private consumer owners exercise correlated inputs, noisy outputs, source
-maps with supported collisions and supported/null-fiber semantics. C17.05
-retains cumulative qualification, fresh all-criteria review and the
-[maintained handoff](../handoffs/chunk-17.md); no information endpoint is added.
+**Current execution:** The separately approved C17 revision-2 plan is complete
+through C17.05 by its actual private record at checkpoint
+`dacb55f97c1f942db929c59e99ea0fb9b8ac7cdd`. Its twelve public declarations and
+two private consumer owners provide raw finite/repeated channels and exact
+joint transports. The [C17 handoff](../handoffs/chunk-17.md) preserves contracts
+and qualification; its captured pre-closure wording is historical.
 
 **Goal:** Construct block channels independently of the input distribution.
 
@@ -426,6 +424,15 @@ No matrix-as-channel replacement, feedback channel, or process constructor.
 Sources: `PW24` 6.1 and 19.1; Future Work Note 31 ownership constraints.
 
 ### C18. Block information and single-letterization
+
+**Current execution:** C18.01--C18.05 and their reviews are complete by records.
+The [approved revision-2 plan](post-release-chunk-18.md) delivered all thirteen
+required theorems plus the separately selected exact gap and output-mutual-
+independence iff, with permanent private consumers. C18.06 owns cumulative
+qualification, fresh all-20 review and the [handoff](../handoffs/chunk-18.md).
+The general-observation source inequality retains its full approved signature.
+The original programme below remains a planning contract; no later chunk starts.
+
 
 **Goal:** The reusable information identities and bounds needed for coding.
 

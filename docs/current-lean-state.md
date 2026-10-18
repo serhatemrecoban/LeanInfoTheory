@@ -1,6 +1,36 @@
 # Current Lean State
 
-## C17.05 authorized cumulative qualification, 2026-10-16
+## C18.06 cumulative qualification and handoff, 2026-10-18
+
+C18.01--C18.05 and their reviews are complete by actual private records.
+The C18.05 closure and all 258 captured entries/environment/Git state matched
+before the conditional C18.06 request was admitted on 2026-10-18. Only C18.06
+is selected; its fifteen mathematical theorems are unchanged from Step 5.
+The maintained handoff records the C16--C18 producer/consumer chains. Inventory
+is 713 declarations in 45 owners, with 92 root exports and 94 reviewed simp names.
+
+The lead approved the exact 28-path local checkpoint, necessary C18.06-only
+review/evidence amendments within that scope and reuse of the inspected detached
+validation checkout. Initial checkpoint `8b30dc96e89a9b4e0224b059faed48e19a4e5f1e`
+passed the complete maintained clean routine. The primary checkout preserves
+the three excluded files and the older unrelated project-log entry.
+Fresh actual two-pass current file-mode API documentation passed separately;
+all fifteen signatures, hypotheses, docstrings, owners and source links were
+inspected. The initial missing-page failure and bounded three-marker recovery
+remain recorded with their evidence limits.
+
+This is captured qualification prose. Review readiness, fresh all-twenty-criterion
+independent review, explicit reconciliation and exact final validation/source
+applicability require their actual source-bound records. Supported closure is
+established only by those records and
+`.lit-review/setup/c18-06-completion-20261018.json` when present;
+this account does not certify those later events. Every amendment requires the
+complete maintained clean rerun and exact API applicability.
+C19--C24, push, tag, release, publication and dependency changes remain unselected.
+See the [C18 handoff](handoffs/chunk-18.md) for contracts, evidence limits and
+separate C19/C22/C23 responsibilities.
+
+## Historical C17.05 authorized cumulative qualification, 2026-10-16
 
 C17.01--C17.04 and their reviews are complete by actual private records.
 The lead authorized the exact nineteen-path local C17 checkpoint, necessary

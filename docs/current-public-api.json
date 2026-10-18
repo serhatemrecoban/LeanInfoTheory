@@ -13,7 +13,7 @@
     "release_commit": "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f",
     "release_tag": "v0.1.0"
   },
-  "declaration_count": 698,
+  "declaration_count": 713,
   "declarations": [
     {
       "attributes": [],
@@ -418,6 +418,12 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+      "name": "LeanInfoTheory.Shannon.condEntropyOf_pi_le_sum"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
       "name": "LeanInfoTheory.Shannon.condEntropyOf_right_le_condEntropyOf_pair"
     },
@@ -426,6 +432,12 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
       "name": "LeanInfoTheory.Shannon.condEntropyOf_self_eq_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.ProductChannel",
+      "name": "LeanInfoTheory.Shannon.condEntropy_channelJoint_productChannel"
     },
     {
       "attributes": [],
@@ -1264,6 +1276,12 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
+      "name": "LeanInfoTheory.Shannon.entropy_finiteProduct"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
       "name": "LeanInfoTheory.Shannon.entropy_fstMarginal_eq_sum_joint"
     },
@@ -1272,6 +1290,12 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
       "name": "LeanInfoTheory.Shannon.entropy_fstMarginal_le_entropy"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
+      "name": "LeanInfoTheory.Shannon.entropy_iid"
     },
     {
       "attributes": [],
@@ -2678,6 +2702,18 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.ProductKL",
+      "name": "LeanInfoTheory.Shannon.klDiv_finiteProduct"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.ProductKL",
+      "name": "LeanInfoTheory.Shannon.klDiv_iid"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
       "name": "LeanInfoTheory.Shannon.klDiv_map_eq_iff_exists_common_recovery"
     },
@@ -2922,6 +2958,30 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.ProductChannel",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_channelJoint_finiteProduct"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.ProductChannel",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_channelJoint_iid"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.ProductChannel",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_channelJoint_productChannel_eq_sum_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.ProductChannel",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_channelJoint_productChannel_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
       "name": "LeanInfoTheory.Shannon.mutualInfo_channelMixture_le_sum"
     },
@@ -3076,6 +3136,12 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
       "name": "LeanInfoTheory.Shannon.mutualInfo_map_left_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_map_piProd_eq_sum_of_isMutuallyIndependentFamily"
     },
     {
       "attributes": [],
@@ -3398,6 +3464,18 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+      "name": "LeanInfoTheory.Shannon.sum_mutualInfoOf_le_mutualInfoOf_pi"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.ProductChannel",
+      "name": "LeanInfoTheory.Shannon.sum_mutualInfo_sub_mutualInfo_productChannel"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
       "name": "LeanInfoTheory.Shannon.sum_toReal_mul_fstMarginal"
     },
@@ -3560,6 +3638,18 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
       "name": "LeanInfoTheory.Shannon.toReal_klDiv_channel_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.ProductKL",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_finiteProduct"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.ProductKL",
+      "name": "LeanInfoTheory.Shannon.toReal_klDiv_iid"
     },
     {
       "attributes": [],
@@ -4392,25 +4482,25 @@
       "name": "PMF.two_mul_totalVariation_isGreatest_bounded"
     }
   ],
-  "documented_declaration_count": 698,
+  "documented_declaration_count": 713,
   "full_umbrella": "LeanInfoTheory.Shannon",
   "kind_counts": {
     "abbrev": 9,
     "def": 65,
     "instance": 3,
-    "theorem": 621
+    "theorem": 636
   },
   "lightweight_root": "LeanInfoTheory",
   "lightweight_root_direct_imports": [
     "LeanInfoTheory.InformationMeasures",
     "LeanInfoTheory.Probability.Finite"
   ],
-  "local_module_count": 75,
+  "local_module_count": 81,
   "namespace_counts": {
-    "LeanInfoTheory.Shannon": 578,
+    "LeanInfoTheory.Shannon": 593,
     "PMF": 120
   },
-  "non_stable_module_count": 32,
+  "non_stable_module_count": 36,
   "non_stable_modules": [
     "LeanInfoTheory.Basic",
     "LeanInfoTheory.Examples",
@@ -4425,16 +4515,20 @@
     "LeanInfoTheory.Examples.CouplingTransport",
     "LeanInfoTheory.Examples.Fano",
     "LeanInfoTheory.Examples.FiniteFamily",
+    "LeanInfoTheory.Examples.FiniteFamilyInformation",
     "LeanInfoTheory.Examples.FiniteProduct",
     "LeanInfoTheory.Examples.FiniteProductSemantics",
     "LeanInfoTheory.Examples.FiniteTopology",
     "LeanInfoTheory.Examples.Iid",
+    "LeanInfoTheory.Examples.IidInformation",
     "LeanInfoTheory.Examples.IndependenceProcessing",
     "LeanInfoTheory.Examples.InformationDecomposition",
     "LeanInfoTheory.Examples.KLTop",
     "LeanInfoTheory.Examples.Pinsker",
     "LeanInfoTheory.Examples.ProductChannel",
+    "LeanInfoTheory.Examples.ProductChannelInformation",
     "LeanInfoTheory.Examples.ProductChannelSemantics",
+    "LeanInfoTheory.Examples.ProductKL",
     "LeanInfoTheory.Examples.QuantitativeIndependence",
     "LeanInfoTheory.Examples.StochasticChannels",
     "LeanInfoTheory.Examples.SufficientStatistics",
@@ -4824,7 +4918,7 @@
     "Declaration types and assumptions remain governed by the Lean source and signature-bearing API documentation."
   ],
   "simp_declaration_count": 94,
-  "supported_module_count": 43,
+  "supported_module_count": 45,
   "supported_modules": [
     "LeanInfoTheory",
     "LeanInfoTheory.InformationMeasures",
@@ -4864,6 +4958,8 @@
     "LeanInfoTheory.Shannon.SemanticBridge.Markov",
     "LeanInfoTheory.Shannon.SemanticBridge.Pinsker",
     "LeanInfoTheory.Shannon.SemanticBridge.Product",
+    "LeanInfoTheory.Shannon.SemanticBridge.ProductChannel",
+    "LeanInfoTheory.Shannon.SemanticBridge.ProductKL",
     "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
     "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
     "LeanInfoTheory.Shannon.SemanticBridge.Theorems",

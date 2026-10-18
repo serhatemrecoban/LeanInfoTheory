@@ -6,6 +6,147 @@ help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
 
+## C18.06 cumulative qualification and maintained handoff, 2026-10-18
+
+The conditional Step 6 request was admitted only after actual C18.05 closure
+and exact source/environment/Git verification. All five mathematical steps and
+their reviews are complete; their captured pre-closure wording is historical.
+This step adds no mathematical endpoint. The C16--C18 package is assessed by
+four usable product/entropy-KL, row/conditional-entropy, joint/MI and encoded-law/
+bound chains. Fifteen C18 theorems and five private information consumer owners
+leave the root and simp boundary unchanged. The maintained C18 handoff separates
+C19 self-information/AEP, C22 optimization and C23 coding responsibilities.
+
+The lead approved the exact 28-path local checkpoint, necessary C18.06-only
+review/evidence amendments within that scope and reuse of the inspected detached
+validation checkout. Initial checkpoint `8b30dc96e89a9b4e0224b059faed48e19a4e5f1e`
+passed the complete maintained clean routine. The primary checkout preserves
+the three excluded files and the older unrelated project-log entry.
+Fresh actual two-pass current file-mode API documentation passed separately;
+all fifteen signatures, hypotheses, docstrings, owners and source links were
+inspected. The initial missing-page failure and bounded three-marker recovery
+remain recorded with their evidence limits.
+
+This is captured qualification prose. Review readiness, fresh all-twenty-criterion
+independent review, explicit reconciliation and exact final validation/source
+applicability require their actual source-bound records. Supported closure is
+established only by those records and
+`.lit-review/setup/c18-06-completion-20261018.json` when present;
+this account does not certify those later events. Every amendment requires the
+complete maintained clean rerun and exact API applicability.
+No push, tag, publication, release or later chunk is selected.
+
+## C18.05 independent sources and general observation, 2026-10-18
+
+The conditional Step 5 request was admitted after actual C18.04 closure and exact
+source/environment/Git verification. The two approved family theorems provide
+general conditional tuple subadditivity and the independent-source MI lower
+bound for one common finite observation, preserving arbitrary source carriers,
+dependent finite alphabets and separate universes. Only the MI theorem assumes
+unconditioned mutual independence; no conditional-product or observation
+independence premise is added. Private S1 consumers cover XOR strictness,
+heterogeneous/separate-universe interfaces and empty/singleton families.
+The internal tuple/universe checkpoint and initial standalone/focused/aggregate,
+static/generated, documentation and compiled compatibility/trust qualification
+passed. The C18 notes retain actual proof routes, commands, results, actor
+attribution, corrections and limitations. Generated inventory is 713
+declarations in 45 owners; root exports and reviewed simp names are unchanged.
+Independent C18.05 STEP review reports no findings and all three criteria SATISFIED; the original report is explicitly reconciled. Final validation, final source capture and source-bound closure remain pending.
+Actual completion is established only by `.lit-review/setup/c18-05-completion-20261018.json` when present.
+All earlier log bytes remain preserved. C18.06, commit/push and release work
+remain unselected.
+
+## C18.04 channel mutual information implementation, 2026-10-17
+
+The conditional Step 4 request was admitted after actual C18.03 closure and exact
+source/environment/Git verification. Six public MI endpoints extend the existing
+semantic FiniteProduct and ProductChannel owners: general independent pairs,
+arbitrary-input channel bound, product-input and iid equality, and separately
+selected exact output entropy gap and full output mutual-independence iff.
+Private transports reuse existing finite-product, entropy and joint-law APIs;
+imports, probability/root boundaries and simp sets are unchanged. E2/C2/C3/H1
+exercise positive within-pair dependence, heterogeneous sparse laws, correlated
+strictness and constant/singleton equality, parity gaps, iid boundaries and
+noninjective encoded laws with generic coordinate-objective caps. No later capacity
+or coding definitions are introduced. Generated inventory is 711 declarations in
+45 owners. Standalone/focused/aggregate compilation, static/generated checks,
+documentation examples and full compiled compatibility/trust qualification passed.
+The C18 notes retain original failed attempts, fixes, actor attribution and limits.
+Independent C18.04 STEP review reports no findings and all four criteria SATISFIED; the original report is explicitly reconciled. Final validation, final source capture and source-bound closure remain pending.
+Actual completion will be established only by
+`.lit-review/setup/c18-04-completion-20261017.json` when present. All prior log
+bytes are preserved. C18.05--C18.06, commits, pushes and release work remain unselected.
+
+## C18.03 conditional-output entropy implementation, 2026-10-17
+
+The conditional Step 3 request was admitted after exact C18.02 closure/source
+verification. The new semantic ProductChannel owner contains one public
+conditional-output entropy identity for arbitrary finite correlated inputs,
+using actual coordinate marginal laws and the required swapped-joint orientation.
+Its direct imports are probability ProductChannel, semantic FiniteProduct and
+Convexity. The private C1 consumer explicitly adds Markov for supported recovery
+and null-fallback checks; noisy correlated input and absent-coordinate row changes
+exercise the actual law. No stronger assumption, public helper, root export or
+simp change is introduced. Generated inventory is 705 declarations in 45 owners.
+Initial producer attempts failed on finite pure-indicator simplification and an
+unused simp argument; initial consumer normalization and Pi Fintype coherence
+failures were resolved by explicit normalization, local specializations and
+`convert!`, without changing public assumptions. Original failures are retained.
+Standalone and focused producer/consumer compilation, aggregate builds,
+static/generated checks, five README and four website-guide examples, and compiled
+compatibility/trust qualification passed. The consumer standalone pass remains
+attributed to the implementation subagent. Contextual self-review and separate
+reassessment are complete; the parent explicitly reconciled the original report.
+Independent C18.03 STEP review reports no findings and all three criteria SATISFIED; the original report is reconciled. Final validation and source-bound closure remain pending.
+Final documentation precedes final validation and source capture. The C18
+notes record actual reviewer methods, checks and limitations separately from
+parent qualification. Actual completion will be recorded in
+`.lit-review/setup/c18-03-completion-20261017.json` when present. The C18 notes
+retain exact evidence, failure history and warm/incremental limits. C18.04--C18.06,
+commits and release work remain unselected. Prior project-log bytes are preserved.
+
+## C18.02 finite-product KL implementation, 2026-10-17
+
+The conditional Step 2 request was admitted after exact verification of C18.01
+closure and final source. Four public product/iid KL endpoints now compile in
+the separate ProductKL owner: unconditional ENNReal additivity and actual
+support-guarded Real forms. The early binary/infinite-value and dependent
+splitting/induction checkpoint was resolved before extensive consumers. Private
+transport uses existing data processing, product maps and the joint KL chain
+rule; probability owners, lightweight root, pins and simp policy are unchanged.
+K1/K2 consumers exercise supported sparse heterogeneous products, overlapping
+incomparable supports, top versus positive finite coordinate KL, the failure of
+unguarded Real summation, and empty/singleton/iid boundaries. Current generated
+inventory is 704 declarations in 44 owners, with 92 root exports and 94 simp names.
+Focused producer/consumer and aggregate builds, standalone checks, static/generated
+checks, documentation examples and compiled compatibility/trust qualification
+passed. Independent STEP review reports no findings and all four criteria
+SATISFIED; the original report is explicitly reconciled. Final documentation
+is prepared before final validation and source capture. The C18 notes preserve
+failed attempts, exact evidence and limits;
+actual completion will be established by
+`.lit-review/setup/c18-02-completion-20261017.json` when present. No later step,
+commit, push or release is selected. All earlier project-log bytes are preserved.
+
+## C18.01 product and iid entropy implementation, 2026-10-16
+
+The lead accepted C18 revision 2 and explicitly selected Step 1 with review.
+The implementation adds only entropy_finiteProduct and entropy_iid to the existing
+semantic product owner, using the family independence characterization and a
+local full-word restriction bridge. Private consumers reuse the heterogeneous
+sparse non-iid triple and exercise positive sparse iid entropy, zero/one lengths,
+singleton alphabets and empty-product versus impossible-base-law boundaries.
+The approved Iid import and generated current API artifacts are reconciled:
+700 supported declarations in 43 owners, with 92 root exports and 94 simp names.
+Focused and standalone compilation, static/generated checks, documentation
+examples and compiled compatibility/trust checks passed. Independent STEP
+review reports all three criteria SATISFIED with no findings; the original
+report is explicitly reconciled. Final status documentation is prepared
+before final validation and capture. The C18 notes retain exact evidence
+and limitations; actual closure is established only by
+`.lit-review/setup/c18-01-completion-20261016.json`. No later step, commit, release or
+publication is selected. Existing pending project-log content is preserved.
+
 ## C17.05 authorized cumulative qualification, 2026-10-16
 
 C17.01--C17.04 and their reviews are complete by actual records. The lead

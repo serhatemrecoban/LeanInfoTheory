@@ -1,6 +1,47 @@
 # Roadmap
 
-## C14.04 cumulative qualification and maintained handoff — selected
+## C18.06 cumulative qualification and maintained handoff — selected
+
+C9--C17 and C18.01--C18.05 are complete by actual private records. The
+conditional C18.06 request was admitted after exact Step 5 closure/source
+verification on 2026-10-18. The [approved C18 plan](plans/post-release-chunk-18.md)
+now owns cumulative qualification and the [maintained handoff](handoffs/chunk-18.md).
+No new mathematical endpoint is planned in this final step.
+
+C16--C18's 44 additions connect dependent finite products and raw product
+channels to entropy, support-aware KL, conditional-output entropy and both
+channel/source MI bounds. Permanent consumers distinguish arbitrary correlated
+inputs, positive dependence within independent pairs, output mutual versus
+pairwise independence, null support and noninjective encoded laws. Current
+coverage is 713 documented declarations in 45 owners, 81 modules/182 local
+edges, five root-reachable/76 separate modules, 36 non-stable owners, 92 root
+exports and 94 simp names. The source index has 828 declarations, 827 documented.
+These counts describe the current package, not a growth quota.
+
+The lead approved the exact 28-path local checkpoint, necessary C18.06-only
+review/evidence amendments within that scope and reuse of the inspected detached
+validation checkout. Initial checkpoint `8b30dc96e89a9b4e0224b059faed48e19a4e5f1e`
+passed the complete maintained clean routine. The primary checkout preserves
+the three excluded files and the older unrelated project-log entry.
+Fresh actual two-pass current file-mode API documentation passed separately;
+all fifteen signatures, hypotheses, docstrings, owners and source links were
+inspected. The initial missing-page failure and bounded three-marker recovery
+remain recorded with their evidence limits.
+
+This is captured qualification prose. Review readiness, fresh all-twenty-criterion
+independent review, explicit reconciliation and exact final validation/source
+applicability require their actual source-bound records. Supported closure is
+established only by those records and
+`.lit-review/setup/c18-06-completion-20261018.json` when present;
+this account does not certify those later events. Every amendment requires the
+complete maintained clean rerun and exact API applicability.
+C19 self-information/AEP, C22 capacity and C23 coding retain separate approval,
+prerequisites and consumers as described in the handoff. Release work is unselected.
+
+The earlier milestone snapshots below retain their original chronology and
+counts. Their provisional wording does not reopen a chunk closed by its record.
+
+## Historical C14.04 cumulative qualification and maintained handoff snapshot
 
 C9--C13 are complete by their source-bound private records; C13 completed at
 `ebe48eaea4282b1e4f245f8f45440bc930b8df73`. The approved
@@ -121,9 +162,9 @@ and the primary/clean source-identity distinction.
 The source-bound C13.04 records subsequently established final validation,
 review, reconciliation and closure at `ebe48eaea4282b1e4f245f8f45440bc930b8df73`;
 the initial-checkpoint evidence above is retained as history.
-The unrelated website notes remain excluded. C14.04 now owns cumulative
-qualification of the continuity family; C15--C24 remain unselected, and
-publication is separate.
+That C13/C14 transition snapshot excluded unrelated website notes and left
+later chunks unselected. The current C18.06 boundary is recorded above;
+publication still requires separate authority.
 
 ## Proposed Post-Release Programme
 
@@ -144,14 +185,11 @@ declarations only an uncertain cross-check, not a quota.
 
 The later programme remains a proposal for project-lead review, not an approved
 execution plan or a release/date commitment. The separately authorized
-[review workflow](review-operations.md) is installed. C9 and C10 are complete.
-C11 is complete at `bbead98`, C12 at `492cd6e`, and C13 at `ebe48eae`.
-C14.01--C14.03 and their reviews are complete; selected C14.04 owns cumulative
-qualification and the [maintained handoff](handoffs/chunk-14.md). The authorized
-initial checkpoint `ca079e2` passed the complete routine suite, and current
-two-pass API-documentation qualification and inspection passed. Final-candidate
-qualification, all-12-criterion review and closure remain subject to source-bound
-private records. C15--C24 require their own approved plans and execution requests.
+[review workflow](review-operations.md) is installed. C9--C17 and C18.01--C18.05
+are complete by actual records. Selected C18.06 owns cumulative qualification
+and the [maintained handoff](handoffs/chunk-18.md), including all-20 review and
+exact final validation. C19--C24 require separately approved detailed plans
+and eligible execution requests. No release date or publication is authorized.
 The [reference register](references.md) identifies the selected sources and
 distinguishes the 2022 and 2024 Polyanskiy--Wu drafts. The calendar horizons
 below remain broad aspirations, not delivery deadlines for the proposed chunks.
