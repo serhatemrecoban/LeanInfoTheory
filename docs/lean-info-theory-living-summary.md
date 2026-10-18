@@ -65,6 +65,22 @@ C19--C24, push, tag, release, publication and dependency changes remain unselect
 See the [C18 handoff](handoffs/chunk-18.md) for contracts, evidence limits and
 separate C19/C22/C23 responsibilities.
 
+**[Current] C18.06 review-record remediation, 2026-10-18.** The amended
+`b5e77c741caca836ea8d0a769d140bd1771cb34a` checkpoint passed clean qualification,
+and the cumulative reviewer assessed all twenty criteria SATISFIED. A FAIL
+disclosure was erroneously cited as passing evidence in the first report. Its
+reviewer-authored correction retained all substantive content, but the installed
+delivery-hash rule classified it as a conflicting duplicate. Both original
+classifications remain retained; no report acceptance or closure resulted.
+The lead explicitly approved bounded workflow remediation, its independent
+review and fresh source qualification beyond the original 28 paths. The exact
+authority and resulting evidence are under
+`.lit-review/setup/c18-06-remediation-20261018/`. The repair's resolution alone
+does not accept a report: fresh initial validation, self-review, reassessment
+and source-bound cumulative review remain required. Completion still requires
+the private completion record above. Mathematical contracts and C19 selection
+are unchanged. See [notes Section 21](plans/post-release-chunk-18-notes.md#21-authorized-report-format-recovery-and-requalification-2026-10-18).
+
 **[History] C18.05 independent sources, 2026-10-18.**
 C18.01--C18.04 and their reviews are complete by verified private records.
 Only C18.05 of the approved plan is selected. Semantic FiniteFamily now provides

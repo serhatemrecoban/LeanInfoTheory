@@ -58,6 +58,23 @@ Both transports retain the same source, report-correlation, evidence, finding,
 reconciliation and criterion-gap gates. Native provenance remains cooperatively
 recorded, not authenticated. The narrow format support is not a live reviewer test.
 
+## Bounded report-format recovery
+
+An invalid report's later correction can conflict with its already confirmed
+delivery bytes. `report_format_conflict_target` identifies an exact retained pair
+and the only supported delta: removing one FAIL citation from one SATISFIED
+criterion while preserving the FAIL record, verification and all other content.
+`resolve_report_format_conflict` requires separate exact lead authority and adds
+a resolution without rewriting either original classification or delivery.
+Other conflicts and unclassified arrivals remain blocking.
+
+`requalify_report_format_conflict` requires separate authority for the resolution
+and supersedes the still-unaccepted request. It retains historical source and
+readiness, then requires fresh initial validation, self-review, reassessment and
+source-bound independent review. Neither operation supplies criterion success,
+acceptance or closure. See operations for the exact sequence and limits; there
+is no general conflict adjudicator or automatic retry.
+
 ## Checks and limits
 
 Use `python -B tools/lit_review/cli.py api` for supported signatures. Test entry:
@@ -72,6 +89,6 @@ settings. Model-free sequences are not desktop queue tests; replays are not live
 reviews or unattended readiness. Use `scripts/validate_release.py` for library
 validation as documented; this port implements no C9 growth gates.
 
-The adapter reuses the unchanged shared core, safeguards and criterion-gap policy,
+The adapter reuses the shared core safeguards and unchanged criterion-gap policy,
 not PFR live records, identities, manuscripts or historical archives. Provenance/
 Apache-2.0 details are recorded in [PROVENANCE.md](PROVENANCE.md); preserve source notices.

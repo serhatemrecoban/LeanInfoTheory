@@ -3,8 +3,11 @@ Only tests explicitly named fault injection use primitive/mocked corruption.
 """
 import copy
 import json
+import unittest
 from unittest.mock import patch
 from test_workflow import FixtureCase
+from test_delivery import FormatConflictFixture
+from diagnostic import DiagnosticWorkflow
 from safe_store import Refusal
 from workflow import Workflow
 
@@ -347,3 +350,228 @@ class RemediationInteractions(FixtureCase):
         ev,_,_,_=self.to_final_validation(status="CONTRADICTED_BY_FINDING")
         self.ready(ev,impact="BOUNDED_CORRECTION")
         self.refuse("REVIEW_COVERAGE_GAP",self.w.close)
+
+
+class ReportFormatRequalificationTests(FormatConflictFixture, unittest.TestCase):
+    def reconstruct(self):
+        self.w = DiagnosticWorkflow(self.w.fs, self.w.identity)
+
+    def requalify(self, resolution, approval=None, reason='Synthetic tooling changed; obtain fresh source review.'):
+        return self.w.requalify_report_format_conflict(resolution,
+            self.auth('REQUALIFY_REPORT_FORMAT_CONFLICT', resolution) if approval is None else approval,
+            reason)
+
+    def fresh_evidence(self):
+        return self.w.parent_evidence('Fresh post-requalification fixture validation',
+            'Synthetic PASS on current bytes after the supported retry transition.',
+            'REPLAYED fixture only; no actual compiler or independent reviewer.')
+
+    def test_reconstruction_resolution_and_retry_require_every_fresh_readiness_stage(self):
+        pair = self.format_pair()
+        old = copy.deepcopy(self.state()['active'])
+        retained = self.retained_bytes()
+        result = self.resolve_format(pair)
+        self.reconstruct()
+        self.assert_unaccepted()
+        with self.assertRaises(Refusal):
+            self.w.recover(self.auth('RECOVER_RETRY', 'TEST-S01'), 'retry')
+        restarted = self.requalify(result['resolution'])
+        self.assertEqual(restarted['status'], 'REQUALIFICATION_REQUIRED')
+        self.assertEqual(restarted['phase'], 'IMPLEMENTING')
+        self.reconstruct()
+        active = self.state()['active']
+        self.assertEqual(active['phase'], 'IMPLEMENTING')
+        self.assertEqual(active['B'], old['B'])
+        self.assertEqual(active['requests'], old['requests'])
+        self.assertEqual(active['evidence'], old['evidence'])
+        self.assertEqual(active['findings'], old['findings'])
+        self.assertEqual(active['edits'], old['edits'])
+        for field in ['pending', 'report', 'R', 'F', 'self_review', 'reassessment', 'initial_handoff']:
+            self.assertIsNone(active[field], field)
+        self.assertFalse(active['assessments'])
+        self.assertEqual(self.state()['request_registry'][pair['req']['payload']['request_id']]['status'],
+            'SUPERSEDED')
+        self.assert_retained(retained)
+        self.assert_unaccepted()
+
+        # Even unchanged source does not make pre-transition validation fresh.
+        with self.assertRaises(Refusal):
+            self.w.initial_validation([pair['ev']])
+        with self.assertRaises(Refusal):
+            self.w.prepare_review('fixture-review-request:fresh', [pair['ev']])
+        with self.assertRaises(Refusal):
+            self.w.self_review([], 'Cannot bypass renewed initial validation')
+        fresh = self.fresh_evidence()
+        self.w.initial_validation([fresh])
+        with self.assertRaises(Refusal):
+            self.w.prepare_review('fixture-review-request:fresh', [fresh])
+        self.w.self_review([], 'Fresh contextual review after requalification')
+        with self.assertRaises(Refusal):
+            self.w.prepare_review('fixture-review-request:fresh', [fresh])
+        self.w.reassess({})
+        with self.assertRaises(Refusal):
+            self.w.prepare_review(pair['req']['payload']['request_id'], [fresh])
+        with self.assertRaises(Refusal):
+            self.w.prepare_review('fixture-review-request:stale-evidence', [pair['ev']])
+        new = self.w.prepare_review('fixture-review-request:fresh', [fresh])
+        self.assertEqual(new['payload']['attempt'], 2)
+        self.assertNotEqual(new['reference'], pair['req']['reference'])
+        self.assertNotEqual(new['payload']['source_ref'], pair['req']['payload']['source_ref'])
+        self.submit(new)
+        replay = self.capture_format_report(pair['req'], pair['initial_raw'])
+        self.assertNotIn(replay['classification'], {'VALID', 'LATE_VALID_REPORT'})
+        self.assertIsNone(self.state()['active']['report'])
+        self.assertEqual(self.capture_format_report(new, self.report(new))['classification'], 'VALID')
+        self.assertFalse(self.state()['completed'])
+        self.w.reconcile_report()
+        self.final_ready(fresh)
+        closed = self.w.diagnostic_closure()
+        self.assertFalse(closed['production_acceptance'])
+        self.assertIn('TEST-S01', self.state()['completed'])
+        self.assert_retained(retained)
+
+    def test_transient_suspension_cannot_bypass_dedicated_fresh_requalification(self):
+        pair = self.format_pair()
+        resolution = self.resolve_format(pair)['resolution']
+        self.w.block('SUSPENDED')
+        self.reconstruct()
+        for mode in ['retry', 'continue', 'reconcile']:
+            with self.subTest(mode=mode), self.assertRaises(Refusal):
+                self.w.recover(self.auth('RECOVER_' + mode.upper(), 'TEST-S01'), mode)
+        self.assertEqual(self.state()['active']['phase'], 'REVIEW_PENDING')
+        self.assertEqual(self.state()['active']['pending']['request'], pair['req']['reference'])
+        self.assertEqual(self.requalify(resolution)['phase'], 'IMPLEMENTING')
+        with self.assertRaises(Refusal):
+            self.w.initial_validation([pair['ev']])
+        self.assert_unaccepted()
+
+    def test_resolved_history_remains_readable_after_cancellation_or_explicit_failure(self):
+        for control, status in [('CANCEL', 'CANCELLED'), ('FAILED', 'FAILED')]:
+            with self.subTest(control=control):
+                self.setUp()
+                pair = self.format_pair()
+                resolution = self.resolve_format(pair)['resolution']
+                retained = self.retained_bytes()
+                if control == 'CANCEL':
+                    self.w.control('CANCEL', self.auth('CANCEL', 'fixture-plan:v1'))
+                else:
+                    self.w.record_wait('FAILED', self.obs(pair['req']))
+                self.reconstruct()
+                state = self.state()
+                self.assertEqual(state['active']['pending']['status'], status)
+                self.assertEqual(state['request_registry'][pair['req']['payload']['request_id']]['status'], status)
+                self.assertIn(resolution, state['records'])
+                self.assert_retained(retained)
+                with self.assertRaises(Refusal):
+                    self.requalify(resolution)
+                if control == 'CANCEL':
+                    self.w.control('RELEASE', self.auth('RELEASE', 'fixture-plan:v1'))
+                    self.assertEqual(self.state()['active']['pending']['status'], 'CANCELLED')
+                    self.assertEqual(self.state()['active']['blocker'], 'CANCELLED')
+                    self.assertEqual(self.state()['request_registry'][pair['req']['payload']['request_id']]['status'],
+                        'CANCELLED')
+                    with self.assertRaises(Refusal):
+                        self.requalify(resolution)
+                self.assert_unaccepted()
+
+    def test_requalification_requires_its_own_authority_reason_and_single_use(self):
+        pair = self.format_pair()
+        result = self.resolve_format(pair)
+        resolution = result['resolution']
+        wrong = self.auth('RESOLVE_REPORT_FORMAT_CONFLICT', resolution)
+        for approval, reason in [(None, 'New review'), (wrong, 'New review'),
+                (self.auth('REQUALIFY_REPORT_FORMAT_CONFLICT', pair['initial']), 'New review'),
+                (self.auth('REQUALIFY_REPORT_FORMAT_CONFLICT', resolution), '')]:
+            with self.subTest(reason=reason, approval=approval), self.assertRaises(Refusal):
+                self.w.requalify_report_format_conflict(resolution, approval, reason)
+        self.assertEqual(self.state()['active']['phase'], 'REVIEW_PENDING')
+        good = self.auth('REQUALIFY_REPORT_FORMAT_CONFLICT', resolution)
+        self.requalify(resolution, good)
+        with self.assertRaises(Refusal):
+            self.requalify(resolution, good)
+        self.assert_unaccepted()
+
+    def test_unchanged_source_identical_new_observation_and_self_review_are_fresh_records(self):
+        pair = self.format_pair()
+        prior = copy.deepcopy(self.state()['active'])
+        old_source = self.w.fs.read('project/Case.lean')
+        resolution = self.resolve_format(pair)['resolution']
+        self.requalify(resolution)
+        # Repeating an actual observation may produce the same substantive
+        # content. Its new occurrence must not deduplicate into pre-retry data.
+        fresh = self.ev()
+        self.assertEqual(self.w.fs.read('project/Case.lean'), old_source)
+        self.assertNotEqual(fresh, pair['ev'])
+        self.w.initial_validation([fresh])
+        self.w.self_review([], 'Simulated self review')
+        self.w.reassess({})
+        self.assertNotEqual(self.state()['active']['self_review'], prior['self_review'])
+        self.assertNotEqual(self.state()['active']['reassessment'], prior['reassessment'])
+        req = self.w.prepare_review('fixture-review-request:unchanged-source-fresh', [fresh])
+        self.submit(req)
+        self.reconstruct()
+        self.assertEqual(self.state()['active']['phase'], 'REVIEW_PENDING')
+        self.assertNotEqual(self.state()['active']['initial_handoff'], prior['initial_handoff'])
+        self.assert_unaccepted()
+
+    def test_additional_conflict_after_resolution_survives_reconstruction_and_blocks_retry(self):
+        pair = self.format_pair()
+        resolution = self.resolve_format(pair)['resolution']
+        other = self.capture_format_report(pair['req'], pair['corrected_raw'] + ' ')
+        self.assertEqual(other['classification'], 'CONFLICTING_DUPLICATE')
+        self.reconstruct()
+        with self.assertRaises(Refusal):
+            self.requalify(resolution)
+        self.assertEqual(self.state()['active']['phase'], 'REVIEW_PENDING')
+        self.assert_unaccepted()
+
+    def test_unclassified_arrival_remains_a_barrier_after_exact_resolution(self):
+        pair = self.format_pair()
+        resolution = self.resolve_format(pair)['resolution']
+        # Deliberate synthetic classifier interruption, not a journal repair.
+        with patch.object(self.w, '_classify', side_effect=RuntimeError('synthetic interruption')):
+            with self.assertRaisesRegex(RuntimeError, 'synthetic interruption'):
+                self.capture_format_report(pair['req'], pair['corrected_raw'] + '\n')
+        self.reconstruct()
+        self.assertEqual(self.w.store.get(self.state()['captures'][-1], 'capture')['classification'],
+            'UNCLASSIFIED')
+        with self.assertRaises(Refusal):
+            self.requalify(resolution)
+        self.assert_unaccepted()
+
+    def test_resolution_transaction_failure_does_not_consume_authority_or_clear_conflict(self):
+        pair = self.format_pair()
+        approval = self.format_authority(pair)
+        before = copy.deepcopy(self.state())
+        remember = self.w._remember
+        def fail_after_record(state, kind, payload):
+            ref = remember(state, kind, payload)
+            if kind == 'report_format_resolution':
+                raise OSError('synthetic journal failure after object write')
+            return ref
+        with patch.object(self.w, '_remember', side_effect=fail_after_record):
+            with self.assertRaisesRegex(OSError, 'synthetic journal failure'):
+                self.resolve_format(pair, approval)
+        self.reconstruct()
+        self.assertEqual(self.state(), before)
+        self.assert_unaccepted()
+        self.assertEqual(self.resolve_format(pair, approval)['status'], 'RESOLVED_NOT_ACCEPTED')
+
+    def test_retry_transaction_failure_leaves_old_request_and_readiness_intact(self):
+        pair = self.format_pair()
+        resolution = self.resolve_format(pair)['resolution']
+        approval = self.auth('REQUALIFY_REPORT_FORMAT_CONFLICT', resolution)
+        before = copy.deepcopy(self.state())
+        remember = self.w._remember
+        def fail_after_record(state, kind, payload):
+            ref = remember(state, kind, payload)
+            if kind == 'report_format_requalification':
+                raise OSError('synthetic retry interruption after object write')
+            return ref
+        with patch.object(self.w, '_remember', side_effect=fail_after_record):
+            with self.assertRaisesRegex(OSError, 'synthetic retry interruption'):
+                self.requalify(resolution, approval)
+        self.reconstruct()
+        self.assertEqual(self.state(), before)
+        self.assertEqual(self.requalify(resolution, approval)['phase'], 'IMPLEMENTING')
+        self.assert_unaccepted()

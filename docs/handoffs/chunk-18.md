@@ -37,6 +37,29 @@ corrections and limitations remain distinct. No push, tag, publication, dependen
 change, later-chunk implementation or unrelated work is authorized here.
 Module names below have the `LeanInfoTheory.` prefix unless otherwise stated.
 
+### Bounded review-record recovery, 2026-10-18
+
+The amended checkpoint `b5e77c741caca836ea8d0a769d140bd1771cb34a` subsequently
+passed the complete clean routine. The cumulative reviewer assessed all twenty
+criteria SATISFIED with no findings, but its first report incorrectly cited a
+FAIL disclosure as passing evidence. The complete corrected original removes
+only that citation and preserves every observation and substantive assessment.
+The recorder retained the first report as `REPORT_EVIDENCE_INVALID` and the
+correction as `CONFLICTING_DUPLICATE` against the first delivery's byte hash.
+Neither report was accepted, and that run did not close C18.06.
+
+The lead separately approved a bounded review-tooling repair and requalification.
+The repair preserves both originals, classifications and delivery records;
+exact-pair resolution grants no acceptance. A separately authorized fresh
+validation/readiness/source-review sequence is required for the changed tooling.
+Its actual tests, independent technical review, expanded local checkpoint,
+clean rerun and API applicability belong to
+`.lit-review/setup/c18-06-remediation-20261018/`. Historical checks remain bound
+to their original sources. Only the eventual completion record named above
+establishes final closure; this paragraph claims neither recovery nor closure
+in advance. The fifteen mathematical endpoints and later-chunk responsibilities
+remain unchanged.
+
 ## Delivered interface
 
 C18 adds fifteen public theorems in five semantic owners. All belong to

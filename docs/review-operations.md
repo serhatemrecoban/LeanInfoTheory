@@ -221,9 +221,30 @@ Durable `.lit-review/` is never scratch. `backup --chunk ... --input ...` takes
 making only a same-disk journal copy. With no writer, manually back up the full store
 and checkout/version privately. Before restore inspect tip, identities, source and
 outstanding dispatch; never overwrite blindly. No automatic stale-lock removal,
-migration, corruption repair, cancellation reactivation, conflict/substantive
-adjudication or historical reopening is supported. Legacy `FIXTURE`/`DIAGNOSTIC`
+migration, corruption repair, cancellation reactivation, general conflict or
+substantive adjudication, or historical reopening is supported. The sole bounded
+report-format recovery below requires separate exact authority. Legacy `FIXTURE`/`DIAGNOSTIC`
 labels do not establish provenance or acceptance scope.
+
+For an invalid report followed by a reviewer-authored correction that removes
+exactly one FAIL citation from one SATISFIED criterion, use the read-only
+`report_format_conflict_target(initial_capture, corrected_capture)` to obtain the
+exact authority target. After the lead authorizes that pair and correction, call
+`resolve_report_format_conflict` with `RESOLVE_REPORT_FORMAT_CONFLICT` authority.
+It retains both original classifications and delivery bytes, and appends only a
+resolution. It does not accept either report or clear any other persistent barrier.
+
+After independently reviewing and testing the remedial tooling, use separately
+scoped `REQUALIFY_REPORT_FORMAT_CONFLICT` authority with
+`requalify_report_format_conflict(resolution_ref, approval, reason)`, with an
+explicit source-change and requalification rationale. This supersedes only
+the unaccepted old request and resets the step to `IMPLEMENTING`, retaining its
+history. Complete fresh initial validation, self-review, separate reassessment
+and a newly captured source-bound review through the usual operations. Keep
+actual old checks attributed to their original source; changed tooling needs
+qualification. Never edit journal objects, relabel the conflicting capture,
+resend an old report as a new arrival, or use ordinary `recover` to bypass this
+procedure. Inspect retained results after any partial operation before continuing.
 
 Reusable C9 startup prompt, to be issued **only after separate planning instruction**:
 

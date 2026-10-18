@@ -1186,5 +1186,140 @@ class CollaborationTransportTests(unittest.TestCase):
         self.assertFalse(f.state()["completed"])
 
 
+class ReportFormatProjectTests(unittest.TestCase):
+    """Exact-pair remediation in temporary source-copy sessions, never C18 state."""
+
+    def setUp(self):
+        self.f = ProjectWorkflowTests(methodName="runTest")
+        self.f.setUp()
+        self.addCleanup(self.f.doCleanups)
+
+    def pair(self):
+        f = self.f
+        f.session()
+        ev, req = f.prepared("format-conflict")
+        f.w.dispatch_intent(req["reference"])
+        receipt = f.w.record_submission(req["reference"], "UNCERTAIN", f.empty_submission(req))
+        body = json.loads(f.report(req))
+        failure = copy.deepcopy(body["new_evidence"][0])
+        failure.update(id="reviewer:fixture-failed-transport", outcome="FAIL",
+                       output="Synthetic failed context transport, retained verbatim.")
+        body["new_evidence"].append(failure)
+        body["report"]["verification"].append(failure["id"])
+        body["report"]["criteria"][0]["evidence"].append(failure["id"])
+        initial_raw = json.dumps(body, indent=2)
+        initial_observation = f.observation(req, initial_raw, event_ref="synthetic-source-copy:format-initial")
+        delivery = f.w.confirm_delivery(req["reference"], receipt, initial_raw,
+            initial_observation, f.auth("CONFIRM_DIAGNOSTIC_DELIVERY", req["reference"]))
+        initial = f.w.receive_report(initial_raw, initial_observation,
+            req["payload"]["request_id"], req["payload"]["attempt"])
+        self.assertEqual(initial["classification"], "REPORT_EVIDENCE_INVALID")
+        body["report"]["criteria"][0]["evidence"].remove(failure["id"])
+        corrected_raw = json.dumps(body)
+        corrected = f.w.receive_report(corrected_raw,
+            f.observation(req, corrected_raw, event_ref="synthetic-source-copy:format-corrected"),
+            req["payload"]["request_id"], req["payload"]["attempt"])
+        self.assertEqual(corrected["classification"], "CONFLICTING_DUPLICATE")
+        return dict(ev=ev, req=req, receipt=receipt, delivery=delivery,
+                    initial=initial["capture"], corrected=corrected["capture"],
+                    initial_raw=initial_raw, corrected_raw=corrected_raw)
+
+    def resolve(self, pair, approval=None):
+        f = self.f
+        if approval is None:
+            target = f.w.report_format_conflict_target(pair["initial"], pair["corrected"])
+            approval = f.auth("RESOLVE_REPORT_FORMAT_CONFLICT", target)
+        return f.w.resolve_report_format_conflict(pair["initial"], pair["corrected"], approval)
+
+    def test_project_resolution_reloads_and_requires_fresh_candidate_review(self):
+        f = self.f
+        pair = self.pair()
+        original = {ref: f.w.fs.read("durable/objects/" + ref + ".json")
+                    for ref in f.state()["records"]}
+        old_active = copy.deepcopy(f.state()["active"])
+        old_manifest = f.w.store.get(pair["req"]["payload"]["source_ref"], "manifest")
+        # Registered tooling/source can change before supported recovery. This
+        # is a temporary source-copy fixture, not a live pending request edit.
+        f.put("Case.lean", "-- Synthetic changed candidate; no compiler claim.\n")
+        result = self.resolve(pair)
+        f.w = project.load_session(f.root, f.chunk, "execution", test=True)
+        self.assertIsNone(f.state()["active"]["report"])
+        self.assertFalse(f.state()["completed"])
+        with self.assertRaises(Refusal):
+            f.w.project_closure()
+        restarted = f.w.requalify_report_format_conflict(result["resolution"],
+            f.auth("REQUALIFY_REPORT_FORMAT_CONFLICT", result["resolution"]),
+            "Synthetic implementation changed; requalify this exact current candidate.")
+        self.assertEqual(restarted["phase"], "IMPLEMENTING")
+        f.w = project.load_session(f.root, f.chunk, "execution", test=True)
+        self.assertEqual(f.state()["active"]["B"], old_active["B"])
+        for ref, data in original.items():
+            self.assertEqual(f.w.fs.read("durable/objects/" + ref + ".json"), data)
+        with self.assertRaises(Refusal):
+            f.w.initial_validation([pair["ev"]])
+        with self.assertRaises(Refusal):
+            f.w.prepare_review("lit-review:C10:execution:too-early", [pair["ev"]])
+        fresh = f.w.parent_evidence("Post-requalification source-copy inspection",
+            "Synthetic PASS on changed Case.lean after reset.", "No actual Lean or native review.")
+        f.w.initial_validation([fresh])
+        f.w.self_review([], "Fresh source-copy contextual self-review")
+        f.w.reassess({})
+        with self.assertRaises(Refusal):
+            f.w.prepare_review(pair["req"]["payload"]["request_id"], [fresh])
+        new = f.w.prepare_review("lit-review:C10:execution:format-fresh", [fresh])
+        manifest = f.w.store.get(new["payload"]["source_ref"], "manifest")
+        self.assertNotEqual(manifest["inventory"]["Case.lean"]["hash"],
+                            old_manifest["inventory"]["Case.lean"]["hash"])
+        self.assertEqual(new["payload"]["attempt"], 2)
+        self.assertEqual(f.state()["request_registry"][pair["req"]["payload"]["request_id"]]["status"],
+                         "SUPERSEDED")
+        f.acknowledged_report(new)
+        self.assertFalse(f.state()["completed"])
+        self.assertEqual(f.w.store.get(pair["initial"], "capture")["classification"],
+                         "REPORT_EVIDENCE_INVALID")
+        self.assertEqual(f.w.store.get(pair["corrected"], "capture")["classification"],
+                         "CONFLICTING_DUPLICATE")
+        self.assertEqual(f.w.store.get(pair["receipt"])["result"], "UNCERTAIN")
+        f.w.reconcile_report()
+        f.final_ready(fresh)
+        closed = f.w.project_closure()
+        self.assertFalse(closed["production_acceptance"])
+        self.assertIn("C10.01", f.state()["completed"])
+        for ref, data in original.items():
+            self.assertEqual(f.w.fs.read("durable/objects/" + ref + ".json"), data)
+
+    def test_project_resolution_does_not_accept_checkpoint_or_cross_session_authority(self):
+        f = self.f
+        pair = self.pair()
+        target = f.w.report_format_conflict_target(pair["initial"], pair["corrected"])
+        good = f.auth("RESOLVE_REPORT_FORMAT_CONFLICT", target)
+        wrong_scope = f.auth("APPROVE_CHECKPOINT", target)
+        wrong_binding = {**good, "binding": digest({"chunk": "C99", "session": "other"})}
+        reviewer_origin = {**good, "provenance": {**good["provenance"], "role": "assistant"}}
+        for approval in [None, wrong_scope, wrong_binding, reviewer_origin]:
+            with self.subTest(approval=approval), self.assertRaises(Refusal):
+                f.w.resolve_report_format_conflict(pair["initial"], pair["corrected"], approval)
+        with patch.dict(os.environ, {"CODEX_THREAD_ID": "another-parent"}):
+            with self.assertRaisesRegex(Refusal, "WRONG_ORIGINATING_PARENT"):
+                project.load_session(f.root, f.chunk, "execution", test=True)
+        self.assertIsNone(f.state()["active"]["report"])
+        self.assertFalse(f.state()["completed"])
+        self.assertEqual(self.resolve(pair, good)["status"], "RESOLVED_NOT_ACCEPTED")
+
+    def test_collaboration_original_arrivals_resolve_without_promoting_transport_or_verdict(self):
+        transport = CollaborationTransportTests(methodName="runTest")
+        transport.setUp()
+        self.addCleanup(transport.doCleanups)
+        self.f = transport.f
+        pair = self.pair()
+        result = self.resolve(pair)
+        self.assertFalse(result["report_accepted"])
+        self.f.w = project.load_session(self.f.root, self.f.chunk, "execution", test=True)
+        self.assertIsNone(self.f.state()["active"]["report"])
+        self.assertFalse(self.f.state()["completed"])
+        self.assertEqual(self.f.w.store.get(pair["delivery"]["confirmation"])["raw_sha256"],
+                         digest(pair["initial_raw"].encode()))
+
+
 if __name__ == "__main__":
     unittest.main()

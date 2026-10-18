@@ -1504,3 +1504,53 @@ review requires no source or documentation correction, this record-based wording
 may remain unchanged through read-only final applicability and closure; it does
 not waive any required qualification. No push, tag, publication, release,
 dependency change or later-chunk work is authorized.
+
+## 21. Authorized report-format recovery and requalification, 2026-10-18
+
+The amended checkpoint `b5e77c741caca836ea8d0a769d140bd1771cb34a` passed the
+complete maintained clean routine in 1860.074 seconds, exit 0. Actual evidence is
+retained in `.lit-review/setup/c18-06-20261018/clean-02/`; API applicability and
+the all-fifteen declaration inspection matched that candidate. The independent
+cumulative reviewer freshly compiled all five permanent consumer owners with
+warnings as errors, ran static and API-semantic checks, inspected the producer
+contracts and all twenty criteria, and recomputed the full API output digest.
+Its report assessed every criterion SATISFIED with no actionable findings.
+
+The first complete original incorrectly included the FAIL context/transport
+disclosure in the top READINESS passing-evidence list. Its actual classification
+is `REPORT_EVIDENCE_INVALID`, capture
+`f7e4851d9de2c2788835f941743f52c6b74a53c897f8b9708667b817a14e67f4`.
+The parent requested a complete corrected original. The reviewer removed only
+that citation; its FAIL evidence, verification membership, twenty-row matrix,
+other citations, findings and prose remained unchanged. The installed recorder
+compared corrected bytes with the initial report-backed delivery digest and
+classified this second original `CONFLICTING_DUPLICATE`, capture
+`0a8d8c0cd25e715e1ee47371425fc56432da6bad337546165d7631302e0f521e`.
+The parent had missed this independent delivery-hash gate. The failed capture,
+both originals and the resulting `REPORT_CONFLICT` remain preserved; neither
+report was accepted and C18.06 was left formally unclosed.
+
+After reading the concrete bounded remediation proposal, the lead said,
+"I approve, continue." Exact authority is retained in
+`.lit-review/setup/c18-06-remediation-20261018/authority.json`. It extends the
+original scope to the proposed workflow implementation, tests and review docs,
+with independent technical review, a scoped local checkpoint, full clean
+requalification and fresh source-bound cumulative review before completion.
+It does not authorize a general conflict bypass or rewriting historical records.
+
+The supported design validates the exact pair and single FAIL-citation removal,
+consumes pair-bound lead authority, and appends a resolution while preserving
+both classifications and the initial delivery. A separate authorized
+requalification supersedes only the unaccepted pending request and requires new
+initial validation, self-review, separate reassessment and source capture.
+Other unresolved conflicts, unclassified arrivals and substantive obligations
+remain barriers. Old evidence and readiness remain historical; changed tooling
+cannot inherit the old R-to-F identity. The new tests must exercise successful
+reconstruction and rejection boundaries, not only the happy path.
+
+Actual implementation/test/review/checkpoint/requalification outcomes belong to
+the new private evidence directory. This pre-final-capture account deliberately
+does not predict those results or claim closure. The prior supported completion
+of C18.01--C18.05 and the fifteen unchanged mathematical endpoints remain intact.
+Final C18.06 completion still requires
+`.lit-review/setup/c18-06-completion-20261018.json` from the supported workflow.

@@ -6,6 +6,30 @@ help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
 
+## C18.06 authorized review-record remediation, 2026-10-18
+
+Checkpoint `b5e77c741caca836ea8d0a769d140bd1771cb34a` passed the complete
+maintained clean routine, and independent cumulative review assessed all twenty
+C18 criteria SATISFIED with no findings. A FAIL disclosure was mistakenly cited
+as passing evidence in the first report. Its reviewer-authored correction
+removed exactly that citation, retaining all observations and substantive text.
+The first report remains `REPORT_EVIDENCE_INVALID`; the corrected report remains
+`CONFLICTING_DUPLICATE` because the recorder binds delivery to the first bytes.
+The parent missed this additional gate and preserved the failure without closure.
+
+The lead explicitly approved bounded workflow remediation and requalification.
+The approved design appends an exact-pair resolution with explicit authority;
+it rewrites neither original, classification nor delivery, and grants no
+acceptance. Separate authorized requalification requires fresh validation,
+self-review, reassessment and source-bound review for the changed tooling.
+Tests, independent technical review, expanded local checkpoint and complete
+clean requalification must precede final closure; old evidence retains its
+original source attribution. Actual records are under
+`.lit-review/setup/c18-06-remediation-20261018/`. Only the eventual supported
+`.lit-review/setup/c18-06-completion-20261018.json` establishes completion.
+The fifteen mathematical endpoints remain unchanged. Unrelated edits, dependency
+pins and later-chunk boundaries remain preserved; no publication is selected.
+
 ## C18.06 cumulative qualification and maintained handoff, 2026-10-18
 
 The conditional Step 6 request was admitted only after actual C18.05 closure

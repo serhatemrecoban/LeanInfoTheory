@@ -195,6 +195,8 @@ class Workflow:
                 require(registration["ref"] in accepted_requests, "ACCEPTANCE_RECORD_MISSING")
         require(all(ref in accepted_requests.values() for ref in state["captures"]
                     if self.store.get(ref, "capture")["classification"] == "VALID"), "ACCEPTANCE_RECORD_MISSING")
+        self._report_format_resolutions(state)
+        self._report_format_requalifications(state)
         require(set(state["completed"]).issubset(state["plan"]["steps"]), "CROSS_CHUNK_STATE")
         closed = list(state["completed"])
         require(set(closed) == set(state["plan"]["steps"][:len(closed)]), "NONCONTIGUOUS_CLOSURE")
@@ -361,11 +363,189 @@ class Workflow:
         pending["status"] = status
 
     def _capture_barrier(self, state):
-        # Persistent facts, not the last mutable blocker string. No adjudicator
-        # or unclassified-input recovery is implemented by this revision.
-        codes = {self.store.get(ref, "capture")["classification"] for ref in state["captures"]}
+        # Only a separately authorized, reload-validated exact format pair is
+        # resolved. Its original classification remains immutable and retained.
+        resolved = self._report_format_resolutions(state)
+        codes = {self.store.get(ref, "capture")["classification"] for ref in state["captures"]
+                 if ref not in resolved}
         require("UNCLASSIFIED" not in codes, "UNCLASSIFIED_REPORT_CAPTURE")
         require("CONFLICTING_DUPLICATE" not in codes, "REPORT_CONFLICT_UNRESOLVED")
+
+    def _report_format_pair(self, state, initial_capture, corrected_capture):
+        raise Refusal("REPORT_FORMAT_CORRECTION_UNSUPPORTED")
+
+    def _retained_authority(self, state, ref, action, target):
+        require(ref in state["records"] and ref in state["authority_history"], "RESOLUTION_AUTHORITY_MISSING")
+        record = self.store.get(ref, "authority")
+        require(set(record) == {"schema", "tag", "id", "actor", "binding", "action", "target",
+                                "contract_hash", "provenance"}, "AUTHORITY_SCHEMA")
+        self._authority_origin(record)
+        require(record["binding"] == digest(asdict(self.identity)) and record["action"] == action
+                and record["target"] == target and record["contract_hash"] == state["plan"]["contract_hash"],
+                "AUTHORITY_SCOPE")
+        return record
+
+    def _report_format_target(self, scope):
+        return "report-format-conflict:" + digest(scope)
+
+    def report_format_conflict_target(self, initial_capture, corrected_capture):
+        """Read-only authority target binding the exact original pair and delta."""
+        state = self.inspect()["state"]
+        return self._report_format_target(self._report_format_pair(state, initial_capture, corrected_capture))
+
+    def _report_format_resolutions(self, state):
+        resolved = {}
+        for ref in state["records"]:
+            record = self.store.get(ref)
+            if not isinstance(record, dict) or record.get("resolution_kind") != "SINGLE_FAIL_CITATION_REMOVAL":
+                continue
+            record = self.store.get(ref, "report_format_resolution")
+            require(set(record) == {"tag", "resolution_kind", "initial_capture", "corrected_capture",
+                                    "scope", "authority", "source", "report_accepted"}
+                    and record["tag"] == self.tag and record["report_accepted"] is False,
+                    "REPORT_FORMAT_RESOLUTION_SCHEMA")
+            scope = self._report_format_pair(state, record["initial_capture"], record["corrected_capture"])
+            require(scope == record["scope"] and record["corrected_capture"] not in resolved,
+                    "REPORT_FORMAT_RESOLUTION_MISMATCH")
+            self._retained_authority(state, record["authority"], "RESOLVE_REPORT_FORMAT_CONFLICT",
+                                     self._report_format_target(scope))
+            require(record["source"] in state["records"] and
+                    state["records"].index(record["authority"]) < state["records"].index(ref),
+                    "REPORT_FORMAT_RESOLUTION_ORDER")
+            self.store.get(record["source"], "manifest")
+            resolved[record["corrected_capture"]] = (ref, record)
+        return resolved
+
+    def resolve_report_format_conflict(self, initial_capture, corrected_capture, approval):
+        """Resolve only the exact authorized pair; accept neither original."""
+        result = {}
+        def action(state):
+            a = self._active(state, {"REVIEW_PENDING"}, allow_blocked=True)
+            require(not state["pause"] and not state["cancel"] and not state["plan_restriction"], "AUTHORITY_PAUSED")
+            require(state["external_blocker"] is None, "EXTERNAL_BLOCKER")
+            self._decision_barrier(state)
+            self._reconciliation_barrier(state)
+            scope = self._report_format_pair(state, initial_capture, corrected_capture)
+            require(corrected_capture not in self._report_format_resolutions(state), "REPORT_FORMAT_ALREADY_RESOLVED")
+            require(a["blocker"] in {"REPORT_CONFLICT", "SUSPENDED"} and a["pending"] and
+                    a["pending"]["request"] == scope["request"] and a["pending"]["status"] == "PENDING"
+                    and a["R"] == scope["source_ref"] and not a["reports"] and not a["report"]
+                    and not a["reconciliations"], "REPORT_FORMAT_RESOLUTION_SCOPE")
+            authority = self._authority(state, approval, "RESOLVE_REPORT_FORMAT_CONFLICT",
+                                        self._report_format_target(scope))
+            ref = self._remember(state, "report_format_resolution", {
+                "tag": self.tag, "resolution_kind": "SINGLE_FAIL_CITATION_REMOVAL",
+                "initial_capture": initial_capture, "corrected_capture": corrected_capture,
+                "scope": scope, "authority": authority,
+                "source": self._manifest(state, "REPORT_FORMAT_RESOLUTION_SOURCE"), "report_accepted": False})
+            self._capture_barrier(state)  # No other unresolved conflict is discharged.
+            result.update(resolution=ref, status="RESOLVED_NOT_ACCEPTED", report_accepted=False)
+        self._change("RESOLVE_EXACT_REPORT_FORMAT_PAIR_NOT_ACCEPTANCE", action)
+        return result
+
+    def _report_format_requalifications(self, state):
+        resolutions = self._report_format_resolutions(state)
+        known = {ref: record for ref, record in resolutions.values()}
+        result, used = [], set()
+        for ref in state["records"]:
+            record = self.store.get(ref)
+            if not isinstance(record, dict) or record.get("requalification_kind") != "REPORT_FORMAT_FRESH_SOURCE":
+                continue
+            record = self.store.get(ref, "report_format_requalification")
+            require(set(record) == {"tag", "requalification_kind", "resolution", "authority", "step",
+                                    "request", "old_source", "new_source", "reason", "prior_active"}
+                    and record["tag"] == self.tag and record["resolution"] in known
+                    and record["resolution"] not in used and isinstance(record["reason"], str)
+                    and record["reason"].strip(), "REPORT_FORMAT_REQUALIFICATION_SCHEMA")
+            resolution = known[record["resolution"]]
+            scope, prior = resolution["scope"], record["prior_active"]
+            require(record["request"] == scope["request"] and record["step"] == scope["step"]
+                    and record["old_source"] == scope["source_ref"] == prior["R"]
+                    and prior["step"] == record["step"] and prior["phase"] == "REVIEW_PENDING"
+                    and prior["blocker"] in {"REPORT_CONFLICT", "SUSPENDED"}
+                    and prior["pending"]["request"] == record["request"]
+                    and prior["pending"]["status"] == "PENDING" and not prior["reports"]
+                    and not prior["report"] and not prior["reconciliations"]
+                    and self._registration(state, record["request"])["status"] == "SUPERSEDED",
+                    "REPORT_FORMAT_REQUALIFICATION_ASSOCIATION")
+            self._retained_authority(state, record["authority"], "REQUALIFY_REPORT_FORMAT_CONFLICT", record["resolution"])
+            require(record["new_source"] in state["records"] and
+                    state["records"].index(record["resolution"]) < state["records"].index(record["authority"])
+                    < state["records"].index(ref), "REPORT_FORMAT_REQUALIFICATION_ORDER")
+            self.store.get(record["old_source"], "manifest")
+            self.store.get(record["new_source"], "manifest")
+            active = state["active"]
+            if active and active["step"] == record["step"]:
+                require(active["B"] == prior["B"] and record["request"] in active["requests"],
+                        "REPORT_FORMAT_HISTORY_LOST")
+                for key in ("self_review", "reassessment", "initial_handoff", "R", "F", "documentation"):
+                    value = active.get(key)
+                    require(value is None or (value in state["records"] and
+                            state["records"].index(value) > state["records"].index(ref)),
+                            "REPORT_FORMAT_STALE_READINESS")
+            used.add(record["resolution"])
+            result.append((ref, record))
+        return result
+
+    def _report_format_requalification_barrier(self, state):
+        resolved = {ref for ref, _ in self._report_format_resolutions(state).values()}
+        requalified = {record["resolution"] for _, record in self._report_format_requalifications(state)}
+        require(resolved <= requalified, "REPORT_FORMAT_REQUALIFICATION_REQUIRED")
+
+    def _fresh_requalification_evidence(self, state, a, refs):
+        records = [(ref, record) for ref, record in self._report_format_requalifications(state)
+                   if record["step"] == a["step"]]
+        if records:
+            boundary = state["records"].index(records[-1][0])
+            require(all(ref in state["records"] and state["records"].index(ref) > boundary for ref in refs),
+                    "REPORT_FORMAT_FRESH_VALIDATION_REQUIRED")
+
+    def _requalification_context(self, state, a):
+        records = [(ref, record) for ref, record in self._report_format_requalifications(state)
+                   if record["step"] == a["step"]]
+        return {"requalification": records[-1][0]} if records else {}
+
+    def requalify_report_format_conflict(self, resolution_ref, approval, reason):
+        """Separately authorize fresh validation and review, never accept old reports."""
+        require(isinstance(reason, str) and reason.strip(), "REPORT_FORMAT_REQUALIFICATION_REASON")
+        result = {}
+        def action(state):
+            a = self._active(state, {"REVIEW_PENDING"}, allow_blocked=True)
+            require(not state["pause"] and not state["cancel"] and not state["plan_restriction"], "AUTHORITY_PAUSED")
+            require(state["external_blocker"] is None, "EXTERNAL_BLOCKER")
+            self._capture_barrier(state)
+            self._decision_barrier(state)
+            self._reconciliation_barrier(state)
+            known = {ref: record for ref, record in self._report_format_resolutions(state).values()}
+            require(resolution_ref in known, "REPORT_FORMAT_RESOLUTION_REQUIRED")
+            scope = known[resolution_ref]["scope"]
+            require(not any(record["resolution"] == resolution_ref
+                            for _, record in self._report_format_requalifications(state)),
+                    "REPORT_FORMAT_ALREADY_REQUALIFIED")
+            require(a["blocker"] in {"REPORT_CONFLICT", "SUSPENDED"} and a["pending"] and
+                    a["pending"]["request"] == scope["request"] and a["pending"]["status"] == "PENDING"
+                    and a["R"] == scope["source_ref"] and not a["report"] and not a["reports"]
+                    and not a["reconciliations"] and not a["F"]
+                    and all(edit["status"] in {"APPLIED", "REVERSED"} for edit in a["edits"]),
+                    "REPORT_FORMAT_REQUALIFICATION_SCOPE")
+            require(self._contract_hash(state) == state["plan"]["contract_hash"], "CONTRACT_CHANGED")
+            self._prerequisites(state)
+            authority = self._authority(state, approval, "REQUALIFY_REPORT_FORMAT_CONFLICT", resolution_ref)
+            record = {"tag": self.tag, "requalification_kind": "REPORT_FORMAT_FRESH_SOURCE",
+                      "resolution": resolution_ref, "authority": authority, "step": a["step"],
+                      "request": scope["request"], "old_source": a["R"],
+                      "new_source": self._manifest(state, "REPORT_FORMAT_REQUALIFICATION_SOURCE"),
+                      "reason": reason, "prior_active": copy.deepcopy(a)}
+            self._request_status(state, "SUPERSEDED")
+            ref = self._remember(state, "report_format_requalification", record)
+            a.update(phase="IMPLEMENTING", blocker=None, pending=None, R=None, F=None,
+                     self_review=None, reassessment=None, initial_handoff=None,
+                     assessments={}, documentation=None)
+            a.pop("final_validation", None)
+            a.pop("impact", None)
+            result.update(requalification=ref, status="REQUALIFICATION_REQUIRED", phase="IMPLEMENTING")
+        self._change("REQUALIFY_RESOLVED_REPORT_FORMAT_WITH_FRESH_READINESS", action)
+        return result
 
     def _decision_barrier(self, state):
         # No substantive lead adjudication is implemented. Transient wording,
@@ -404,6 +584,7 @@ class Workflow:
             require(not state["pause"] and not state["cancel"] and not state["plan_restriction"], "AUTHORITY_PAUSED")
             require(state["external_blocker"] is None, "EXTERNAL_BLOCKER")
             self._capture_barrier(state)
+            self._report_format_requalification_barrier(state)
             if not adding_obligation:
                 self._decision_barrier(state)
                 require(active["blocker"] is None, "WORKFLOW_BLOCKED", str(active["blocker"]))
@@ -535,6 +716,7 @@ class Workflow:
             require(not state["pause"] and not state["cancel"] and not state["plan_restriction"], "AUTHORITY_PAUSED")
             require(state["external_blocker"] is None, "EXTERNAL_BLOCKER")
             self._capture_barrier(state)
+            self._report_format_requalification_barrier(state)
             self._decision_barrier(state)
             require(a["blocker"] is not None or (mode == "reconcile" and a["pending"]
                     and a["pending"].get("late_capture")), "NO_RECOVERY_NEEDED")
@@ -572,7 +754,8 @@ class Workflow:
             require(method and limitations is not None and outcome in ("PASS", "FAIL"), "EVIDENCE_SCHEMA")
             source = self._manifest(state, "EVIDENCE_SOURCE")
             ref = self._remember(state, "evidence", {"schema": 1, "tag": self.tag, "actor": self.implementer_actor,
-                "source": source, "method": method, "outcome": outcome, "limitations": limitations})
+                "source": source, "method": method, "outcome": outcome, "limitations": limitations,
+                **self._requalification_context(state, a)})
             a["evidence"].append(ref)
             result.append(ref)
         self._change("VALIDATION_EVIDENCE", action)
@@ -594,6 +777,7 @@ class Workflow:
         def action(state):
             a = self._active(state, {"IMPLEMENTING"})
             self._evidence(state, refs, self.current(state))
+            self._fresh_requalification_evidence(state, a, refs)
             a["phase"] = "INITIAL_VALIDATION"
         return self._change("INITIAL_VALIDATION", action)
 
@@ -714,6 +898,7 @@ class Workflow:
         require(all(x["status"] in {"APPLIED", "REVERSED"} for x in a["edits"]), "UNFINISHED_EDIT")
         current = self.current(state)
         self._evidence(state, validation, current)
+        self._fresh_requalification_evidence(state, a, validation)
         review = self.store.get(a["self_review"], "self_review")
         round_data = None
         if round_ref:
@@ -751,7 +936,8 @@ class Workflow:
             a = self._active(state, {"INITIAL_VALIDATION"})
             source = self._manifest(state, "SELF_REVIEW_SOURCE")
             a["self_review"] = self._remember(state, "self_review", {"tag": self.tag, "source": source,
-                "recommendations": recommendations, "narrative": narrative, "phase": "READ_ONLY_SECTIONS_1_TO_7"})
+                "recommendations": recommendations, "narrative": narrative, "phase": "READ_ONLY_SECTIONS_1_TO_7",
+                **self._requalification_context(state, a)})
             self._findings(state, recommendations, "SELF", source)
             a["phase"] = "SELF_REVIEW"
         return self._change("SELF_REVIEW_RECOMMENDATIONS_BEFORE_EDITS", action)
@@ -945,6 +1131,7 @@ class Workflow:
                 elif not same_source(self.store.get(a["R"], "manifest"), self.current(state)):
                     code, a["blocker"] = "SOURCE_DIVERGED", "SOURCE_DIVERGED"
                 else:
+                    resolved = self._report_format_resolutions(state)
                     deferred_reasons = [name for name, value in {
                         "PAUSE": state["pause"], "CANCEL": state["cancel"],
                         "PLAN_RESTRICTION": state["plan_restriction"], "EXTERNAL_BLOCKER": state["external_blocker"],
@@ -954,7 +1141,7 @@ class Workflow:
                         "OTHER_UNCLASSIFIED_CAPTURE": any(self.store.get(x, "capture")["classification"] == "UNCLASSIFIED"
                                                          for x in state["captures"] if x != raw_ref),
                         "REPORT_CONFLICT": any(self.store.get(x, "capture")["classification"] == "CONFLICTING_DUPLICATE"
-                                               for x in state["captures"] if x != raw_ref)
+                                               for x in state["captures"] if x != raw_ref and x not in resolved)
                     }.items() if value]
                     if deferred_reasons:
                         code = "LATE_VALID_REPORT"

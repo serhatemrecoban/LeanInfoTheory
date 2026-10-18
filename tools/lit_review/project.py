@@ -640,6 +640,18 @@ class ProjectWorkflow(DiagnosticWorkflow):
         return classify_report(raw,envelope,expected,seen,provenance=self._report_provenance(),
             tag=self.tag,finding_prefix=self.finding_prefix)
 
+    def report_format_conflict_target(self,initial_capture,corrected_capture):
+        require(self.contract['kind']=='STEP','PLAN_REVIEW_NOT_EXECUTION')
+        return super().report_format_conflict_target(initial_capture,corrected_capture)
+
+    def resolve_report_format_conflict(self,initial_capture,corrected_capture,approval):
+        require(self.contract['kind']=='STEP','PLAN_REVIEW_NOT_EXECUTION')
+        return super().resolve_report_format_conflict(initial_capture,corrected_capture,approval)
+
+    def requalify_report_format_conflict(self,resolution_ref,approval,reason):
+        require(self.contract['kind']=='STEP','PLAN_REVIEW_NOT_EXECUTION')
+        return super().requalify_report_format_conflict(resolution_ref,approval,reason)
+
     def own_edit(self,*args,**kwargs):
         raise Refusal('USE_BEGIN_EDIT_APPLY_PATCH_FINISH_EDIT')
 

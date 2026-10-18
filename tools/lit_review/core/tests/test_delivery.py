@@ -4,7 +4,7 @@ import json
 import unittest
 
 from diagnostic import create_toy, DiagnosticWorkflow, CRITERION
-from safe_store import BUNDLE, Refusal, canonical
+from safe_store import BUNDLE, Refusal, canonical, digest
 from test_integration import IntegrationTests
 
 
@@ -232,3 +232,203 @@ class DeliveryTests(unittest.TestCase):
         body['report']['earlier_reconciliation']=['Exact existing list note',{'retained':'structured entry'}]
         r=self.receive(req,json.dumps(body))
         self.assertEqual(self.w.store.get(r['capture'],'capture')['parsed']['earlier_reconciliation'],body['report']['earlier_reconciliation'])
+
+
+class FormatConflictFixture:
+    """Synthetic original arrivals; never read or modify a live chunk's records."""
+    setUp = DeliveryTests.setUp
+    auth = DeliveryTests.auth
+    state = DeliveryTests.state
+    refuse = DeliveryTests.refuse
+    next = DeliveryTests.next
+    ev = DeliveryTests.ev
+    finding = DeliveryTests.finding
+    prepared = DeliveryTests.prepared
+    obs = DeliveryTests.obs
+    submit = DeliveryTests.submit
+    report = DeliveryTests.report
+    final_ready = DeliveryTests.final_ready
+    confirm = DeliveryTests.confirm
+    fail_id = 'reviewer:format-context-transport'
+
+    def arrival(self, req, raw):
+        return self.obs(req, raw,
+            event_ref='synthetic-replay:format-arrival-' + digest(raw.encode()),
+            original_event=json.dumps({'Message Type': 'FINAL_ANSWER', 'Task name': '/root',
+                'Sender': self.w.identity.reviewer, 'Payload': raw}))
+
+    def capture_format_report(self, req, raw, **changes):
+        observation = self.arrival(req, raw)
+        observation.update(changes)
+        return self.w.receive_report(raw, observation,
+            req['payload']['request_id'], req['payload']['attempt'])
+
+    def format_pair(self, initial_change=None, corrected_change=None):
+        ev, req = self.prepared()
+        receipt = self.submit(req, 'UNCERTAIN')
+        body = json.loads(self.report(req))
+        failure = copy.deepcopy(body['new_evidence'][0])
+        failure.update(id=self.fail_id, outcome='FAIL',
+            output='Synthetic failed transport probe; retained as a failed observation.')
+        body['new_evidence'].append(failure)
+        body['report']['verification'].append(self.fail_id)
+        body['report']['criteria'][0]['evidence'].append(self.fail_id)
+        body['report']['earlier_reconciliation'] = [
+            'Verbatim fixture prose.\nRetain its whitespace. ',
+            {'matrix': [{'id': 'C1', 'status': 'SATISFIED', 'note': 'Unchanged assessment'}]}]
+        if initial_change:
+            initial_change(body)
+        initial_raw = json.dumps(body, indent=2)
+        initial_observation = self.arrival(req, initial_raw)
+        delivery = self.confirm(req, receipt, initial_raw, observation=initial_observation)
+        initial = self.w.receive_report(initial_raw, initial_observation,
+            req['payload']['request_id'], req['payload']['attempt'])
+        self.assertEqual(initial['classification'], 'REPORT_EVIDENCE_INVALID')
+        corrected = copy.deepcopy(body)
+        corrected['report']['criteria'][0]['evidence'].remove(self.fail_id)
+        if corrected_change:
+            corrected_change(corrected)
+        # Different JSON formatting is allowed; all decoded content except the
+        # exact authorized citation must remain identical.
+        corrected_raw = json.dumps(corrected, separators=(',', ':'))
+        correction = self.capture_format_report(req, corrected_raw)
+        self.assertEqual(correction['classification'], 'CONFLICTING_DUPLICATE')
+        return dict(ev=ev, req=req, receipt=receipt, delivery=delivery,
+            initial=initial['capture'], corrected=correction['capture'],
+            initial_raw=initial_raw, corrected_raw=corrected_raw)
+
+    def format_authority(self, pair):
+        target = self.w.report_format_conflict_target(pair['initial'], pair['corrected'])
+        return self.auth('RESOLVE_REPORT_FORMAT_CONFLICT', target)
+
+    def resolve_format(self, pair, approval=None):
+        return self.w.resolve_report_format_conflict(pair['initial'], pair['corrected'],
+            self.format_authority(pair) if approval is None else approval)
+
+    def retained_bytes(self):
+        return {ref: self.w.fs.read('durable/objects/' + ref + '.json')
+            for ref in self.state()['records']}
+
+    def assert_retained(self, original):
+        for ref, data in original.items():
+            self.assertEqual(self.w.fs.read('durable/objects/' + ref + '.json'), data, ref)
+
+    def assert_unaccepted(self):
+        state = self.state()
+        self.assertIsNone(state['active']['report'])
+        self.assertFalse(state['active']['assessments'])
+        self.assertFalse(state['completed'])
+        with self.assertRaises(Refusal):
+            self.w.reconcile_report()
+        with self.assertRaises(Refusal):
+            self.w.diagnostic_closure()
+
+
+class ReportFormatConflictDeliveryTests(FormatConflictFixture, unittest.TestCase):
+    def test_exact_authorized_single_fail_citation_resolution_retains_all_originals(self):
+        pair = self.format_pair()
+        before = self.retained_bytes()
+        capture_refs = list(self.state()['captures'])
+        target = self.w.report_format_conflict_target(pair['initial'], pair['corrected'])
+        self.assertEqual(target,
+            self.w.report_format_conflict_target(pair['initial'], pair['corrected']))
+        result = self.resolve_format(pair)
+        self.assertEqual(result['status'], 'RESOLVED_NOT_ACCEPTED')
+        self.assertFalse(result['report_accepted'])
+        self.assert_retained(before)
+        self.assertEqual(self.state()['captures'], capture_refs)
+        for key, classification in [('initial', 'REPORT_EVIDENCE_INVALID'),
+                                     ('corrected', 'CONFLICTING_DUPLICATE')]:
+            record = self.w.store.get(pair[key], 'capture')
+            self.assertEqual(record['classification'], classification)
+            self.assertEqual(record['original_text'], pair[key + '_raw'])
+        corrected = json.loads(pair['corrected_raw'])
+        self.assertIn(self.fail_id, corrected['report']['verification'])
+        self.assertEqual(corrected['new_evidence'][1]['outcome'], 'FAIL')
+        confirmation = self.w.store.get(pair['delivery']['confirmation'])
+        self.assertEqual(confirmation['raw_sha256'], digest(pair['initial_raw'].encode()))
+        self.assertEqual(self.w.store.get(pair['receipt'])['result'], 'UNCERTAIN')
+        self.assert_unaccepted()
+
+    def test_resolution_rejects_missing_wrong_and_reused_authority(self):
+        pair = self.format_pair()
+        good = self.format_authority(pair)
+        delivery_authority = self.w.store.get(pair['delivery']['confirmation'])['authority']
+        consumed_id = self.w.store.get(delivery_authority, 'authority')['id']
+        variants = [None, {}, {**good, 'action': 'CONFIRM_DIAGNOSTIC_DELIVERY'},
+            {**good, 'target': pair['req']['reference']}, {**good, 'binding': 'wrong-session'},
+            {**good, 'contract_hash': 'wrong-contract'},
+            {**good, 'id': consumed_id},
+            {**good, 'provenance': {**good['provenance'], 'role': 'assistant'}}]
+        for approval in variants:
+            with self.subTest(approval=approval), self.assertRaises(Refusal):
+                self.w.resolve_report_format_conflict(pair['initial'], pair['corrected'], approval)
+        self.assert_unaccepted()
+        self.resolve_format(pair, good)
+        records = list(self.state()['records'])
+        with self.assertRaises(Refusal):
+            self.resolve_format(pair, good)
+        self.assertEqual(self.state()['records'], records)
+        self.assert_unaccepted()
+
+    def test_resolution_rejects_every_broader_wrapper_delta(self):
+        mutations = {
+            'request': lambda b: b['report'].update(request_id='wrong-request'),
+            'attempt': lambda b: b['report'].update(attempt=2),
+            'R': lambda b: b['report'].update(source_ref='wrong-source'),
+            'kind': lambda b: b['report'].update(kind='PLAN'),
+            'binding': lambda b: b['report'].update(binding_digest='wrong-binding'),
+            'scope': lambda b: b['report'].update(scope='Broader scope'),
+            'prose': lambda b: b['report'].update(conclusion='Changed conclusion'),
+            'matrix': lambda b: b['report']['earlier_reconciliation'][1]['matrix'][0].update(status='NOT_ESTABLISHED'),
+            'criterion': lambda b: b['report']['criteria'][0].update(status='NOT_ESTABLISHED'),
+            'other citation': lambda b: b['report']['criteria'][0]['evidence'].clear(),
+            'findings': lambda b: b['report']['findings'].append(self.finding()),
+            'FAIL outcome': lambda b: b['new_evidence'][1].update(outcome='PASS'),
+            'evidence output': lambda b: b['new_evidence'][1].update(output='Changed observation'),
+            'limitations': lambda b: b['new_evidence'][0].update(limitations='Erased replay limit'),
+            'verification': lambda b: b['report']['verification'].remove(self.fail_id),
+            'evidence deletion': lambda b: b['new_evidence'].pop(),
+        }
+        for name, mutate in mutations.items():
+            with self.subTest(delta=name):
+                self.setUp()
+                pair = self.format_pair(corrected_change=mutate)
+                before = self.retained_bytes()
+                with self.assertRaises(Refusal):
+                    self.resolve_format(pair)
+                self.assert_retained(before)
+                self.assert_unaccepted()
+
+    def test_fail_must_remain_in_verification_and_removal_must_be_unique(self):
+        modifications = {
+            'missing verification': lambda b: b['report']['verification'].remove(self.fail_id),
+            'duplicate citation': lambda b: b['report']['criteria'][0]['evidence'].append(self.fail_id),
+        }
+        for name, mutate in modifications.items():
+            with self.subTest(case=name):
+                self.setUp()
+                pair = self.format_pair(initial_change=mutate)
+                with self.assertRaises(Refusal):
+                    self.resolve_format(pair)
+                self.assert_unaccepted()
+
+    def test_wrong_capture_order_and_non_original_origin_are_not_resolvable(self):
+        pair = self.format_pair()
+        approval = self.format_authority(pair)
+        with self.assertRaises(Refusal):
+            self.w.resolve_report_format_conflict(pair['corrected'], pair['initial'], approval)
+        bad = self.capture_format_report(pair['req'], pair['corrected_raw'],
+            reviewer='wrong-native-sender')
+        self.assertNotEqual(bad['classification'], 'VALID')
+        with self.assertRaises(Refusal):
+            self.w.resolve_report_format_conflict(pair['initial'], bad['capture'], approval)
+        self.assert_unaccepted()
+
+    def test_unrelated_delivery_conflict_is_not_cleared_by_exact_pair(self):
+        pair = self.format_pair()
+        with self.assertRaises(Refusal):
+            self.confirm(pair['req'], pair['receipt'], pair['corrected_raw'])
+        with self.assertRaises(Refusal):
+            self.resolve_format(pair)
+        self.assert_unaccepted()

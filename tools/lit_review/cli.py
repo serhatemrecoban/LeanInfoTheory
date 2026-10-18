@@ -17,6 +17,7 @@ METHODS=('inspect','current','authority','process_next','process_named_next','pa
     'initial_validation','self_review','reassess','disposition','reassess_finding',
     'begin_edit','finish_edit','finish_reversal','prepare_review','dispatch_intent',
     'record_submission','record_wait','confirm_delivery','receive_report',
+    'report_format_conflict_target','resolve_report_format_conflict','requalify_report_format_conflict',
     'reconcile_report','begin_corrections','finish_corrections','assess','extra_review',
     'finalize_documents','prepare_final','project_closure','refresh_final',
     'block','control','recover','mark_plan_revision','resolve_plan_revision',
