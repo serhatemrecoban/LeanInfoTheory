@@ -36,7 +36,81 @@ Status labels used below:
 
 ## 0. AI Assistant Quick Start
 
-**[Current] C18.06 cumulative qualification and handoff, 2026-10-18.**
+**[Current] C19.05 initial qualification and maintained handoff, 2026-10-20.**
+
+C19.01--C19.04 and their reviews are complete by actual private records. C19.05
+was admitted after exact predecessor closure/source verification and adds no
+mathematical endpoint. Its maintained C20/C21 handoff records all eight public
+declarations, permanent consumers and the sixteen approved criteria. Inventory
+remains 721 declarations in 47 owners, with 92 root exports and 94 reviewed simp names.
+
+The lead approved the exact 23-path local checkpoint, necessary C19.05-only
+amendments, reuse of the existing detached validation checkout, and the separate
+actual two-pass local API-documentation milestone.
+
+Initial checkpoint `66b65b9e14af0d10cd127b66ad1f3d16f8cea3fd` passed the complete
+`python scripts/validate_release.py` routine in the clean validation checkout.
+API01 remains **FAIL**: its first build completed (6361 jobs), but the semantic
+check found the new AEP and TypicalSet HTML pages missing after cached final
+HTML replay. The parent preserved and moved only the final HTML marker and its
+`.trace`/`.hash` companions; source, pins, checkers and Git identity were unchanged.
+This bounded generated-cache recovery is not passing API evidence.
+
+The parent reran `python scripts/validate_release.py api-docs` as API02 in the
+primary checkout in file mode, using reviewed Zig 0.16.0. Both actual build/check
+passes of API02 succeeded. The parent inspected all eight new declarations' actual
+signatures, hypotheses, docstrings, owners and local source links, and verified
+API-source correspondence to that clean checkpoint. These are warm/incremental
+executions and local output, with no cold-build or publication claim.
+Clean correspondence is byte-identical for 109/110 API inputs and 102/103 validation
+inputs. The sole `docs/v0.1-public-api.json` difference is the existing maintained
+LF/CRLF two-hash allowance: uniform CRLF-to-LF bytes and parsed values agree, and
+the clean file equals the requested Git blob. Primary API02 inputs are unchanged.
+Later applicability checks retain that explicit correspondence, configuration, dependencies and
+the two owner pages; whole-tree validity is reused from completed API02 and its
+original wrapper check, without claiming a fresh whole-tree rehash.
+
+These are initial qualification facts. Any amended checkpoint requires the complete
+clean rerun and exact API-evidence applicability assessment. The fresh all-sixteen-
+criterion review, original-report reconciliation, final validation and F capture
+are established only by their actual source-bound records. Final closure depends on
+`.lit-review/setup/c19-05-completion-20261020.json`, when present, and its linked completion chain;
+this prose asserts no future gate, review result or closure. C20--C24 and publication
+remain unselected.
+
+See the [C19 handoff](handoffs/chunk-19.md) for contracts and evidence limits.
+
+**[History] C19.04 typical-set cardinalities independently reviewed, 2026-10-20.**
+C19.01--C19.03 and their reviews are complete by actual private records.
+Step 4 was admitted after checking C19.03's closure, four satisfied criteria,
+reconciled report and all 265 exact final-source entries/environment/Git identity.
+The finite `Shannon.TypicalSet` owner adds `card_weakTypicalSet_le` and
+`prob_mul_exp_le_card_weakTypicalSet`. Both apply to every natural length and
+real width, without full-support or positive-entropy assumptions. The lower
+bound retains the actual real outer-measure probability of the same strict
+supported typical set. Zero-length and nonpositive-width cases remain empty.
+Finite consumers instantiate the bounds at those boundaries and at pure laws
+and binary strict bands; the positive-width empty example also disproves the
+lower bound with its probability factor omitted.
+One private `Examples.AEP.typical_inputs` consumer assembles complement
+convergence, atom/cardinality upper bounds and the natural message-budget
+conversion for the same set and real probability representation. Exponential
+positivity derives `1 <= M`, and `Fintype.card (Fin M) = M` is explicit.
+Another private consumer derives the eventual lower bound for independent
+positive epsilon and delta, with no delta-below-one hypothesis.
+Inventory is 721 declarations in 47 owners; root exports remain 92 and reviewed
+simp names remain 94. Imports and the normative plan are unchanged.
+Focused producer/consumer/aggregate, documentation and full compiled trust
+checks passed. The persistent independent STEP review reported no findings and
+assessed all three criteria SATISFIED; its original report is explicitly reconciled.
+Final qualification checks factual prose and exact applicability of the unchanged
+compiled inputs. Completion is established only by
+`.lit-review/setup/c19-04-completion-20261020.json` when present.
+See the [C19 notes](plans/post-release-chunk-19-notes.md#14-c1904-cardinality-bounds-and-downstream-inputs--2026-10-20)
+for evidence and limits. C19.05 clean/API-documentation qualification and the
+maintained handoff remain unselected; no coding or integer-rounding result is added.
+
+**[History] C18.06 cumulative qualification and handoff, 2026-10-18.**
 C18.01--C18.05 and their reviews are complete by actual private records.
 The C18.05 closure and all 258 captured entries/environment/Git state matched
 before the conditional C18.06 request was admitted on 2026-10-18. Only C18.06
@@ -65,7 +139,7 @@ C19--C24, push, tag, release, publication and dependency changes remain unselect
 See the [C18 handoff](handoffs/chunk-18.md) for contracts, evidence limits and
 separate C19/C22/C23 responsibilities.
 
-**[Current] C18.06 review-record remediation, 2026-10-18.** The amended
+**[History] C18.06 review-record remediation, 2026-10-18.** The amended
 `b5e77c741caca836ea8d0a769d140bd1771cb34a` checkpoint passed clean qualification,
 and the cumulative reviewer assessed all twenty criteria SATISFIED. A FAIL
 disclosure was erroneously cited as passing evidence in the first report. Its
@@ -530,7 +604,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Task | Read next |
 | --- | --- |
-| Post-release mathematics | Read the approved [C18 plan](plans/post-release-chunk-18.md), [notes](plans/post-release-chunk-18-notes.md), [C18 handoff](handoffs/chunk-18.md), [reference register](references.md), Sections 3, 7, 11--16 and actual Lean dependencies. C9--C17 and C18.01--C18.05 are complete by records. Only C18.06 is selected for cumulative qualification, canonical reconciliation and fresh all-20 review. No later chunk or release is selected. |
+| Post-release mathematics | Read the approved [C19 plan](plans/post-release-chunk-19.md), [C19 notes](plans/post-release-chunk-19-notes.md), [C18 handoff](handoffs/chunk-18.md), [reference register](references.md), Sections 3, 7, 11--16 and actual Lean dependencies. C18 closure was verified during C19 initialization. C19.01--C19.04 and their reviews are closed; C19.05 cumulative qualification and the [C20/C21 handoff](handoffs/chunk-19.md) are selected, with actual gates and status stated in Section 0. Later chunks and release work remain unselected. |
 | Chunk 8 review or later-phase intake | The completed Chunk 8 plan; Sections 3, 6-9, 11-14, and 16; the three Chunk 8 mathematical owners, two maintained example owners, semantic/examples aggregates, and current Future Work Notes 9, 14-18, and 24 |
 | Review of an existing Lean theorem | Sections 3, 7, 9, and 16; the owning source module and its direct imports |
 | API or module review | Sections 7, 9, 10, 11, and Future Work Notes 2-4, 14-16, 18, and 26 |
@@ -543,12 +617,12 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-10-18 |
+| Last updated | 2026-10-20 |
 | Recorded pre-C9 mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the released `v0.1.0` source is exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f` |
 | Repository transition state | `v0.1.0` is published from immutable tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` and archived as Zenodo record `22229599`. The evolving default branch carries the current project pages and DOI metadata, while maintenance staging preserves `/docs/v0.1.0/` from exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`; the tag, Release, archive, released Lean source, and frozen public API remain unchanged |
 | Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
 | mathlib baseline | `v0.1.0` uses input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474` |
-| Source-snapshot phase | Post-release `v0.1.x`; C9--C17 and C18.01--C18.05 are complete. C18.06 qualifies 713 declarations/45 owners. The approved initial 28-path checkpoint `8b30dc96e89a9b4e0224b059faed48e19a4e5f1e` passed the complete maintained clean routine; actual two-pass API docs and all-fifteen semantic inspection passed separately. Intake HEAD was `dacb55f97c1f942db929c59e99ea0fb9b8ac7cdd`. Readiness, fresh all-20 review/reconciliation, exact final applicability and supported closure require their actual source-bound records; this captured account does not certify them. Every amendment requires a complete clean rerun and exact API applicability. |
+| Source-snapshot phase | Post-release `v0.1.x`; C18 closure and its exact captured source were verified during C19 initialization at HEAD `aaaa6e7befe246832743b5df1716f9e26954a482`. C19.01--C19.04 and their reviews are closed by actual completion records; C19.05 is selected for cumulative qualification and maintained handoff. Source inventory contains 721 declarations in 47 owners; qualification and closure depend on the current step records, not inventory generation. Historical C18 clean/API-documentation evidence remains separately recorded below. |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -647,8 +721,8 @@ formalization:
 
 - full source- or channel-coding theorems, channel capacity, or coding
   converses;
-- AEP, typicality, method of types, entropy rates, or a stochastic-process
-  hierarchy;
+- method of types, entropy rates, or a stochastic-process hierarchy;
+  finite-iid AEP, weak typicality and cardinality bounds are implemented, with review status in Section 0;
 - general measurable-space entropy and sufficient-statistics theory;
 - certificate representations, checking, search, primitive recognition, or
   PSITIP/oXitip import;
@@ -1133,9 +1207,9 @@ claim a general measure-theoretic formalization of the whole subject.
 | `LeanInfoTheory` | Lightweight public aggregate only | Root |
 | `LeanInfoTheory.Shannon` | Import-only complete supported mathematical umbrella | No; subsumes the root |
 
-The current generated inventory contains 81 modules, 182 local import
-edges, 5 root-reachable modules, 76 separate-import modules, and 828 indexed
-declarations (827 documented and 1 undocumented). The root directly
+The current generated inventory contains 85 modules, 193 local import
+edges, 5 root-reachable modules, 80 separate-import modules, and 836 indexed
+declarations (835 documented and 1 undocumented). The root directly
 imports exactly `Probability.Finite` and `InformationMeasures`.
 
 `Probability.TotalVariation` imports only `Probability.Finite` and
@@ -1166,9 +1240,10 @@ exact-event formulas without unfolding it. The separate private
 aggregate. It consumes both marginal orientations, Fano and measure-product
 semantics. The root retains its five-module closure.
 
-The current generated supported closure contains 713 documented public declarations:
-636 theorems, 65 definitions, 9 abbreviations and 3 named instances in 45 owners.
-It excludes all 36 non-stable development, example and reference modules. C15.01 adds seven
+The current generated supported closure contains 721 documented public declarations:
+643 theorems, 66 definitions, 9 abbreviations and 3 named instances in 47 owners.
+It excludes all 38 non-stable development, example and reference modules.
+C19 adds supported block self-information, numerical finite-iid AEP and typical-probability convergence in the semantic owner. The finite TypicalSet owner provides supported strict membership, exponential atom bounds and all-length/all-width cardinality bounds; moments, concentration bounds and probability bridges remain private. Compilation and review status are recorded in Section 0. C15.01 adds seven
 declarations in `Probability.FiniteTopology`: the subtype-topology forwarder,
 real-coordinate continuity, real-simplex homeomorphism and its two coordinate
 equations, arbitrary-filter convergence iff and finite compactness instance.
@@ -1221,6 +1296,8 @@ and [structural type artifact](compatibility/README.md) remain unchanged.
 | `LeanInfoTheory.Probability.FiniteChannel` | Raw PMF channel constructions and elementary laws, with no Shannon/KL dependency |
 | `LeanInfoTheory.Probability.ProductChannel` | Finite dependent product and repeated channels; row/restriction, composition, deterministic and exact joint laws; imports only `Probability.Iid` |
 | `LeanInfoTheory.Shannon.SemanticBridge.Entropy` | Self-information and finite entropy as expected self-information |
+| `LeanInfoTheory.Shannon.SemanticBridge.AEP` | Supported iid self-information, numerical finite-iid AEP and typical-probability convergence; private moment, concentration and event bridges |
+| `LeanInfoTheory.Shannon.TypicalSet` | Supported strict weak typicality, exact membership, exponential atom bounds and probability-weighted cardinality bounds; finite owner independent of AEP |
 | `LeanInfoTheory.Shannon.SemanticBridge.Product` | Independent product PMFs and product-measure bridges |
 | `LeanInfoTheory.Shannon.SemanticBridge.FiniteSums` | Finite real-mass and log-ratio expansions |
 | `LeanInfoTheory.Shannon.SemanticBridge.Conditional` | Positive conditional PMFs and expected fiber formulas |
@@ -1727,10 +1804,9 @@ review.
   objectives and actual fixed-channel attainment consumer. Global KL likely needs a
   lower-semicontinuity or support-stratified treatment rather than an
   unqualified continuity theorem.
-- C18.01--C18.05 and their reviews are closed by actual records. C18.06
-  retains fresh cumulative qualification and handoff; those mathematical steps
-  do not discharge its clean routine, actual API-doc gate or all-20 review.
-  C19 AEP, C22 capacity and C23 coding remain distinct later work. See Section 12.
+- C18 cumulative closure and source applicability were verified during C19
+  initialization. C19.04 supplies typical-set cardinality bounds and assembled downstream mathematical inputs; C22 capacity and
+  C23 coding retain their separate later requirements. See Section 12.
 - Matrix-facing doubly stochastic/majorization/Birkhoff theory.
 - Canonical and minimal sufficient statistics.
 - General measurable sufficiency and larger iid/count-statistic examples.
@@ -1819,7 +1895,163 @@ certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
 
-### C18.06 cumulative qualification and handoff, 2026-10-18
+### C19.05 initial qualification and maintained handoff, 2026-10-20
+
+C19.01--C19.04 and their reviews are complete by actual private records. C19.05
+was admitted after exact predecessor closure/source verification and adds no
+mathematical endpoint. Its maintained C20/C21 handoff records all eight public
+declarations, permanent consumers and the sixteen approved criteria. Inventory
+remains 721 declarations in 47 owners, with 92 root exports and 94 reviewed simp names.
+
+The lead approved the exact 23-path local checkpoint, necessary C19.05-only
+amendments, reuse of the existing detached validation checkout, and the separate
+actual two-pass local API-documentation milestone.
+
+Initial checkpoint `66b65b9e14af0d10cd127b66ad1f3d16f8cea3fd` passed the complete
+`python scripts/validate_release.py` routine in the clean validation checkout.
+API01 remains **FAIL**: its first build completed (6361 jobs), but the semantic
+check found the new AEP and TypicalSet HTML pages missing after cached final
+HTML replay. The parent preserved and moved only the final HTML marker and its
+`.trace`/`.hash` companions; source, pins, checkers and Git identity were unchanged.
+This bounded generated-cache recovery is not passing API evidence.
+
+The parent reran `python scripts/validate_release.py api-docs` as API02 in the
+primary checkout in file mode, using reviewed Zig 0.16.0. Both actual build/check
+passes of API02 succeeded. The parent inspected all eight new declarations' actual
+signatures, hypotheses, docstrings, owners and local source links, and verified
+API-source correspondence to that clean checkpoint. These are warm/incremental
+executions and local output, with no cold-build or publication claim.
+Clean correspondence is byte-identical for 109/110 API inputs and 102/103 validation
+inputs. The sole `docs/v0.1-public-api.json` difference is the existing maintained
+LF/CRLF two-hash allowance: uniform CRLF-to-LF bytes and parsed values agree, and
+the clean file equals the requested Git blob. Primary API02 inputs are unchanged.
+Later applicability checks retain that explicit correspondence, configuration, dependencies and
+the two owner pages; whole-tree validity is reused from completed API02 and its
+original wrapper check, without claiming a fresh whole-tree rehash.
+
+These are initial qualification facts. Any amended checkpoint requires the complete
+clean rerun and exact API-evidence applicability assessment. The fresh all-sixteen-
+criterion review, original-report reconciliation, final validation and F capture
+are established only by their actual source-bound records. Final closure depends on
+`.lit-review/setup/c19-05-completion-20261020.json`, when present, and its linked completion chain;
+this prose asserts no future gate, review result or closure. C20--C24 and publication
+remain unselected.
+
+See the [C19 handoff](handoffs/chunk-19.md) for contracts and evidence limits.
+
+### Historical C19.04 typical-set cardinalities, 2026-10-20
+
+**[History] C19.04 typical-set cardinalities independently reviewed, 2026-10-20.**
+C19.01--C19.03 and their reviews are complete by actual private records.
+Step 4 was admitted after checking C19.03's closure, four satisfied criteria,
+reconciled report and all 265 exact final-source entries/environment/Git identity.
+The finite `Shannon.TypicalSet` owner adds `card_weakTypicalSet_le` and
+`prob_mul_exp_le_card_weakTypicalSet`. Both apply to every natural length and
+real width, without full-support or positive-entropy assumptions. The lower
+bound retains the actual real outer-measure probability of the same strict
+supported typical set. Zero-length and nonpositive-width cases remain empty.
+Finite consumers instantiate the bounds at those boundaries and at pure laws
+and binary strict bands; the positive-width empty example also disproves the
+lower bound with its probability factor omitted.
+One private `Examples.AEP.typical_inputs` consumer assembles complement
+convergence, atom/cardinality upper bounds and the natural message-budget
+conversion for the same set and real probability representation. Exponential
+positivity derives `1 <= M`, and `Fintype.card (Fin M) = M` is explicit.
+Another private consumer derives the eventual lower bound for independent
+positive epsilon and delta, with no delta-below-one hypothesis.
+Inventory is 721 declarations in 47 owners; root exports remain 92 and reviewed
+simp names remain 94. Imports and the normative plan are unchanged.
+Focused producer/consumer/aggregate, documentation and full compiled trust
+checks passed. The persistent independent STEP review reported no findings and
+assessed all three criteria SATISFIED; its original report is explicitly reconciled.
+Final qualification checks factual prose and exact applicability of the unchanged
+compiled inputs. Completion is established only by
+`.lit-review/setup/c19-04-completion-20261020.json` when present.
+See the [C19 notes](plans/post-release-chunk-19-notes.md#14-c1904-cardinality-bounds-and-downstream-inputs--2026-10-20)
+for evidence and limits. C19.05 clean/API-documentation qualification and the
+maintained handoff remain unselected; no coding or integer-rounding result is added.
+
+### Historical C19.03 weak typicality, 2026-10-20
+
+**[History] C19.03 weak typicality independently reviewed, 2026-10-20.**
+Step 3 was admitted after verifying C19.02's actual closure, satisfied criteria,
+reconciled review and all 263 exact final-source entries/environment/Git identity.
+The finite `Shannon.TypicalSet` owner supplies `weakTypicalSet`,
+`mem_weakTypicalSet` and `weakTypicalSet_mass_bounds`. Membership requires
+positive blocklength, actual iid support and strict normalized deviation.
+Zero length and nonpositive widths give an empty set; impossible words remain
+excluded at any width. The two Real exponential atom bounds use nats and need
+neither full support nor positive entropy. The finite owner does not import AEP.
+The semantic AEP owner supplies `tendsto_prob_weakTypicalSet`: typical probability
+tends to one for every positive width. Its private support-intersection bridge
+proves complement/deviation equality in probability at positive lengths.
+Examples.AEP derives complement convergence through supported interfaces.
+Finite examples cover pure/singleton, sparse supported/impossible, zero/one
+lengths and nonpositive widths, including the binary positive-width empty set
+and exact probability-2/3 strict-boundary cases. Inventory is 719 declarations
+in 47 owners; root exports remain 92 and reviewed simp names remain 94.
+Focused producer/consumer/aggregate, documentation and compiled trust checks
+passed. The persistent independent STEP review reported no findings and assessed
+all four criteria SATISFIED; the original report is explicitly reconciled.
+Final qualification reuses the exact unchanged compiled inputs and checks final
+factual prose. Completion is established only by
+`.lit-review/setup/c19-03-completion-20261020.json` when present.
+See the [C19 notes](plans/post-release-chunk-19-notes.md#13-c1903-weak-typicality--2026-10-20)
+for the proof route, evidence and limits. Cardinality bounds and later steps
+remain unselected; the clean checkpoint and API-documentation milestone belong
+to C19.05.
+
+### Historical C19.02 numerical finite-iid AEP, 2026-10-19
+
+**[History] C19.02 numerical AEP independently reviewed, 2026-10-19.**
+The fresh Step 2 request followed successful C19.01 closure. Its completion
+record and all 263 captured entries were verified before admission; the earlier
+skipped request remains historical. The focused `Shannon.SemanticBridge.AEP`
+owner now exports `tendsto_selfInfo_iid_deviation` alongside supported block
+additivity. For every finite PMF and positive epsilon, the exact real probability
+of normalized self-information deviation at least epsilon tends to zero.
+The private Chebyshev bound requires positive length and uses the compiled
+support/AE, moment and finite-event bridges. No measurable-space or full-support
+hypotheses are added to the public endpoint. Permanent consumers use nonuniform
+and sparse sources and check exact deterministic zero deviation; the private
+producer fixture checks positive second moment and actual block variance at
+length two. Inventory is 715 declarations in 46 owners, with 92 root exports
+and 94 reviewed simp names unchanged. Focused producer/consumer/aggregate,
+documentation and compiled trust qualification passed. The persistent
+independent STEP review reported no findings and assessed all three criteria
+SATISFIED; its original report is explicitly reconciled. Final qualification
+reuses the exact unchanged compiled inputs and checks final factual prose.
+Completion is established only by
+`.lit-review/setup/c19-02-completion-20261019.json` when present. The
+[C19 notes](plans/post-release-chunk-19-notes.md#12-c1902-numerical-finite-iid-aep--2026-10-19)
+retain the proof route, actual evidence and limits. Typical sets and later steps
+remain unselected; no clean checkpoint, API-doc milestone or publication is selected.
+
+### Historical C19.01 supported information and probability bridge, 2026-10-18
+
+**[History] C19.01 independent review reconciled, 2026-10-19.**
+The lead approved [C19 revision 2](plans/post-release-chunk-19.md) and selected
+only step 1 with its review process. C18 closure and its captured source were
+verified during C19 initialization; its earlier qualification prose below is
+historical. The focused `Shannon.SemanticBridge.AEP` owner adds only
+`selfInfo_iid_of_mem_support`, with private support/AE, composed-independence,
+mean/variance and normalized-event machinery. `Examples.AEP` covers the sparse
+additivity counterexample and zero/one, pure, singleton and empty-alphabet
+boundaries. Generated source inventory is 714 declarations in 46 owners;
+root exports remain 92 and reviewed simp names 94. The focused producer,
+permanent consumers and affected aggregates compiled with warnings as errors,
+including the private connected checkpoint. Documentation and compiled trust
+qualification also passed. The persistent independent STEP review found no
+issues and assessed all three criteria SATISFIED; its original report is
+explicitly reconciled. Final qualification reuses the unchanged compiled
+inputs and checks the final factual documentation. Completion is established
+only by `.lit-review/setup/c19-01-completion-20261019.json` when present. The
+[C19 notes](plans/post-release-chunk-19-notes.md#11-c1901-authority-and-execution-choices--2026-10-18)
+retain authority, proof choices and evidence limits. A conditional C19.02 message
+arrived before successful C19.01 closure and was consumed as skipped. No later
+step, clean checkpoint, API-doc milestone, commit or publication is selected.
+
+### Historical C18.06 cumulative qualification and handoff, 2026-10-18
 
 C18.01--C18.05 and their reviews are complete by actual private records.
 The C18.05 closure and all 258 captured entries/environment/Git state matched
@@ -2621,7 +2853,7 @@ again.
 | Note | Work |
 | --- | --- |
 | Unnumbered | **Chunk 8 is complete through `C8.24` and checkpointed as `1eef228`.** Its 18-declaration API, generated references, complete validation evidence, exact-SHA Lean workflow, and Pages deployment pass; any later theorem phase requires a separate decision. |
-| Unnumbered | **C18 product/block information:** C18.01--C18.05 and their reviews are complete by records. C18.06 owns cumulative qualification, fresh all-20 review and the [maintained handoff](handoffs/chunk-18.md). The [plan](plans/post-release-chunk-18.md) and [notes](plans/post-release-chunk-18-notes.md) retain exact criteria and evidence. C19 AEP, C22 capacity and C23 coding remain unselected with separate prerequisites. |
+| Unnumbered | **C19 cumulative qualification:** C18 is complete by its private record. C19.01--C19.04 and their reviews are closed. Selected C19.05 owns the clean/API gates, fresh all-sixteen-criterion review and [C20/C21 handoff](handoffs/chunk-19.md). The [approved plan](plans/post-release-chunk-19.md) and [notes](plans/post-release-chunk-19-notes.md) retain contracts and actual evidence. C20/C21 coding, C22 capacity and C23 channel coding remain later separately selected work. |
 | 29 | **Finite-Fano phase checkpointed.** Commit `ec78829` completes the approved phase; its evidence-based Fano follow-ups remain open and deferred. |
 
 Note 29 also preserves proof-pressure triggers from `C5.08`-`C5.11` and
@@ -2825,8 +3057,19 @@ Proposition 11.6/proof as product notation and downstream context. The planning
 notes retain the exact pages, source hash and original visual inspection. Its
 finite PMF normalization/transport proofs do not establish those information or
 AEP results. The [C16 handoff](handoffs/chunk-16.md#mathematical-sources-and-adaptations)
-records the finite-alphabet adaptation and C19's unresolved typicality/support
-convention. Closeout claims no fresh textbook reading.
+records the finite-alphabet adaptation and the typicality/support decision
+that was still open at C16 closeout. C19's approved plan now fixes strict supported
+typicality with an empty zero-length set. The C16 closeout claimed no fresh
+textbook reading.
+
+C19 uses CT91 Section 3.1, Theorems 3.1.1--3.1.2, and PW24 Section 11.2,
+Proposition 11.6, for finite-iid AEP and typical-set probability/counting
+bounds. Natural logarithms replace bits, and strict supported typicality is
+the documented convention. C19.04 retains the actual event probability in
+the finite lower cardinality bound and keeps the width and probability
+tolerance independent in the eventual consumer. The [C19 notes](plans/post-release-chunk-19-notes.md)
+record exact passages, source adaptations and evidence limits; coding and
+integer-rounding theorems remain downstream.
 
 C17 uses PW24 Sections 6.1 and 19.1 for finite conditional-product and repeated
 channel conventions. The general product allows nonidentical coordinate
@@ -2891,7 +3134,43 @@ not reproduce textbook prose or proofs.
 
 ## 16. Validation State
 
-**C18.06 cumulative qualification, 2026-10-18.** Step 5 closed successfully and its final source matched intake. The lead approved the exact 28-path local checkpoint, necessary C18.06-only amendments and existing detached validation-checkout reuse. Initial checkpoint `8b30dc96e89a9b4e0224b059faed48e19a4e5f1e` passed the complete maintained clean routine. Actual two-pass file-mode API documentation and all-fifteen-signature/docstring/source-link inspection passed separately. The initial absent-page failure and bounded three-marker recovery remain recorded with actor attribution; the cache recovery changed no source, pins or validator and did not manually edit or delete the docInfo database. This is local qualification, not cold-build or publication evidence. Readiness, fresh all-20 review/reconciliation, exact final applicability and supported closure require their actual source-bound records, including `.lit-review/setup/c18-06-completion-20261018.json` when present. Every amendment requires the complete maintained clean rerun and exact API applicability.
+**[Current] C19.05 initial qualification, 2026-10-20.**
+
+The lead approved the exact 23-path local checkpoint, necessary C19.05-only
+amendments, reuse of the existing detached validation checkout, and the separate
+actual two-pass local API-documentation milestone.
+
+Initial checkpoint `66b65b9e14af0d10cd127b66ad1f3d16f8cea3fd` passed the complete
+`python scripts/validate_release.py` routine in the clean validation checkout.
+API01 remains **FAIL**: its first build completed (6361 jobs), but the semantic
+check found the new AEP and TypicalSet HTML pages missing after cached final
+HTML replay. The parent preserved and moved only the final HTML marker and its
+`.trace`/`.hash` companions; source, pins, checkers and Git identity were unchanged.
+This bounded generated-cache recovery is not passing API evidence.
+
+The parent reran `python scripts/validate_release.py api-docs` as API02 in the
+primary checkout in file mode, using reviewed Zig 0.16.0. Both actual build/check
+passes of API02 succeeded. The parent inspected all eight new declarations' actual
+signatures, hypotheses, docstrings, owners and local source links, and verified
+API-source correspondence to that clean checkpoint. These are warm/incremental
+executions and local output, with no cold-build or publication claim.
+Clean correspondence is byte-identical for 109/110 API inputs and 102/103 validation
+inputs. The sole `docs/v0.1-public-api.json` difference is the existing maintained
+LF/CRLF two-hash allowance: uniform CRLF-to-LF bytes and parsed values agree, and
+the clean file equals the requested Git blob. Primary API02 inputs are unchanged.
+Later applicability checks retain that explicit correspondence, configuration, dependencies and
+the two owner pages; whole-tree validity is reused from completed API02 and its
+original wrapper check, without claiming a fresh whole-tree rehash.
+
+These are initial qualification facts. Any amended checkpoint requires the complete
+clean rerun and exact API-evidence applicability assessment. The fresh all-sixteen-
+criterion review, original-report reconciliation, final validation and F capture
+are established only by their actual source-bound records. Final closure depends on
+`.lit-review/setup/c19-05-completion-20261020.json`, when present, and its linked completion chain;
+this prose asserts no future gate, review result or closure. C20--C24 and publication
+remain unselected.
+
+**[History] C18.06 cumulative qualification, 2026-10-18.** Step 5 closed successfully and its final source matched intake. The lead approved the exact 28-path local checkpoint, necessary C18.06-only amendments and existing detached validation-checkout reuse. Initial checkpoint `8b30dc96e89a9b4e0224b059faed48e19a4e5f1e` passed the complete maintained clean routine. Actual two-pass file-mode API documentation and all-fifteen-signature/docstring/source-link inspection passed separately. The initial absent-page failure and bounded three-marker recovery remain recorded with actor attribution; the cache recovery changed no source, pins or validator and did not manually edit or delete the docInfo database. This is local qualification, not cold-build or publication evidence. Readiness, fresh all-20 review/reconciliation, exact final applicability and supported closure require their actual source-bound records, including `.lit-review/setup/c18-06-completion-20261018.json` when present. Every amendment requires the complete maintained clean rerun and exact API applicability.
 
 **[History] C18.05 initial qualification, 2026-10-18.** The internal tuple/universe checkpoint, standalone producer/consumer checks, maintained focused builds and Shannon/Examples aggregates, static/generated checks, documentation examples and full compiled compatibility/trust qualification passed. The [C18 notes](plans/post-release-chunk-18-notes.md) retain actual commands, execution actors, results, corrections and source applicability. These are warm/incremental checks; no cold, clean cumulative or actual two-pass API-documentation claim is made. Independent C18.05 STEP review reports no findings and all three criteria SATISFIED; the original report is explicitly reconciled. Final validation, final source capture and source-bound closure remain pending.
 

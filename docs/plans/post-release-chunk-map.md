@@ -1,9 +1,9 @@
 # Post-Release Chunk Map: Quantitative and Operational Information Theory
 
-**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-18. Detailed C9--C18 revision-2 plans were separately approved; C19--C24 remain proposed.
+**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-20. Detailed C9--C19 revision-2 plans were separately approved; C20--C24 remain proposed.
 **Review follow-up:** C18/C23 clarifications accepted for this map; the 16-chunk structure is unchanged.
-**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md), [C12 plan](post-release-chunk-12.md), [C13 plan](post-release-chunk-13.md), [C14 plan](post-release-chunk-14.md), [C15 plan](post-release-chunk-15.md), [C16 plan](post-release-chunk-16.md), [C17 plan](post-release-chunk-17.md), [C18 plan](post-release-chunk-18.md) and eligible step requests own their respective execution.
-**Execution:** C9--C17 and C18.01--C18.05 are complete by actual private records. Only C18.06 is selected for cumulative qualification and the [maintained handoff](../handoffs/chunk-18.md); it adds no mathematical endpoint. The lead approved the exact 28-path local checkpoint, necessary C18.06-only amendments and existing detached validation-checkout reuse. Initial checkpoint `8b30dc96e89a9b4e0224b059faed48e19a4e5f1e` passed the complete maintained clean routine; actual two-pass API docs and all-fifteen semantic inspection passed separately. The initial failure and bounded cache recovery are retained. Readiness, fresh all-20 review/reconciliation, exact final applicability and supported closure require actual source-bound records, including `.lit-review/setup/c18-06-completion-20261018.json` when present; this captured account does not certify them. Every amendment requires the complete maintained clean rerun and exact API applicability. C19--C24 and release/publication are unselected. Earlier provisional snapshots do not reopen completed work.
+**Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md), [C12 plan](post-release-chunk-12.md), [C13 plan](post-release-chunk-13.md), [C14 plan](post-release-chunk-14.md), [C15 plan](post-release-chunk-15.md), [C16 plan](post-release-chunk-16.md), [C17 plan](post-release-chunk-17.md), [C18 plan](post-release-chunk-18.md), [C19 plan](post-release-chunk-19.md) and eligible step requests own their respective execution.
+**Execution:** C9--C18 and C19.01--C19.04 are complete by actual private records. The fresh conditional request selects only C19.05 after exact Step 4 closure/source verification. It owns cumulative clean/API qualification, fresh all-sixteen-criterion review and the [maintained C20/C21 handoff](../handoffs/chunk-19.md), without adding a mathematical endpoint. The lead separately approved the scoped checkpoint, amendments, validation-checkout reuse and API milestone. Initial checkpoint `66b65b9e14af0d10cd127b66ad1f3d16f8cea3fd` passed the complete clean routine. API01 remains FAIL after missing generated owner pages; the parent retained exactly three generated cache markers with unchanged source/pins/checkers, then API02 passed the actual two-pass file-mode gate and all-eight declaration inspection. Clean correspondence is byte-identical for 109/110 API and 102/103 validation inputs, with only the existing maintained frozen-manifest LF/CRLF allowance. The private applicability guard refusal is separately retained and does not alter API02 PASS. Amended candidates still require their clean rerun and API applicability. Completion requires actual supported source-bound records, including `.lit-review/setup/c19-05-completion-20261020.json` when present. C20--C24 and release/publication remain unselected. Historical provisional snapshots do not reopen completed work.
 **Map-intake baseline inspected:** `master` at `80ea016c7ac64bb5bd79b2f769227a3fb2ccc3b3`,
 with the existing uncommitted post-release documentation/discoverability work
 preserved. The immutable `v0.1.0` mathematical baseline remains
@@ -425,13 +425,14 @@ Sources: `PW24` 6.1 and 19.1; Future Work Note 31 ownership constraints.
 
 ### C18. Block information and single-letterization
 
-**Current execution:** C18.01--C18.05 and their reviews are complete by records.
-The [approved revision-2 plan](post-release-chunk-18.md) delivered all thirteen
-required theorems plus the separately selected exact gap and output-mutual-
-independence iff, with permanent private consumers. C18.06 owns cumulative
-qualification, fresh all-20 review and the [handoff](../handoffs/chunk-18.md).
+**Completed execution:** C18.01--C18.06 and their reviews are complete by
+actual private records. The [approved revision-2 plan](post-release-chunk-18.md)
+delivered all thirteen required theorems plus the separately selected exact gap
+and output-mutual-independence iff, with permanent private consumers.
+The [handoff](../handoffs/chunk-18.md) retains contracts and historical evidence;
+its provisional captured prose does not supersede the actual closure record.
 The general-observation source inequality retains its full approved signature.
-The original programme below remains a planning contract; no later chunk starts.
+The original programme below remains the historical planning contract.
 
 
 **Goal:** The reusable information identities and bounds needed for coding.
@@ -468,6 +469,8 @@ Capacity additivity belongs to C22, not this chunk's as-yet-undefined capacity.
 Sources: `PW24` 6.1, Theorem 6.1; existing family and conditional-KL APIs.
 
 ### C19. Self-information, finite-iid AEP, and typical sets
+
+**Current execution:** The [approved revision-2 plan](post-release-chunk-19.md) has completed C19.01--C19.04 with review. Eight public declarations deliver the numerical finite-iid AEP and strict supported typical-set probability, mass and cardinality contracts. Selected C19.05 owns cumulative qualification and the [C20/C21 handoff](../handoffs/chunk-19.md). Initial authorized clean-checkpoint and API02 actual two-pass qualification passed, with all eight declarations inspected; API01 and its bounded cache recovery retain their distinct evidence limits. Fresh cumulative review/reconciliation and final amended-candidate qualification/closure require their actual records. The original programme below records mathematical scope; it does not authorize C20 or C21.
 
 **Goal:** A usable probabilistic AEP, not just the identity `H(p^n)=nH(p)`.
 

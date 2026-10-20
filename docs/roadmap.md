@@ -1,6 +1,50 @@
 # Roadmap
 
-## C18.06 cumulative qualification and maintained handoff — selected
+## C19.05 initial qualification and maintained handoff — 2026-10-20
+
+C19.01--C19.04 and their reviews are complete by actual private records. C19.05
+was admitted after exact predecessor closure/source verification and adds no
+mathematical endpoint. Its maintained C20/C21 handoff records all eight public
+declarations, permanent consumers and the sixteen approved criteria. Inventory
+remains 721 declarations in 47 owners, with 92 root exports and 94 reviewed simp names.
+
+The lead approved the exact 23-path local checkpoint, necessary C19.05-only
+amendments, reuse of the existing detached validation checkout, and the separate
+actual two-pass local API-documentation milestone.
+
+Initial checkpoint `66b65b9e14af0d10cd127b66ad1f3d16f8cea3fd` passed the complete
+`python scripts/validate_release.py` routine in the clean validation checkout.
+API01 remains **FAIL**: its first build completed (6361 jobs), but the semantic
+check found the new AEP and TypicalSet HTML pages missing after cached final
+HTML replay. The parent preserved and moved only the final HTML marker and its
+`.trace`/`.hash` companions; source, pins, checkers and Git identity were unchanged.
+This bounded generated-cache recovery is not passing API evidence.
+
+The parent reran `python scripts/validate_release.py api-docs` as API02 in the
+primary checkout in file mode, using reviewed Zig 0.16.0. Both actual build/check
+passes of API02 succeeded. The parent inspected all eight new declarations' actual
+signatures, hypotheses, docstrings, owners and local source links, and verified
+API-source correspondence to that clean checkpoint. These are warm/incremental
+executions and local output, with no cold-build or publication claim.
+Clean correspondence is byte-identical for 109/110 API inputs and 102/103 validation
+inputs. The sole `docs/v0.1-public-api.json` difference is the existing maintained
+LF/CRLF two-hash allowance: uniform CRLF-to-LF bytes and parsed values agree, and
+the clean file equals the requested Git blob. Primary API02 inputs are unchanged.
+Later applicability checks retain that explicit correspondence, configuration, dependencies and
+the two owner pages; whole-tree validity is reused from completed API02 and its
+original wrapper check, without claiming a fresh whole-tree rehash.
+
+These are initial qualification facts. Any amended checkpoint requires the complete
+clean rerun and exact API-evidence applicability assessment. The fresh all-sixteen-
+criterion review, original-report reconciliation, final validation and F capture
+are established only by their actual source-bound records. Final closure depends on
+`.lit-review/setup/c19-05-completion-20261020.json`, when present, and its linked completion chain;
+this prose asserts no future gate, review result or closure. C20--C24 and publication
+remain unselected.
+
+See the [C19 handoff](handoffs/chunk-19.md) for contracts and evidence limits.
+
+## Historical C18.06 cumulative qualification and maintained handoff — selected
 
 C9--C17 and C18.01--C18.05 are complete by actual private records. The
 conditional C18.06 request was admitted after exact Step 5 closure/source
@@ -163,7 +207,7 @@ The source-bound C13.04 records subsequently established final validation,
 review, reconciliation and closure at `ebe48eaea4282b1e4f245f8f45440bc930b8df73`;
 the initial-checkpoint evidence above is retained as history.
 That C13/C14 transition snapshot excluded unrelated website notes and left
-later chunks unselected. The current C18.06 boundary is recorded above;
+later chunks unselected. The current C19.05 qualification boundary is recorded above;
 publication still requires separate authority.
 
 ## Proposed Post-Release Programme
@@ -185,11 +229,12 @@ declarations only an uncertain cross-check, not a quota.
 
 The later programme remains a proposal for project-lead review, not an approved
 execution plan or a release/date commitment. The separately authorized
-[review workflow](review-operations.md) is installed. C9--C17 and C18.01--C18.05
-are complete by actual records. Selected C18.06 owns cumulative qualification
-and the [maintained handoff](handoffs/chunk-18.md), including all-20 review and
-exact final validation. C19--C24 require separately approved detailed plans
-and eligible execution requests. No release date or publication is authorized.
+[review workflow](review-operations.md) is installed. C9--C18 and C19.01--C19.04
+are complete by actual records. The separately approved C19 plan and eligible
+request select C19.05 for cumulative qualification and the
+[maintained handoff](handoffs/chunk-19.md), including fresh all-sixteen-criterion
+review and exact final validation. C20--C24 require separately approved detailed
+plans and eligible execution requests. No release date or publication is authorized.
 The [reference register](references.md) identifies the selected sources and
 distinguishes the 2022 and 2024 Polyanskiy--Wu drafts. The calendar horizons
 below remain broad aspirations, not delivery deadlines for the proposed chunks.

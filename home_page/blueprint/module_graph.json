@@ -6,8 +6,8 @@
     "Semantic bridge layer",
     "Non-stable anchors"
   ],
-  "local_edge_count": 182,
-  "module_count": 81,
+  "local_edge_count": 193,
+  "module_count": 85,
   "modules": [
     {
       "external_imports": [],
@@ -176,6 +176,7 @@
         "LeanInfoTheory.Shannon.Fano",
         "LeanInfoTheory.Shannon.SemanticBridge",
         "LeanInfoTheory.Shannon.Topology",
+        "LeanInfoTheory.Shannon.TypicalSet",
         "LeanInfoTheory.Shannon.Units"
       ],
       "name": "LeanInfoTheory.Shannon",
@@ -315,6 +316,18 @@
       "summary": "Local LeanInfoTheory module."
     },
     {
+      "external_imports": [],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Probability.Iid",
+        "LeanInfoTheory.Shannon.SemanticBridge.Entropy"
+      ],
+      "name": "LeanInfoTheory.Shannon.TypicalSet",
+      "path": "LeanInfoTheory/Shannon/TypicalSet.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
       "external_imports": [
         "Mathlib.Analysis.SpecialFunctions.Log.Base"
       ],
@@ -331,6 +344,7 @@
       "external_imports": [],
       "layer": "Semantic bridge layer",
       "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.AEP",
         "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
         "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL",
         "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
@@ -356,6 +370,22 @@
       "path": "LeanInfoTheory/Shannon/SemanticBridge.lean",
       "root_reachable": false,
       "summary": "Import-only aggregate for finite semantic, KL, convexity, conditional-KL, independence, Pinsker, quantitative independence, Markov, sufficiency, data-processing, recovery, and finite-family bridges."
+    },
+    {
+      "external_imports": [
+        "Mathlib.Analysis.SpecificLimits.Basic",
+        "Mathlib.Probability.Moments.Variance"
+      ],
+      "layer": "Semantic bridge layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.Entropy",
+        "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
+        "LeanInfoTheory.Shannon.TypicalSet"
+      ],
+      "name": "LeanInfoTheory.Shannon.SemanticBridge.AEP",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/AEP.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
     },
     {
       "external_imports": [
@@ -631,6 +661,7 @@
       "external_imports": [],
       "layer": "Non-stable anchors",
       "local_imports": [
+        "LeanInfoTheory.Examples.AEP",
         "LeanInfoTheory.Examples.ChannelOptimization",
         "LeanInfoTheory.Examples.CommonCause",
         "LeanInfoTheory.Examples.ConditionalKL",
@@ -663,12 +694,24 @@
         "LeanInfoTheory.Examples.TotalVariation",
         "LeanInfoTheory.Examples.TotalVariationChannels",
         "LeanInfoTheory.Examples.TotalVariationTopology",
+        "LeanInfoTheory.Examples.TypicalSet",
         "LeanInfoTheory.Examples.Units"
       ],
       "name": "LeanInfoTheory.Examples",
       "path": "LeanInfoTheory/Examples.lean",
       "root_reachable": false,
       "summary": "Non-stable aggregate for maintained conditional-KL, convexity, coupling, finite-family, independence-processing, information-decomposition, support-sensitive, total-variation, Markov, channel, sufficiency, Fano, and units regression consumers."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.SemanticBridge.AEP"
+      ],
+      "name": "LeanInfoTheory.Examples.AEP",
+      "path": "LeanInfoTheory/Examples/AEP.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
     },
     {
       "external_imports": [],
@@ -1036,6 +1079,19 @@
       "summary": "Local LeanInfoTheory module."
     },
     {
+      "external_imports": [
+        "Mathlib.Tactic.FinCases"
+      ],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.TypicalSet"
+      ],
+      "name": "LeanInfoTheory.Examples.TypicalSet",
+      "path": "LeanInfoTheory/Examples/TypicalSet.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
       "external_imports": [],
       "layer": "Non-stable anchors",
       "local_imports": [
@@ -1066,5 +1122,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 5,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 76
+  "separate_import_count": 80
 }

@@ -6,6 +6,227 @@ help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
 
+## C19.05 initial qualification and maintained handoff, 2026-10-20
+
+Step 5 was admitted after actual C19.04 closure, all four preceding original
+reviews/reconciliations and exact final-source applicability were verified. It
+adds no mathematical endpoint. The maintained [C19 handoff](handoffs/chunk-19.md)
+records eight public interfaces, sixteen criteria, permanent consumers and
+distinct C20/C21 responsibilities.
+
+The lead approved the exact 23-path local checkpoint, necessary C19.05-only
+amendments, reuse of the existing detached validation checkout, and the separate
+actual two-pass local API-documentation milestone.
+
+Initial checkpoint `66b65b9e14af0d10cd127b66ad1f3d16f8cea3fd` passed the complete
+`python scripts/validate_release.py` routine in the clean validation checkout.
+API01 remains **FAIL**: its first build completed (6361 jobs), but the semantic
+check found the new AEP and TypicalSet HTML pages missing after cached final
+HTML replay. The parent preserved and moved only the final HTML marker and its
+`.trace`/`.hash` companions; source, pins, checkers and Git identity were unchanged.
+This bounded generated-cache recovery is not passing API evidence.
+
+The parent reran `python scripts/validate_release.py api-docs` as API02 in the
+primary checkout in file mode, using reviewed Zig 0.16.0. Both actual build/check
+passes of API02 succeeded. The parent inspected all eight new declarations' actual
+signatures, hypotheses, docstrings, owners and local source links, and verified
+API-source correspondence to that clean checkpoint. These are warm/incremental
+executions and local output, with no cold-build or publication claim.
+Clean correspondence is byte-identical for 109/110 API inputs and 102/103 validation
+inputs. The sole `docs/v0.1-public-api.json` difference is the existing maintained
+LF/CRLF two-hash allowance: uniform CRLF-to-LF bytes and parsed values agree, and
+the clean file equals the requested Git blob. Primary API02 inputs are unchanged.
+Later applicability checks retain that explicit correspondence, configuration, dependencies and
+the two owner pages; whole-tree validity is reused from completed API02 and its
+original wrapper check, without claiming a fresh whole-tree rehash.
+
+API source-content SHA-256: `379a1d1f9b542279941b11b78bfd0c1b4f032e85a86abdd149147e2824b708bf`.
+Configuration SHA-256: `ddf4e00291e15a882bfd8de74a166591d706f3e93eae99d9b6df74a31a3f11ba`.
+Two-pass attestation SHA-256: `f544cbfac344b81539655e2345c65819d41265fca1b622117170a590e1ef7491`.
+Applicability covers 110 API input files and 103 compiled-validation
+input files with their recorded dependencies and the one explicit frozen-manifest
+line-ending correspondence above. Original commands, complete logs and
+before/after identities are retained under `.lit-review/setup/c19-05-20261020/`
+in `checkpoint-01/`, `clean-01/` and successful `api-milestone-02/`. The original
+`api-milestone-01/` failure and `api-cache-recovery-01/` marker-move evidence remain
+separate; neither supports a passing criterion. `api-inspection.json` records the
+parent's API02 substantive inspections separately from automated extraction.
+`api-cache-recovery-guard-failure.json` separately retains the parent's observed
+first recovery-helper refusal before any move or output-directory creation;
+its tuple/list comparison diagnosis is distinct from the actual API01 failure.
+`api-applicability-attempt01-observation.json` retains the later private guard
+refusal before the inspection record: it overlooked that maintained frozen-file
+allowance, created no record and changed no source/workflow. API02 remains PASS.
+
+The initial checkpoint preserves the unrelated pending files and older relocation
+entry. The three previously recorded CRLF-to-LF conversions changed no non-newline
+source bytes. The approved mathematical plan remains unchanged. Earlier checks and
+the C18 API attestation remain historical evidence with their original limits.
+
+These are initial qualification facts. Any amended checkpoint requires the complete
+clean rerun and exact API-evidence applicability assessment. The fresh all-sixteen-
+criterion review, original-report reconciliation, final validation and F capture
+are established only by their actual source-bound records. Final closure depends on
+`.lit-review/setup/c19-05-completion-20261020.json`, when present, and its linked completion chain;
+this prose asserts no future gate, review result or closure. C20--C24 and publication
+remain unselected.
+
+## C19.04 cardinality bounds and downstream inputs, 2026-10-20
+
+The fresh conditional Step 4 request was admitted after C19.03's actual closure,
+four satisfied criteria, reconciled independent review and exact 265-entry
+final source/environment/Git identity were verified. Earlier consumed conditional
+messages remain skipped. Only C19.04 is selected; the normative plan is unchanged.
+
+The finite TypicalSet owner adds exactly card_weakTypicalSet_le and
+prob_mul_exp_le_card_weakTypicalSet. Summing the lower atom bounds and comparing
+with total mass one yields the upper bound. Summing upper atom bounds over the
+actual finite event yields the probability-weighted lower bound. Multiplication
+by a positive exponential cancels each reciprocal factor. Both public endpoints
+hold at every length and width without extra assumptions; imports and attributes
+are unchanged. The existing generic event-sum theorem in TotalVariation was
+considered; the pinned finset sum and finite ENNReal conversion suffice directly,
+without importing that unrelated owner or adding a duplicate general theorem.
+
+Private finite consumers check zero/nonpositive boundaries, entropy-zero pure
+laws and binary empty/nonempty strict bands. The positive-width empty example
+shows that dropping the lower bound's probability factor is false.
+Examples.AEP derives the eventual lower bound with independent positive epsilon
+and delta, including delta >= 1. Its single typical_inputs theorem assembles
+complement convergence, atom/cardinality upper bounds and natural-budget
+cardinality/positivity for the same typical sets and real event probabilities,
+with Fintype.card (Fin M) = M. It uses only supported producer interfaces.
+No code, rate, decoder, error, rounding or public package definition is added.
+
+Focused builds, documentation examples and the full compiled trust gate passed.
+Current inventory is 721 declarations in 47 owners; root exports remain 92 and
+reviewed simp names remain 94. The [C19 notes](plans/post-release-chunk-19-notes.md)
+retain actual checks, intermediate failures and limits. The persistent
+independent STEP review reported no findings and assessed all three criteria
+SATISFIED. Its original report is retained and explicitly reconciled. Final
+qualification checks factual prose and exact applicability of compiled inputs.
+Completion is established only by
+`.lit-review/setup/c19-04-completion-20261020.json` when present.
+C19.05 clean/API qualification, commits and publication remain separate.
+This entry preserves all earlier project-log bytes.
+
+## C19.03 weak typicality, probability and word masses, 2026-10-20
+
+The conditional Step 3 request was admitted after verifying C19.02's actual
+closure, all three satisfied criteria, reconciled independent review and exact
+263-entry final source/environment/Git identity. The lead separately reaffirmed
+continuation after a question about earlier authorization history. This continues
+the same admitted step; it selects no additional work. The normative plan is unchanged.
+
+The finite TypicalSet owner exports supported strict weak typicality, exact
+membership and both Real exponential atom bounds in nats. Positive blocklength,
+support and strict deviation are explicit. It imports only Entropy and Iid,
+without AEP/concentration. The semantic AEP owner imports this finite owner and
+exports typical-probability convergence to one. Its private complement/deviation
+bridge equates probabilities through support intersection, not ambient events,
+and retains positive length. The public theorem has no measurable-space,
+DecidableEq, full-support or positive-entropy premise.
+
+Private finite consumers check the required pure/singleton, sparse, zero/one and
+nonpositive-width boundaries; the binary (1/3,2/3) source has an empty typical
+set at width log(2)/3 and exactly the common word with probability 2/3 at width
+2*log(2)/3. Both exact boundaries are excluded. Examples.AEP consumes the public
+limit and derives complement convergence using supported PMF interfaces.
+Inventory is 719 declarations in 47 owners, with 92 root exports and 94 reviewed
+simp names unchanged. No alias or additional public probability wrapper is needed.
+
+Focused builds, documentation examples and compiled trust qualification passed.
+The [C19 notes](plans/post-release-chunk-19-notes.md) retain actual evidence,
+failed iterations and limits. The persistent independent STEP review reported
+no findings and assessed all four criteria SATISFIED. Its original report is
+retained and explicitly reconciled. Final qualification reuses unchanged
+compiled inputs and checks the final factual prose. Successful closure is
+established only by `.lit-review/setup/c19-03-completion-20261020.json` when present.
+These are incremental dirty-tree checks; C19.04 cardinalities, C19.05 clean/API
+qualification, commits and publication remain separate. Only this entry is
+inserted into the pre-existing project log; unrelated intake bytes are preserved.
+The plan's status-only region now describes the original Step 1 selection as
+historical and points to current status; its normative contract is unchanged.
+
+## C19.02 numerical finite-iid AEP, 2026-10-19
+
+The fresh conditional Step 2 request was admitted after checking the actual
+C19.01 completion record, all three satisfied criteria, reconciled independent
+review and exact final source/environment identity. The earlier skipped request
+was not revived. The approved revision-2 mathematical contracts are unchanged.
+
+The semantic AEP owner now exports `tendsto_selfInfo_iid_deviation`: for any
+finite PMF and positive epsilon, the exact real probability of absolute
+normalized block self-information deviation at least epsilon tends to zero.
+A private Chebyshev bound uses the C19.01 checkpoint, explicit event finiteness
+and the actual centered second moment. Positive blocklength is retained for
+that bound; a scalar limit and eventual squeeze establish the public limit.
+There are no new public measurable-space, full-support or nonempty hypotheses.
+
+Private fixtures verify the (1/3,2/3) source's exact entropy, both absolute
+deviations, second moment (2/9)*(log 2)^2 > 0 and the actual normalized block
+variance (1/9)*(log 2)^2 > 0 at length two. Examples.AEP consumes the public
+limit for that nonuniform law and the sparse source, and proves deterministic
+zero deviation probability at every length and positive width. No public
+variance or fixture abstraction is added. Inventory is 715 declarations in
+46 supported owners; root exports remain 92 and reviewed simp names remain 94.
+No naming/alias watchlist addition was warranted.
+
+Focused owner/consumer/aggregate compilation, documentation examples and the
+full compiled trust gate passed. The exact commands, earlier failures and
+limits are retained in the [C19 notes](plans/post-release-chunk-19-notes.md)
+and private step evidence. The persistent independent STEP review reported
+no findings and assessed all three C19.02 criteria SATISFIED. Its original
+report was retained and explicitly reconciled; no code correction was
+needed. Final qualification reuses the exact unchanged compiled inputs
+and checks final factual documentation. Successful closure is established
+only by `.lit-review/setup/c19-02-completion-20261019.json` when present.
+Typical sets, later steps, clean/API-documentation milestones and
+publication remain separate. Pre-existing unrelated bytes are preserved;
+only this entry is inserted into the pre-existing project log.
+
+## C19.01 supported block information and probability bridge, 2026-10-18
+
+Approved C19 revision 2 and the explicit step-1 request select only C19.01.
+The new semantic AEP owner exposes `selfInfo_iid_of_mem_support` for all
+lengths and arbitrary finite PMFs. Its support hypothesis is essential under
+the unchanged zero-mass self-information convention. Private proofs connect
+supported additivity to an almost-everywhere coordinate sum, actual coordinate
+pushforward laws, measurable self-information independence, finite second
+moments, normalized mean/variance and the same finite deviation probability.
+The local discrete structure keeps measurable-space hypotheses out of the
+public interface. The connected checkpoint is compiled, not a signature probe.
+
+Permanent private Examples.AEP consumers prove an actual sparse impossible-word
+counterexample, supported sparse additivity, and zero/one-length, deterministic,
+singleton and empty-alphabet boundaries. Only one public theorem and one
+semantic owner are added: 714 supported declarations in 46 owners, with 92 root
+exports and 94 reviewed simp names unchanged. The growth policy and generated
+source references are updated. No new naming/alias pressure was found for
+Future Work Note 14. Concentration, convergence and biased-source variance
+consumers belong to C19.02; typical sets and cardinalities remain later work.
+
+Focused producer/consumer/aggregate compilation and all five README/four guide
+example checks passed with warnings as errors. The full trust gate passed on
+2026-10-19, including all retained signatures, supported import closures, exact
+current inventory/simp/root boundaries and the all-project axiom audit. Static
+checks cover the current documentation. The persistent independent STEP review
+found no issues and assessed all three criteria SATISFIED. Its original
+report was retained and explicitly reconciled; no code correction was
+needed. Final qualification checks the factual documentation and exact
+applicability of the unchanged compiled inputs. The pinned variance cache
+was recovered without changing dependencies. Earlier failed compiler attempts
+remain failures in the private evidence, with their fixes explained in the
+[C19 notes](plans/post-release-chunk-19-notes.md). This entry records readiness,
+not closure; only `.lit-review/setup/c19-01-completion-20261019.json`
+when present establishes successful supported closure.
+
+The conditional C19.02 message arrived before successful predecessor closure
+and was consumed as skipped under the installed named-step procedure. It starts
+no later step. Existing unrelated changes are preserved byte for byte; only
+this owned entry is added to the pre-existing project log. No checkpoint,
+API-documentation milestone, commit, push or publication is selected.
+
 ## C18.06 authorized review-record remediation, 2026-10-18
 
 Checkpoint `b5e77c741caca836ea8d0a769d140bd1771cb34a` passed the complete

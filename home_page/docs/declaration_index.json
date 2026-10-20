@@ -1,5 +1,5 @@
 {
-  "declaration_count": 828,
+  "declaration_count": 836,
   "declarations": [
     {
       "doc": "Public project name used by documentation and the website.",
@@ -4672,6 +4672,36 @@
       "short_name": "real_logSum_eq_iff_exists_constant_ratio_of_support"
     },
     {
+      "doc": "The self-information of a supported iid word is the sum of its coordinate self-informations, in nats. This includes the empty word. Impossible words are excluded because self-information is totalized to zero at zero mass.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 48,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.AEP",
+      "name": "LeanInfoTheory.Shannon.selfInfo_iid_of_mem_support",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/AEP.lean",
+      "short_name": "selfInfo_iid_of_mem_support"
+    },
+    {
+      "doc": "Finite-iid AEP in nats: for every positive width, the real probability that normalized block self-information differs from entropy by at least that width tends to zero. Each blocklength uses its own finite iid word law. Zero-mass symbols are allowed; no measurable-space or full-support hypothesis is needed. The total expression at length zero does not affect the limit.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 218,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.AEP",
+      "name": "LeanInfoTheory.Shannon.tendsto_selfInfo_iid_deviation",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/AEP.lean",
+      "short_name": "tendsto_selfInfo_iid_deviation"
+    },
+    {
+      "doc": "For every positive width, the real probability of the supported strict weak typical set tends to one under the finite iid laws. For positive blocklengths, the complement agrees with the self-information deviation event in probability, including for sparse sources. The empty typical set at zero does not affect the limit.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 262,
+      "module": "LeanInfoTheory.Shannon.SemanticBridge.AEP",
+      "name": "LeanInfoTheory.Shannon.tendsto_prob_weakTypicalSet",
+      "path": "LeanInfoTheory/Shannon/SemanticBridge/AEP.lean",
+      "short_name": "tendsto_prob_weakTypicalSet"
+    },
+    {
       "doc": "Conditional law of the first coordinate given a nonzero second-coordinate atom. Mathematically, this is the finite PMF `P_{A | B=b}(a) = P_{A,B}(a,b) / P_B(b)`. The proof argument `hb : sndMarginal p b \u2260 0` is part of the API so that zero-probability conditioning atoms do not receive a fake default distribution.",
       "kind": "def",
       "kind_label": "Definition",
@@ -8222,6 +8252,56 @@
       "short_name": "continuous_mutualInfo_channelJoint"
     },
     {
+      "doc": "Supported words of positive length whose normalized self-information is strictly within `\u03b5` of entropy. The set is empty at length zero and for nonpositive `\u03b5`. Information is measured in nats.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 40,
+      "module": "LeanInfoTheory.Shannon.TypicalSet",
+      "name": "LeanInfoTheory.Shannon.weakTypicalSet",
+      "path": "LeanInfoTheory/Shannon/TypicalSet.lean",
+      "short_name": "weakTypicalSet"
+    },
+    {
+      "doc": "Exact weak-typicality membership, including the positive-length guard, support qualification, and strict deviation bound.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 49,
+      "module": "LeanInfoTheory.Shannon.TypicalSet",
+      "name": "LeanInfoTheory.Shannon.mem_weakTypicalSet",
+      "path": "LeanInfoTheory/Shannon/TypicalSet.lean",
+      "short_name": "mem_weakTypicalSet"
+    },
+    {
+      "doc": "The real mass of a weakly typical word lies between the two exponential bounds in nats. Membership supplies positive length and support; no full-support, positive-entropy or additional width hypothesis is required.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 60,
+      "module": "LeanInfoTheory.Shannon.TypicalSet",
+      "name": "LeanInfoTheory.Shannon.weakTypicalSet_mass_bounds",
+      "path": "LeanInfoTheory/Shannon/TypicalSet.lean",
+      "short_name": "weakTypicalSet_mass_bounds"
+    },
+    {
+      "doc": "The real cardinality of the weak typical set is at most the entropy-based exponential in nats. This holds at every length and width, including empty boundary cases, without full-support or positive-entropy assumptions.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 83,
+      "module": "LeanInfoTheory.Shannon.TypicalSet",
+      "name": "LeanInfoTheory.Shannon.card_weakTypicalSet_le",
+      "path": "LeanInfoTheory/Shannon/TypicalSet.lean",
+      "short_name": "card_weakTypicalSet_le"
+    },
+    {
+      "doc": "Typical probability times the lower entropy-based exponential is bounded by the real cardinality. The probability factor is essential: a strict typical set can be empty even at positive length and width. The bound holds for every length and width, in nats and without full-support or positive-entropy assumptions.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 108,
+      "module": "LeanInfoTheory.Shannon.TypicalSet",
+      "name": "LeanInfoTheory.Shannon.prob_mul_exp_le_card_weakTypicalSet",
+      "path": "LeanInfoTheory/Shannon/TypicalSet.lean",
+      "short_name": "prob_mul_exp_le_card_weakTypicalSet"
+    },
+    {
       "doc": "Convert a real-valued quantity measured in nats to base-`b` information units. For the usual information-theoretic interpretation the base must satisfy `1 < b`. The definition itself is total because `Real.log` and real division are total in Lean.",
       "kind": "def",
       "kind_label": "Definition",
@@ -8282,12 +8362,12 @@
       "short_name": "entropyOf_div_log"
     }
   ],
-  "documented_count": 827,
+  "documented_count": 835,
   "kind_counts": {
-    "Definition": 119,
+    "Definition": 120,
     "Inductive": 4,
     "Instance": 4,
-    "Theorem": 701
+    "Theorem": 708
   },
   "modules": [
     "LeanInfoTheory.Basic",
@@ -8317,6 +8397,7 @@
     "LeanInfoTheory.Shannon.FiniteFamily",
     "LeanInfoTheory.Shannon.InfoMeasures",
     "LeanInfoTheory.Shannon.LogSum",
+    "LeanInfoTheory.Shannon.SemanticBridge.AEP",
     "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
     "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL",
     "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
@@ -8338,6 +8419,7 @@
     "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
     "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
     "LeanInfoTheory.Shannon.Topology",
+    "LeanInfoTheory.Shannon.TypicalSet",
     "LeanInfoTheory.Shannon.Units"
   ],
   "schema": "lean-info-theory.declaration-index.v1",

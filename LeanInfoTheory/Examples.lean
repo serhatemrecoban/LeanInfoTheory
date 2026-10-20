@@ -10,6 +10,8 @@ Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Examples.ChannelOptimization
+import LeanInfoTheory.Examples.AEP
+import LeanInfoTheory.Examples.TypicalSet
 import LeanInfoTheory.Examples.CommonCause
 import LeanInfoTheory.Examples.ConditionalKL
 import LeanInfoTheory.Examples.Continuity

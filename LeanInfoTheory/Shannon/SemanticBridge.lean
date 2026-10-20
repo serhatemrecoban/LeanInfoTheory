@@ -10,6 +10,7 @@ Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.SemanticBridge.Entropy
+import LeanInfoTheory.Shannon.SemanticBridge.AEP
 import LeanInfoTheory.Shannon.SemanticBridge.Product
 import LeanInfoTheory.Shannon.SemanticBridge.FiniteSums
 import LeanInfoTheory.Shannon.SemanticBridge.Conditional

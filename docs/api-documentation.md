@@ -154,7 +154,74 @@ The release-candidate gate runs GitHub mode from a clean exact commit. Tag
 publication and live-link verification remain explicitly approved publication
 and post-publication work.
 
-## Current C18 milestone
+## Current C19 milestone — initial qualification
+
+The lead approved the exact 23-path local checkpoint, necessary C19.05-only
+amendments, reuse of the existing detached validation checkout, and the separate
+actual two-pass local API-documentation milestone.
+
+Initial checkpoint `66b65b9e14af0d10cd127b66ad1f3d16f8cea3fd` passed the complete
+`python scripts/validate_release.py` routine in the clean validation checkout.
+API01 remains **FAIL**: its first build completed (6361 jobs), but the semantic
+check found the new AEP and TypicalSet HTML pages missing after cached final
+HTML replay. The parent preserved and moved only the final HTML marker and its
+`.trace`/`.hash` companions; source, pins, checkers and Git identity were unchanged.
+This bounded generated-cache recovery is not passing API evidence.
+
+The parent reran `python scripts/validate_release.py api-docs` as API02 in the
+primary checkout in file mode, using reviewed Zig 0.16.0. Both actual build/check
+passes of API02 succeeded. The parent inspected all eight new declarations' actual
+signatures, hypotheses, docstrings, owners and local source links, and verified
+API-source correspondence to that clean checkpoint. These are warm/incremental
+executions and local output, with no cold-build or publication claim.
+Clean correspondence is byte-identical for 109/110 API inputs and 102/103 validation
+inputs. The sole `docs/v0.1-public-api.json` difference is the existing maintained
+LF/CRLF two-hash allowance: uniform CRLF-to-LF bytes and parsed values agree, and
+the clean file equals the requested Git blob. Primary API02 inputs are unchanged.
+Later applicability checks retain that explicit correspondence, configuration, dependencies and
+the two owner pages; whole-tree validity is reused from completed API02 and its
+original wrapper check, without claiming a fresh whole-tree rehash.
+
+API source-content SHA-256: `379a1d1f9b542279941b11b78bfd0c1b4f032e85a86abdd149147e2824b708bf`.
+Configuration SHA-256: `ddf4e00291e15a882bfd8de74a166591d706f3e93eae99d9b6df74a31a3f11ba`.
+Two-pass attestation SHA-256: `f544cbfac344b81539655e2345c65819d41265fca1b622117170a590e1ef7491`.
+Applicability covers 110 API input files and 103 compiled-validation
+input files with their recorded dependencies and the one explicit frozen-manifest
+line-ending correspondence above. Original commands, complete logs and
+before/after identities are retained under `.lit-review/setup/c19-05-20261020/`
+in `checkpoint-01/`, `clean-01/` and successful `api-milestone-02/`. The original
+`api-milestone-01/` failure and `api-cache-recovery-01/` marker-move evidence remain
+separate; neither supports a passing criterion. `api-inspection.json` records the
+parent's API02 substantive inspections separately from automated extraction.
+`api-cache-recovery-guard-failure.json` separately retains the parent's observed
+first recovery-helper refusal before any move or output-directory creation;
+its tuple/list comparison diagnosis is distinct from the actual API01 failure.
+`api-applicability-attempt01-observation.json` retains the later private guard
+refusal before the inspection record: it overlooked that maintained frozen-file
+allowance, created no record and changed no source/workflow. API02 remains PASS.
+
+| Declaration | Owner | Signature/hypotheses/docstring/source link |
+| --- | --- | --- |
+| `card_weakTypicalSet_le` | `Shannon.TypicalSet` | Inspected |
+| `mem_weakTypicalSet` | `Shannon.TypicalSet` | Inspected |
+| `prob_mul_exp_le_card_weakTypicalSet` | `Shannon.TypicalSet` | Inspected |
+| `selfInfo_iid_of_mem_support` | `Shannon.SemanticBridge.AEP` | Inspected |
+| `tendsto_prob_weakTypicalSet` | `Shannon.SemanticBridge.AEP` | Inspected |
+| `tendsto_selfInfo_iid_deviation` | `Shannon.SemanticBridge.AEP` | Inspected |
+| `weakTypicalSet` | `Shannon.TypicalSet` | Inspected |
+| `weakTypicalSet_mass_bounds` | `Shannon.TypicalSet` | Inspected |
+
+These are initial qualification facts. Any amended checkpoint requires the complete
+clean rerun and exact API-evidence applicability assessment. The fresh all-sixteen-
+criterion review, original-report reconciliation, final validation and F capture
+are established only by their actual source-bound records. Final closure depends on
+`.lit-review/setup/c19-05-completion-20261020.json`, when present, and its linked completion chain;
+this prose asserts no future gate, review result or closure. C20--C24 and publication
+remain unselected.
+
+See the [C19 handoff](handoffs/chunk-19.md). The C18 account below is historical evidence.
+
+## Historical C18 milestone
 
 C18 adds fifteen theorems across semantic FiniteProduct, ProductKL,
 ProductChannel, FiniteFamily and FiniteFamilyIndependence. Current source

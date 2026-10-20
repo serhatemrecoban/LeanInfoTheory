@@ -21,6 +21,7 @@ import LeanInfoTheory.Shannon.Continuity
 import LeanInfoTheory.Shannon.Fano
 import LeanInfoTheory.Shannon.SemanticBridge
 import LeanInfoTheory.Shannon.Topology
+import LeanInfoTheory.Shannon.TypicalSet
 import LeanInfoTheory.Shannon.Units
 
 /-!
