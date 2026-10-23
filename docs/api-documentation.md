@@ -154,7 +154,26 @@ The release-candidate gate runs GitHub mode from a clean exact commit. Tag
 publication and live-link verification remain explicitly approved publication
 and post-publication work.
 
-## Current C19 milestone — initial qualification
+## Current C20 milestone — local API qualification
+
+The approved C20 plan and explicit Step 5 selection authorize this local milestone.
+Both actual file-mode build/check passes have succeeded with reviewed Zig 0.16.0.
+The parent inspected all 24 C20 additions: the generic Fano event bridge, twelve
+SourceCoding declarations and eleven CodingRate declarations, including each
+elaborated signature, hypothesis, docstring, owner and local source link.
+Current coverage is 745 public declarations in 49 owners, with 92 root exports,
+94 reviewed simp names and 41 non-stable exclusions.
+
+Exact configuration/source/attestation identities and original failures are in
+the [C20 notes](plans/post-release-chunk-20-notes.md#15-c2005-cumulative-qualification-and-handoff)
+and private Step 5 records. The [maintained handoff](handoffs/chunk-20.md)
+distinguishes these warm/incremental local results from pending authorized
+clean-checkpoint qualification, cumulative review and source-bound closure.
+Generated output stays in `docbuild/.lake/build/doc/`; no publication or frozen
+release-route staging is authorized. Reassess source/configuration/dependency
+applicability after every amendment; prose status is not a completion certificate.
+
+## Historical C19 milestone — initial qualification
 
 The lead approved the exact 23-path local checkpoint, necessary C19.05-only
 amendments, reuse of the existing detached validation checkout, and the separate

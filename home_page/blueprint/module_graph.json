@@ -6,8 +6,8 @@
     "Semantic bridge layer",
     "Non-stable anchors"
   ],
-  "local_edge_count": 193,
-  "module_count": 85,
+  "local_edge_count": 206,
+  "module_count": 90,
   "modules": [
     {
       "external_imports": [],
@@ -172,9 +172,11 @@
         "LeanInfoTheory.Probability.ProductChannel",
         "LeanInfoTheory.Probability.TotalVariation",
         "LeanInfoTheory.Probability.TotalVariationTopology",
+        "LeanInfoTheory.Shannon.CodingRate",
         "LeanInfoTheory.Shannon.Continuity",
         "LeanInfoTheory.Shannon.Fano",
         "LeanInfoTheory.Shannon.SemanticBridge",
+        "LeanInfoTheory.Shannon.SourceCoding",
         "LeanInfoTheory.Shannon.Topology",
         "LeanInfoTheory.Shannon.TypicalSet",
         "LeanInfoTheory.Shannon.Units"
@@ -196,6 +198,19 @@
       "path": "LeanInfoTheory/Shannon/BinaryEntropy.lean",
       "root_reachable": false,
       "summary": "Boolean-PMF entropy bridge to mathlib's Real.binEntropy."
+    },
+    {
+      "external_imports": [
+        "Mathlib.Algebra.Order.Floor.Semiring"
+      ],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.Units"
+      ],
+      "name": "LeanInfoTheory.Shannon.CodingRate",
+      "path": "LeanInfoTheory/Shannon/CodingRate.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
     },
     {
       "external_imports": [],
@@ -302,6 +317,19 @@
       "path": "LeanInfoTheory/Shannon/LogSum.lean",
       "root_reachable": false,
       "summary": "Zero-safe finite EReal log-sum inequality and equality with guarded Real corollaries."
+    },
+    {
+      "external_imports": [
+        "Mathlib.Data.Fintype.EquivFin"
+      ],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.Fano"
+      ],
+      "name": "LeanInfoTheory.Shannon.SourceCoding",
+      "path": "LeanInfoTheory/Shannon/SourceCoding.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
     },
     {
       "external_imports": [],
@@ -663,6 +691,7 @@
       "local_imports": [
         "LeanInfoTheory.Examples.AEP",
         "LeanInfoTheory.Examples.ChannelOptimization",
+        "LeanInfoTheory.Examples.CodingRate",
         "LeanInfoTheory.Examples.CommonCause",
         "LeanInfoTheory.Examples.ConditionalKL",
         "LeanInfoTheory.Examples.Continuity",
@@ -688,6 +717,8 @@
         "LeanInfoTheory.Examples.ProductChannelSemantics",
         "LeanInfoTheory.Examples.ProductKL",
         "LeanInfoTheory.Examples.QuantitativeIndependence",
+        "LeanInfoTheory.Examples.SourceCoding",
+        "LeanInfoTheory.Examples.SourceCodingTypicalSet",
         "LeanInfoTheory.Examples.StochasticChannels",
         "LeanInfoTheory.Examples.SufficientStatistics",
         "LeanInfoTheory.Examples.SupportSensitive",
@@ -721,6 +752,20 @@
       ],
       "name": "LeanInfoTheory.Examples.ChannelOptimization",
       "path": "LeanInfoTheory/Examples/ChannelOptimization.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [
+        "Mathlib.Data.Fintype.BigOperators"
+      ],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.CodingRate",
+        "LeanInfoTheory.Shannon.SourceCoding"
+      ],
+      "name": "LeanInfoTheory.Examples.CodingRate",
+      "path": "LeanInfoTheory/Examples/CodingRate.lean",
       "root_reachable": false,
       "summary": "Local LeanInfoTheory module."
     },
@@ -1013,6 +1058,30 @@
       "external_imports": [],
       "layer": "Non-stable anchors",
       "local_imports": [
+        "LeanInfoTheory.Shannon.SourceCoding"
+      ],
+      "name": "LeanInfoTheory.Examples.SourceCoding",
+      "path": "LeanInfoTheory/Examples/SourceCoding.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.CodingRate",
+        "LeanInfoTheory.Shannon.SemanticBridge.AEP",
+        "LeanInfoTheory.Shannon.SourceCoding"
+      ],
+      "name": "LeanInfoTheory.Examples.SourceCodingTypicalSet",
+      "path": "LeanInfoTheory/Examples/SourceCodingTypicalSet.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
         "LeanInfoTheory.Shannon.EntropyBounds",
         "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing"
       ],
@@ -1122,5 +1191,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 5,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 80
+  "separate_import_count": 85
 }

@@ -36,7 +36,129 @@ Status labels used below:
 
 ## 0. AI Assistant Quick Start
 
-**[Current] C19.05 initial qualification and maintained handoff, 2026-10-20.**
+**[Current] C20.05 cumulative qualification and handoff, 2026-10-23.**
+
+C20.01--C20.04 and their reviews are complete by their private source-bound
+records. Step 5 was admitted after verifying Step 4's three satisfied criteria,
+accepted and reconciled original report, passing final evidence and exact final
+source applicability. C20.05 adds no mathematical endpoint.
+
+The finite package contains 24 additions: the generic Fano event bridge, twelve
+SourceCoding declarations and eleven CodingRate declarations. Inventory is 745
+in 49 supported owners; root exports remain 92 and reviewed simp names 94.
+The maintained [C20 handoff](handoffs/chunk-20.md) records the actual interfaces,
+three permanent consumer owners, source adaptations and C21/C23 boundaries.
+
+The separately authorized local API-documentation milestone passed both actual
+build/check passes with reviewed Zig 0.16.0 and local file source links. All 24
+new declarations' elaborated signatures, hypotheses, docstrings, owners and
+source links were inspected against source. This is warm/incremental output,
+not a cold build or publication. Exact identities, any failures and applicability
+are retained in the [C20 notes](plans/post-release-chunk-20-notes.md#15-c2005-cumulative-qualification-and-handoff).
+
+The lead approved the prepared 24-path local checkpoint, necessary same-scope
+C20.05 amendments and reuse of the existing detached validation checkout.
+Initial checkpoint `940e5e76a1f35e3f67bf131b004b3b056f9024ea` passed the complete
+maintained routine. API evidence remains applicable, with only the maintained
+frozen-manifest CRLF/LF correspondence between checkouts. Each amended candidate
+requires a complete clean rerun and fresh applicability checks, retained privately.
+C20.05 is validation-ready; cumulative review, reconciliation and final closure
+are established only by their actual source-bound records. Closure is established only by
+`.lit-review/setup/c20-05-completion-20261023.json`, when present, and its linked
+source-bound certificate. C21 and publication remain unselected.
+
+**[History] C20.04 operational and C19 integration consumers, 2026-10-23.**
+
+C20.01--C20.03 and their reviews are complete by their private source-bound
+records. The conditional Step 4 request was admitted after verifying Step 3's
+closure, accepted and reconciled review, all four criteria and exact final-source
+applicability. Only C20.04 is selected.
+
+Permanent SourceCoding consumers now exercise a constructed fair-source witness
+with exact error, pure and singleton sources, arbitrary zero-length codes and
+explicit zero-message impossibility. The separate private
+`Examples.SourceCodingTypicalSet` composes public C19 and C20 interfaces. One
+dependent rounded-budget family retains typical-word recovery and the complement
+error bound at every length, positive-length rate bounds and explicit empty-word
+initialization. Its arbitrary-code rate converse accepts any real target. The
+existing typical-probability limit supplies complement convergence beside these
+finite statements; no coding-error limit or entropy threshold is proved.
+
+Public inventory remains 745 declarations in 49 owners, with 92 root exports and
+94 reviewed simp names. The new consumer joins only Examples; coding producers
+retain their independent import boundaries. The [C20 notes](plans/post-release-chunk-20-notes.md#14-c2004-operational-and-c19-integration-consumers)
+record proof choices and qualification. Closure is subject to
+`.lit-review/setup/c20-04-completion-20261023.json` and its linked certificate.
+Cumulative qualification and the maintained handoff remain C20.05 duties.
+
+**[History] C20.03 rates, integer ceilings and binary representation, 2026-10-23.**
+
+C20.01 and C20.02 and their reviews are complete by their private source-bound
+records. The conditional Step 3 request was admitted after verifying Step 2's
+closure, reconciled report, satisfied criteria and exact final-source identity.
+Only C20.03 is selected. The persistent reviewer and its disclosed historical
+context limitations are retained.
+
+The new focused `Shannon.CodingRate` owner supplies eleven scalar declarations:
+rate in nats, positive-length budget equivalence and exponential recovery,
+ceiling-exponential budgets, the nonnegative-target rate sandwich, and fixed
+binary-length conversion. Private `Examples.CodingRate` exercises actual bit
+padding with total decoding, exact recovered outputs and error, minimal-length
+rate overhead and degenerate/negative boundaries. SourceCoding and CodingRate
+remain independent focused owners; only the private consumer imports both.
+The inventory is 745 declarations in 49 owners, with root exports 92 and
+reviewed simp names 94 unchanged.
+
+The [C20 notes](plans/post-release-chunk-20-notes.md#13-c2003-implementation-and-qualification)
+retain implementation, qualification and limits. Only
+`.lit-review/setup/c20-03-completion-20261023.json` and its linked source-bound
+record, when present, establish Step 3 closure. C19 coding integration and
+cumulative C20 qualification remain later steps.
+
+**[History] C20.02 arbitrary-law one-shot bounds, 2026-10-22.**
+
+C20.01 and its review are complete by
+`.lit-review/setup/c20-01-completion-20261022.json`; the conditional Step 2
+request was admitted after checking that closure, all four criteria, its
+reconciled original report and exact final-source applicability. Only C20.02
+is selected. The same persistent reviewer remains bound, with its recorded
+context limitations and a narrower-context-reading follow-up retained.
+
+The finite SourceCoding owner adds law-free recovery on a selected set,
+law-based recovery plus the complement error bound for the same code, and the
+arbitrary-law success converse with a nonnegative atom cap. Public inventory
+is 734 declarations in 48 owners; root exports remain 92 and reviewed simp
+names 94. Imports and dependency pins are unchanged. Permanent consumers use
+the public endpoints for empty sets, exact/spare budgets, selected zero-mass
+words and an explicitly correlated two-letter law.
+
+The [C20 notes](plans/post-release-chunk-20-notes.md#12-c2002-implementation-and-qualification)
+record implementation and qualification. Only
+`.lit-review/setup/c20-02-completion-20261022.json` and its linked source-bound
+record, when present, establish C20.02 closure. Rates, C19 coding integration
+and cumulative C20 qualification remain later steps.
+
+**[History] C20.01 implementation and qualification, 2026-10-22.**
+
+C19 is complete by its private closure and maintained handoff, verified during
+C20 initialization. The lead approved C20 revision 2 and selected only Step 1
+with review. The new focused `Shannon.SourceCoding` owner exposes transparent
+core/block code pairs, encoder/decoder/error accessors, a finite success set,
+its exact membership, cardinality bound and success/error complement. Fano adds
+a type-generic failure-event identity without new imports or public assumptions.
+Private consumers check a colliding fair-binary code, a connected selected-set
+construction with empty-set fallbacks, infinite source types and zero-length
+boundaries. Public one-shot coding bounds and rates remain later steps.
+
+The generated inventory is 731 declarations in 48 owners, with 92 root exports
+and 94 reviewed simp names. The lightweight root, semantic umbrella, dependency
+pins and frozen release contract are unchanged. Validation and review are recorded
+in the [C20 notes](plans/post-release-chunk-20-notes.md#11-c2001-implementation-and-qualification).
+Completion is established only by `.lit-review/setup/c20-01-completion-20261022.json`
+and its linked source-bound record, when present. Earlier review-context exposure
+is retained explicitly; no clean revision-1 plan-review gate is claimed.
+
+**[History] C19.05 initial qualification and maintained handoff, 2026-10-20.**
 
 C19.01--C19.04 and their reviews are complete by actual private records. C19.05
 was admitted after exact predecessor closure/source verification and adds no
@@ -604,7 +726,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Task | Read next |
 | --- | --- |
-| Post-release mathematics | Read the approved [C19 plan](plans/post-release-chunk-19.md), [C19 notes](plans/post-release-chunk-19-notes.md), [C18 handoff](handoffs/chunk-18.md), [reference register](references.md), Sections 3, 7, 11--16 and actual Lean dependencies. C18 closure was verified during C19 initialization. C19.01--C19.04 and their reviews are closed; C19.05 cumulative qualification and the [C20/C21 handoff](handoffs/chunk-19.md) are selected, with actual gates and status stated in Section 0. Later chunks and release work remain unselected. |
+| Post-release mathematics | Read the [approved C20 plan](plans/post-release-chunk-20.md), [notes](plans/post-release-chunk-20-notes.md), [C20 handoff](handoffs/chunk-20.md), [C19 handoff](handoffs/chunk-19.md), reference register and actual producers/consumers. C20.01--C20.04 are closed by source-bound records. C20.05 alone is selected for cumulative qualification and all-eighteen-criterion review; Section 0 retains the exact pending checkpoint/closure boundary. |
 | Chunk 8 review or later-phase intake | The completed Chunk 8 plan; Sections 3, 6-9, 11-14, and 16; the three Chunk 8 mathematical owners, two maintained example owners, semantic/examples aggregates, and current Future Work Notes 9, 14-18, and 24 |
 | Review of an existing Lean theorem | Sections 3, 7, 9, and 16; the owning source module and its direct imports |
 | API or module review | Sections 7, 9, 10, 11, and Future Work Notes 2-4, 14-16, 18, and 26 |
@@ -617,12 +739,12 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-10-20 |
+| Last updated | 2026-10-22 |
 | Recorded pre-C9 mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the released `v0.1.0` source is exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f` |
 | Repository transition state | `v0.1.0` is published from immutable tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` and archived as Zenodo record `22229599`. The evolving default branch carries the current project pages and DOI metadata, while maintenance staging preserves `/docs/v0.1.0/` from exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`; the tag, Release, archive, released Lean source, and frozen public API remain unchanged |
 | Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
 | mathlib baseline | `v0.1.0` uses input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474` |
-| Source-snapshot phase | Post-release `v0.1.x`; C18 closure and its exact captured source were verified during C19 initialization at HEAD `aaaa6e7befe246832743b5df1716f9e26954a482`. C19.01--C19.04 and their reviews are closed by actual completion records; C19.05 is selected for cumulative qualification and maintained handoff. Source inventory contains 721 declarations in 47 owners; qualification and closure depend on the current step records, not inventory generation. Historical C18 clean/API-documentation evidence remains separately recorded below. |
+| Source-snapshot phase | Post-release `v0.1.x`; C19 and C20.01--C20.04 completion and final-source applicability were verified at HEAD `d60927259558e5ebbe4d332954adf564e52d04f4`. C20.05 is selected. Inventory is 745 declarations in 49 owners; current API-documentation evidence and pending clean/review duties are distinguished in Sections 0 and 16. |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -881,6 +1003,20 @@ Use this order when claims disagree:
   original labels, to assign ownership.
 
 ## 5. Current Mathematical Coverage
+
+C20.01 supplies deterministic code representation, exact event semantics and
+success counting. C20.02 adds public selected-set recovery and its same-witness
+error bound, together with the arbitrary-law atom-cap converse. All three
+remain in the finite SourceCoding owner, independent of iid/AEP imports.
+C20.03 adds the separate scalar CodingRate owner, with exact positive-length
+rate/budget equivalence, ceiling budgets and fixed binary-length conversion.
+Its private consumer transports actual codes through binary strings and proves
+error preservation and finite padding overhead.
+C20.04 adds private operational boundary consumers and a separate C19 integration
+owner assembling one actual dependent rounded family and arbitrary-code finite
+converses. Its complement limit is derived from public C19; coding limits remain
+C21 work.
+See Section 0 for qualification and source-bound closure status.
 
 ### Finite PMF comparison
 
@@ -1240,9 +1376,19 @@ exact-event formulas without unfolding it. The separate private
 aggregate. It consumes both marginal orientations, Fano and measure-product
 semantics. The root retains its five-module closure.
 
-The current generated supported closure contains 721 documented public declarations:
-643 theorems, 66 definitions, 9 abbreviations and 3 named instances in 47 owners.
-It excludes all 38 non-stable development, example and reference modules.
+The current generated supported closure contains 745 documented public declarations:
+659 theorems, 69 definitions, 14 abbreviations and 3 named instances in 49 owners.
+It excludes all 41 non-stable development, example and reference modules.
+C20.01 adds the type-generic Fano failure-event identity and the focused
+SourceCoding core described in Section 0. C20.02 exposes the three approved
+one-shot endpoints while keeping embedding/extension machinery inside proofs.
+The real finite-event sum bridge is local, with no new event API or import.
+C20.03 adds eleven scalar declarations in CodingRate; natural-ceiling and
+logarithm arguments reuse pinned mathlib and the existing Units conversions.
+C20.04 adds no public declaration or producer import. Its private
+SourceCodingTypicalSet owner imports CodingRate, SourceCoding and SemanticBridge.AEP
+and joins only Examples. Arbitrary-law and scalar producers remain independent
+of iid/typical-set/AEP imports; no private example is imported for proof reuse.
 C19 adds supported block self-information, numerical finite-iid AEP and typical-probability convergence in the semantic owner. The finite TypicalSet owner provides supported strict membership, exponential atom bounds and all-length/all-width cardinality bounds; moments, concentration bounds and probability bridges remain private. Compilation and review status are recorded in Section 0. C15.01 adds seven
 declarations in `Probability.FiniteTopology`: the subtype-topology forwarder,
 real-coordinate continuity, real-simplex homeomorphism and its two coordinate
@@ -1287,7 +1433,9 @@ and [structural type artifact](compatibility/README.md) remain unchanged.
 | `LeanInfoTheory.Shannon.EntropyBounds` | Jensen-based alphabet/support bounds and exact uniform equality |
 | `LeanInfoTheory.Shannon.Units` | Scalar conversion from canonical nats to arbitrary valid logarithm bases and bits |
 | `LeanInfoTheory.Shannon.BinaryEntropy` | Boolean-PMF entropy bridge to mathlib `Real.binEntropy` |
-| `LeanInfoTheory.Shannon.Fano` | Type-generic decoding error and finite exact/weak Fano inequalities and corollaries |
+| `LeanInfoTheory.Shannon.Fano` | Type-generic decoding error and exact failure-event identity; finite exact/weak Fano inequalities and corollaries |
+| `LeanInfoTheory.Shannon.SourceCoding` | Transparent total deterministic core/block codes, exact error, finite success sets and law-free success counting; independent of iid, typical sets and AEP |
+| `LeanInfoTheory.Shannon.CodingRate` | Rate in nats, ceiling-exponential budgets and binary-length conversion; independent of SourceCoding, iid and AEP |
 | `LeanInfoTheory.Shannon.Continuity` | Exact-TV entropy difference through maximal coupling/Fano; capped scalar modulus, monotonicity on nonnegative budgets and entropy/conditional-entropy/MI bounds from an upper TV estimate |
 | `LeanInfoTheory.Shannon.FiniteFamily` | Dependent finite-family laws, finite-atom entropy/MI/CMI algebra, pair/triple compatibility, and binary/ordered entropy, MI, and conditional-MI chain rules |
 | `LeanInfoTheory.Probability.FiniteMixture` | Binary PMF mixtures with `NNReal` weights and exact endpoint laws; general selectors use `PMF.bind` |
@@ -1894,6 +2042,72 @@ Certificate search, coefficient solving, primitive autotagging, and external
 certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
+
+### C20.05 cumulative qualification and handoff, 2026-10-23
+
+C20.01--C20.04 and their reviews are complete by their private source-bound
+records. Step 5 was admitted after verifying Step 4's three satisfied criteria,
+accepted and reconciled original report, passing final evidence and exact final
+source applicability. C20.05 adds no mathematical endpoint.
+
+The finite package contains 24 additions: the generic Fano event bridge, twelve
+SourceCoding declarations and eleven CodingRate declarations. Inventory is 745
+in 49 supported owners; root exports remain 92 and reviewed simp names 94.
+The maintained [C20 handoff](handoffs/chunk-20.md) records the actual interfaces,
+three permanent consumer owners, source adaptations and C21/C23 boundaries.
+
+The separately authorized local API-documentation milestone passed both actual
+build/check passes with reviewed Zig 0.16.0 and local file source links. All 24
+new declarations' elaborated signatures, hypotheses, docstrings, owners and
+source links were inspected against source. This is warm/incremental output,
+not a cold build or publication. Exact identities, any failures and applicability
+are retained in the [C20 notes](plans/post-release-chunk-20-notes.md#15-c2005-cumulative-qualification-and-handoff).
+
+The lead approved the prepared 24-path local checkpoint, necessary same-scope
+C20.05 amendments and reuse of the existing detached validation checkout.
+Initial checkpoint `940e5e76a1f35e3f67bf131b004b3b056f9024ea` passed the complete
+maintained routine. API evidence remains applicable, with only the maintained
+frozen-manifest CRLF/LF correspondence between checkouts. Each amended candidate
+requires a complete clean rerun and fresh applicability checks, retained privately.
+C20.05 is validation-ready; cumulative review, reconciliation and final closure
+are established only by their actual source-bound records. Closure is established only by
+`.lit-review/setup/c20-05-completion-20261023.json`, when present, and its linked
+source-bound certificate. C21 and publication remain unselected.
+
+### Historical C20.04 operational and C19 integration consumers, 2026-10-23.
+
+Only C20.04 is selected after verified Step 3 closure and exact source
+applicability. The [approved plan](plans/post-release-chunk-20.md) and
+[notes](plans/post-release-chunk-20-notes.md#14-c2004-operational-and-c19-integration-consumers)
+record the finite consumers, dependent-family composition and qualification.
+Closure belongs to the private Step 4 completion record named in Section 0.
+C20.05, C21 and publication remain unselected.
+
+### Historical C20.03 rates and binary representation, 2026-10-23
+
+Only C20.03 is selected after verified Step 2 closure and exact source
+applicability. The [approved plan](plans/post-release-chunk-20.md) and
+[notes](plans/post-release-chunk-20-notes.md#13-c2003-implementation-and-qualification)
+record the scalar endpoints, actual binary transport, private boundary consumers
+and qualification limits. Closure belongs to the private Step 3 completion
+record named in Section 0. C20.04--C20.05, C21 and publication remain unselected.
+
+### Historical C20.02 arbitrary-law one-shot bounds, 2026-10-22
+
+Only C20.02 is selected. C20.01 closure and exact predecessor applicability
+were verified before its conditional admission. The [approved plan](plans/post-release-chunk-20.md)
+and [notes](plans/post-release-chunk-20-notes.md#12-c2002-implementation-and-qualification)
+record the three public endpoints, permanent consumers, evidence and limits.
+Current closure belongs to the private C20.02 completion record named in
+Section 0. C20.03--C20.05, C21 and publication are unselected.
+
+### Historical C20.01 deterministic source-code foundations, 2026-10-22
+
+Only C20.01 is selected under the [approved C20 plan](plans/post-release-chunk-20.md).
+The focused owner, generic Fano bridge and permanent construction/counting
+consumers are described in Section 0 and the [C20 notes](plans/post-release-chunk-20-notes.md).
+Review and exact closure remain attributable to the private completion record.
+C20.02--C20.05, C21 and publication are not selected.
 
 ### C19.05 initial qualification and maintained handoff, 2026-10-20
 
@@ -2853,7 +3067,7 @@ again.
 | Note | Work |
 | --- | --- |
 | Unnumbered | **Chunk 8 is complete through `C8.24` and checkpointed as `1eef228`.** Its 18-declaration API, generated references, complete validation evidence, exact-SHA Lean workflow, and Pages deployment pass; any later theorem phase requires a separate decision. |
-| Unnumbered | **C19 cumulative qualification:** C18 is complete by its private record. C19.01--C19.04 and their reviews are closed. Selected C19.05 owns the clean/API gates, fresh all-sixteen-criterion review and [C20/C21 handoff](handoffs/chunk-19.md). The [approved plan](plans/post-release-chunk-19.md) and [notes](plans/post-release-chunk-19-notes.md) retain contracts and actual evidence. C20/C21 coding, C22 capacity and C23 channel coding remain later separately selected work. |
+| Unnumbered | **C20 source coding:** C20.01--C20.04 are complete by their private records. C20.05 alone is selected for cumulative qualification, independent all-eighteen-criterion review and the [maintained handoff](handoffs/chunk-20.md). [Plan](plans/post-release-chunk-20.md), [notes](plans/post-release-chunk-20-notes.md) and Section 0 retain the pending clean-checkpoint and closure boundary. |
 | 29 | **Finite-Fano phase checkpointed.** Commit `ec78829` completes the approved phase; its evidence-based Fano follow-ups remain open and deferred. |
 
 Note 29 also preserves proof-pressure triggers from `C5.08`-`C5.11` and
@@ -3062,6 +3276,15 @@ that was still open at C16 closeout. C19's approved plan now fixes strict suppor
 typicality with an empty zero-length set. The C16 closeout claimed no fresh
 textbook reading.
 
+C20 adapts PW24 section 11.1 (August 16, 2024 edition), especially Remark
+11.1 and the success-set split in Theorem 11.4. Replacing permitted erasure
+outputs by a fixed source value preserves successes; C20 uses total decoding
+and all message indices. Its arbitrary-set finite converse is a reusable
+generalization, with nats and explicit integer ceilings. The [C20 handoff](handoffs/chunk-20.md)
+records exact source anchors and separates this model from PW22 numbering and
+CT91 section 3.2 variable-length expected-description-length coding. These are
+recorded source adaptations, not a claim of fresh Step 5 textbook extraction.
+
 C19 uses CT91 Section 3.1, Theorems 3.1.1--3.1.2, and PW24 Section 11.2,
 Proposition 11.6, for finite-iid AEP and typical-set probability/counting
 bounds. Natural logarithms replace bits, and strict supported typicality is
@@ -3134,7 +3357,46 @@ not reproduce textbook prose or proofs.
 
 ## 16. Validation State
 
-**[Current] C19.05 initial qualification, 2026-10-20.**
+**[Current] C20.05 qualification, 2026-10-23.** The actual two-pass local
+API-documentation gate and all-24 signature/docstring/owner/source-link inspection
+passed. Exact source applicability and original failures remain separate records.
+The lead approved the scoped checkpoint and same-scope amendments. Initial
+checkpoint `940e5e76a1f35e3f67bf131b004b3b056f9024ea` passed the complete clean
+routine in the existing detached validation checkout. Every amended candidate
+requires a complete rerun; exact results and current API applicability are retained
+privately. Cumulative review, reconciliation and closure remain subject to their
+actual source-bound records. See the [handoff](handoffs/chunk-20.md).
+
+**[History] C20.04 qualification, 2026-10-23.** This selected dirty-tree
+step requires focused consumer/aggregate builds, static and documentation gates,
+and compiled compatibility/trust. Actual commands, results, failures, source
+applicability and independent review are retained in the Step 4 records and
+C20 notes. Closure remains subject to its private completion record. Full clean
+and signature-bearing API-documentation qualification belong to C20.05.
+
+**[History] C20.03 qualification, 2026-10-23.** The selected dirty-tree step
+requires focused producer/consumer/aggregate builds, static and documentation
+gates, and compiled compatibility/trust. Exact outcomes, original failures,
+review and final applicability are retained in its private records and C20
+notes. This captured status is subject to the private completion record.
+Full clean and separate API-documentation qualification remain C20.05 duties.
+
+**[History] C20.02 qualification, 2026-10-22.** Required dirty-tree checks are
+focused producer/consumer/aggregate builds, static and documentation gates,
+and compiled compatibility/trust. Their actual outcomes, original failures,
+review and final applicability are retained in the C20.02 step records and
+notes. This prose does not assert closure before the completion record exists.
+The clean routine and separate signature-bearing API-documentation milestone
+remain C20.05 obligations; no commit or publication is authorized here.
+
+**[History] C20.01 qualification, 2026-10-22.** The selected dirty-tree step uses
+focused producer/consumer/aggregate builds, static/documentation checks and
+compiled compatibility/trust auditing. Its actual results, failures and review
+limits are retained in the C20 notes and private records. Full clean and separate
+API-documentation qualification belong to C20.05; historical C19 results do not
+certify the changed C20 source.
+
+**[History] C19.05 initial qualification, 2026-10-20.**
 
 The lead approved the exact 23-path local checkpoint, necessary C19.05-only
 amendments, reuse of the existing detached validation checkout, and the separate

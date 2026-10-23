@@ -17,9 +17,11 @@ import LeanInfoTheory.Probability.Iid
 import LeanInfoTheory.Probability.ProductChannel
 import LeanInfoTheory.Probability.TotalVariation
 import LeanInfoTheory.Probability.TotalVariationTopology
+import LeanInfoTheory.Shannon.CodingRate
 import LeanInfoTheory.Shannon.Continuity
 import LeanInfoTheory.Shannon.Fano
 import LeanInfoTheory.Shannon.SemanticBridge
+import LeanInfoTheory.Shannon.SourceCoding
 import LeanInfoTheory.Shannon.Topology
 import LeanInfoTheory.Shannon.TypicalSet
 import LeanInfoTheory.Shannon.Units

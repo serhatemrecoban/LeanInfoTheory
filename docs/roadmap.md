@@ -1,6 +1,37 @@
 # Roadmap
 
-## C19.05 initial qualification and maintained handoff — 2026-10-20
+## C20.05 cumulative qualification and maintained handoff — 2026-10-23
+
+C20.01--C20.04 and their reviews are complete by their private source-bound
+records. Step 5 was admitted after verifying Step 4's three satisfied criteria,
+accepted and reconciled original report, passing final evidence and exact final
+source applicability. C20.05 adds no mathematical endpoint.
+
+The finite package contains 24 additions: the generic Fano event bridge, twelve
+SourceCoding declarations and eleven CodingRate declarations. Inventory is 745
+in 49 supported owners; root exports remain 92 and reviewed simp names 94.
+The maintained [C20 handoff](handoffs/chunk-20.md) records the actual interfaces,
+three permanent consumer owners, source adaptations and C21/C23 boundaries.
+
+The separately authorized local API-documentation milestone passed both actual
+build/check passes with reviewed Zig 0.16.0 and local file source links. All 24
+new declarations' elaborated signatures, hypotheses, docstrings, owners and
+source links were inspected against source. This is warm/incremental output,
+not a cold build or publication. Exact identities, any failures and applicability
+are retained in the [C20 notes](plans/post-release-chunk-20-notes.md#15-c2005-cumulative-qualification-and-handoff).
+
+The lead approved the prepared 24-path local checkpoint, necessary same-scope
+C20.05 amendments and reuse of the existing detached validation checkout.
+Initial checkpoint `940e5e76a1f35e3f67bf131b004b3b056f9024ea` passed the complete
+maintained routine. API evidence remains applicable, with only the maintained
+frozen-manifest CRLF/LF correspondence between checkouts. Each amended candidate
+requires a complete clean rerun and fresh applicability checks, retained privately.
+C20.05 is validation-ready; cumulative review, reconciliation and final closure
+are established only by their actual source-bound records. Closure is established only by
+`.lit-review/setup/c20-05-completion-20261023.json`, when present, and its linked
+source-bound certificate. C21 and publication remain unselected.
+
+## Historical C19.05 initial qualification and maintained handoff — 2026-10-20
 
 C19.01--C19.04 and their reviews are complete by actual private records. C19.05
 was admitted after exact predecessor closure/source verification and adds no
@@ -207,7 +238,7 @@ The source-bound C13.04 records subsequently established final validation,
 review, reconciliation and closure at `ebe48eaea4282b1e4f245f8f45440bc930b8df73`;
 the initial-checkpoint evidence above is retained as history.
 That C13/C14 transition snapshot excluded unrelated website notes and left
-later chunks unselected. The current C19.05 qualification boundary is recorded above;
+later chunks unselected. The current C20.05 qualification boundary is recorded above;
 publication still requires separate authority.
 
 ## Proposed Post-Release Programme
@@ -229,11 +260,11 @@ declarations only an uncertain cross-check, not a quota.
 
 The later programme remains a proposal for project-lead review, not an approved
 execution plan or a release/date commitment. The separately authorized
-[review workflow](review-operations.md) is installed. C9--C18 and C19.01--C19.04
-are complete by actual records. The separately approved C19 plan and eligible
-request select C19.05 for cumulative qualification and the
-[maintained handoff](handoffs/chunk-19.md), including fresh all-sixteen-criterion
-review and exact final validation. C20--C24 require separately approved detailed
+[review workflow](review-operations.md) is installed. C9--C19 and C20.01--C20.04
+are complete by actual records. The approved C20 revision-2 plan and eligible
+request select C20.05 for cumulative qualification and the
+[maintained handoff](handoffs/chunk-20.md), including fresh all-eighteen-criterion
+review and exact final validation. C21--C24 require separately approved detailed
 plans and eligible execution requests. No release date or publication is authorized.
 The [reference register](references.md) identifies the selected sources and
 distinguishes the 2022 and 2024 Polyanskiy--Wu drafts. The calendar horizons

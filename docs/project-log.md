@@ -6,6 +6,97 @@ help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
 
+## C20.05 cumulative qualification and maintained handoff, 2026-10-23
+
+Step 4's closure, reconciled original report, all three criteria and exact final
+source applicability were verified before Step 5 admission. This final step
+adds no mathematical endpoint. The [C20 handoff](handoffs/chunk-20.md) records
+the 24 additions, all eighteen criteria, permanent consumers, source adaptations
+and separate C21/C23 duties. Canonical context and API-documentation references
+are reconciled against source; all Lean producer/consumer bytes are preserved.
+
+The actual local two-pass API-documentation milestone and inspection of all 24
+new signatures/docstrings/owners/source links passed. Exact identities and any
+failures remain in the [notes](plans/post-release-chunk-20-notes.md#15-c2005-cumulative-qualification-and-handoff).
+The lead approved the prepared 24-path local checkpoint, necessary same-scope
+amendments and existing detached validation-checkout reuse. Initial checkpoint
+`940e5e76a1f35e3f67bf131b004b3b056f9024ea` passed the complete maintained routine.
+API source/configuration/output applicability was checked against that candidate,
+with only the maintained frozen-manifest CRLF/LF correspondence. Every amendment
+requires a complete clean rerun, retained privately. The candidate is validation-ready;
+fresh cumulative review, reconciliation and final closure require their actual
+records. Only the private source-bound Step 5 completion record establishes closure. No later chunk or publication is
+selected, and unrelated intake bytes remain protected.
+
+## C20.04 operational and C19 integration consumers, 2026-10-23
+
+Step 3's closure, accepted/reconciled review, all four criteria and exact final
+source were verified before the conditional Step 4 admission. This step adds
+private consumers of existing public interfaces: constructed fair error, pure
+and singleton laws, arbitrary empty-word codes and zero-message impossibility.
+The separate C19 integration owner assembles one dependent rounded-budget family
+with all-length recovery/error, positive-length rates and zero initialization,
+beside complement convergence and arbitrary-code finite/rate converses.
+
+No public endpoint or producer import is added: inventory remains 745 in 49
+owners, root exports 92 and reviewed simp names 94. The new example module joins
+only Examples. The [C20 notes](plans/post-release-chunk-20-notes.md#14-c2004-operational-and-c19-integration-consumers)
+retain scope, source conventions, qualification and review limits. Only the
+private source-bound Step 4 completion record establishes closure. C20.05 and
+its maintained handoff, coding limit proofs, commits and publication remain
+unselected.
+
+## C20.03 rates, integer ceilings and binary representation, 2026-10-23
+
+Step 2's closure, reconciled original review, satisfied criteria and exact
+final-source identity were verified before the conditional Step 3 admission.
+This step adds the approved scalar CodingRate owner and a private consumer of
+actual source-code padding through binary strings. Ceiling budgets preserve
+all-real size estimates; their two-sided rate estimate uses positive length
+and a nonnegative target. Zero-length values remain initialization conventions.
+The binary consumer preserves recovered outputs and exact error while exposing
+the changed budget and strict minimal-length rate overhead.
+
+The eleven declarations bring the inventory to 745 in 49 owners, with root
+exports 92 and reviewed simp names 94 unchanged. Import approvals and generated
+references are maintained. The [C20 notes](plans/post-release-chunk-20-notes.md#13-c2003-implementation-and-qualification)
+record proof choices, boundary pressure, qualification and review limits.
+Only the private source-bound Step 3 completion record establishes closure.
+C19 integration, later steps, commits and publication remain unselected.
+
+## C20.02 arbitrary-law one-shot bounds, 2026-10-22
+
+The conditional request was admitted only after actual C20.01 closure,
+reconciled review, satisfied criteria and exact final-source correspondence
+were verified. This step adds the approved law-free selected-set recovery,
+same-witness law-based complement-error bound, and nonnegative-atom-cap
+converse in the existing SourceCoding owner. The public delta is three
+theorems, bringing the inventory to 734 in 48 owners, with root exports 92
+and reviewed simp names 94 unchanged.
+
+Public-endpoint consumers cover a tight fair-binary converse, empty-set
+strictness, exact/spare budgets, selected zero-mass words, and a correlated
+two-letter law certified by a marginal-product mismatch. The [C20 notes](plans/post-release-chunk-20-notes.md#12-c2002-implementation-and-qualification)
+retain proof choices, qualification, review and limitations. Only the private
+source-bound C20.02 completion record establishes closure. No rate result,
+later step, checkpoint commit or publication is selected.
+
+## C20.01 deterministic source-code foundations, 2026-10-22
+
+The approved revision-2 first step adds the transparent total encoder/decoder
+core and block specialization, exact Fano failure-event identity, finite success
+set, complement probability and law-free cardinality bound. Private permanent
+consumers exercise a genuinely colliding fair-binary code and a connected finite
+selected-set construction, including empty-set fallback and zero-length cases.
+The public surface grows by ten declarations to 731 in 48 owners; root exports
+remain 92 and reviewed simp names 94. The focused SourceCoding owner joins only
+the full Shannon umbrella. Existing root/semantic imports and pins are unchanged.
+
+The [C20 notes](plans/post-release-chunk-20-notes.md#11-c2001-implementation-and-qualification)
+record proof choices, initial failures, current validation and review limits.
+Only the source-bound private completion record establishes step closure.
+No C20.02 result, checkpoint commit or publication is selected.
+
 ## C19.05 initial qualification and maintained handoff, 2026-10-20
 
 Step 5 was admitted after actual C19.04 closure, all four preceding original

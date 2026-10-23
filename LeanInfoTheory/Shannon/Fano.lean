@@ -97,6 +97,24 @@ noncomputable def decodingErrorProbabilityOf
     (decoder : beta -> alpha) : Real :=
   decodingErrorProbability (p.map fun omega => (X omega, Y omega)) decoder
 
+/-- The existing random-variable decoding error is exactly the probability of
+the failure event. This identity needs no finiteness, measurability or support
+assumption: both pushforwards are pulled back to the original PMF. -/
+theorem decodingErrorProbabilityOf_eq_toOuterMeasure
+    {omega : Type u} {alpha : Type v} {beta : Type w}
+    (p : PMF omega) (X : omega → alpha) (Y : omega → beta)
+    (decoder : beta → alpha) :
+    decodingErrorProbabilityOf p X Y decoder =
+      (p.toOuterMeasure {ω | decoder (Y ω) ≠ X ω}).toReal := by
+  unfold decodingErrorProbabilityOf decodingErrorProbability
+  rw [PMF.map_comp, ← PMF.toOuterMeasure_apply_singleton,
+    PMF.toOuterMeasure_map_apply]
+  apply congrArg ENNReal.toReal
+  apply congrArg p.toOuterMeasure
+  ext ω
+  simp only [Set.mem_preimage, Set.mem_singleton_iff,
+    Function.comp_apply, decodingErrorIndicator_eq_true_iff, Set.mem_ofPred_eq]
+
 open scoped Classical in
 /--
 The decoding-error probability is the total mass of the joint atoms on which
