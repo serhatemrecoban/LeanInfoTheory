@@ -6,8 +6,8 @@
     "Semantic bridge layer",
     "Non-stable anchors"
   ],
-  "local_edge_count": 206,
-  "module_count": 90,
+  "local_edge_count": 212,
+  "module_count": 92,
   "modules": [
     {
       "external_imports": [],
@@ -177,6 +177,7 @@
         "LeanInfoTheory.Shannon.Fano",
         "LeanInfoTheory.Shannon.SemanticBridge",
         "LeanInfoTheory.Shannon.SourceCoding",
+        "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
         "LeanInfoTheory.Shannon.Topology",
         "LeanInfoTheory.Shannon.TypicalSet",
         "LeanInfoTheory.Shannon.Units"
@@ -328,6 +329,19 @@
       ],
       "name": "LeanInfoTheory.Shannon.SourceCoding",
       "path": "LeanInfoTheory/Shannon/SourceCoding.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.CodingRate",
+        "LeanInfoTheory.Shannon.SemanticBridge.AEP",
+        "LeanInfoTheory.Shannon.SourceCoding"
+      ],
+      "name": "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
+      "path": "LeanInfoTheory/Shannon/SourceCodingAsymptotic.lean",
       "root_reachable": false,
       "summary": "Local LeanInfoTheory module."
     },
@@ -718,6 +732,7 @@
         "LeanInfoTheory.Examples.ProductKL",
         "LeanInfoTheory.Examples.QuantitativeIndependence",
         "LeanInfoTheory.Examples.SourceCoding",
+        "LeanInfoTheory.Examples.SourceCodingAsymptotic",
         "LeanInfoTheory.Examples.SourceCodingTypicalSet",
         "LeanInfoTheory.Examples.StochasticChannels",
         "LeanInfoTheory.Examples.SufficientStatistics",
@@ -1069,6 +1084,17 @@
       "external_imports": [],
       "layer": "Non-stable anchors",
       "local_imports": [
+        "LeanInfoTheory.Shannon.SourceCodingAsymptotic"
+      ],
+      "name": "LeanInfoTheory.Examples.SourceCodingAsymptotic",
+      "path": "LeanInfoTheory/Examples/SourceCodingAsymptotic.lean",
+      "root_reachable": false,
+      "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
         "LeanInfoTheory.Shannon.CodingRate",
         "LeanInfoTheory.Shannon.SemanticBridge.AEP",
         "LeanInfoTheory.Shannon.SourceCoding"
@@ -1191,5 +1217,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 5,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 85
+  "separate_import_count": 87
 }

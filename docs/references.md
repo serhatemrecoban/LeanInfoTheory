@@ -137,6 +137,55 @@ August 16, 2024 prepublication version. The source footer identifies the date.
 - Section 11.1: one-shot source coding; Section 11.2, Proposition 11.6:
   AEP, typicality, and their coding consequence. These sections differ from
   the older draft, which grouped AEP under Section 11.1.
+- C21.01 source use: Section 11.2 motivates above-entropy achievability,
+  assembled from C19 strict supported typicality and C20 selected-set coding
+  and rounded integer budgets. The source uses nats, total deterministic
+  decoders and one dependent code family; the complement probability is an
+  error bound, not an asserted equality. Pure and biased sparse sources require
+  no full-support premise. C21.01 is closed by its source-bound record. The
+  [C21 notes](plans/post-release-chunk-21-notes.md)
+  retain prior reference evidence and adaptations; this update claims no new
+  textbook inspection, converse or entropy-threshold endpoint.
+- Historical C21.02 source use (subsequently completed by its source-bound
+  private record): the strong source converse combines C20 one-shot success
+  counting with C19 strict supported typicality and atom/mass bounds. Pointwise
+  rate estimates and positive-gap decay yield error tending to one under an
+  eventual cap below entropy. No broader information-spectrum API or channel
+  strong converse is asserted. Validation: Initial focused builds, static checks, all nine documentation examples and compiled compatibility/trust checks passed on their recorded inputs. The candidate is validation ready; final-source qualification and applicability require their actual evidence.
+  Review: The original independent report is accepted and reconciled, with all three C21.02 criteria satisfied. Closure remains subject to the private completion record and its linked source-bound certificate. The C21 notes retain actual evidence/adaptations;
+  fresh PW24 text inspection covered the relevant source-coding/AEP passages
+  (printed 214--215 and 218, PDF 239--240 and 243). No Step 2 closure is claimed.
+- Historical C21.03 source adaptation (subsequently completed by its source-bound
+  private record): the general necessary-rate converse reuses
+  the pointwise C20/C19 success estimate at arbitrarily large low-rate indices,
+  with one fixed positive gap and an eventual positive success lower bound.
+  Thus vanishing error excludes those indices without assuming bounded or
+  convergent rates. The public endpoint is
+  `eventually_entropy_sub_le_codeRate_of_tendsto_errorProbability_zero`.
+  Consumer status: Compiled private fair-source families cover exact recovery with zero error and unbounded oscillating rates plus a persistent bounded branch, and intermittent low rates with one fixed positive gap, no eventual below-entropy cap and nonvanishing error derived through the public general converse. Validation: C21.03 producer and four-target consumer/aggregate builds, all nine documentation examples, static/scope checks and compiled compatibility/trust qualification passed on their recorded inputs. The candidate is validation ready; final-source qualification and applicability require their actual evidence.
+  Review: The original independent C21.03 report is accepted and reconciled, with all three criteria satisfied. Closure remains subject to the actual private completion record and its linked source-bound certificate. Actual reference inspection, evidence and
+  adaptations are recorded in C21 notes section 11. The full
+  entropy-threshold endpoint remains C21.04; no Step 3 closure is claimed.
+- Historical C21.04 source adaptation (subsequently completed by its
+  source-bound private record): `sourceCoding_threshold` combines
+  established achievability and the general converse as an `IsGLB` statement for
+  the inline set of asymptotic upper rates of actual almost-lossless families.
+  One budget/code family serves every positive tolerance at a chosen rate. The
+  theorem asserts neither membership at entropy nor a universal exact-rate code
+  there. Required operational consumers combine all four endpoints for the same
+  finite source and nats, and include strict compression below support size and
+  a valid finite-prefix modification. Consumer status: Compiled private consumers assemble all four endpoints for one source, prove biased sparse compression with support cardinality two and 0<H<R<log 2 using one actual family, and cover explicit pure/singleton codes plus a genuinely changed finite prefix with scalar limit and eventual-cap preservation.
+  Validation: C21.04 producer and four-target consumer/aggregate builds, all nine documentation examples, static/scope checks and compiled compatibility/trust qualification passed on their recorded inputs. The candidate is validation ready; final-source qualification and applicability require their actual evidence. Review: The original independent C21.04 report is accepted and reconciled, with all four criteria satisfied. Closure remains subject to the actual private completion record and its linked source-bound certificate. Actual reference
+  inspection and evidence belong in C21 notes section 12; no additional textbook
+  inspection or Step 4 closure is inferred here.
+- C21.05 adds no mathematical source claim or new textbook inspection.
+  C21.01--C21.04 and their reviews are closed. The
+  [maintained C21 handoff](handoffs/chunk-21.md) reconciles the delivered
+  PW24/CT91 adaptations, total-decoder/natural-budget/nats conventions,
+  strict supported typicality and same-family operational quantifiers.
+  Initial authorized clean/API qualification and all-four API inspection have
+  passed on recorded inputs. Final candidate qualification, readiness, cumulative acceptance and closure are established only by `.lit-review/setup/c21-05-completion-20261023.json` and its linked actual current-candidate validation/API applicability, genuine original independent report, complete seventeen-criterion matrix, substantive parent reconciliation and final-source qualification. This wording asserts no future PASS or closure.
+  No new textbook reading or mathematical source claim follows from validation.
 - Chapters 17 and 19: code/error conventions, operational capacity, and
   channel examples. The proposed release proves only an upper bound on
   operationally achievable rates, not the full noisy-channel coding theorem.

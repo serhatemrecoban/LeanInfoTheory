@@ -22,6 +22,7 @@ import LeanInfoTheory.Shannon.Continuity
 import LeanInfoTheory.Shannon.Fano
 import LeanInfoTheory.Shannon.SemanticBridge
 import LeanInfoTheory.Shannon.SourceCoding
+import LeanInfoTheory.Shannon.SourceCodingAsymptotic
 import LeanInfoTheory.Shannon.Topology
 import LeanInfoTheory.Shannon.TypicalSet
 import LeanInfoTheory.Shannon.Units
@@ -37,6 +38,9 @@ topology, finite dependent products, Fin block transports and iid laws, finite
 product-channel rows and restrictions, TV
 convergence, quantitative entropy
 continuity, qualitative information continuity, and unit-conversion modules.
+
+For each target above entropy, the focused asymptotic source-coding owner supplies
+one finite-iid code family with vanishing error and an eventual rate bound.
 
 It deliberately excludes `LeanInfoTheory.Basic`, `LeanInfoTheory.Examples`, and
 `LeanInfoTheory.MathlibFragments`, which are non-stable development, regression,

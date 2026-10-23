@@ -13,6 +13,7 @@ import LeanInfoTheory.Examples.ChannelOptimization
 import LeanInfoTheory.Examples.AEP
 import LeanInfoTheory.Examples.CodingRate
 import LeanInfoTheory.Examples.SourceCoding
+import LeanInfoTheory.Examples.SourceCodingAsymptotic
 import LeanInfoTheory.Examples.SourceCodingTypicalSet
 import LeanInfoTheory.Examples.TypicalSet
 import LeanInfoTheory.Examples.CommonCause
@@ -50,6 +51,9 @@ import LeanInfoTheory.Examples.Units
 
 /-!
 # Examples aggregate
+
+Asymptotic source-coding consumers use one public code-family witness for both
+vanishing error and eventual rate bounds, including pure and sparse sources.
 
 Focused family-information consumers apply conditional tuple subadditivity and
 the independent-source MI bound to one common observation. XOR gives a strict

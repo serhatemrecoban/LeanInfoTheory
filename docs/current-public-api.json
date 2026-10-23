@@ -13,7 +13,7 @@
     "release_commit": "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f",
     "release_tag": "v0.1.0"
   },
-  "declaration_count": 745,
+  "declaration_count": 749,
   "declarations": [
     {
       "attributes": [],
@@ -1532,6 +1532,18 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.EntropyBounds",
       "name": "LeanInfoTheory.Shannon.entropy_uniformOfFintype"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.eventually_entropy_sub_le_codeRate_of_tendsto_errorProbability_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.exists_blockSourceCode_tendsto_errorProbability_zero"
     },
     {
       "attributes": [],
@@ -3607,6 +3619,12 @@
     },
     {
       "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.sourceCoding_threshold"
+    },
+    {
+      "attributes": [],
       "kind": "def",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
       "name": "LeanInfoTheory.Shannon.statisticTripleLawOf"
@@ -3668,6 +3686,12 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
       "name": "LeanInfoTheory.Shannon.support_indepProd"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.tendsto_errorProbability_iid_one_of_eventually_codeRate_le"
     },
     {
       "attributes": [],
@@ -4674,25 +4698,25 @@
       "name": "PMF.two_mul_totalVariation_isGreatest_bounded"
     }
   ],
-  "documented_declaration_count": 745,
+  "documented_declaration_count": 749,
   "full_umbrella": "LeanInfoTheory.Shannon",
   "kind_counts": {
     "abbrev": 14,
     "def": 69,
     "instance": 3,
-    "theorem": 659
+    "theorem": 663
   },
   "lightweight_root": "LeanInfoTheory",
   "lightweight_root_direct_imports": [
     "LeanInfoTheory.InformationMeasures",
     "LeanInfoTheory.Probability.Finite"
   ],
-  "local_module_count": 90,
+  "local_module_count": 92,
   "namespace_counts": {
-    "LeanInfoTheory.Shannon": 625,
+    "LeanInfoTheory.Shannon": 629,
     "PMF": 120
   },
-  "non_stable_module_count": 41,
+  "non_stable_module_count": 42,
   "non_stable_modules": [
     "LeanInfoTheory.Basic",
     "LeanInfoTheory.Examples",
@@ -4725,6 +4749,7 @@
     "LeanInfoTheory.Examples.ProductKL",
     "LeanInfoTheory.Examples.QuantitativeIndependence",
     "LeanInfoTheory.Examples.SourceCoding",
+    "LeanInfoTheory.Examples.SourceCodingAsymptotic",
     "LeanInfoTheory.Examples.SourceCodingTypicalSet",
     "LeanInfoTheory.Examples.StochasticChannels",
     "LeanInfoTheory.Examples.SufficientStatistics",
@@ -5115,7 +5140,7 @@
     "Declaration types and assumptions remain governed by the Lean source and signature-bearing API documentation."
   ],
   "simp_declaration_count": 94,
-  "supported_module_count": 49,
+  "supported_module_count": 50,
   "supported_modules": [
     "LeanInfoTheory",
     "LeanInfoTheory.InformationMeasures",
@@ -5163,6 +5188,7 @@
     "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
     "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
     "LeanInfoTheory.Shannon.SourceCoding",
+    "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
     "LeanInfoTheory.Shannon.Topology",
     "LeanInfoTheory.Shannon.TypicalSet",
     "LeanInfoTheory.Shannon.Units"

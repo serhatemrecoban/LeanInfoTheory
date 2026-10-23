@@ -1,5 +1,5 @@
 {
-  "declaration_count": 860,
+  "declaration_count": 864,
   "declarations": [
     {
       "doc": "Public project name used by documentation and the website.",
@@ -8452,6 +8452,46 @@
       "short_name": "exists_sourceCode_errorProbability_le"
     },
     {
+      "doc": "Every rate strictly above the entropy of a finite source admits one family of positive-budget total block codes with iid error tending to zero and rate eventually at most that rate, in nats. Both conclusions concern the same family. The construction rounds at an intermediate rate to absorb integer overhead. No full-support or positive-entropy assumption is needed; zero length is included in the family with the existing totalized rate convention.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 150,
+      "module": "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.exists_blockSourceCode_tendsto_errorProbability_zero",
+      "path": "LeanInfoTheory/Shannon/SourceCodingAsymptotic.lean",
+      "short_name": "exists_blockSourceCode_tendsto_errorProbability_zero"
+    },
+    {
+      "doc": "For a finite iid source, every family of positive-budget total block codes whose rate is eventually bounded by a real R strictly below entropy has error tending to one. Rates and entropy are in nats. No rate convergence, global rate cap, full support, positive entropy or nonnegative R is assumed. The family's zero-length code may use any positive budget.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 217,
+      "module": "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.tendsto_errorProbability_iid_one_of_eventually_codeRate_le",
+      "path": "LeanInfoTheory/Shannon/SourceCodingAsymptotic.lean",
+      "short_name": "tendsto_errorProbability_iid_one_of_eventually_codeRate_le"
+    },
+    {
+      "doc": "Vanishing error for a finite iid source forces every positive-budget code family eventually to have rate at least entropy minus any positive tolerance. No boundedness, convergence or monotonicity of the rate sequence is assumed. The pointwise success bound excludes arbitrarily late low-rate indices even when other rates are unbounded. Rates and entropy are in nats.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 245,
+      "module": "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.eventually_entropy_sub_le_codeRate_of_tendsto_errorProbability_zero",
+      "path": "LeanInfoTheory/Shannon/SourceCodingAsymptotic.lean",
+      "short_name": "eventually_entropy_sub_le_codeRate_of_tendsto_errorProbability_zero"
+    },
+    {
+      "doc": "Entropy is the operational threshold for finite-iid almost-lossless coding, in nats: it is the greatest lower bound of the asymptotic upper rates of actual positive-budget code families with vanishing error. One family works for every positive upper-rate tolerance. This does not assert attainment at entropy or impose convergence, monotonicity or boundedness of the rate sequence.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 276,
+      "module": "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.sourceCoding_threshold",
+      "path": "LeanInfoTheory/Shannon/SourceCodingAsymptotic.lean",
+      "short_name": "sourceCoding_threshold"
+    },
+    {
       "doc": "Entropy is continuous on finite PMFs, including boundary laws.",
       "kind": "theorem",
       "kind_label": "Theorem",
@@ -8602,12 +8642,12 @@
       "short_name": "entropyOf_div_log"
     }
   ],
-  "documented_count": 859,
+  "documented_count": 863,
   "kind_counts": {
     "Definition": 128,
     "Inductive": 4,
     "Instance": 4,
-    "Theorem": 724
+    "Theorem": 728
   },
   "modules": [
     "LeanInfoTheory.Basic",
@@ -8660,6 +8700,7 @@
     "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
     "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
     "LeanInfoTheory.Shannon.SourceCoding",
+    "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
     "LeanInfoTheory.Shannon.Topology",
     "LeanInfoTheory.Shannon.TypicalSet",
     "LeanInfoTheory.Shannon.Units"
