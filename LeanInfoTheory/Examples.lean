@@ -10,6 +10,7 @@ Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Examples.ChannelOptimization
+import LeanInfoTheory.Examples.ChannelCapacity
 import LeanInfoTheory.Examples.AEP
 import LeanInfoTheory.Examples.CodingRate
 import LeanInfoTheory.Examples.SourceCoding
@@ -40,7 +41,10 @@ import LeanInfoTheory.Examples.Pinsker
 import LeanInfoTheory.Examples.ProductChannel
 import LeanInfoTheory.Examples.ProductChannelSemantics
 import LeanInfoTheory.Examples.ProductChannelInformation
+import LeanInfoTheory.Examples.ProductChannelCapacity
 import LeanInfoTheory.Examples.QuantitativeIndependence
+import LeanInfoTheory.Examples.StandardChannelCapacity
+import LeanInfoTheory.Examples.StandardChannels
 import LeanInfoTheory.Examples.StochasticChannels
 import LeanInfoTheory.Examples.SufficientStatistics
 import LeanInfoTheory.Examples.SupportSensitive

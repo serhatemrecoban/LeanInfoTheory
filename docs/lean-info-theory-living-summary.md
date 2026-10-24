@@ -36,7 +36,259 @@ Status labels used below:
 
 ## 0. AI Assistant Quick Start
 
-**[Current] C21.05 cumulative qualification and maintained handoff, 2026-10-23.**
+**[Current] C22.08 cumulative qualification and handoff: milestones checked — 2026-10-24.**
+
+C22.01–C22.07 and their reviews are closed by actual source-bound records.
+Only C22.08 is selected. The maintained [C22 handoff](handoffs/chunk-22.md) records the
+26 public additions, four owners, permanent consumers, source adaptations and
+C23's two arbitrary-input bounds. Inventory remains 775 declarations in 54
+owners, with 92 root exports and 94 reviewed simp names.
+
+The lead separately approved the exact 26-path local checkpoint, bounded
+review/evidence amendments, reuse of the inspected validation checkout and
+the current two-pass API-documentation milestone. The full maintained clean
+routine passed on the initial scoped checkpoint. The actual API gate completed
+both build/check passes with reviewed Zig 0.16.0 and local file links; all 26
+rendered signatures, hypotheses, docstrings, owners and source links were read.
+Private C22.08 records retain actual commands, outputs, source/configuration/
+dependency identities and any failed attempts separately. These are cached
+local validations, not cold builds or publication.
+
+The checkpoint excludes unrelated intake files and the pre-C22 relocation-log
+entry, preserving their working bytes. Every necessary amendment requires the
+entire clean routine again and renewed API applicability. The cumulative review
+request must bind the current qualified candidate, not merely these earlier
+milestone results. The raw consumer's synopsis correction changes no proof,
+declaration or import; the current checks cover its changed file bytes.
+
+Qualification and readiness evidence is prepared on the recorded inputs.
+Actual source-bound independent review of all 26 criteria, substantive
+reconciliation of every report and finding, final applicability and closure
+are established only by `.lit-review/setup/c22-08-completion-20261024.json`
+and its linked actual evidence. This wording asserts no future review result
+or closure. Every amended checkpoint requires the full clean rerun and renewed
+API applicability before qualification. C23 has not started, operational
+capacity equality is outside C22, and release qualification remains after C24.
+No push or publication is authorized.
+
+**[History] C22.07 bits and C23 interface; subsequently closed, 2026-10-24.**
+
+C22.01–C22.06 and their reviews are closed. Only C22.07 with review was
+admitted after verifying Step 6's actual closure, its three satisfied criteria,
+all 282 final source/environment entries and HEAD/index. Four public `_bits`
+equations now convert the existing standard-channel capacities with natsToBits:
+log base 2 of the alphabet size for noiseless channels, zero for constant
+channels, one minus converted binary entropy for BSC, and one minus epsilon
+for BEC. Canonical information measures and channelCapacity remain in nats.
+
+StandardChannelCapacity adds only the existing Units direct import, bringing
+its production imports to five. The standard-capacity consumer additionally
+imports ProductChannelCapacity for private product/repeated bits identities,
+actual attaining laws and arbitrary-input/block bounds. The product-capacity
+consumer retains its sole focused import. It applies the generic bounds to
+arbitrary p and q and to a concrete noninjective encoder from Bool × Bool:
+the encoder repeats the first coordinate, and its two-letter pushforward is
+correlated. Zero- and one-letter cases are retained. No iid or injectivity
+premise, channel-code abstraction or operational coding theorem is introduced.
+
+C22.07's focused producer/consumer and aggregate build, all 26 public
+signature/axiom probes through focused imports and the full Shannon umbrella,
+documentation-example checks, static/generated checks and the full compiled
+compatibility/trust audit passed on the repaired recorded inputs. The fresh
+original independent review assessed all three criteria as satisfied with no
+findings on that repaired source; the parent
+reconciled those assessments against source and evidence. Current inventory
+is 775 declarations in 54 owners, with 92 root exports and 94 reviewed simp
+names preserved. Failed implementation attempts remain separate from the
+corrected source checks and successful maintained builds.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-07-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.08 has not started and retains the cumulative clean routine
+and separately authorized current two-pass API-documentation qualification
+and maintained handoff. C23 has not started. See C22 notes sections 21–22.
+
+**[History] C22.06 binary erasure channel; subsequently closed, 2026-10-24.**
+
+C22.01–C22.05 and their reviews are closed. Only C22.06 with review was
+admitted after verifying Step 5's actual closure, its three satisfied criteria,
+all 282 final source/environment entries and HEAD/index. The BEC constructor
+uses binaryMixture with erasure weight epsilon on none and transmission weight
+one minus epsilon on some input. Its information objective is exactly
+(1-epsilon) times input entropy for every Boolean law, and capacity is
+(1-epsilon) times log 2 in nats, throughout the closed interval [0,1].
+
+The focused consumer derives the actual uniform witness from the public
+objective and capacity formulas with uniform entropy. Raw and information
+consumers retain zero/full erasure, absent-symbol zeros, pure input and every-input
+zero attainment at full erasure. The existing biased input at erasure 1/3
+has output masses 1/3 at none, 1/6 at some true and 1/2 at some false;
+its public objective gives (2/3) times input entropy. No probability division,
+null-fiber assertion, positivity premise or optimizer uniqueness is introduced.
+
+C22.06's six-target producer/consumer and aggregate build, focused and
+umbrella public signatures/axioms, all nine documentation examples, static/generated
+checks and the full compiled compatibility/trust audit passed on recorded inputs.
+The original independent review assessed all three criteria as satisfied with
+no findings; the parent reconciled those assessments against source and evidence.
+Current inventory is 771 declarations in 54 owners, with 92 root exports and
+94 reviewed simp names preserved. Failed and inconclusive implementation attempts
+remain separate from the corrected source checks and successful final builds.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-06-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.07 onward has not started. C22.08 retains cumulative clean and
+current two-pass API-documentation qualification. See C22 notes sections 19–20.
+
+**[History] C22.05 binary symmetric channel; subsequently closed, 2026-10-24.**
+
+C22.01–C22.04 and their reviews are closed. Only C22.05 with review was
+admitted after checking Step 4's actual closure, all three satisfied criteria,
+all 280 final source/environment entries and HEAD/index. The BSC constructor
+uses binaryMixture with crossover weight epsilon on the complemented bit.
+The information owner proves the objective for every input, its universal bound,
+capacity log 2 minus binary entropy, and direct uniform-input attainment.
+The full closed parameter interval is retained, including crossover above one half.
+
+Probability-only consumers check row masses and deterministic endpoints.
+Focused information consumers exercise the public formulas at zero, one half
+and one, an interior pure input, every-input zero attainment at one half, and
+the biased input with true-mass 1/4 at crossover 3/4, whose output true-mass
+is 5/8. No optimizer-uniqueness assertion or positive-mass premise is introduced.
+
+C22.05's six-target producer/consumer and aggregate build, focused and
+umbrella public signatures/axioms, all nine documentation examples, static/generated
+checks and the full compiled compatibility/trust audit passed on recorded inputs.
+The original independent review assessed all three criteria as satisfied with
+no findings; the parent reconciled those assessments against source and evidence.
+Current inventory is 768 declarations in 54 owners, with 92 root exports and
+94 reviewed simp names preserved. Failed and stalled implementation probes
+remain separate from the corrected source checks and successful final builds.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-05-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.06 onward has not started. C22.08 retains cumulative clean and
+current two-pass API-documentation qualification. See C22 notes sections 17–18.
+
+**[History] C22.04 noiseless and input-independent capacity; subsequently closed, 2026-10-24.**
+
+C22.01–C22.03 and their reviews are closed. Only C22.04 with review was
+admitted after verifying Step 3's actual closure, all four satisfied criteria,
+and all 278 final source/environment entries plus HEAD/index. The selected
+standard-channel owner supplies noiseless capacity log(card A) and zero capacity
+for an input-independent channel. Existing diagonal entropy and independent-joint
+laws give the objectives for every input; the uniform noiseless law and every
+constant-channel input attain the respective capacities.
+
+The new owner imports only ChannelCapacity and joins the full Shannon umbrella.
+Its private focused consumer joins Examples and checks actual uniform/pure
+inputs, non-pure constant output, a sparse ternary input and singleton alphabets.
+Input nonemptiness remains explicit where capacity is formed; a supplied output
+law needs no additional output-nonempty hypothesis. No new channel wrapper is needed.
+
+C22.04's final four-target producer/consumer and aggregate build, focused and
+umbrella signature/axiom probes, all nine documentation examples, static/generated
+checks and the full compiled compatibility/trust audit passed on their recorded
+inputs. Independent review assessed all three selected criteria as satisfied with
+no findings; the parent reconciled those assessments against source and evidence.
+Current inventory is 764 declarations in 53 owners. The compiled audit confirms
+the preserved 92 root exports and 94 reviewed simp names. The failed consumer
+invocation, corrected probe and subsequent source builds remain separate records;
+the parent proof refinement retains its own passing build evidence.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-04-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.05 onward has not started. C22.08 retains the separate cumulative
+clean and current API-documentation milestone. See C22 notes sections 15–16.
+
+**[History] C22.03 product capacity; subsequently closed, 2026-10-24.**
+
+C22.01 and C22.02 are closed. Only C22.03 with review was admitted after
+the parent verified Step 2's actual closure, its three satisfied criteria and all
+276 captured source/environment entries plus HEAD/index. The selected work adds
+product-capacity additivity, repeated-channel capacity and the arbitrary-block-input
+nC bound, using the existing C18 actual-marginal inequality and independent-input
+identity. Coordinate maximizing PMFs supply the lower witness. Index, input and
+output universes remain independent; empty products and zero blocklength remain
+within the contract.
+
+The new focused owner imports ChannelCapacity and SemanticBridge.ProductChannel.
+It joins only the full Shannon umbrella. Its private consumer joins Examples
+and covers heterogeneous channels, supplied product/iid achievers, a genuinely
+correlated duplicated-bit input with a strict capacity gap, singleton/empty
+products, n=0/n=1 and the vacuous empty-base zero-word channel.
+
+C22.03's four-target producer/consumer and aggregate build, early focused and
+umbrella signature/axiom probes, all nine documentation examples, static/generated
+checks and the full compiled compatibility/trust audit passed on their recorded
+inputs. Independent review assessed all four selected criteria as satisfied with
+no findings; the parent reconciled those assessments against source and evidence.
+Current inventory is 762 declarations in 52 owners. The compiled audit confirms
+the preserved 92 root exports and 94 reviewed simp names. Earlier failed attempts
+and successful corrections remain separate records.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-03-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.04 onward has not started. C22.08 retains the separate cumulative
+clean and current API-documentation milestone. See C22 notes sections 13–14.
+
+**[History] C22.02 relabeling and postprocessing; subsequently closed, 2026-10-24.**
+
+C22.01 is closed. Only C22.02 with review was admitted after the parent matched
+its actual predecessor closure and all 276 captured source/environment entries.
+The three new exports prove simultaneous equivalence invariance and stochastic
+and deterministic output-processing bounds. Four independent relabeling universes
+and locally transported input nonemptiness are confirmed by actual signatures.
+Markov supplies DPI; Convexity remains confined to the private consumers.
+The permanent consumers check a distinct-mass/row Fin 3 cycle, joint-law transport,
+unchanged output and MI, wrong-inverse masses, one-sided relabeling, stochastic
+processing, noninjective collapse and mixtures of achieving inputs including 0/1.
+
+C22.02's corrected four-target build, focused and umbrella signature/axiom
+probes, all nine documentation examples, static/generated checks and the full
+compiled compatibility/trust audit passed on their recorded inputs. Independent
+review assessed all three selected criteria as satisfied with no findings; the
+parent reconciled those assessments against the source and evidence.
+Current inventory is 759 declarations in 51 owners. The compiled audit confirms
+the preserved 92 root exports and 94 reviewed simp names. Earlier producer and
+consumer failures remain separate records from their successful corrections.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-02-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.03 onward has not started. C22.08 retains the separate cumulative
+clean and current API-documentation milestone. See C22 notes sections 11–12.
+
+**[History] C22.01 capacity-core snapshot; subsequently closed, 2026-10-24.**
+
+The lead approved [C22 revision 2](plans/post-release-chunk-22.md) and selected
+only C22.01 with review. C21 is closed by its original source-bound completion
+chain and [maintained handoff](handoffs/chunk-21.md); the snapshots below are
+historical and do not reopen it.
+
+`Shannon.ChannelCapacity` now contains the seven selected declarations for
+finite-channel information capacity in nats: the actual-objective supremum,
+objective/order bounds, an attaining input PMF, nonnegativity and both alphabet
+bounds. Nonempty input is explicit; output nonemptiness is derived from a row.
+Private focused consumers reuse one maximizing input and cover pure ternary,
+singleton and empty-domain cases. Direct imports are Topology, EntropyBounds
+and SemanticBridge.Theorems; Markov is unnecessary for this step.
+
+C22.01's corrected producer/consumer and aggregate builds, focused and umbrella
+signature probes, all nine documentation examples, static/generated checks and
+the full compiled compatibility/trust audit passed on their recorded inputs.
+Independent review assessed all four selected criteria as satisfied with no
+findings; the parent reconciled each assessment against the source and evidence.
+Current inventory is 756 declarations in 51 owners; the compiled audit confirms
+the unchanged 92 root exports and 94 reviewed simp names. The initial style
+warning and the successful `let` correction remain separate retained results.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-01-completion-20261024.json`
+when present, including fresh final static/scope checks and the exact R-to-F
+comparison. The clean cumulative routine and current API-documentation milestone
+remain C22.08; no later step is selected.
+See [C22 notes](plans/post-release-chunk-22-notes.md), sections 8–10.
+
+**[History] C21.05 cumulative qualification snapshot; closed by its original completion chain, 2026-10-23.**
 
 C21.01--C21.04 and their review processes are closed by their source-bound
 completion records. Before Step 5 admission, the actual Step 4 four-criterion
@@ -877,12 +1129,12 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-10-23 |
+| Last updated | 2026-10-24 |
 | Recorded pre-C9 mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the released `v0.1.0` source is exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f` |
 | Repository transition state | `v0.1.0` is published from immutable tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` and archived as Zenodo record `22229599`. The evolving default branch carries the current project pages and DOI metadata, while maintenance staging preserves `/docs/v0.1.0/` from exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`; the tag, Release, archive, released Lean source, and frozen public API remain unchanged |
 | Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
 | mathlib baseline | `v0.1.0` uses input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474` |
-| Source-snapshot phase | Post-release `v0.1.x`; C20 and C21.01--C21.04 are closed by source-bound records. Only C21.05 with review is selected. Generated inventory is 749 declarations in 50 owners. Sections 0 and 16 distinguish actual validation/review evidence from closure. |
+| Source-snapshot phase | Post-release `v0.1.x`; C21 and C22.01–C22.07 are closed. Only C22.08 with review is selected. Its maintained handoff and authorized clean/API milestone checks are prepared; the actual private completion record and linked evidence determine cumulative acceptance, final applicability and closure. Current inventory is 775/54 with 92 root exports. See Sections 0 and 16 and the C22 handoff. |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -979,16 +1231,19 @@ formalization:
 
 **[Current]** The following are not part of the completed implementation:
 
-- full source- or channel-coding theorems, channel capacity, or coding
-  converses;
+- operational channel-coding theorems and channel-code converses; C21
+  source coding and C22.01–C22.06 capacity-core/processing/product/example work are
+  closed, including noiseless, input-independent, BSC and BEC capacities. Bits
+  and the C23-facing interface are selected in C22.07; cumulative qualification
+  and maintained handoff remain C22.08;
 - method of types, entropy rates, or a stochastic-process hierarchy;
   finite-iid AEP, weak typicality and cardinality bounds are implemented, with review status in Section 0;
 - general measurable-space entropy and sufficient-statistics theory;
 - certificate representations, checking, search, primitive recognition, or
   PSITIP/oXitip import;
 - canonical or minimal sufficient statistics;
-- optimization beyond the selected finite fixed-channel attainment consumer,
-  including constrained optimization and general minimax;
+- constrained or infinite-alphabet capacity and general minimax; the selected
+  finite fixed-channel supremum and attainment core is implemented by C22.01;
 - theorem-level leanblueprint data, a blueprint PDF, and optional
   equation-expanded API-documentation pages.
 
@@ -1520,10 +1775,20 @@ exact-event formulas without unfolding it. The separate private
 aggregate. It consumes both marginal orientations, Fano and measure-product
 semantics. The root retains its five-module closure.
 
-The current generated supported closure contains 749 documented public
-declarations: 663 theorems, 69 definitions, 14 abbreviations and 3 named
-instances in 50 owners. It excludes all 42 non-stable development, example and
-reference modules.
+The recorded C21 supported closure contains 749
+documented public declarations in 50 owners. C22.01 adds seven
+public declarations and one supported owner, with checked C22.01 inventory 756/51.
+`Examples.ChannelCapacity` is private and non-stable. C22.02 adds three properties
+in the same owner; generated inventory is 759/51. The current producer imports
+Topology, EntropyBounds and SemanticBridge.Markov, without production Convexity.
+The full C22.02 compiled audit confirms the preserved root five-module closure,
+92 exports and 94 reviewed simp names on its recorded inputs.
+
+C22.03 adds the focused ProductChannelCapacity owner with three prescribed
+exports. It imports ChannelCapacity and SemanticBridge.ProductChannel, joins
+only the full Shannon umbrella, and is consumed by private focused product
+capacity examples. Selected-step validation and independent review passed; Sections 0
+and 16 distinguish this evidence from actual scoped closure.
 
 C21.01--C21.04 add the four planned public endpoints in
 `Shannon.SourceCodingAsymptotic`, whose three direct imports remain
@@ -1532,9 +1797,26 @@ imports it; the lightweight root and semantic aggregate do not.
 `Examples.SourceCodingAsymptotic` imports only the focused owner, exposes no
 public declaration and joins only Examples. C21.04 adds no public
 achievable-rate predicate, helper, bundle, import edge or simp rule.
-C21.01--C21.04 are closed; Sections 0 and 16 record current C21.05
-qualification and review obligations. The maintained C21 handoff records the
-delivered contracts and remaining-work dispositions.
+C21 is closed by its original source-bound chain. The maintained C21 handoff
+records the delivered contracts and remaining-work dispositions; Sections 0 and
+16 distinguish closed C22.01–C22.07 from current C22.08 qualification.
+
+At the closed C22.04 checkpoint, StandardChannelCapacity needed only the core
+ChannelCapacity import. C22.05 adds the probability-only StandardChannels owner
+and imports it, BinaryEntropy and SemanticBridge.Convexity in the information
+owner for the BSC constructor, Boolean entropy and weighted-row MI formula.
+The two C22.04 capacity values remain unchanged; C22.05 adds the BSC objective,
+capacity and direct uniform-attainment formulas. Private helpers and focused
+consumers identify the attaining laws explicitly. The full Shannon umbrella
+includes these owners; root and semantic aggregate do not. Sections 0 and 16
+distinguish closed C22.01–C22.07 from C22.08 qualification. Closed C22.06
+extended the same raw/information owners with the BEC constructor, all-input
+entropy objective and capacity, retaining its direct imports. Its uniform
+witness is derived from public formulas. C22.07 adds four scalar bits equations
+and the Units import to StandardChannelCapacity. Its private consumer additionally
+imports ProductChannelCapacity for bits product/repeated identities, specified
+attaining laws and arbitrary-input/block bounds. The product-capacity consumer
+keeps its sole focused import for the C23-facing generic and encoded-word bounds.
 
 C20.01 adds the type-generic Fano failure-event identity and the focused
 SourceCoding core described in Section 0. C20.02 exposes the three approved
@@ -1593,7 +1875,11 @@ and [structural type artifact](compatibility/README.md) remain unchanged.
 | `LeanInfoTheory.Shannon.Fano` | Type-generic decoding error and exact failure-event identity; finite exact/weak Fano inequalities and corollaries |
 | `LeanInfoTheory.Shannon.SourceCoding` | Transparent total deterministic core/block codes, exact error, finite success sets and law-free success counting; independent of iid, typical sets and AEP |
 | `LeanInfoTheory.Shannon.CodingRate` | Rate in nats, ceiling-exponential budgets and binary-length conversion; independent of SourceCoding, iid and AEP |
-| `LeanInfoTheory.Shannon.SourceCodingAsymptotic` | Achievability, strong and general converses, operational entropy threshold (C21.01--C21.04 closed); selected C21.05 cumulative qualification/review in Section 0 |
+| `LeanInfoTheory.Shannon.SourceCodingAsymptotic` | Achievability, strong and general converses, operational entropy threshold; C21 closed by its original source-bound chain |
+| `LeanInfoTheory.Shannon.ChannelCapacity` | Closed C22.01 core; C22.02 relabeling/processing additions passed selected-step validation and independent review. Imports Topology, EntropyBounds and SemanticBridge.Markov; no production Convexity |
+| `LeanInfoTheory.Shannon.ProductChannelCapacity` | C22.03 product capacity and arbitrary-input repeated bound; selected-step validation and independent review passed. Imports ChannelCapacity and SemanticBridge.ProductChannel |
+| `LeanInfoTheory.Shannon.StandardChannelCapacity` | C22.04–C22.06 noiseless, input-independent, BSC and BEC results are closed. C22.07 adds four explicit scalar bits equations; selected-step validation and independent review passed, with closure tied to the actual completion record. Imports ChannelCapacity, Probability.StandardChannels, BinaryEntropy, SemanticBridge.Convexity and Units |
+| `LeanInfoTheory.Probability.StandardChannels` | C22.05 BSC and C22.06 BEC transparent constructors; imports only Probability.FiniteMixture, below Shannon |
 | `LeanInfoTheory.Shannon.Continuity` | Exact-TV entropy difference through maximal coupling/Fano; capped scalar modulus, monotonicity on nonnegative budgets and entropy/conditional-entropy/MI bounds from an upper TV estimate |
 | `LeanInfoTheory.Shannon.FiniteFamily` | Dependent finite-family laws, finite-atom entropy/MI/CMI algebra, pair/triple compatibility, and binary/ordered entropy, MI, and conditional-MI chain rules |
 | `LeanInfoTheory.Probability.FiniteMixture` | Binary PMF mixtures with `NNReal` weights and exact endpoint laws; general selectors use `PMF.bind` |
@@ -2201,7 +2487,141 @@ certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
 
-### C21.05 cumulative qualification and maintained handoff, 2026-10-23
+### C22.08 cumulative qualification and handoff: milestones checked — 2026-10-24
+
+C22.01–C22.07 and their reviews are closed by actual source-bound records.
+Only C22.08 is selected. The maintained [C22 handoff](handoffs/chunk-22.md) records the
+26 public additions, four owners, permanent consumers, source adaptations and
+C23's two arbitrary-input bounds. Inventory remains 775 declarations in 54
+owners, with 92 root exports and 94 reviewed simp names.
+
+The lead separately approved the exact 26-path local checkpoint, bounded
+review/evidence amendments, reuse of the inspected validation checkout and
+the current two-pass API-documentation milestone. The full maintained clean
+routine passed on the initial scoped checkpoint. The actual API gate completed
+both build/check passes with reviewed Zig 0.16.0 and local file links; all 26
+rendered signatures, hypotheses, docstrings, owners and source links were read.
+Private C22.08 records retain actual commands, outputs, source/configuration/
+dependency identities and any failed attempts separately. These are cached
+local validations, not cold builds or publication.
+
+The checkpoint excludes unrelated intake files and the pre-C22 relocation-log
+entry, preserving their working bytes. Every necessary amendment requires the
+entire clean routine again and renewed API applicability. The cumulative review
+request must bind the current qualified candidate, not merely these earlier
+milestone results. The raw consumer's synopsis correction changes no proof,
+declaration or import; the current checks cover its changed file bytes.
+
+Qualification and readiness evidence is prepared on the recorded inputs.
+Actual source-bound independent review of all 26 criteria, substantive
+reconciliation of every report and finding, final applicability and closure
+are established only by `.lit-review/setup/c22-08-completion-20261024.json`
+and its linked actual evidence. This wording asserts no future review result
+or closure. Every amended checkpoint requires the full clean rerun and renewed
+API applicability before qualification. C23 has not started, operational
+capacity equality is outside C22, and release qualification remains after C24.
+No push or publication is authorized.
+
+### Historical C22.07 bits and C23 interface; subsequently closed, 2026-10-24
+
+C22.07's focused producer/consumer and aggregate build, all 26 public
+signature/axiom probes through focused imports and the full Shannon umbrella,
+documentation-example checks, static/generated checks and the full compiled
+compatibility/trust audit passed on the repaired recorded inputs. The fresh
+original independent review assessed all three criteria as satisfied with no
+findings on that repaired source; the parent
+reconciled those assessments against source and evidence. Current inventory
+is 775 declarations in 54 owners, with 92 root exports and 94 reviewed simp
+names preserved. Failed implementation attempts remain separate from the
+corrected source checks and successful maintained builds.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-07-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.08 has not started and retains the cumulative clean routine
+and separately authorized current two-pass API-documentation qualification
+and maintained handoff. C23 has not started. See C22 notes sections 21–22.
+
+### Historical C22.06 binary erasure channel; subsequently closed, 2026-10-24
+
+C22.06's six-target producer/consumer and aggregate build, focused and
+umbrella public signatures/axioms, all nine documentation examples, static/generated
+checks and the full compiled compatibility/trust audit passed on recorded inputs.
+The original independent review assessed all three criteria as satisfied with
+no findings; the parent reconciled those assessments against source and evidence.
+Current inventory is 771 declarations in 54 owners, with 92 root exports and
+94 reviewed simp names preserved. Failed and inconclusive implementation attempts
+remain separate from the corrected source checks and successful final builds.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-06-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.07 onward has not started. C22.08 retains cumulative clean and
+current two-pass API-documentation qualification. See C22 notes sections 19–20.
+
+### Historical C22.05 binary symmetric channel; subsequently closed, 2026-10-24
+
+C22.05's six-target producer/consumer and aggregate build, focused and
+umbrella public signatures/axioms, all nine documentation examples, static/generated
+checks and the full compiled compatibility/trust audit passed on recorded inputs.
+The original independent review assessed all three criteria as satisfied with
+no findings; the parent reconciled those assessments against source and evidence.
+Current inventory is 768 declarations in 54 owners, with 92 root exports and
+94 reviewed simp names preserved. Failed and stalled implementation probes
+remain separate from the corrected source checks and successful final builds.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-05-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.06 onward has not started. C22.08 retains cumulative clean and
+current two-pass API-documentation qualification. See C22 notes sections 17–18.
+
+### Historical C22.04 noiseless and input-independent capacity; subsequently closed, 2026-10-24
+
+C22.04's final four-target producer/consumer and aggregate build, focused and
+umbrella signature/axiom probes, all nine documentation examples, static/generated
+checks and the full compiled compatibility/trust audit passed on their recorded
+inputs. Independent review assessed all three selected criteria as satisfied with
+no findings; the parent reconciled those assessments against source and evidence.
+Current inventory is 764 declarations in 53 owners. The compiled audit confirms
+the preserved 92 root exports and 94 reviewed simp names. The failed consumer
+invocation, corrected probe and subsequent source builds remain separate records;
+the parent proof refinement retains its own passing build evidence.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-04-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.05 onward has not started. C22.08 retains the separate cumulative
+clean and current API-documentation milestone. See C22 notes sections 15–16.
+
+### Historical C22.03 product capacity; subsequently closed, 2026-10-24
+
+C22.03's four-target producer/consumer and aggregate build, early focused and
+umbrella signature/axiom probes, all nine documentation examples, static/generated
+checks and the full compiled compatibility/trust audit passed on their recorded
+inputs. Independent review assessed all four selected criteria as satisfied with
+no findings; the parent reconciled those assessments against source and evidence.
+Current inventory is 762 declarations in 52 owners. The compiled audit confirms
+the preserved 92 root exports and 94 reviewed simp names. Earlier failed attempts
+and successful corrections remain separate records.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-03-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.04 onward has not started. C22.08 retains the separate cumulative
+clean and current API-documentation milestone. See C22 notes sections 13–14.
+
+### Historical C22.02 relabeling and postprocessing; subsequently closed, 2026-10-24
+
+Only C22.02 with review is selected. The three exports and permanent consumers
+passed selected-step validation and independent review. Actual closure belongs
+to the completion record in Section 0; C22 notes sections 11–12 retain evidence. C22.03
+onward has not started; C22.08 retains cumulative clean/API qualification.
+
+### Historical C22.01 capacity-core snapshot; subsequently closed, 2026-10-24
+
+Only C22.01 with review is selected under approved revision 2. Its seven public
+core declarations and private domain consumers passed selected-step validation and
+independent review. Actual closure belongs to the completion record. Sections 0 and
+16 and the C22 notes own current status. C21 is closed; later C22 steps are not
+selected.
+
+### Historical C21.05 qualification snapshot; closed by its original completion chain, 2026-10-23
 
 C21.01--C21.04 and their reviews are closed. Only C21.05 with review is
 selected. The separately authorized initial checkpoint `463021c1493dd2b28e0730dc64fbace3fd29a67a` passed the complete maintained clean routine. Both actual local API build/check passes and the parent inspection of all four new elaborated declarations passed on their recorded inputs. That initial candidate is validation-ready. Final candidate qualification, readiness, cumulative acceptance and closure are established only by `.lit-review/setup/c21-05-completion-20261023.json` and its linked actual current-candidate validation/API applicability, genuine original independent report, complete seventeen-criterion matrix, substantive parent reconciliation and final-source qualification. This wording asserts no future PASS or closure. Every amended checkpoint, including the evidence updates here, requires the complete clean rerun and renewed API applicability before qualification; these initial results do not qualify later writes automatically. The final checkpoint identity belongs in that actual evidence chain, not in a prediction of a commit containing this text.
@@ -3565,7 +3985,159 @@ not reproduce textbook prose or proofs.
 
 ## 16. Validation State
 
-**[Current] C21.05 cumulative qualification, 2026-10-23.**
+**[Current] C22.08 cumulative qualification and handoff: milestones checked — 2026-10-24.**
+
+C22.01–C22.07 and their reviews are closed by actual source-bound records.
+Only C22.08 is selected. The maintained [C22 handoff](handoffs/chunk-22.md) records the
+26 public additions, four owners, permanent consumers, source adaptations and
+C23's two arbitrary-input bounds. Inventory remains 775 declarations in 54
+owners, with 92 root exports and 94 reviewed simp names.
+
+The lead separately approved the exact 26-path local checkpoint, bounded
+review/evidence amendments, reuse of the inspected validation checkout and
+the current two-pass API-documentation milestone. The full maintained clean
+routine passed on the initial scoped checkpoint. The actual API gate completed
+both build/check passes with reviewed Zig 0.16.0 and local file links; all 26
+rendered signatures, hypotheses, docstrings, owners and source links were read.
+Private C22.08 records retain actual commands, outputs, source/configuration/
+dependency identities and any failed attempts separately. These are cached
+local validations, not cold builds or publication.
+
+The checkpoint excludes unrelated intake files and the pre-C22 relocation-log
+entry, preserving their working bytes. Every necessary amendment requires the
+entire clean routine again and renewed API applicability. The cumulative review
+request must bind the current qualified candidate, not merely these earlier
+milestone results. The raw consumer's synopsis correction changes no proof,
+declaration or import; the current checks cover its changed file bytes.
+
+Qualification and readiness evidence is prepared on the recorded inputs.
+Actual source-bound independent review of all 26 criteria, substantive
+reconciliation of every report and finding, final applicability and closure
+are established only by `.lit-review/setup/c22-08-completion-20261024.json`
+and its linked actual evidence. This wording asserts no future review result
+or closure. Every amended checkpoint requires the full clean rerun and renewed
+API applicability before qualification. C23 has not started, operational
+capacity equality is outside C22, and release qualification remains after C24.
+No push or publication is authorized.
+
+**[History] C22.07 validation and independent review; subsequently closed, 2026-10-24.**
+
+C22.07's focused producer/consumer and aggregate build, all 26 public
+signature/axiom probes through focused imports and the full Shannon umbrella,
+documentation-example checks, static/generated checks and the full compiled
+compatibility/trust audit passed on the repaired recorded inputs. The fresh
+original independent review assessed all three criteria as satisfied with no
+findings on that repaired source; the parent
+reconciled those assessments against source and evidence. Current inventory
+is 775 declarations in 54 owners, with 92 root exports and 94 reviewed simp
+names preserved. Failed implementation attempts remain separate from the
+corrected source checks and successful maintained builds.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-07-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.08 has not started and retains the cumulative clean routine
+and separately authorized current two-pass API-documentation qualification
+and maintained handoff. C23 has not started. See C22 notes sections 21–22.
+
+**[History] C22.06 validation and independent review; subsequently closed, 2026-10-24.**
+
+C22.06's six-target producer/consumer and aggregate build, focused and
+umbrella public signatures/axioms, all nine documentation examples, static/generated
+checks and the full compiled compatibility/trust audit passed on recorded inputs.
+The original independent review assessed all three criteria as satisfied with
+no findings; the parent reconciled those assessments against source and evidence.
+Current inventory is 771 declarations in 54 owners, with 92 root exports and
+94 reviewed simp names preserved. Failed and inconclusive implementation attempts
+remain separate from the corrected source checks and successful final builds.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-06-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.07 onward has not started. C22.08 retains cumulative clean and
+current two-pass API-documentation qualification. See C22 notes sections 19–20.
+
+**[History] C22.05 validation and independent review; subsequently closed, 2026-10-24.**
+
+C22.05's six-target producer/consumer and aggregate build, focused and
+umbrella public signatures/axioms, all nine documentation examples, static/generated
+checks and the full compiled compatibility/trust audit passed on recorded inputs.
+The original independent review assessed all three criteria as satisfied with
+no findings; the parent reconciled those assessments against source and evidence.
+Current inventory is 768 declarations in 54 owners, with 92 root exports and
+94 reviewed simp names preserved. Failed and stalled implementation probes
+remain separate from the corrected source checks and successful final builds.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-05-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.06 onward has not started. C22.08 retains cumulative clean and
+current two-pass API-documentation qualification. See C22 notes sections 17–18.
+
+**[History] C22.04 validation and independent review; subsequently closed, 2026-10-24.**
+
+C22.04's final four-target producer/consumer and aggregate build, focused and
+umbrella signature/axiom probes, all nine documentation examples, static/generated
+checks and the full compiled compatibility/trust audit passed on their recorded
+inputs. Independent review assessed all three selected criteria as satisfied with
+no findings; the parent reconciled those assessments against source and evidence.
+Current inventory is 764 declarations in 53 owners. The compiled audit confirms
+the preserved 92 root exports and 94 reviewed simp names. The failed consumer
+invocation, corrected probe and subsequent source builds remain separate records;
+the parent proof refinement retains its own passing build evidence.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-04-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.05 onward has not started. C22.08 retains the separate cumulative
+clean and current API-documentation milestone. See C22 notes sections 15–16.
+
+**[History] C22.03 validation and independent review; subsequently closed, 2026-10-24.**
+
+C22.03's four-target producer/consumer and aggregate build, early focused and
+umbrella signature/axiom probes, all nine documentation examples, static/generated
+checks and the full compiled compatibility/trust audit passed on their recorded
+inputs. Independent review assessed all four selected criteria as satisfied with
+no findings; the parent reconciled those assessments against source and evidence.
+Current inventory is 762 declarations in 52 owners. The compiled audit confirms
+the preserved 92 root exports and 94 reviewed simp names. Earlier failed attempts
+and successful corrections remain separate records.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-03-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.04 onward has not started. C22.08 retains the separate cumulative
+clean and current API-documentation milestone. See C22 notes sections 13–14.
+
+**[History] C22.02 validation and independent review; subsequently closed, 2026-10-24.**
+
+C22.02's corrected four-target build, focused and umbrella signature/axiom
+probes, all nine documentation examples, static/generated checks and the full
+compiled compatibility/trust audit passed on their recorded inputs. Independent
+review assessed all three selected criteria as satisfied with no findings; the
+parent reconciled those assessments against the source and evidence.
+Current inventory is 759 declarations in 51 owners. The compiled audit confirms
+the preserved 92 root exports and 94 reviewed simp names. Earlier producer and
+consumer failures remain separate records from their successful corrections.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-02-completion-20261024.json`
+when present, including fresh final static/scope checks and exact R-to-F
+comparison. C22.03 onward has not started. C22.08 retains the separate cumulative
+clean and current API-documentation milestone. See C22 notes sections 11–12.
+
+**[History] C22.01 validation and independent review; subsequently closed, 2026-10-24.**
+
+C22.01's corrected producer/consumer and aggregate builds, focused and umbrella
+signature probes, all nine documentation examples, static/generated checks and
+the full compiled compatibility/trust audit passed on their recorded inputs.
+Independent review assessed all four selected criteria as satisfied with no
+findings; the parent reconciled each assessment against the source and evidence.
+Current inventory is 756 declarations in 51 owners; the compiled audit confirms
+the unchanged 92 root exports and 94 reviewed simp names. The initial style
+warning and the successful `let` correction remain separate retained results.
+This is validation-ready status. Final source applicability and scoped closure
+are established only by `.lit-review/setup/c22-01-completion-20261024.json`
+when present, including fresh final static/scope checks and the exact R-to-F
+comparison. The clean cumulative routine and current API-documentation milestone
+remain C22.08; no later step is selected.
+Earlier C21 evidence keeps its original source attribution. See C22 notes sections 9–10.
+
+**[History] C21.05 cumulative qualification snapshot; closed by its original completion chain, 2026-10-23.**
 
 The separately authorized initial checkpoint `463021c1493dd2b28e0730dc64fbace3fd29a67a` passed the complete maintained clean routine. Both actual local API build/check passes and the parent inspection of all four new elaborated declarations passed on their recorded inputs. That initial candidate is validation-ready. Final candidate qualification, readiness, cumulative acceptance and closure are established only by `.lit-review/setup/c21-05-completion-20261023.json` and its linked actual current-candidate validation/API applicability, genuine original independent report, complete seventeen-criterion matrix, substantive parent reconciliation and final-source qualification. This wording asserts no future PASS or closure. Every amended checkpoint, including the evidence updates here, requires the complete clean rerun and renewed API applicability before qualification; these initial results do not qualify later writes automatically. The final checkpoint identity belongs in that actual evidence chain, not in a prediction of a commit containing this text.
 Prior source-bound Step 4 checks and closure remain valid predecessor evidence;

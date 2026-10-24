@@ -154,7 +154,44 @@ The release-candidate gate runs GitHub mode from a clean exact commit. Tag
 publication and live-link verification remain explicitly approved publication
 and post-publication work.
 
-## Current C21 milestone — initial local API qualification passed
+## Current C22 milestone — two-pass local gate and declaration inspection
+
+The lead separately authorized this current milestone. The maintained
+`python scripts/validate_release.py api-docs` command completed both actual
+build/semantic-check passes using reviewed Zig 0.16.0, `DOCGEN_SRC=file` and
+the pinned isolated doc-gen project. Configuration, source/dependency identity,
+relevant output and the two-pass attestation were checked against the actual
+run. Complete command records and any original failures remain private C22.08
+evidence; a prior failed attempt is not relabeled by later success.
+
+All 26 new declaration blocks were substantively read, including full rendered
+headers/hypotheses and result types, docstrings, owners and actual source links:
+ten core-capacity, three product-capacity, two raw constructors and eleven
+standard-capacity declarations. The inspection checks independent universes,
+explicit nonempty input, actual attaining PMFs, dependent-product and arbitrary-q/
+all-n quantifiers, the full closed binary interval, correct BEC weighting and
+all four scalar bits formulas. Their attributes and source links match the
+current source; file mode verifies the owner path, not GitHub line ranges.
+The [C22 handoff](handoffs/chunk-22.md) lists all names, imports and consumers.
+
+Current inventory is 775 declarations in 54 owners, with 92 root exports and
+94 reviewed simp names.
+The gate and semantic inspection are distinct: nonempty generated text and
+name coverage alone do not establish intended mathematical meaning. Output is
+local, cached documentation; no cold-build or browser visual-QA claim is made.
+
+The complete clean routine runs on the exact scoped local candidate. Every
+amendment requires a complete clean rerun and renewed API content/configuration/
+dependency/attestation/output applicability; invalidation requires the full
+two-pass gate again. Explicit primary/clean correspondence preserves unrelated
+intake and the established LF representation differences. Qualification and
+readiness evidence is prepared. Actual cumulative review, substantive
+reconciliation, final applicability and closure are established only by
+`.lit-review/setup/c22-08-completion-20261024.json` and its linked evidence.
+No future review result or closure is asserted. No release-route staging or
+publication is authorized.
+
+## Historical C21 milestone — initial local API qualification passed
 
 C21.01--C21.04 and their reviews are closed. Selected C21.05 adds no new
 mathematics. The separately authorized initial checkpoint `463021c1493dd2b28e0730dc64fbace3fd29a67a` passed the complete maintained clean routine. Both actual local API build/check passes and the parent inspection of all four new elaborated declarations passed on their recorded inputs. That initial candidate is validation-ready. Final candidate qualification, readiness, cumulative acceptance and closure are established only by `.lit-review/setup/c21-05-completion-20261023.json` and its linked actual current-candidate validation/API applicability, genuine original independent report, complete seventeen-criterion matrix, substantive parent reconciliation and final-source qualification. This wording asserts no future PASS or closure. Every amended checkpoint, including the evidence updates here, requires the complete clean rerun and renewed API applicability before qualification; these initial results do not qualify later writes automatically. The final checkpoint identity belongs in that actual evidence chain, not in a prediction of a commit containing this text.

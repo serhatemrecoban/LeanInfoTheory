@@ -49,6 +49,79 @@ is Chapter 8 in this edition, not Chapter 7.
   converse). Only relevant sections are to be used, not all intervening
   chapters. Chapter 3's variable-length description argument is not by itself
   the selected fixed-length, almost-lossless coding contract.
+- C22.01 adaptation: Sections 8.1–8.3, printed 184–191 / PDF
+  206–213, supply the finite-channel information-capacity viewpoint. The
+  implementation uses the existing PMF-valued channel objective and canonical nats,
+  an explicit nonempty input domain, actual attainment and alphabet bounds.
+  Prior selected-section reading is recorded in the [C22 notes](plans/post-release-chunk-22-notes.md);
+  this entry claims no fresh textbook inspection. C22.01 selected-step checks and
+  independent review passed; the notes distinguish review and actual closure.
+- C22.02 adaptation: Section 2.8, printed 32–33 / PDF 54–55.
+  The parent freshly read these pages on 2026-10-24 through pypdf text
+  extraction and checked the registered hash; no fresh visual inspection
+  is claimed. Capacity inequalities apply existing finite-channel DPI to
+  every input law. Relabeling transports law and channel together; no public
+  symmetry or optimizer framework is added. C22.02 selected-step validation and
+  independent review passed; see C22 notes sections 11–12 for evidence and limits.
+- C22.04 adaptation: Section 8.1.1 and the capacity properties in 8.3,
+  printed 184–185 and 190–191 / PDF 206–207 and 212–213. The parent freshly
+  inspected these pages as UTF-8 text on 2026-10-24 and verified the registered
+  hash; no visual inspection is claimed. The binary noiseless example extends
+  to finite nonempty alphabets through existing diagonal MI and uniform entropy.
+  The input-independent result follows from the existing independent-joint MI
+  theorem: every input has zero objective and attains zero capacity. Canonical
+  nats, sparse laws and singleton alphabets are retained. This does not assert
+  operational capacity or a general symmetry theorem. Selected-step validation
+  and independent review passed; see C22 notes sections 15–16 for actual evidence,
+  reconciliation and applicability limits.
+- C22.05 adaptation: Section 8.1.4, printed 186–187 / PDF 208–209,
+  supplies BSC row entropy, the output-entropy bound and uniform attainment.
+  The parent freshly extracted PDF 208–210 as text on 2026-10-24 at the
+  registered CT91 hash; adjacent BEC material is context, not selected work.
+  Replace the bit-valued expression by log 2 minus Real.binEntropy in nats.
+  The raw channel parameter is exactly the crossover probability on [0,1].
+  The uniform input attains capacity, without uniqueness at crossover one half;
+  every input attains zero there. Pure and biased inputs need no full-support
+  premise. Selected-step validation and independent review passed, including
+  the full compiled trust audit. Final applicability and scoped closure remain
+  tied to the actual private completion record. See C22 notes sections 17–18.
+  No operational capacity equality is asserted.
+- C22.06 adaptation: Section 8.1.5, printed 187–188 / PDF 209–210,
+  supplies BEC output entropy and uniform attainment. The parent freshly
+  extracted those pages as text on 2026-10-24 at the registered hash, and
+  compared PW24 section 19.3, printed 380 / PDF 405, with adjacent context
+  from PDF 404–406 at its registered hash. No parent visual check is claimed.
+  The exact all-input identity is (1-epsilon) times input entropy; the capacity
+  is (1-epsilon) times log 2 in nats. This retains the erasure weight omitted
+  in PW24's displayed conditional-entropy expression and avoids its unqualified
+  uniform-only equality claim at full erasure. Existing finite-sum entropy
+  and negMulLog product algebra cover zero masses without conditional fibers
+  or division. Selected-step validation and independent review passed, including
+  the full compiled trust audit. Final applicability and scoped closure remain
+  tied to the actual private completion record. See C22 notes sections 19–20.
+  No operational capacity equality is asserted.
+- C22.07 adaptation: the parent freshly extracted CT91 printed 184 and
+  187–188 / PDF 206 and 209–210, and PW24 section 6.1, Theorem 6.1(a) and
+  Example 6.1, printed 106–107 / PDF 131–132, as text on 2026-10-24 at the
+  registered hashes. No visual inspection is claimed. Four scalar bits
+  equations follow from the existing nats capacity values through natsToBits;
+  the same achieving laws remain witnesses. Private consumers convert product
+  and repeated capacity identities and arbitrary-input bounds. The C23-facing
+  encoded-word consumer permits noninjective encoders and correlated inputs.
+  This adds no operational coding theorem or capacity definition in bits.
+  Selected-step validation and independent review passed, including the full
+  compiled trust audit. Final applicability and scoped closure remain tied to
+  the actual private completion record. See C22 notes sections 21–22 for evidence
+  and limits.
+- C22.08 cumulative preparation: no new mathematical endpoint or convention.
+  The [maintained handoff](handoffs/chunk-22.md) reconciles the delivered finite
+  information-capacity contracts, source adaptations and boundary consumers.
+  Previous readings retain their actual actors/pages/hashes. Authorized initial
+  clean and current two-pass API checks passed; all 26 rendered entries were
+  inspected. The actual C22.08 private completion record and linked evidence
+  determine current-candidate applicability, cumulative independent review,
+  substantive reconciliation and closure; no future outcome, operational
+  capacity equality or C23 implementation is asserted.
 - Units: typically bits; adapt through the project's existing units layer.
 
 ## PW22: Polyanskiy and Wu, historical draft
@@ -114,7 +187,34 @@ August 16, 2024 prepublication version. The source footer identifies the date.
   Proposition 4.13: finite MI continuity. Sections 5.1--5.2 provide information
   optimization context; general-measure minimax and infinite-alphabet results
   are not commitments.
+- C22.01 adaptation: Chapter 5, printed 91–105 / PDF 116–130,
+  supplies optimization context. Theorem 5.4 assumes an achieving input; it
+  does not prove the selected finite attainment result. The implementation instead
+  applies C15 compactness and continuity to the nonempty finite-PMF domain.
+  It asserts neither constrained/infinite-alphabet capacity nor operational
+  coding equivalence; the C22 notes retain the earlier reading, selected-step validation and independent review.
+- C22.02 adaptation: Theorem 5.3, printed 92–93 / PDF 117–118.
+  The parent freshly read these pages on 2026-10-24 through pypdf text
+  extraction and checked the registered hash; no fresh visual inspection
+  is claimed. A private consumer combines existing input concavity and the
+  capacity bound to show that mixtures of maximizing laws still maximize,
+  including weights 0 and 1. No public convex-set or optimizer framework
+  is introduced. C22.02 selected-step validation and independent review passed;
+  see C22 notes sections 11–12 for evidence and limits.
 - Section 6.1, Theorem 6.1: block MI and memoryless-channel single-letterization.
+- C22.03 adaptation: Theorem 6.1(a) and Example 6.1, printed 106–107 /
+  PDF 131–132. The parent freshly read the text on 2026-10-24 and checked
+  the registered hash. The first extraction reached page 106 but failed to
+  print page 107 under the console encoding; an explicit UTF-8 extraction
+  then supplied page 107. No new visual inspection is claimed. Existing C18
+  bounds for arbitrary correlated inputs and independent-product identities,
+  together with C22.01 attainment, prove finite dependent-alphabet capacity
+  additivity. A product of maximizers is sufficient; optimizer uniqueness
+  or necessary input independence is not asserted. Empty products and n=0
+  are retained, including the vacuous empty-base zero-word consumer. The
+  duplicated-bit strict-gap consumer uses nats. Selected-step validation and
+  independent review passed; see C22 notes sections 13–14 for actual evidence,
+  reconciliation and applicability limits.
 - Recorded C16 use: Section 6.1, Theorem 6.1/proof, printed pages 106--107 /
   PDF 131--132; Section 11.2, Proposition 11.6/proof, printed pages 217--218 /
   PDF 242--243, in this exact hashed draft. The planning notes record the

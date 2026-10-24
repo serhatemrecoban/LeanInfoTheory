@@ -1,5 +1,5 @@
 {
-  "declaration_count": 864,
+  "declaration_count": 890,
   "declarations": [
     {
       "doc": "Public project name used by documentation and the website.",
@@ -2082,6 +2082,26 @@
       "short_name": "finiteProduct_channelJoint_map"
     },
     {
+      "doc": "The binary symmetric channel with crossover probability `\u03b5` in `[0, 1]`. Its first mixture branch flips the input and has weight `\u03b5`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 29,
+      "module": "LeanInfoTheory.Probability.StandardChannels",
+      "name": "PMF.binarySymmetricChannel",
+      "path": "LeanInfoTheory/Probability/StandardChannels.lean",
+      "short_name": "binarySymmetricChannel"
+    },
+    {
+      "doc": "The binary erasure channel with erasure probability `\u03b5` in `[0, 1]`. Its first mixture branch erases the input and has weight `\u03b5`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 35,
+      "module": "LeanInfoTheory.Probability.StandardChannels",
+      "name": "PMF.binaryErasureChannel",
+      "path": "LeanInfoTheory/Probability/StandardChannels.lean",
+      "short_name": "binaryErasureChannel"
+    },
+    {
       "doc": "Total variation of finite PMFs, normalized as half the L1 distance of real masses.",
       "kind": "def",
       "kind_label": "Definition",
@@ -2360,6 +2380,106 @@
       "name": "LeanInfoTheory.Shannon.entropy_bool",
       "path": "LeanInfoTheory/Shannon/BinaryEntropy.lean",
       "short_name": "entropy_bool"
+    },
+    {
+      "doc": "Finite-channel information capacity in nats, over all input laws on a nonempty alphabet. The explicit nonempty-input binder excludes an empty supremum convention.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 38,
+      "module": "LeanInfoTheory.Shannon.ChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity",
+      "path": "LeanInfoTheory/Shannon/ChannelCapacity.lean",
+      "short_name": "channelCapacity"
+    },
+    {
+      "doc": "Every input law's mutual information is bounded by information capacity.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 56,
+      "module": "LeanInfoTheory.Shannon.ChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_channelJoint_le_channelCapacity",
+      "path": "LeanInfoTheory/Shannon/ChannelCapacity.lean",
+      "short_name": "mutualInfo_channelJoint_le_channelCapacity"
+    },
+    {
+      "doc": "A real number bounds capacity exactly when it bounds every input objective.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 61,
+      "module": "LeanInfoTheory.Shannon.ChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_le_iff",
+      "path": "LeanInfoTheory/Shannon/ChannelCapacity.lean",
+      "short_name": "channelCapacity_le_iff"
+    },
+    {
+      "doc": "A finite channel has an input PMF attaining its information capacity. The proof uses continuity on the nonempty compact domain of finite input PMFs.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 69,
+      "module": "LeanInfoTheory.Shannon.ChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.exists_mutualInfo_channelJoint_eq_channelCapacity",
+      "path": "LeanInfoTheory/Shannon/ChannelCapacity.lean",
+      "short_name": "exists_mutualInfo_channelJoint_eq_channelCapacity"
+    },
+    {
+      "doc": "Finite-channel information capacity is nonnegative.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 79,
+      "module": "LeanInfoTheory.Shannon.ChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_nonneg",
+      "path": "LeanInfoTheory/Shannon/ChannelCapacity.lean",
+      "short_name": "channelCapacity_nonneg"
+    },
+    {
+      "doc": "Capacity in nats is at most the logarithm of the input alphabet size.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 85,
+      "module": "LeanInfoTheory.Shannon.ChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_le_log_card_input",
+      "path": "LeanInfoTheory/Shannon/ChannelCapacity.lean",
+      "short_name": "channelCapacity_le_log_card_input"
+    },
+    {
+      "doc": "Capacity in nats is at most the logarithm of the output alphabet size. Output nonemptiness follows internally from a channel row.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 94,
+      "module": "LeanInfoTheory.Shannon.ChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_le_log_card_output",
+      "path": "LeanInfoTheory/Shannon/ChannelCapacity.lean",
+      "short_name": "channelCapacity_le_log_card_output"
+    },
+    {
+      "doc": "Simultaneously relabeling input and output alphabets preserves capacity. The input law is pushed forward by `e`, so channel rows use `e.symm`. Nonemptiness of the renamed input is transported locally from the original input.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 137,
+      "module": "LeanInfoTheory.Shannon.ChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_congr_equiv",
+      "path": "LeanInfoTheory/Shannon/ChannelCapacity.lean",
+      "short_name": "channelCapacity_congr_equiv"
+    },
+    {
+      "doc": "Stochastic processing of a finite channel's output cannot increase capacity.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 157,
+      "module": "LeanInfoTheory.Shannon.ChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_channelComp_le",
+      "path": "LeanInfoTheory/Shannon/ChannelCapacity.lean",
+      "short_name": "channelCapacity_channelComp_le"
+    },
+    {
+      "doc": "Mapping a finite channel's output cannot increase capacity, even when the map identifies distinct outputs.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 167,
+      "module": "LeanInfoTheory.Shannon.ChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_map_output_le",
+      "path": "LeanInfoTheory/Shannon/ChannelCapacity.lean",
+      "short_name": "channelCapacity_map_output_le"
     },
     {
       "doc": "The logarithm of the message budget per source symbol, in nats. The value at zero length is an initialization convention, not a normalized rate.",
@@ -4790,6 +4910,36 @@
       "name": "LeanInfoTheory.Shannon.real_logSum_eq_iff_exists_constant_ratio_of_support",
       "path": "LeanInfoTheory/Shannon/LogSum.lean",
       "short_name": "real_logSum_eq_iff_exists_constant_ratio_of_support"
+    },
+    {
+      "doc": "Capacity adds over finite heterogeneous product channels. The supremum ranges over every input law; independent maximizing inputs attain the sum. The index may be empty, and its universe is independent of both alphabet universes.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 74,
+      "module": "LeanInfoTheory.Shannon.ProductChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_productChannel",
+      "path": "LeanInfoTheory/Shannon/ProductChannelCapacity.lean",
+      "short_name": "channelCapacity_productChannel"
+    },
+    {
+      "doc": "Repeating a finite channel multiplies its capacity by the blocklength, including blocklength zero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 87,
+      "module": "LeanInfoTheory.Shannon.ProductChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_memorylessChannel",
+      "path": "LeanInfoTheory/Shannon/ProductChannelCapacity.lean",
+      "short_name": "channelCapacity_memorylessChannel"
+    },
+    {
+      "doc": "Every block input, including correlated inputs, has mutual information at most the blocklength times one-letter capacity. No positive-length premise is needed.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 97,
+      "module": "LeanInfoTheory.Shannon.ProductChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_channelJoint_memorylessChannel_le",
+      "path": "LeanInfoTheory/Shannon/ProductChannelCapacity.lean",
+      "short_name": "mutualInfo_channelJoint_memorylessChannel_le"
     },
     {
       "doc": "The self-information of a supported iid word is the sum of its coordinate self-informations, in nats. This includes the empty word. Impossible words are excluded because self-information is totalized to zero at zero mass.",
@@ -8492,6 +8642,116 @@
       "short_name": "sourceCoding_threshold"
     },
     {
+      "doc": "A noiseless finite channel has information capacity equal to the logarithm of its input alphabet size in nats. The uniform input attains this value.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 64,
+      "module": "LeanInfoTheory.Shannon.StandardChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_deterministicChannel_id",
+      "path": "LeanInfoTheory/Shannon/StandardChannelCapacity.lean",
+      "short_name": "channelCapacity_deterministicChannel_id"
+    },
+    {
+      "doc": "An input-independent finite channel has zero information capacity. The supplied output law requires no separate nonempty-output assumption.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 89,
+      "module": "LeanInfoTheory.Shannon.StandardChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_const",
+      "path": "LeanInfoTheory/Shannon/StandardChannelCapacity.lean",
+      "short_name": "channelCapacity_const"
+    },
+    {
+      "doc": "Mutual information through a binary symmetric channel is output entropy minus binary entropy of the crossover probability, in nats. All input laws and both crossover endpoints are included.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 123,
+      "module": "LeanInfoTheory.Shannon.StandardChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_channelJoint_binarySymmetricChannel",
+      "path": "LeanInfoTheory/Shannon/StandardChannelCapacity.lean",
+      "short_name": "mutualInfo_channelJoint_binarySymmetricChannel"
+    },
+    {
+      "doc": "Binary symmetric channel information capacity in nats, for every crossover probability in `[0, 1]`. The uniform Boolean input attains the value.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 163,
+      "module": "LeanInfoTheory.Shannon.StandardChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_binarySymmetricChannel",
+      "path": "LeanInfoTheory/Shannon/StandardChannelCapacity.lean",
+      "short_name": "channelCapacity_binarySymmetricChannel"
+    },
+    {
+      "doc": "The uniform Boolean law attains binary symmetric channel information capacity, including crossover probabilities zero, one half and one.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 174,
+      "module": "LeanInfoTheory.Shannon.StandardChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_channelJoint_binarySymmetricChannel_uniformOfFintype",
+      "path": "LeanInfoTheory/Shannon/StandardChannelCapacity.lean",
+      "short_name": "mutualInfo_channelJoint_binarySymmetricChannel_uniformOfFintype"
+    },
+    {
+      "doc": "Mutual information through a binary erasure channel is the input entropy weighted by the probability of transmission. The identity holds for every input law and throughout the closed erasure interval, including zero masses.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 231,
+      "module": "LeanInfoTheory.Shannon.StandardChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.mutualInfo_channelJoint_binaryErasureChannel",
+      "path": "LeanInfoTheory/Shannon/StandardChannelCapacity.lean",
+      "short_name": "mutualInfo_channelJoint_binaryErasureChannel"
+    },
+    {
+      "doc": "Binary erasure channel information capacity in nats, for every erasure probability in `[0, 1]`. The uniform Boolean input attains the value.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 258,
+      "module": "LeanInfoTheory.Shannon.StandardChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_binaryErasureChannel",
+      "path": "LeanInfoTheory/Shannon/StandardChannelCapacity.lean",
+      "short_name": "channelCapacity_binaryErasureChannel"
+    },
+    {
+      "doc": "Noiseless finite-channel information capacity, converted from nats to bits.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 275,
+      "module": "LeanInfoTheory.Shannon.StandardChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_deterministicChannel_id_bits",
+      "path": "LeanInfoTheory/Shannon/StandardChannelCapacity.lean",
+      "short_name": "channelCapacity_deterministicChannel_id_bits"
+    },
+    {
+      "doc": "Input-independent channel information capacity is zero in bits.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 283,
+      "module": "LeanInfoTheory.Shannon.StandardChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_const_bits",
+      "path": "LeanInfoTheory/Shannon/StandardChannelCapacity.lean",
+      "short_name": "channelCapacity_const_bits"
+    },
+    {
+      "doc": "Binary symmetric channel information capacity in bits, on the closed crossover interval.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 291,
+      "module": "LeanInfoTheory.Shannon.StandardChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_binarySymmetricChannel_bits",
+      "path": "LeanInfoTheory/Shannon/StandardChannelCapacity.lean",
+      "short_name": "channelCapacity_binarySymmetricChannel_bits"
+    },
+    {
+      "doc": "Binary erasure channel information capacity in bits, on the closed erasure interval.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 301,
+      "module": "LeanInfoTheory.Shannon.StandardChannelCapacity",
+      "name": "LeanInfoTheory.Shannon.channelCapacity_binaryErasureChannel_bits",
+      "path": "LeanInfoTheory/Shannon/StandardChannelCapacity.lean",
+      "short_name": "channelCapacity_binaryErasureChannel_bits"
+    },
+    {
       "doc": "Entropy is continuous on finite PMFs, including boundary laws.",
       "kind": "theorem",
       "kind_label": "Theorem",
@@ -8642,12 +8902,12 @@
       "short_name": "entropyOf_div_log"
     }
   ],
-  "documented_count": 863,
+  "documented_count": 889,
   "kind_counts": {
-    "Definition": 128,
+    "Definition": 131,
     "Inductive": 4,
     "Instance": 4,
-    "Theorem": 728
+    "Theorem": 751
   },
   "modules": [
     "LeanInfoTheory.Basic",
@@ -8666,9 +8926,11 @@
     "LeanInfoTheory.Probability.FiniteTopology",
     "LeanInfoTheory.Probability.Iid",
     "LeanInfoTheory.Probability.ProductChannel",
+    "LeanInfoTheory.Probability.StandardChannels",
     "LeanInfoTheory.Probability.TotalVariation",
     "LeanInfoTheory.Probability.TotalVariationTopology",
     "LeanInfoTheory.Shannon.BinaryEntropy",
+    "LeanInfoTheory.Shannon.ChannelCapacity",
     "LeanInfoTheory.Shannon.CodingRate",
     "LeanInfoTheory.Shannon.Continuity",
     "LeanInfoTheory.Shannon.Entropy",
@@ -8678,6 +8940,7 @@
     "LeanInfoTheory.Shannon.FiniteFamily",
     "LeanInfoTheory.Shannon.InfoMeasures",
     "LeanInfoTheory.Shannon.LogSum",
+    "LeanInfoTheory.Shannon.ProductChannelCapacity",
     "LeanInfoTheory.Shannon.SemanticBridge.AEP",
     "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
     "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL",
@@ -8701,6 +8964,7 @@
     "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
     "LeanInfoTheory.Shannon.SourceCoding",
     "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
+    "LeanInfoTheory.Shannon.StandardChannelCapacity",
     "LeanInfoTheory.Shannon.Topology",
     "LeanInfoTheory.Shannon.TypicalSet",
     "LeanInfoTheory.Shannon.Units"
