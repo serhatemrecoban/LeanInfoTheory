@@ -1,5 +1,5 @@
 {
-  "declaration_count": 890,
+  "declaration_count": 926,
   "declarations": [
     {
       "doc": "Public project name used by documentation and the website.",
@@ -2480,6 +2480,366 @@
       "name": "LeanInfoTheory.Shannon.channelCapacity_map_output_le",
       "path": "LeanInfoTheory/Shannon/ChannelCapacity.lean",
       "short_name": "channelCapacity_map_output_le"
+    },
+    {
+      "doc": "A deterministic encoder/total decoder pair. The raw pair imposes neither injectivity nor recovery; operational laws use a positive message budget.",
+      "kind": "abbrev",
+      "kind_label": "Definition",
+      "line": 45,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "BlockChannelCode"
+    },
+    {
+      "doc": "Encode a message index as an input word.",
+      "kind": "abbrev",
+      "kind_label": "Definition",
+      "line": 53,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.encoder",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "encoder"
+    },
+    {
+      "doc": "Decode an output word to a message index, including off-support outputs.",
+      "kind": "abbrev",
+      "kind_label": "Definition",
+      "line": 56,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.decoder",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "decoder"
+    },
+    {
+      "doc": "The joint law of the uniform message and its channel output.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 59,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageOutputLaw",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "messageOutputLaw"
+    },
+    {
+      "doc": "The actual message/input/output law, associated as `message \u00d7 (input \u00d7 output)`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 66,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageInputOutputLaw",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "messageInputOutputLaw"
+    },
+    {
+      "doc": "Uniform-message average block error, with the existing Fano semantics.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 75,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "errorProbability"
+    },
+    {
+      "doc": "Each message/output atom keeps the mass of its original message index.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 80,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageOutputLaw_apply",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "messageOutputLaw_apply"
+    },
+    {
+      "doc": "The message marginal is uniform over indices, including colliding indices.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 87,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageOutputLaw_map_fst",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "messageOutputLaw_map_fst"
+    },
+    {
+      "doc": "The message/input pair is the graph pushforward of the uniform message.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 94,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageInputOutputLaw_map_messageInput",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "messageInputOutputLaw_map_messageInput"
+    },
+    {
+      "doc": "The input marginal is the encoder pushforward, with no image-uniformity claim.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 102,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageInputOutputLaw_map_input",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "messageInputOutputLaw_map_input"
+    },
+    {
+      "doc": "The input/output pair uses the actual encoder pushforward as input law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 112,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageInputOutputLaw_map_inputOutput",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "messageInputOutputLaw_map_inputOutput"
+    },
+    {
+      "doc": "Projecting the triple to message/output gives the original Fano joint law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 122,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageInputOutputLaw_map_messageOutput",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "messageInputOutputLaw_map_messageOutput"
+    },
+    {
+      "doc": "The message marginal of the triple is the same uniform message law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 130,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageInputOutputLaw_map_message",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "messageInputOutputLaw_map_message"
+    },
+    {
+      "doc": "The output law is the encoder pushforward passed through the memoryless channel.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 139,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageInputOutputLaw_map_output",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "messageInputOutputLaw_map_output"
+    },
+    {
+      "doc": "The block error is the Fano random-variable error on the actual triple.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 149,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_eq_decodingErrorProbabilityOf",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "errorProbability_eq_decodingErrorProbabilityOf"
+    },
+    {
+      "doc": "The same error is the real mass of the message-decoding failure event.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 157,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_eq_toOuterMeasure",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "errorProbability_eq_toOuterMeasure"
+    },
+    {
+      "doc": "Error is the uniform average of each message's conditional error mass.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 165,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_eq_sum",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "errorProbability_eq_sum"
+    },
+    {
+      "doc": "Average block error is nonnegative.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 182,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_nonneg",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "errorProbability_nonneg"
+    },
+    {
+      "doc": "Average block error is at most one, including complete decoding failure.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 188,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_le_one",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "errorProbability_le_one"
+    },
+    {
+      "doc": "One message is always recovered, at any blocklength.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 194,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_one",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "errorProbability_one"
+    },
+    {
+      "doc": "With an empty received word, exactly one of the uniform message indices is selected by the total decoder. This includes empty base alphabets.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 202,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_zero",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "errorProbability_zero"
+    },
+    {
+      "doc": "At length one, evaluating the output word recovers the original channel joint law for the actual encoded symbol.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 223,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageOutputLaw_one_map",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "messageOutputLaw_one_map"
+    },
+    {
+      "doc": "One-letter block error is the uniform average over original output symbols.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 241,
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_one_length_eq_sum",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "short_name": "errorProbability_one_length_eq_sum"
+    },
+    {
+      "doc": "Under the actual code law, message \u2192 encoded input \u2192 channel output. This is a raw-law fact and needs no finite or nonempty input alphabet.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 47,
+      "module": "LeanInfoTheory.Shannon.ChannelCoding",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.isMarkovChain_messageInputOutputLaw",
+      "path": "LeanInfoTheory/Shannon/ChannelCoding.lean",
+      "short_name": "isMarkovChain_messageInputOutputLaw"
+    },
+    {
+      "doc": "Under that same law, message \u2192 output \u2192 decoded message.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 54,
+      "module": "LeanInfoTheory.Shannon.ChannelCoding",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.isMarkovChainOf_decoder",
+      "path": "LeanInfoTheory/Shannon/ChannelCoding.lean",
+      "short_name": "isMarkovChainOf_decoder"
+    },
+    {
+      "doc": "Decoding cannot increase message information on the actual sampling law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 61,
+      "module": "LeanInfoTheory.Shannon.ChannelCoding",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.mutualInfoOf_decoder_le",
+      "path": "LeanInfoTheory/Shannon/ChannelCoding.lean",
+      "short_name": "mutualInfoOf_decoder_le"
+    },
+    {
+      "doc": "Message/output information is at most input/output information, including noninjective encoders and correlated codewords.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 70,
+      "module": "LeanInfoTheory.Shannon.ChannelCoding",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.mutualInfoOf_message_le_input",
+      "path": "LeanInfoTheory/Shannon/ChannelCoding.lean",
+      "short_name": "mutualInfoOf_message_le_input"
+    },
+    {
+      "doc": "The finite Fano-capacity converse in nats. It includes zero blocklength, one message and error one, without dividing by `1 - Pe`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 100,
+      "module": "LeanInfoTheory.Shannon.ChannelCoding",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.one_sub_errorProbability_mul_log_le",
+      "path": "LeanInfoTheory/Shannon/ChannelCoding.lean",
+      "short_name": "one_sub_errorProbability_mul_log_le"
+    },
+    {
+      "doc": "At positive length, the finite converse bounds the error-weighted code rate.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 123,
+      "module": "LeanInfoTheory.Shannon.ChannelCoding",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.one_sub_errorProbability_mul_codeRate_le",
+      "path": "LeanInfoTheory/Shannon/ChannelCoding.lean",
+      "short_name": "one_sub_errorProbability_mul_codeRate_le"
+    },
+    {
+      "doc": "Any positive lower bound on the actual positive-length rate gives a pointwise error bound. No above-capacity hypothesis is needed for this form.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 143,
+      "module": "LeanInfoTheory.Shannon.ChannelCoding",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.one_sub_channelCapacity_div_sub_le_errorProbability",
+      "path": "LeanInfoTheory/Shannon/ChannelCoding.lean",
+      "short_name": "one_sub_channelCapacity_div_sub_le_errorProbability"
+    },
+    {
+      "doc": "Vanishing average error forces each positive-tolerance eventual rate cap. The same arbitrary family is used at every tolerance, including its zero-length and finite-prefix data. No rate boundedness or convergence is assumed.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 75,
+      "module": "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.eventually_codeRate_le_channelCapacity_add",
+      "path": "LeanInfoTheory/Shannon/ChannelCodingAsymptotic.lean",
+      "short_name": "eventually_codeRate_le_channelCapacity_add"
+    },
+    {
+      "doc": "The real limsup of rates is at most capacity when the actual family error vanishes. Eventual upper boundedness is derived from the finite converse; nonnegative rates provide the explicit coboundedness needed by real limsup.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 103,
+      "module": "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.limsup_codeRate_le_channelCapacity",
+      "path": "LeanInfoTheory/Shannon/ChannelCodingAsymptotic.lean",
+      "short_name": "limsup_codeRate_le_channelCapacity"
+    },
+    {
+      "doc": "An eventual rate lower bound strictly above capacity gives the finite quantitative error bound eventually. Positivity of the requested rate follows from capacity nonnegativity; positive blocklength is needed only on a tail.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 122,
+      "module": "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.eventually_one_sub_channelCapacity_div_sub_le_errorProbability",
+      "path": "LeanInfoTheory/Shannon/ChannelCodingAsymptotic.lean",
+      "short_name": "eventually_one_sub_channelCapacity_div_sub_le_errorProbability"
+    },
+    {
+      "doc": "An eventual rate lower bound strictly above capacity forces the explicit positive error floor `(1 - channelCapacity W / R) / 2` eventually. No boundedness or convergence of the rates is assumed.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 137,
+      "module": "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.eventually_pos_le_errorProbability_of_eventually_le_codeRate",
+      "path": "LeanInfoTheory/Shannon/ChannelCodingAsymptotic.lean",
+      "short_name": "eventually_pos_le_errorProbability_of_eventually_le_codeRate"
+    },
+    {
+      "doc": "An eventual rate lower bound strictly above capacity prevents the actual family error from tending to zero. The explicit positive floor is derived without any bounded-rate or rate-convergence premise.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 161,
+      "module": "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.not_tendsto_errorProbability_zero_of_eventually_le_codeRate",
+      "path": "LeanInfoTheory/Shannon/ChannelCodingAsymptotic.lean",
+      "short_name": "not_tendsto_errorProbability_zero_of_eventually_le_codeRate"
+    },
+    {
+      "doc": "A fixed positive rate gap occurring infinitely often prevents vanishing error, even for unbounded or nonconvergent rates. This conclusion does not assert an eventual positive error floor or use a real-limsup convention.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 177,
+      "module": "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.not_tendsto_errorProbability_zero_of_frequently_channelCapacity_add_le_codeRate",
+      "path": "LeanInfoTheory/Shannon/ChannelCodingAsymptotic.lean",
+      "short_name": "not_tendsto_errorProbability_zero_of_frequently_channelCapacity_add_le_codeRate"
     },
     {
       "doc": "The logarithm of the message budget per source symbol, in nats. The value at zero length is an initialization convention, not a normalized rate.",
@@ -8902,12 +9262,12 @@
       "short_name": "entropyOf_div_log"
     }
   ],
-  "documented_count": 889,
+  "documented_count": 925,
   "kind_counts": {
-    "Definition": 131,
+    "Definition": 137,
     "Inductive": 4,
     "Instance": 4,
-    "Theorem": 751
+    "Theorem": 781
   },
   "modules": [
     "LeanInfoTheory.Basic",
@@ -8931,6 +9291,9 @@
     "LeanInfoTheory.Probability.TotalVariationTopology",
     "LeanInfoTheory.Shannon.BinaryEntropy",
     "LeanInfoTheory.Shannon.ChannelCapacity",
+    "LeanInfoTheory.Shannon.ChannelCode",
+    "LeanInfoTheory.Shannon.ChannelCoding",
+    "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
     "LeanInfoTheory.Shannon.CodingRate",
     "LeanInfoTheory.Shannon.Continuity",
     "LeanInfoTheory.Shannon.Entropy",

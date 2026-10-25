@@ -6,8 +6,8 @@
     "Semantic bridge layer",
     "Non-stable anchors"
   ],
-  "local_edge_count": 237,
-  "module_count": 100,
+  "local_edge_count": 254,
+  "module_count": 106,
   "modules": [
     {
       "external_imports": [],
@@ -185,6 +185,9 @@
         "LeanInfoTheory.Probability.TotalVariation",
         "LeanInfoTheory.Probability.TotalVariationTopology",
         "LeanInfoTheory.Shannon.ChannelCapacity",
+        "LeanInfoTheory.Shannon.ChannelCode",
+        "LeanInfoTheory.Shannon.ChannelCoding",
+        "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
         "LeanInfoTheory.Shannon.CodingRate",
         "LeanInfoTheory.Shannon.Continuity",
         "LeanInfoTheory.Shannon.Fano",
@@ -227,6 +230,45 @@
       "path": "LeanInfoTheory/Shannon/ChannelCapacity.lean",
       "root_reachable": false,
       "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Probability.ProductChannel",
+        "LeanInfoTheory.Shannon.Fano"
+      ],
+      "name": "LeanInfoTheory.Shannon.ChannelCode",
+      "path": "LeanInfoTheory/Shannon/ChannelCode.lean",
+      "root_reachable": false,
+      "summary": "Deterministic block channel codes, actual uniform-message sampling laws and average error, with collisions and singleton/zero-length boundaries."
+    },
+    {
+      "external_imports": [],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.ChannelCode",
+        "LeanInfoTheory.Shannon.CodingRate",
+        "LeanInfoTheory.Shannon.ProductChannelCapacity"
+      ],
+      "name": "LeanInfoTheory.Shannon.ChannelCoding",
+      "path": "LeanInfoTheory/Shannon/ChannelCoding.lean",
+      "root_reachable": false,
+      "summary": "Actual-law Markov data processing and finite Fano-capacity converses, with positive-length rate and error forms in nats."
+    },
+    {
+      "external_imports": [
+        "Mathlib.Analysis.SpecificLimits.Basic",
+        "Mathlib.Order.LiminfLimsup"
+      ],
+      "layer": "Finite Shannon layer",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.ChannelCoding"
+      ],
+      "name": "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+      "path": "LeanInfoTheory/Shannon/ChannelCodingAsymptotic.lean",
+      "root_reachable": false,
+      "summary": "Vanishing-error rate caps and real limsup bounds with derived boundedness; eventual quantitative positive-error obstructions and infinitely-often fixed-gap nonvanishing for arbitrary rates."
     },
     {
       "external_imports": [
@@ -760,6 +802,9 @@
       "local_imports": [
         "LeanInfoTheory.Examples.AEP",
         "LeanInfoTheory.Examples.ChannelCapacity",
+        "LeanInfoTheory.Examples.ChannelCode",
+        "LeanInfoTheory.Examples.ChannelCoding",
+        "LeanInfoTheory.Examples.ChannelCodingAsymptotic",
         "LeanInfoTheory.Examples.ChannelOptimization",
         "LeanInfoTheory.Examples.CodingRate",
         "LeanInfoTheory.Examples.CommonCause",
@@ -831,6 +876,41 @@
       "path": "LeanInfoTheory/Examples/ChannelCapacity.lean",
       "root_reachable": false,
       "summary": "Local LeanInfoTheory module."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.ChannelCode"
+      ],
+      "name": "LeanInfoTheory.Examples.ChannelCode",
+      "path": "LeanInfoTheory/Examples/ChannelCode.lean",
+      "root_reachable": false,
+      "summary": "Private focused-import channel-code consumers for actual marginals and error, unequal encoder fibers and singleton/zero/one-length boundaries."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.ChannelCoding",
+        "LeanInfoTheory.Shannon.StandardChannelCapacity"
+      ],
+      "name": "LeanInfoTheory.Examples.ChannelCoding",
+      "path": "LeanInfoTheory/Examples/ChannelCoding.lean",
+      "root_reachable": false,
+      "summary": "Private finite channel-coding consumers for colliding correlated inputs and boundaries, plus actual one-letter noiseless, input-independent, BSC and BEC errors consuming the public bound and standard capacities."
+    },
+    {
+      "external_imports": [],
+      "layer": "Non-stable anchors",
+      "local_imports": [
+        "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+        "LeanInfoTheory.Shannon.StandardChannelCapacity"
+      ],
+      "name": "LeanInfoTheory.Examples.ChannelCodingAsymptotic",
+      "path": "LeanInfoTheory/Examples/ChannelCodingAsymptotic.lean",
+      "root_reachable": false,
+      "summary": "Private same-family sampling, error, information, finite-bound and limit composition for nonconvergent lossless rates, retaining positive-capacity obstructions and unbounded intermittent spikes without an eventual error floor."
     },
     {
       "external_imports": [],
@@ -1324,5 +1404,5 @@
   "root": "LeanInfoTheory",
   "root_reachable_count": 5,
   "schema": "lean-info-theory.module-graph.v1",
-  "separate_import_count": 95
+  "separate_import_count": 101
 }

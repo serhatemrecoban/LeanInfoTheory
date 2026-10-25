@@ -19,6 +19,9 @@ import LeanInfoTheory.Probability.StandardChannels
 import LeanInfoTheory.Probability.TotalVariation
 import LeanInfoTheory.Probability.TotalVariationTopology
 import LeanInfoTheory.Shannon.ChannelCapacity
+import LeanInfoTheory.Shannon.ChannelCode
+import LeanInfoTheory.Shannon.ChannelCoding
+import LeanInfoTheory.Shannon.ChannelCodingAsymptotic
 import LeanInfoTheory.Shannon.CodingRate
 import LeanInfoTheory.Shannon.Continuity
 import LeanInfoTheory.Shannon.Fano
@@ -53,6 +56,21 @@ symmetric and binary erasure capacities, with actual uniform attaining inputs.
 BSC exposes its uniform witness directly; BEC supplies its all-input entropy formula.
 The four standard capacity values also have explicit scalar bits equations
 through the existing Units conversion.
+
+The focused channel-code owner defines deterministic block codes, their actual
+uniform-message sampling laws and average decoding error, including collisions,
+singleton budgets and zero/one blocklengths.
+
+The finite channel-coding owner connects those actual laws to Markov data
+processing, the Fano-capacity bound and its positive-length rate/error forms.
+
+The channel-coding asymptotic owner derives eventual rate boundedness from
+vanishing average error, then proves every positive-tolerance capacity cap and
+the real limsup bound for the same arbitrary code family.
+
+An eventual rate above capacity gives a quantitative eventual error bound and
+a positive error floor. A fixed positive rate gap occurring infinitely often
+rules out vanishing error, including for unbounded rate sequences.
 
 It deliberately excludes `LeanInfoTheory.Basic`, `LeanInfoTheory.Examples`, and
 `LeanInfoTheory.MathlibFragments`, which are non-stable development, regression,

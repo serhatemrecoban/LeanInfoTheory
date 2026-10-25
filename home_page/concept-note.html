@@ -36,7 +36,14 @@
         related semantic theorems.
       </p>
 
-      <h2>Current and near-term deliverables</h2>
+      <h2>Selected v0.1.0 release deliverables</h2>
+      <p>
+        This hand-written selection describes <code>v0.1.0</code>. Current
+        development also includes finite AEP/source-coding results, channel
+        capacities and channel-coding weak converses; see the
+        <a href="docs/api-index.html">current source-derived declaration index</a>
+        for declaration names and owners.
+      </p>
       <ul>
         <li>A public mathlib-based Lean repository with CI and a current module guide.</li>
         <li>A finite <code>PMF</code>-based Shannon layer with entropy, marginals, conditional entropy, mutual information, and conditional mutual information.</li>
@@ -50,9 +57,9 @@
         <li>Finite Fano inequalities, common-base conditional KL, sufficient-statistic recovery, and finite-family mutual-independence equality characterizations.</li>
       </ul>
 
-      <h2>Current limitations</h2>
+      <h2>v0.1.0 release limitations</h2>
       <ul>
-        <li>The semantic and Fano layers remain finite-PMF/finite-alphabet focused; general measurable extensions, exact Fano equality and sharpness, randomized/list decoding, AEP, and source/channel coding remain future work.</li>
+        <li>The release focuses on finite PMFs and finite alphabets; general measurable extensions, exact Fano equality and sharpness, randomized/list decoding, AEP, and source/channel coding theorems are outside v0.1.0.</li>
         <li>Application-specific proof automation, certificate import, and paper-specific constructions belong in downstream projects rather than this library.</li>
         <li>Signature-bearing v0.1.0 API documentation is generated from the exact release commit; non-toy downstream converse examples remain separate milestones.</li>
       </ul>

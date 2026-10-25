@@ -36,7 +36,207 @@ Status labels used below:
 
 ## 0. AI Assistant Quick Start
 
-**[Current] C22.08 cumulative qualification and handoff: milestones checked — 2026-10-24.**
+**[Current] C23.06 initial milestones passed; cumulative review/final qualification pending — 2026-10-25.**
+
+The separately approved initial scoped checkpoint `beb99362718489c17dfe150e5c8be0281ab34aa3` passed the complete maintained clean routine. The current local two-pass API build/check gate passed, and the parent substantively inspected all 36 new rendered signatures, hypotheses, result types, docstrings, owners and source links.
+
+The exact local C23-only checkpoint, necessary bounded amendments/full clean reruns, reuse of the existing registered validation checkout and separate local API milestone were approved by the actual reply “yes, i approve”. Push, release, publication, C24 and external-project upgrades remain unapproved.
+
+Every bounded amendment, including these documentation updates, requires the entire clean rerun and renewed API applicability before R; rerun the API gate if invalidated. Fresh original review of all 21 criteria, substantive all-criterion reconciliation and final qualification/applicability/capture remain pending. Only actual `.lit-review/setup/c23-06-completion-20261025.json` and its linked genuine original records determine completion; no cumulative SAT assessment or future result is predicted.
+
+The [handoff](handoffs/chunk-23.md) and notes Section 23 retain actual paths/hashes. Inventory remains 811 declarations in 57 owners, 92 root exports and 94 reviewed simp names. Other dated admission/preparation snapshots below are historical at their recorded inputs.
+
+**[History] C23.05 qualification wording before supported closure — 2026-10-25.**
+
+Only C23.05 with review is selected under accepted
+[C23 revision 2](plans/post-release-chunk-23.md). C23.04 is closed by
+`.lit-review/setup/c23-04-completion-20261025.json`, actual closure
+`7284109da2b6bfc1b3aec2fc76524ce211312d99ec0d0943b677cb110c15a2d1`.
+The parent verified all 291 predecessor final-source/environment entries before
+admission; earlier conditional C23.04 snapshots below are historical.
+
+No production endpoint or owner is added. Private one-letter consumers apply the
+existing finite coding bound with noiseless, input-independent-output, BSC and
+BEC capacities. Actual errors are respectively zero, one half for uniform
+independent output, crossover probability for identity BSC decoding, and half the
+erasure probability for a total BEC decoder. Zero/full noise and quarter-noise
+values are retained. The existing alternating lossless family now composes its
+actual sampling/input/error, Markov/DPI, Fano, finite/normalized/pointwise and
+tolerance/real-limsup interfaces while its rates do not converge. Earlier unequal-
+fiber, correlated-collision, singleton, zero/one-length, positive-capacity and
+unbounded intermittent fixtures remain private.
+
+Finite consumer03, composition02 and the maintained eight-target build passed
+with warnings as errors. Focused/full-Shannon compiled probes passed for all 36
+C23 contracts, actual owners and allowed axioms, with legacy rate/unit names only
+where imported and absent from lighter ChannelCode. All four generation commands,
+static validation and all five README/four guide examples passed. Inventory remains
+811 declarations in 57 supported owners, 92 root exports and 94 reviewed simp names.
+Full maintained trust passed all 601 retained types, 57 direct imports, the
+811-declaration/94-simp environment, 92 root exports/689 exclusions and 4064 local
+constants in 106 modules using only the three allowed axioms. The actual original
+independent report is valid at capture
+`bded7be29b38c550be9efd7df5e93f5817957497649130ca7615987411356fbc`: all three
+criteria are satisfied with no findings, and substantive parent reconciliation
+is complete. Its ten passing observations and separate unused JSON-shape diagnostic
+are distinguished. Fresh final static validation, applicability and final capture
+are still required; supported closure is authoritative only through actual
+`.lit-review/setup/c23-05-completion-20261025.json` when present. C23.06, C24, clean
+checkpoints, the expensive API-doc gate and publication are unselected.
+
+**[History] C23.04 qualification wording before supported closure — 2026-10-25.**
+
+Only C23.04 with review is selected under accepted
+[C23 revision 2](plans/post-release-chunk-23.md). C23.03 is closed by
+`.lit-review/setup/c23-03-completion-20261025.json`, actual closure
+`b69457637d0a7fde431adde3b0d97e5a86b1ae1ea7b6d4c94cbcf4743669eb13`.
+The parent freshly verified all 291 predecessor final-source/environment entries
+before admission; prior conditional C23.03 blocks below are historical.
+
+The existing `Shannon.ChannelCodingAsymptotic` adds four public theorems. An
+eventual rate lower bound `R>C(W)` gives eventual error
+`Pe_n ≥ 1-C(W)/R-log 2/(n*R)`, the explicit positive eventual floor
+`(1-C(W)/R)/2`, and failure of vanishing error. Positivity of `R` is derived.
+A fixed positive rate gap occurring infinitely often also prevents vanishing
+error for arbitrary unbounded rates, but does not assert an eventual error
+floor or use an unguarded real-limsup convention. No strong converse is added.
+
+Actual constant-decoder families distinguish the premises. The noiseless Boolean
+channel has capacity `log 2`; budgets `4^n` have positive-length rate `2*log 2`
+and error `1-1/4^n`. The public pointwise bound gives `Pe_n ≥ 1/2-1/(2*n)`;
+at `n=2`, `M=16`, actual error is `15/16` and the public lower bound is `1/4`.
+A zero-capacity family uses singleton budgets on even lengths and `2^(n*n)` on
+odd lengths, with unbounded rate spikes and infinitely many zero-error lengths;
+there is no eventual positive error floor. Standard capacities are imported
+only by the private consumer.
+
+Corrected producer/consumer and maintained aggregate builds, all four new
+focused/full-Shannon signature/allowed-axiom/owner probes, legacy rate/unit owners,
+generators and static validation passed. All five README and four guide examples
+passed with warnings as errors. Inventory is 811 declarations in 57 supported
+owners, with 92 root exports and 94 reviewed simp names. Full maintained trust
+passed all 601 retained types, 57 direct imports, the 811-declaration/94-simp
+environment, 92 root exports/689 exclusions and 4028 constants in 106 modules
+using only the three allowed axioms. The accepted original independent report
+satisfied all three criteria with no findings; substantive reconciliation is
+complete. Fresh final static/applicability checks are still required before
+final capture. Supported closure is authoritative only through the actual
+`.lit-review/setup/c23-04-completion-20261025.json` when it exists. [C23 notes](plans/post-release-chunk-23-notes.md) retain actual outcomes
+and corrected failed attempts. C23.05–C23.06 and C24 remain unselected; C24 remains
+proposed. No clean checkpoint, expensive API-doc gate or publication is selected.
+
+**[History] C23.03 qualification wording before supported closure — 2026-10-25.**
+
+Only C23.03 with review is selected under accepted
+[C23 revision 2](plans/post-release-chunk-23.md). C23.02 is closed by
+`.lit-review/setup/c23-02-completion-20261024.json`, actual closure
+`5e0f0b0341c7b519e135c85b92c4d5b42ab2341ba04f57cfd9c8d2e7ebbce045`.
+The parent verified all 289 predecessor final-source/environment entries before
+admitting Step 3; earlier conditional C23.02 wording below is historical.
+
+`Shannon.ChannelCodingAsymptotic` adds two public endpoints for the same supplied
+positive-budget code family whose average error vanishes: every positive-tolerance
+eventual rate cap by capacity, and the real limsup bound. A private Fano-based
+helper first derives eventual `r_n ≤ 2*(C(W)+log 2)`. The proof then controls
+error times that fixed bound; rate nonnegativity supplies the real-limsup lower/
+coboundedness condition. No bounded/convergent-rate premise, global positive-length
+premise or limit of error times the unbounded actual rate is assumed.
+
+Private focused consumers apply both endpoints to actual singleton-message
+families and a lossless noiseless family alternating singleton and all-binary-word
+budgets. Errors are zero while even/odd rates are `0`/`log 2`, with no real limit;
+zero/one-length members are checked. The extra prefix-mutation fixture remains
+optional and deferred because no proof-pressure trigger arose.
+
+Maintained producer/consumer and Shannon/Examples aggregate builds passed with
+warnings as errors. Both public signature/allowed-axiom probes passed through
+focused and full Shannon imports, and new plus legacy rate/unit ownership checks
+passed. Generated/static validation passed at 807 declarations in 57 supported
+owners, 92 root exports and 94 reviewed simp names. All five README and four
+website-guide examples passed. Full maintained trust passed all 601 retained
+signatures, 57 direct imports, 807 declarations/94 simp names, 92 root exports/
+685 opt-in exclusions, and all 3969 compiled local constants in 106 modules
+using only the three allowed axioms. The accepted original independent report
+assessed all four criteria as satisfied with no findings; substantive parent
+reconciliation is complete. A final fresh static check and documentation/source
+applicability assessment are still required before final capture. Supported
+closure is established only by the actual
+`.lit-review/setup/c23-03-completion-20261025.json` when it exists. [C23 notes](plans/post-release-chunk-23-notes.md)
+retain actual checks and corrected failed attempts. C23.04–C23.06 and C24 remain
+unselected; C24's plan remains proposed.
+
+**[History] C23.02 qualification wording before supported closure — 2026-10-24.**
+
+Only C23.02 with review is selected under accepted
+[C23 revision 2](plans/post-release-chunk-23.md). C23.01 is closed by
+`.lit-review/setup/c23-01-completion-20261024.json`, actual closure
+`ef8bd0ac9d8e3d8fd9e4c0b8f352c2959f125821dca53f5074f9a29d4674e52c`.
+The parent verified all 287 predecessor final-source/environment entries before
+admitting C23.02; its earlier conditional status below is historical.
+
+`Shannon.ChannelCoding` adds seven source contracts: the two actual-law Markov
+chains, decoding and encoded-input DPI, and finite, normalized and pointwise
+error converses. Reverse the actual message→input→output chain before DPI to
+bound message/output information by input/output information. Uniform-message
+Fano then gives `(1-Pe)*log M ≤ n*C(W)+log 2` in nats for every natural length
+and positive message budget, including `Pe=1`. Normalization requires `n>0`;
+the pointwise error form additionally needs `R>0` and `R≤codeRate n M`, without
+`C(W)<R`. No theorem divides by `1-Pe` or assumes an injective encoder/iid input.
+
+The sole-focused-import `Examples.ChannelCoding` exercises the complete chain
+on a colliding `Fin 4` repeated-bit code with correlated two-letter input and
+actual error `1/2`, plus singleton/zero/one lengths and complete decoding failure
+with `Pe=1`. Maintained producer/consumer and Shannon/Examples aggregate builds
+passed with warnings as errors. All seven signature/axiom probes passed through
+both focused and full Shannon imports, with the intended assumptions and only
+allowed axioms. Static/generated checks and all five README/four website-guide
+examples passed. Full maintained trust completed successfully: 601 retained
+signatures, all 56 direct imports, the 805-declaration environment, 94 simp names,
+92 root exports and all 3935 compiled local constants in 104 modules passed.
+The accepted original independent report assessed all four criteria as satisfied
+with no findings, and the parent completed substantive reconciliation. Final
+documentation applicability and supported closure remain conditional on
+`.lit-review/setup/c23-02-completion-20261024.json` and its actual linked records.
+[Detailed notes](plans/post-release-chunk-23-notes.md) retain actual evidence.
+C23.03–C23.06 and C24 remain unselected; C24's plan remains proposed.
+
+**[History] C23.01 qualification wording before supported closure — 2026-10-24.**
+
+The lead accepted [C23 revision 2](plans/post-release-chunk-23.md) and selected
+only C23.01 with its review process. `Shannon.ChannelCode` now contains the
+transparent block-code pair, actual uniform-message/output and
+message/input/output laws, all required marginals, and the existing Fano error's
+finite average, event and range interfaces. Input and output alphabets have
+independent universes; raw laws need only finite output and an explicit positive
+message budget. Codeword collisions preserve message identity.
+
+The source includes singleton-message zero error, zero-length error `1-1/M`,
+and one-letter reductions. Private `Examples.ChannelCode` source exercises these
+interfaces, unequal encoder fibers with input masses `2/3,1/3` and error `1/3`,
+and empty-base zero-length words. Initial maintained producer/consumer and both
+aggregate builds passed with warnings as errors. Static/generated, documentation
+and all 23 focused/umbrella signature/axiom probes passed; the compiled
+compatibility audit preserves all 601 retained types and current owner/import
+boundaries. At the initial review capture, the broader maintained trust sequence
+is still running. Its final outcome, original independent review, reconciliation
+and scoped closure are established only by
+`.lit-review/setup/c23-01-completion-20261024.json` and linked actual records. [C23 notes](plans/post-release-chunk-23-notes.md) retain
+actual evidence and adjustments. Capacity/Fano-converse endpoints remain C23.02.
+
+The completed maintained trust suite passed all 55 direct-import probes, the
+retained/current API checks, root boundaries and the 3888-constant axiom audit.
+The original independent report assessed all four C23.01 criteria as satisfied,
+with one optional pre-existing map-status finding. The parent reconciled the
+report and corrects that status before final capture; actual scoped completion
+remains determined by the private completion record.
+
+C22 is complete by `.lit-review/setup/c22-08-completion-20261024.json`, with actual
+closure `6f5fe53fa9ade90f399d37a6c8d72bcd79152650e896d51bc0e509c2a03add3f`
+and checkpoint `b6ae0084b2ba24cb0130f64acdbfc7f46767581d`. Its conditional
+milestone wording below is historical and does not reopen C22. No C22 clean/API
+authorization transfers to C23; later steps and publication remain unselected.
+
+**[History] C22.08 milestone wording before supported closure — 2026-10-24.**
 
 C22.01–C22.07 and their reviews are closed by actual source-bound records.
 Only C22.08 is selected. The maintained [C22 handoff](handoffs/chunk-22.md) records the
@@ -1129,12 +1329,18 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-10-24 |
+| Last updated | 2026-10-25 |
 | Recorded pre-C9 mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the released `v0.1.0` source is exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f` |
 | Repository transition state | `v0.1.0` is published from immutable tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` and archived as Zenodo record `22229599`. The evolving default branch carries the current project pages and DOI metadata, while maintenance staging preserves `/docs/v0.1.0/` from exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`; the tag, Release, archive, released Lean source, and frozen public API remain unchanged |
 | Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
 | mathlib baseline | `v0.1.0` uses input revision `v4.33.1`, manifest commit `0df444a360eaa60ab8c11dca51a86af692955474` |
-| Source-snapshot phase | Post-release `v0.1.x`; C21 and C22.01–C22.07 are closed. Only C22.08 with review is selected. Its maintained handoff and authorized clean/API milestone checks are prepared; the actual private completion record and linked evidence determine cumulative acceptance, final applicability and closure. Current inventory is 775/54 with 92 root exports. See Sections 0 and 16 and the C22 handoff. |
+| Historical C22 source-snapshot phase | Post-release `v0.1.x`; C21 and C22.01–C22.07 are closed. Only C22.08 with review is selected. Its maintained handoff and authorized clean/API milestone checks are prepared; the actual private completion record and linked evidence determine cumulative acceptance, final applicability and closure. Current inventory is 775/54 with 92 root exports. See Sections 0 and 16 and the C22 handoff. |
+| Historical C23.01 source-snapshot phase | C22 is complete by its actual private completion chain at checkpoint `b6ae0084b2ba24cb0130f64acdbfc7f46767581d`. Only C23.01 with review is selected under accepted revision 2; initial focused/static/documentation/signature and compiled compatibility checks passed. The source-generated inventory is 798 declarations in 55 supported owners, with 92 root exports and 94 reviewed simp names. Full trust, independent review and scoped closure are determined by the actual C23.01 private completion chain, not this status text. See Sections 0 and 16. |
+| Historical C23.02 source-snapshot phase | C22 and C23.01 are closed by their actual private completion chains. Only C23.02 with review is admitted under accepted C23 revision 2. Maintained producer/consumer and Shannon/Examples aggregate builds, all seven focused/umbrella signature/axiom probes, static/generated checks and all five README/four guide examples passed. Full maintained trust, the accepted independent four-criterion review and substantive parent reconciliation passed, with no findings. Final documentation applicability and supported C23.02 closure remain conditional on the actual private completion record. Source inventory is 805/56, with 92 root exports and 94 reviewed simp names. C24 remains proposed. See Sections 0 and 16. |
+| Historical C23.03 source-snapshot phase | C22 and C23.01–C23.02 are closed by actual completion chains. Only C23.03 with review is selected under accepted C23 revision 2. Maintained producer/consumer/aggregate builds, both focused/full-umbrella signature/axiom probes, new/legacy rate/unit ownership checks, generated/static validation and all five README/four guide examples passed. Full maintained trust, the accepted original four-criterion independent review and substantive parent reconciliation passed, with no findings. Final fresh static validation and documentation/source applicability are still required before final capture; supported closure depends only on the actual C23.03 completion record when it exists. Inventory is 807/57, with 92 root exports and 94 reviewed simp names. C24 remains proposed. See Sections 0 and 16. |
+| Historical C23.04 source-snapshot phase | C22 and C23.01–C23.03 are closed by actual completion chains. Only C23.04 with review is selected. Corrected producer/consumer and aggregate builds, four focused/umbrella signature/axiom/owner probes, legacy rate/unit owners, generation/static checks and all nine documentation examples passed. Full maintained trust, the accepted original three-criterion independent review and substantive parent reconciliation passed, with no findings. Fresh final static/applicability checks and supported closure remain required; the actual C23.04 completion record, when present, is authoritative. Inventory is 811/57, root exports 92 and reviewed simp names 94; C24 remains proposed. See Sections 0 and 16. |
+| Historical C23.05 source-snapshot phase | C22 and C23.01–C23.04 are closed by actual completion chains. Only C23.05 with review is selected. Private standard-channel and same-family consumers reconcile the unchanged 36 C23 declarations across three owners. Initial builds, all focused/full contract probes, generation/static checks, all nine documentation examples and full maintained trust passed. The accepted original three-criterion independent review passed without findings and is substantively reconciled. Fresh final static/applicability checks and final capture remain required; supported closure depends only on the actual C23.05 completion record when present. Inventory remains 811/57, root exports 92 and reviewed simp names 94. C23.06 and C24 remain unselected. See Sections 0 and 16. |
+| Current source-snapshot phase | C22 and C23.01–C23.05 are closed by actual records. Only C23.06 is admitted after fresh Step 5 closure/three-criterion/all-291-entry checks. The C23 handoff and exact 21-criterion matrix are prepared; cumulative qualification is pending. Exact clean-checkpoint/reuse/amendment actions and the current two-pass API gate require separate approval and have not run; all 36 rendered inspections and the fresh 21-criterion cumulative review remain pending. Inventory is 811/57, root exports 92 and reviewed simp names 94; C24 remains proposed. See Sections 0 and 16. |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -1231,11 +1437,10 @@ formalization:
 
 **[Current]** The following are not part of the completed implementation:
 
-- operational channel-coding theorems and channel-code converses; C21
-  source coding and C22.01–C22.06 capacity-core/processing/product/example work are
-  closed, including noiseless, input-independent, BSC and BEC capacities. Bits
-  and the C23-facing interface are selected in C22.07; cumulative qualification
-  and maintained handoff remain C22.08;
+- channel achievability, operational channel-capacity equality and strong
+  converses; finite source coding, information capacity, standard capacities and
+  weak channel-code converses are delivered. Current C23 qualification is recorded
+  in Sections 0 and 16;
 - method of types, entropy rates, or a stochastic-process hierarchy;
   finite-iid AEP, weak typicality and cardinality bounds are implemented, with review status in Section 0;
 - general measurable-space entropy and sufficient-statistics theory;
@@ -1396,6 +1601,69 @@ Use this order when claims disagree:
   original labels, to assign ownership.
 
 ## 5. Current Mathematical Coverage
+
+**C23.06 cumulative reconciliation; no new mathematical endpoint.** The delivered
+channel-code sampling/error laws, finite Fano-capacity converses, vanishing-error
+rate/real-limsup bounds and eventual/frequent error obstructions remain unchanged.
+The [handoff](handoffs/chunk-23.md) records their exact owners, guards and permanent
+consumers. Cumulative clean/API qualification and all-criterion review are pending.
+
+**Historical C23.05 qualified integration snapshot; subsequently closed.** Existing public finite bounds are
+specialized to all four delivered standard capacities using actual one-letter
+codes and errors. BSC identity decoding gives error `ε`; BEC erasure fallback
+gives `ε/2`, including endpoints and `ε=1/4`. The same existing lossless alternating
+family supplies the complete sampling/error/information/rate/limit chain with
+vanishing error and nonconvergent rates. No public theorem family is added.
+Finite and same-family consumers, focused/aggregate builds, compiled contract
+probes, generation/static checks and all nine documentation examples passed.
+Full maintained trust passed; the accepted original three-criterion review is
+satisfied without findings and substantively reconciled. Fresh final static/
+applicability checks, final capture and supported closure remain required.
+
+**Historical C23.04 qualified snapshot; subsequently closed by its actual record.** An eventual lower rate
+strictly above capacity forces the quantitative eventual error bound, explicit
+positive floor and nonvanishing error. A fixed positive gap infinitely often
+prevents vanishing error without bounded/convergent rates or an eventual-floor
+conclusion. The latter implication uses the positive-tolerance theorem under a
+hypothetical vanishing-error assumption, rather than real limsup on an unbounded
+sequence. Actual positive-capacity and zero-capacity intermittent families
+consume these results and prove their different error-floor consequences.
+Initial checks and full maintained trust passed. The accepted original
+independent report satisfied all three criteria without findings, and parent
+substantive reconciliation is complete. Fresh final static/applicability and
+supported closure remain required.
+
+**Historical C23.03 qualified source snapshot; subsequently closed.** Vanishing average error for one actual
+family with positive natural budgets implies every positive-tolerance eventual
+rate cap and a real limsup no greater than information capacity. Eventual rate
+boundedness is derived privately from finite Fano, before using the conditionally
+complete real limsup API; nonnegative rates provide explicit lower control.
+The family is indexed by all naturals, allowing arbitrary finite prefixes and
+nonconvergent rates. Singleton and alternating lossless consumers use actual
+code data; above-capacity obstructions remain C23.04. Section 0 distinguishes
+completed qualification, accepted independent review and substantive
+reconciliation from the remaining final static/applicability and closure duties.
+
+**Historical C23.02 qualified source snapshot; subsequently closed.** `Shannon.ChannelCoding` connects the
+actual code law to Markov/DPI, then the existing uniform-source Fano and
+arbitrary-input memoryless capacity bound. The finite converse in nats is
+`(1-Pe)*log M ≤ n*C(W)+log 2`, for all natural lengths and positive budgets,
+including singleton messages and complete error. Only normalized rate/error
+forms need positive length; the pointwise bound needs a positive lower rate,
+not an above-capacity premise. Asymptotic conclusions remain C23.03–C23.04.
+Maintained producer/consumer and aggregate builds, focused/umbrella signatures,
+static/generated, documentation and full trust checks passed. The accepted
+independent review satisfied all four criteria with no findings; substantive
+reconciliation is complete. Final documentation applicability and supported
+closure remain conditional as recorded in Section 0.
+
+**Historical C23.01 source snapshot; subsequently closed.** `Shannon.ChannelCode` implements
+uniform-message deterministic block encoders and total decoders, actual PMF
+sampling and marginal identities, and average error through the existing Fano
+API. Noninjective encoding need not induce a uniform law on distinct codewords
+or independent coordinates. The zero-length identity is `Pe=1-1/M`; `M=1`
+has zero error at every length. Finite capacity converses and asymptotic rate
+results remain later C23 steps. See Section 0 for current validation limits.
 
 C20.01 supplies deterministic code representation, exact event semantics and
 success counting. C20.02 adds public selected-set recovery and its same-witness
@@ -1724,9 +1992,77 @@ claim a general measure-theoretic formalization of the whole subject.
 | **2.8 Data processing** | **Substantially complete for finite PMFs and finite-valued random variables.** Deterministic processing is Chunk 1; Markov and stochastic MI/KL DPI are Chunk 3; KL equality/recovery is Chunk 4. | `IsMarkovChainOf`, `mutualInfoOf_markov_chain_rule`, `mutualInfoOf_dataProcessing`, `mutualInfoOf_dataProcessing_eq_iff`, `klDiv_channel_le`, `toReal_klDiv_channel_le` | `SemanticBridge.Markov` and `DataProcessing` are opt-in; the raw channel core is lighter but still outside root. | No general measurable stochastic-variable coupling API. Strict-loss variants and some symmetric forms remain proof-pressure deferred. |
 | **2.9 Second law / stochastic entropy growth** | **Partial.** One-step finite consequences are Chunk 3. | `klDiv_channel_invariant_le`, `toReal_klDiv_channel_invariant_le`, `entropy_le_entropy_bind_of_uniform_invariant`, `entropy_le_entropy_bind_of_doublyStochastic` | Heavy `SemanticBridge.DataProcessing`; examples in `Examples.StochasticChannels`. | No iterated channel powers, stationary-process object, entropy rate, matrix bridge, or Birkhoff/majorization theory. A matrix-facing bridge is deferred by Note 38. |
 | **2.10 Sufficient statistics** | **Substantially complete for finite fixed-prior and finite family recovery.** Chunk 4. | `IsSufficientStatisticOf`, `IsSufficientChannel`, `IsSufficientStatistic`, `isSufficientStatisticOf_iff_exists_recovery`, `isSufficientChannel_iff_exists_common_posterior`, `isSufficientStatistic_iff_exists_fisherNeymanFactorization`, `klDiv_channel_eq_iff_exists_common_recovery` | Lightweight `Sufficiency`; posterior/KL statements in downstream heavy modules. | Canonical/minimal statistics, iid count-statistic infrastructure, and general measurable sufficiency are deferred. Larger-family pairwise KL equality does not yield a global witness. |
-| **2.11 Fano's inequality** | **Substantially complete for finite deterministic decoding.** Chunk 5 through `C5.20`. | `decodingErrorIndicator`, `decodingErrorProbability`, `entropy_decodingErrorIndicator`, `condEntropy_fano`, `condEntropy_fano_qary`, `condEntropyOf_fano`, `condEntropy_fano_weak`, `decodingErrorProbability_fano_lower_bound`, `mutualInfo_fano_lower_bound_of_uniform_source` and their `...Of` companions | Opt-in `Shannon.BinaryEntropy` and `Shannon.Fano`; permanent consumers in `Examples.Fano`. | Exact and weak entropy forms include singleton alphabets; normalized error bounds require `2 <= |alpha|`. Equality/sharpness, randomized estimators, list decoding, and coding theorems remain later work. |
+| **2.11 Fano's inequality** | **Substantially complete for finite deterministic decoding.** Chunk 5 through `C5.20`. | `decodingErrorIndicator`, `decodingErrorProbability`, `entropy_decodingErrorIndicator`, `condEntropy_fano`, `condEntropy_fano_qary`, `condEntropyOf_fano`, `condEntropy_fano_weak`, `decodingErrorProbability_fano_lower_bound`, `mutualInfo_fano_lower_bound_of_uniform_source` and their `...Of` companions | Opt-in `Shannon.BinaryEntropy` and `Shannon.Fano`; permanent consumers in `Examples.Fano`. | Exact and weak entropy forms include singleton alphabets; normalized error bounds require `2 <= |alpha|`. Equality/sharpness, randomized estimators and list decoding remain later work; delivered source/channel coding reuses this finite Fano API. |
 
 ## 7. Current Lean Module and API Architecture
+
+**Historical C23.05 qualified API snapshot; subsequently closed.** The three production owners retain
+23/7/6 public declarations, their existing direct imports and no declaration
+attributes. Root exports remain 92 and reviewed simp names 94; the source inventory
+is 811 declarations in 57 supported owners. Helpers remain private. Standard
+capacities are dependencies only of the private consumers, which specialize the
+finite bound and compose the old alternating family rather than introduce a
+generic sequence abstraction. Existing policy approval strings remain prefixes;
+the new notes record consumer scope without predicting validation. The manual
+website selection is labeled v0.1.0 and links the current source-derived index;
+the frozen release route and tagged source links are preserved. Focused/full
+compiled probes passed all 36 C23 contracts, owners, allowed axioms and intended
+focused exclusions. The corrected probe verifies legacy rate/unit names only
+where imported, without changing the lighter ChannelCode dependency contract.
+
+**Historical C23.04 qualified architecture snapshot; subsequently closed.** Four public
+above-capacity error theorems extend the existing
+`Shannon.ChannelCodingAsymptotic` owner and `BlockChannelCode` namespace, alongside
+the two closed C23.03 rate-cap endpoints. Its three direct imports remain
+`Shannon.ChannelCoding`, `Mathlib.Analysis.SpecificLimits.Basic` and
+`Mathlib.Order.LiminfLimsup`. No new production module, helper export, attribute
+or root import is added. The private `Examples.ChannelCodingAsymptotic` now
+imports `StandardChannelCapacity` in addition to its focused owner for actual
+capacity specializations; production does not acquire that dependency. The
+source/static inventory is 811 declarations in 57 supported owners, with 92 root
+exports and 94 reviewed simp names. Full compiled trust qualified all 57 direct
+imports and the exact current environment, including 689 exclusions from the
+lightweight root. Fresh final document/source applicability and supported
+closure remain required.
+
+**Historical C23.03 qualified architecture snapshot; subsequently closed.** The focused
+`Shannon.ChannelCodingAsymptotic` imports only project owner `Shannon.ChannelCoding`
+and focused mathlib owners `Analysis.SpecificLimits.Basic` and `Order.LiminfLimsup`.
+Its two public endpoints, `eventually_codeRate_le_channelCapacity_add` and
+`limsup_codeRate_le_channelCapacity`, live in
+`LeanInfoTheory.Shannon.BlockChannelCode`; the derived bound stays private.
+`Examples.ChannelCodingAsymptotic` imports only the focused owner. Both umbrellas
+add their respective owners, leaving the lightweight root, semantic aggregate
+and simp policy intact. The generated/static inventory is 807 declarations in
+57 supported owners, with 92 root exports and 94 reviewed simp names. Full
+compiled trust qualified these boundaries, including all 57 direct-import probes
+and 685 opt-in exclusions from the lightweight root. Final static/applicability
+and supported closure remain pending.
+
+**Historical C23.02 qualified architecture snapshot; subsequently closed.** The new focused
+`Shannon.ChannelCoding` directly imports `Shannon.ChannelCode`,
+`Shannon.ProductChannelCapacity` and `Shannon.CodingRate`; the capacity closure
+already supplies Markov. Its seven contracts live in
+`LeanInfoTheory.Shannon.BlockChannelCode`; the private `Examples.ChannelCoding`
+imports only this focused owner. The full Shannon and Examples aggregates add
+the corresponding owners, with no root/semantic import or simp-policy change.
+The source inventory is 805 documented declarations in 56 supported owners,
+with 92 root exports and 94 reviewed simp names. Counts describe actual source;
+compiled trust checked these boundaries, including all 56 direct-import probes
+and 683 exclusions of opt-in declarations from the lightweight root. Final
+documentation applicability and private closure remain conditional.
+
+**Historical C23.01 architecture snapshot; subsequently closed.** The new focused
+`Shannon.ChannelCode` directly imports only `Shannon.Fano` and
+`Probability.ProductChannel`. Its operations live in
+`LeanInfoTheory.Shannon.BlockChannelCode`; the private
+`Examples.ChannelCode` imports only this focused owner. The full Shannon and
+Examples aggregates add their respective imports. The lightweight root and
+semantic aggregate retain their existing imports; no new simp rule is proposed.
+The regenerated source inventory lists 798 documented declarations in 55
+supported owners, including 23 ChannelCode additions; root exports remain 92
+and reviewed simp names 94. These are source counts, not an API quota or compiled
+review result. Older architecture snapshots below retain their historical identity.
 
 ### Root and lightweight finite layer
 
@@ -1742,8 +2078,8 @@ claim a general measure-theoretic formalization of the whole subject.
 | `LeanInfoTheory` | Lightweight public aggregate only | Root |
 | `LeanInfoTheory.Shannon` | Import-only complete supported mathematical umbrella | No; subsumes the root |
 
-The current source-generated manifest lists 92 local modules, including 50
-supported owners and 42 non-stable modules. The lightweight root retains its
+The earlier recorded source-generated snapshot listed 92 local modules, including
+50 supported owners and 42 non-stable modules. The lightweight root retains its
 five-module closure and directly imports exactly `Probability.Finite` and
 `InformationMeasures`. Source generation does not establish compilation or review.
 
@@ -1873,6 +2209,9 @@ and [structural type artifact](compatibility/README.md) remain unchanged.
 | `LeanInfoTheory.Shannon.Units` | Scalar conversion from canonical nats to arbitrary valid logarithm bases and bits |
 | `LeanInfoTheory.Shannon.BinaryEntropy` | Boolean-PMF entropy bridge to mathlib `Real.binEntropy` |
 | `LeanInfoTheory.Shannon.Fano` | Type-generic decoding error and exact failure-event identity; finite exact/weak Fano inequalities and corollaries |
+| `LeanInfoTheory.Shannon.ChannelCode` | Closed C23.01: deterministic block codes, actual uniform-message laws and average error; imports only Fano and Probability.ProductChannel |
+| `LeanInfoTheory.Shannon.ChannelCoding` | Closed C23.02: actual-law Markov/DPI, finite Fano-capacity and positive-length rate/error converses; imports ChannelCode, ProductChannelCapacity and CodingRate |
+| `LeanInfoTheory.Shannon.ChannelCodingAsymptotic` | Closed C23.03–C23.04: tolerance/real-limsup bounds, eventual quantitative/floor/nonvanishing and frequent-gap obstructions. Three production imports unchanged; C23.05 privately composes the same actual family without adding a public endpoint |
 | `LeanInfoTheory.Shannon.SourceCoding` | Transparent total deterministic core/block codes, exact error, finite success sets and law-free success counting; independent of iid, typical sets and AEP |
 | `LeanInfoTheory.Shannon.CodingRate` | Rate in nats, ceiling-exponential budgets and binary-length conversion; independent of SourceCoding, iid and AEP |
 | `LeanInfoTheory.Shannon.SourceCodingAsymptotic` | Achievability, strong and general converses, operational entropy threshold; C21 closed by its original source-bound chain |
@@ -2487,7 +2826,102 @@ certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
 
-### C22.08 cumulative qualification and handoff: milestones checked — 2026-10-24
+### C23.06 admitted; cumulative readiness pending — 2026-10-25
+
+Only Step 6 is selected after actual Step 5 closure and all 291 predecessor entries
+were checked. The [C23 handoff](handoffs/chunk-23.md), exact 21-criterion matrix
+and canonical links are prepared for the checkpoint/API proposal. Separate approval is required
+for the exact local checkpoint, bounded amendments/full clean reruns, reuse of the
+existing validation checkout and the current two-pass API gate. No such action
+has been approved or run. All 36 rendered inspections, contextual self-review/
+reassessment and fresh original cumulative review of the complete matrix
+remain pending, followed by substantive reconciliation and final applicability/
+capture/closure. Earlier findings/dispositions retain their actual source limits.
+C24 and publication remain unselected.
+
+### Historical C23.05 qualification wording before supported closure — 2026-10-25
+
+Only Step 5 with review is admitted after actual C23.04 closure and exact checks
+of all 291 predecessor entries. The selected three criteria cover standard
+capacities, complete same-code/same-channel interfaces and API reconciliation.
+Finite consumer03, actual alternating-family composition02, the eight-target
+build, focused/full contract probes, generation/static validation and all nine
+documentation examples and full maintained trust passed. The original independent
+report is valid; all three criteria are satisfied without findings, and parent
+core/substantive reconciliation is complete. No production growth or concrete
+alias/helper pressure arose. Fresh final static validation, applicability and
+capture remain required; supported closure depends only on the actual C23.05
+completion record when present.
+All earlier adversarial and boundary fixtures remain; the optional extra finite-
+prefix fixture stays deferred. C23.06 cumulative clean/API qualification and C24
+are unselected. Plan/notes retain the parent-owned detailed workflow evidence.
+
+### Historical C23.04 qualification wording before supported closure — 2026-10-25
+
+C23.01–C23.03 and their review processes are closed by their actual records.
+Only C23.04 was admitted after predecessor closure and all 291 final-source/
+environment entries were checked. Its four public obstruction theorems and both
+actual separating families have passed maintained focused/aggregate builds,
+focused/full signatures and allowed axioms/owners, legacy unit/rate ownership,
+generation/static checks and all nine documentation examples. Initial index-
+inference and consumer simplification/tactic-warning failures were corrected
+and retained separately from passing credit. Full maintained trust passed.
+The accepted original independent report satisfied all three criteria with no
+findings and all ten reviewer evidence records passed. Core and substantive
+parent reconciliation is complete; no mathematical/API correction is selected.
+Fresh final static/applicability checks are still required before final capture,
+and supported closure depends only on the actual completion record when present. C23.05 onward and C24 remain unselected;
+clean-checkpoint, API-documentation and publication boundaries remain separate.
+
+### Historical C23.03 qualification wording before supported closure — 2026-10-25
+
+C23.01–C23.02 and their reviews are closed by actual private completion chains.
+The lead conditionally requested exactly Step 3 with review; predecessor closure
+and all 289 final-source/environment entries were verified before admission.
+The two public tolerance/real-limsup endpoints, private derived bound and actual
+singleton/alternating-family consumers have passed maintained builds and focused
+signature/axiom/owner checks. Both public signatures passed through the full
+Shannon umbrella, including new and legacy rate/unit ownership checks.
+Static/generated validation and all five README/four guide examples passed.
+Full maintained trust passed. The accepted original independent report assessed
+all four criteria as satisfied with no findings, and substantive parent
+reconciliation is complete. No mathematical correction is selected. Final fresh
+static validation and documentation/source applicability are still required
+before final capture; supported closure depends on the actual private completion
+record when it exists. The optional prefix-mutation
+fixture is deferred absent proof pressure. C23.04–C23.06 and C24 remain unselected;
+clean-checkpoint and expensive API-doc milestones keep their separate authority.
+
+### Historical C23.02 qualification wording before supported closure — 2026-10-24
+
+C23.01 and its review process are closed by the actual completion record in
+Section 0. The lead conditionally requested Step 2 with review; the parent
+verified predecessor closure/source applicability before admitting only C23.02.
+Its seven finite contracts and correlated/error-boundary consumers have passed
+maintained producer/consumer and Shannon/Examples aggregate builds, focused and
+umbrella signature/axiom probes, static/generated checks and all five README/four
+guide examples. Full maintained trust passed, and the accepted original
+independent review assessed all four criteria as satisfied with no findings.
+The parent completed substantive reconciliation. Final documentation
+applicability and supported C23.02 closure remain conditional on the actual
+completion record; this text does not establish closure. C23.03–C23.06 and C24 are unselected. Cumulative clean/API qualification
+keeps its separately authorized C23.06 boundary; publication remains separate.
+
+### Historical C23.01 qualification wording before supported closure — 2026-10-24
+
+Only C23.01 is selected under the accepted six-step revision-2 plan. The model,
+actual-law and error/boundary source and private consumer have passed initial
+focused/aggregate, static/documentation/signature and compiled compatibility
+checks. The full trust sequence continues alongside read-only independent review
+of the fixed source. The suite subsequently passed, and the original report
+assessed all four criteria as satisfied with one optional map-status finding.
+The parent corrects that status before final capture; final applicability and
+closure use the actual private completion chain. The parent may make
+justified in-scope proof/plan adjustments with recorded reasons. C23.02–C23.06
+and C24 are unselected; cumulative clean/API qualification remains C23.06 under
+its separate action approvals. Section 0 records the actual C22 closure.
+
+### Historical C22.08 milestone wording before supported closure — 2026-10-24
 
 C22.01–C22.07 and their reviews are closed by actual source-bound records.
 Only C22.08 is selected. The maintained [C22 handoff](handoffs/chunk-22.md) records the
@@ -3753,7 +4187,7 @@ governed by their recorded pressure and approval rules.
 | --- | --- |
 | 5 | Add Kraft-McMillan and other coding material in a later coding layer. |
 
-The completed finite-Fano theorem layer excludes channel powers, stationary
+**Historical finite-Fano/C21 scope snapshot.** The completed finite-Fano theorem layer excludes channel powers, stationary
 processes, entropy rates, capacity, AEP, typicality, method of types,
 source/channel coding, and nontrivial network converses. These are outside
 Chunks 5-8; finite blocks, finite-iid AEP and one-shot source coding have since
@@ -3861,6 +4295,84 @@ These are not approved theorem tasks until assigned to a focused phase.
   ownership. See Sections 6 and 8.
 
 ## 15. Textbook and Reference Coverage
+
+C23.05 read-only support freshly matched both registered PDF hashes and read nine
+complete text pages: CT91 §8.1 PDF 206–210 and §8.9 PDF 228; PW24 §17.1 PDF
+367–368 and the BEC discussion on PDF 405. Six unique complete pages were visually
+inspected in memory: CT91 PDF 207, 209, 210, 228 and PW24 PDF 368, 405. Preferred
+Poppler reinspection followed initial in-memory pypdfium2 rendering; no extracts
+or rendered images were saved. Capacity expressions use canonical nats, and the
+finite converse retains its positive-length/rate division guards. PW24 supplies
+uniform-message identity and average-error semantics; the selected BEC fallback
+is a private code choice. Its displayed missing erasure weight and uniform-only
+optimizer wording at complete erasure are not copied into the correct existing
+production entropy/capacity statements. This parent support remains distinct from
+the accepted independent review: the reviewer freshly hash-verified/text-read nine
+book pages and visually inspected seven complete pages, CT91 PDF 207, 209, 210,
+228 and PW24 PDF 367, 368, 405. All three review criteria are satisfied without
+findings and substantively reconciled. Parent support has nine text/six visual
+pages; reviewer visual inspection includes the additional PW24 PDF 367 page.
+
+**Historical C23.04 reference/qualification snapshot; subsequently closed.**
+
+C23.04 read-only support freshly verified the registered CT91/PW24 hashes and
+read all six selected text pages: CT91 §8.9 PDF 226–229 and PW24 §17.4 PDF
+373–374. Complete CT91 PDF 228/229 and PW24 PDF 373 pages were also visually
+inspected in memory; no renders or extraction artifacts were saved. CT91's
+fixed-rate quantitative obstruction is adapted to an eventual lower rate and
+canonical nats, deriving denominator positivity from nonnegative capacity.
+Its fixed-rate/concatenation discussion and subsequent strong-converse context
+do not supply an eventual floor under a merely frequent-gap premise. The
+frequent fixed-gap theorem is the project's derived consequence of C23.03's
+positive-tolerance cap; it is not attributed as an explicit textbook statement.
+The existing Fano API avoids PW24's displayed indicator/success-probability
+orientation mismatch. [C23 notes](plans/post-release-chunk-23-notes.md) distinguish
+source support from independent proof/API qualification. The accepted reviewer
+separately verified registered hashes and extracted relevant reference pages.
+Its fresh visual inspection is recorded for CT91 PDF 228–229; the report also
+inspected the PW24 PDF 373 weak-converse context. These reviewer observations
+remain separate from the parent support's six text/three visual pages. The
+three-criterion review and substantive reconciliation passed; fresh final
+static/applicability checks and supported closure remain required.
+
+C23.03 read-only support freshly verified both registered hashes and read all
+12 selected text pages: CT91 §8.9 PDF 226–229; PW24 §17.4 PDF 373–374 and
+§19.1/selected start of §19.2 PDF 396–401. Fresh in-memory visual inspection
+covered the complete CT91 PDF 228 and PW24 PDF 373, 398 and 401 pages. No renders
+or extracted-text artifacts were saved. CT91's fixed-rate argument motivates the
+private derived rate bound needed for arbitrary varying budgets. PW24 supplies
+block/rate conventions and distinguishes operational optimizers from information
+capacity; C23.03 uses the existing single-letter capacity and nats `codeRate`
+without adding operational equality or achievability. The support record and
+[C23 notes](plans/post-release-chunk-23-notes.md) distinguish reading evidence
+from compiled proof/API qualification and independent review. The reviewer
+separately verified the registered hashes, reused its earlier weak-converse
+reading, freshly read PW24 PDF 396–401 as text, and visually inspected complete
+CT91 PDF 228 and PW24 PDF 373, 396, 398, 400 and 401 pages. These six reviewer
+visual checks remain distinct from the parent support's 12 text/four visual pages.
+The accepted review and substantive reconciliation passed; final fresh static/
+applicability and supported closure duties remain outstanding.
+
+C23.02 read-only source support freshly verified the registered hashes and read
+CT91 §8.9, printed 204–207 / PDF 226–229, and PW24 §17.4, printed 348–349 /
+PDF 373–374, through UTF-8 text extraction. No fresh visual check is claimed.
+CT91's bits-valued Fano constant becomes `log 2` in nats, with arbitrary positive
+natural message budgets. The undivided form avoids PW24's division by `1-Pe`
+at complete error and follows the existing library Fano API. The extracted PW24
+indicator definition and following success probabilities have inconsistent
+orientation; C23 uses the existing disagreement-based decoding error. Source
+reading is parent support, distinct from the accepted original independent
+review, which also inspected the relevant textbook material. See
+[references](references.md) and [C23 notes](plans/post-release-chunk-23-notes.md).
+
+C23.01 adapts CT91 §8.5, printed 192–194 / PDF 214–216, and PW24 §17.1,
+printed 342–343 / PDF 367–368, as inspected during C23 planning at the registered
+hashes. Uniformity belongs to message indices, including encoder collisions;
+the decoder is total with no reserved erasure index. The code-law/error owner
+uses canonical PMF semantics and nats conventions; its empty-word error differs
+from lossless recovery of the unique empty source word. This update claims no
+new PDF reading or completed channel-converse proof. See the
+[reference register](references.md) and [C23 notes](plans/post-release-chunk-23-notes.md).
 
 ### Registered post-release sources
 
@@ -3985,7 +4497,230 @@ not reproduce textbook prose or proofs.
 
 ## 16. Validation State
 
-**[Current] C22.08 cumulative qualification and handoff: milestones checked — 2026-10-24.**
+**[Current] C23.06 admitted; cumulative qualification not yet run — 2026-10-25.**
+
+Step 5 passed its recorded focused/aggregate, interface/static/documentation and
+compiled-trust checks, accepted original review and final applicability, and is
+closed by its actual supported record. These source-specific results do not
+replace Step 6. No exact clean checkpoint or current API-doc milestone is approved
+or run yet. Once separately approved, the complete maintained routine must run on
+the exact clean committed candidate and again after every amendment; the separate
+API command must complete both actual build/check passes and all 36 new rendered
+declarations must be inspected. Source/configuration/dependency/output identities
+and primary/clean correspondence govern applicability. Readiness, fresh original
+review of all 21 criteria, reconciliation, final capture and supported C23.06
+closure remain pending. See the [handoff](handoffs/chunk-23.md) and
+[API documentation contract](api-documentation.md).
+
+**[History] C23.05 qualification wording before supported closure — 2026-10-25.**
+
+Finite standard-channel consumer03 and same-family composition02 passed with
+warnings as errors. Composition02 completed cleanly in 16.640 seconds; the first
+composition check elaborated its proofs but failed two style warnings, corrected
+without changing the statement or proof meaning. The maintained eight-target
+producer/consumer/Shannon/Examples build passed in 45.816 seconds. Three focused
+contract probes and the full-Shannon probe passed all 23/7/6 C23 contracts, actual
+owners, allowed axioms and intended focused exclusions. Probe01 incorrectly
+expected legacy rate/unit names through lighter ChannelCode; corrected02 verifies
+their absence there and presence where imported. This was a probe correction,
+with no API/dependency change or passing credit from the failed attempt.
+
+All four maintained generation commands passed with return code 0 and empty
+stderr: current API, frozen-v0.1.0 nonwriting check, blueprint and website index.
+Input hashes were identical during generation and frozen manifest bytes unchanged.
+Static01 passed in 15.275 seconds, including both generated-artifact checks,
+20 HTML files, 1256 links and all 34 website tests. Documentation01 passed all
+five README/four guide examples with warnings as errors in 176.26 seconds. Source
+counts remain 811 declarations in 57 supported owners, 92 root exports and 94
+reviewed simp names. The generation record preserves its initial no-write tool
+timing diagnostic separately; only the corrected actual run supplies passing
+credit. Later private proof-local/style changes are covered by fresh actual
+generated/static checks rather than assumed applicable automatically.
+
+Full maintained compiled trust, started at `2026-10-25T14:25:17Z` on 124 captured
+compiled inputs, passed in 2867.5190156000317 seconds: 601 retained types, 57 direct
+imports, the 811-declaration/94-simp environment, 92 root exports/689 exclusions
+and 4064 safe local constants across all 106 modules. Only `propext`,
+`Classical.choice` and `Quot.sound` occur. Actual result SHA-256:
+`3d886d80c878542976d0cd6872f58a63e8c60e17a21b7708b7adea481eda288e`.
+The narrow reviewed-source applicability file SHA-256 is
+`c77894834c31a803d7f8ddca2d5a6d78e8e66105609ac607347203b85e8f45c6`;
+this does not replace the still-required final applicability checks.
+
+The genuine original report for reviewed source
+`ea32ab4e026967b3279a127ecf9e6c5549d997afc74f926082a586b31ba5c29b`
+is valid at capture
+`bded7be29b38c550be9efd7df5e93f5817957497649130ca7615987411356fbc`.
+All three original criteria are satisfied with no findings. Core reconciliation
+is `1f94393022a594e670cea714c9f12048d0d479413dc64c9222c51270df5d762c`;
+the parent separately reconciled the criterion assessments, all eleven observations,
+earlier dispositions and stated limits. Ten reviewer observations passed; an
+initial JSON-shape diagnostic failed and was not used as passing evidence.
+
+The reviewer independently ran nine stdin checks: all three complete consumer
+texts, five focused owners and one full-Shannon probe. These checked 36 C23 plus
+17 legacy interfaces, actual owners, the empty C23 simp surface and allowed axioms.
+Its own static validation and all nine documentation examples passed. It verified
+all 124 compiled trust inputs, nine supplements, nine clean dependency HEADs and
+the compiler, and inspected the complete parent trust record. It did not rerun
+artifact-producing trust or reconstruct all 291 reviewed-source entries; the
+parent separately checked their exact equality. Fresh final static validation,
+final applicability and capture are still required. Supported C23.05 closure is
+authoritative only through actual
+`.lit-review/setup/c23-05-completion-20261025.json` when present. No C23.06 clean
+checkpoint/current API-doc gate, C24 or publication is selected.
+
+**[History] C23.04 qualification wording before supported closure — 2026-10-25.**
+
+Corrected producer02 and consumer02 passed with warnings as errors. The
+maintained four-target producer/consumer/Shannon/Examples aggregate build passed
+in 53.307 seconds. All four new signatures, allowed-axiom dependencies and
+actual owners passed through focused and full Shannon imports; the full-umbrella
+legacy `codeRate`/`natsToBits` owner checks passed. All four generation commands
+passed, including the nonwriting frozen-v0.1 check. Source/static validation
+passed at 107 Lean files, 57 owners, 811 declarations, 92 root exports and
+94 reviewed simp names; website checks covered 20 HTML files, 1255 links,
+two JSON payloads, 28 curated links and all 34 tests with zero advisories.
+The three known CRLF notices are retained diagnostics. Documentation01 passed
+all five README and four website-guide examples with warnings as errors,
+return code 0 and empty stderr in 162.510 seconds.
+
+Initial index-inference and consumer simplification/tactic-warning failures
+remain corrected history, not passing evidence. Full maintained trust started
+at `2026-10-25T12:09:15.114841Z`, with its 124 compiled-input fingerprint retained;
+the actual run subsequently passed with return code 0, empty stderr and
+2309.736658500042 seconds elapsed. It preserved 601 retained types, checked all
+57 direct imports and the 811-declaration/94-simp environment, retained 92 root
+exports with 689 opt-in exclusions, and audited 4028 compiled local constants
+in 106 modules using only `propext`, `Classical.choice` and `Quot.sound`. Its
+actual result SHA-256 is
+`d4f71e9eeaccc40cd4787b81d1c2b06c5c16cf837e34798e22f19ffebd7561b4`.
+The recorded reviewed-candidate applicability SHA-256 is
+`85bdeebefb6e30e1a1f61ba37eb9d0854dd7f544643b2e1dbd9c0bc27a60f5f2`;
+that correspondence check does not replace post-refresh final applicability.
+
+The accepted original report was classified valid at capture
+`5d8b8fd4aebc2bc1db62256ed10b5c0aa702c70a539475d39414b87a0d23eb0c`.
+All three criteria are satisfied, with no findings and all ten reviewer evidence
+records passing. The reviewer's five stdin checks covered producer and consumer
+text separately, focused/full-Shannon signatures and allowed axioms for all six
+public asymptotic interfaces, and owner/closure checks. Its own static and all
+nine documentation checks passed. The reviewer independently verified 124 trust
+inputs, nine supplemental files, nine clean pinned dependencies and the compiler.
+The parent separately checked all 291 reviewed source/environment entries
+unchanged before this final documentation refresh; this is not represented as a
+reviewer rehash of the complete inventory. Core and substantive reconciliation
+is complete at
+`4628f9dfdcbe170c82e4a8e1b03216d3bb80c06c5353f5b981993bde98ff7d81`.
+No mathematical/API correction is selected. Fresh final static and
+documentation/source applicability checks are still required before final
+capture. Supported closure is authoritative only through the actual
+`.lit-review/setup/c23-04-completion-20261025.json` when it exists; neither final
+qualification nor closure is predicted. Closed C23.03 evidence retains its own
+source identity and does not qualify the new C23.04 surface.
+
+**[History] C23.03 qualification wording before supported closure — 2026-10-25.**
+
+Maintained focused producer and consumer builds passed without warnings after
+one consumer dependent-transport error was corrected locally and preserved as a
+failed attempt. The maintained finite/asymptotic producer/consumer and
+Shannon/Examples aggregate build passed. Both actual public signatures,
+allowed-axiom dependencies and owners passed focused-import probes. Generated
+artifacts and static validation passed at 807 declarations in 57 supported
+owners, with 92 root exports and 94 reviewed simp names; the static run checked
+107 Lean files, 1251 website links and all 34 website-checker tests.
+Both signatures and allowed axioms also passed through the full Shannon
+umbrella, with new and legacy rate/unit owner checks. Documentation validation
+passed all five README and four website-guide examples. The actual initial
+records are `.lit-review/setup/c23-03-focused-all-01.json`,
+`.lit-review/setup/c23-03-focused-signatures-01.json`,
+`.lit-review/setup/c23-03-umbrella-signatures-01.json`,
+`.lit-review/setup/c23-03-static-01.json` and
+`.lit-review/setup/c23-03-documentation-01.json`. Full maintained trust passed
+in 1975.204 seconds, retaining 601 signatures, all 57 direct imports, the
+807-declaration/94-simp environment, 92 root exports and 685 opt-in exclusions.
+The whole-project audit covered 3969 compiled local constants in 106 modules,
+using only `propext`, `Classical.choice` and `Quot.sound`. The actual result
+SHA-256 is `5c41c9e904a7cdf360780bab3db59d222d7be22d93cb5aa098070cf1ba81aa8d`.
+
+The accepted original independent report was classified valid at capture
+`0ca859cd8e475c2646cd34521aa8f489e11a4a1baede413d05c2082821b0936e`.
+All four criteria are satisfied, with no findings; all 11 reviewer evidence
+records passed. Reviewer-owned source, focused/full-interface signature/axiom/
+owner probes, static checks and all nine documentation examples passed. The
+reviewer independently rehashed 124 trust inputs, six supplemental files and
+nine clean pinned dependencies; the separate parent attestation covers the
+complete 291-entry source/environment inventory. Textbook inspections/reuse
+retain their actors and page scopes in Section 15. Substantive reconciliation
+is complete at `516f5cdbadaba3cba790dfdfcf524a8424449a6f34a15f0486f43f0a01e38cc9`.
+No mathematical correction is selected. Final fresh static validation and
+documentation/source applicability are still required before final capture.
+Supported C23.03 closure is authoritative only through the actual
+`.lit-review/setup/c23-03-completion-20261025.json` when it exists. No final
+static result or completion is predicted; later-step, clean-checkpoint and
+expensive API-documentation authority remain separate. Earlier
+C23.02 results remain attributed to that closed step and its own source.
+
+**[History] C23.02 qualification wording before supported closure — 2026-10-24.**
+
+Maintained warning-as-error producer/consumer and Shannon/Examples aggregate
+builds passed. All seven signature/axiom probes passed through both the focused
+owner and full Shannon umbrella, retaining the intended raw-law/DPI assumptions,
+finite-converse budget assumptions and positive denominators only for divided
+forms; dependencies use only `propext`, `Classical.choice` and `Quot.sound`.
+Static/generated validation passed at 805 declarations in 56 supported owners,
+with 92 root exports and 94 reviewed simp names. Documentation validation passed
+all five README and four website-guide examples. Actual results are retained in
+`.lit-review/setup/c23-02-focused-all-01.json`,
+`.lit-review/setup/c23-02-focused-signatures-01.json`,
+`.lit-review/setup/c23-02-umbrella-signatures-01.json`,
+`.lit-review/setup/c23-02-static-01.json` and
+`.lit-review/setup/c23-02-documentation-01.json`. The full maintained trust run
+completed with return code 0, empty stderr and 1999.4491596000153 seconds elapsed.
+It preserved all 601 retained signatures, checked all 56 supported direct imports
+and the 805-declaration/94-simp environment, retained 92 root exports with 683
+opt-in declaration exclusions, and audited all 3935 compiled local constants in
+104 modules using only the three allowed axioms.
+
+The accepted original independent report for
+`lit-review:C23:execution:c23-02-r1-20261024` binds R
+`2618c9b1562f59c917c6d2aed1b2c278953886a19ec1e7be7824fa5ac496cca5`.
+Its original capture
+`4348bfbea03b5825f8c180fafe0a40b481b35c98f060c715dce1f6a0e180aab7`
+was classified valid: all four criteria are satisfied and there are no findings.
+The reviewer independently rechecked 122 trust inputs and nine installed
+dependencies, current producer/consumer source, all seven interfaces/axioms/owners,
+static/documentation checks and relevant textbook material. The parent completed
+substantive reconciliation in
+`.lit-review/setup/c23-02-substantive-reconciliation-20261024.json`. Reviewer
+checks and the parent's full maintained trust run retain their distinct actors.
+Final documentation applicability, final validation and supported C23.02 closure
+remain conditional on the actual
+`.lit-review/setup/c23-02-completion-20261024.json` and linked evidence; no final
+static result or closure is predicted. Clean checkpoint and expensive API-doc
+qualification remain the separately authorized C23.06 milestones.
+C23.01's completed validation/review remains attributed to its own actual
+completion record and source; it does not qualify the new C23.02 declarations.
+
+**[History] C23.01 qualification wording before supported closure — 2026-10-24.**
+
+Initial maintained producer/consumer and Shannon/Examples aggregate builds,
+static/generated checks, all five README and four website examples, and all 23
+focused/umbrella signature/axiom probes passed. The compiled compatibility audit
+preserves all 601 retained types and current ownership/import boundaries.
+Inventory is 798 declarations in 55 supported owners, with 92 root exports and
+94 reviewed simp names. At initial review capture, the full maintained trust
+sequence remains in progress. The actual C23.01 completion record and linked
+source-bound review, reconciliation, final validation and applicability determine
+the final outcome; this text predicts no closure. The completed trust result
+passed all 55 direct-import probes, supported/root boundaries and all 3888
+compiled constants. The received original independent report assessed all four
+criteria as satisfied; its optional map-status finding is corrected before F.
+Historical C22 clean/API checks below keep their original candidates and actors;
+they do not qualify changed C23 code. C23.06 retains the separately authorized
+clean-checkpoint and expensive API-documentation milestones.
+
+**[History] C22.08 milestone wording before supported closure — 2026-10-24.**
 
 C22.01–C22.07 and their reviews are closed by actual source-bound records.
 Only C22.08 is selected. The maintained [C22 handoff](handoffs/chunk-22.md) records the
@@ -5612,6 +6347,10 @@ inferred from local content. The public site is:
 ## 18. Pointers to Detailed Historical Records
 
 ### Maintained documents
+
+- [Chunk 23 handoff](handoffs/chunk-23.md): delivered channel-code/converse APIs,
+  actual consumers, source adaptations, earlier evidence and pending cumulative
+  clean/API/review duties plus C24 prerequisites.
 
 - [Chunk 17 handoff](handoffs/chunk-17.md): delivered product channels, exact
   consumers and boundaries, recorded cumulative qualification and C18/C23 contracts.

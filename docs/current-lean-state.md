@@ -1,5 +1,11 @@
 # Current Lean State
 
+> **Historical qualification snapshots.** For current development status, see the
+> [living summary](lean-info-theory-living-summary.md) and the
+> [C23 plan](plans/post-release-chunk-23.md). The C22 record and all qualification
+> snapshots below describe only their recorded inputs; their clean-build/API
+> evidence does not qualify changed C23 source.
+
 ## C22.08 cumulative qualification and handoff: milestones checked — 2026-10-24
 
 C22.01–C22.07 and their reviews are closed by actual source-bound records.

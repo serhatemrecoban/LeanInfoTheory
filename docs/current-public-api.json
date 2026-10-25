@@ -13,8 +13,224 @@
     "release_commit": "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f",
     "release_tag": "v0.1.0"
   },
-  "declaration_count": 775,
+  "declaration_count": 811,
   "declarations": [
+    {
+      "attributes": [],
+      "kind": "abbrev",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode"
+    },
+    {
+      "attributes": [],
+      "kind": "abbrev",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.decoder"
+    },
+    {
+      "attributes": [],
+      "kind": "abbrev",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.encoder"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_eq_decodingErrorProbabilityOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_eq_sum"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_eq_toOuterMeasure"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_le_one"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_nonneg"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_one"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_one_length_eq_sum"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.eventually_codeRate_le_channelCapacity_add"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.eventually_one_sub_channelCapacity_div_sub_le_errorProbability"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.eventually_pos_le_errorProbability_of_eventually_le_codeRate"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCoding",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.isMarkovChainOf_decoder"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCoding",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.isMarkovChain_messageInputOutputLaw"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.limsup_codeRate_le_channelCapacity"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageInputOutputLaw"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageInputOutputLaw_map_input"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageInputOutputLaw_map_inputOutput"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageInputOutputLaw_map_message"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageInputOutputLaw_map_messageInput"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageInputOutputLaw_map_messageOutput"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageInputOutputLaw_map_output"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageOutputLaw"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageOutputLaw_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageOutputLaw_map_fst"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCode",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageOutputLaw_one_map"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCoding",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.mutualInfoOf_decoder_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCoding",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.mutualInfoOf_message_le_input"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.not_tendsto_errorProbability_zero_of_eventually_le_codeRate"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.not_tendsto_errorProbability_zero_of_frequently_channelCapacity_add_le_codeRate"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCoding",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.one_sub_channelCapacity_div_sub_le_errorProbability"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCoding",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.one_sub_errorProbability_mul_codeRate_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCoding",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.one_sub_errorProbability_mul_log_le"
+    },
     {
       "attributes": [],
       "kind": "abbrev",
@@ -4854,30 +5070,33 @@
       "name": "PMF.two_mul_totalVariation_isGreatest_bounded"
     }
   ],
-  "documented_declaration_count": 775,
+  "documented_declaration_count": 811,
   "full_umbrella": "LeanInfoTheory.Shannon",
   "kind_counts": {
-    "abbrev": 14,
-    "def": 72,
+    "abbrev": 17,
+    "def": 75,
     "instance": 3,
-    "theorem": 686
+    "theorem": 716
   },
   "lightweight_root": "LeanInfoTheory",
   "lightweight_root_direct_imports": [
     "LeanInfoTheory.InformationMeasures",
     "LeanInfoTheory.Probability.Finite"
   ],
-  "local_module_count": 100,
+  "local_module_count": 106,
   "namespace_counts": {
-    "LeanInfoTheory.Shannon": 653,
+    "LeanInfoTheory.Shannon": 689,
     "PMF": 122
   },
-  "non_stable_module_count": 46,
+  "non_stable_module_count": 49,
   "non_stable_modules": [
     "LeanInfoTheory.Basic",
     "LeanInfoTheory.Examples",
     "LeanInfoTheory.Examples.AEP",
     "LeanInfoTheory.Examples.ChannelCapacity",
+    "LeanInfoTheory.Examples.ChannelCode",
+    "LeanInfoTheory.Examples.ChannelCoding",
+    "LeanInfoTheory.Examples.ChannelCodingAsymptotic",
     "LeanInfoTheory.Examples.ChannelOptimization",
     "LeanInfoTheory.Examples.CodingRate",
     "LeanInfoTheory.Examples.CommonCause",
@@ -5300,7 +5519,7 @@
     "Declaration types and assumptions remain governed by the Lean source and signature-bearing API documentation."
   ],
   "simp_declaration_count": 94,
-  "supported_module_count": 54,
+  "supported_module_count": 57,
   "supported_modules": [
     "LeanInfoTheory",
     "LeanInfoTheory.InformationMeasures",
@@ -5318,6 +5537,9 @@
     "LeanInfoTheory.Shannon",
     "LeanInfoTheory.Shannon.BinaryEntropy",
     "LeanInfoTheory.Shannon.ChannelCapacity",
+    "LeanInfoTheory.Shannon.ChannelCode",
+    "LeanInfoTheory.Shannon.ChannelCoding",
+    "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
     "LeanInfoTheory.Shannon.CodingRate",
     "LeanInfoTheory.Shannon.Continuity",
     "LeanInfoTheory.Shannon.Entropy",

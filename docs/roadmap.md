@@ -1,6 +1,16 @@
 # Roadmap
 
-## C22.08 cumulative qualification and handoff: milestones checked — 2026-10-24
+## C23.06 initial milestones passed; cumulative qualification pending — 2026-10-25
+
+The separately approved initial scoped checkpoint `beb99362718489c17dfe150e5c8be0281ab34aa3` passed the complete maintained clean routine. The current local two-pass API build/check gate passed, and the parent substantively inspected all 36 new rendered signatures, hypotheses, result types, docstrings, owners and source links.
+
+The exact local C23-only checkpoint, necessary bounded amendments/full clean reruns, reuse of the existing registered validation checkout and separate local API milestone were approved by the actual reply “yes, i approve”. Push, release, publication, C24 and external-project upgrades remain unapproved.
+
+Every bounded amendment, including these documentation updates, requires the entire clean rerun and renewed API applicability before R; rerun the API gate if invalidated. Fresh original review of all 21 criteria, substantive all-criterion reconciliation and final qualification/applicability/capture remain pending. Only actual `.lit-review/setup/c23-06-completion-20261025.json` and its linked genuine original records determine completion; no cumulative SAT assessment or future result is predicted.
+
+The [C23 handoff](handoffs/chunk-23.md) records the delivered 36 additions in three owners, permanent consumers and C24 prerequisites. Current inventory remains 811/57, root exports 92 and reviewed simp names 94. C23.01–C23.05 and their reviews remain closed.
+
+## Historical C22.08 qualification snapshot; subsequently completed — 2026-10-24
 
 C22.01–C22.07 and their reviews are closed by actual source-bound records.
 Only C22.08 is selected. The maintained [C22 handoff](handoffs/chunk-22.md) records the

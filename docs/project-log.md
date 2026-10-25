@@ -6,6 +6,333 @@ help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
 
+## C23.06 authorized initial milestones passed; cumulative review/final qualification pending, 2026-10-25
+
+The separately approved initial scoped checkpoint `beb99362718489c17dfe150e5c8be0281ab34aa3` passed the complete maintained clean routine. The current local two-pass API build/check gate passed, and the parent substantively inspected all 36 new rendered signatures, hypotheses, result types, docstrings, owners and source links.
+
+The exact local C23-only checkpoint, necessary bounded amendments/full clean reruns, reuse of the existing registered validation checkout and separate local API milestone were approved by the actual reply “yes, i approve”. Push, release, publication, C24 and external-project upgrades remain unapproved.
+
+These are warm/cached local checks with file-mode owner links; no cold build, browser visual QA, GitHub line-range verification, operational-capacity equality or publication is claimed. Original failures retain their recorded outcomes.
+
+Every bounded amendment, including these documentation updates, requires the entire clean rerun and renewed API applicability before R; rerun the API gate if invalidated. Fresh original review of all 21 criteria, substantive all-criterion reconciliation and final qualification/applicability/capture remain pending. Only actual `.lit-review/setup/c23-06-completion-20261025.json` and its linked genuine original records determine completion; no cumulative SAT assessment or future result is predicted.
+
+Actual approval, candidate, clean/API, extraction, parent inspection and applicability paths/hashes are retained in C23 notes Section 23. This entry changes no mathematical endpoint, proof, API, dependency or pin. Earlier raw log bytes remain intact.
+
+## C23.05 private integration/API reconciliation: qualified, reviewed and reconciled; final qualification/closure pending, 2026-10-25
+
+Only Step 5 with review is selected under accepted revision 2. The parent freshly
+verified C23.04 closure `7284109da2b6bfc1b3aec2fc76524ce211312d99ec0d0943b677cb110c15a2d1`
+at `.lit-review/setup/c23-04-completion-20261025.json` and all 291 predecessor
+source/environment entries before admission. Earlier conditional C23.04 wording
+below is historical; its complete bytes are retained.
+
+No production theorem, owner, import or declaration attribute is added. The
+existing three C23 owners retain 23/7/6 public declarations. Private finite
+consumers apply the public converse with all four standard capacities using
+actual one-letter codes: noiseless identity error 0, uniform independent-output
+error 1/2, BSC identity-decoder error ε and BEC total-fallback error ε/2. Noise
+endpoints and ε=1/4 are included. The existing alternating lossless family now
+composes actual laws, input/error bridges, Markov/DPI, Fano, finite/normalized/
+pointwise bounds and tolerance/limsup interfaces without assuming rate convergence.
+Unequal encoder fibers, correlated collisions, singleton and zero/one lengths,
+positive-capacity obstructions and unbounded intermittent rates remain private.
+
+Finite consumer03 and composition02 passed maintained focused builds with warnings
+as errors; composition02 was clean in 16.640 seconds. The eight-target build
+passed in 45.816 seconds. The three focused probes and full-Shannon probe passed
+all 23/7/6 C23 names/types, actual owners, allowed axioms and intended exclusions.
+All four generation commands passed with exit 0/empty stderr; input hashes were
+identical during that run and frozen v0.1.0 bytes unchanged. Static01 passed in
+15.275 seconds, including generated checks, 20 HTML files, 1256 links and 34
+website tests. Documentation01 passed all five README/four guide warning-as-error
+examples in 176.26 seconds. Inventory remains 811 declarations in 57 supported
+owners, 92 root exports and 94 reviewed simp names.
+
+The first composition check failed two style warnings after proof elaboration;
+the corrected second check passed without changing statement/proof meaning. The
+first probe incorrectly expected rate/unit names through lighter ChannelCode;
+corrected02 checks their absence there and presence where imported, without an
+API/dependency change. These failed attempts and the initial no-write generation
+timing diagnostic remain retained separately from passing credit. Fresh generated/
+static checks cover subsequent private proof-local/style changes. Full maintained
+trust started on 124 captured compiled inputs at `2026-10-25T14:25:17Z` and passed
+in 2867.5190156000317 seconds: 601 retained types, 57 direct imports, 811 declarations/
+94 simp names, 92 root exports/689 exclusions and 4064 safe constants in all 106
+modules, using only the three allowed axioms. Actual trust result SHA-256 is
+`3d886d80c878542976d0cd6872f58a63e8c60e17a21b7708b7adea481eda288e`; narrow
+reviewed-source applicability SHA-256 is
+`c77894834c31a803d7f8ddca2d5a6d78e8e66105609ac607347203b85e8f45c6`.
+
+The genuine original independent report for reviewed source
+`ea32ab4e026967b3279a127ecf9e6c5549d997afc74f926082a586b31ba5c29b`
+is valid at capture
+`bded7be29b38c550be9efd7df5e93f5817957497649130ca7615987411356fbc`.
+All three original criterion assessments are satisfied with no findings. Actual
+core reconciliation is
+`1f94393022a594e670cea714c9f12048d0d479413dc64c9222c51270df5d762c`;
+the parent also substantively reconciled every assessment, all eleven observations,
+earlier dispositions and limits. Ten observations passed; the reviewer JSON-shape
+failure is retained as a diagnostic and supplies no passing evidence.
+
+The reviewer independently ran nine stdin checks: three complete consumer texts,
+five focused owners and one full-Shannon probe, checking 36 C23 plus 17 legacy
+interfaces, actual owners, empty C23 simp surface and allowed axioms. Its static
+and all nine documentation checks passed. It verified all 124 trust inputs, nine
+supplements, nine clean dependency HEADs and the compiler, and inspected the full
+parent trust record. It did not rerun artifact-producing trust or reconstruct all
+291 reviewed-source entries; the parent separately checked their exact equality.
+Fresh final static validation, applicability and final capture remain required.
+
+The current-state file now identifies its preserved C22 qualification snapshots
+as historical and points to current canonical status. Manual theorem/concept
+selections are explicitly v0.1.0, with current source-index pointers; the homepage
+roadmap defers channel achievability/operational-capacity equality. Frozen routes,
+tagged release source links and all prior policy approval prefixes are preserved.
+
+Fresh read-only support matched registered hashes and read CT91 PDF 206–210/228
+and PW24 PDF 367–368/405 as nine complete text pages. Six unique complete pages
+were visually inspected in memory: CT91 207/209/210/228 and PW24 368/405, with
+preferred Poppler reinspection. No extracts or renders were saved. Existing nats,
+average-error/message-identity and division conventions remain; the BEC display
+weighting/degenerate-optimizer caveats are recorded without importing their source
+errors. This parent support remains distinct from the accepted reviewer reading:
+the reviewer freshly hash-verified/text-read nine book pages and visually
+inspected CT91 PDF 207/209/210/228 and PW24 PDF 367/368/405, seven complete pages.
+The parent support covered nine text/six visual pages; the reviewer additionally
+visually inspected PW24 PDF 367.
+
+Final static validation, applicability and capture are still required. Only actual
+`.lit-review/setup/c23-05-completion-20261025.json` when present can establish
+supported closure; this text predicts no future outcome. C23.06, C24, clean checkpoints, the expensive API-doc gate and
+publication remain unselected.
+
+## C23.04 above-capacity error obstructions: qualified, reviewed and reconciled; final qualification/closure pending, 2026-10-25
+
+Only Step 4 with review is selected. The parent verified C23.03's actual closure
+`b69457637d0a7fde431adde3b0d97e5a86b1ae1ea7b6d4c94cbcf4743669eb13`
+at `.lit-review/setup/c23-03-completion-20261025.json` and all 291 predecessor
+final-source/environment entries before admission. Earlier conditional Step 3
+prose below is historical; its bytes are preserved.
+
+Four public theorems extend the existing asymptotic owner. An eventual lower
+rate `R>C(W)` gives eventual `Pe_n≥1-C(W)/R-log 2/(n*R)`, the explicit positive
+floor `(1-C(W)/R)/2`, and failure of vanishing error; positivity of `R` is derived
+from capacity nonnegativity. A fixed positive gap above capacity infinitely
+often also prevents vanishing error for arbitrary unbounded/nonconvergent rates.
+It yields no eventual floor and does not use an unguarded real limsup. Production
+imports, root exports and simp policy remain unchanged.
+
+The private consumer alone adds StandardChannelCapacity. On noiseless Bool,
+capacity is `log 2`; constant encoding/decoding with budgets `4^n` has error
+`1-1/4^n` and positive-length rate `2*log 2`. Public bounds give
+`Pe_n≥1/2-1/(2*n)` and the finite `n=2`, `M=16` lower bound `1/4`, compared with
+actual error `15/16`. The public eventual obstruction is consumed separately.
+A constant-output zero-capacity family alternates singleton budgets with
+`2^(n*n)` budgets, proving unbounded rate spikes and infinitely many zero-error
+lengths with no eventual positive floor. All four public endpoints are applied
+to actual code-family data.
+
+Corrected producer02/consumer02, the maintained four-target aggregate build,
+all four focused/full-Shannon signature/allowed-axiom/owner probes and legacy
+rate/unit owner checks passed. All four generation commands and static01 passed:
+811 declarations in 57 owners, root exports 92 and reviewed simp names 94.
+Documentation01 passed all five README/four guide examples with warnings as
+errors, exit 0 and empty stderr in 162.510 seconds. Initial index-inference and
+consumer simplification/tactic-warning failures remain separately retained as
+corrected attempts; they supply no passing credit. Full maintained trust passed
+with return code 0, empty stderr and 2309.736658500042 seconds elapsed: all
+601 retained types, 57 direct imports, 811 declarations/94 simp names, 92 root
+exports/689 exclusions and 4028 compiled constants in 106 modules passed using
+only the three allowed axioms. Actual result SHA-256:
+`d4f71e9eeaccc40cd4787b81d1c2b06c5c16cf837e34798e22f19ffebd7561b4`.
+
+The accepted original independent report was classified valid at capture
+`5d8b8fd4aebc2bc1db62256ed10b5c0aa702c70a539475d39414b87a0d23eb0c`: all
+three criteria are satisfied, with no findings and all ten reviewer evidence
+records passing. Five reviewer stdin checks covered separate producer/consumer
+text, focused/full signatures and allowed axioms for all six public asymptotic
+interfaces, and ownership/closure; reviewer static and all nine documentation
+checks passed. It independently verified 124 trust inputs, nine supplemental
+files, nine clean pinned dependencies and the compiler. The parent separately
+attested all 291 reviewed source/environment entries before the bounded final
+documentation refresh. Core and substantive reconciliation is complete at
+`4628f9dfdcbe170c82e4a8e1b03216d3bb80c06c5353f5b981993bde98ff7d81`.
+No mathematical/API correction is selected. Fresh final static/applicability
+checks remain required before final capture. Supported closure is authoritative
+only through `.lit-review/setup/c23-04-completion-20261025.json` when it exists;
+this entry predicts neither final qualification nor closure. C23.05 onward
+remains unselected.
+
+Read-only support freshly matched the registered PDF hashes, read CT91 PDF
+226–229 and PW24 PDF 373–374, and visually inspected complete CT91 PDF 228/229
+and PW24 PDF 373 pages in memory. No renders or extracts were saved. The frequent-
+gap result is a project derivation from the tolerance cap, rather than an
+explicit textbook theorem or a claim of an eventual floor under that weaker
+premise. The reviewer separately verified hashes and extracted relevant pages,
+freshly visually inspected CT91 PDF 228–229 and inspected PW24 PDF 373
+weak-converse context. Those observations remain separate from the parent
+support's six text/three visual pages; no additional independent PW24 visual
+page count is asserted. The C23 notes and factual support record retain methods
+and limits.
+
+## C23.03 vanishing-error channel-code rate bounds: qualification, review and reconciliation passed; final applicability/closure pending, 2026-10-25
+
+The lead conditionally requested exactly Step 3 with review. C23.02 is complete
+by `.lit-review/setup/c23-02-completion-20261024.json`, actual closure
+`5e0f0b0341c7b519e135c85b92c4d5b42ab2341ba04f57cfd9c8d2e7ebbce045`.
+The parent verified all 289 predecessor final-source/environment entries before
+admitting C23.03; earlier conditional Step 2 wording below is historical.
+
+The focused `Shannon.ChannelCodingAsymptotic` owner adds exactly the public
+eventual positive-tolerance rate cap and real limsup bound for the same supplied
+positive-budget code family whose average error vanishes. Its private helper
+derives eventual `r_n ≤ 2*(C(W)+log 2)` from finite Fano. Error times that fixed
+bound vanishes, while rate nonnegativity supplies explicit real-limsup lower/
+coboundedness control. No bounded/convergent-rate, fixed exponential-budget or
+global positive-length assumption is added. All naturals, including arbitrary
+finite prefixes, index the family.
+
+Private focused consumers apply both endpoints to singleton-message families
+and a lossless noiseless family alternating one message and all binary words.
+Its errors are zero; even/odd rates are `0`/`log 2` and have no real limit.
+Actual zero/one-length budgets, errors and rates are checked. The extra finite-
+prefix mutation fixture remains optional and is deferred because no proof-pressure
+trigger arose. The producer has sole project import ChannelCoding and two focused
+mathlib limit/limsup imports; derived-bound, enumeration and parity helpers stay
+private. Above-capacity obstructions remain C23.04.
+
+Maintained producer/consumer focused builds passed, after one preserved consumer
+dependent-transport failure was corrected locally. The maintained finite/asymptotic
+producer/consumer and Shannon/Examples aggregate build, both focused public
+signature/allowed-axiom/owner probes, generators and static validation passed.
+Both public signatures and allowed axioms also passed through full Shannon
+imports, with new and legacy rate/unit ownership checks. All five README and
+four website-guide examples passed. Inventory is 807 declarations in 57 supported
+owners, with 92 root exports and 94 reviewed simp names. Exact initial results
+remain in the private focused-all, focused/umbrella-signature, static and
+documentation records. Full maintained trust passed in 1975.204 seconds: all
+601 retained signatures, 57 direct imports, 807 declarations/94 simp names,
+92 root exports/685 opt-in exclusions and 3969 local constants in 106 modules
+passed with only the three allowed axioms. Actual result SHA-256:
+`5c41c9e904a7cdf360780bab3db59d222d7be22d93cb5aa098070cf1ba81aa8d`.
+
+The accepted original independent report was classified valid at capture
+`0ca859cd8e475c2646cd34521aa8f489e11a4a1baede413d05c2082821b0936e`: all four
+criteria are satisfied, no findings, and all 11 reviewer evidence records passed.
+The reviewer independently checked source, both focused/full interface and
+axiom/owner probes, static validation, all nine documentation examples, 124 trust
+inputs, six supplemental files and nine clean pinned dependencies. The parent
+separately attested the full 291-entry source/environment inventory. Substantive
+reconciliation is complete at
+`516f5cdbadaba3cba790dfdfcf524a8424449a6f34a15f0486f43f0a01e38cc9`.
+No mathematical correction is selected. A final fresh static check and
+documentation/source applicability assessment are still required before final
+capture; supported closure is authoritative only through the actual
+`.lit-review/setup/c23-03-completion-20261025.json` when it exists. This entry
+predicts neither the final static result nor closure; Step 4 onward remains
+unstarted and the clean/API-documentation milestones retain separate authority.
+
+Read-only support freshly verified the registered CT91/PW24 hashes and read
+12 selected text pages, with in-memory visual inspection of CT91 PDF 228 and
+PW24 PDF 373, 398 and 401. No renders or extracts were saved. The fixed-rate
+textbook argument needs the derived-bound adaptation for arbitrary rate families;
+operational capacity/achievability material remains context. The reviewer
+separately hash-verified the registered sources, reused its earlier weak-converse
+reading, freshly read PW24 PDF 396–401 and visually inspected CT91 PDF 228 plus
+PW24 PDF 373, 396, 398, 400 and 401. Those six visual pages remain separately
+attributed from the parent support's four. The C23 notes and own factual
+reference-support record retain exact page/hash/method limits.
+
+## C23.02 finite channel converse: qualification, review and reconciliation passed; closure conditional, 2026-10-24
+
+The lead conditionally requested Step 2 with review. C23.01 is complete by
+`.lit-review/setup/c23-01-completion-20261024.json`, actual closure
+`ef8bd0ac9d8e3d8fd9e4c0b8f352c2959f125821dca53f5074f9a29d4674e52c`.
+The parent verified all 287 predecessor final-source/environment entries before
+admitting only C23.02; earlier conditional Step 1 prose below is historical.
+
+`Shannon.ChannelCoding` supplies seven contracts: both actual-law Markov chains,
+decoding and encoded-input DPI, and finite, normalized and pointwise error
+bounds. Reversing message→input→output gives the needed bound by input/output
+information. Uniform-source Fano and the existing arbitrary-input memoryless
+capacity bound then give `(1-Pe)*log M ≤ n*C(W)+log 2` in nats, at every natural
+length and positive budget, including singleton messages and `Pe=1`. Division
+requires `n>0`, and additionally `R>0` with `R≤codeRate n M` for the pointwise
+error bound; it does not require `C(W)<R`. No division by `1-Pe` occurs.
+
+Private `Examples.ChannelCoding` imports only the focused owner. Its colliding
+`Fin 4` repeated-bit code has correlated two-letter input and actual error `1/2`;
+the same law supplies the complete Markov/Fano/capacity chain. Additional
+consumers cover all divided forms, singleton/zero/one lengths and an always-wrong
+decoder with error one. Maintained producer/consumer and Shannon/Examples
+aggregate builds passed with warnings as errors. All seven signature/axiom
+probes passed through both focused and full Shannon imports, with the intended
+assumptions and only allowed axioms. Static/generated checks and all five README/
+four guide examples passed. Inventory is 805 declarations in 56 supported owners,
+with 92 root exports and 94 reviewed simp names. Exact initial results are
+retained in the private C23.02 focused-all, focused/umbrella-signatures, static
+and documentation records. Full maintained trust completed with return code 0
+and empty stderr: all 601 retained signatures, 56 direct-import probes, the
+805-declaration/94-simp environment, 92 root exports/683 opt-in exclusions, and
+3935 compiled constants in 104 modules passed with only the three allowed axioms.
+
+The accepted original independent report for
+`lit-review:C23:execution:c23-02-r1-20261024` assessed all four criteria as
+satisfied with no findings, binding reviewed source
+`2618c9b1562f59c917c6d2aed1b2c278953886a19ec1e7be7824fa5ac496cca5`.
+The reviewer independently rechecked 122 trust inputs and nine dependencies and
+inspected current source, public interfaces, ownership, static/documentation
+checks and textbooks. The parent completed substantive reconciliation in
+`.lit-review/setup/c23-02-substantive-reconciliation-20261024.json`. Final
+documentation applicability, final validation and supported closure remain
+conditional on `.lit-review/setup/c23-02-completion-20261024.json` and actual
+linked evidence. This entry predicts neither a final static result nor closure.
+Only C23.02 is selected; Step 3 onward remains unstarted, and the clean-checkpoint
+and expensive API-doc milestones retain their later separate authority.
+
+Read-only support freshly verified the registered CT91/PW24 hashes and read
+CT91 §8.9 PDF 226–229 and PW24 §17.4 PDF 373–374 as UTF-8 text. No fresh visual
+check is claimed. The source adaptations retain uniform message identity,
+arbitrary budgets and the undivided endpoint; the existing Fano API avoids the
+PW24 alternative proof's indicator/probability orientation mismatch. The private
+support record and C23 notes retain provenance, initial tool failure and limits.
+
+## C23.01 deterministic channel codes: validated and independently reviewed, 2026-10-24
+
+The lead accepted C23 revision 2 and selected only Step 1 with its review process.
+`Shannon.ChannelCode` source supplies a transparent block encoder/total decoder
+pair, actual uniform-message/output and message/input/output PMFs, required
+marginals and the existing Fano error's average/event/range interfaces. Explicit
+positive message budgets and independent alphabet universes retain minimal raw
+law assumptions. Singleton messages have zero error; zero-length words have
+error `1-1/M`; one-letter reductions recover the original channel.
+
+Private `Examples.ChannelCode` source exercises unequal encoder fibers with
+input masses `2/3,1/3`, error `1/3`, distinct supported colliding messages and an
+unused decoder index, plus singleton and zero/one-length interfaces and an
+empty-base zero-word example. Initial maintained producer/consumer and aggregate
+builds, static/generated checks, five README/four website examples, and all 23
+focused/umbrella signature/axiom probes passed. The compiled compatibility audit
+preserves all 601 retained types and current owner/import boundaries. Inventory
+is 798 declarations in 55 supported owners, with 92 root exports and 94 reviewed
+simp names. At initial review capture the full trust sequence is still running;
+its final outcome, independent review, reconciliation and scoped closure belong
+to `.lit-review/setup/c23-01-completion-20261024.json` and linked actual records.
+The completed maintained trust suite subsequently passed all 55 direct imports,
+the retained/current API and root checks, and the 3888-constant axiom audit. The
+received original independent report assessed all four criteria as satisfied and
+recorded one optional pre-existing map-status discrepancy. The parent reconciles
+every assessment and corrects that status before final capture. The C23 notes
+retain evidence and limits; scoped closure remains subject to the actual private
+completion record. No capacity/converse theorem is selected
+in C23.01; later steps, commits and publication remain unselected.
+
+C22 is complete by `.lit-review/setup/c22-08-completion-20261024.json`, actual
+closure `6f5fe53fa9ade90f399d37a6c8d72bcd79152650e896d51bc0e509c2a03add3f`
+and checkpoint `b6ae0084b2ba24cb0130f64acdbfc7f46767581d`. Earlier conditional
+C22 milestone prose below is retained as historical record. C23 uses the CT91
+§8.5 / PW24 §17.1 material inspected during planning; no new PDF read is claimed.
+
 ## C22.08 cumulative qualification and handoff: milestones checked, 2026-10-24
 
 C22.01–C22.07 and their reviews are closed by actual source-bound records.

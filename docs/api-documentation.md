@@ -154,7 +154,19 @@ The release-candidate gate runs GitHub mode from a clean exact commit. Tag
 publication and live-link verification remain explicitly approved publication
 and post-publication work.
 
-## Current C22 milestone — two-pass local gate and declaration inspection
+## Current C23 milestone — initial gate and all 36 inspections completed
+
+The separately approved initial scoped checkpoint `beb99362718489c17dfe150e5c8be0281ab34aa3` passed the complete maintained clean routine. The current local two-pass API build/check gate passed, and the parent substantively inspected all 36 new rendered signatures, hypotheses, result types, docstrings, owners and source links.
+
+The first API attempt failed after cached final docs-facet replay left all three C23 HTML pages missing despite new docInfo builds. Its original failure remains `FAIL`: `.lit-review/setup/c23-06-api-initial-20261025/result.json` (SHA-256 `d69971fc3975e2be6953a44077bafed3d9443bdc8950f4553a863ddce66bd354`); exact missing-page stderr is `.lit-review/setup/c23-06-api-initial-20261025/stderr.txt` (SHA-256 `ead6d30f919cdf35d32c9c3b0e07b083a16e455b50b32de6b87af3547d0b20e9`). The bounded recovery preserved/moved only the three ignored Shannon final-facet markers: `.lit-review/setup/c23-06-api-cache-recovery-20261025/result.json` (SHA-256 `1c2ac2906f25906b2e6831e1f3b86927197504ca54dc2090a3f2af9d8702c4e3`). Source, configuration, pins and Git were unchanged. That recovery is not passing API qualification; only the separate actual complete retry plus all 36 inspections and applicability supplies milestone credit. Replayed Qq dependency warnings are separate diagnostics; the missing supported pages caused the first milestone failure.
+
+These are warm/cached local checks with file-mode owner links; no cold build, browser visual QA, GitHub line-range verification, operational-capacity equality or publication is claimed. Original failures retain their recorded outcomes.
+
+The 36 new declarations split as 23 ChannelCode, seven ChannelCoding and six ChannelCodingAsymptotic entries. Nonempty output/name coverage is not substituted for the separately retained substantive parent observations. Actual source/configuration/ dependency/attestation/relevant-output identity and the clean/primary LF correspondence are bound by the passing applicability record in notes Section 23.
+
+Every bounded amendment, including these documentation updates, requires the entire clean rerun and renewed API applicability before R; rerun the API gate if invalidated. Fresh original review of all 21 criteria, substantive all-criterion reconciliation and final qualification/applicability/capture remain pending. Only actual `.lit-review/setup/c23-06-completion-20261025.json` and its linked genuine original records determine completion; no cumulative SAT assessment or future result is predicted.
+
+## Historical C22 milestone — two-pass local gate and declaration inspection
 
 The lead separately authorized this current milestone. The maintained
 `python scripts/validate_release.py api-docs` command completed both actual

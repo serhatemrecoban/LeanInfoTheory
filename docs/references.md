@@ -12,6 +12,8 @@ mathematical documentation. Do not reproduce textbook prose or proofs.
 
 ## Source selection
 
+- C23.06 cumulative pointer: the [handoff](handoffs/chunk-23.md) and notes Section 23 bind actual approved initial clean/API/all-36 inspection records. Earlier source readings retain their actors, pages, hashes and limits; this documentation update claims no fresh PDF inspection. Every bounded amendment requires the entire clean rerun and renewed API applicability before R. All 21 fresh cumulative judgments and final reconciliation/closure depend only on the genuine original records linked by actual `.lit-review/setup/c23-06-completion-20261025.json`.
+
 - `CT91` remains the Chapter 2 historical anchor and supplies the textbook
   AEP/typical-set and finite-channel viewpoints.
 - `PW24` is the preferred Polyanskiy--Wu planning reference for the proposed
@@ -122,6 +124,76 @@ is Chapter 8 in this edition, not Chapter 7.
   determine current-candidate applicability, cumulative independent review,
   substantive reconciliation and closure; no future outcome, operational
   capacity equality or C23 implementation is asserted.
+- C23.01 adaptation: Section 8.5, printed 192–194 / PDF 214–216, supplies
+  deterministic indexed codes and uniform-message average error. These pages
+  were inspected during C23 planning at the registered hash; this entry claims
+  no fresh PDF access. The actual encoder pushforward may be nonuniform or
+  correlated, and colliding messages retain their distinct identities. Total
+  decoders use every message index with no reserved erasure value. The source
+  explicitly treats singleton messages and zero-length error `1-1/M`, while
+  capacity/converse results remain outside C23.01. That step is now closed by its
+  actual private completion chain; see the [C23 notes](plans/post-release-chunk-23-notes.md).
+- C23.02 adaptation: Section 8.9, printed 204–207 / PDF 226–229, was freshly
+  read through UTF-8 text extraction by the parent's read-only source support;
+  the registered CT91 hash matched. No fresh visual check is claimed. Its Fano,
+  actual-law data processing and arbitrary-input repeated-channel capacity route
+  gives the undivided finite converse, with the bits constant 1 replaced by
+  `log 2` in nats and arbitrary positive natural message budgets. The source
+  includes zero length, singleton messages and complete error; positive length
+  and a positive lower rate enter only when dividing. C23.02 producer/consumer
+  and aggregate builds, focused/umbrella signatures, static/generated checks and
+  all nine documentation examples and full maintained trust passed. The accepted
+  independent review assessed all four criteria as satisfied with no findings;
+  parent substantive reconciliation is complete. C23.02 is now closed by its
+  actual supported private completion record. See
+  [C23 notes](plans/post-release-chunk-23-notes.md).
+- C23.03 adaptation: Section 8.9, printed 204–207 / PDF 226–229, was freshly
+  read as UTF-8 text at the registered hash by read-only parent support. The
+  complete PDF 228 page was also rendered and visually inspected in memory;
+  no render or extraction artifact was saved. Its fixed-rate limiting argument
+  motivates an additional derivation for arbitrary varying natural budgets:
+  finite Fano and vanishing error first give an eventual uniform rate bound,
+  then control error times that bound. The real limsup endpoint explicitly
+  supplies derived upper boundedness and lower control from rate nonnegativity.
+  Focused/aggregate builds, focused/umbrella signature and rate/unit ownership
+  checks, static validation and all nine documentation examples passed. Full
+  maintained trust passed, and the accepted original independent report assessed
+  all four criteria as satisfied with no findings. Parent substantive
+  reconciliation is complete. The reviewer separately verified the hash, reused
+  its earlier weak-converse reading and visually checked PDF 228. C23.03 is
+  now closed by its actual supported completion record. See
+  [C23 notes](plans/post-release-chunk-23-notes.md).
+- Historical C23.05 integration/qualification snapshot, subsequently closed: read-only support freshly matched the registered
+  hash and read complete §8.1 PDF 206–210 (printed 184–188) and §8.9 PDF 228
+  (printed 206) as UTF-8 text. Complete PDF 207, 209, 210 and 228 pages were also
+  visually inspected in memory, including preferred Poppler reinspection. The
+  standard capacity examples and finite Fano converse retain canonical nats,
+  actual uniform-message sampling and explicit division guards. Private codes
+  consume the existing bound/capacities; no production theorem or operational-
+  capacity equality is added. Finite/composition/aggregate builds, all 36 focused/
+  full compiled contracts, generation/static checks and all nine documentation
+  examples and full maintained trust passed. The accepted original independent
+  report satisfied all three criteria without findings and is substantively
+  reconciled. The reviewer separately hash-verified/text-read nine book pages and
+  visually inspected complete CT91 PDF 207, 209, 210 and 228 pages. Its inspection
+  remains distinct from the parent support above. Fresh final static/applicability
+  checks, capture and supported closure remain required. No extracts or renders
+  were saved.
+- Historical C23.04 adaptation snapshot, subsequently closed by its actual record: Section 8.9, printed 204–207 / PDF 226–229, was freshly
+  read as UTF-8 text at the verified registered hash by read-only parent support.
+  Complete PDF 228/229 pages were visually inspected in memory; no renders or
+  extracts were saved. Equation 8.112's bits constant becomes `log 2` in nats.
+  An eventual rate lower bound above capacity yields the quantitative eventual
+  error bound and explicit half-gap floor, with positivity of the lower rate
+  derived from nonnegative capacity. The frequent fixed-gap obstruction is a
+  project consequence of the public tolerance theorem, not an explicit statement
+  on these pages. Fixed-rate concatenation and strong-converse context do not
+  imply an eventual floor for the intermittent family. Initial checks and full
+  maintained trust passed. The accepted original independent report satisfied
+  all three criteria with no findings; core and substantive parent reconciliation
+  is complete. The reviewer separately hash-verified/extracted the relevant
+  references and freshly visually inspected PDF 228–229. Fresh final static/
+  applicability checks and supported closure remain required.
 - Units: typically bits; adapt through the project's existing units layer.
 
 ## PW22: Polyanskiy and Wu, historical draft
@@ -146,6 +218,85 @@ August 16, 2024 prepublication version. The source footer identifies the date.
 - SHA-256: `c76c5cd867818ef66e9d63c2f899dccdff9a501456160df153d0fa981db83de3`.
 - [Author-hosted PDF](https://people.lids.mit.edu/yp/homepage/data/itbook-export.pdf).
   This URL can change; the local hash identifies the copy inspected here.
+- C23.01 adaptation: Section 17.1, Definition 17.1/(17.1), printed 342–343 /
+  PDF 367–368, supplies the message/input/output/decoded-message sampling model.
+  The planning inspection at the registered hash is retained in the
+  [C23 notes](plans/post-release-chunk-23-notes.md); no new PDF read is claimed.
+  The selected interface uses total deterministic encoding/decoding, uniform
+  positive message budgets and average error through the existing Fano API.
+  Actual PMF marginals keep message identity under encoder collisions, with no
+  iid input or image-uniformity premise. C23.01 constructs these laws and
+  boundary identities and is closed by its actual private completion chain;
+  the finite capacity converse is separately selected in C23.02.
+- C23.02 adaptation: Section 17.4, Theorem 17.3, printed 348–349 /
+  PDF 373–374, was freshly read as UTF-8 text by the parent's read-only source
+  support at the verified registered hash. No fresh visual check is claimed.
+  The divided textbook presentation is replaced by the existing undivided Fano
+  lower bound, so `Pe=1` needs no division by `1-Pe`; binary entropy is bounded
+  by `log 2` in nats. The extracted alternative proof defines its indicator with
+  disagreement but then uses success probabilities. C23 consistently reuses the
+  existing decoding-error semantics and actual message law. The normalized
+  result needs `n>0`; the pointwise error result additionally needs `R>0` and
+  `R≤codeRate n M`, without an above-capacity premise. This reading is support
+  evidence, distinct from the accepted original C23.02 independent review, which
+  also inspected the relevant textbook material. Review and parent substantive
+  reconciliation passed; C23.02 is now closed by its actual supported private
+  completion record.
+- C23.03 adaptation: Sections 17.4 and 19.1/selected start of 19.2, printed
+  348–349 and 371–376 / PDF 373–374 and 396–401, were freshly read as UTF-8 text
+  at the registered hash by read-only parent support. Complete PDF pages 373,
+  398 and 401 were also visually inspected in memory; no renders or extracted
+  text artifacts were saved. Definition 19.2's block/rate convention is adapted
+  to total deterministic decoders and nats `codeRate`; its optimized budgets and
+  operational-capacity liminf definitions are context, not new project APIs.
+  C23.03 bounds each supplied actual positive-budget family, deriving the
+  boundedness needed for real limsup without rate convergence or a global
+  positive-length premise. Definition 19.6/Theorem 19.7 separate information
+  capacity from operational capacity. Expurgation and Theorem 19.8 achievability
+  remain excluded context. The selected extra prefix-mutation fixture is optional
+  and deferred absent proof pressure. Source reading is separate from completed
+  initial build/signature/static/documentation and full trust checks. The
+  accepted independent reviewer separately verified the hash, reused earlier
+  weak-converse reading, freshly read PDF 396–401 as text and visually inspected
+  PDF 373, 396, 398, 400 and 401. These five reviewer PW24 visual pages are
+  distinct from the three parent-support PW24 visual pages above. All four
+  review criteria are satisfied without findings; substantive parent
+  reconciliation is complete. C23.03 is now closed by its actual supported
+  completion record.
+- Historical C23.05 integration/qualification snapshot, subsequently closed: read-only support freshly matched the registered
+  hash and read complete §17.1 PDF 367–368 (printed 342–343) and the selected BEC
+  discussion PDF 405 (printed 380) as UTF-8 text. Complete PDF 368 and 405 pages
+  were visually inspected in memory, including preferred Poppler reinspection.
+  Uniform message identities and average error remain distinct from codeword-image
+  uniformity and maximum error. The private total BEC fallback gives error ε/2.
+  The displayed BEC conditional-entropy omission and uniform-only optimizer
+  wording at complete erasure are not adopted: production retains the correct
+  erasure weighting without uniqueness. Initial consumer/interface/static and
+  documentation checks and full maintained trust passed. The accepted original
+  independent report and substantive reconciliation passed without findings. The
+  reviewer separately hash-verified/text-read the selected references and visually
+  inspected complete PW24 PDF 367, 368 and 405 pages; its additional PDF 367 visual
+  check is distinct from the parent support above. Parent support totals nine text/
+  six visual pages across both books; reviewer reading totals nine text/seven visual
+  pages. Fresh final static/applicability, capture and supported closure remain
+  required. No extracts/renders were saved.
+- Historical C23.04 adaptation snapshot, subsequently closed by its actual record: Section 17.4, Theorem 17.3, printed 348–349 /
+  PDF 373–374, was freshly text-read at the verified registered hash by read-only
+  parent support. Complete PDF 373 was also visually inspected in memory;
+  no render or extraction artifact was saved. Existing undivided Fano and its
+  positive-rate consequence avoid division by `1-Pe`; eventual positive lengths
+  and the derived positive lower rate justify the quantitative error bound.
+  The displayed indicator/probability mismatch is retained as a source adaptation,
+  without replacing the existing decoding-error semantics. The selected pages
+  do not state the arbitrary-family frequent-gap theorem; C23 derives it from
+  the tolerance cap under hypothetical vanishing error, with no bounded-rate
+  premise or eventual-floor conclusion. Initial validation and full maintained
+  trust passed. The accepted original independent report satisfied all three
+  criteria without findings; substantive reconciliation is complete. The reviewer
+  separately verified the hash/extracted relevant pages and inspected the PDF 373
+  weak-converse context; its observations remain distinct from the parent
+  support's explicitly recorded visual inspection. Fresh final static/applicability
+  and supported closure remain required.
 - Section 7.3, Theorem 7.7: total variation characterizations and coupling.
 - Recorded C10 use: Theorem 7.7(a), equation (7.18), printed pages 122--123 /
   PDF pages 147--148, supplies attained event and bounded-test forms. C10 uses

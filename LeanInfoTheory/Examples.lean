@@ -11,6 +11,9 @@ Author: Serhat Emre Coban
 
 import LeanInfoTheory.Examples.ChannelOptimization
 import LeanInfoTheory.Examples.ChannelCapacity
+import LeanInfoTheory.Examples.ChannelCode
+import LeanInfoTheory.Examples.ChannelCoding
+import LeanInfoTheory.Examples.ChannelCodingAsymptotic
 import LeanInfoTheory.Examples.AEP
 import LeanInfoTheory.Examples.CodingRate
 import LeanInfoTheory.Examples.SourceCoding
@@ -55,6 +58,26 @@ import LeanInfoTheory.Examples.Units
 
 /-!
 # Examples aggregate
+
+Focused channel-code consumers use the actual sampling laws and Fano error
+interface, including unequal encoder fibers, singleton messages and zero/one
+blocklengths.
+
+Finite channel-coding consumers pass a colliding correlated two-letter code
+through the public Markov, Fano and capacity interfaces, including boundary
+applications of the undivided converse. They also apply that bound with the
+noiseless, input-independent-output, BSC and BEC capacity formulas, checking actual
+one-letter errors, total erasure fallback, noise endpoints and an interior value.
+
+Channel-coding asymptotic consumers use actual singleton-message and lossless
+noiseless code families, including rates that do not converge, to exercise both
+the eventual tolerance bound and real limsup interface. The same alternating
+lossless family composes its actual sampling, input, error, information and
+finite-bound interfaces with those limit conclusions.
+
+Above-capacity consumers apply the public quantitative bound to positive-capacity
+noiseless codes and separate it from intermittent unbounded rates on a
+zero-capacity channel, with infinitely many error-zero lengths.
 
 Asymptotic source-coding consumers use one public code-family witness for both
 vanishing error and eventual rate bounds, including pure and sparse sources.

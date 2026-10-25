@@ -1,9 +1,107 @@
 # Post-Release Chunk Map: Quantitative and Operational Information Theory
 
-**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-24. Detailed C9--C22 revision-2 plans were separately approved; C23--C24 remain proposed.
+**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-25. Detailed C9--C23 revision-2 plans were separately approved; C24 remains proposed.
 **Review follow-up:** C18/C23 clarifications accepted for this map; the 16-chunk structure is unchanged.
 **Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md), [C12 plan](post-release-chunk-12.md), [C13 plan](post-release-chunk-13.md), [C14 plan](post-release-chunk-14.md), [C15 plan](post-release-chunk-15.md), [C16 plan](post-release-chunk-16.md), [C17 plan](post-release-chunk-17.md), [C18 plan](post-release-chunk-18.md), [C19 plan](post-release-chunk-19.md) and eligible step requests own their respective execution.
-**Execution:** C21 and C22.01–C22.07 are closed; only C22.08 with review is selected.
+**Execution:** Only C23.06 is selected; C23.01–C23.05 remain closed. The separately approved initial scoped checkpoint `beb99362718489c17dfe150e5c8be0281ab34aa3` passed the complete maintained clean routine. The current local two-pass API build/check gate passed, and the parent substantively inspected all 36 new rendered signatures, hypotheses, result types, docstrings, owners and source links.
+
+The exact local C23-only checkpoint, necessary bounded amendments/full clean reruns, reuse of the existing registered validation checkout and separate local API milestone were approved by the actual reply “yes, i approve”. Push, release, publication, C24 and external-project upgrades remain unapproved.
+
+Every bounded amendment, including these documentation updates, requires the entire clean rerun and renewed API applicability before R; rerun the API gate if invalidated. Fresh original review of all 21 criteria, substantive all-criterion reconciliation and final qualification/applicability/capture remain pending. Only actual `.lit-review/setup/c23-06-completion-20261025.json` and its linked genuine original records determine completion; no cumulative SAT assessment or future result is predicted.
+
+The [handoff](../handoffs/chunk-23.md) owns exact delivered/deferred interfaces and C24 prerequisites. Inventory remains 811/57, root exports 92 and reviewed simp names 94.
+
+**Historical C23.05 qualification wording before supported closure:** C22 and C23.01–C23.04 are closed by actual source-bound records.
+C23.04 closure is `7284109da2b6bfc1b3aec2fc76524ce211312d99ec0d0943b677cb110c15a2d1`
+at `.lit-review/setup/c23-04-completion-20261025.json`; all 291 predecessor
+source/environment entries were freshly checked before admitting only C23.05.
+Private consumers reconcile the unchanged finite/converse/family interfaces,
+all four standard capacities and actual errors, retaining earlier adversarial
+fixtures. Finite consumer03, composition02, the eight-target build, all 36 focused/
+full contract probes, generation/static checks and all nine documentation examples
+passed. Full maintained trust passed. The accepted original independent report
+satisfied all three criteria without findings; core/substantive parent reconciliation
+is complete, with ten passing observations and the unused JSON-shape diagnostic
+distinguished. Fresh final static validation, applicability and capture remain
+required; supported closure is authoritative only through actual
+`.lit-review/setup/c23-05-completion-20261025.json` when present. Inventory
+remains 811/57,
+root exports 92 and reviewed simp names 94. C23.06 and C24 remain unselected;
+no clean checkpoint, expensive API-doc gate or publication is selected.
+
+**Historical C23.04 qualification wording before supported closure:** C22 and C23.01–C23.03 are complete by actual source-bound
+records. C23.03's actual closure is
+`b69457637d0a7fde431adde3b0d97e5a86b1ae1ea7b6d4c94cbcf4743669eb13`
+at `.lit-review/setup/c23-03-completion-20261025.json`; all 291 predecessor final-
+source/environment entries were freshly checked before admitting only C23.04.
+The existing asymptotic owner now adds quantitative eventual/floor/nonvanishing
+and frequent fixed-gap error obstructions, with actual positive-capacity and
+unbounded intermittent-family consumers. Corrected producer/consumer and aggregate
+builds, all four focused/full signatures/axioms/owners, legacy rate/unit owners,
+generation/static checks and all nine documentation examples passed. Inventory
+is 811/57, root exports 92 and reviewed simp names 94. Full maintained trust
+passed, and the accepted original report satisfied all three criteria with no
+findings; core and substantive parent reconciliation is complete. No
+mathematical/API correction is selected. Fresh final static/applicability checks
+are still required before final capture. Supported closure is authoritative only
+through the actual `.lit-review/setup/c23-04-completion-20261025.json` when it
+exists; no final qualification or closure is predicted. C23.05–C23.06 and C24 remain unselected;
+C24 remains proposed. No clean checkpoint, expensive API-documentation gate or
+publication is selected.
+
+**Historical C23.03 qualification wording before supported closure:**
+C22 and C23.01–C23.02 are complete by actual source-bound
+completion chains. C23.02's actual closure is
+`5e0f0b0341c7b519e135c85b92c4d5b42ab2341ba04f57cfd9c8d2e7ebbce045`,
+recorded in `.lit-review/setup/c23-02-completion-20261024.json`.
+The lead conditionally requested exactly C23.03 with review; the parent verified
+predecessor closure and all 289 final-source/environment entries before admission.
+Only Step 3 is selected. Its two vanishing-error tolerance/real-limsup endpoints,
+private derived bound and actual singleton/alternating lossless-family consumers
+have passed maintained producer/consumer/aggregate builds, focused and full
+Shannon signature/axiom probes, new and legacy rate/unit owner checks, generated/
+static validation and all five README/four guide examples. Full maintained trust
+passed, and the accepted original independent report assessed all four criteria
+as satisfied with no findings. Substantive parent reconciliation is complete;
+no mathematical correction is selected. A final fresh static check and
+documentation/source applicability assessment are still required before final
+capture. Supported closure is authoritative only through the actual
+`.lit-review/setup/c23-03-completion-20261025.json` when it exists; no final static
+result or closure is predicted. C23.04–C23.06 and C24
+remain unselected; C24's plan remains proposed. Clean-checkpoint, expensive
+API-documentation and publication boundaries retain separate authority.
+
+**Historical C23.02 qualification wording before supported closure:**
+C22 and C23.01 are complete by their actual source-bound
+completion chains. C22's checkpoint is
+`b6ae0084b2ba24cb0130f64acdbfc7f46767581d`; C23.01's actual closure is
+`ef8bd0ac9d8e3d8fd9e4c0b8f352c2959f125821dca53f5074f9a29d4674e52c`,
+recorded in `.lit-review/setup/c23-01-completion-20261024.json`.
+The lead accepted the [C23 revision-2 plan](post-release-chunk-23.md) and
+conditionally requested Step 2 with review. After verifying predecessor closure
+and all 287 final-source/environment entries, the parent admitted only C23.02.
+Its maintained producer/consumer and Shannon/Examples aggregate builds, all seven
+focused/umbrella signature/axiom probes, static/generated checks and five README/
+four guide examples and full maintained trust passed. The accepted original
+independent report assessed all four criteria as satisfied with no findings;
+parent substantive reconciliation is complete. Final documentation applicability,
+final validation and supported C23.02 closure remain conditional on the actual
+`.lit-review/setup/c23-02-completion-20261024.json` and linked evidence. No final
+static outcome or closure is predicted here. C23.03–C23.06 remain unselected; C24 remains proposed and unselected.
+The mathematical programme and separate clean/API/publication boundaries remain
+unchanged.
+
+**Historical C23.01 review-ready wording before supported closure:**
+C22 is complete by its actual source-bound completion chain at
+`b6ae0084b2ba24cb0130f64acdbfc7f46767581d`. The lead accepted the
+[C23 revision-2 plan](post-release-chunk-23.md) and selected only C23.01 with
+review. Its initial validation and original four-criterion independent review
+are complete; reconciliation, final applicability and scoped closure are
+established only by `.lit-review/setup/c23-01-completion-20261024.json` and
+linked actual records. C23.02–C23.06 and C24 remain unselected. The map's
+mathematical programme and separate clean/API/publication boundaries are unchanged.
+
+**Historical C22.08 milestone wording before supported closure:**
 C22.01–C22.07 and their reviews are closed by actual source-bound records.
 Only C22.08 is selected. The maintained [C22 handoff](../handoffs/chunk-22.md) records the
 26 public additions, four owners, permanent consumers, source adaptations and
