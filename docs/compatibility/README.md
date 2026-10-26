@@ -297,3 +297,32 @@ dependencies provide cooperative provenance, not hostile-process isolation or
 cryptographic attestation of compiled artifacts. Current inventory generation
 alone does not approve architecture/attribute growth. No mathematical declaration,
 supported import, facade alias or dependency is added by C9.01.
+
+
+## Unpublished v0.2.0 candidate retention
+
+The [candidate contract](../v0.2-release-contract.md) specifies the fixed metadata
+states and complete next-release surface. It preserves this directory's immutable
+v0.1.0 artifact and checker separately. Candidate retention is currently pending;
+the new checker reports NOT_ESTABLISHED until the separately reviewed canonical
+contract and digest/checkpoint envelope are retained at C24.07.
+
+```powershell
+python -B scripts/check_candidate_api_compatibility.py check
+python -B scripts/check_candidate_api_compatibility.py capture --output tmp/candidate-experiment.json
+python -B scripts/compatibility/test_candidate_contract.py
+python -B scripts/test_release_state.py
+python -B scripts/compatibility/run_candidate_fixtures.py --output tmp/candidate-fixture-fresh
+```
+
+Capture requires a new ignored output path, records all current elaborated types
+and compiled reviewed boundaries, and never creates approval. Dirty or isolated
+captures are experimental and cannot approve a clean export checkpoint. The real
+fixture requires a compiling post-v0.1 signature change with stable name/owner/
+count, a declaration-specific structural refusal and successful restored control.
+Source identities distinguish invariant producer inputs from observed lifecycle,
+canonical outputs and containing commit, avoiding recursive fingerprints. Full
+validation still binds actual state and canonical files when present. Types alone
+do not prove unchanged definition bodies or mathematical meaning. Compiler
+equivalence retains strict version/full-commit/build-mode checks while treating
+the recorded platform target as provenance.

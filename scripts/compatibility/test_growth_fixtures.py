@@ -92,54 +92,152 @@ class GrowthFixtureTests(unittest.TestCase):
         self.assertEqual((self.source / growth.POLICY).read_bytes(), self.originals[growth.POLICY])
         self.load_policy()
 
-    def test_approved_module_has_exact_two_records_and_grows_current_surface(self):
-        growth.add_module(self.source, approved=True)
+    def test_approved_module_extends_current_approval_and_preserves_prior_evidence(self):
+        old_policy = json.loads(self.originals[growth.POLICY])
+        old_records = old_policy["import_approvals"]
+        old_by_owner = {item["owner"]: item for item in old_records}
+        old_umbrella = old_by_owner[growth.UMBRELLA_MODULE]
+        self.assertEqual(growth.add_module(self.source, approved=True), "IMPORT_APPROVAL_MISMATCH")
         self.generate()
         current = growth.check_growth_inventory(self.source, self.baseline, "approved_module")
         self.assertEqual(current["supported_module_count"], self.baseline["supported_module_count"] + 1)
         policy = json.loads((self.source / growth.POLICY).read_bytes())
-        old_records = json.loads(self.originals[growth.POLICY])["import_approvals"]
-        records = policy["import_approvals"][len(old_records):]
-        self.assertEqual({item["kind"] for item in records}, {"umbrella_addition", "new_module"})
-        self.assertEqual({item["owner"] for item in records}, {"LeanInfoTheory.Shannon", growth.MODULE})
-        self.assertTrue(all(item["consumer"].endswith(growth.NEW_NAME) for item in records))
-        self.assertTrue(all(item["approval_reference"].startswith("fixture-only:") for item in records))
-        self.assertEqual(growth.source_imports(self.source, growth.MODULE_PATH),
-                         {"local": [growth.MODULE_IMPORT], "external": []})
+        records = policy["import_approvals"]
+        by_owner = {item["owner"]: item for item in records}
+        self.assertEqual(len(records), len(old_records) + 1)
+        self.assertEqual(len(by_owner), len(records))
+        self.assertEqual([item["owner"] for item in records[:-1]],
+                         [item["owner"] for item in old_records])
+        for owner, original in old_by_owner.items():
+            if owner != growth.UMBRELLA_MODULE:
+                self.assertEqual(by_owner[owner], original)
+        for field in old_policy.keys() - {"import_approvals"}:
+            self.assertEqual(policy[field], old_policy[field])
+        umbrella = by_owner[growth.UMBRELLA_MODULE]
+        self.assertEqual(umbrella["kind"], "umbrella_addition")
+        self.assertEqual(umbrella["imports"], growth.source_imports(self.source, growth.UMBRELLA))
+        for field in ("rationale", "consumer", "approval_reference"):
+            self.assertTrue(umbrella[field].startswith(old_umbrella[field] + "\n"))
+        self.assertTrue(umbrella["approval_reference"].endswith(growth.FIXTURE_APPROVAL))
+        new_module = by_owner[growth.MODULE]
+        self.assertEqual(new_module["kind"], "new_module")
+        self.assertEqual(new_module["approval_reference"], growth.FIXTURE_APPROVAL)
+        self.assertTrue(new_module["consumer"].endswith(growth.NEW_NAME))
+        self.assertEqual(new_module["imports"], {"local": [growth.MODULE_IMPORT], "external": []})
         self.load_policy()
 
+    def test_historical_umbrella_without_approval_gets_two_fixture_records(self):
+        # Construction-only historical branch: use the exact retained umbrella
+        # imports. This is not qualification of the modern whole source tree.
+        retained = json.loads((self.source / "docs/compatibility/v0.1.0-retained-contract.json").read_bytes())
+        imports = retained["direct_imports"][growth.UMBRELLA_MODULE]
+        umbrella = self.source / growth.UMBRELLA
+        lines = umbrella.read_text(encoding="utf-8").splitlines(keepends=True)
+        umbrella.write_text("".join(line for line in lines if not line.startswith("import ")
+                                   or line.removeprefix("import ").strip()
+                                   in imports["local"] + imports["external"]), encoding="utf-8", newline="\n")
+        self.assertEqual(growth.source_imports(self.source, growth.UMBRELLA), imports)
+        policy = json.loads(self.originals[growth.POLICY])
+        policy["import_approvals"] = [item for item in policy["import_approvals"]
+                                      if item["owner"] != growth.UMBRELLA_MODULE]
+        (self.source / growth.POLICY).write_bytes(growth.check.encode(policy))
+        historical_originals = {path: (self.source / path).read_bytes() for path in growth.RESTORED}
+        self.assertEqual(growth.add_module(self.source, approved=True), "IMPORT_APPROVAL_REQUIRED")
+        changed = json.loads((self.source / growth.POLICY).read_bytes())
+        records = changed["import_approvals"][len(policy["import_approvals"]):]
+        self.assertEqual(changed["import_approvals"][:-2], policy["import_approvals"])
+        self.assertEqual([item["owner"] for item in records], [growth.UMBRELLA_MODULE, growth.MODULE])
+        self.assertEqual({item["kind"] for item in records}, {"umbrella_addition", "new_module"})
+        self.assertTrue(all(item["approval_reference"] == growth.FIXTURE_APPROVAL for item in records))
+        self.assertEqual(records[0]["imports"], growth.source_imports(self.source, growth.UMBRELLA))
+        growth.restore_source(self.source, historical_originals)
+        self.assertFalse((self.source / growth.MODULE_PATH).exists())
+        self.assertEqual({path: (self.source / path).read_bytes() for path in historical_originals},
+                         historical_originals)
+
     def test_matched_unapproved_case_keeps_identical_sources_and_inventory(self):
-        growth.add_module(self.source, approved=True)
+        expected_refusal = growth.add_module(self.source, approved=True)
+        self.assertEqual(expected_refusal, "IMPORT_APPROVAL_MISMATCH")
         self.generate()
         self.load_policy()
         paths = (growth.MODULE_PATH, growth.UMBRELLA, growth.GENERATED[0])
         approved = growth.hashes(self.source, paths)
         (self.source / growth.POLICY).write_bytes(self.originals[growth.POLICY])
         self.generate()
+        self.assertEqual((self.source / growth.POLICY).read_bytes(), self.originals[growth.POLICY])
         self.assertEqual(growth.hashes(self.source, paths), approved)
         growth.check_growth_inventory(self.source, self.baseline, "unapproved_module")
         text = self.load_policy(expected=1)
-        self.assertIn("IMPORT_APPROVAL_REQUIRED: LeanInfoTheory.Shannon", text)
+        self.assertTrue(growth.is_import_policy_refusal(text, expected_refusal))
+        self.assertFalse(growth.is_import_policy_refusal(text, "IMPORT_APPROVAL_REQUIRED"))
 
     def test_new_module_does_not_change_root_and_has_header_import(self):
         root_before = (self.source / "LeanInfoTheory.lean").read_bytes()
-        growth.add_module(self.source, approved=False)
+        self.assertEqual(growth.add_module(self.source, approved=False), "IMPORT_APPROVAL_MISMATCH")
         text = (self.source / growth.MODULE_PATH).read_text(encoding="utf-8")
         self.assertLess(text.index("import " + growth.MODULE_IMPORT), text.index("namespace "))
         self.assertIn("/-- A documented declaration", text)
         self.assertEqual((self.source / "LeanInfoTheory.lean").read_bytes(), root_before)
         self.assertEqual((self.source / growth.POLICY).read_bytes(), self.originals[growth.POLICY])
 
-    def test_existing_fixture_module_and_conflicting_approval_are_refused(self):
+    def assert_module_refused_without_writes(self, diagnostic):
+        paths = (*growth.RESTORED, growth.MODULE_PATH)
+        def observed():
+            return {path: (self.source / path).read_bytes() if (self.source / path).is_file() else None
+                    for path in paths}
+        before = observed()
+        with self.assertRaisesRegex(ValueError, diagnostic):
+            growth.add_module(self.source, approved=True)
+        self.assertEqual(observed(), before)
+
+    def test_existing_fixture_module_and_import_are_refused_without_writes(self):
         growth.add_module(self.source, approved=True)
-        with self.assertRaisesRegex(ValueError, "must start from restored"):
-            growth.add_module(self.source, approved=True)
+        self.assert_module_refused_without_writes("must start from restored")
         growth.restore_source(self.source, self.originals)
-        value = json.loads(self.originals[growth.POLICY])
-        value["import_approvals"].append({"owner": "LeanInfoTheory.Shannon"})
-        (self.source / growth.POLICY).write_text(json.dumps(value), encoding="utf-8")
-        with self.assertRaisesRegex(ValueError, "conflicts with existing owner"):
-            growth.add_module(self.source, approved=True)
+        umbrella = self.source / growth.UMBRELLA
+        umbrella.write_text(growth.previous.insert_header_import(
+            umbrella.read_text(encoding="utf-8"), growth.MODULE), encoding="utf-8", newline="\n")
+        self.assert_module_refused_without_writes("must start from restored")
+
+    def test_invalid_or_conflicting_policy_is_refused_before_source_writes(self):
+        base = json.loads(self.originals[growth.POLICY])
+        owner = next(item for item in base["import_approvals"] if item["owner"] == growth.UMBRELLA_MODULE)
+        cases = []
+        malformed = copy.deepcopy(base)
+        malformed["import_approvals"].append({"owner": growth.MODULE})
+        cases.append((malformed, "POLICY_SCHEMA"))
+        duplicate = copy.deepcopy(base)
+        duplicate["import_approvals"].append(copy.deepcopy(owner))
+        cases.append((duplicate, "POLICY_DUPLICATE"))
+        wrong_identity = copy.deepcopy(base)
+        wrong_identity["baseline_identity"]["release_commit"] = "wrong"
+        cases.append((wrong_identity, "POLICY_IDENTITY"))
+        for mode in ("stale", "kind", "prior_fixture"):
+            policy = copy.deepcopy(base)
+            item = next(item for item in policy["import_approvals"] if item["owner"] == growth.UMBRELLA_MODULE)
+            if mode == "stale":
+                item["imports"]["local"].pop()
+            elif mode == "kind":
+                item["kind"] = "focused_exception"
+            else:
+                item["approval_reference"] += "\n" + growth.FIXTURE_APPROVAL
+            cases.append((policy, "already present" if mode == "prior_fixture" else "does not match original source"))
+        missing = copy.deepcopy(base)
+        missing["import_approvals"] = [item for item in missing["import_approvals"]
+                                       if item["owner"] != growth.UMBRELLA_MODULE]
+        cases.append((missing, "unapproved preexisting umbrella growth"))
+        prior_module = copy.deepcopy(base)
+        prior_module["import_approvals"].append({"owner": growth.MODULE, "kind": "new_module",
+            "imports": {"local": [growth.MODULE_IMPORT], "external": []},
+            "rationale": "Prior fixture", "consumer": growth.NEW_NAME,
+            "approval_reference": growth.FIXTURE_APPROVAL})
+        cases.append((prior_module, "conflicts with existing owner"))
+        for policy, diagnostic in cases:
+            with self.subTest(diagnostic=diagnostic):
+                (self.source / growth.POLICY).write_bytes(growth.check.encode(policy))
+                self.assert_module_refused_without_writes(diagnostic)
+        (self.source / growth.POLICY).write_bytes(b'{"schema":1,"schema":2}')
+        self.assert_module_refused_without_writes("duplicate JSON key")
 
     def test_restoration_removes_only_new_module_and_restores_exact_bytes(self):
         growth.add_module(self.source, approved=True)
@@ -170,18 +268,39 @@ class GrowthFixtureTests(unittest.TestCase):
 
     def test_failed_negative_gate_requires_exact_policy_cause(self):
         out = Path(self.temporary.name)
-        for text, exit_code, accepted in (("IMPORT_APPROVAL_REQUIRED: LeanInfoTheory.Shannon; expected=old, actual=current", 1, True),
-                                          ("compiler failed", 1, False),
-                                          ("IMPORT_APPROVAL_REQUIRED: LeanInfoTheory.Shannon", 0, False),
-                                          ("IMPORT_APPROVAL_REQUIRED: LeanInfoTheory.Basic", 1, False),
-                                          ("IMPORT_APPROVAL_REQUIRED: LeanInfoTheory.ShannonOther", 1, False)):
-            with self.subTest(text=text, exit_code=exit_code), patch.object(growth, "run", return_value={"exit_code": exit_code}), \
-                    patch.object(growth, "output_text", return_value=text):
-                if accepted:
-                    growth.maintained_gate(self.source, out, "static", approved=False)
-                else:
-                    with self.assertRaisesRegex(ValueError, "specifically for missing import approval"):
-                        growth.maintained_gate(self.source, out, "static", approved=False)
+        for expected in sorted(growth.IMPORT_REFUSALS):
+            other = next(code for code in growth.IMPORT_REFUSALS if code != expected)
+            cases = ((expected + ": LeanInfoTheory.Shannon; expected=old, actual=current", 1, True),
+                     ("compiler failed", 1, False),
+                     (expected + ": LeanInfoTheory.Shannon", 0, False),
+                     (other + ": LeanInfoTheory.Shannon", 1, False),
+                     ("NOT_" + expected + ": LeanInfoTheory.Shannon", 1, False),
+                     (expected + ": LeanInfoTheory.Basic", 1, False),
+                     (expected + ": LeanInfoTheory.ShannonOther", 1, False))
+            for gate in ("static", "trust", "compatibility"):
+                for text, exit_code, accepted in cases:
+                    with self.subTest(expected=expected, gate=gate, text=text, exit_code=exit_code), \
+                            patch.object(growth, "run", return_value={"exit_code": exit_code}), \
+                            patch.object(growth, "output_text", return_value=text):
+                        if accepted:
+                            growth.maintained_gate(self.source, out, gate, approved=False, expected_refusal=expected)
+                        else:
+                            with self.assertRaisesRegex(ValueError, "did not refuse specifically"):
+                                growth.maintained_gate(self.source, out, gate, approved=False, expected_refusal=expected)
+            # Synthetic-doc attribution uses the same strict helper as the gates.
+            for text, exit_code, accepted in cases:
+                with self.subTest(expected=expected, stage="synthetic-docs", text=text):
+                    if accepted:
+                        growth.require_import_policy_refusal(exit_code, text, expected, "synthetic docs")
+                    else:
+                        with self.assertRaisesRegex(ValueError, "did not refuse specifically"):
+                            growth.require_import_policy_refusal(exit_code, text, expected, "synthetic docs")
+        with patch.object(growth, "run") as run:
+            with self.assertRaisesRegex(ValueError, "needs its exact expected"):
+                growth.maintained_gate(self.source, out, "static", approved=False)
+            run.assert_not_called()
+        with self.assertRaisesRegex(ValueError, "unknown expected"):
+            growth.is_import_policy_refusal("anything", "IMPORT_APPROVAL_KIND")
 
     def test_record_creation_is_exclusive(self):
         path = Path(self.temporary.name) / "record.json"
@@ -196,16 +315,27 @@ class GrowthFixtureTests(unittest.TestCase):
                           "approved_module": ["static", "trust"],
                           "unapproved_module": ["static", "trust", "compatibility"]}
         for case, commands in expected_gates.items():
-            with self.subTest(case=case), patch.object(growth, "maintained_gate", return_value={"exit_code": 1 if case == "unapproved_module" else 0}) as gate:
-                result = growth.qualification_gates(self.source, out, case)
-                self.assertEqual([call.args[2] for call in gate.call_args_list], commands)
-                self.assertTrue(all(call.kwargs["approved"] == (case != "unapproved_module")
-                                    for call in gate.call_args_list))
-                if case == "unchanged":
-                    self.assertIsNone(result["trust_exit"])
-                    self.assertEqual(result["trust_status"], "NOT_RUN")
-                else:
-                    self.assertEqual(result["trust_status"], "EXPECTED_POLICY_REFUSAL" if case == "unapproved_module" else "PASS")
+            expectations = sorted(growth.IMPORT_REFUSALS) if case == "unapproved_module" else [None]
+            for expected in expectations:
+                with self.subTest(case=case, expected=expected), patch.object(
+                        growth, "maintained_gate",
+                        return_value={"exit_code": 1 if case == "unapproved_module" else 0}) as gate:
+                    result = growth.qualification_gates(self.source, out, case, expected_refusal=expected)
+                    self.assertEqual([call.args[2] for call in gate.call_args_list], commands)
+                    self.assertTrue(all(call.kwargs["expected_refusal"] == expected
+                                        for call in gate.call_args_list))
+                    self.assertTrue(all(call.kwargs["approved"] == (case != "unapproved_module")
+                                        for call in gate.call_args_list))
+                    if case == "unchanged":
+                        self.assertIsNone(result["trust_exit"])
+                        self.assertEqual(result["trust_status"], "NOT_RUN")
+                    else:
+                        self.assertEqual(result["trust_status"],
+                                         "EXPECTED_POLICY_REFUSAL" if case == "unapproved_module" else "PASS")
+        with patch.object(growth, "maintained_gate") as gate:
+            with self.assertRaisesRegex(ValueError, "needs its exact expected"):
+                growth.qualification_gates(self.source, out, "unapproved_module")
+            gate.assert_not_called()
 
     def test_unchanged_consumer_requests_fresh_focused_owner_build(self):
         out = Path(self.temporary.name)

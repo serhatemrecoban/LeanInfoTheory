@@ -6,6 +6,117 @@ help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
 
+<!-- c24-04-log:start -->
+## C24.04 unpublished candidate contract and routing prepared, 2026-10-26
+
+The fresh Step 4 request was admitted after exact successful C24.03 closure,
+original all-three/all-47 review and final-source verification. The fixed v0.2.0
+contract supplies explicit metadata states and complete 0.2.x compatibility.
+Preparation retains actual package/CFF at v0.1.0. Full-surface candidate retention
+uses the unchanged structural exporter plus reviewed compiled boundaries; its
+canonical artifact/envelope is deliberately pending Step 7. Capturing experiment
+facts cannot approve a baseline. Historical 601 types and configuration guards
+remain, with only the exact later package-version line projected narrowly.
+
+Isolated candidate staging distinguishes current, frozen stable v0.1.0 and a
+reserved v0.2.0 placeholder, checks clean exact detached HEAD without fake CI,
+and refuses publication. Source/configuration/raw artifact and frozen identities
+have independent safety controls. The real compiling post-v0.1 signature-mutation
+regression is separate from schema/HTML/synthetic Git tests and later actual
+two-pass API qualification. The future private-file content proposal preserves
+local bytes and requires later exact Git-content approval. No primary index,
+commit, package/CFF, mathematical/API, import, attribute or pin changes occur.
+
+Original review, reconciliation and final qualification are authoritative only
+through actual `.lit-review/setup/c24-04-completion-20261026.json` and linked
+originals when present. Earlier delivery/byte limitations remain historical.
+No later step, clean/API milestone, publication or external upgrade is selected.
+<!-- c24-04-log:end -->
+
+<!-- c24-03-log:start -->
+## C24.03 capacity, weak converse and programme comparison prepared, 2026-10-26
+
+The conditional Step 3 request was admitted after exact C24.02 closure, original
+review/reconciliation, dispositions and final-source checks. The programme ledger
+enriches 43 C22/C23/X-05–06 rows, preserving all 148 earlier row objects and all
+276 mappings. Original review must assess 47 rows, including all six connections;
+25 historical/process rows remain reserved for C24.09. Exact 62-type export gives
+214 audited names across the three preserved/current artifacts: all 210 programme
+additions and four retained bridges. Seventeen strict permanent consumers and an
+eight-owner maintained compiled-import projection passed with incremental caches.
+
+Actual capacity attainment, correlated product inputs, standard endpoint formulas,
+unequal encoder fibers, zero-length/error-one finite bounds and derived real-limsup
+boundedness were inspected. The substantive first-release comparison records
+601 to 811 declarations (+34.94%), without scope expansion for rough doubling.
+Selected CT91/PW24 text/visual adaptations and distinct frozen-manifest physical
+hashes remain explicit, including the nonpassing initial equality diagnostic.
+
+Original all-three/all-47 review, reconciliation and final qualification are
+authoritative only through actual `.lit-review/setup/c24-03-completion-20261026.json`
+when present. Source/API, imports, attributes, pins and release metadata remain
+unchanged. No commit, publication, later step or external upgrade is selected.
+<!-- c24-03-log:end -->
+
+<!-- c24-02-log:start -->
+## C24.02 products, AEP and source-coding audit prepared, 2026-10-26
+
+The conditional Step 2 request was admitted only after exact C24.01 closure,
+original review/reconciliation, dispositions, controls and final-source applicability
+checks. The [ledger](qualification/c24-programme.md) prepares all 86 C16–C21 and
+X-02–04 rows, preserving the earlier 62 rows and all 276 mappings; 68 later rows
+remain unassessed. The new type audit covers 80 additions and two retained bridges.
+The 16-consumer strict build, two probability-only probes and explicitly scoped
+five-owner compiled import check passed with incremental caches. Supported product
+logs/variance, strict typical-set selection, the actual rounded code family/error/rate,
+source strong versus general converses and exact `IsGLB` semantics were inspected.
+CT91/PW24 conventions and the private/public witness distinction remain explicit.
+
+Original independent all-three/all-86 review, reconciliation and final qualification
+are authoritative only through actual `.lit-review/setup/c24-02-completion-20261026.json`
+when present. This audit changes no mathematical/API source, production tooling,
+imports, attributes, dependencies or release metadata. Earlier failures/deviations
+stay preserved; no commit, publication, later step or external upgrade is selected.
+<!-- c24-02-log:end -->
+
+<!-- c24-01-log:start -->
+## C24.01 programme inventory and quantitative audit prepared, 2026-10-26
+
+The lead accepted the [nine-step revision-2 plan](plans/post-release-chunk-24.md)
+and requested only Step 1 with review. Fresh admission checks verified actual C23
+closure, its original all-21 review/reconciliation, all 292 original source/
+environment entries and 33 linked hash/byte records. Older pending-status prose
+retains its dated scope; the two C24 planning files were intentional additions.
+
+The [programme ledger](qualification/c24-programme.md) maps all 260 execution
+criteria plus 16 separately named C9 contracts/context items into 216 stable rows.
+C24.01 prepares evidence for 62 C9–C15/process/X-01 rows; later mathematics remains
+unassessed. The exact 70-name structural audit includes all 68 additions through
+C15 and the retained Fano/product interfaces used by their proofs.
+
+Fourteen permanent consumers passed a fresh strict focused build. The full current
+trust gate passed all 601 retained types, 57 direct-import contracts, 811 current
+declarations/94 simp names, 92 root exports and all 4,064 local constants in 106
+modules with only the three allowed axioms. Separate focused/umbrella topology
+instance probes and the unchanged direct type exporter passed. Existing incremental
+caches are explicit; no clean-candidate or API milestone is claimed here.
+
+Current regression work exposed an obsolete growth-fixture assumption that no
+Shannon approval already existed. The bounded helper/test correction preserves
+prior approval evidence, validates before private mutation and requires the exact
+baseline-derived missing-versus-mismatched refusal. Its 22 tests pass. The initial
+four-error result, a subsequent two-failure preservation regression and an abandoned
+private combined-probe harness remain separately recorded in the [notes](plans/post-release-chunk-24-notes.md).
+The production policy/checker and all mathematical declarations/imports/attributes/
+pins remain unchanged; unrelated intake hunks and private website-task bytes are
+preserved.
+
+Original independent review/reconciliation, final static/source applicability and
+supported closure are established only by actual
+`.lit-review/setup/c24-01-completion-20261026.json` and its linked records when
+present. No later step, commit or publication is selected.
+<!-- c24-01-log:end -->
+
 ## C23.06 authorized initial milestones passed; cumulative review/final qualification pending, 2026-10-25
 
 The separately approved initial scoped checkpoint `beb99362718489c17dfe150e5c8be0281ab34aa3` passed the complete maintained clean routine. The current local two-pass API build/check gate passed, and the parent substantively inspected all 36 new rendered signatures, hypotheses, result types, docstrings, owners and source links.
@@ -17844,3 +17955,35 @@ resolution.
     The full milestone consumers use the existing sufficiency-facing surface,
     so neither the generic marginal-recovery theorem nor the deterministic
     convenience crosses its promotion threshold.
+
+
+## 2026-10-26 — C24.05 documentation and unpublished metadata preparation
+
+Fresh conditional Step5 admission follows exact successful C24.04 closure,
+original three-criterion review/reconciliation and345-entry final-source match.
+Prepared candidate notes, current README/import guidance, existing website
+coverage, metadata/handoff matrix and approval-pending public PFR summary.
+Package/CFF transition is explicitly unpublished0.2.0 with no issued date/DOI,
+retention pending and stablev0.1.0 unchanged. Narrow exact-version edit recording
+retains configuration guards; preparation tests are independent of live phase.
+Actual check/review/final closure evidence is retained under the owned Step5
+private records and `.lit-review/setup/c24-05-completion-20261026.json` when
+present. No predicted independent verdict, clean/API qualification, primary
+Git action, PFR upgrade/private disclosure, publication or Step6 selection.
+
+
+## 2026-10-26 — C24.06 external-consumer fixture preparation
+
+Step5 closure/original review/reconciliation and current-source applicability
+were verified. Prepared a seven-module external Lake fixture and parameterized
+local-Git recipe covering retained/root, coupling/continuity, arbitrary/correlated
+product MI, one source-code family, attained/standard capacity, same-code weak
+converse and full-umbrella use. Exact checkpoint/location approval, resolved SHA,
+clean dependency/pin/origin evidence and actual external compilation are separate
+from private fixture preflight. Primary local/private bytes and unrelated hunks
+are preserved; future tree omission of the private working-material path changes
+no frozen release history. An admission packet failure remains consumed and
+requires fresh human admission; it is not repaired by editing workflow records.
+Independent review/reconciliation/final closure are established only by actual
+`.lit-review/setup/c24-06-completion-20261026.json` and originals when present.
+No full-clean/API milestone, candidate retention, publication or later step.

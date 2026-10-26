@@ -85,6 +85,7 @@ class StructuralContractTests(unittest.TestCase):
             one, two = root / "One.lean", root / "Two.lean"
             one.write_text("def one := 1\n", encoding="utf-8")
             with patch.object(check, "ROOT", root), patch.object(check, "INPUTS", ()), \
+                 patch.object(check.release_state, "validation_inputs", return_value=()), \
                  patch.object(check.blueprint, "lean_files", side_effect=lambda: sorted(root.glob("*.lean"))):
                 before = check.source_identity()
                 two.write_text("def two := 2\n", encoding="utf-8")

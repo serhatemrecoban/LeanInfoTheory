@@ -66,6 +66,37 @@ python scripts/validate_release.py static</code></pre>
         commit GitHub-source build.
       </p>
 
+      <h2 id="candidate-staging">Unpublished candidate staging</h2>
+      <p>
+        The <code>v0.2.0</code> candidate has 811 supported declarations across
+        57 modules. Its version/state contract is distinct from the frozen
+        <code>v0.1.0</code> release. Current source coverage is described in the
+        <a href="module-guide.html#candidate-modules">module guide</a>.
+      </p>
+      <p>
+        Candidate staging requires a separately authorized exact clean source
+        commit, including the approved candidate Git content, and explicit
+        independently validated frozen source and site roots. A local detached
+        checkout is supported without invented CI variables. Current API input
+        must have matching source, dependency, configuration and two-pass
+        attestation identities; stale bodies or docstrings invalidate it.
+      </p>
+      <p>
+        The local composition preserves <code>docs/v0.1.0/</code> byte-for-byte,
+        places current output under <code>docs/current/</code>, and leaves
+        <code>docs/v0.2.0/</code> reserved. It always has
+        <code>publishable=false</code> and <code>NOT_FOR_PUBLICATION</code>
+        markers. File-mode source links are sanitized; GitHub-mode links must
+        name the exact expected commit without implying remote availability.
+        Neither local staging nor a successful check authorizes deployment.
+      </p>
+      <p>
+        Actual candidate API/artifact qualification is a separate later
+        milestone. No generated current or reserved API is linked from these
+        tracked pages. The stable reference and guarded manual Pages workflow
+        keep their existing release boundaries.
+      </p>
+
       <h2>Project Hygiene</h2>
       <ul>
         <li>Local validation and CI share strict source, trust, API-boundary, generated-artifact, and hygiene gates.</li>

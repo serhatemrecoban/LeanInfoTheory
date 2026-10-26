@@ -830,6 +830,42 @@ class VersionedWebsiteBoundaryTests(unittest.TestCase):
         ):
             self.assertEqual(validate_current_maintenance_checkout(), self.SITE_COMMIT)
 
+    def test_publishable_contract_refuses_candidate_routes_without_markers(self) -> None:
+        for route in ("docs/current", "docs/v0.2.0"):
+            with self.subTest(route=route), tempfile.TemporaryDirectory(prefix="candidate-publish-refusal-") as raw:
+                site = self.make_composed_site(Path(raw))
+                self.assertEqual(self.validate_composed_contract(site).errors, [])
+                path = site / route / "index.html"
+                path.parent.mkdir(parents=True)
+                path.write_text("Unpublished candidate fixture.\n", encoding="utf-8")
+                validator = self.validate_composed_contract(site)
+                self.assertTrue(any("candidate routes cannot be published" in error for error in validator.errors))
+
+    def test_publishable_contract_refuses_root_nonpublication_marker(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="candidate-marker-refusal-") as raw:
+            site = self.make_composed_site(Path(raw))
+            self.assertEqual(self.validate_composed_contract(site).errors, [])
+            (site / "NOT_FOR_PUBLICATION.txt").write_text("Local candidate only.\n", encoding="utf-8")
+            self.assertTrue(any("NOT_FOR_PUBLICATION" in error
+                                for error in self.validate_composed_contract(site).errors))
+
+    def test_candidate_dependency_advisories_remain_exact_per_route(self) -> None:
+        historical = "docs/v0.1.0/Mathlib/Fixture.html: missing local link absent.html -> docs/v0.1.0/Mathlib/absent.html"
+        current = historical.replace("docs/v0.1.0/", "docs/current/")
+        digest = hashlib.sha256(historical.encode("utf-8")).hexdigest()
+        validator = WebsiteValidator(SITE_ROOT, "candidate")
+        validator.advisories = [historical, current]
+        with (patch("check_website.EXPECTED_DEPENDENCY_ADVISORY_COUNT", 1),
+              patch("check_website.EXPECTED_DEPENDENCY_MISSING_COUNT", 1),
+              patch("check_website.EXPECTED_DEPENDENCY_CASING_COUNT", 0),
+              patch("check_website.EXPECTED_DEPENDENCY_ADVISORY_SHA256", digest)):
+            validator.validate_advisory_baseline()
+            self.assertEqual(validator.errors, [])
+            validator.advisories.append(current.replace("absent.html", "unreviewed.html"))
+            validator.validate_advisory_baseline()
+            self.assertTrue(any("docs/current" in error and "baseline changed" in error
+                                for error in validator.errors))
+
 
 class DiscoveryTests(unittest.TestCase):
     def test_live_source_metadata_and_examples(self) -> None:

@@ -14,6 +14,7 @@ these tools together in a reusable finite-discrete API built on mathlib.
 **601 documented public declarations. 31 supported modules. A versioned release
 you can use today.** Definitions and theorems are checked by Lean; the release
 validation rejects proof placeholders. Stable release: **v0.1.0**.
+Current source: **811 declarations in 57 modules**, an **unpublished v0.2.0 candidate**.
 License: **Apache-2.0**.
 
 [Get started](#installation) ·
@@ -66,9 +67,9 @@ GitHub Release and issued the version DOI
 [`10.5281/zenodo.22229599`](https://doi.org/10.5281/zenodo.22229599). The
 all-versions DOI is
 [`10.5281/zenodo.22229598`](https://doi.org/10.5281/zenodo.22229598). The tagged
-`CITATION.cff` and GitHub Release intentionally remain DOI-free; the evolving
-default-branch citation metadata records the issued version DOI without moving
-the tag.
+`CITATION.cff` and GitHub Release intentionally remain DOI-free. After v0.1.0
+publication, default-branch citation metadata recorded the issued version DOI
+without moving the tag; the current CFF now describes the unpublished candidate.
 
 The released `v0.1.0` surface contains 31 modules, 601 documented
 project-owned declarations, 92 lightweight-root exports, and 94 reviewed
@@ -79,51 +80,27 @@ the versioned `/docs/v0.1.0/` route, with source links bound to the exact
 release commit. The release process also validates a clean exact checkout and
 a minimal external Lake consumer.
 
-Current development coverage is 647 documented declarations in 35 supported
-modules, with 94 reviewed `simp` declarations and 92 root aliases, recorded in
-[`docs/current-public-api.json`](docs/current-public-api.json). Completed C9
-added two generic helpers. Completed C10 supplies 25 finite total-variation
-declarations, including attained event and bounded-test forms, overlap/residual
-identities and map/common-channel contraction. Its focused import is
-`LeanInfoTheory.Probability.TotalVariation`; the
-[C10 handoff](docs/handoffs/chunk-10.md) records its completed validation and review.
+Current source coverage is **811 documented declarations in 57 supported
+modules**, with 94 reviewed `simp` declarations and 92 root aliases. This is an
+**unpublished v0.2.0 candidate**, not an available second release. The
+[candidate notes](docs/releases/v0.2.0.md) describe the 210 additions and 26 added
+modules, the retained v0.1.0 surface and the remaining qualification work.
 
-C11 and its reviews are complete at `bbead98`. Import
-`LeanInfoTheory.Probability.Coupling` for the generic `PMF.IsCoupling` predicate,
-independent and diagonal witnesses, swap, the coupling inequality, and
-`PMF.maximalCoupling` with exact marginals and disagreement equal to TV.
-The full Shannon umbrella includes this owner; the lightweight root is unchanged.
-The private `Examples.Coupling` and `Examples.CouplingFano` consumers exercise
-attained optimality, edge cases, Fano in both coordinate orders and existing
-product-measure semantics.
+The candidate adds total variation, maximal couplings and transport, Markov
+gluing, Pinsker, finite-alphabet continuity and topology; independent finite
+products and iid blocks; weak AEP and fixed-length source coding, including
+achievability above entropy and strong/general converses below entropy; and
+attained finite-channel information capacity, product/standard-channel formulas
+and finite/asymptotic deterministic channel-code weak converses. Source coding
+and channel coding have different delivered scope: channel achievability,
+operational capacity equality and a channel strong converse remain deferred.
 
-C12 and its reviews are complete at `492cd6e`. The same coupling import now
-provides heterogeneous coordinate transport and lifting through supplied
-coupling channels, with row conditions only on joint support.
-`Probability.FiniteChannel` provides whole-extension equality on middle support.
-Import `LeanInfoTheory.Shannon.SemanticBridge.Gluing` for a Markov triple with
-both prescribed pair marginals and only a finite final alphabet. Witness
-selection remains private. Maintained examples prove weighted contraction and
-show that maximal adjacent couplings need not give maximal endpoints after gluing.
-
-The [C12 handoff](docs/handoffs/chunk-12.md) records its completed qualification
-and original evidence. C13.01--C13.03 and their reviews are also complete.
-Import `LeanInfoTheory.Shannon.SemanticBridge.Pinsker` for Pinsker in nats:
-canonical `ENNReal` KL bounds `2 * TV²`, including infinite KL. The Real and
-square-root forms require `p.support ⊆ q.support`. Two further theorems bound
-TV from a joint law to the product of its marginals using its mutual information,
-with no public support or measurable-space assumptions beyond finite alphabets.
-The focused owner is included in the full Shannon umbrella; the root stays light.
-
-The approved [C13 plan](docs/plans/post-release-chunk-13.md) selects C13.04
-cumulative qualification. The lead authorized the 25-file local checkpoint and
-C13.04-only amendments. Initial checkpoint `17fb736a00448ecdd0aa824fd1928713bf716f01`
-passed the clean complete routine suite in 1975.056 seconds; both actual
-API-doc passes and inspection also passed. The
-[C13 handoff](docs/handoffs/chunk-13.md) records contracts, evidence and limits.
-Final amended-candidate validation, cumulative review, reconciliation and closure
-remain governed by source-bound private records. The frozen release below
-retains its historical scope and counts.
+These are mathematical existence and bound APIs. Canonical units are nats;
+the statements retain finite/nonempty, support and positive-budget assumptions.
+No efficient executable codec or complete textbook formalization is claimed.
+The [programme comparison](docs/qualification/c24-programme-comparison.md)
+records the delivered scope and precise limits. A larger inventory does not
+by itself establish semantic compatibility or a qualified release.
 
 Compatible additions extend current coverage; the released counts and
 [`frozen manifest`](docs/v0.1-public-api.json) remain historical. Current
@@ -169,6 +146,32 @@ toolchain during dependency resolution, so a consumer should not silently mix
 LeanInfoTheory `v0.1.0` with incompatible Lean, mathlib, or other fixed-toolchain
 dependencies. Use the immutable version tag rather than an untagged branch when
 reproducibility matters.
+
+### Trying the unpublished candidate locally
+
+The candidate is currently an inspected local working tree. There is no
+published v0.2.0 tag, DOI or qualified remote installation identity. To inspect
+this checkout with its pinned Lean/mathlib environment, run from its root:
+
+```sh
+lake exe cache get
+lake build LeanInfoTheory.Shannon
+```
+
+A separate project can instead point to an existing local checkout with the
+following path dependency, replacing the example path with its real location:
+
+```toml
+[[require]]
+name = "LeanInfoTheory"
+path = "../LeanInfoTheory"
+```
+
+Record the exact source tree and local changes used. A moving path dependency
+does not provide an immutable release identity. The marked examples below are
+checked in-tree; the separately qualified external-package candidate consumer
+belongs to the later C24 milestone. For published, reproducible use today, keep
+the v0.1.0 Git dependency above.
 
 ## Five-minute quick start
 
@@ -263,6 +266,10 @@ example {α : Type*} [Finite α]
 
 ## Choosing imports
 
+The table describes current source. Rows marked **Candidate** require the
+unpublished candidate; the frozen v0.1.0 manifest gives the exact historical
+release surface. Umbrella imports load the supported stack of the version used.
+
 | Import | Intended use |
 | --- | --- |
 | `LeanInfoTheory` | Lightweight finite-PMF support, entropy, and elementary information measures. |
@@ -272,15 +279,21 @@ example {α : Type*} [Finite α]
 | `LeanInfoTheory.Shannon.Fano` | Deterministic decoding error and finite Fano inequalities. |
 | `LeanInfoTheory.Shannon.FiniteFamily` | Dependent finite families and chain-rule algebra. |
 | `LeanInfoTheory.Shannon.Units` | Scalar conversion from nats to another valid base or bits. |
-| `LeanInfoTheory.Shannon.SemanticBridge` | Complete conditional-law, KL, independence, Markov, data-processing, convexity, finite-family, Pinsker and sufficiency bridge. |
-| `LeanInfoTheory.Shannon.SemanticBridge.Pinsker` | Canonical ENNReal Pinsker, support-guarded Real bounds and quantitative independence in nats. |
+| `LeanInfoTheory.Shannon.SemanticBridge` | Complete conditional-law, KL, independence, Markov, data-processing, convexity, finite-family, Pinsker and sufficiency bridge in current source; Pinsker is candidate-only. |
+| `LeanInfoTheory.Shannon.SemanticBridge.Pinsker` | **Candidate:** canonical ENNReal Pinsker, support-guarded Real bounds and quantitative independence in nats. |
+| `LeanInfoTheory.Probability.TotalVariation` / `Coupling` | Candidate TV, maximal couplings and coupling transport. |
+| `LeanInfoTheory.Probability.FiniteProduct` / `Iid` | Candidate independent products and finite iid blocks. |
+| `LeanInfoTheory.Shannon.SemanticBridge.AEP` | Candidate finite-iid weak AEP and typical-set probability limit. |
+| `LeanInfoTheory.Shannon.SourceCodingAsymptotic` | Candidate fixed-length source achievability, converse and threshold APIs. |
+| `LeanInfoTheory.Shannon.ChannelCapacity` / `StandardChannelCapacity` | Candidate attained information capacity and standard-channel formulas. |
+| `LeanInfoTheory.Shannon.ChannelCodingAsymptotic` | Candidate vanishing-error rate upper bounds and weak-converse obstructions. |
 
 Focused semantic submodules remain supported imports when the full bridge is
-unnecessary. The exact supported list and every frozen project-owned
-declaration are recorded in the
-[`v0.1.x` public API contract](docs/v0.1-public-api.md) and its
+unnecessary. The exact historical supported list and frozen declarations are in
+the [`v0.1.x` public API contract](docs/v0.1-public-api.md) and its
 [frozen release manifest](docs/v0.1-public-api.json). The
-[current manifest](docs/current-public-api.json) records development coverage.
+[current manifest](docs/current-public-api.json) records the enlarged candidate
+surface; post-v0.1.0 modules such as Pinsker are absent from the frozen release.
 
 `LeanInfoTheory.Basic`, `LeanInfoTheory.MathlibFragments`, and the
 `LeanInfoTheory.Examples` hierarchy are maintained development, reference, and
@@ -333,7 +346,7 @@ statements to Lean and mathlib.
 - Channels remain functions `α → PMF β`; the library does not introduce a
   second bundled finite-channel abstraction.
 
-The release does not cover general measurable or continuous entropy,
+The historical `v0.1.0` release does not cover general measurable or continuous entropy,
 entropy rates and stochastic processes, channel capacity or coding theorems,
 AEP/typicality, a dedicated finite-`PMF` total-variation API or Pinsker
 inequalities, full majorization/Birkhoff theory, canonical or minimal sufficient
@@ -341,7 +354,10 @@ statistics, application-specific certificate tooling, or paper-specific
 constructions. Some currently supported theorems intentionally retain stronger
 finite-type assumptions documented in the public API contract.
 See [Known Limitations and Open Questions](docs/lean-info-theory-living-summary.md#11-known-limitations-and-open-questions)
-for the detailed register.
+for the detailed register. The unpublished candidate adds the quantitative,
+AEP, source-coding and information-capacity areas described in its
+[notes](docs/releases/v0.2.0.md); channel achievability, operational channel
+capacity equality and a channel strong converse remain deferred.
 
 ## Compatibility policy
 
@@ -349,12 +365,20 @@ Throughout `0.1.x`, the project intends to preserve the supported module paths,
 project-owned public names, namespaces, types, assumptions, documented
 semantics, root exports, and reviewed attributes recorded in the versioned
 manifest. Patch releases may add declarations or compatibility aliases. A
-necessary breaking change must be documented and deferred to a later minor
-release such as `0.2.0`.
+necessary breaking change requires a separately documented and approved
+migration. No breaking migration is selected for the v0.2.0 candidate; a minor
+version number grants no automatic exception to retained contracts.
 
 This promise does not cover private declarations, proof terms, generated names,
 imported mathlib declarations, or the explicitly non-stable modules. It is a
 source-compatibility baseline for `0.1.x`, not a permanent API freeze.
+
+The candidate extends retention to its complete v0.2.x supported surface,
+including post-v0.1.0 additions. Its separately reviewed elaborated-type,
+universe, ownership, import and attribute baseline remains pending C24.07;
+current inventory or rendered documentation does not establish that baseline.
+The original v0.1.0 retained artifact remains separate. See the
+[candidate contract](docs/v0.2-release-contract.md).
 
 ## Examples and documentation
 
@@ -531,10 +555,12 @@ holder. The project is licensed under the Apache License, Version 2.0; see
 
 ## Citation
 
-Please use the release metadata in [CITATION.cff](CITATION.cff) when citing
-LeanInfoTheory. Its `date-released` value is `2026-09-01`, and its version DOI
-is [`10.5281/zenodo.22229599`](https://doi.org/10.5281/zenodo.22229599). For a
-version-independent reference to all LeanInfoTheory releases, use
-[`10.5281/zenodo.22229598`](https://doi.org/10.5281/zenodo.22229598). The
-immutable tagged `v0.1.0` CFF intentionally remains DOI-free; the evolving
-default-branch CFF carries the issued version DOI without changing the tag.
+[CITATION.cff](CITATION.cff) now describes the **unpublished v0.2.0 candidate**:
+cite the exact source checkpoint used. It has no issued release date or DOI.
+For published v0.1.0, the historical release date is `2026-09-01` and the version
+DOI is [`10.5281/zenodo.22229599`](https://doi.org/10.5281/zenodo.22229599).
+The all-versions DOI remains
+[`10.5281/zenodo.22229598`](https://doi.org/10.5281/zenodo.22229598).
+The immutable tagged `v0.1.0` CFF intentionally remains DOI-free; the issued
+identifier is preserved in the historical release records. The candidate does
+not inherit that version DOI or assert a new Zenodo deposit.

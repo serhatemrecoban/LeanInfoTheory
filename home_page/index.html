@@ -9,14 +9,14 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="LeanInfoTheory">
     <meta property="og:title" content="LeanInfoTheory | Information Theory Library for Lean 4">
-    <meta property="og:description" content="A machine-checked information theory library for Lean 4 and mathlib. 601 public declarations covering entropy, mutual information, KL divergence, channels, and more.">
+    <meta property="og:description" content="Information theory in Lean 4: stable v0.1.0 has 601 declarations; unpublished v0.2.0 development has 811 declarations across 57 modules.">
     <meta property="og:url" content="https://serhatemrecoban.github.io/LeanInfoTheory/">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="LeanInfoTheory | Information Theory Library for Lean 4">
-    <meta name="twitter:description" content="A machine-checked information theory library for Lean 4 and mathlib. 601 public declarations covering entropy, mutual information, KL divergence, channels, and more.">
+    <meta name="twitter:description" content="Information theory in Lean 4: stable v0.1.0 has 601 declarations; unpublished v0.2.0 development has 811 declarations across 57 modules.">
     <meta
       name="description"
-      content="A machine-checked information theory library for Lean 4 and mathlib. 601 public declarations covering entropy, mutual information, KL divergence, channels, and more."
+      content="Information theory in Lean 4: stable v0.1.0 has 601 declarations; unpublished v0.2.0 development has 811 declarations across 57 modules."
     >
     <meta name="citation_title" content="LeanInfoTheory">
     <meta name="citation_author" content="Coban, Serhat Emre">
@@ -74,6 +74,25 @@
           <a href="https://doi.org/10.5281/zenodo.22229599"><code>10.5281/zenodo.22229599</code></a>.
           <strong>601 documented public declarations. 31 supported modules.
           Ready to use in your own Lean project.</strong>
+        </p>
+      </section>
+
+      <section class="notice" aria-labelledby="candidate-heading">
+        <h2 id="candidate-heading">Unpublished v0.2.0 candidate</h2>
+        <p>
+          Current source contains <strong>811 supported declarations across 57
+          modules</strong>, with 92 lightweight-root exports. The candidate adds
+          finite total variation and coupling, Pinsker and continuity, product
+          laws, finite iid AEP, fixed-length source coding, attained finite
+          information capacity, and channel-coding weak converses.
+        </p>
+        <p>
+          The stable release and its API remain <code>v0.1.0</code>. Candidate
+          release qualification is in progress; these source counts do not
+          announce a new release or a generated candidate API artifact.
+          See the <a href="module-guide.html#candidate-modules">current import guide</a>,
+          <a href="theorems.html#candidate-results">capabilities and limits</a>, and
+          <a href="docs/research-projects.html#pfr-case-study">proposed case-study summary</a>.
         </p>
       </section>
 
@@ -347,6 +366,12 @@
 
       <section aria-labelledby="next-heading">
         <h2 id="next-heading">Project Direction</h2>
+        <p>
+          Current work prepares the unpublished candidate and its separate
+          external-package, clean-checkpoint and API-artifact qualification.
+          The completed milestones below retain their original historical
+          checkpoints and validation context.
+        </p>
         <ul class="roadmap-list">
           <li><span class="status-pill proved">Completed</span> Project B Chunks 1-4 cover finite pair/triple identities, KL equality and independence, Markov structure, stochastic MI/KL data processing, and finite sufficient statistics.</li>
           <li><span class="status-pill proved">Completed</span> Chunk 5 finite deterministic-decoder Fano is checkpointed as commit <code>ec78829</code> after passing the full milestone validation suite.</li>
@@ -356,7 +381,7 @@
           <li><span class="status-pill proved">Completed</span> Versioned signature-bearing API-documentation pipeline for all 31 supported modules and 601 declarations, with exact-commit source links and guarded manual publication.</li>
           <li><span class="status-pill planned">Planned</span> Theorem-level leanblueprint pages and a blueprint PDF on top of the current module dependency map.</li>
           <li><span class="status-pill separate">Later</span> Exact Fano sharpness, randomized/list decoding, channel achievability and operational-capacity equality, and broader reusable finite-information-theory results.</li>
-          <li><span class="status-pill separate">Downstream</span> Paper-specific constructions, application-specific automation, and non-toy converse developments remain separate projects.</li>
+          <li><span class="status-pill separate">Downstream</span> Paper-specific constructions, application-specific automation, and network-converse developments remain separate projects.</li>
         </ul>
       </section>
 

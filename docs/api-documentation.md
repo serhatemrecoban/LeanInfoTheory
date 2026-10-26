@@ -5,6 +5,23 @@ Lean environment with [`doc-gen4`](https://github.com/leanprover/doc-gen4).
 The build is deliberately separate from the library package: downstream users
 still acquire only LeanInfoTheory and its pinned mathlib dependency.
 
+## Candidate and stable references
+
+The current source inventory covers **811 declarations in 57 supported modules**;
+the unpublished v0.2.0 candidate retains the lightweight root's 92 aliases and
+94 reviewed simp declarations. Published `/docs/v0.1.0/` remains the separate
+601-declaration/31-module release reference. Use the
+[module guide](../home_page/module-guide.html) for current focused imports and
+the [candidate notes](releases/v0.2.0.md) for assumptions and delivered scope.
+
+The root package/CFF now describe unpublished 0.2.0; docbuild's internal package
+and dependency pins are unchanged. This metadata transition changes API build
+inputs and invalidates automatic reuse of an older content attestation. C24.08
+owns fresh two-pass generation/checking and exact rendered-contract applicability;
+Step 5 documentation/example checks do not establish that milestone.
+`/docs/current/` is the isolated development/candidate route and `/docs/v0.2.0/`
+is reserved. No public artifact or stable-pointer switch is asserted here.
+
 ## Pinned environment
 
 The nested [`docbuild/lakefile.toml`](../docbuild/lakefile.toml) and
@@ -150,11 +167,16 @@ the pinned Zig and docbuild-scoped Lean prerequisites are checked before that
 targeted invalidation, so a missing or invalid prerequisite does not discard a
 valid prior documentation output. A failed rebuild leaves no success attestation.
 
-The release-candidate gate runs GitHub mode from a clean exact commit. Tag
-publication and live-link verification remain explicitly approved publication
-and post-publication work.
+The publication-facing release gate runs GitHub mode from a clean exact commit.
+The separately approved C24 local API milestone uses file mode; its output
+remains nonpublishing. GitHub-mode generation, tag publication and live-link
+verification remain separately authorized release/publication work.
 
-## Current C23 milestone — initial gate and all 36 inspections completed
+## Historical C23 milestone — initial gate and all 36 inspections completed
+
+The following records that milestone's preparation stage, including its then
+pending closure wording. Actual C23 completion is determined by its supported
+completion record and handoff; this history does not qualify the C24 candidate.
 
 The separately approved initial scoped checkpoint `beb99362718489c17dfe150e5c8be0281ab34aa3` passed the complete maintained clean routine. The current local two-pass API build/check gate passed, and the parent substantively inspected all 36 new rendered signatures, hypotheses, result types, docstrings, owners and source links.
 

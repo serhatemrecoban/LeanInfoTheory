@@ -21,7 +21,7 @@ from safe_store import FixtureFS, Store, Journal, Refusal, canonical, digest, re
 from contracts import Criterion, render_request, classify_report, same_source, delta, report_key
 from workflow import Workflow
 from diagnostic import DiagnosticWorkflow
-from project_source import inspect_checkout, snapshot, _root, _path
+from project_source import inspect_checkout, snapshot, _root, _path, _git, BASELINE_COMMIT
 from library import LIBRARY_RUBRIC, VALIDATION_GUIDANCE
 
 PROJECT_TAG = 'LIT_SUPERVISED_REVIEW_V1'
@@ -658,18 +658,49 @@ class ProjectWorkflow(DiagnosticWorkflow):
     def reverse_own_edit(self,*args,**kwargs):
         raise Refusal('RESTORE_ONLY_OWN_PATCH_THEN_FINISH_REVERSAL')
 
-    def begin_edit(self,paths,reason):
+    def begin_edit(self,paths,reason,*,candidate_version_metadata=False):
         require(paths and reason and len(set(paths))==len(paths),'EDIT_RECORD')
+        require(type(candidate_version_metadata) is bool,'EDIT_RECORD')
         refs=[]
         def action(state):
             a=self._active(state,{'IMPLEMENTING','SELF_REASSESSMENT','CORRECTING'})
+            metadata=None
+            if candidate_version_metadata:
+                # Record the already approved C24.05 metadata transition only.
+                # This grants no authority to edit options, pins or review policy.
+                require(paths==['lakefile.toml'] and a['step']=='C24.05'
+                        and self.contract['plan_path']=='docs/plans/post-release-chunk-24.md'
+                        and any(c['id']=='C24.05-METADATA' for c in self._criteria(state)),
+                        'CANDIDATE_VERSION_EDIT_SCOPE')
+                self._contract_hash(state)
+                root=self.fs.checkout
+                policy=strict_json(_path(root,'docs/compatibility/candidate-release-state.json').read_bytes())
+                expected={'schema':'lean-info-theory.candidate-release-state.v1',
+                    'phase':'preparation','target_version':'0.2.0','stable_version':'0.1.0',
+                    'current_route':'/docs/current/','stable_route':'/docs/v0.1.0/',
+                    'reserved_route':'/docs/v0.2.0/','retention':'pending'}
+                require(policy==expected and not (root/'lakefile.lean').exists(),
+                        'CANDIDATE_VERSION_EDIT_STATE')
+                config={p:_path(root,p).read_bytes() for p in
+                        ('lakefile.toml','lean-toolchain','lake-manifest.json')}
+                require(all(raw.replace(b'\r\n',b'\n')==_git(root,'show',BASELINE_COMMIT+':'+p).replace(b'\r\n',b'\n')
+                            for p,raw in config.items()),'CANDIDATE_VERSION_EDIT_CONFIG')
+                raw=config['lakefile.toml']
+                require(len(re.findall(rb'(?m)^version = "0\.1\.0"\r?$',raw))==1,
+                        'CANDIDATE_VERSION_EDIT_CONFIG')
+                metadata={'expected_after':raw.replace(b'version = "0.1.0"',b'version = "0.2.0"',1).hex(),
+                    'other_config':{p:b.hex() for p,b in config.items() if p!='lakefile.toml'},
+                    'expected_state':{**expected,'phase':'candidate'}}
             before={}
             for rel in paths:
                 require(not rel.startswith(('.lake/','.lit-review/','.git/','tmp/'))
-                        and rel not in {'lakefile.toml','lake-manifest.json','lean-toolchain'},'EDIT_SCOPE')
+                        and (rel not in {'lakefile.toml','lake-manifest.json','lean-toolchain'}
+                             or (metadata is not None and rel=='lakefile.toml')),'EDIT_SCOPE')
                 path=_path(self.fs.checkout,rel)
                 before[rel]=path.read_bytes().hex() if path.exists() else None
-            ref=self._remember(state,'own_edit',{'tag':self.tag,'before_files':before,'reason':reason})
+            record={'tag':self.tag,'before_files':before,'reason':reason}
+            if metadata is not None:record['candidate_version_metadata']=metadata
+            ref=self._remember(state,'own_edit',record)
             a['edits'].append({'ref':ref,'status':'INTENT'});refs.append(ref)
         self._change('RECORD_OWN_EDIT_INTENT_NO_SOURCE_WRITE',action)
         return refs[0]
@@ -682,6 +713,13 @@ class ProjectWorkflow(DiagnosticWorkflow):
             old=self.store.get(ref,'own_edit')
             after={p:(_path(self.fs.checkout,p).read_bytes().hex() if _path(self.fs.checkout,p).exists() else None)
                    for p in old['before_files']}
+            if 'candidate_version_metadata' in old:
+                metadata=old['candidate_version_metadata'];root=self.fs.checkout
+                require(after=={'lakefile.toml':metadata['expected_after']}
+                        and all(_path(root,p).read_bytes().hex()==raw for p,raw in metadata['other_config'].items())
+                        and not (root/'lakefile.lean').exists(),'CANDIDATE_VERSION_EDIT_CONFIG')
+                require(strict_json(_path(root,'docs/compatibility/candidate-release-state.json').read_bytes())
+                        ==metadata['expected_state'],'CANDIDATE_VERSION_EDIT_STATE')
             entry['after']=self._remember(state,'own_edit_after',{'original':ref,'after_files':after})
             entry['status']='APPLIED'
         return self._change('OBSERVE_OWN_EDIT_APPLIED',action)

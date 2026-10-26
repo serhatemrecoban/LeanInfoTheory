@@ -136,6 +136,13 @@ not fresh automated acceptance or a PFR C01 prerequisite recheck.
    retains before-images; patch normally and `finish_edit(ref)`. Restore only your
    own changes after comparing current bytes with saved after-images, then record
    `finish_reversal(ref)`. These records do not authorize overwriting other work.
+   The already selected C24.05 candidate package transition has one narrow recorder:
+   `begin_edit(['lakefile.toml'], reason, candidate_version_metadata=True)`. It
+   requires the approved C24.05 metadata criterion, unchanged historical config,
+   preparation/pending state, then records only the exact 0.1.0→0.2.0 version line.
+   `finish_edit` also requires candidate/pending state and unchanged options,
+   toolchain, manifest and absence of alternate Lake config. Normal configuration
+   edits remain refused. This is edit accounting, not new approval or acceptance.
 3. Run required checks; `parent_evidence` records actual output, source, command,
    outcome and limitations. `initial_validation`, read-only `self_review` and
    separate `reassess` retain the two decision phases. Use stable `lit-finding:`

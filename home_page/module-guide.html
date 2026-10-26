@@ -38,6 +38,24 @@
         release commit and served at the stable route above.
       </p>
 
+      <section class="notice" aria-labelledby="candidate-modules">
+        <h2 id="candidate-modules">Current candidate imports</h2>
+        <p>
+          This guide lists all 57 supported modules in the unpublished
+          <code>v0.2.0</code> candidate, whose source inventory has 811 declarations.
+          It also identifies non-stable examples and reference anchors. New
+          candidate modules are not part of the frozen <code>v0.1.0</code> API;
+          use the stable reference when working against that release.
+        </p>
+        <p>
+          Canonical information is in nats; total variation is half L1.
+          Finite alphabets, positive-length guards, support premises and
+          independence hypotheses remain part of each theorem's contract.
+          The <a href="theorems.html#candidate-results">current capability map</a>
+          distinguishes source coding from channel weak converses.
+        </p>
+      </section>
+
       <p>
         Import <code>LeanInfoTheory</code> for the lightweight mathematical API,
         <code>LeanInfoTheory.Shannon</code> for the complete supported
@@ -81,6 +99,30 @@
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL</code>: downstream KL preservation and guarded converse theorems for sufficient channels and deterministic statistics.</li>
         <li><code>LeanInfoTheory.Shannon.SemanticBridge.Theorems</code>: user-facing semantic theorems, including nonnegativity, zero conditional entropy, deterministic entropy/MI processing, chain-rule variants, and ordinary/conditional inequality bands.</li>
         <li><code>LeanInfoTheory.InformationMeasures</code>: public convenience re-export for the finite information-measure API; theorem-oriented code should usually prefer the canonical <code>LeanInfoTheory.Shannon</code> names.</li>
+        <li><code>LeanInfoTheory.Probability.TotalVariation</code>: finite-PMF total variation as half L1, with event and bounded-test characterizations, transport and contraction.</li>
+        <li><code>LeanInfoTheory.Probability.Coupling</code>: finite couplings and an attained maximal coupling whose disagreement probability is total variation.</li>
+        <li><code>LeanInfoTheory.Probability.FiniteTopology</code>: finite-PMF topology and compactness, including boundary probability laws.</li>
+        <li><code>LeanInfoTheory.Probability.TotalVariationTopology</code>: total-variation convergence and the finite-PMF topology.</li>
+        <li><code>LeanInfoTheory.Probability.FiniteProduct</code>: dependent finite-product laws, marginals and selected-coordinate transport with the required index hypotheses.</li>
+        <li><code>LeanInfoTheory.Probability.Iid</code>: finite iid word laws, including zero-length words and finite-block transport.</li>
+        <li><code>LeanInfoTheory.Probability.ProductChannel</code>: product and repeated PMF-valued channels with actual input/output joint laws and coordinate projections.</li>
+        <li><code>LeanInfoTheory.Probability.StandardChannels</code>: finite deterministic and input-independent channels, binary symmetric channels and binary erasure channels.</li>
+        <li><code>LeanInfoTheory.Shannon.Topology</code>: continuity of finite entropy, conditional entropy and mutual information, including the actual channel-input objective.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge.Gluing</code>: support-local extension and adjacent-law gluing; the resulting endpoint coupling need not be maximal.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct</code>: finite-product entropy and independence identities.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge.ProductKL</code>: finite-product KL decomposition with extended-valued and guarded real forms.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge.ProductChannel</code>: product-channel information bounds for actual laws, including correlated inputs and independence-qualified equalities.</li>
+        <li><code>LeanInfoTheory.Shannon.SemanticBridge.AEP</code>: supported block self-information and finite iid concentration/AEP through finite-moment and Chebyshev bounds.</li>
+        <li><code>LeanInfoTheory.Shannon.TypicalSet</code>: strict supported weak typical sets, with probability, atom-mass and cardinality estimates and explicit boundary cases.</li>
+        <li><code>LeanInfoTheory.Shannon.CodingRate</code>: natural message budgets, normalized rates, integer rounding and binary padding for finite fixed-length coding.</li>
+        <li><code>LeanInfoTheory.Shannon.SourceCoding</code>: total deterministic finite source codes, actual error, selected-set recovery, success counting and Fano bounds.</li>
+        <li><code>LeanInfoTheory.Shannon.SourceCodingAsymptotic</code>: one-family above-entropy achievability, source strong converse, necessary rates for arbitrary reliable families and the entropy threshold as an <code>IsGLB</code>; no efficient encoder or exact-threshold attainment claim.</li>
+        <li><code>LeanInfoTheory.Shannon.ChannelCapacity</code>: finite information capacity with an actual maximizing input law for a nonempty finite input alphabet.</li>
+        <li><code>LeanInfoTheory.Shannon.ProductChannelCapacity</code>: attained product and repeated information capacities, using an upper bound valid for correlated block inputs.</li>
+        <li><code>LeanInfoTheory.Shannon.StandardChannelCapacity</code>: attained noiseless, input-independent, binary symmetric and binary erasure information capacities, including endpoint parameters and explicit bits conversions.</li>
+        <li><code>LeanInfoTheory.Shannon.ChannelCode</code>: deterministic finite channel codes, uniform message laws, encoder pushforwards and actual decoding error; encoder collisions are permitted.</li>
+        <li><code>LeanInfoTheory.Shannon.ChannelCoding</code>: same-code Fano, data-processing and single-letter information-capacity bounds, with all-length and guarded normalized weak-converse forms.</li>
+        <li><code>LeanInfoTheory.Shannon.ChannelCodingAsymptotic</code>: arbitrary-family weak converses with derived boundedness for real limsup, distinguishing eventual error floors from frequent-gap nonvanishing.</li>
         <li><code>LeanInfoTheory.Examples.SupportSensitive</code>: opt-in support-cardinality, conditional-fiber, functional-dependence, and recovery examples.</li>
         <li><code>LeanInfoTheory.Examples.KLTop</code>: opt-in disjoint-support example demonstrating the need for finiteness guards in real-valued KL equality statements.</li>
         <li><code>LeanInfoTheory.Examples.CommonCause</code>: opt-in noisy binary common-cause example exercising conditional independence, zero CMI, and Markov factorization.</li>

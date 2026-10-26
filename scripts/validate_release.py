@@ -27,6 +27,7 @@ import generate_website_blueprint as blueprint
 import current_api
 import api_doc_identity
 import website_discovery
+import release_state
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -597,6 +598,8 @@ def raw_sha256(path: Path) -> str:
 
 def check_release_metadata() -> None:
     errors: list[str] = []
+    state = release_state.load_state(ROOT)
+    candidate = state["phase"] == "candidate"
     attributes_path = ROOT / ".gitattributes"
     if not attributes_path.is_file():
         errors.append(".gitattributes is missing")
@@ -613,6 +616,8 @@ def check_release_metadata() -> None:
         )
     lakefile = tomllib.loads((ROOT / "lakefile.toml").read_text(encoding="utf-8"))
     for key, expected in EXPECTED_PACKAGE_METADATA.items():
+        if key == "version":
+            expected = release_state.expected_package_version(state)
         actual = lakefile.get(key)
         if actual != expected:
             errors.append(f"lakefile.toml {key}: expected {expected!r}, found {actual!r}")
@@ -702,24 +707,10 @@ def check_release_metadata() -> None:
         )
 
     citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
-    expected_citation = """cff-version: 1.2.0
-message: "If you use LeanInfoTheory in your work, please cite the software using this metadata."
-type: software
-title: "LeanInfoTheory"
-version: "0.1.0"
-date-released: 2026-09-01
-doi: "10.5281/zenodo.22229599"
-authors:
-  - family-names: "Coban"
-    given-names: "Serhat Emre"
-    affiliation: "EPFL, Mathematics of Information Laboratory"
-license: Apache-2.0
-repository-code: "https://github.com/serhatemrecoban/LeanInfoTheory"
-url: "https://serhatemrecoban.github.io/LeanInfoTheory/"
-"""
+    expected_citation = release_state.expected_citation(state)
     if citation != expected_citation:
         errors.append(
-            "CITATION.cff differs from the exact approved canonical dated template"
+            "CITATION.cff differs from the exact approved state-aware canonical template"
         )
     citation_markers = (
         "cff-version: 1.2.0",
@@ -735,6 +726,11 @@ url: "https://serhatemrecoban.github.io/LeanInfoTheory/"
         'repository-code: "https://github.com/serhatemrecoban/LeanInfoTheory"',
         'url: "https://serhatemrecoban.github.io/LeanInfoTheory/"',
     )
+    if candidate:
+        citation_markers = tuple(marker for marker in citation_markers
+                                 if not marker.startswith(("version:", "date-released:", "doi:"))) + (
+            'version: "0.2.0"', "Unpublished v0.2.0 candidate",
+        )
     for marker in citation_markers:
         if marker not in citation:
             errors.append(f"CITATION.cff is missing the reviewed field: {marker}")
@@ -748,17 +744,16 @@ license: Apache-2.0"""
     if len(re.findall(r"(?m)^\s+- family-names:", citation)) != 1:
         errors.append("CITATION.cff must contain exactly one software author")
     release_dates = re.findall(r"(?m)^\s*date-released\s*:\s*(.*?)\s*$", citation)
-    if release_dates != ["2026-09-01"]:
+    if release_dates != ([] if candidate else ["2026-09-01"]):
         errors.append(
-            "CITATION.cff must contain exactly one date-released value: 2026-09-01"
+            "CITATION.cff date must match the explicit released/candidate state"
         )
     citation_dois = re.findall(
         r'(?mi)^\s*doi\s*:\s*["\']?([^"\'\s#]+)["\']?\s*$', citation
     )
-    if citation_dois != ["10.5281/zenodo.22229599"]:
+    if citation_dois != ([] if candidate else ["10.5281/zenodo.22229599"]):
         errors.append(
-            "CITATION.cff must contain exactly the v0.1.0 version DOI: "
-            "10.5281/zenodo.22229599"
+            "CITATION.cff DOI must match the explicit released/candidate state"
         )
     if "10.5281/zenodo.22229598" in citation:
         errors.append(
@@ -785,6 +780,11 @@ license: Apache-2.0"""
         "Its `date-released` value is `2026-09-01`",
         "[CITATION.cff](CITATION.cff)",
     )
+    if candidate:
+        readme_markers = tuple(marker for marker in readme_markers
+                               if marker != "Its `date-released` value is `2026-09-01`") + (
+            "unpublished", "v0.2.0",
+        )
     for marker in readme_markers:
         if marker not in readme_flat:
             errors.append(f"README.md is missing required release metadata: {marker}")
@@ -893,6 +893,10 @@ license: Apache-2.0"""
             "Latest stable release: <code>v0.1.0</code>",
         ),
     }
+    if state["phase"] != "historical":
+        # This local private file is not a candidate release contract or output.
+        # Its future Git-tree omission is checked at clean candidate staging.
+        decision_surface_markers.pop(ROOT / release_state.LOCAL_PRIVATE_PATH, None)
     for path, markers in decision_surface_markers.items():
         source_flat = " ".join(path.read_text(encoding="utf-8").split())
         for marker in markers:
@@ -916,9 +920,10 @@ license: Apache-2.0"""
     if errors:
         raise ValidationError("package/legal metadata failed:\n" + "\n".join(errors))
     print(
-        "package/legal metadata passed: LeanInfoTheory 0.1.0, fixed Lean/mathlib "
-        "v4.33.1, Apache-2.0, sole CFF author, exact version DOI, "
-        "release date 2026-09-01, and DOI-bearing default-branch documentation"
+        f"package/legal metadata passed: {state['phase']} state, "
+        f"package {release_state.expected_package_version(state)}, fixed Lean/mathlib "
+        "v4.33.1, Apache-2.0, sole creator and exact state-aware citation; "
+        "historical release identifiers remain separately checked"
     )
 
 
@@ -999,7 +1004,51 @@ def read_readme_examples() -> list[tuple[str, str]]:
     return examples
 
 
+def check_candidate_release_contract() -> None:
+    """Check the explicit preparation contract without inventing retention readiness."""
+    state = release_state.load_state(ROOT)
+    if state["phase"] == "historical":
+        return
+    identity = release_state.contract_identity(ROOT)
+    release_state.validation_inputs(ROOT)
+    requirements = {
+        "docs/v0.2-release-contract.md": (
+            "Unpublished", "v0.2.0", "/docs/current/", "/docs/v0.1.0/",
+            "/docs/v0.2.0/", "v0.2.x", "NOT_FOR_PUBLICATION",
+            "C24.07", "C24.09", "No publication",
+        ),
+        "docs/qualification/c24-candidate-content-proposal.md": (
+            "Proposal", "docs/next-website-tasks.md", "local bytes",
+            "v0.1.0", "separate", "Git",
+        ),
+    }
+    for relative, markers in requirements.items():
+        source = release_state.require_file(ROOT, relative).read_text(encoding="utf-8")
+        if any(marker not in source for marker in markers):
+            raise ValidationError(f"candidate contract is incomplete: {relative}")
+    compatibility = current_api.compatibility
+    _, historical = compatibility.load_baseline()
+    release_state.check_legacy_configuration(ROOT, historical["release_source_sha256"])
+    if state["retention"] == "established":
+        from compatibility import candidate_contract
+        candidate_contract.load_approved_contract(ROOT)
+        print("candidate retention artifact/approval input contract passed; compiled comparison is separate")
+    else:
+        print("candidate retained baseline: NOT_ESTABLISHED (pending C24.07; no baseline PASS claimed)")
+    print(f"unpublished candidate policy passed: {identity['phase']}, stable v0.1.0, publication disabled")
+
+
 def check_release_documentation_contract() -> None:
+    state = release_state.load_state(ROOT)
+    candidate_documents = []
+    if state["phase"] == "candidate":
+        candidate_notes = ROOT / "docs/releases/v0.2.0.md"
+        source = release_state.require_file(ROOT, candidate_notes.relative_to(ROOT).as_posix()).read_text(encoding="utf-8")
+        candidate_documents.append((candidate_notes, source))
+        if not all(marker in source for marker in ("v0.2.0", "Unpublished", "v0.1.0", "nats")):
+            raise ValidationError("candidate release notes must identify the unpublished version, stable release and units")
+        if re.search(r"(?mi)^(?:release date|version DOI|DOI)\s*:\s*(?!not issued|pending|none)\S", source):
+            raise ValidationError("unpublished candidate notes claim an issued release date or DOI")
     if RELEASE_DOCUMENTATION_PHASE != "release-ready":
         raise ValidationError(
             "release-documentation phase must be 'release-ready' for the v0.1.0 candidate"
@@ -1075,7 +1124,8 @@ def check_release_documentation_contract() -> None:
     )
 
     approval_claim = re.compile(r"approved by\s+(?:EPFL|MIL|EPFL TTO)", re.IGNORECASE)
-    for path, source in ((readme_path, readme), (RELEASE_NOTES_PATH, release_notes)):
+    reviewed_documents = [(readme_path, readme), (RELEASE_NOTES_PATH, release_notes), *candidate_documents]
+    for path, source in reviewed_documents:
         if approval_claim.search(source):
             errors.append(
                 f"{path.relative_to(ROOT).as_posix()} contains an unapproved institutional claim"
@@ -1132,6 +1182,8 @@ def check_release_documentation_contract() -> None:
         "Current gate: **Step 16",
     )
     for path in release_facing_paths:
+        if state["phase"] != "historical" and path == ROOT / release_state.LOCAL_PRIVATE_PATH:
+            continue
         source = " ".join(path.read_text(encoding="utf-8").split())
         for marker in obsolete_markers:
             if marker in source:
@@ -1142,7 +1194,7 @@ def check_release_documentation_contract() -> None:
     if errors:
         raise ValidationError("release-documentation contract failed:\n" + "\n".join(errors))
     examples = read_readme_examples()
-    check_local_markdown_links((readme_path, RELEASE_NOTES_PATH))
+    check_local_markdown_links(tuple(path for path, _ in reviewed_documents))
     print(
         "release-documentation contract passed: tagged dependency guidance, scope, "
         f"units, limitations, compatibility, {RELEASE_DOCUMENTATION_PHASE} notes, "
@@ -1308,6 +1360,8 @@ def candidate_text_paths() -> list[Path]:
     paths: list[Path] = []
     for raw in result.stdout.splitlines():
         path = ROOT / raw
+        if raw == release_state.LOCAL_PRIVATE_PATH and release_state.load_state(ROOT)["phase"] != "historical":
+            continue
         if path.is_file() and (path.suffix.lower() in TEXT_SUFFIXES or path.name == "lean-toolchain"):
             paths.append(path)
     return sorted(set(paths))
@@ -1325,6 +1379,8 @@ def check_clean_repository_state(context: str) -> None:
             f"repository must be clean {context}; staged, unstaged, or unignored "
             f"untracked paths remain:\n{entries}"
         )
+    if release_state.load_state(ROOT)["phase"] != "historical":
+        release_state.require_candidate_content(ROOT)
     print(f"clean repository state passed {context}")
 
 
@@ -1705,6 +1761,10 @@ def check_trust_contract() -> None:
         (sys.executable, "scripts/check_public_api_compatibility.py"),
         label="retained compatibility and current reviewed boundaries before trust",
     )
+    check_candidate_release_contract()
+    if release_state.load_state(ROOT)["retention"] == "established":
+        run_command((sys.executable, "scripts/check_candidate_api_compatibility.py", "check"),
+                    label="complete candidate retained type and boundary comparison")
     run_command(
         (sys.executable, "scripts/generate_v0_1_public_api.py", "--check"),
         label="confirm historical manifest preservation before trust probes",
@@ -1753,6 +1813,9 @@ def current_validation_identity() -> dict:
     files = compatibility.source_identity()
     for relative in ("scripts/current_api.py", "docs/current-public-api.json"):
         files[relative] = raw_sha256(ROOT / relative)
+    if release_state.load_state(ROOT)["phase"] != "historical":
+        for relative in ("docs/v0.2-release-contract.md", "docs/qualification/c24-candidate-content-proposal.md"):
+            files[relative] = raw_sha256(ROOT / relative)
     return {"files": files, "dependencies": compatibility.retained.dependency_identity(ROOT)}
 
 
@@ -2183,6 +2246,7 @@ def run_static_contract() -> None:
     )
     check_release_metadata()
     check_release_documentation_contract()
+    check_candidate_release_contract()
     check_toolchain_contract()
     check_docbuild_contract()
     check_release_interlock()

@@ -1,6 +1,8 @@
 # Post-Release Chunk Map: Quantitative and Operational Information Theory
 
-**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-25. Detailed C9--C23 revision-2 plans were separately approved; C24 remains proposed.
+**Current selection, 2026-10-26:** C24.06 only, after successful C24.05 closure and review. The C24 status block records preparation and its evidence boundary. Earlier C23/C24 selection narratives retain their dated historical scope; C24.07 onward remains unselected.
+
+**Status:** Long-term map, revision 2, 2026-09-11; execution status reconciled 2026-10-26. Detailed C9--C24 revision-2 plans were separately approved; the selected C24 step is recorded below.
 **Review follow-up:** C18/C23 clarifications accepted for this map; the 16-chunk structure is unchanged.
 **Scope authorization:** This map's original authorization covered planning documentation and references. The separately approved [C9 plan](post-release-chunk-09.md), [C10 plan](post-release-chunk-10.md), [C11 plan](post-release-chunk-11.md), [C12 plan](post-release-chunk-12.md), [C13 plan](post-release-chunk-13.md), [C14 plan](post-release-chunk-14.md), [C15 plan](post-release-chunk-15.md), [C16 plan](post-release-chunk-16.md), [C17 plan](post-release-chunk-17.md), [C18 plan](post-release-chunk-18.md), [C19 plan](post-release-chunk-19.md) and eligible step requests own their respective execution.
 **Execution:** Only C23.06 is selected; C23.01–C23.05 remain closed. The separately approved initial scoped checkpoint `beb99362718489c17dfe150e5c8be0281ab34aa3` passed the complete maintained clean routine. The current local two-pass API build/check gate passed, and the parent substantively inspected all 36 new rendered signatures, hypotheses, result types, docstrings, owners and source links.
@@ -932,6 +934,135 @@ claimed. Sources: `CT91` 8.5/8.9; `PW24` 17/19 coding conventions; existing
 uniform-source Fano theorem and C18.
 
 ### C24. Programme integration and release qualification
+
+<!-- c24-06-current:start -->
+**[Current] C24.06 external-consumer fixture prepared — 2026-10-26.**
+
+Successful C24.05 closure, its original three-criterion review/reconciliation
+and exact current-source applicability precede the sole Step 6 selection.
+The [consumer contract](../qualification/c24-external-consumer.md) and
+[portable fixture](../../tests/external-consumer/README.md) cover retained/root use, coupling-to-continuity,
+arbitrary/correlated product MI, one source-code family and its converse,
+attained/standard capacity, the same-code weak converse and the full umbrella.
+
+The recipe takes an actual approved candidate SHA. Separate checkpoint/location
+approval precedes any commit or validation-checkout change; it preserves primary
+HEAD/index/local bytes and excludes unrelated/private content from the new tree.
+Actual local-Git resolution, exact manifest/pins, physical source/olean origins,
+cleared inherited LEAN_PATH and warnings-as-errors compilation must be recorded.
+Private/in-tree fixture preflight is not external-package qualification.
+
+Read-only self-review, separate reassessment, neutral original review, substantive
+reconciliation and final checks remain required. Only actual
+`.lit-review/setup/c24-06-completion-20261026.json` and linked originals establish
+acceptance when present. No remote installation, full clean/API milestone,
+complete candidate retention, publication or later step follows from preparation.
+<!-- c24-06-current:end -->
+
+<!-- c24-05-current:start -->
+**[History] C24.05 candidate documentation and metadata prepared — 2026-10-26.**
+
+The fresh conditional request selected only Step 5 after successful exact C24.04
+closure `1afd1aed15236bda5d5db846d9b08236834e91d448c17796d7cf1c5d3d3ca5a7`,
+all three original criteria, reconciliation and final-source verification.
+The [candidate notes](../releases/v0.2.0.md), README and existing site separate
+current811/57 coverage from released601/31, retain canonical nats/assumptions,
+and distinguish source coding from the channel weak-converse scope.
+Package/CFF are now explicitly unpublished0.2.0 with no issued date/DOI;
+candidate retention remains pending C24.07 and stable stays v0.1.0.
+
+The [metadata/handoff matrix](../qualification/c24-metadata-and-handoff.md)
+preserves final-candidate requalification duties. Verified public PFR references
+support the [approval-pending case-study draft](../qualification/c24-pfr-case-study-draft.md)
+about its historical v0.1.0 dependency, not candidate use or private disclosure.
+The recorder accounts only for the already approved exact package version line;
+normal configuration, options, pins and all review acceptance guards remain.
+
+Actual documentation/example/generated/site/metadata/visual checks, read-only
+self-review, separate reassessment, neutral original review, substantive
+reconciliation and final checks precede supported closure. Only actual
+`.lit-review/setup/c24-05-completion-20261026.json` and linked originals establish
+acceptance when present. Mathematical/API/import/attribute sources, dependencies,
+protected local bytes and historical log bytes are preserved. No clean/API
+milestone, external package, primary Git action, publication or Step 6 is selected.
+<!-- c24-05-current:end -->
+
+<!-- c24-04-current:start -->
+**[History] C24.04 candidate contract and routing prepared — 2026-10-26.**
+
+The fresh conditional request selected only Step 4 after exact C24.03 closure,
+all three original criteria/all 47 rows, reconciliation and final-source checks.
+The [candidate contract](../v0.2-release-contract.md) defines an unpublished v0.2.0 target, exact
+metadata transitions and complete-surface retention separate from the immutable
+601-declaration v0.1.0 baseline. Preparation keeps actual package/CFF at v0.1.0;
+canonical candidate retention is pending C24.07, never implicitly established.
+The isolated staging path distinguishes current, frozen stable v0.1.0 and the
+reserved v0.2.0 route, including clean detached local checks without fake CI.
+Publication remains disabled. The future private-file content proposal preserves
+local bytes and requires later exact Git-content approval.
+
+Fresh mechanism checks, read-only self-review, separate reassessment, neutral
+native original review, critical reconciliation, final checks and closure are
+required. Only actual `.lit-review/setup/c24-04-completion-20261026.json` and
+linked originals establish acceptance when present. Source/API/import/attribute
+and dependency identities are preserved. No clean/API milestone, primary commit,
+package/CFF bump, publication or Step 5 is selected.
+<!-- c24-04-current:end -->
+
+<!-- c24-03-current:start -->
+**[History] C24.03 capacity/converse and programme audit prepared — 2026-10-26.**
+
+The conditional request selected only C24.03 after exact successful C24.02 closure,
+review and final-source verification. The [ledger](../qualification/c24-programme.md) enriches 43 channel rows
+and requires original assessment of those plus four preserved integration rows.
+All six same-object connections are included. The 148 earlier row objects remain
+exact; 25 historical/process rows remain unassessed for C24.09. The 62-type channel
+audit completes 214 audited names: all 210 additions plus four retained interfaces.
+
+Actual finite-PMF capacity attainment, arbitrary-input product bounds, four standard
+channels and same-code finite/asymptotic weak converses retain their hypotheses.
+The 17-consumer strict build, eight scoped compiled-import checks and exact export
+passed with existing incremental caches. Earlier full trust is attributed and
+reused only on unchanged actual maintained inputs. The substantive comparison
+records 601 to 811 declarations (+34.94%), without claiming rough doubling.
+
+Independent acceptance, final checks and supported closure are determined only by
+actual `.lit-review/setup/c24-03-completion-20261026.json` and linked originals
+when present. Mathematical/API source, imports, attributes, pins and release
+metadata are unchanged. C24.04 onward and separate milestones remain unselected.
+Earlier preparation blocks below retain their dated historical scope.
+<!-- c24-03-current:end -->
+
+<!-- c24-02-current:start -->
+**[History] C24.02 products/AEP/source-coding audit prepared — 2026-10-26.**
+
+The conditional request selected only C24.02 after exact current-source and
+successful C24.01 closure/review verification. The [programme ledger](../qualification/c24-programme.md)
+prepares 86 C16–C21/X-02–04 row assessments; the prior 62 rows are preserved and
+68 later rows remain unassessed. The exact type audit covers 80 additions and
+two retained producer interfaces. Actual product/family laws, supported iid AEP,
+strict typical-set/code/error/rate composition, source strong/general converses
+and the one-family `IsGLB` threshold retain their hypotheses and edge consumers.
+
+The 16-consumer strict build, two separate probability-only probes and five
+scoped compiled import checks passed with existing incremental caches. Earlier
+trust evidence is attributed and reused only with exact input applicability.
+Independent acceptance, final checks and supported closure are determined only by
+actual `.lit-review/setup/c24-02-completion-20261026.json` and linked originals
+when present. Mathematical/API source, imports, attributes, pins and release
+metadata are unchanged. C24.03 onward and separate milestones remain unselected.
+Earlier C24.01 preparation snapshots below retain their dated historical scope.
+<!-- c24-02-current:end -->
+
+<!-- c24-01-current:start -->
+**Current execution, 2026-10-26:** The detailed [C24 revision-2 plan](post-release-chunk-24.md)
+is accepted; only C24.01 is selected with review. Its
+[complete programme ledger](../qualification/c24-programme.md) and C9–C15/X-01
+acceptance evidence are prepared. Original independent acceptance and supported
+closure depend on `.lit-review/setup/c24-01-completion-20261026.json` when present.
+The 154 later rows remain unassessed. Later steps, separate qualification
+milestones and release actions remain unselected.
+<!-- c24-01-current:end -->
 
 **Goal:** Qualify the completed mathematical surface as a library release
 candidate, with no new theorem programme hidden in cleanup.

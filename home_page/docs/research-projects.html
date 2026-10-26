@@ -49,8 +49,48 @@
       </ul>
       <h2>What the release provides</h2>
       <p>Entropy and information identities, finite-family algebra, independence and Markov characterizations, stochastic data processing, finite Fano inequalities, convexity, and sufficiency are available now. Capacity, AEP, coding theorems, and a dedicated finite-PMF total-variation/coupling API are outside v0.1.0.</p>
+      <h2>Current candidate coverage</h2>
+      <p>
+        The unpublished <code>v0.2.0</code> candidate adds finite total
+        variation/coupling, continuity and topology, products, iid AEP,
+        fixed-length source coding, attained information capacity and channel
+        weak converses. Its source inventory has 811 declarations across 57
+        supported modules. Consult the <a href="../theorems.html#candidate-results">exact capability limits</a>
+        and <a href="../module-guide.html#candidate-modules">current imports</a>;
+        the stable-release exclusions above remain accurate for <code>v0.1.0</code>.
+      </p>
+
       <h2>Applications and collaboration</h2>
-      <p>A paper formalization and an entropy-inequality certificate application are natural downstream uses. They are not part of this release, and this guide does not claim a completed public case study. Public case studies can be linked here when their authors are ready to publish them.</p>
+      <p>Keep paper-specific constructions and application automation in separate projects. A public example is <a href="https://github.com/serhatemrecoban/PerfectFunctionalRepresentationsLean">PerfectFunctionalRepresentationsLean</a>, whose <a href="https://serhatemrecoban.github.io/PerfectFunctionalRepresentationsLean/">project website</a> and public dependency manifest identify LeanInfoTheory <code>v0.1.0</code> as its foundation.</p>
+      <section class="notice" aria-labelledby="pfr-case-study">
+        <h2 id="pfr-case-study">Proposed case study: wording and links awaiting approval</h2>
+        <p><strong>Draft for the candidate release; wording and link approval are pending.</strong></p>
+        <p>
+          PerfectFunctionalRepresentationsLean formalizes the six-page ISIT
+          2026 paper <em>On Perfect Functional Representations</em> using
+          LeanInfoTheory <code>v0.1.0</code>. Its public documentation describes
+          semantic representations, finite coupling, channel operations and
+          primal/dual linear-programming characterizations, with explicit
+          finite-alphabet, support and auxiliary-variable qualifications.
+          LeanInfoTheory supplies reusable information measures and channel
+          foundations; paper-specific constructions remain downstream.
+        </p>
+        <p>
+          The paper is by Serhat Emre Coban, Yanina Y. Shkel and Emre Telatar;
+          the Lean formalization is by Serhat Emre Coban. The dependency remains
+          pinned to immutable <code>v0.1.0</code>. This case study does not
+          establish use or compatibility of the unpublished <code>v0.2.0</code>
+          candidate, and no dependency upgrade is implied.
+        </p>
+        <p>
+          Proposed supporting links:
+          <a href="https://github.com/serhatemrecoban/PerfectFunctionalRepresentationsLean/blob/943578126eae7425fe16e9fa43b678eeb4807e5f/README.md">public source and scope</a>,
+          <a href="https://serhatemrecoban.github.io/PerfectFunctionalRepresentationsLean/discussion.html#limitations">scope qualifications</a>, and
+          <a href="https://serhatemrecoban.github.io/PerfectFunctionalRepresentationsLean/reproduce.html">v0.1.0 reproduction guidance</a>.
+          These links report the public project's evidence; this summary does
+          not assert a new build or a fresh audit of that formalization.
+        </p>
+      </section>
       <p>For a missing theorem, confusing name, or import problem, <a href="https://github.com/serhatemrecoban/LeanInfoTheory/issues">open an issue</a> with the library version, intended mathematical statement, relevant source section, and a minimal Lean example when possible.</p>
       <footer class="site-footer">
         <p><a href="./">All guides</a> &middot; <a href="../license.html">License and citation</a> &middot; <a href="../">LeanInfoTheory</a></p>

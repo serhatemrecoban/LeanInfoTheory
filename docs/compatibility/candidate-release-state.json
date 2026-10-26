@@ -1,0 +1,10 @@
+{
+  "schema": "lean-info-theory.candidate-release-state.v1",
+  "phase": "candidate",
+  "target_version": "0.2.0",
+  "stable_version": "0.1.0",
+  "current_route": "/docs/current/",
+  "stable_route": "/docs/v0.1.0/",
+  "reserved_route": "/docs/v0.2.0/",
+  "retention": "pending"
+}

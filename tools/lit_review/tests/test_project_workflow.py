@@ -17,6 +17,7 @@ import subprocess
 import sys
 import tempfile
 import textwrap
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -1319,6 +1320,109 @@ class ReportFormatProjectTests(unittest.TestCase):
         self.assertFalse(self.f.state()["completed"])
         self.assertEqual(self.f.w.store.get(pair["delivery"]["confirmation"])["raw_sha256"],
                          digest(pair["initial_raw"].encode()))
+
+
+class CandidateVersionRecorderTests(unittest.TestCase):
+    """Isolated recorder-unit fixtures; no journal, native review or acceptance."""
+
+    def setUp(self):
+        directory=tempfile.TemporaryDirectory(prefix='lit-version-recorder-')
+        self.addCleanup(directory.cleanup);self.root=Path(directory.name)
+        self.config={'lakefile.toml':b'name = "LeanInfoTheory"\r\nversion = "0.1.0"\r\nmaxSynthPendingDepth = 3\r\n',
+                     'lean-toolchain':b'fixture-toolchain\n','lake-manifest.json':b'{"fixture":true}\n'}
+        self.policy={'schema':'lean-info-theory.candidate-release-state.v1','phase':'preparation',
+            'target_version':'0.2.0','stable_version':'0.1.0','current_route':'/docs/current/',
+            'stable_route':'/docs/v0.1.0/','reserved_route':'/docs/v0.2.0/','retention':'pending'}
+        for p,raw in self.config.items():(self.root/p).write_bytes(raw)
+        self.put_json('docs/compatibility/candidate-release-state.json',self.policy)
+        def frozen_config(root,operation,ref):
+            self.assertEqual(root,self.root);self.assertEqual(operation,'show')
+            commit,p=ref.split(':',1);self.assertEqual(commit,project.BASELINE_COMMIT)
+            return self.config[p].replace(b'\r\n',b'\n')
+        frozen=patch.object(project,'_git',side_effect=frozen_config)
+        frozen.start();self.addCleanup(frozen.stop)
+        self.state={'active':{'step':'C24.05','edits':[]}}
+        self.criteria=[{'id':'C24.05-METADATA'}];self.records={}
+        self.w=project.ProjectWorkflow.__new__(project.ProjectWorkflow)
+        self.w.fs=SimpleNamespace(checkout=self.root);self.w.tag=project.TEST_TAG
+        self.w.contract={'plan_path':'docs/plans/post-release-chunk-24.md'}
+        self.w._active=lambda state,phases:state['active']
+        self.w._criteria=lambda state:self.criteria
+        self.contract_checks=[]
+        self.w._contract_hash=lambda state:self.contract_checks.append('checked-frozen-contract')
+        self.w._change=lambda operation,action:action(self.state)
+        def remember(state,kind,value):
+            ref=str(len(self.records));self.records[ref]=value;return ref
+        self.w._remember=remember
+        self.w.store=SimpleNamespace(get=lambda ref,kind:self.records[ref])
+
+    def put_json(self,p,value):
+        target=self.root/p;target.parent.mkdir(parents=True,exist_ok=True)
+        target.write_bytes(json.dumps(value).encode())
+
+    def begin(self):
+        return self.w.begin_edit(['lakefile.toml'],'Synthetic already-selected metadata fixture',
+                                 candidate_version_metadata=True)
+
+    def apply(self):
+        (self.root/'lakefile.toml').write_bytes(self.config['lakefile.toml'].replace(b'0.1.0',b'0.2.0'))
+        self.put_json('docs/compatibility/candidate-release-state.json',{**self.policy,'phase':'candidate'})
+
+    def test_exact_transition_retains_before_after_and_other_config(self):
+        ref=self.begin();self.assertEqual(self.contract_checks,['checked-frozen-contract'])
+        self.assertEqual((self.root/'lakefile.toml').read_bytes(),self.config['lakefile.toml'])
+        self.apply();self.w.finish_edit(ref)
+        self.assertEqual(self.state['active']['edits'][0]['status'],'APPLIED')
+        old=self.records[ref];self.assertEqual(bytes.fromhex(old['before_files']['lakefile.toml']),self.config['lakefile.toml'])
+        after=self.records[self.state['active']['edits'][0]['after']]['after_files']
+        self.assertEqual(bytes.fromhex(after['lakefile.toml']),self.config['lakefile.toml'].replace(b'0.1.0',b'0.2.0'))
+
+    def test_normal_configuration_refusal_is_unchanged(self):
+        for p in self.config:
+            with self.subTest(path=p),self.assertRaisesRegex(Refusal,'EDIT_SCOPE'):
+                self.w.begin_edit([p],'Synthetic unselected configuration edit')
+
+    def test_scope_cannot_select_other_step_criterion_plan_or_paths(self):
+        for mutate in (lambda:self.state['active'].update(step='C24.04'),
+                       lambda:self.criteria.clear(),
+                       lambda:self.w.contract.update(plan_path='docs/plans/other.md')):
+            before_step=self.state['active']['step'];before_criteria=self.criteria[:];before_plan=self.w.contract.copy()
+            mutate()
+            with self.assertRaisesRegex(Refusal,'CANDIDATE_VERSION_EDIT_SCOPE'):self.begin()
+            self.state['active']['step']=before_step;self.criteria[:]=before_criteria;self.w.contract=before_plan
+        with self.assertRaisesRegex(Refusal,'CANDIDATE_VERSION_EDIT_SCOPE'):
+            self.w.begin_edit(['lakefile.toml','lean-toolchain'],'Synthetic mixed scope',candidate_version_metadata=True)
+
+    def test_preexisting_configuration_or_state_drift_is_refused(self):
+        for p in self.config:
+            (self.root/p).write_bytes(self.config[p]+b'\n# drift\n')
+            with self.subTest(path=p),self.assertRaisesRegex(Refusal,'CANDIDATE_VERSION_EDIT_CONFIG'):self.begin()
+            (self.root/p).write_bytes(self.config[p])
+        self.put_json('docs/compatibility/candidate-release-state.json',{**self.policy,'phase':'candidate'})
+        with self.assertRaisesRegex(Refusal,'CANDIDATE_VERSION_EDIT_STATE'):self.begin()
+        self.put_json('docs/compatibility/candidate-release-state.json',self.policy)
+        (self.root/'lakefile.lean').write_bytes(b'-- fixture alternate config\n')
+        with self.assertRaisesRegex(Refusal,'CANDIDATE_VERSION_EDIT_STATE'):self.begin()
+
+    def test_finish_refuses_options_pin_toolchain_and_alternate_config_drift(self):
+        ref=self.begin();self.apply();candidate=(self.root/'lakefile.toml').read_bytes()
+        for p,raw in [('lakefile.toml',candidate.replace(b'Depth = 3',b'Depth = 4')),
+                      ('lean-toolchain',b'other-toolchain\n'),('lake-manifest.json',b'{"other":true}\n')]:
+            original=(self.root/p).read_bytes();(self.root/p).write_bytes(raw)
+            with self.subTest(path=p),self.assertRaisesRegex(Refusal,'CANDIDATE_VERSION_EDIT_CONFIG'):self.w.finish_edit(ref)
+            self.assertEqual(self.state['active']['edits'][0]['status'],'INTENT');(self.root/p).write_bytes(original)
+        (self.root/'lakefile.lean').write_bytes(b'-- fixture alternate config\n')
+        with self.assertRaisesRegex(Refusal,'CANDIDATE_VERSION_EDIT_CONFIG'):self.w.finish_edit(ref)
+        (self.root/'lakefile.lean').unlink()
+        self.w.finish_edit(ref)
+
+    def test_finish_requires_exact_candidate_pending_state(self):
+        ref=self.begin();self.apply()
+        for updates in ({'phase':'preparation'},{'retention':'established'},{'stable_route':'/docs/v0.2.0/'}):
+            self.put_json('docs/compatibility/candidate-release-state.json',{**self.policy,'phase':'candidate',**updates})
+            with self.subTest(updates=updates),self.assertRaisesRegex(Refusal,'CANDIDATE_VERSION_EDIT_STATE'):self.w.finish_edit(ref)
+        self.put_json('docs/compatibility/candidate-release-state.json',{**self.policy,'phase':'candidate'})
+        self.w.finish_edit(ref)
 
 
 if __name__ == "__main__":

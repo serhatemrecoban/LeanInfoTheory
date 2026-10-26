@@ -44,6 +44,17 @@ rev = "v0.1.0"</code></pre>
 lake exe cache get
 lake build</code></pre>
       <p>The release fixes its toolchain. Do not mix incompatible Lean or mathlib versions, and do not replace the version tag with <code>master</code> for a reproducible research project.</p>
+      <h2>Using unpublished candidate source</h2>
+      <p>
+        The <code>v0.2.0</code> candidate is separate from the stable installation
+        above. Use an explicitly identified local checkout and its matching
+        toolchain when working on candidate source; these instructions advertise
+        no remote <code>v0.2.0</code> tag or remotely installable candidate SHA.
+        Candidate external-package validation remains a separate qualification
+        step. See the <a href="../module-guide.html#candidate-modules">current import guide</a>
+        and <a href="../development.html#candidate-staging">development contract</a>.
+      </p>
+
       <h2>Prove your first result</h2>
       <p>A deterministic law has zero entropy. This is a complete Lean example:</p>
       <pre><code class="language-lean" data-lean-example="guide-entropy-pure">import LeanInfoTheory
