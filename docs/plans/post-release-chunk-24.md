@@ -1,19 +1,18 @@
 # C24 — Programme integration and release qualification
 
 <!-- lit-review-status:start -->
-**Status:** Active revision 2, accepted by the lead on 2026-10-25. C24.06 is
-the sole selected step after successful C24.05 closure and current-source
-verification. Step 5 closure is
-`9b87dc68642d3ef09d9c4890f2a7862b4b7b835d2de92ba4b9803558f73b1fa8`.
-The external-consumer fixture, parameterized local-Git recipe and exact selective
-checkpoint proposal are prepared. A separate exact checkpoint/location approval
-is required before Git mutations or validation-checkout changes; actual approval
-and execution evidence remain private records, never inferred from this status.
-Only actual `.lit-review/setup/c24-06-completion-20261026.json` and linked
-originals establish external-package acceptance when present. No pass is predicted.
-The same persistent reviewer/binding are retained. C24.07 onward, separate
-clean/API milestones and publication remain unselected; PFR wording/links remain
-approval pending. See [advisory notes](post-release-chunk-24-notes.md).
+**Status:** Active revision 2, accepted by the lead on 2026-10-25.
+C24.06 is closed by `13b6f258d65ef6819b9bf3610600c6e7f934bacda5971da79a607d70eb39dbb7` at final source `0e5822dddee9a5e63fe650917e872602bc83617f035cb2b33366ec3a91178a39`.
+C24.07 is separately admitted at B `b86ae9f4105e96b57ced20007697e0ce5ef977a2ee78283bc44c18edd83b87bf`. The exact clean checkpoint 05f9bec baseline has
+received independent artifact examination and root digest approval; canonical
+retention is established. This is not formal Step 7 acceptance.
+The containing successor still requires exact checkpoint approval, complete
+clean qualification and normal comparison, fresh successor-SHA external use,
+and genuine formal Step 7 review/reconciliation/closure. No containing commit
+or future result is predicted. Steps 8–9 and API/publication actions remain
+unselected; PFR wording/link approval remains pending. See
+[advisory notes](post-release-chunk-24-notes.md) and the
+[retention account](../qualification/c24-candidate-retention.md).
 <!-- lit-review-status:end -->
 
 ## 1. Authority and intended outcome

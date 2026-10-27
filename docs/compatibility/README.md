@@ -303,9 +303,13 @@ supported import, facade alias or dependency is added by C9.01.
 
 The [candidate contract](../v0.2-release-contract.md) specifies the fixed metadata
 states and complete next-release surface. It preserves this directory's immutable
-v0.1.0 artifact and checker separately. Candidate retention is currently pending;
-the new checker reports NOT_ESTABLISHED until the separately reviewed canonical
-contract and digest/checkpoint envelope are retained at C24.07.
+v0.1.0 artifact and checker separately. The canonical
+[candidate contract](v0.2.0-candidate-contract.json) and
+[approval envelope](v0.2.0-candidate-approval.json) now retain the independently
+examined exact clean checkpoint 05f9bec capture. Lifecycle retention is `established`. Normal
+checks still freshly compile/export and compare; capture/schema approval is not
+a normal comparison PASS or Step 7 closure. The [retention account](../qualification/c24-candidate-retention.md)
+records actual identities, the historical NOT_ESTABLISHED state and remaining gates.
 
 ```powershell
 python -B scripts/check_candidate_api_compatibility.py check

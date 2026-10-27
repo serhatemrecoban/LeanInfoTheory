@@ -36,28 +36,62 @@ Status labels used below:
 
 ## 0. AI Assistant Quick Start
 
+<!-- c24-07-current:start -->
+**[Current] C24.07 retained candidate baseline; successor qualification pending — 2026-10-27.**
+
+C24.06 is closed by `13b6f258d65ef6819b9bf3610600c6e7f934bacda5971da79a607d70eb39dbb7` on final source `0e5822dddee9a5e63fe650917e872602bc83617f035cb2b33366ec3a91178a39`.
+Its local external consumer remains attributed to commit `05f9bec97d73329877d4f52a6c52f20e7fad4c92` and tree
+`d13ecc992bf94ce05b8a9198aed8778aa289c3d5`; the original run, fresh reviewer checks and preserved failures keep
+their distinct evidence. Step 7 was separately admitted at B `b86ae9f4105e96b57ced20007697e0ce5ef977a2ee78283bc44c18edd83b87bf`.
+
+The complete 811-declaration/57-module capture from clean checkpoint 05f9bec
+has received an actual independent artifact examination and root decision
+`RETAIN_EXACT_CAPTURE`. Exact canonical artifact and approval bytes are now
+retained; lifecycle retention is `established`. The
+[retention account](qualification/c24-candidate-retention.md) records actual hashes and the examination boundary.
+This establishes a retained comparison input, not Step 7 acceptance.
+
+The containing successor still needs exact checkpoint approval and creation,
+the complete clean suite including normal candidate comparison, fresh external
+compilation at its actual SHA, and source-bound formal Step 7 review/reconciliation
+and closure. The capture's pending-state observation and export checkpoint 05f9bec identity are
+unchanged; no containing SHA is predicted. Steps 8–9, candidate API publication,
+release/tag/DOI and PFR wording/link approval remain separate.
+<!-- c24-07-current:end -->
+
 <!-- c24-06-current:start -->
-**[Current] C24.06 external-consumer fixture prepared — 2026-10-26.**
+**[History] C24.06 external-package build and review requalification — 2026-10-27.**
 
-Successful C24.05 closure, its original three-criterion review/reconciliation
-and exact current-source applicability precede the sole Step 6 selection.
-The [consumer contract](qualification/c24-external-consumer.md) and
-[portable fixture](../tests/external-consumer/README.md) cover retained/root use, coupling-to-continuity,
-arbitrary/correlated product MI, one source-code family and its converse,
-attained/standard capacity, the same-code weak converse and the full umbrella.
+The [consumer contract](qualification/c24-external-consumer.md) and [portable fixtures](../tests/external-consumer/README.md)
+record the coverage and reproduction boundary.
 
-The recipe takes an actual approved candidate SHA. Separate checkpoint/location
-approval precedes any commit or validation-checkout change; it preserves primary
-HEAD/index/local bytes and excludes unrelated/private content from the new tree.
-Actual local-Git resolution, exact manifest/pins, physical source/olean origins,
-cleared inherited LEAN_PATH and warnings-as-errors compilation must be recorded.
-Private/in-tree fixture preflight is not external-package qualification.
+The separately approved local candidate is
+`05f9bec97d73329877d4f52a6c52f20e7fad4c92`, tree
+`d13ecc992bf94ce05b8a9198aed8778aa289c3d5`. Its separate Lake consumer
+completed all 64 recorded commands; `lake --wfail build Consumer` passed
+3098 jobs in 1033.258 seconds. Seven independent import fixtures cover
+retained/root use, coupling/continuity, arbitrary/correlated product MI,
+same-family source coding, attained/standard capacity, same-code weak converse
+and full-umbrella use. All ten dependency clones and nine transitive pins were
+checked; source/olean origins point into the independent dependency clone.
+The existing caches and absent inherited override variables are disclosed;
+the full recipe took 2745.221 seconds. Local resolution is not remote installation.
 
-Read-only self-review, separate reassessment, neutral original review, substantive
-reconciliation and final checks remain required. Only actual
-`.lit-review/setup/c24-06-completion-20261026.json` and linked originals establish
-acceptance when present. No remote installation, full clean/API milestone,
-complete candidate retention, publication or later step follows from preparation.
+An interrupted review request contained transcribed inventory hashes and produced
+an empty native result. No canonical receipt or substantive report was accepted.
+The lead approved a bounded, independently examined recorder repair: preserve
+all originals, supersede only that unaccepted request, and require fresh
+validation, self-review, reassessment and independent all-three-criterion review.
+The compiled candidate, mathematical/API inputs, primary HEAD/index and protected
+local work remain unchanged. Review tooling has separate qualification; the old
+compiler evidence retains its original candidate/source attribution.
+
+Only actual `.lit-review/setup/c24-06-completion-20261026.json` and its linked
+original review, reconciliation and final applicability establish Step 6 closure
+when present. The lead explicitly authorized Step 7 after that successful closure;
+its complete retained baseline, clean candidate and full suite remain separate.
+Step 8/API-artifact qualification, Step 9 and publication are not selected here.
+PFR case-study wording/link approval remains pending.
 <!-- c24-06-current:end -->
 
 <!-- c24-05-current:start -->

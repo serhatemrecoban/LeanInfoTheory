@@ -149,7 +149,9 @@ reproducibility matters.
 
 ### Trying the unpublished candidate locally
 
-The candidate is currently an inspected local working tree. There is no
+The primary checkout contains current candidate work. The separately approved
+local checkpoint 05f9bec has completed its Step 6 external-consumer qualification;
+a successor must be qualified at its own exact SHA. There is no
 published v0.2.0 tag, DOI or qualified remote installation identity. To inspect
 this checkout with its pinned Lean/mathlib environment, run from its root:
 
@@ -169,8 +171,9 @@ path = "../LeanInfoTheory"
 
 Record the exact source tree and local changes used. A moving path dependency
 does not provide an immutable release identity. The marked examples below are
-checked in-tree; the separately qualified external-package candidate consumer
-belongs to the later C24 milestone. For published, reproducible use today, keep
+checked in-tree. The [external consumer account](docs/qualification/c24-external-consumer.md)
+records completed local checkpoint 05f9bec use; any successor SHA requires fresh external
+compilation. For published, reproducible use today, keep
 the v0.1.0 Git dependency above.
 
 ## Five-minute quick start
@@ -375,8 +378,11 @@ source-compatibility baseline for `0.1.x`, not a permanent API freeze.
 
 The candidate extends retention to its complete v0.2.x supported surface,
 including post-v0.1.0 additions. Its separately reviewed elaborated-type,
-universe, ownership, import and attribute baseline remains pending C24.07;
-current inventory or rendered documentation does not establish that baseline.
+universe, ownership, import and attribute baseline is now retained through
+C24.07's actual artifact examination and exact digest approval. The
+[retention account](docs/qualification/c24-candidate-retention.md) separates this
+comparison input from pending successor qualification and formal Step 7 closure.
+Current inventory or rendered documentation alone does not establish retention.
 The original v0.1.0 retained artifact remains separate. See the
 [candidate contract](docs/v0.2-release-contract.md).
 

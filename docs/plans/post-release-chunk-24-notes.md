@@ -1,10 +1,7 @@
 # C24 planning and implementation notes
 
-**Status:** Active revision 2; C24.06 external-consumer preparation, 2026-10-26.
-Only actual fresh supported admission and the separate exact checkpoint/location
-approval select and authorize their respective actions. Step 5 is closed by
-`9b87dc68642d3ef09d9c4890f2a7862b4b7b835d2de92ba4b9803558f73b1fa8`.
-Earlier sections retain their dated facts; Section 17 records this preparation.
+**Status:** Active revision 2; C24.07 exact baseline retention, 2026-10-27.
+C24.06 is closed by `13b6f258d65ef6819b9bf3610600c6e7f934bacda5971da79a607d70eb39dbb7`. Step 7 is separately admitted at B `b86ae9f4105e96b57ced20007697e0ce5ef977a2ee78283bc44c18edd83b87bf`; retention follows actual artifact examination, while the containing successor, full suite, new external run and formal Step 7 closure remain pending. Separate checkpoint approval is still required. Earlier sections retain dated facts; Section 19 records this boundary.
 
 
 ## 1. Authorized checkout and preserved state
@@ -940,3 +937,41 @@ conditional on actual `.lit-review/setup/c24-06-completion-20261026.json` and it
 linked independent original/reconciliation/final checks when present. Historical
 Step1 transport and opaque post-emission byte limits remain attributed. The PFR
 draft still awaits wording/link approval; no external project is changed.
+
+## 18. C24.06 actual external run and bounded review requalification
+
+The earlier preparation entries above retain their historical scope. The actual
+approved v3 checkpoint is commit `05f9bec97d73329877d4f52a6c52f20e7fad4c92`,
+tree `d13ecc992bf94ce05b8a9198aed8778aa289c3d5`. All 64 external commands passed;
+the seven-fixture warnings-as-errors build passed 3098 jobs in 1033.258 seconds,
+within the 2745.221-second complete recipe. Toolchain, nine transitive revisions
+and URLs, all ten clean clone identities, seven consumer artifacts and seven
+library source/olean origins were checked. The inherited override names were
+absent in the actual run; a separate injection regression checks clearing behavior.
+Existing caches, repeated cache verification and the local-file Git dependency
+remain explicit limits. Repeated cache verification is optional deferred work,
+not a reason to alter this qualified compiler run.
+
+The original root dispatch incorrectly transcribed inventory hashes and added a
+terminal newline. Its actual empty result remains uncertain; no full received-body
+hash is established, and the reviewer transport observation is not a substantive
+report. The approved ordinary retry refused at the inherited missing-receipt
+guard. Both failures and the original records remain retained. The lead then
+explicitly authorized implementing, testing, independently examining and applying
+the narrow noncanonical-dispatch repair. It changes only review tooling/tests and
+the operations guide, preserves the compiled checkpoint and resets readiness for
+fresh validation, contextual self-review, separate reassessment and a new original
+review. It grants no criterion, delivery, report or completion credit.
+
+The final documentation refresh records these actual facts without predicting the
+review verdict. Only the actual Step 6 completion record and linked originals
+establish closure. The user's later explicit instruction selects Step 7 after
+successful Step 6 closure; previously consumed conditional messages stay consumed.
+The complete candidate retained API baseline, full clean suite and a new exact-SHA
+external run belong to Step 7. Steps 8/9 and publication remain separate.
+
+## 19. C24.07 exact capture retention and remaining qualification — 2026-10-27
+
+The actual capture contains 811 declarations across 57 supported modules, exported from clean `05f9bec97d73329877d4f52a6c52f20e7fad4c92` / `d13ecc992bf94ce05b8a9198aed8778aa289c3d5`. Artifact SHA256 is `5692fe044c43ec2061039ea1ad3bbdd7d7722ef59d8851b79d19b9b33b2af9b5`; approval SHA256 is `ef53d4e42761ba803f3fb7938d97356f7ecdd2745cd5f60bf407866291131650`. Root's actual `RETAIN_EXACT_CAPTURE` disposition follows the original independent artifact examination (original SHA256 `9600e7303a348c35257bcb4a5025856ae592a0cd3fc68d7a11cc7a996877aaa8`). The canonical artifact is an exact byte copy; its pending-state observation remains unchanged while the separate maintained lifecycle moves to established. See the [retention account](../qualification/c24-candidate-retention.md).
+
+This artifact examination is not formal Step 7 acceptance. The successor containing these bytes still needs exact approval/creation, the complete clean suite and normal comparison, fresh exact-SHA external compilation, original formal review, reconciliation and closure. No containing SHA or later result is invented. Earlier compilation, source inspection and failure evidence retain their actual snapshot attribution. Steps 8–9 and publication remain separate.

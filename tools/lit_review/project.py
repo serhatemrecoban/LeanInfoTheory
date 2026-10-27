@@ -29,6 +29,11 @@ TEST_TAG = 'LIT_SOURCE_COPY_TEST_V1'
 PROFILE = {'model':'gpt-6-astra','reasoning_effort':'ultra','fork_context':False}
 PLAN_START = '<!-- lit-review-status:start -->'
 PLAN_END = '<!-- lit-review-status:end -->'
+NONCANONICAL_REPAIR_PATHS = frozenset({
+    'tools/lit_review/project.py',
+    'tools/lit_review/tests/test_noncanonical_dispatch.py',
+    'docs/review-operations.md',
+})
 
 
 def creation_transport(creation):
@@ -328,6 +333,7 @@ class ProjectWorkflow(DiagnosticWorkflow):
         require(strict_json(self.fs.read('session.json'))==self.config,'SESSION_CONTRACT_CHANGED')
         shared=ProjectRecordFS(self.fs.checkout,'chunks/'+self.identity.chunk,test=self.mode=='REPLAYED')
         require(strict_json(shared.read('binding.json'))==self.config['binding'],'CHUNK_REVIEWER_BINDING_CHANGED')
+        self._noncanonical_adjudications(state)
         return state
 
     def _transport(self):
@@ -651,6 +657,259 @@ class ProjectWorkflow(DiagnosticWorkflow):
     def requalify_report_format_conflict(self,resolution_ref,approval,reason):
         require(self.contract['kind']=='STEP','PLAN_REVIEW_NOT_EXECUTION')
         return super().requalify_report_format_conflict(resolution_ref,approval,reason)
+
+    def _noncanonical_scope(self, request_ref, evidence, repairs, old, new):
+        """Check cooperative originals and exact repair bytes, never delivery."""
+        request = self.store.get(request_ref, 'review_request')
+        p = request['payload']
+        require(self.contract['kind'] == 'STEP' and self._transport() == 'collaboration'
+                and p['target_id'] == 'C24.06'
+                and {c['id'] for c in p['requirements']} == {
+                    'C24.06-IDENTITY', 'C24.06-USE', 'C24.06-REPRODUCIBILITY'},
+                'NONCANONICAL_CASE_SCOPE')
+        require(isinstance(evidence, dict) and set(evidence) == {
+            'schema', 'parent', 'reviewer', 'request', 'source_ref', 'native_call',
+            'native_result', 'root_observation', 'reviewer_observation', 'qualification', 'candidate'}
+            and evidence['schema'] == 1 and evidence['parent'] == self.identity.parent
+            and evidence['reviewer'] == self.identity.reviewer
+            and evidence['request'] == request_ref and evidence['source_ref'] == p['source_ref']
+            and p['binding'] == asdict(self.identity), 'NONCANONICAL_BINDING')
+        require(all(isinstance(evidence[k], str) and evidence[k] for k in
+                    ('native_call', 'native_result')), 'NONCANONICAL_RAW_FRAMES')
+        frames = [strict_json(evidence[k]) for k in ('native_call', 'native_result')]
+        require(all(isinstance(f, dict) and isinstance(f.get('payload'), dict) for f in frames),
+                'NONCANONICAL_RAW_FRAMES')
+        call, result = [f['payload'] for f in frames]
+        require(call.get('type') == 'function_call' and call.get('namespace') == 'collaboration'
+                and call.get('name') == 'followup_task' and isinstance(call.get('call_id'), str)
+                and call['call_id'] and isinstance(call.get('arguments'), str)
+                and result.get('type') == 'function_call_output'
+                and result.get('call_id') == call['call_id'] and result.get('output') == '',
+                'NONCANONICAL_EMPTY_RESULT')
+        arguments = strict_json(call['arguments'])
+        require(isinstance(arguments, dict) and set(arguments) == {'target', 'message'}
+                and arguments['target'] == self.identity.reviewer
+                and isinstance(arguments['message'], str) and arguments['message'].strip()
+                and arguments['message'] != request['text'], 'NONCANONICAL_NATIVE_ARGUMENTS')
+        # The retained runtime exposes the recipient but may encrypt message.
+        # Ciphertext remains opaque; mismatch evidence below is attributed, not
+        # an assertion that these native bytes authenticate received plaintext.
+        root, reviewer = evidence['root_observation'], evidence['reviewer_observation']
+        require(isinstance(root, dict) and isinstance(reviewer, dict)
+                and root.get('actor') == self.config['binding']['creation']['parent_role']
+                and root.get('native_call_id') == call['call_id']
+                and root.get('request_ref') == request_ref and root.get('native_result') == 'UNCERTAIN'
+                and root.get('submission_id') is None and root.get('acceptance_credit') is False
+                and root.get('status') == 'FAIL'
+                and root.get('canonical_text_sha256') == digest(request['text'].encode())
+                and root.get('physical_frames') == {
+                    'call': digest(evidence['native_call'].encode()),
+                    'result': digest(evidence['native_result'].encode())}
+                and reviewer.get('actor') == self.identity.reviewer
+                and reviewer.get('request_id') == p['request_id'], 'NONCANONICAL_OBSERVATIONS')
+        example = root.get('known_example', {})
+        require(isinstance(example, dict) and isinstance(example.get('path'), str),
+                'NONCANONICAL_KNOWN_MISMATCH')
+        path = example['path']
+        canonical_hash = p['source_inventory'].get(path, {}).get('sha256')
+        observed_hash = example.get('emitted_visible_sha256')
+        comparison = reviewer.get('model_visible_comparison', {})
+        received = reviewer.get('native_received_event', {})
+        require(all(isinstance(item, dict) for item in (comparison, received,
+                    reviewer.get('partial_observations'), reviewer.get('canonical_file')))
+                and isinstance(comparison.get('mismatches'), list), 'NONCANONICAL_KNOWN_MISMATCH')
+        require(canonical_hash and example.get('canonical_sha256') == canonical_hash
+                and isinstance(observed_hash, str) and re.fullmatch(r'[0-9a-f]{64}', observed_hash)
+                and observed_hash != canonical_hash and {
+                    'field': 'source_inventory[' + path + '].sha256',
+                    'model_visible_received': observed_hash, 'canonical': canonical_hash
+                } in comparison.get('mismatches', [])
+                and comparison.get('full_received_hash_or_counts') is None
+                and comparison.get('complete_mismatch_count') is None
+                and received.get('retained') is False and received.get('decoded_body_sha256') is None
+                and received.get('raw_sha256') is None and received.get('raw_bytes') is None
+                and reviewer.get('partial_observations', {}).get('acceptance_credit') is False
+                and reviewer.get('canonical_file', {}).get('source_ref') == p['source_ref']
+                and reviewer['canonical_file'].get('raw_sha256') == digest(request['text'].encode()),
+                'NONCANONICAL_KNOWN_MISMATCH')
+        candidate = evidence['candidate']
+        require(isinstance(candidate, dict) and set(candidate) == {'ref', 'commit', 'tree'}
+                and candidate['ref'] == 'refs/heads/codex/c24-candidate'
+                and all(isinstance(candidate[k], str) and re.fullmatch(r'[0-9a-f]{40}', candidate[k])
+                        for k in ('commit', 'tree')), 'NONCANONICAL_CANDIDATE')
+        # This authorization preserves the already compiled checkpoint. Synthetic
+        # source-copy fixtures have their own explicitly REPLAYED Git identities.
+        require(self.mode != 'OBSERVED' or (
+                    candidate['commit'] == '05f9bec97d73329877d4f52a6c52f20e7fad4c92'
+                    and candidate['tree'] == 'd13ecc992bf94ce05b8a9198aed8778aa289c3d5'),
+                'NONCANONICAL_APPROVED_CANDIDATE')
+        require(isinstance(repairs, dict) and repairs and set(repairs) <= NONCANONICAL_REPAIR_PATHS
+                and set(delta(old, new)) == set(repairs), 'NONCANONICAL_REPAIR_SCOPE')
+        for path, change in repairs.items():
+            require(isinstance(change, dict) and set(change) == {'before', 'after'}
+                    and change['before'] == old['source_bytes'].get(path)
+                    and change['after'] == new['source_bytes'].get(path)
+                    and isinstance(change['after'], str)
+                    and change['before'] != change['after'], 'NONCANONICAL_REPAIR_BYTES')
+        for path in set(old['inventory']) | set(new['inventory']):
+            if path not in repairs:
+                require(old['inventory'].get(path) == new['inventory'].get(path)
+                        and old['source_bytes'].get(path) == new['source_bytes'].get(path),
+                        'NONCANONICAL_SOURCE_DRIFT')
+        for key in ('schema', 'tag', 'checkout', 'excluded', 'scope', 'environment', 'deleted_tracked'):
+            require(old[key] == new[key], 'NONCANONICAL_SOURCE_DRIFT')
+        require({k:v for k,v in old['git'].items() if k not in {'status_porcelain', 'untracked'}} ==
+                {k:v for k,v in new['git'].items() if k not in {'status_porcelain', 'untracked'}}
+                and [p for p in old['git']['untracked'] if p not in repairs] ==
+                    [p for p in new['git']['untracked'] if p not in repairs],
+                'NONCANONICAL_GIT_DRIFT')
+        # Only repair paths may change porcelain status; renames are not repairs.
+        def other_status(manifest):
+            return [s for s in manifest['git']['status_porcelain'].split('\0')
+                    if s and s[3:] not in repairs]
+        require(other_status(old) == other_status(new), 'NONCANONICAL_GIT_DRIFT')
+        q = evidence['qualification']
+        require(isinstance(q, dict) and set(q) == {'source_digest', 'tests', 'independent_review'}
+                and q['source_digest'] == digest(new), 'NONCANONICAL_QUALIFICATION_SOURCE')
+        for key in ('tests', 'independent_review'):
+            item = q[key]
+            require(isinstance(item, dict) and set(item) == {'actor', 'reference', 'original_text', 'outcome'}
+                    and all(isinstance(item[k], str) and item[k].strip() for k in item)
+                    and item['outcome'] == 'PASS', 'NONCANONICAL_QUALIFICATION')
+        require(q['independent_review']['actor'] not in {
+                    self.identity.parent, self.config['binding']['creation']['parent_role']},
+                'NONCANONICAL_INDEPENDENT_EXAMINATION')
+        return {'binding': digest(asdict(self.identity)), 'request': request_ref,
+                'old_source': p['source_ref'], 'new_source_digest': digest(new),
+                'evidence_digest': digest(evidence), 'repairs_digest': digest(repairs)}
+
+    def _noncanonical_adjudications(self, state):
+        results, used = [], set()
+        for ref in state['records']:
+            r = self.store.get(ref)
+            if not isinstance(r, dict) or r.get('adjudication_kind') != 'NONCANONICAL_EMPTY_DISPATCH':
+                continue
+            r = self.store.get(ref, 'noncanonical_adjudication')
+            require(set(r) == {'tag', 'adjudication_kind', 'scope', 'evidence', 'repairs',
+                              'authority', 'prior_active', 'new_source', 'reason'}
+                    and r['tag'] == self.tag and isinstance(r['reason'], str) and r['reason'].strip(),
+                    'NONCANONICAL_RECORD_SCHEMA')
+            scope = r['scope']; request = scope['request']; prior = r['prior_active']
+            boundary = state['records'].index(ref)
+            require(all(value in state['records'] and state['records'].index(value) < boundary
+                        for value in (request, scope['old_source'], r['new_source'], r['authority']))
+                    and request not in used and prior['step'] == 'C24.06'
+                    and prior['phase'] == 'REVIEW_PENDING' and prior['blocker'] == 'DISPATCH_UNCERTAIN'
+                    and prior['pending']['request'] == request and prior['pending']['status'] == 'PENDING'
+                    and prior['pending'].get('diagnostic_intent') and not prior['pending'].get('submission_receipt')
+                    and prior['R'] == scope['old_source'] and not prior['report'] and not prior['reports']
+                    and not prior['reconciliations'] and not prior['F'], 'NONCANONICAL_RECORD_SCOPE')
+            old = self.store.get(scope['old_source'], 'manifest')
+            new = self.store.get(r['new_source'], 'manifest')
+            require(scope == self._noncanonical_scope(request, r['evidence'], r['repairs'], old, new),
+                    'NONCANONICAL_RECORD_SCOPE')
+            self._retained_authority(state, r['authority'], 'ADJUDICATE_NONCANONICAL_DISPATCH',
+                                     'noncanonical-dispatch:' + digest(scope))
+            require(self._registration(state, request)['status'] == 'SUPERSEDED'
+                    and not self._registration(state, request)['dispatched'],
+                    'NONCANONICAL_HISTORY_LOST')
+            a = state['active']
+            if a and a['step'] == prior['step']:
+                require(a['B'] == prior['B'] and request in a['requests'], 'NONCANONICAL_HISTORY_LOST')
+                for key in ('self_review', 'reassessment', 'initial_handoff', 'R', 'F', 'documentation'):
+                    value = a.get(key)
+                    require(value is None or (value in state['records'] and
+                            state['records'].index(value) > state['records'].index(ref)),
+                            'NONCANONICAL_STALE_READINESS')
+            results.append((ref, r)); used.add(request)
+        return results
+
+    def _fresh_requalification_evidence(self, state, a, refs):
+        super()._fresh_requalification_evidence(state, a, refs)
+        records = [(ref, r) for ref, r in self._noncanonical_adjudications(state)
+                   if r['prior_active']['step'] == a['step']]
+        if records:
+            boundary = state['records'].index(records[-1][0])
+            require(all(ref in state['records'] and state['records'].index(ref) > boundary for ref in refs),
+                    'NONCANONICAL_FRESH_VALIDATION_REQUIRED')
+
+    def _requalification_context(self, state, a):
+        context = super()._requalification_context(state, a)
+        records = [(ref, r) for ref, r in self._noncanonical_adjudications(state)
+                   if r['prior_active']['step'] == a['step']]
+        return {**context, **({'noncanonical_adjudication': records[-1][0]} if records else {})}
+
+    def _noncanonical_target(self, state, evidence, repairs):
+        a = self._active(state, {'REVIEW_PENDING'}, allow_blocked=True)
+        require(not state['pause'] and not state['cancel'] and not state['plan_restriction'], 'AUTHORITY_PAUSED')
+        require(state['external_blocker'] is None, 'EXTERNAL_BLOCKER')
+        self._capture_barrier(state); self._decision_barrier(state)
+        self._report_format_requalification_barrier(state); self._prerequisites(state)
+        pending = a['pending']
+        require(a['blocker'] == 'DISPATCH_UNCERTAIN' and pending and pending['status'] == 'PENDING'
+                and pending.get('diagnostic_intent') and not pending.get('submission_receipt')
+                and not a['report'] and not a['reports'] and not a['reconciliations'] and not a['F']
+                and not a['assessments'] and all(e['status'] in {'APPLIED', 'REVERSED'} for e in a['edits']),
+                'NONCANONICAL_PENDING_SCOPE')
+        request = pending['request']; p = self.store.get(request, 'review_request')['payload']
+        intent = pending['diagnostic_intent']
+        require(a['R'] == p['source_ref'] and intent['request'] == request
+                and intent['binding'] == digest(asdict(self.identity))
+                and intent['parent'] == self.identity.parent and intent['reviewer'] == self.identity.reviewer
+                and intent['request_payload'] == p and intent['operation'] == 'collaboration.followup_task'
+                and self._registration(state, request)['status'] == 'PENDING'
+                and not self._registration(state, request)['dispatched'], 'NONCANONICAL_INTENT')
+        key = report_key({'sender': self.identity.reviewer, 'request_id': p['request_id'], 'attempt': p['attempt']})
+        require(key not in state['seen_reports'] and not self._delivery(state, request), 'NONCANONICAL_ARRIVAL_EXISTS')
+        # Reject even an unassociated retained receipt or report for this attempt.
+        for ref in state['records']:
+            r = self.store.get(ref)
+            if isinstance(r, dict) and r.get('request') == request:
+                # get() has checked the immutable envelope's hash/schema above.
+                kind = strict_json(self.fs.read(f'{self.store.prefix}/objects/{ref}.json'))['kind']
+                require(kind not in {'submission_observation', 'delivery_confirmation', 'review_acceptance'},
+                        'NONCANONICAL_ARRIVAL_EXISTS')
+        for ref in state['captures']:
+            capture = self.store.get(ref, 'capture')
+            require(capture.get('request_ref') != request and capture.get('request_ref_at_arrival') != request
+                    and capture.get('envelope', {}).get('request_id') != p['request_id'],
+                    'NONCANONICAL_ARRIVAL_EXISTS')
+        old = self.store.get(a['R'], 'manifest')
+        new = self.current(state, 'NONCANONICAL_REPAIR_SOURCE')
+        scope = self._noncanonical_scope(request, evidence, repairs, old, new)
+        candidate = evidence['candidate']
+        require(_git(self.fs.checkout, 'rev-parse', '--verify', candidate['ref']).decode().strip() == candidate['commit']
+                and _git(self.fs.checkout, 'rev-parse', '--verify', candidate['commit'] + '^{tree}').decode().strip()
+                    == candidate['tree'], 'NONCANONICAL_CANDIDATE_DRIFT')
+        return scope, new
+
+    def noncanonical_dispatch_target(self, evidence, repairs):
+        """Read-only, exact authority target; qualification is cooperative evidence."""
+        scope, _ = self._noncanonical_target(self.inspect()['state'], evidence, repairs)
+        return {'target': 'noncanonical-dispatch:' + digest(scope), 'scope': scope}
+
+    def adjudicate_noncanonical_dispatch(self, evidence, repairs, approval, reason):
+        """Retire only an unaccepted noncanonical send; require a fresh full cycle."""
+        require(isinstance(reason, str) and reason.strip(), 'NONCANONICAL_REASON')
+        result = {}
+        def action(state):
+            scope, new = self._noncanonical_target(state, evidence, repairs)
+            authority = self._authority(state, approval, 'ADJUDICATE_NONCANONICAL_DISPATCH',
+                                        'noncanonical-dispatch:' + digest(scope))
+            a = state['active']
+            record = {'tag': self.tag, 'adjudication_kind': 'NONCANONICAL_EMPTY_DISPATCH',
+                      'scope': scope, 'evidence': copy.deepcopy(evidence), 'repairs': copy.deepcopy(repairs),
+                      'authority': authority, 'prior_active': copy.deepcopy(a),
+                      'new_source': self._remember(state, 'manifest', new), 'reason': reason}
+            self._request_status(state, 'SUPERSEDED')
+            ref = self._remember(state, 'noncanonical_adjudication', record)
+            a.update(phase='IMPLEMENTING', blocker=None, pending=None, R=None, F=None,
+                     self_review=None, reassessment=None, initial_handoff=None,
+                     assessments={}, documentation=None)
+            a.pop('final_validation', None); a.pop('impact', None)
+            result.update(adjudication=ref, status='REQUALIFICATION_REQUIRED', phase='IMPLEMENTING')
+        self._change('ADJUDICATE_NONCANONICAL_DISPATCH_WITH_FRESH_READINESS', action)
+        return result
 
     def own_edit(self,*args,**kwargs):
         raise Refusal('USE_BEGIN_EDIT_APPLY_PATCH_FINISH_EDIT')

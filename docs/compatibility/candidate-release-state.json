@@ -6,5 +6,5 @@
   "current_route": "/docs/current/",
   "stable_route": "/docs/v0.1.0/",
   "reserved_route": "/docs/v0.2.0/",
-  "retention": "pending"
+  "retention": "established"
 }

@@ -1,6 +1,6 @@
 # C24 external-package consumer contract
 
-**Preparation, not a completion certificate.** C24.06 requires successful
+**Historical C24.06 preparation contract.** C24.06 requires successful
 C24.05 closure, a fresh eligible step request and the separate exact local
 checkpoint/location approval required by the [plan](../plans/post-release-chunk-24.md#c24-06).
 The [portable fixture/recipe](../../tests/external-consumer/README.md) supplies
@@ -48,3 +48,25 @@ repinning as applicable and fresh external compilation. Source inspection may
 survive a documentation-only amendment; it cannot replace that compilation.
 Later full clean/retained-baseline/API/artifact/cumulative checks remain separate.
 PFR wording/link approval and publication are unexecuted by this contract.
+
+## Historical checkpoint and review-requalification snapshot — 2026-10-27
+
+The separately approved candidate is `05f9bec97d73329877d4f52a6c52f20e7fad4c92`.
+All 64 external recipe commands passed; the seven-fixture build passed 3098 jobs
+in 1033.258 seconds (complete recipe: 2745.221 seconds). The exact manifest/pin,
+clean-clone, source/olean-origin and artifact evidence remains privately retained.
+Existing caches and the local dependency URL limit the claim to this local run.
+
+The interrupted noncanonical review dispatch received no substantive acceptance.
+The separately approved recorder repair preserves that failure and requires fresh
+validation, self-review, reassessment and independent review. Its tooling changes
+do not change the compiled candidate or any fixture/library/dependency input.
+Current evidence must distinguish this exact compiler attribution from the new
+review-tooling source. Completion remains conditional on the actual closure record
+specified above; Step 7 has separate baseline/clean-candidate/external obligations.
+
+## Actual Step 6 closure and successor boundary — 2026-10-27
+
+C24.06 is closed by `13b6f258d65ef6819b9bf3610600c6e7f934bacda5971da79a607d70eb39dbb7` at final source `0e5822dddee9a5e63fe650917e872602bc83617f035cb2b33366ec3a91178a39`. Its genuine original review, substantive reconciliation and final applicability are linked from `.lit-review/setup/c24-06-completion-20261026.json`. The earlier interrupted dispatch and checker failures remain preserved. The compiled package identity remains checkpoint 05f9bec, separate from the repaired review-tooling source.
+
+C24.07's [retained baseline](c24-candidate-retention.md) does not extend that external run to a new commit. The containing successor requires fresh exact-SHA resolution, compilation and origin/pin evidence, including after documentation-only amendments. No remote installation is inferred.

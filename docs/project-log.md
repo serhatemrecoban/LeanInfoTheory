@@ -17987,3 +17987,28 @@ requires fresh human admission; it is not repaired by editing workflow records.
 Independent review/reconciliation/final closure are established only by actual
 `.lit-review/setup/c24-06-completion-20261026.json` and originals when present.
 No full-clean/API milestone, candidate retention, publication or later step.
+
+## 2026-10-27 — C24.06 external compiler evidence and review requalification
+
+The lead-approved v3 candidate `05f9bec97d73329877d4f52a6c52f20e7fad4c92`
+resolved in the separate external Lake package. All 64 commands passed, including
+the seven-fixture `lake --wfail build Consumer` (3098 jobs, 1033.258 seconds).
+The full recipe took 2745.221 seconds with existing caches. Exact pins, clean
+clone states and physical source/olean origins were retained; local success does
+not establish remote installation or later clean/API milestones.
+
+The root's noncanonical review dispatch and an ordinary retry refusal remain
+nonpassing originals. The lead-approved bounded recorder repair preserves those
+facts and the compiled candidate, permits no acceptance shortcut, and requires a
+fresh full Step 6 validation/self-review/reassessment/independent-review cycle.
+Current tooling qualification and exact source-applicability evidence are separate
+from the original compiler run. Only the actual Step 6 completion record and its
+linked originals establish closure when present. The latest human instruction
+authorizes Step 7 after successful Step 6 closure; it does not revive older skips
+or select Steps 8/9 or publication.
+
+## C24.07 exact candidate baseline retained; successor qualification pending — 2026-10-27
+
+C24.06 closed by `13b6f258d65ef6819b9bf3610600c6e7f934bacda5971da79a607d70eb39dbb7` (F `0e5822dddee9a5e63fe650917e872602bc83617f035cb2b33366ec3a91178a39`); Step 7 was separately admitted at B `b86ae9f4105e96b57ced20007697e0ce5ef977a2ee78283bc44c18edd83b87bf`. The actual clean checkpoint 05f9bec capture of 811 declarations received independent artifact examination and substantive root disposition `RETAIN_EXACT_CAPTURE`. Exact artifact `5692fe044c43ec2061039ea1ad3bbdd7d7722ef59d8851b79d19b9b33b2af9b5` and approval `ef53d4e42761ba803f3fb7938d97356f7ecdd2745cd5f60bf407866291131650` are retained; state alone changes pending to established. The capture's own bytes/producer/checkpoint remain unchanged.
+
+The public retention account and current-facing documentation distinguish this comparison input from pending exact successor approval/creation, full clean suite/normal comparison, new exact-SHA external run and formal Step 7 review/reconciliation/closure. Dated history, all marked examples and the normative plan remain preserved. No Git/checkpoint, API/publication, later step or new mathematical result follows from this documentation/retention edit.

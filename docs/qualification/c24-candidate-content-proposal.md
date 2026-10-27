@@ -1,4 +1,8 @@
-# Proposal: future candidate Git content
+# Candidate Git content: applied checkpoint and successor boundary
+
+**Current — 2026-10-27:** The separately approved Step 6 candidate `05f9bec97d73329877d4f52a6c52f20e7fad4c92` already omits the protected website-task path; primary local bytes and historical release contents remain preserved. Step 7's containing successor must inherit that absence and requires a new exact checkpoint/CAS/location approval. Retention approval alone supplies no Git mutation authority.
+
+## Historical C24.04 Proposal: future candidate Git content
 
 **Proposal only; not executed by C24.04.** This is a concrete input to the later
 separate checkpoint/location approval. It changes no local bytes, index or HEAD.
