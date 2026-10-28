@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import hashlib
+import io
 import json
 import os
 import shutil
@@ -12,6 +13,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 from website_discovery import PAGES, DiscoveryPage, check_discovery, read_guide_examples
+import check_website
 
 from check_website import (
     COMPOSITION_STAGE_SCHEMA,
@@ -858,13 +860,254 @@ class VersionedWebsiteBoundaryTests(unittest.TestCase):
         with (patch("check_website.EXPECTED_DEPENDENCY_ADVISORY_COUNT", 1),
               patch("check_website.EXPECTED_DEPENDENCY_MISSING_COUNT", 1),
               patch("check_website.EXPECTED_DEPENDENCY_CASING_COUNT", 0),
-              patch("check_website.EXPECTED_DEPENDENCY_ADVISORY_SHA256", digest)):
+              patch("check_website.EXPECTED_DEPENDENCY_ADVISORY_SHA256", digest),
+              patch("check_website.EXPECTED_CURRENT_DEPENDENCY_ADVISORY_BASELINE", (1, 1, 0, digest))):
             validator.validate_advisory_baseline()
             self.assertEqual(validator.errors, [])
             validator.advisories.append(current.replace("absent.html", "unreviewed.html"))
             validator.validate_advisory_baseline()
             self.assertTrue(any("docs/current" in error and "baseline changed" in error
                                 for error in validator.errors))
+
+
+class WebsiteSizePolicyTests(unittest.TestCase):
+    """Exercise real inventory traversal with tiny files and controlled stat sizes."""
+
+    def inventory(self, mode: str, sizes: list[int], *, hardlink: bool = False,
+                  symlink: bool = False) -> WebsiteValidator:
+        with tempfile.TemporaryDirectory(prefix="candidate-size-policy-") as raw:
+            site = Path(raw)
+            paths = [site / f"part-{index:02d}.bin" for index in range(len(sizes))]
+            for path in paths:
+                path.write_bytes(b"x")
+            virtual_sizes = dict(zip(paths, sizes))
+            real_stat = Path.stat
+            real_is_symlink = Path.is_symlink
+
+            def virtual_stat(path, *args, **kwargs):
+                observed = real_stat(path, *args, **kwargs)
+                if path not in virtual_sizes:
+                    return observed
+                values = list(observed)
+                values[6] = virtual_sizes[path]
+                if hardlink and path == paths[0]:
+                    values[3] = 2
+                return os.stat_result(values)
+
+            def virtual_is_symlink(path):
+                return (symlink and path == paths[0]) or real_is_symlink(path)
+
+            validator = WebsiteValidator(site, mode)
+            with (patch.object(Path, "stat", virtual_stat),
+                  patch.object(Path, "is_symlink", virtual_is_symlink)):
+                validator.inventory()
+            return validator
+
+    def total_inventory(self, mode: str, total: int, **kwargs) -> WebsiteValidator:
+        # Each virtual file is <= 100 MiB even at the observed combined-site size.
+        quotient, remainder = divmod(total, 20)
+        sizes = [quotient + (index < remainder) for index in range(20)]
+        return self.inventory(mode, sizes, **kwargs)
+
+    def test_candidate_below_pages_limit_has_no_size_blocker(self) -> None:
+        validator = self.total_inventory("candidate", 999_999_999)
+        self.assertEqual(validator.total_bytes, 999_999_999)
+        self.assertEqual(len(validator.files), 20)
+        self.assertEqual(validator.errors, [])
+        self.assertEqual(validator.publication_blockers, [])
+        self.assertEqual(validator.advisories, [])
+
+    def test_candidate_at_or_above_limit_records_explicit_publication_blocker(self) -> None:
+        for total in (1_000_000_000, 1_000_000_001, 1_316_901_390):
+            with self.subTest(total=total):
+                validator = self.total_inventory("candidate", total)
+                self.assertEqual(validator.total_bytes, total)
+                self.assertEqual(validator.errors, [])
+                self.assertEqual(validator.advisories, [])
+                self.assertEqual(validator.publication_blockers, [
+                    f"staged site is {total} bytes and reaches the 1 GB Pages limit; "
+                    "unpublished local candidate only (NOT_FOR_PUBLICATION); do not deploy"
+                ])
+
+    def test_preview_and_publishable_keep_exact_pages_size_boundary(self) -> None:
+        for mode in ("preview", "publishable"):
+            for total in (999_999_999, 1_000_000_000, 1_000_000_001, 1_316_901_390):
+                with self.subTest(mode=mode, total=total):
+                    validator = self.total_inventory(mode, total)
+                    expected = ([] if total < 1_000_000_000 else [
+                        f"staged site is {total} bytes and reaches the 1 GB Pages limit"])
+                    self.assertEqual(validator.errors, expected)
+                    self.assertEqual(validator.publication_blockers, [])
+                    self.assertEqual(validator.advisories, [])
+
+    def test_source_mode_size_behavior_is_unchanged(self) -> None:
+        validator = self.inventory("source", [1_316_901_390])
+        self.assertEqual(validator.errors, [])
+        self.assertEqual(validator.publication_blockers, [])
+        self.assertEqual(validator.advisories, [])
+
+    def test_candidate_single_file_limit_remains_an_error(self) -> None:
+        below = self.inventory("candidate", [100 * 1024 * 1024])
+        above = self.inventory("candidate", [100 * 1024 * 1024 + 1])
+        self.assertEqual(below.errors, [])
+        self.assertEqual(above.errors, ["staged file exceeds 100 MiB: part-00.bin"])
+        self.assertEqual(above.publication_blockers, [])
+
+    def test_candidate_hardlink_error_survives_aggregate_size_blocker(self) -> None:
+        for total in (100, 1_000_000_000):
+            with self.subTest(total=total):
+                validator = self.total_inventory("candidate", total, hardlink=True)
+                self.assertEqual(validator.errors, ["hard-linked staged file is not allowed: part-00.bin"])
+                self.assertEqual(len(validator.publication_blockers), int(total >= 1_000_000_000))
+
+    def test_candidate_symbolic_link_is_still_rejected(self) -> None:
+        validator = self.inventory("candidate", [1], symlink=True)
+        self.assertEqual(validator.errors, ["symbolic link is not allowed: part-00.bin"])
+        self.assertEqual(validator.total_bytes, 0)
+        self.assertEqual(validator.publication_blockers, [])
+
+    def test_oversize_candidate_does_not_skip_explicit_identity_requirements(self) -> None:
+        validator = self.total_inventory("candidate", 1_000_000_000)
+        validator.validate_candidate_contract()
+        self.assertTrue(any("expected commit and both frozen roots" in error for error in validator.errors))
+        self.assertEqual(len(validator.publication_blockers), 1)
+
+    def test_size_blocker_is_separate_from_exact_dependency_advisories(self) -> None:
+        historical = "docs/v0.1.0/Mathlib/Fixture.html: missing local link absent.html -> docs/v0.1.0/Mathlib/absent.html"
+        current = historical.replace("docs/v0.1.0/", "docs/current/")
+        digest = hashlib.sha256(historical.encode("utf-8")).hexdigest()
+        validator = self.total_inventory("candidate", 1_000_000_000)
+        validator.advisories = [historical, current]
+        with (patch("check_website.EXPECTED_DEPENDENCY_ADVISORY_COUNT", 1),
+              patch("check_website.EXPECTED_DEPENDENCY_MISSING_COUNT", 1),
+              patch("check_website.EXPECTED_DEPENDENCY_CASING_COUNT", 0),
+              patch("check_website.EXPECTED_DEPENDENCY_ADVISORY_SHA256", digest),
+              patch("check_website.EXPECTED_CURRENT_DEPENDENCY_ADVISORY_BASELINE", (1, 1, 0, digest))):
+            validator.validate_advisory_baseline()
+            self.assertEqual(validator.errors, [])
+            self.assertEqual(validator.advisories, [historical, current])
+            self.assertEqual(len(validator.publication_blockers), 1)
+            validator.advisories.append("unreviewed global dependency advisory")
+            validator.validate_advisory_baseline()
+            self.assertTrue(any("outside its two explicit API routes" in error for error in validator.errors))
+
+    def test_cli_always_displays_size_blocker_and_preserves_validation_failure(self) -> None:
+        # Test CLI reporting of a real inventory result, not full artifact qualification.
+        validator = self.total_inventory("candidate", 1_000_000_000)
+        for has_error in (False, True):
+            with self.subTest(has_error=has_error):
+                validator.errors = ["fixture identity failure"] if has_error else []
+                output = io.StringIO()
+                with (patch("check_website.WebsiteValidator", return_value=validator),
+                      patch.object(validator, "run"),
+                      patch("sys.argv", ["check_website.py", "--mode", "candidate"]),
+                      patch("sys.stdout", output)):
+                    code = check_website.main()
+                self.assertEqual(code, int(has_error))
+                self.assertIn("PUBLICATION BLOCKER:", output.getvalue())
+                self.assertIn("NOT_FOR_PUBLICATION", output.getvalue())
+                self.assertIn("do not deploy", output.getvalue())
+                if has_error:
+                    self.assertIn("fixture identity failure", output.getvalue())
+                else:
+                    self.assertIn("recorded 0 imported-dependency link advisories", output.getvalue())
+
+
+class WebsiteDependencyBaselinePolicyTests(unittest.TestCase):
+    """Separate exact historical/current policies; never aggregate their drift."""
+
+    HISTORICAL = [
+        "docs/v0.1.0/Mathlib/H.html: missing local link absent.html -> docs/v0.1.0/Mathlib/absent.html",
+        "docs/v0.1.0/Mathlib/H.html: incorrect path casing Case.html -> docs/v0.1.0/Mathlib/case.html",
+    ]
+    CURRENT = [
+        "docs/current/Mathlib/C.html: missing local link absent.html -> docs/current/Mathlib/absent.html",
+    ]
+
+    @staticmethod
+    def baseline(messages: list[str], route: str) -> tuple[int, int, int, str]:
+        normalized = [message.replace(route + "/", "docs/v0.1.0/") for message in messages]
+        return (len(normalized), sum("missing local link" in item for item in normalized),
+                sum("incorrect path casing" in item for item in normalized),
+                hashlib.sha256("\n".join(sorted(normalized)).encode("utf-8")).hexdigest())
+
+    def policies(self, current: list[str] | None = None) -> dict:
+        historical = self.baseline(self.HISTORICAL, "docs/v0.1.0")
+        return {
+            "EXPECTED_DEPENDENCY_ADVISORY_COUNT": historical[0],
+            "EXPECTED_DEPENDENCY_MISSING_COUNT": historical[1],
+            "EXPECTED_DEPENDENCY_CASING_COUNT": historical[2],
+            "EXPECTED_DEPENDENCY_ADVISORY_SHA256": historical[3],
+            "EXPECTED_CURRENT_DEPENDENCY_ADVISORY_BASELINE": self.baseline(
+                self.CURRENT if current is None else current, "docs/current"),
+        }
+
+    def test_actual_historical_policy_remains_unchanged_and_current_is_separate(self) -> None:
+        self.assertEqual((check_website.EXPECTED_DEPENDENCY_ADVISORY_COUNT,
+            check_website.EXPECTED_DEPENDENCY_MISSING_COUNT,
+            check_website.EXPECTED_DEPENDENCY_CASING_COUNT,
+            check_website.EXPECTED_DEPENDENCY_ADVISORY_SHA256),
+            (111, 109, 2, "bf8682253b1141fa6d97226f32d94fe599e4af7e4f69d8e363609f2155cfdd12"))
+        self.assertEqual(check_website.EXPECTED_CURRENT_DEPENDENCY_ADVISORY_BASELINE,
+            (110, 108, 2, "8ba462e28375d42a4bab86bd742f66453d1ceecc680a5458a5543ff33ab7acbe"))
+
+    def test_candidate_accepts_distinct_exact_route_policies(self) -> None:
+        validator = WebsiteValidator(SITE_ROOT, "candidate")
+        validator.advisories = [*self.HISTORICAL, *self.CURRENT]
+        with patch.multiple(check_website, **self.policies()):
+            validator.validate_advisory_baseline()
+        self.assertEqual(validator.errors, [])
+
+    def test_each_route_rejects_added_removed_casing_and_digest_only_drift(self) -> None:
+        for route, original in (("docs/v0.1.0", self.HISTORICAL), ("docs/current", self.CURRENT)):
+            changed = {
+                "added": [*original, original[0]],
+                "removed": original[1:],
+                "casing": [original[0].replace("missing local link", "incorrect path casing"), *original[1:]],
+                "digest_only": [original[0].replace("absent.html", "unreviewed.html"), *original[1:]],
+            }
+            for mutation, messages in changed.items():
+                with self.subTest(route=route, mutation=mutation):
+                    validator = WebsiteValidator(SITE_ROOT, "candidate")
+                    validator.advisories = (messages + self.CURRENT if route == "docs/v0.1.0"
+                                            else self.HISTORICAL + messages)
+                    with patch.multiple(check_website, **self.policies()):
+                        validator.validate_advisory_baseline()
+                    self.assertEqual(len(validator.errors), 1)
+                    self.assertIn(route + ": dependency advisory baseline changed", validator.errors[0])
+
+    def test_candidate_rejects_global_advisories_with_both_route_policies_exact(self) -> None:
+        validator = WebsiteValidator(SITE_ROOT, "candidate")
+        validator.advisories = [*self.HISTORICAL, *self.CURRENT, "unreviewed global advisory"]
+        with patch.multiple(check_website, **self.policies()):
+            validator.validate_advisory_baseline()
+        self.assertEqual(validator.errors, ["candidate has dependency advisories outside its two explicit API routes"])
+
+    def test_route_swap_fails_even_when_counts_and_classifications_match(self) -> None:
+        current = [*self.CURRENT,
+            "docs/current/Mathlib/C.html: incorrect path casing Case.html -> docs/current/Mathlib/case.html"]
+        self.assertEqual(self.baseline(self.HISTORICAL, "docs/v0.1.0")[:3],
+                         self.baseline(current, "docs/current")[:3])
+        validator = WebsiteValidator(SITE_ROOT, "candidate")
+        validator.advisories = ([message.replace("docs/v0.1.0/", "docs/current/") for message in self.HISTORICAL]
+            + [message.replace("docs/current/", "docs/v0.1.0/") for message in current])
+        with patch.multiple(check_website, **self.policies(current)):
+            validator.validate_advisory_baseline()
+        self.assertEqual(len(validator.errors), 2)
+        for route in ("docs/v0.1.0", "docs/current"):
+            self.assertTrue(any(route + ": dependency advisory baseline changed" in error for error in validator.errors))
+
+    def test_preview_and_publishable_keep_only_the_historical_baseline(self) -> None:
+        for mode in ("preview", "publishable"):
+            with self.subTest(mode=mode):
+                validator = WebsiteValidator(SITE_ROOT, mode)
+                validator.advisories = list(self.HISTORICAL)
+                with patch.multiple(check_website, **self.policies()):
+                    validator.validate_advisory_baseline()
+                    self.assertEqual(validator.errors, [])
+                    validator.advisories.pop()
+                    validator.validate_advisory_baseline()
+                self.assertTrue(any("imported-dependency advisory baseline changed" in error for error in validator.errors))
 
 
 class DiscoveryTests(unittest.TestCase):

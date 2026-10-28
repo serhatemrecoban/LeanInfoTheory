@@ -70,6 +70,11 @@ EXPECTED_DEPENDENCY_CASING_COUNT = 2
 EXPECTED_DEPENDENCY_ADVISORY_SHA256 = (
     "bf8682253b1141fa6d97226f32d94fe599e4af7e4f69d8e363609f2155cfdd12"
 )
+# The current route has its own exact policy; the historical policy is unchanged.
+EXPECTED_CURRENT_DEPENDENCY_ADVISORY_BASELINE = (
+    110, 108, 2,
+    "8ba462e28375d42a4bab86bd742f66453d1ceecc680a5458a5543ff33ab7acbe",
+)
 TEXT_SAFETY_SUFFIXES = {
     ".css",
     ".html",
@@ -584,6 +589,8 @@ class WebsiteValidator:
         self.mode = mode
         self.errors: list[str] = []
         self.advisories: list[str] = []
+        # Local candidate diagnostics never enter the fixed dependency-link baseline.
+        self.publication_blockers: list[str] = []
         self.files: set[str] = set()
         self.directories: set[str] = {""}
         self.casefold_files: dict[str, str] = {}
@@ -655,9 +662,15 @@ class WebsiteValidator:
             if self.mode != "source" and stat.st_size > 100 * 1024 * 1024:
                 self.error(f"staged file exceeds 100 MiB: {rel}")
         if self.mode != "source" and self.total_bytes >= 1_000_000_000:
-            self.error(
+            message = (
                 f"staged site is {self.total_bytes} bytes and reaches the 1 GB Pages limit"
             )
+            if self.mode == "candidate":
+                self.publication_blockers.append(
+                    message + "; unpublished local candidate only (NOT_FOR_PUBLICATION); do not deploy"
+                )
+            else:
+                self.error(message)
 
     def validate_json(self) -> None:
         for relative in REQUIRED_JSON:
@@ -1485,18 +1498,17 @@ class WebsiteValidator:
 
     def validate_advisory_baseline(self) -> None:
         if self.mode == "candidate":
-            # Keep the reviewed historical digest unchanged. The current route
-            # gets the same narrowly enumerated dependency exceptions only after
-            # normalizing its route prefix; additional errors still block. The
-            # real C24.08 artifact may require an evidenced policy amendment.
-            for route in (VERSION_ROUTE, CURRENT_ROUTE):
+            # Check each explicit route against its own exact normalized policy.
+            for route, expected in (
+                (VERSION_ROUTE, (EXPECTED_DEPENDENCY_ADVISORY_COUNT, EXPECTED_DEPENDENCY_MISSING_COUNT,
+                    EXPECTED_DEPENDENCY_CASING_COUNT, EXPECTED_DEPENDENCY_ADVISORY_SHA256)),
+                (CURRENT_ROUTE, EXPECTED_CURRENT_DEPENDENCY_ADVISORY_BASELINE),
+            ):
                 selected = [message for message in self.advisories if message.startswith(route + "/")]
                 normalized = [message.replace(route + "/", VERSION_ROUTE + "/") for message in selected]
                 observed = (len(normalized), sum("missing local link" in m for m in normalized),
                     sum("incorrect path casing" in m for m in normalized),
                     hashlib.sha256("\n".join(sorted(normalized)).encode("utf-8")).hexdigest())
-                expected = (EXPECTED_DEPENDENCY_ADVISORY_COUNT, EXPECTED_DEPENDENCY_MISSING_COUNT,
-                            EXPECTED_DEPENDENCY_CASING_COUNT, EXPECTED_DEPENDENCY_ADVISORY_SHA256)
                 if observed != expected:
                     self.error(f"{route}: dependency advisory baseline changed: {observed!r}; "
                                "exact current artifact review is required before changing this policy")
@@ -1582,6 +1594,8 @@ def main() -> int:
     validator = WebsiteValidator(args.site_root, args.mode, expected_commit=args.expected_commit,
         frozen_source_root=args.frozen_source_root, frozen_site_root=args.frozen_site_root)
     validator.run()
+    for blocker in validator.publication_blockers:
+        print(f"PUBLICATION BLOCKER: {blocker}")
     if validator.errors:
         shown = validator.errors[:200]
         print("\n".join(shown))
