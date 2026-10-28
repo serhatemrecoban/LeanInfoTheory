@@ -36,8 +36,33 @@ Status labels used below:
 
 ## 0. AI Assistant Quick Start
 
+<!-- c24-09-current:start -->
+**[Current] C24.09 cumulative qualification and handoff — 2026-10-28.**
+
+C24.01–C24.08 and their independent reviews are closed. Step 7 qualified
+`72a129a4fdff67c7f811fba89787c6dfb1d03976`; Step 8 qualified
+`ad6cf61f52738b8c381cd3179beedf52a963db0b` (tree `d5fcbfbb0cecd2bc970805626079148649bba032`).
+Their closures are `7ca757d91e835400584fae1759560d1d83e0dbe269c42f73cbde377caffa6225` and
+`0a8cb9718db8a34debb56af451c40a7ee31eeef48f790f67354c51bbb461554e` respectively. Step 9 was separately admitted
+at B `41aae06401a77b67c36d5766f85b4170c573b6d8e0838ce78da9bdd0f7b6df67` and owns the final documentation candidate,
+complete clean suite, both retained comparisons, fresh exact-SHA external use,
+API/artifact applicability and cumulative independent review.
+
+The maintained C24 handoff and programme ledger identify all 27 C24 criteria,
+216 programme rows and 276 mapped requirements. The resulting final commit/tree,
+validation, original review, reconciliation, F and closure are authoritative only
+through actual `.lit-review/setup/c24-09-completion-20261028.json` and its linked records when present.
+This source-bound preparation does not predict those outcomes.
+
+The candidate remains unpublished; stable remains v0.1.0. The Step 8 local site
+is 1,316,901,390 bytes and exceeds the 1 GB publication guard. Raw navbar paths
+still require host qualification, and the obsolete Shannon umbrella version
+sentence is explicitly deferred to final release/baseline binding. PFR wording
+and links still await approval. Earlier dated status blocks below are history.
+<!-- c24-09-current:end -->
+
 <!-- c24-07-current:start -->
-**[Current] C24.07 retained candidate baseline; successor qualification pending — 2026-10-27.**
+**[History] C24.07 retained candidate baseline; successor qualification pending — 2026-10-27.**
 
 C24.06 is closed by `13b6f258d65ef6819b9bf3610600c6e7f934bacda5971da79a607d70eb39dbb7` on final source `0e5822dddee9a5e63fe650917e872602bc83617f035cb2b33366ec3a91178a39`.
 Its local external consumer remains attributed to commit `05f9bec97d73329877d4f52a6c52f20e7fad4c92` and tree
@@ -1513,9 +1538,16 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 ## 1. Document Status
 
+**Current C24 closeout:** See the [C24 handoff](handoffs/chunk-24.md) and
+Section 0 for the selected final qualification step. Earlier dated rows retain
+their original source-bound evidence. Standing naming, import, simp, trust and
+source-adaptation duties remain active; optional theorem, alias and blueprint
+work is not made complete by cumulative qualification. The actual
+`.lit-review/setup/c24-09-completion-20261028.json` alone establishes final C24 acceptance when present.
+
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-10-25 |
+| Last updated | 2026-10-28 |
 | Recorded pre-C9 mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the released `v0.1.0` source is exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f` |
 | Repository transition state | `v0.1.0` is published from immutable tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` and archived as Zenodo record `22229599`. The evolving default branch carries the current project pages and DOI metadata, while maintenance staging preserves `/docs/v0.1.0/` from exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`; the tag, Release, archive, released Lean source, and frozen public API remain unchanged |
 | Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
@@ -1527,7 +1559,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 | Historical C23.04 source-snapshot phase | C22 and C23.01–C23.03 are closed by actual completion chains. Only C23.04 with review is selected. Corrected producer/consumer and aggregate builds, four focused/umbrella signature/axiom/owner probes, legacy rate/unit owners, generation/static checks and all nine documentation examples passed. Full maintained trust, the accepted original three-criterion independent review and substantive parent reconciliation passed, with no findings. Fresh final static/applicability checks and supported closure remain required; the actual C23.04 completion record, when present, is authoritative. Inventory is 811/57, root exports 92 and reviewed simp names 94; C24 remains proposed. See Sections 0 and 16. |
 | Historical C23.05 source-snapshot phase | C22 and C23.01–C23.04 are closed by actual completion chains. Only C23.05 with review is selected. Private standard-channel and same-family consumers reconcile the unchanged 36 C23 declarations across three owners. Initial builds, all focused/full contract probes, generation/static checks, all nine documentation examples and full maintained trust passed. The accepted original three-criterion independent review passed without findings and is substantively reconciled. Fresh final static/applicability checks and final capture remain required; supported closure depends only on the actual C23.05 completion record when present. Inventory remains 811/57, root exports 92 and reviewed simp names 94. C23.06 and C24 remain unselected. See Sections 0 and 16. |
 | Historical C23.06 source-snapshot phase | C22 and C23.01–C23.05 are closed by actual records. Only C23.06 is admitted after fresh Step 5 closure/three-criterion/all-291-entry checks. The C23 handoff and exact 21-criterion matrix are prepared; cumulative qualification is pending. Exact clean-checkpoint/reuse/amendment actions and the current two-pass API gate require separate approval and have not run; all 36 rendered inspections and the fresh 21-criterion cumulative review remain pending. Inventory is 811/57, root exports 92 and reviewed simp names 94; C24 remains proposed. See Sections 0 and 16. |
-| Current C24.01 audit phase | C23 actual closure/original reconciliation and source applicability are verified. C24 revision 2 is accepted and only C24.01 is selected with review. The complete 260-criterion programme crosswalk and 62 in-scope quantitative/process/connection rows are prepared with fresh compiled evidence; later mathematics remains unassessed. Original independent acceptance and supported closure depend on the actual C24.01 private completion record when present. Inventory remains 811/57, root exports 92 and simp names 94. See the [ledger](qualification/c24-programme.md) and [C24 notes](plans/post-release-chunk-24-notes.md). |
+| Historical C24.01 audit phase | C23 actual closure/original reconciliation and source applicability are verified. C24 revision 2 is accepted and only C24.01 is selected with review. The complete 260-criterion programme crosswalk and 62 in-scope quantitative/process/connection rows are prepared with fresh compiled evidence; later mathematics remains unassessed. Original independent acceptance and supported closure depend on the actual C24.01 private completion record when present. Inventory remains 811/57, root exports 92 and simp names 94. See the [ledger](qualification/c24-programme.md) and [C24 notes](plans/post-release-chunk-24-notes.md). |
 | Document ownership | Shared across project threads, with the project lead as decision authority |
 
 **Purpose.** This file gives future assistants one maintained entry point for
@@ -3013,7 +3045,14 @@ certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
 
-### C23.06 admitted; cumulative readiness pending — 2026-10-25
+**Current C24 closeout:** See the [C24 handoff](handoffs/chunk-24.md) and
+Section 0 for the selected final qualification step. Earlier dated rows retain
+their original source-bound evidence. Standing naming, import, simp, trust and
+source-adaptation duties remain active; optional theorem, alias and blueprint
+work is not made complete by cumulative qualification. The actual
+`.lit-review/setup/c24-09-completion-20261028.json` alone establishes final C24 acceptance when present.
+
+### Historical C23.06 readiness snapshot — 2026-10-25
 
 Only Step 6 is selected after actual Step 5 closure and all 291 predecessor entries
 were checked. The [C23 handoff](handoffs/chunk-23.md), exact 21-criterion matrix
@@ -4300,6 +4339,13 @@ C14.04 is selected. C15--C24 remain unselected.
 
 ## 13. Future-Work Register
 
+**Current C24 closeout:** See the [C24 handoff](handoffs/chunk-24.md) and
+Section 0 for the selected final qualification step. Earlier dated rows retain
+their original source-bound evidence. Standing naming, import, simp, trust and
+source-adaptation duties remain active; optional theorem, alias and blueprint
+work is not made complete by cumulative qualification. The actual
+`.lit-review/setup/c24-09-completion-20261028.json` alone establishes final C24 acceptance when present.
+
 The detailed numbered register is in `docs/project-log.md`. At this baseline it
 contains 40 notes: 38 active or standing and two closed historical notes.
 "Active" includes guardrails and proof-pressure triggers; it does not mean
@@ -4312,7 +4358,7 @@ again.
 | Note | Work |
 | --- | --- |
 | Unnumbered | **Chunk 8 is complete through `C8.24` and checkpointed as `1eef228`.** Its 18-declaration API, generated references, complete validation evidence, exact-SHA Lean workflow, and Pages deployment pass; any later theorem phase requires a separate decision. |
-| Unnumbered | **C21 asymptotic source coding:** C20 and C21.01--C21.04 are closed. The [approved plan](plans/post-release-chunk-21.md) and eligible request select only C21.05 with review. The four endpoints and permanent consumers are delivered; initial authorized clean/API qualification has passed on its recorded inputs. Final candidate qualification, readiness, cumulative acceptance and closure are established only by `.lit-review/setup/c21-05-completion-20261023.json` and its linked actual current-candidate validation/API applicability, genuine original independent report, complete seventeen-criterion matrix, substantive parent reconciliation and final-source qualification. This wording asserts no future PASS or closure. See Section 0 and the [C21 handoff](handoffs/chunk-21.md). |
+| Unnumbered | **Historical C21.05 preparation snapshot:** C20 and C21.01--C21.04 are closed. The [approved plan](plans/post-release-chunk-21.md) and eligible request select only C21.05 with review. The four endpoints and permanent consumers are delivered; initial authorized clean/API qualification has passed on its recorded inputs. Final candidate qualification, readiness, cumulative acceptance and closure are established only by `.lit-review/setup/c21-05-completion-20261023.json` and its linked actual current-candidate validation/API applicability, genuine original independent report, complete seventeen-criterion matrix, substantive parent reconciliation and final-source qualification. This wording asserts no future PASS or closure. See Section 0 and the [C21 handoff](handoffs/chunk-21.md). |
 | 29 | **Finite-Fano phase checkpointed.** Commit `ec78829` completes the approved phase; its evidence-based Fano follow-ups remain open and deferred. |
 
 Note 29 also preserves proof-pressure triggers from `C5.08`-`C5.11` and
@@ -4684,7 +4730,7 @@ not reproduce textbook prose or proofs.
 
 ## 16. Validation State
 
-**[Current] C23.06 admitted; cumulative qualification not yet run — 2026-10-25.**
+**[History] C23.06 pre-qualification snapshot — 2026-10-25.**
 
 Step 5 passed its recorded focused/aggregate, interface/static/documentation and
 compiled-trust checks, accepted original review and final applicability, and is

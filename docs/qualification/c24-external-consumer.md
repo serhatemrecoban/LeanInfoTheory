@@ -1,5 +1,13 @@
 # C24 external-package consumer contract
 
+**Current reconciliation — 2026-10-28.** C24.01–C24.08 are closed with independent
+review on their recorded sources. Step 7's containing candidate was
+`72a129a4fdff67c7f811fba89787c6dfb1d03976`; Step 8's was `ad6cf61f52738b8c381cd3179beedf52a963db0b`.
+The [C24 handoff](../handoffs/chunk-24.md) records their exact evidence and limits.
+Step 9 qualifies its own resulting candidate; its final identity and acceptance
+exist only through actual `.lit-review/setup/c24-09-completion-20261028.json` when present. Earlier dated
+preparation descriptions below retain their historical attribution.
+
 **Historical C24.06 preparation contract.** C24.06 requires successful
 C24.05 closure, a fresh eligible step request and the separate exact local
 checkpoint/location approval required by the [plan](../plans/post-release-chunk-24.md#c24-06).
@@ -70,3 +78,15 @@ specified above; Step 7 has separate baseline/clean-candidate/external obligatio
 C24.06 is closed by `13b6f258d65ef6819b9bf3610600c6e7f934bacda5971da79a607d70eb39dbb7` at final source `0e5822dddee9a5e63fe650917e872602bc83617f035cb2b33366ec3a91178a39`. Its genuine original review, substantive reconciliation and final applicability are linked from `.lit-review/setup/c24-06-completion-20261026.json`. The earlier interrupted dispatch and checker failures remain preserved. The compiled package identity remains checkpoint 05f9bec, separate from the repaired review-tooling source.
 
 C24.07's [retained baseline](c24-candidate-retention.md) does not extend that external run to a new commit. The containing successor requires fresh exact-SHA resolution, compilation and origin/pin evidence, including after documentation-only amendments. No remote installation is inferred.
+
+## Step 7–8 qualification and final candidate duty
+
+The Step 7 and Step 8 completion records establish their separate exact-SHA
+external runs. Step 8's consumer `run-03` resolved `ad6cf61f52738b8c381cd3179beedf52a963db0b`
+through local Git and passed all 64 recorded commands. Lake reported 3098 total
+jobs for the Consumer target, including dependencies and cached jobs; seven
+independent import/source-origin boundaries were checked. This used
+existing caches; it is not remote installation, a cold build or a PFR rebuild.
+Step 9 must repeat resolution and compilation for its own final SHA, even though
+its changes are documentation-only. The [handoff](../handoffs/chunk-24.md)
+provides the actual completion/evidence pointers and post-C24 obligations.

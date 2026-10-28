@@ -18012,3 +18012,34 @@ or select Steps 8/9 or publication.
 C24.06 closed by `13b6f258d65ef6819b9bf3610600c6e7f934bacda5971da79a607d70eb39dbb7` (F `0e5822dddee9a5e63fe650917e872602bc83617f035cb2b33366ec3a91178a39`); Step 7 was separately admitted at B `b86ae9f4105e96b57ced20007697e0ce5ef977a2ee78283bc44c18edd83b87bf`. The actual clean checkpoint 05f9bec capture of 811 declarations received independent artifact examination and substantive root disposition `RETAIN_EXACT_CAPTURE`. Exact artifact `5692fe044c43ec2061039ea1ad3bbdd7d7722ef59d8851b79d19b9b33b2af9b5` and approval `ef53d4e42761ba803f3fb7938d97356f7ecdd2745cd5f60bf407866291131650` are retained; state alone changes pending to established. The capture's own bytes/producer/checkpoint remain unchanged.
 
 The public retention account and current-facing documentation distinguish this comparison input from pending exact successor approval/creation, full clean suite/normal comparison, new exact-SHA external run and formal Step 7 review/reconciliation/closure. Dated history, all marked examples and the normative plan remain preserved. No Git/checkpoint, API/publication, later step or new mathematical result follows from this documentation/retention edit.
+
+## C24.07–C24.08 completed; C24.09 cumulative closeout — 2026-10-28
+
+Step 7 closed on `72a129a4fdff67c7f811fba89787c6dfb1d03976` with the complete retained baseline,
+clean routine and fresh exact-SHA external consumer. Step 8 closed on
+`ad6cf61f52738b8c381cd3179beedf52a963db0b` with renewed clean/external checks, current two-pass
+API qualification and composed local-site qualification. Their actual closure
+references are `7ca757d91e835400584fae1759560d1d83e0dbe269c42f73cbde377caffa6225` and `0a8cb9718db8a34debb56af451c40a7ee31eeef48f790f67354c51bbb461554e`.
+Original failures, transport limitations and source-bound reviewer evidence remain
+in their completion chains; no failed attempt is promoted to a pass.
+
+The lead selected Step 9 only after successful Step 8 review/closure. Its B is
+`41aae06401a77b67c36d5766f85b4170c573b6d8e0838ce78da9bdd0f7b6df67`. Current canonical status, the complete programme ledger and the
+[second-release handoff](handoffs/chunk-24.md) are being reconciled before the
+final candidate. Final clean/baseline/external/API/artifact qualification, original
+all-27-criterion/all-216-row cumulative review and closure are established only by
+actual `.lit-review/setup/c24-09-completion-20261028.json` and its linked records when present.
+
+The Step 8 site remains above the 1 GB publication guard. Raw repeated-slash navbar
+links require actual-host qualification. Root retained the optional obsolete
+Shannon version sentence until final release/baseline binding: changing one Lean
+docstring would otherwise replace the exact-source retained baseline. Current
+documents clarify v0.2 candidate ownership; the defect is not described as fixed.
+This revised timing is exposed to cumulative review. The handoff records owners,
+triggers, source-diff/baseline approval and required requalification.
+
+Standing Future Work naming/alias, import/simp, trust and documentation guardrails
+remain active; optional theorem families and blueprint/equation expansion are not
+delivered by C24. No new mathematical reference adaptation is made. Existing PFR
+public observations concern historical v0.1.0; wording/links, private disclosure,
+outreach and all release/publication actions remain separately controlled.

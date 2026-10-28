@@ -1,6 +1,14 @@
 # Candidate Git content: applied checkpoint and successor boundary
 
-**Current — 2026-10-27:** The separately approved Step 6 candidate `05f9bec97d73329877d4f52a6c52f20e7fad4c92` already omits the protected website-task path; primary local bytes and historical release contents remain preserved. Step 7's containing successor must inherit that absence and requires a new exact checkpoint/CAS/location approval. Retention approval alone supplies no Git mutation authority.
+**Current reconciliation — 2026-10-28.** C24.01–C24.08 are closed with independent
+review on their recorded sources. Step 7's containing candidate was
+`72a129a4fdff67c7f811fba89787c6dfb1d03976`; Step 8's was `ad6cf61f52738b8c381cd3179beedf52a963db0b`.
+The [C24 handoff](../handoffs/chunk-24.md) records their exact evidence and limits.
+Step 9 qualifies its own resulting candidate; its final identity and acceptance
+exist only through actual `.lit-review/setup/c24-09-completion-20261028.json` when present. Earlier dated
+preparation descriptions below retain their historical attribution.
+
+**Historical checkpoint boundary — 2026-10-27:** The separately approved Step 6 candidate `05f9bec97d73329877d4f52a6c52f20e7fad4c92` already omits the protected website-task path; primary local bytes and historical release contents remain preserved. Step 7's containing successor must inherit that absence and requires a new exact checkpoint/CAS/location approval. Retention approval alone supplies no Git mutation authority.
 
 ## Historical C24.04 Proposal: future candidate Git content
 

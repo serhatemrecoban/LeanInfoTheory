@@ -2,17 +2,15 @@
 
 <!-- lit-review-status:start -->
 **Status:** Active revision 2, accepted by the lead on 2026-10-25.
-C24.06 is closed by `13b6f258d65ef6819b9bf3610600c6e7f934bacda5971da79a607d70eb39dbb7` at final source `0e5822dddee9a5e63fe650917e872602bc83617f035cb2b33366ec3a91178a39`.
-C24.07 is separately admitted at B `b86ae9f4105e96b57ced20007697e0ce5ef977a2ee78283bc44c18edd83b87bf`. The exact clean checkpoint 05f9bec baseline has
-received independent artifact examination and root digest approval; canonical
-retention is established. This is not formal Step 7 acceptance.
-The containing successor still requires exact checkpoint approval, complete
-clean qualification and normal comparison, fresh successor-SHA external use,
-and genuine formal Step 7 review/reconciliation/closure. No containing commit
-or future result is predicted. Steps 8–9 and API/publication actions remain
-unselected; PFR wording/link approval remains pending. See
-[advisory notes](post-release-chunk-24-notes.md) and the
-[retention account](../qualification/c24-candidate-retention.md).
+C24.01–C24.08 and their reviews are closed. Step 8 closure is
+`0a8cb9718db8a34debb56af451c40a7ee31eeef48f790f67354c51bbb461554e` at final source `4939e0ef8fc71640c056396750229903b17fa6756c4ba34164db43327fcaec91`.
+Only C24.09 is admitted, at B `41aae06401a77b67c36d5766f85b4170c573b6d8e0838ce78da9bdd0f7b6df67`, for cumulative qualification
+and the [maintained handoff](../handoffs/chunk-24.md). Final candidate checks,
+all-27-criterion/all-216-row original review, reconciliation and closure are
+established only by actual `.lit-review/setup/c24-09-completion-20261028.json` and linked evidence when present.
+No future result, final commit or publication is predicted. The 1 GB publication
+blocker, host-navigation duty and optional version-prose deferral remain explicit;
+PFR wording/link approval remains pending. See [notes](post-release-chunk-24-notes.md).
 <!-- lit-review-status:end -->
 
 ## 1. Authority and intended outcome

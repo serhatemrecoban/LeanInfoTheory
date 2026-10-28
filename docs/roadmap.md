@@ -1,7 +1,32 @@
 # Roadmap
 
+<!-- c24-09-current:start -->
+**[Current] C24.09 cumulative qualification and handoff — 2026-10-28.**
+
+C24.01–C24.08 and their independent reviews are closed. Step 7 qualified
+`72a129a4fdff67c7f811fba89787c6dfb1d03976`; Step 8 qualified
+`ad6cf61f52738b8c381cd3179beedf52a963db0b` (tree `d5fcbfbb0cecd2bc970805626079148649bba032`).
+Their closures are `7ca757d91e835400584fae1759560d1d83e0dbe269c42f73cbde377caffa6225` and
+`0a8cb9718db8a34debb56af451c40a7ee31eeef48f790f67354c51bbb461554e` respectively. Step 9 was separately admitted
+at B `41aae06401a77b67c36d5766f85b4170c573b6d8e0838ce78da9bdd0f7b6df67` and owns the final documentation candidate,
+complete clean suite, both retained comparisons, fresh exact-SHA external use,
+API/artifact applicability and cumulative independent review.
+
+The maintained C24 handoff and programme ledger identify all 27 C24 criteria,
+216 programme rows and 276 mapped requirements. The resulting final commit/tree,
+validation, original review, reconciliation, F and closure are authoritative only
+through actual `.lit-review/setup/c24-09-completion-20261028.json` and its linked records when present.
+This source-bound preparation does not predict those outcomes.
+
+The candidate remains unpublished; stable remains v0.1.0. The Step 8 local site
+is 1,316,901,390 bytes and exceeds the 1 GB publication guard. Raw navbar paths
+still require host qualification, and the obsolete Shannon umbrella version
+sentence is explicitly deferred to final release/baseline binding. PFR wording
+and links still await approval. Earlier dated status blocks below are history.
+<!-- c24-09-current:end -->
+
 <!-- c24-07-current:start -->
-**[Current] C24.07 retained candidate baseline; successor qualification pending — 2026-10-27.**
+**[History] C24.07 retained candidate baseline; successor qualification pending — 2026-10-27.**
 
 C24.06 is closed by `13b6f258d65ef6819b9bf3610600c6e7f934bacda5971da79a607d70eb39dbb7` on final source `0e5822dddee9a5e63fe650917e872602bc83617f035cb2b33366ec3a91178a39`.
 Its local external consumer remains attributed to commit `05f9bec97d73329877d4f52a6c52f20e7fad4c92` and tree

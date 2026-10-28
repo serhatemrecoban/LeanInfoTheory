@@ -1,7 +1,9 @@
 # C24 planning and implementation notes
 
-**Status:** Active revision 2; C24.07 exact baseline retention, 2026-10-27.
-C24.06 is closed by `13b6f258d65ef6819b9bf3610600c6e7f934bacda5971da79a607d70eb39dbb7`. Step 7 is separately admitted at B `b86ae9f4105e96b57ced20007697e0ce5ef977a2ee78283bc44c18edd83b87bf`; retention follows actual artifact examination, while the containing successor, full suite, new external run and formal Step 7 closure remain pending. Separate checkpoint approval is still required. Earlier sections retain dated facts; Section 19 records this boundary.
+**Current boundary:** The [C24 handoff](../handoffs/chunk-24.md) owns final qualification and release duties. Earlier preparation paragraphs are dated history; their pending labels do not override actual completion records.
+
+**Status:** Active revision 2; C24.01–C24.08 closed with review; C24.09 cumulative qualification selected, 2026-10-28.
+**Historical Step 7 retention snapshot — 2026-10-27:** C24.06 is closed by `13b6f258d65ef6819b9bf3610600c6e7f934bacda5971da79a607d70eb39dbb7`. Step 7 is separately admitted at B `b86ae9f4105e96b57ced20007697e0ce5ef977a2ee78283bc44c18edd83b87bf`; retention follows actual artifact examination, while the containing successor, full suite, new external run and formal Step 7 closure remain pending. Separate checkpoint approval is still required. Earlier sections retain dated facts; Section 19 records this boundary.
 
 
 ## 1. Authorized checkout and preserved state
@@ -975,3 +977,31 @@ external run belong to Step 7. Steps 8/9 and publication remain separate.
 The actual capture contains 811 declarations across 57 supported modules, exported from clean `05f9bec97d73329877d4f52a6c52f20e7fad4c92` / `d13ecc992bf94ce05b8a9198aed8778aa289c3d5`. Artifact SHA256 is `5692fe044c43ec2061039ea1ad3bbdd7d7722ef59d8851b79d19b9b33b2af9b5`; approval SHA256 is `ef53d4e42761ba803f3fb7938d97356f7ecdd2745cd5f60bf407866291131650`. Root's actual `RETAIN_EXACT_CAPTURE` disposition follows the original independent artifact examination (original SHA256 `9600e7303a348c35257bcb4a5025856ae592a0cd3fc68d7a11cc7a996877aaa8`). The canonical artifact is an exact byte copy; its pending-state observation remains unchanged while the separate maintained lifecycle moves to established. See the [retention account](../qualification/c24-candidate-retention.md).
 
 This artifact examination is not formal Step 7 acceptance. The successor containing these bytes still needs exact approval/creation, the complete clean suite and normal comparison, fresh exact-SHA external compilation, original formal review, reconciliation and closure. No containing SHA or later result is invented. Earlier compilation, source inspection and failure evidence retain their actual snapshot attribution. Steps 8–9 and publication remain separate.
+
+## 20. Step 9 cumulative closeout and plan-health decision — 2026-10-28
+
+All eight supported predecessor closures and their satisfied criteria were checked
+before admitting Step 9. Entry source inventory and Git identity match Step 8 F.
+The final ledger retains all 216 row IDs and all 276 requirements; the remaining
+25 rows concern C16–C23 historical validation/readiness/handoff and C20 feasibility.
+The new cumulative report must assess every row and all 27 C24 criteria. Prior
+original reports and failures remain source-bound and are not rewritten.
+
+Root reconsidered the optional suggestion to correct Shannon's version sentence
+inside Step 9. The exact source-bound candidate comparator has no exception for
+docstring changes. A correction would need a fresh clean export checkpoint,
+independent artifact examination/approval and a containing checkpoint. The bounded
+choice is to preserve the reviewed artifact and comparator, clarify present scope
+in current documents, and assign the sentence to final release/baseline binding.
+This is an explicit nonmaterial deferral, open to cumulative independent critique,
+not a claim that the source was repaired or a relaxation of a required criterion.
+
+The raw navbar defect also remains open for the actual host. Local Step 8 evidence
+applies only with the qualified server canonicalization and unchanged artifacts.
+The composed 1,316,901,390-byte site is not publishable under the unchanged 1 GB guard.
+PFR wording/links and publication retain separate authority.
+
+Routine document reconciliation is authorized by the Step 9 request. A new exact
+checkpoint and any invalidated expensive API milestone require the concrete
+proposal prescribed by plan Section 8. Final acceptance is conditional on actual
+`.lit-review/setup/c24-09-completion-20261028.json`; this note supplies no future PASS.

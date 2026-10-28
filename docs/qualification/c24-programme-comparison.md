@@ -1,5 +1,13 @@
 # Programme comparison with the first release
 
+**Current reconciliation — 2026-10-28.** C24.01–C24.08 are closed with independent
+review on their recorded sources. Step 7's containing candidate was
+`72a129a4fdff67c7f811fba89787c6dfb1d03976`; Step 8's was `ad6cf61f52738b8c381cd3179beedf52a963db0b`.
+The [C24 handoff](../handoffs/chunk-24.md) records their exact evidence and limits.
+Step 9 qualifies its own resulting candidate; its final identity and acceptance
+exist only through actual `.lit-review/setup/c24-09-completion-20261028.json` when present. Earlier dated
+preparation descriptions below retain their historical attribution.
+
 This account describes the current C9-C23 mathematical programme during C24.03.
 The [acceptance ledger](c24-programme.md) and actual source-bound review records
 determine qualification. C24.03 acceptance and closure are established only by

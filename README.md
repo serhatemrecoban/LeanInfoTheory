@@ -150,8 +150,9 @@ reproducibility matters.
 ### Trying the unpublished candidate locally
 
 The primary checkout contains current candidate work. The separately approved
-local checkpoint 05f9bec has completed its Step 6 external-consumer qualification;
-a successor must be qualified at its own exact SHA. There is no
+Step 8 local checkpoint ad6cf61f has completed clean-suite, exact-SHA external,
+API/artifact and independent-review qualification. Step 9's resulting candidate must
+be qualified at its own exact SHA; see the [C24 handoff](docs/handoffs/chunk-24.md). There is no
 published v0.2.0 tag, DOI or qualified remote installation identity. To inspect
 this checkout with its pinned Lean/mathlib environment, run from its root:
 
@@ -172,7 +173,7 @@ path = "../LeanInfoTheory"
 Record the exact source tree and local changes used. A moving path dependency
 does not provide an immutable release identity. The marked examples below are
 checked in-tree. The [external consumer account](docs/qualification/c24-external-consumer.md)
-records completed local checkpoint 05f9bec use; any successor SHA requires fresh external
+records the completed local Step 6–8 runs; any successor SHA requires fresh external
 compilation. For published, reproducible use today, keep
 the v0.1.0 Git dependency above.
 
@@ -381,7 +382,7 @@ including post-v0.1.0 additions. Its separately reviewed elaborated-type,
 universe, ownership, import and attribute baseline is now retained through
 C24.07's actual artifact examination and exact digest approval. The
 [retention account](docs/qualification/c24-candidate-retention.md) separates this
-comparison input from pending successor qualification and formal Step 7 closure.
+comparison input from completed Step 7–8 qualification and the final Step 9 duties.
 Current inventory or rendered documentation alone does not establish retention.
 The original v0.1.0 retained artifact remains separate. See the
 [candidate contract](docs/v0.2-release-contract.md).

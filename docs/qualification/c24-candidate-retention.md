@@ -1,6 +1,14 @@
 # C24 candidate retention: exact examined capture
 
-**Status — 2026-10-27: Retained baseline established; C24.07 qualification remains in progress.**
+**Current reconciliation — 2026-10-28.** C24.01–C24.08 are closed with independent
+review on their recorded sources. Step 7's containing candidate was
+`72a129a4fdff67c7f811fba89787c6dfb1d03976`; Step 8's was `ad6cf61f52738b8c381cd3179beedf52a963db0b`.
+The [C24 handoff](../handoffs/chunk-24.md) records their exact evidence and limits.
+Step 9 qualifies its own resulting candidate; its final identity and acceptance
+exist only through actual `.lit-review/setup/c24-09-completion-20261028.json` when present. Earlier dated
+preparation descriptions below retain their historical attribution.
+
+**Historical retention-stage status — 2026-10-27: Retained baseline established; C24.07 qualification was then in progress.**
 This account records the actual independently examined capture and root decision
 `RETAIN_EXACT_CAPTURE`. It does not certify the containing successor or formal Step 7 closure.
 
@@ -79,3 +87,18 @@ does not rewrite those historical inputs or results.
 Steps 8–9 and their API/artifact/cumulative duties remain separate. Stable remains
 v0.1.0; publication is disabled. No new tag, issued date, DOI, remote availability,
 stable-pointer movement, PFR wording approval or external-project change is asserted.
+
+## Final comparison and optional prose disposition
+
+The retained artifact and approval remain byte-identical to the Step 7 examination.
+The old `0.1.x` sentence at `LeanInfoTheory/Shannon.lean:41` is a known prose
+defect; current full-stack coverage belongs to the unpublished v0.2.0 candidate.
+The exact producer map hashes every Lean source, so correcting even this docstring
+would invalidate normal provenance comparison. Step 9 therefore keeps the optional
+finding visible and assigns its correction to the separate final release/baseline
+binding owner. This changes the suggested timing, not the original finding or any
+acceptance rule. Before correction, prepare an explicit source diff and approve
+the required new capture/examination/binding; rerun the clean, external and affected
+API/artifact checks. Do not normalize the difference, silently recapture, weaken
+comparison or claim the sentence fixed. The cumulative reviewer must assess this
+disposition. Both historical and candidate baseline checks remain required.
