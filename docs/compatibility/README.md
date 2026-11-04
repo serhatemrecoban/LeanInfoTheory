@@ -306,10 +306,12 @@ states and complete next-release surface. It preserves this directory's immutabl
 v0.1.0 artifact and checker separately. The canonical
 [candidate contract](v0.2.0-candidate-contract.json) and
 [approval envelope](v0.2.0-candidate-approval.json) now retain the independently
-examined exact clean checkpoint 05f9bec capture. Lifecycle retention is `established`. Normal
-checks still freshly compile/export and compare; capture/schema approval is not
-a normal comparison PASS or Step 7 closure. The [retention account](../qualification/c24-candidate-retention.md)
-records actual identities, the historical NOT_ESTABLISHED state and remaining gates.
+examined exact clean checkpoint `7fcc2e0a419e4497281dc2b1863def9833d60e47` capture,
+approved separately for final release preparation. Lifecycle retention remains
+`established`. Normal checks still freshly compile/export and compare; approval
+is not a normal comparison PASS or containing-candidate qualification. The
+[retention account](../qualification/c24-candidate-retention.md) preserves the
+earlier 05f9bec capture history and records the new binding and remaining gates.
 
 ```powershell
 python -B scripts/check_candidate_api_compatibility.py check

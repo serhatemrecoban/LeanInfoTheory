@@ -1,5 +1,24 @@
 # C24 candidate retention: exact examined capture
 
+**Release-preparation successor binding — 2026-11-04.** The canonical retained
+artifact now holds the independently examined and explicitly approved clean
+`7fcc2e0a419e4497281dc2b1863def9833d60e47` capture, tree
+`eefaa2d649af6564504e5550f9b75a2055248a62`, digest
+`740c5b4f165fe1b0b35b75d94f8900103dfa85fbf94732b2a300c4e4f2766921`.
+Its 811 records, historical 601 types, 57-module boundaries, 92 root exports
+and 94 reviewed simp entries are unchanged. Exactly six producer inputs changed
+for the reviewed Shannon docstring and release-state/checker work; compiler,
+exporter and dependency identities remain unchanged. The new envelope references
+the actual private release-preparation examination. This is baseline retention,
+not containing-candidate, API, remote or publication qualification. The
+[release plan](../plans/v0.2-release-preparation.md) governs those remaining gates.
+
+Everything below records the earlier C24 capture/qualification history; its
+identities and original wording remain intact. Earlier canonical-file links
+now resolve to the successor; the exact old files remain in commit `7fcc2e0`
+and the private prior-canonical evidence copy. The old Shannon-docstring finding
+was resolved in the new source checkpoint, with this recapture required.
+
 **Current reconciliation — 2026-10-28.** C24.01–C24.08 are closed with independent
 review on their recorded sources. Step 7's containing candidate was
 `72a129a4fdff67c7f811fba89787c6dfb1d03976`; Step 8's was `ad6cf61f52738b8c381cd3179beedf52a963db0b`.

@@ -5,6 +5,44 @@ detail. It is not meant to list every small command or proof attempt. It should
 help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
+<!-- v02-capture-log:start -->
+## Approved source checkpoint for release capture, 2026-11-04
+
+The user approved the concrete 39-path local checkpoint and fresh retained-capture
+proposal. Reused the clean validation checkout on `codex/v0.2-release-candidate`
+and created `7fcc2e0a419e4497281dc2b1863def9833d60e47`, tree
+`eefaa2d649af6564504e5550f9b75a2055248a62`, directly above the qualified C24 source.
+Exact approved payloads and exclusions were verified before commit. The primary
+checkout/index, protected bytes and unrelated changes were preserved. Original
+API/site artifacts were privately copied and checked against their recorded C24
+digests. Static checks and 18 state/28 candidate-contract tests passed.
+
+Fresh capture completed as CAPTURED_UNAPPROVED with digest
+`740c5b4f165fe1b0b35b75d94f8900103dfa85fbf94732b2a300c4e4f2766921`.
+All command logs and hashes were preserved privately. Both full exports agree;
+all 811 records, historical 601 types and complete compiled boundaries are
+unchanged. Exactly six reviewed producer inputs differ; the old provenance check
+correctly refuses that source delta. Independent examination passed all six
+criteria without mandatory findings, checking actual artifact/source/log evidence.
+An index question was resolved against the exact logical staged-entry projection;
+raw index metadata was not the preservation baseline.
+
+The user approved retaining this exact examined capture and envelope and
+creating the containing checkpoint. The prior canonical files remain in
+Git history and private evidence. Full clean qualification, both normal
+retained comparisons and exact-SHA external-consumer checks remain pending;
+binding alone supplies none of those results. The exact eight-path proposal covers
+the artifact/envelope and retention/context updates without producer changes.
+This source-only checkpoint is not a qualified release. Its containing candidate
+requires the complete clean and exact-SHA consumer checks and applicable later
+API/remote qualification.
+
+The user explicitly requested performing the final GitHub **Publish release**
+action themselves. Updated the plan and living context to require that handoff,
+followed by verification of publication before separately approved website work.
+No push, tag, release, remote repository creation or deployment occurred.
+<!-- v02-capture-log:end -->
+
 <!-- v02-publication-copy-log:start -->
 ## Second-release public copy and staging boundaries, 2026-11-04
 

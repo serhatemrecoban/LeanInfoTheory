@@ -36,6 +36,42 @@ Status labels used below:
 
 ## 0. AI Assistant Quick Start
 
+<!-- v02-capture:start -->
+**[Current] Second-release Step 4 retained binding approved; qualification pending - 2026-11-04.**
+
+The approved 39-path source checkpoint is
+`7fcc2e0a419e4497281dc2b1863def9833d60e47`, tree
+`eefaa2d649af6564504e5550f9b75a2055248a62`, on local branch
+`codex/v0.2-release-candidate` in the existing validation checkout. It is clean
+and follows qualified candidate `41b22576caa5df716ecde529e2e8b02f95a9f1cf`.
+Static checks and the 18 state/28 candidate-contract tests passed. The fresh
+compiled capture completed as CAPTURED_UNAPPROVED, with digest
+`740c5b4f165fe1b0b35b75d94f8900103dfa85fbf94732b2a300c4e4f2766921`.
+Both complete exports agree; 811 declaration records and the historical 601 types
+are unchanged. Compiled boundaries retain 57 modules, 92 root exports and 94
+reviewed simp entries. Independent artifact examination passed all six criteria
+with no mandatory finding. The source-only provenance difference was examined;
+the old normal comparison correctly refuses it without a waiver.
+
+The user approved retaining this exact examined capture and envelope and
+creating the containing checkpoint. The prior canonical files remain in
+Git history and private evidence. Full clean qualification, both normal
+retained comparisons and exact-SHA external-consumer checks remain pending;
+binding alone supplies none of those results. No new clean/API/remote qualification
+is claimed. The exact eight-path proposal updates the baseline/envelope and
+retention/context documents only; it changes no invariant producer input.
+
+The main checkout/index and unrelated changes were preserved when creating the
+checkpoint. Original generated artifacts were privately archived and matched
+their C24 digests. The only Lean source change is the reviewed Shannon docstring.
+
+**[Decision] Manual GitHub publication handoff.** The user will click
+**Publish release** themselves. Prepare a reviewed draft only under the relevant
+future approval; do not publish through the UI, API or CLI. Verify the user's
+published release before separately approved API deployment/live checks and the
+main-site stable switch. No remote action has occurred.
+<!-- v02-capture:end -->
+
 <!-- v02-publication-copy:start -->
 **[Current] Second-release publication copy prepared - 2026-11-04.**
 
