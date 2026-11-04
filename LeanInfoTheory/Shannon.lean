@@ -37,8 +37,8 @@ import LeanInfoTheory.Shannon.Units
 /-!
 # Complete finite Shannon information-theory import
 
-This import-only umbrella gathers the complete supported mathematical stack for
-LeanInfoTheory `0.1.x`. It subsumes the lightweight `LeanInfoTheory` root and
+This import-only umbrella gathers LeanInfoTheory's complete supported
+mathematical stack. It subsumes the lightweight `LeanInfoTheory` root and
 adds the focused finite-channel, entropy-bound, Fano, finite-family, semantic,
 KL, Markov, gluing, sufficiency, convexity, total-variation, coupling, finite-simplex
 topology, finite dependent products, Fin block transports and iid laws, finite

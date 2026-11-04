@@ -9,19 +9,18 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="LeanInfoTheory">
     <meta property="og:title" content="LeanInfoTheory | Information Theory Library for Lean 4">
-    <meta property="og:description" content="Information theory in Lean 4: stable v0.1.0 has 601 declarations; unpublished v0.2.0 development has 811 declarations across 57 modules.">
+    <meta property="og:description" content="LeanInfoTheory v0.2.0: 811 declarations across 57 modules for finite information theory, quantitative probability, source coding and channel capacity.">
     <meta property="og:url" content="https://serhatemrecoban.github.io/LeanInfoTheory/">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="LeanInfoTheory | Information Theory Library for Lean 4">
-    <meta name="twitter:description" content="Information theory in Lean 4: stable v0.1.0 has 601 declarations; unpublished v0.2.0 development has 811 declarations across 57 modules.">
+    <meta name="twitter:description" content="LeanInfoTheory v0.2.0: 811 declarations across 57 modules for finite information theory, quantitative probability, source coding and channel capacity.">
     <meta
       name="description"
-      content="Information theory in Lean 4: stable v0.1.0 has 601 declarations; unpublished v0.2.0 development has 811 declarations across 57 modules."
+      content="LeanInfoTheory v0.2.0: 811 declarations across 57 modules for finite information theory, quantitative probability, source coding and channel capacity."
     >
     <meta name="citation_title" content="LeanInfoTheory">
     <meta name="citation_author" content="Coban, Serhat Emre">
-    <meta name="citation_publication_date" content="2026-09-01">
-    <meta name="citation_doi" content="10.5281/zenodo.22229599">
+    <meta name="citation_publication_date" content="2026-11-04">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -69,30 +68,29 @@
           </a>
         </p>
         <p>
-          Latest stable release: <code>v0.1.0</code>, the first LeanInfoTheory
-          public-library baseline, archived as
-          <a href="https://doi.org/10.5281/zenodo.22229599"><code>10.5281/zenodo.22229599</code></a>.
-          <strong>601 documented public declarations. 31 supported modules.
-          Ready to use in your own Lean project.</strong>
+          Latest stable release: <code>v0.2.0</code>, dated 4 November 2026.
+          <strong>811 supported declarations. 57 supported modules.</strong>
+          Explore the <a href="docs/v0.2.0/">versioned API</a> or
+          <a href="https://github.com/serhatemrecoban/LeanInfoTheory/releases/tag/v0.2.0">release notes</a>.
         </p>
       </section>
 
       <section class="notice" aria-labelledby="candidate-heading">
-        <h2 id="candidate-heading">Unpublished v0.2.0 candidate</h2>
+        <h2 id="candidate-heading">What is new in v0.2.0</h2>
         <p>
           Current source contains <strong>811 supported declarations across 57
-          modules</strong>, with 92 lightweight-root exports. The candidate adds
+          modules</strong>, with 92 lightweight-root exports. The release adds
           finite total variation and coupling, Pinsker and continuity, product
           laws, finite iid AEP, fixed-length source coding, attained finite
           information capacity, and channel-coding weak converses.
         </p>
         <p>
-          The stable release and its API remain <code>v0.1.0</code>. Candidate
-          release qualification is in progress; these source counts do not
-          announce a new release or a generated candidate API artifact.
+          These results retain explicit finite-alphabet, support and independence
+          hypotheses. Channel-coding achievability and a channel strong converse
+          remain outside this release.
           See the <a href="module-guide.html#candidate-modules">current import guide</a>,
           <a href="theorems.html#candidate-results">capabilities and limits</a>, and
-          <a href="docs/research-projects.html#pfr-case-study">proposed case-study summary</a>.
+          <a href="docs/research-projects.html#pfr-case-study">Perfect Functional Representations case study</a>.
         </p>
       </section>
 
@@ -170,14 +168,14 @@
             <span class="status-pill proved">Generated references</span>
             <h3>Documentation Artifacts</h3>
             <p>
-              A signature-bearing v0.1.0 reference covers all 31 supported
-              modules and 601 supported declarations. The generated reference
+              A signature-bearing v0.2.0 reference covers all 57 supported
+              modules and 811 supported declarations. The generated reference
               also carries the complete imported dependency closure for working
               links and search. The source-derived inventory and module-level
               dependency map remain separate supplementary artifacts.
             </p>
             <p class="dashboard-links">
-              <a href="docs/v0.1.0/">v0.1.0 API reference</a>
+              <a href="docs/v0.2.0/">v0.2.0 API reference</a>
               <span aria-hidden="true">/</span>
               <a href="docs/api-index.html">Source inventory</a>
               <span aria-hidden="true">/</span>
@@ -367,31 +365,27 @@
       <section aria-labelledby="next-heading">
         <h2 id="next-heading">Project Direction</h2>
         <p>
-          The complete candidate baseline is retained. Step 8 qualified local
-          checkpoint ad6cf61f, including external use and API artifacts; Step 9
-          owns final cumulative qualification and the release handoff.
-          Publication remains blocked by the composed site's size, and navigation
-          must be qualified on the intended host. The candidate is unpublished.
-          The completed milestones below retain their original historical
-          checkpoints and validation context.
+          The second release brings quantitative probability, independent products,
+          finite-iid source coding and channel capacity into the library's finite
+          information-theory framework. The original <a href="docs/v0.1.0/">v0.1.0 API</a>
+          and <a href="https://doi.org/10.5281/zenodo.22229599">historical archive</a>
+          remain available unchanged.
         </p>
         <ul class="roadmap-list">
-          <li><span class="status-pill proved">Completed</span> Project B Chunks 1-4 cover finite pair/triple identities, KL equality and independence, Markov structure, stochastic MI/KL data processing, and finite sufficient statistics.</li>
-          <li><span class="status-pill proved">Completed</span> Chunk 5 finite deterministic-decoder Fano is checkpointed as commit <code>ec78829</code> after passing the full milestone validation suite.</li>
-          <li><span class="status-pill proved">Completed</span> Chunk 6 adds the dependent finite-family core, semantic Shannon inequalities, examples, API review, generated references, and full independent milestone validation. It is checkpointed as commit <code>7b5f0db</code>.</li>
-          <li><span class="status-pill proved">Completed</span> Chunk 7's finite Cover-Thomas Section 2.7 implementation, examples, API review, canonical memory, generated references, public-documentation refresh, and independent milestone validation are complete through <code>C7.22</code>. The coherent Lean/source checkpoint is commit <code>5e616d8</code>.</li>
-          <li><span class="status-pill proved">Completed</span> Chunk 8's finite conditional-KL, conditional-family CMI, and mutual-independence implementation is complete through <code>C8.24</code>. Its focused, maintained, and default builds, consumers, trust audit, generated references, website checks, and repository hygiene pass. The validated source is checkpointed as <code>1eef228</code>; its required Lean build/placeholder and Pages workflows both succeeded.</li>
-          <li><span class="status-pill proved">Completed</span> Versioned signature-bearing API-documentation pipeline for all 31 supported modules and 601 declarations, with exact-commit source links and guarded manual publication.</li>
-          <li><span class="status-pill planned">Planned</span> Theorem-level leanblueprint pages and a blueprint PDF on top of the current module dependency map.</li>
-          <li><span class="status-pill separate">Later</span> Exact Fano sharpness, randomized/list decoding, channel achievability and operational-capacity equality, and broader reusable finite-information-theory results.</li>
-          <li><span class="status-pill separate">Downstream</span> Paper-specific constructions, application-specific automation, and network-converse developments remain separate projects.</li>
+          <li><span class="status-pill proved">Implemented</span> Total variation, maximal coupling, Pinsker bounds, continuity and finite probability topology.</li>
+          <li><span class="status-pill proved">Implemented</span> Independent products, iid blocks and product-channel bounds for arbitrary inputs, with equality for independent inputs.</li>
+          <li><span class="status-pill proved">Implemented</span> Finite-iid asymptotic equipartition, fixed-length source coding above entropy, and source-coding converses.</li>
+          <li><span class="status-pill proved">Implemented</span> Attained information capacity, standard finite-channel examples and Fano-based channel weak converses.</li>
+          <li><span class="status-pill separate">Case study</span> <a href="docs/research-projects.html#pfr-case-study">Perfect Functional Representations</a> demonstrates reuse of unchanged v0.1.0 in a completed downstream formalization.</li>
+          <li><span class="status-pill planned">Planned</span> Theorem-level blueprint pages and a blueprint PDF extending the current module dependency map.</li>
+          <li><span class="status-pill separate">Later</span> Channel-coding achievability, operational channel-capacity equality and the channel strong converse remain outside this release.</li>
         </ul>
       </section>
 
       <footer class="site-footer">
         <span class="site-footer-owner">
           <a href="https://github.com/serhatemrecoban/LeanInfoTheory">LeanInfoTheory</a>
-          is maintained by Serhat Emre Coban. See the
+          is developed at EPFL, Mathematics of Information Laboratory. See the
           <a href="license.html">license and citation page</a> or visit the GitHub repository.
         </span>
       </footer>

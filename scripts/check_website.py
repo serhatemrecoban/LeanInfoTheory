@@ -1414,6 +1414,11 @@ class WebsiteValidator:
 
     def validate_text_safety(self, relative: str, source: str) -> None:
         development_index = self.mode == "source" and relative == "docs/api-index.html"
+        if self.mode == "source" and relative.endswith(".html") and not development_index \
+                and not self.is_versioned_path(relative):
+            visible = html.unescape(re.sub(r"<[^>]+>", " ", HTML_COMMENT_RE.sub("", source)))
+            if re.search(r"\bchunks?\s+[0-9]|\bC[1-9][0-9]*(?:\.[0-9]+|[–-](?:C)?[0-9]+)?\b", visible, re.IGNORECASE):
+                self.error(f"{relative}: public coverage uses internal work-package numbering")
         if FILE_URL_LITERAL_RE.search(source):
             self.error(f"{relative}: contains a local file URL")
         if MACHINE_LOCAL_PATH_RE.search(source):

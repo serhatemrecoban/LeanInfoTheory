@@ -45,6 +45,23 @@ SITE_ROOT = ROOT / "home_page"
 
 
 class CuratedTheoremLinkTests(unittest.TestCase):
+    def test_public_coverage_rejects_internal_work_package_labels(self) -> None:
+        for text in ("chunk 24", "chunks 9-24", "C9-C24", "C24.09", "C37", "C100.01"):
+            with self.subTest(text=text):
+                validator = WebsiteValidator(SITE_ROOT, "source")
+                validator.validate_text_safety("roadmap.html", f"<p>{text}</p>")
+                self.assertTrue(any("internal work-package" in error for error in validator.errors))
+
+    def test_coverage_guard_preserves_historical_prose_and_internal_links(self) -> None:
+        for relative, source in (
+            ("docs/v0.1.0/index.html", "<p>chunk 8</p>"),
+            ("roadmap.html", '<!-- C24.09 --><a href="../plans/chunk-24.md">Source coding</a>'),
+        ):
+            with self.subTest(relative=relative):
+                validator = WebsiteValidator(SITE_ROOT, "source")
+                validator.validate_text_safety(relative, source)
+                self.assertEqual(validator.errors, [])
+
     def test_development_index_links_remain_local_source_context_only(self) -> None:
         source = (SITE_ROOT / "docs/api-index.html").read_text(encoding="utf-8")
         self.assertIn("/blob/master/LeanInfoTheory/", source)
@@ -814,6 +831,7 @@ class VersionedWebsiteBoundaryTests(unittest.TestCase):
             raise AssertionError(f"unexpected command: {command!r}")
 
         with (
+            patch("stage_website.release_state.load_state", return_value={"phase": "historical"}),
             patch("stage_website.require_clean_checkout"),
             patch("stage_website.run", side_effect=fake_run),
             patch.dict(os.environ, {}, clear=True),
@@ -822,6 +840,7 @@ class VersionedWebsiteBoundaryTests(unittest.TestCase):
                 validate_current_maintenance_checkout()
 
         with (
+            patch("stage_website.release_state.load_state", return_value={"phase": "historical"}),
             patch("stage_website.require_clean_checkout"),
             patch("stage_website.run", side_effect=fake_run),
             patch.dict(

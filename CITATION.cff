@@ -1,8 +1,9 @@
 cff-version: 1.2.0
-message: "Unpublished v0.2.0 candidate; cite the exact source checkpoint used."
+message: "If you use LeanInfoTheory in your work, please cite the software using this metadata."
 type: software
 title: "LeanInfoTheory"
 version: "0.2.0"
+date-released: 2026-11-04
 authors:
   - family-names: "Coban"
     given-names: "Serhat Emre"

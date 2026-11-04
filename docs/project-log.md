@@ -5,6 +5,202 @@ detail. It is not meant to list every small command or proof attempt. It should
 help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
+<!-- v02-publication-copy-log:start -->
+## Second-release public copy and staging boundaries, 2026-11-04
+
+Continued Step 3 by finishing the intended v0.2.0 README, homepage, guides,
+module/theorem coverage, citation wording and small versioned API entry. The
+approved masthead and PFR paragraph remain exact; historical v0.1.0 material is
+explicitly distinguished and preserved. Public topic descriptions avoid internal
+programme-step labels. New version links are local preparation only, ordered
+after the future approved GitHub release and verified API deployment.
+
+Review assembly now uses exact tracked homepage sources and pins project Lean
+links to the qualified source SHA, rather than inheriting disabled source links
+from the interim candidate composition. An inventory guard rejects ignored or
+untracked website inputs. Review output remains visibly unpublished and preserves
+the recovered historical route unchanged. The legacy maintenance producer refuses
+release-ready state; its workflow cannot deploy v0.2.0 through the old layout.
+
+Static checks passed with 78 website/split/publication regressions. All five
+README and four website Lean examples remain byte-identical. Browser checks
+covered desktop/phone copy, the PFR section, versioned API entry and home return.
+These checks do not validate a new complete API artifact or production host.
+Independent review found inherited historical citation-date tags in the two
+current pages. Corrected those tags to 2026-11-04, separated current and historical
+citation prose, and added a real-validator regression for stale/missing/duplicate
+tags. The preparation/candidate fixtures retain their historical published-site
+identity. All 18 state tests passed; the independent correction review confirmed
+resolution with no mandatory finding remaining. Step 3 is complete locally.
+No mathematical source, package/pin/CFF change,
+capture replacement, Git mutation, remote creation or public action occurred in
+this pass. Step 4's concrete checkpoint approval and requalification remain next.
+<!-- v02-publication-copy-log:end -->
+
+<!-- v02-address-date-log:start -->
+## Approved second-release address and date, 2026-11-04
+
+The user chose `serhatemrecoban/LeanInfoTheory-API` so the API entry point can
+serve later releases, and explicitly selected 4 November 2026 as the release
+date. Applied local release-ready state/CFF with that date and no DOI, and
+reconciled current metadata prose. The review stager now nests the complete API
+under `v0.2.0/`, with root/current/version entry links to the new snapshot route.
+Existing large previews and evidence are unchanged and not claimed to qualify
+this new route. All source/metadata amendments retain requalification duties.
+
+The per-site size cap still covers all colocated version folders. The API root
+can remain a permanent index while future large snapshots use additional sites;
+existing historical snapshots need not be overwritten or moved. No main-site
+address change, Git write, remote repository creation or publication occurred.
+
+Final static validation passed. Independent review reran 11 publication, 17 state
+and 28 candidate-contract tests. A parent-identified clean-capture privacy guard
+gap was corrected for release-ready state and independently verified before any
+compiler/build/export command. No mandatory source/fixture finding remains; no
+new full artifact, successor qualification or production-host pass is claimed.
+<!-- v02-address-date-log:end -->
+
+<!-- v02-metadata-preparation-log:start -->
+## Second-release metadata and review staging, 2026-11-04
+
+Continued the approved release sequence at Step 3. Corrected only the obsolete
+Shannon umbrella version sentence; imports and mathematical declarations are
+unchanged. Added inactive release-ready metadata with an explicit date, fixed
+proposed main/API destinations, DOI-free citation and retained publication guard.
+Actual canonical state/CFF remain candidate. New tooling writes ignored metadata
+proposals and prepares/checks two-site review outputs, never Git or remote state.
+It requires the source-bound retained producer, exact-SHA GitHub API evidence and
+full candidate composition check, then uses the exact recovered live historical
+route, preserves API/search data and validates every output against inputs.
+
+Independent review identified a missing relocated licence-page provenance link;
+the exact fourth navigation transform and regression were added. Static checks
+pass with 76 website/split/publication-staging tests; separate metadata and
+candidate-contract tests also pass. The focused Shannon build passed with warnings
+as errors (3,089 build jobs; changed umbrella compiled in 426 seconds). Independent
+review found no unresolved mandatory source/fixture defect after verifying the
+provenance-link correction against the actual generated page. This is local
+build/fixture/source validation, not a fresh
+large composition, two-pass API milestone or successor clean qualification.
+
+Prepared a separate public GitHub release-text draft with mathematical coverage,
+assumptions/exclusions, approved historical PFR wording and authorial voice. The
+plan now explicitly orders GitHub release, verified API deployment, main-site
+stable switch and archive/DOI verification. Final public README/site copy and
+approved metadata activation remain before Step 4's final candidate; manual
+publication packaging/dry runs remain before Step 6. No release is published and
+no earlier capture, v0.1.0 artifact, canonical CFF/state, workflow or Git reference
+was changed. Protected/private content and unrelated local work are preserved.
+<!-- v02-metadata-preparation-log:end -->
+
+<!-- v02-web-preparation-log:start -->
+## Local second-release website preparation, 2026-11-04
+
+The user authorized continued work under the approved release sequence and
+clarified that public coverage must use mathematical topics rather than internal
+chunk numbering. Local website composition and current prose are being prepared
+together. The new `split_website.py` builds only nonpublishing previews, with the
+complete new API tree on its own project subpath and the historical route copied
+unchanged from the qualified input. Optional working website overlays retain
+explicit unqualified status. The original site/file size guards are enforced.
+
+Current public pages now contain the approved PFR paragraph and reuse lessons,
+remove obsolete development-step status prose, and retain the exact masthead.
+First-person authorship required updating the current-page metadata validator;
+the first rejected static run and the corrected successful run are retained
+privately. All 65 website/split regression tests and the full static contract
+pass. No mathematical source, retained baseline, package or citation edit occurs
+in this local website work.
+
+Read-only production checks confirmed the old repeated-slash owner link returns
+200. The deployed historical route differs from the later rebuilt artifact;
+full recovery obtained 5,534 files and 660,408,008 bytes, matching the deployment's
+exact recorded digest. Of the 26 differing files, 24 differ only in line endings;
+the navbar and stage metadata also differ. No other route files differ.
+The original deployment archive is absent from the repository's current Actions
+artifact listing. Final deployment must preserve the verified historical bytes
+and disclose their separate provenance; the preview preserves its C24 input.
+
+No new source checkpoint or API milestone is claimed. Final metadata lifecycle,
+retained binding, clean/external/API qualification and actual-host checks remain.
+The source branch/index, original evidence and protected local files stay intact;
+no GitHub creation, push, release or deployment has been performed.
+
+
+A bounded independent release-preparation review found and verified corrections
+to Windows redirected-output guards and the preview-serving instructions. It also
+checked the accepted arbitrary-input versus independent-input wording. The final
+static suite passes with 65 website/split tests. This source/fixture review is not
+a formal C24 closure or production-host qualification.
+
+Final local split validation passed: main site 661,575,985 bytes; separate API
+655,316,062 bytes. The input checker covered 11,066 HTML files and 6,061,004
+links/assets, retaining its bounded dependency advisories; corrected assembly
+then verified every output against its inputs and transformations. Browser checks
+passed search/declaration, dependency, reverse-import, instance and return links.
+The PFR section passed desktop and phone-width inspection. Both outputs remain
+NOT_FOR_PUBLICATION; no new API generation or successor clean qualification is
+claimed. Temporary preview servers are stopped.
+
+README and draft release notes now reflect actual completed local qualification
+and approved PFR wording; an independent addendum found no further issues. The
+final static suite passed with 65 website/split tests. Source/metadata lifecycle,
+Shannon wording, reviewed retained recapture, exact checkpoint approval and fresh
+qualification remain the next preparation duties. GitHub and deployment gates
+remain unchanged.
+
+<!-- v02-web-preparation-log:end -->
+
+<!-- v02-separate-pages-decision-log:start -->
+## Separate GitHub Pages API hosting selected, 2026-11-04
+
+The selected release design keeps the main LeanInfoTheory website at its existing
+address, updates it for the completed programme and PFR case study, and places
+the complete v0.2.0 API snapshot on a separate public GitHub Pages site. It uses
+a provided github.io address; the earlier R2/custom-domain proposal is superseded.
+Small costs are acceptable in principle, but no expense or paid service is selected.
+
+A fresh read-only size inventory of the C24 staged artifact measured 655,321,297
+bytes for the current API and 661,580,449 bytes for the remaining main site,
+including frozen v0.1.0. The planned split fits each site's 1 GB limit. These
+measurements establish capacity for the design, not publishable artifact or host
+qualification. The [updated plan](plans/v0.2-release-preparation.md) retains exact
+historical preservation, required requalification and separate publication gates.
+The exact new repository/address will be recorded before remote creation.
+
+Complete versioned API packages and separate deployment settings keep future
+migration practical. Older API sites can stay in place if a later oversized
+release uses another host. This turn records the decision and size inventory;
+it does not implement or deploy the split, alter the qualified candidate, create
+a remote repository, commit, push, tag or publish.
+<!-- v02-separate-pages-decision-log:end -->
+
+<!-- v02-release-step1-log:start -->
+## v0.2.0 release preparation: content approval and hosting proposal, 2026-11-04
+
+C24.09 completion was checked against its actual candidate
+`41b22576caa5df716ecde529e2e8b02f95a9f1cf` and evidence, rather than inferred from
+frozen pre-closure prose. The [seven-step release sequence](plans/v0.2-release-preparation.md)
+is approved; only its first step is selected. The
+[PFR paragraph and links](qualification/c24-pfr-case-study-draft.md) are approved
+with the requested final disclaimer clause removed. The existing masthead,
+authorial voice, historical v0.1.0 dependency and channel-achievability exclusion
+are retained. The final issue date remains unset.
+
+Read-only API inspection established that imported dependency documentation
+accounts for most of each roughly 660 MB tree. The proposed durable arrangement
+keeps the main site and frozen v0.1.0 route on GitHub Pages and hosts complete
+newer API snapshots separately. Host, URL and route-contract changes still need
+approval; deduplication alone has cross-version search/navigation and future
+pin-upgrade costs. No website implementation or hosting change has been made.
+
+This step changes only the plan, wording and project-memory documents. Existing
+qualification remains attached to its original candidate. Any amended candidate
+requires the recorded full-suite, both-baseline, exact-SHA consumer and affected
+API/review gates. No commits, pushes, tags, releases, deployments, private evidence
+disclosure, PFR/ShannonCert changes or automatic monitoring are selected.
+<!-- v02-release-step1-log:end -->
+
 
 <!-- c24-04-log:start -->
 ## C24.04 unpublished candidate contract and routing prepared, 2026-10-26

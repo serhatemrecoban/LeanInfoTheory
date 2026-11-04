@@ -66,39 +66,20 @@ python scripts/validate_release.py static</code></pre>
         commit GitHub-source build.
       </p>
 
-      <h2 id="candidate-staging">Unpublished candidate staging</h2>
-      <p>
-        The <code>v0.2.0</code> candidate has 811 supported declarations across
-        57 modules. Its version/state contract is distinct from the frozen
-        <code>v0.1.0</code> release. Current source coverage is described in the
-        <a href="module-guide.html#candidate-modules">module guide</a>.
-      </p>
-      <p>
-        Candidate staging requires a separately authorized exact clean source
-        commit, including the approved candidate Git content, and explicit
-        independently validated frozen source and site roots. A local detached
-        checkout is supported without invented CI variables. Current API input
-        must have matching source, dependency, configuration and two-pass
-        attestation identities; stale bodies or docstrings invalidate it.
-      </p>
-      <p>
-        The local composition preserves <code>docs/v0.1.0/</code> byte-for-byte,
-        places current output under <code>docs/current/</code>, and leaves
-        <code>docs/v0.2.0/</code> reserved. It always has
-        <code>publishable=false</code> and <code>NOT_FOR_PUBLICATION</code>
-        markers. File-mode source links are sanitized; GitHub-mode links must
-        name the exact expected commit without implying remote availability.
-        Neither local staging nor a successful check authorizes deployment.
-      </p>
-      <p>
-        Step 8 qualified the local candidate API/artifact combination with
-        server path canonicalization. The 1,316,901,390-byte composition exceeds
-        the unchanged 1 GB publication guard, and the intended public host still
-        requires navigation qualification. Final Step 9 evidence and separate
-        publication authority remain required. No generated current or reserved API is linked from these
-        tracked pages. The stable reference and guarded manual Pages workflow
-        keep their existing release boundaries.
-      </p>
+      <h2 id="candidate-staging">Versioned documentation and release validation</h2>
+      <p>Version <code>v0.2.0</code> contains 811 supported declarations across 57 modules.
+      The main site and historical <code>docs/v0.1.0/</code> route retain their existing
+      address. The complete second-release API is served under
+      <code>/LeanInfoTheory-API/v0.2.0/</code>, with its dependencies and search data.</p>
+      <p>Release validation binds clean source, retained APIs, external-consumer builds
+      and two-pass API evidence to the exact candidate. Source, docstring or metadata
+      changes require renewed applicability checks. Public source links identify an
+      exact public commit; versioned references retain their own identities.</p>
+      <p>Local review bundles carry <code>NOT_FOR_PUBLICATION</code> and cannot be
+      promoted merely by removing that marker. Publication requires separate approval,
+      including checks on the intended host. Verify the API deployment before updating
+      the main site's stable links. Each complete deployed site must remain within
+      its hosting limit; version subdirectories do not provide separate quotas.</p>
 
       <h2>Project Hygiene</h2>
       <ul>
@@ -127,7 +108,7 @@ python scripts/validate_release.py static</code></pre>
         <li>Use <code>LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily</code> directly for family Shannon inequalities.</li>
         <li>Use <code>LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL</code> directly for common-base channel conditional KL, its finite weighted semantics, and joint chain rule.</li>
         <li>Use <code>LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence</code> directly for finite-atom mutual independence and the n-way entropy-equality characterization.</li>
-        <li>The <code>LeanInfoTheory.Examples</code> hierarchy is maintained regression coverage, not stable <code>0.1.x</code> API.</li>
+        <li>The <code>LeanInfoTheory.Examples</code> hierarchy is maintained regression coverage, outside the supported release API.</li>
         <li>Use <code>LeanInfoTheory.Examples.FiniteFamily</code> for maintained family-chain, mutual-independence, and dependent-alphabet examples.</li>
         <li>Use <code>LeanInfoTheory.Examples.ConditionalKL</code> for maintained non-public conditional-KL boundary regressions.</li>
         <li>Use <code>LeanInfoTheory.Examples.Convexity</code> for maintained non-public Section 2.7 regression consumers.</li>

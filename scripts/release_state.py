@@ -6,6 +6,7 @@ approves a regenerated baseline, or turns a working tree into a qualified commit
 from __future__ import annotations
 
 import hashlib
+from datetime import date
 import json
 from pathlib import Path
 import re
@@ -21,6 +22,12 @@ CANDIDATE_APPROVAL_PATH = "docs/compatibility/v0.2.0-candidate-approval.json"
 LOCAL_PRIVATE_PATH = "docs/next-website-tasks.md"
 STATE_SCHEMA = "lean-info-theory.candidate-release-state.v1"
 IDENTITY_SCHEMA = "lean-info-theory.candidate-release-identity.v1"
+PUBLICATION = {
+    "main_url": "https://serhatemrecoban.github.io/LeanInfoTheory/",
+    "api_repository": "serhatemrecoban/LeanInfoTheory-API",
+    "api_url": "https://serhatemrecoban.github.io/LeanInfoTheory-API/v0.2.0/",
+}
+SECOND_RELEASE_PHASES = {"candidate", "release-ready"}
 FIXED = {
     "schema": STATE_SCHEMA,
     "target_version": TARGET_VERSION,
@@ -37,6 +44,8 @@ PRODUCTION_INPUTS = (
     "scripts/compatibility/run_candidate_fixtures.py",
     "scripts/compatibility/test_public_api_compatibility.py",
     "scripts/test_release_state.py",
+    "scripts/prepare_publication.py", "scripts/test_prepare_publication.py",
+    "docs/releases/v0.2.0-publication.md",
 )
 
 
@@ -64,26 +73,47 @@ def require_file(root: Path, relative: str) -> Path:
     return path
 
 
+def validate_state(data: object) -> dict:
+    if not isinstance(data, dict):
+        raise ValueError("candidate release state must be an object")
+    fields = set(FIXED) | {"phase", "retention"}
+    if data.get("phase") == "release-ready":
+        fields.add("publication")
+    if set(data) != fields:
+        raise ValueError("candidate release state has missing or unknown fields")
+    if any(data[key] != value for key, value in FIXED.items()):
+        raise ValueError("candidate version/routes differ from the approved v0.2 contract")
+    if not isinstance(data["phase"], str) or data["phase"] not in {"preparation", *SECOND_RELEASE_PHASES}:
+        raise ValueError("unsupported candidate metadata phase")
+    if not isinstance(data["retention"], str) or data["retention"] not in {"pending", "established"}:
+        raise ValueError("unsupported candidate retention disposition")
+    if data["retention"] == "established" and data["phase"] not in SECOND_RELEASE_PHASES:
+        raise ValueError("established retention requires unpublished candidate metadata")
+    if data["phase"] == "release-ready":
+        publication = data["publication"]
+        if not isinstance(publication, dict) or set(publication) != set(PUBLICATION) | {"release_date"}:
+            raise ValueError("release-ready publication fields differ from the reviewed layout")
+        if any(publication[key] != value for key, value in PUBLICATION.items()):
+            raise ValueError("release-ready publication destinations differ from the reviewed layout")
+        issued = publication["release_date"]
+        if not isinstance(issued, str) or re.fullmatch(r"\d{4}-\d{2}-\d{2}", issued) is None:
+            raise ValueError("release-ready metadata requires an explicit ISO release date")
+        if date.fromisoformat(issued) <= date(2026, 9, 1):
+            raise ValueError("second-release date must follow the historical release")
+        if data["retention"] != "established":
+            raise ValueError("release-ready metadata requires established retained approval")
+    return data
+
+
 def load_state(root: Path = ROOT) -> dict:
     path = root / STATE_PATH
     if not path.exists() and not path.is_symlink():
         return {"phase": "historical", "retention": "not-applicable"}
-    data = strict_json(require_file(root, STATE_PATH).read_bytes())
-    if not isinstance(data, dict) or set(data) != set(FIXED) | {"phase", "retention"}:
-        raise ValueError("candidate release state has missing or unknown fields")
-    if any(data[key] != value for key, value in FIXED.items()):
-        raise ValueError("candidate version/routes differ from the approved v0.2 contract")
-    if not isinstance(data["phase"], str) or data["phase"] not in {"preparation", "candidate"}:
-        raise ValueError("unsupported candidate metadata phase")
-    if not isinstance(data["retention"], str) or data["retention"] not in {"pending", "established"}:
-        raise ValueError("unsupported candidate retention disposition")
-    if data["retention"] == "established" and data["phase"] != "candidate":
-        raise ValueError("established retention requires unpublished candidate metadata")
-    return data
+    return validate_state(strict_json(require_file(root, STATE_PATH).read_bytes()))
 
 
 def expected_package_version(state: dict) -> str:
-    return TARGET_VERSION if state["phase"] == "candidate" else STABLE_VERSION
+    return TARGET_VERSION if state["phase"] in SECOND_RELEASE_PHASES else STABLE_VERSION
 
 
 def contract_identity(root: Path = ROOT) -> dict:
@@ -116,7 +146,7 @@ def project_lakefile(raw: bytes, state: dict) -> bytes:
     expected = expected_package_version(state)
     if parsed.get("version") != expected:
         raise ValueError("unapproved package version for release state")
-    if state["phase"] != "candidate":
+    if state["phase"] not in SECOND_RELEASE_PHASES:
         return normalized
     pattern = rb'(?m)^version = "0\.2\.0"$'
     if len(re.findall(pattern, normalized)) != 1:
@@ -178,7 +208,10 @@ message: "If you use LeanInfoTheory in your work, please cite the software using
 type: software
 title: "LeanInfoTheory"
 '''
-    if state["phase"] == "candidate":
+    if state["phase"] == "release-ready":
+        validate_state(state)
+        version = f'version: "0.2.0"\ndate-released: {state["publication"]["release_date"]}\n'
+    elif state["phase"] == "candidate":
         common = common.replace(
             'message: "If you use LeanInfoTheory in your work, please cite the software using this metadata."',
             'message: "Unpublished v0.2.0 candidate; cite the exact source checkpoint used."',

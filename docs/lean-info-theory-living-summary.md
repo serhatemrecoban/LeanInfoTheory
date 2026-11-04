@@ -36,6 +36,191 @@ Status labels used below:
 
 ## 0. AI Assistant Quick Start
 
+<!-- v02-publication-copy:start -->
+**[Current] Second-release publication copy prepared - 2026-11-04.**
+
+Step 3's final README/site copy is implemented locally, together with the
+approved `LeanInfoTheory-API` destination and 2026-11-04 metadata. Step 3 is complete
+locally after independent review and correction verification. Public pages describe mathematical coverage,
+retain the exact masthead and approved PFR paragraph, and distinguish historical
+v0.1.0 reuse from independent candidate compatibility evidence. Installation and
+stable API links are prepared for v0.2.0; nothing has been published or deployed.
+
+The review producer uses exact tracked website source, pins project Lean source
+links to the checked SHA, preserves recovered historical bytes and retains
+visible unpublished notices. It refuses ignored/untracked site files. The old
+maintenance deployment path now refuses release-ready state. Static checks pass
+with 78 website/split/publication tests and 18 separate release-state tests;
+all nine maintained Lean examples are
+unchanged. Browser checks cover the publication copy and small API entry only.
+
+The reviewer identified inherited v0.1.0 citation-date metadata in the two current
+pages. Both now use the approved v0.2.0 date, with an exact state-aware regression
+and historical citation prose separately scoped. The correction was independently
+verified; no mandatory source/fixture finding remains.
+
+The next gate is the exact checkpoint/checkout proposal and explicitly approved
+fresh retained capture, followed by full clean exact-SHA qualification. Real
+two-site deployment packaging, GitHub source-mode API regeneration, production
+host checks and separate public-action approvals remain later gates. The older
+dated preparation blocks below describe intermediate states; their outstanding
+copy/date/name statements are superseded by this block and the approved plan.
+<!-- v02-publication-copy:end -->
+
+<!-- v02-address-date:start -->
+**[Decision] Approved API repository and date - 2026-11-04.**
+
+The user selected `serhatemrecoban/LeanInfoTheory-API` and release date
+2026-11-04. Local state and canonical CFF now use release-ready metadata with
+that date and no DOI. Publication remains pending; metadata supplies no new
+baseline approval or qualification. The reusable API entry page will be
+`/LeanInfoTheory-API/`, with the complete preserved snapshot at
+`/LeanInfoTheory-API/v0.2.0/`. Later snapshots may be linked from separate hosts
+when aggregate capacity requires it. A version folder has no separate size quota.
+The original split preview and evidence keep their earlier address and identity.
+
+This supersedes earlier pending-date/name and candidate-CFF statements below.
+Routing/state changes still require the recorded final recapture, exact-SHA and
+API qualification gates. No repository creation, Git mutation or publication
+is authorized or performed by recording these choices.
+
+Static validation and the independent address/date review passed. The review
+confirmed the nested routes and whole-site guard; the retained-capture privacy
+guard now also covers release-ready metadata. Fresh successor/API/host checks
+remain required.
+<!-- v02-address-date:end -->
+
+<!-- v02-metadata-preparation:start -->
+**[History] Second-release metadata/staging foundation - 2026-11-04.**
+
+Step 3 is active: the version-neutral Shannon umbrella docstring, inactive
+release-ready metadata support, ignored metadata proposals and guarded two-site
+review staging are implemented. Actual package/CFF state remains an unpublished
+candidate; no release date or new DOI has been selected. The proposed API
+repository/address and issue date have been put to the user for approval.
+
+Source/checker changes invalidate the earlier retained producer and API bindings.
+The existing canonical captures/evidence remain unchanged as history; fresh
+source-bound capture approval, clean exact-SHA qualification and GitHub-mode API
+checks are still required. Static checks pass, including 76 website/split/review
+staging tests. The focused Shannon build passed (3,089 build jobs; changed umbrella
+compiled in 426 seconds). Independent review found and verified the corrected
+licence-page provenance link; no mandatory source/fixture finding remains.
+
+The new review stage requires exact recovered live v0.1.0 bytes, GitHub source
+links at the clean candidate SHA and retained producer binding. It preserves the
+complete API/dependency/search tree and fixes return/licence/provenance links for
+the separate host. Output remains NOT_FOR_PUBLICATION and is not accepted by the
+old deployment workflow. The public GitHub release-text draft contains the exact
+approved PFR paragraph and mathematical topic descriptions without internal labels.
+
+The [release plan](plans/v0.2-release-preparation.md) explicitly records the order:
+approved GitHub release, then API deployment and live verification, then main-site
+update/stable links, then archive/DOI verification. Final public README/site copy
+and metadata activation must be settled before the final Step 4 source checkpoint;
+reviewed manual deployment packaging and host checks precede publication. Step 3
+is not represented as complete while those source-copy duties remain outstanding.
+No commit, push, tag, remote creation, publication or deployment has occurred.
+<!-- v02-metadata-preparation:end -->
+
+<!-- v02-web-preparation:start -->
+**[History] Local second-release website preview preparation - 2026-11-04.**
+
+The user selected continued implementation of the approved release plan, retaining
+its separate checkpoint, push and publication gates. The local work combines the
+two-site preview with current public prose: mathematical coverage descriptions,
+the exact approved PFR account, and first-person authorship. Public coverage must
+not use internal chunk/step numbers. Older dated decision/status blocks below
+remain history and do not rescind this implementation instruction.
+
+The new preview tool preserves the complete API/dependency/search tree, enforces
+the original per-site size guard, and records any working website overlay as
+unqualified. The proposed API repository is `LeanInfoTheory-API-v0.2.0`; it has
+not been created. The main site's address and exact masthead remain unchanged.
+The full static checks and 65 website/split regression tests passed. These are
+local implementation checks, not a successor's clean/API qualification.
+
+The deployed historical route and later rebuilt route have distinct digests.
+Read-only recovery obtained all 5,534 deployed files (660,408,008 bytes) and
+matched their exact recorded whole-route digest. The recovered live artifact and
+later rebuild remain separate; final composition must preserve the live bytes. The original candidate, retained captures and
+formal C24 records remain unchanged. The [release plan](plans/v0.2-release-preparation.md)
+records preview boundaries and remaining metadata/baseline/host duties. No
+commits, remote creation, pushes, tags, publication or deployment have occurred.
+
+
+A bounded independent release-preparation review found and verified corrections
+to Windows redirected-output guards and the preview-serving instructions. It also
+checked the accepted arbitrary-input versus independent-input wording. The final
+static suite passes with 65 website/split tests. This source/fixture review is not
+a formal C24 closure or production-host qualification.
+
+Final local split validation passed: main site 661,575,985 bytes; separate API
+655,316,062 bytes. The input checker covered 11,066 HTML files and 6,061,004
+links/assets, retaining its bounded dependency advisories; corrected assembly
+then verified every output against its inputs and transformations. Browser checks
+passed search/declaration, dependency, reverse-import, instance and return links.
+The PFR section passed desktop and phone-width inspection. Both outputs remain
+NOT_FOR_PUBLICATION; no new API generation or successor clean qualification is
+claimed. Temporary preview servers are stopped.
+
+README and draft release notes now reflect actual completed local qualification
+and approved PFR wording; an independent addendum found no further issues. The
+final static suite passed with 65 website/split tests. Source/metadata lifecycle,
+Shannon wording, reviewed retained recapture, exact checkpoint approval and fresh
+qualification remain the next preparation duties. GitHub and deployment gates
+remain unchanged.
+
+<!-- v02-web-preparation:end -->
+
+<!-- v02-separate-pages-decision:start -->
+**[Decision] Separate GitHub Pages API hosting selected - 2026-11-04.**
+
+The main website will stay at its existing LeanInfoTheory address and receive the
+completed programme, second-release and PFR case-study updates. A separate public
+GitHub Pages site will hold the complete v0.2.0 API snapshot, with its dependencies
+and search data. The frozen v0.1.0 release and historical documentation remain
+preserved. This supersedes the earlier proposed R2/custom-domain arrangement.
+
+The fresh inventory divides the existing C24 stage into 661,580,449 bytes for
+the main site including frozen v0.1.0, and 655,321,297 bytes for the current API.
+Each fits under 1 GB independently; final source-link, navigation, artifact and
+host qualification remain required. The exact API repository/address will be
+recorded before remote creation. Keep complete portable packages so future
+oversized releases can use another host without moving older documentation.
+
+The [release-preparation plan](plans/v0.2-release-preparation.md) records this
+approved design for Step 2. Implementation and qualification are pending; this
+record does not authorize remote creation, commits, pushes, tags or publication.
+The final issue date and baseline binding remain later duties. Earlier dated
+hosting proposals below are historical.
+<!-- v02-separate-pages-decision:end -->
+
+<!-- v02-release-step1:start -->
+**[Current] Second-release preparation: Step 1 selected - 2026-11-04.**
+
+C24.09 is complete on candidate
+`41b22576caa5df716ecde529e2e8b02f95a9f1cf`, tree
+`d799f0edfd76c7be0d460e35708943f84c3b45fa`, as established by the actual
+completion record and linked evidence. The older pre-closure wording below is
+historical; it does not leave C24 open. Stable remains v0.1.0.
+
+The [release-preparation sequence](plans/v0.2-release-preparation.md) is approved,
+with only Step 1 selected. The [PFR summary and links](qualification/c24-pfr-case-study-draft.md)
+are approved with the requested final disclaimer clause removed. Preserve the
+exact LeanInfoTheory masthead and authorial voice. Historical PFR use of v0.1.0
+remains distinct from C24 candidate compatibility; channel-coding achievability
+is outside this release.
+
+The complete composed preview is 1,316,901,746 bytes. Separate hosting for full
+newer API snapshots is the proposed durable size solution, pending host/URL
+approval. The existing route contract is unchanged. Release date, final baseline
+binding, source-link/host qualification and publication remain later duties.
+Step 1 records documentation decisions only; it does not qualify a successor
+candidate or authorize later implementation, Git actions or publication.
+Earlier source-bound C24 records remain intact. No automatic monitoring is selected.
+<!-- v02-release-step1:end -->
+
 <!-- c24-09-current:start -->
 **[Current] C24.09 cumulative qualification and handoff — 2026-10-28.**
 

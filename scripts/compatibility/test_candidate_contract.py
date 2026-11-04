@@ -74,6 +74,13 @@ def approval(value: dict, raw: bytes) -> dict:
 
 
 class EnvelopeTests(unittest.TestCase):
+    def test_release_ready_is_observation_not_publication_or_producer_waiver(self):
+        before = identity()
+        after = {**before, "phase": "release-ready", "state_sha256": "a" * 64}
+        self.assertEqual(candidate.identity_projection(before), candidate.identity_projection(after))
+        with self.assertRaises(ValueError):
+            candidate.identity_projection({**after, "publishable": True})
+
     def setUp(self):
         self.value = contract()
 
@@ -286,7 +293,8 @@ class ApprovalTests(unittest.TestCase):
 class FreshnessOrchestrationTests(unittest.TestCase):
     """Mocked sequencing checks; these do not assert a successful Lean run."""
 
-    def run_mock(self, *, fail_label=None, drifting=False, nondeterministic=False):
+    def run_mock(self, *, fail_label=None, drifting=False, nondeterministic=False,
+                 phase="candidate", private_content=False):
         value = contract()
         calls = []
         with tempfile.TemporaryDirectory(dir=ROOT / "tmp") as directory, ExitStack() as stack:
@@ -329,9 +337,10 @@ class FreshnessOrchestrationTests(unittest.TestCase):
             replacements = [
                 patch.object(command, "ROOT", root),
                 patch.object(command, "checkpoint", return_value=value["checkpoint"]),
-                patch.object(release_state, "contract_identity", return_value=identity()),
+                patch.object(release_state, "contract_identity", return_value={**identity(), "phase": phase}),
                 patch.object(release_state, "check_legacy_configuration"),
-                patch.object(release_state, "require_candidate_content"),
+                patch.object(release_state, "require_candidate_content",
+                             side_effect=ValueError("private content rejected") if private_content else None),
                 patch.object(legacy, "load_baseline", return_value=(value["manifest"], historical)),
                 patch.object(command.current_api, "load_current_manifest", return_value=value["manifest"]),
                 patch.object(candidate, "producer_identity", side_effect=[files, after]),
@@ -361,6 +370,14 @@ class FreshnessOrchestrationTests(unittest.TestCase):
         _, calls, error = self.run_mock(fail_label="build")
         self.assertIn("build failure", error)
         self.assertEqual(calls, ["compiler", "build"])
+
+    def test_both_second_release_phases_enforce_private_content_before_build(self):
+        for phase in ("candidate", "release-ready"):
+            with self.subTest(phase=phase):
+                result, calls, error = self.run_mock(phase=phase, private_content=True)
+                self.assertIsNone(result)
+                self.assertEqual(error, "private content rejected")
+                self.assertEqual(calls, [])
 
     def test_source_drift_after_successful_commands_is_rejected(self):
         _, calls, error = self.run_mock(drifting=True)

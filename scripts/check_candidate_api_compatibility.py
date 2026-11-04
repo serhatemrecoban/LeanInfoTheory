@@ -44,7 +44,7 @@ def fresh_contract(evidence: legacy.RunEvidence, *, deterministic: bool) -> dict
     dependencies = legacy.retained.dependency_identity(ROOT)
     candidate.require(dependencies == historical["dependencies"], "INPUT: historical dependency pins differ")
     start = checkpoint(evidence, "checkpoint-before")
-    if deterministic and start["clean"] and identity["phase"] == "candidate":
+    if deterministic and start["clean"] and identity["phase"] in release_state.SECOND_RELEASE_PHASES:
         release_state.require_candidate_content(ROOT)
     legacy.unredirected_tree(ROOT / ".lake/build")
     evidence.write("producer-before.json", {"files": before, "dependencies": dependencies,

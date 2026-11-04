@@ -14,13 +14,48 @@ the unpublished v0.2.0 candidate retains the lightweight root's 92 aliases and
 [module guide](../home_page/module-guide.html) for current focused imports and
 the [candidate notes](releases/v0.2.0.md) for assumptions and delivered scope.
 
-The root package/CFF now describe unpublished 0.2.0; docbuild's internal package
-and dependency pins are unchanged. This metadata transition changes API build
+The root package/CFF prepare 0.2.0 with approved date 2026-11-04 and no DOI;
+publication remains pending. Docbuild's internal package and dependency pins
+are unchanged. This metadata transition changes API build
 inputs and invalidates automatic reuse of an older content attestation. C24.08
 owns fresh two-pass generation/checking and exact rendered-contract applicability;
 Step 5 documentation/example checks do not establish that milestone.
 `/docs/current/` is the isolated development/candidate route and `/docs/v0.2.0/`
 is reserved. No public artifact or stable-pointer switch is asserted here.
+
+## Two-site local preview during v0.2.0 preparation
+
+The main website retains its existing address and historical v0.1.0 route. The
+selected release layout puts the complete newer API snapshot on a separate
+GitHub Pages project site. No dependency pages or search data are discarded to
+meet the size limit. The [release-preparation plan](plans/v0.2-release-preparation.md)
+records the approved destination and the remaining publication gates. The new
+release-review layout uses `/LeanInfoTheory-API/` as its reusable entry page and
+`/LeanInfoTheory-API/v0.2.0/` for the preserved complete snapshot. Later snapshots
+may be linked from other sites if their combined size would exceed the per-site
+limit. The original split preview below remains historical evidence of its
+earlier layout; it is not the final destination or a newly qualified artifact.
+
+For local review, `scripts/split_website.py prepare` accepts an existing candidate
+composition, its exact clean source checkout and commit, and the independently
+validated frozen checkout/site. Supply `--candidate-source-root`,
+`--candidate-site-root`, `--expected-commit`, `--frozen-source-root`,
+`--frozen-site-root`, and a fresh `--output` directory under `.lake/website-split/`.
+Use `--working-site` to overlay current local `home_page/` edits. This option
+records their hashes without treating them as qualified source. The command
+reruns the original candidate-site validation before preparing the split.
+
+Serve the output directory, then visit `/LeanInfoTheory/` and
+`/LeanInfoTheory-API-v0.2.0/`. The main preview's `/docs/current/` entry links to
+the complete new API. Run the same arguments with `check` in place of `prepare`
+to revalidate the original composition and compare every output file against
+its inputs and permitted transformations. Existing previews are never overwritten.
+
+Both outputs remain explicitly **NOT_FOR_PUBLICATION**, with no publication mode.
+This checks the layout; it neither generates new API evidence nor qualifies the
+working source. In particular, historical rebuilt and deployed artifacts have
+different digests and need explicit provenance reconciliation for publication.
+The original qualification and all retained historical evidence remain unchanged.
 
 ## Pinned environment
 
@@ -625,6 +660,31 @@ runs the separately permissioned deploy job only after the user explicitly
 selects `publish=true`.
 
 ## Third-party provenance
+
+For second-release review staging, `scripts/prepare_publication.py` keeps the
+complete API/search tree on the separate API project path and repairs its project
+return and licence-page links. The main site's historical route must match the
+recovered live digest recorded in the [release plan](plans/v0.2-release-preparation.md),
+not merely the later rebuild. Both resulting sites remain `NOT_FOR_PUBLICATION`.
+Main pages are derived from the clean checkout's exact tracked website source;
+project Lean source links are pinned to its commit. Ignored or untracked website
+files are refused. The original preview command and historical release/maintenance
+commands retain their existing meanings; the maintenance producer explicitly
+refuses release-ready state. None is a deployment path for the second release.
+
+After approved metadata/checkpoint changes and fresh GitHub-mode API qualification,
+the new commands are run from that exact clean checkout:
+
+```powershell
+python scripts/prepare_publication.py prepare --expected-commit <exact-sha> --historical-route <recovered-live-v0.1.0> --frozen-source-root <v0.1.0-checkout> --frozen-site-root <validated-rebuilt-v0.1.0-site> --output .lake/publication-review/<fresh-name>
+python scripts/prepare_publication.py check --expected-commit <exact-sha> --historical-route <recovered-live-v0.1.0> --frozen-source-root <v0.1.0-checkout> --frozen-site-root <validated-rebuilt-v0.1.0-site> --output .lake/publication-review/<fresh-name>
+```
+
+The rebuilt artifact validates the original candidate composition; the recovered
+live route supplies the byte-exact historical publication input. Neither is
+silently treated as the other. Each command reruns the full candidate-site check,
+which can take substantial time. The final manual deployment packaging and
+production-host validation are still required before any upload is approved.
 
 Doc-gen4 is an Apache-2.0-licensed build-only dependency and is not vendored
 into LeanInfoTheory. The generated tree copies 13 identified doc-gen runtime/

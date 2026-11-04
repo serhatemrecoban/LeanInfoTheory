@@ -599,7 +599,8 @@ def raw_sha256(path: Path) -> str:
 def check_release_metadata() -> None:
     errors: list[str] = []
     state = release_state.load_state(ROOT)
-    candidate = state["phase"] == "candidate"
+    candidate = state["phase"] in release_state.SECOND_RELEASE_PHASES
+    release_ready = state["phase"] == "release-ready"
     attributes_path = ROOT / ".gitattributes"
     if not attributes_path.is_file():
         errors.append(".gitattributes is missing")
@@ -729,8 +730,10 @@ def check_release_metadata() -> None:
     if candidate:
         citation_markers = tuple(marker for marker in citation_markers
                                  if not marker.startswith(("version:", "date-released:", "doi:"))) + (
-            'version: "0.2.0"', "Unpublished v0.2.0 candidate",
+            'version: "0.2.0"',
         )
+        if not release_ready:
+            citation_markers += ("Unpublished v0.2.0 candidate",)
     for marker in citation_markers:
         if marker not in citation:
             errors.append(f"CITATION.cff is missing the reviewed field: {marker}")
@@ -744,7 +747,9 @@ license: Apache-2.0"""
     if len(re.findall(r"(?m)^\s+- family-names:", citation)) != 1:
         errors.append("CITATION.cff must contain exactly one software author")
     release_dates = re.findall(r"(?m)^\s*date-released\s*:\s*(.*?)\s*$", citation)
-    if release_dates != ([] if candidate else ["2026-09-01"]):
+    expected_dates = ([state["publication"]["release_date"]] if release_ready else
+                      [] if candidate else ["2026-09-01"])
+    if release_dates != expected_dates:
         errors.append(
             "CITATION.cff date must match the explicit released/candidate state"
         )
@@ -767,8 +772,8 @@ license: Apache-2.0"""
         "has been developed with extensive assistance from AI coding agents",
         "does not claim that its Lean proof code was written manually",
         "Lean's kernel checks that accepted formal declarations follow from their",
-        "LeanInfoTheory is an EPFL research software project from the Mathematics of Information Laboratory",
-        "authored and led by Serhat Emre Coban",
+        "I developed LeanInfoTheory at EPFL, Mathematics of Information Laboratory.",
+        "The software creator is Serhat Emre Coban.",
         "École polytechnique fédérale de Lausanne (EPFL), the project rights holder",
         "Zenodo archived the immutable GitHub Release and issued the version DOI",
         "10.5281/zenodo.22229599",
@@ -783,8 +788,10 @@ license: Apache-2.0"""
     if candidate:
         readme_markers = tuple(marker for marker in readme_markers
                                if marker != "Its `date-released` value is `2026-09-01`") + (
-            "unpublished", "v0.2.0",
+            "v0.2.0",
         )
+        if not release_ready:
+            readme_markers += ("unpublished",)
     for marker in readme_markers:
         if marker not in readme_flat:
             errors.append(f"README.md is missing required release metadata: {marker}")
@@ -876,7 +883,8 @@ license: Apache-2.0"""
             "This permits current project-status updates without ever rebinding `/docs/v0.1.0/`",
         ),
         ROOT / "home_page" / "license.html": (
-            "Serhat Emre Coban is the author, software creator, and project lead",
+            "I developed LeanInfoTheory at EPFL, Mathematics of Information Laboratory.",
+            "The software creator is Serhat Emre Coban.",
             "polytechnique fédérale de Lausanne (EPFL) is the project rights holder",
             '<meta name="citation_doi" content="10.5281/zenodo.22229599">',
             "immutable tagged CFF remains DOI-free",
@@ -897,6 +905,18 @@ license: Apache-2.0"""
         # This local private file is not a candidate release contract or output.
         # Its future Git-tree omission is checked at clean candidate staging.
         decision_surface_markers.pop(ROOT / release_state.LOCAL_PRIVATE_PATH, None)
+    if release_ready:
+        for name in ("index.html", "license.html"):
+            path = ROOT / "home_page" / name
+            decision_surface_markers[path] = tuple(
+                marker for marker in decision_surface_markers[path]
+                if 'name="citation_doi"' not in marker
+                and marker != "Latest stable release: <code>v0.1.0</code>")
+        decision_surface_markers[ROOT / "home_page/index.html"] += (
+            "Latest stable release: <code>v0.2.0</code>",
+            "811 supported declarations. 57 supported modules.",
+            'href="docs/v0.2.0/"',
+        )
     for path, markers in decision_surface_markers.items():
         source_flat = " ".join(path.read_text(encoding="utf-8").split())
         for marker in markers:
@@ -907,9 +927,17 @@ license: Apache-2.0"""
 
     for path in (ROOT / "home_page" / "index.html", ROOT / "home_page" / "license.html"):
         source = path.read_text(encoding="utf-8")
-        if source.count('name="citation_doi"') != 1:
+        expected_site_date = state["publication"]["release_date"] if release_ready else "2026-09-01"
+        site_dates = re.findall(
+            r'<meta\s+name="citation_publication_date"\s+content="([^"]+)"\s*/?>', source)
+        if site_dates != [expected_site_date]:
             errors.append(
-                f"{path.relative_to(ROOT).as_posix()} must contain exactly one citation_doi meta tag"
+                f"{path.relative_to(ROOT).as_posix()} has an incorrect citation_publication_date for the selected release state"
+            )
+        expected_doi_count = 0 if release_ready else 1
+        if source.count('name="citation_doi"') != expected_doi_count:
+            errors.append(
+                f"{path.relative_to(ROOT).as_posix()} has an incorrect citation_doi count for the selected release state"
             )
 
     if (ROOT / "NOTICE").exists():
@@ -1041,7 +1069,7 @@ def check_candidate_release_contract() -> None:
 def check_release_documentation_contract() -> None:
     state = release_state.load_state(ROOT)
     candidate_documents = []
-    if state["phase"] == "candidate":
+    if state["phase"] in release_state.SECOND_RELEASE_PHASES:
         candidate_notes = ROOT / "docs/releases/v0.2.0.md"
         source = release_state.require_file(ROOT, candidate_notes.relative_to(ROOT).as_posix()).read_text(encoding="utf-8")
         candidate_documents.append((candidate_notes, source))
@@ -1077,6 +1105,9 @@ def check_release_documentation_contract() -> None:
         "create a tag, GitHub Release, or Pages deployment",
         "enabled immutable GitHub Releases",
     )
+    if state["phase"] == "release-ready":
+        readme_markers = tuple('rev = "v0.2.0"' if marker == 'rev = "v0.1.0"'
+                              else marker for marker in readme_markers)
     errors = [
         f"README.md is missing the release-documentation marker: {marker}"
         for marker in readme_markers
@@ -1348,6 +1379,8 @@ def check_generated_artifacts() -> None:
             run_command(command, label=f"generated-artifact check pass {pass_number}")
     run_command((sys.executable, "scripts/check_website.py", "--mode", "source"))
     run_command((sys.executable, "scripts/test_check_website.py"))
+    run_command((sys.executable, "scripts/test_split_website.py"))
+    run_command((sys.executable, "scripts/test_prepare_publication.py"))
     run_command((sys.executable, "scripts/website_discovery.py"))
     print("generated artifact text is current on two independent render passes")
 

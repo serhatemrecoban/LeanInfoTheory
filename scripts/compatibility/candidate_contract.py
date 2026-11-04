@@ -69,7 +69,7 @@ def identity_projection(identity: dict) -> dict:
     require(identity["schema"] == "lean-info-theory.candidate-release-identity.v1"
             and identity["target_version"] == release_state.TARGET_VERSION
             and identity["stable_version"] == release_state.STABLE_VERSION
-            and identity["phase"] in {"preparation", "candidate"}
+            and identity["phase"] in {"preparation", "candidate", "release-ready"}
             and identity["retention"] in {"pending", "established"}
             and identity["publishable"] is False,
             "IDENTITY: invalid candidate release identity")
@@ -267,7 +267,7 @@ def validate_approval(approval: dict, raw: bytes, contract: dict) -> None:
             "APPROVAL: reviewed identity does not match captured artifact")
     require(contract["checkpoint"]["kind"] == "git" and contract["checkpoint"]["clean"] is True,
             "APPROVAL: experimental/dirty capture cannot establish a canonical baseline")
-    require(contract["release_identity"]["phase"] == "candidate"
+    require(contract["release_identity"]["phase"] in {"candidate", "release-ready"}
             and contract["release_identity"]["package_version"] == release_state.TARGET_VERSION,
             "APPROVAL: preparation capture cannot establish the candidate baseline")
     reference = approval["review_reference"]

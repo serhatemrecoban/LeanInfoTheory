@@ -99,7 +99,7 @@ class ReleaseStateTests(unittest.TestCase):
     def test_live_metadata_matches_selected_state(self):
         live = state.load_state(ROOT)
         identity = state.contract_identity(ROOT)
-        expected = "0.2.0" if live["phase"] == "candidate" else "0.1.0"
+        expected = "0.2.0" if live["phase"] in state.SECOND_RELEASE_PHASES else "0.1.0"
         self.assertEqual(identity["phase"], live["phase"])
         self.assertEqual(identity["package_version"], expected)
         self.assertEqual(identity["target_version"], "0.2.0")
@@ -130,6 +130,30 @@ class ReleaseStateTests(unittest.TestCase):
             state.check_legacy_configuration(self.root, self.hashes)
         with self.assertRaisesRegex(ValueError, "explicit candidate"):
             state.contract_identity(self.root)
+
+    def test_release_ready_requires_exact_metadata_but_does_not_authorize(self):
+        self.candidate()
+        selected = {**self.policy, "phase": "release-ready", "retention": "established",
+                    "publication": {**state.PUBLICATION, "release_date": "2026-11-05"}}
+        self.write_policy(selected)
+        loaded = state.load_state(self.root)
+        citation = state.expected_citation(loaded)
+        self.assertIn('version: "0.2.0"', citation)
+        self.assertIn('date-released: 2026-11-05', citation)
+        self.assertNotIn('doi:', citation)
+        self.assertNotIn('Unpublished', citation)
+        self.assertFalse(state.contract_identity(self.root)["publishable"])
+        state.check_legacy_configuration(self.root, self.hashes)
+        for issued in ("2026-09-01", "2026-02-30", "2026-1-5", "", None):
+            with self.subTest(issued=issued), self.assertRaises(ValueError):
+                state.validate_state({**selected, "publication": {**state.PUBLICATION, "release_date": issued}})
+        for update in ({"retention": "pending"}, {"publication": {}},
+                       {"publication": {**selected["publication"], "api_url": "https://example.com/"}},
+                       {"publication": {**selected["publication"], "doi": "invented"}}):
+            with self.subTest(update=update), self.assertRaises(ValueError):
+                state.validate_state({**selected, **update})
+        with self.assertRaises(ValueError):
+            state.validate_state({**selected, "phase": "candidate"})
 
     def test_preparation_cannot_claim_candidate_package_or_established_retention(self):
         self.candidate()
@@ -238,9 +262,24 @@ class ReleaseStateTests(unittest.TestCase):
             target.write_bytes((ROOT / relative).read_bytes())
         (self.root / "CITATION.cff").write_text(
             PREPARATION_CITATION, encoding="utf-8", newline="\n")
+        # Preparation/candidate fixtures keep the published v0.1.0 site identity
+        # even when the live source has advanced to release-ready publication copy.
+        for name in ("index.html", "license.html"):
+            path = self.root / "home_page" / name
+            source = path.read_text(encoding="utf-8")
+            source = source.replace('name="citation_publication_date" content="2026-11-04"',
+                                    'name="citation_publication_date" content="2026-09-01"')
+            if 'name="citation_doi"' not in source:
+                source = source.replace('</head>',
+                    '<meta name="citation_doi" content="10.5281/zenodo.22229599"></head>')
+            source = source.replace('Latest stable release: <code>v0.2.0</code>',
+                                    'Latest stable release: <code>v0.1.0</code>')
+            path.write_text(source, encoding="utf-8", newline="\n")
         # Current README prose may correctly omit this preparation-only CFF
         # sentence. Supply that fact explicitly in the preparation fixture.
         readme = self.root / "README.md"
+        readme.write_text(readme.read_text(encoding="utf-8").replace(
+            'rev = "v0.2.0"', 'rev = "v0.1.0"'), encoding="utf-8", newline="\n")
         sentence = "Its `date-released` value is `2026-09-01`"
         if sentence not in " ".join(readme.read_text(encoding="utf-8").split()):
             with readme.open("a", encoding="utf-8", newline="\n") as output:
@@ -257,6 +296,32 @@ class ReleaseStateTests(unittest.TestCase):
         with (self.root / "README.md").open("ab") as stream:
             stream.write(b"\nAn unpublished v0.2.0 candidate; stable remains v0.1.0.\n")
         with patch.object(validator, "ROOT", self.root), redirect_stdout(io.StringIO()):
+            validator.check_release_metadata()
+
+    def test_release_ready_site_citation_dates_are_enforced(self):
+        import validate_release as validator
+        self.metadata_fixture()
+        self.candidate()
+        ready = {**self.policy, "phase": "release-ready", "retention": "established",
+                 "publication": {**state.PUBLICATION, "release_date": "2026-11-04"}}
+        self.write_policy(ready)
+        (self.root / "CITATION.cff").write_text(state.expected_citation(ready), encoding="utf-8")
+        (self.root / "README.md").write_bytes((ROOT / "README.md").read_bytes())
+        for name in ("index.html", "license.html"):
+            (self.root / "home_page" / name).write_bytes((ROOT / "home_page" / name).read_bytes())
+        with patch.object(validator, "ROOT", self.root), redirect_stdout(io.StringIO()):
+            validator.check_release_metadata()
+            for name in ("index.html", "license.html"):
+                path = self.root / "home_page" / name
+                original = path.read_text(encoding="utf-8")
+                marker = '<meta name="citation_publication_date" content="2026-11-04">'
+                self.assertIn(marker, original)
+                for replacement in (marker.replace("2026-11-04", "2026-09-01"), "", marker * 2):
+                    path.write_text(original.replace(marker, replacement), encoding="utf-8")
+                    with self.subTest(page=name, replacement=replacement), \
+                         self.assertRaisesRegex(validator.ValidationError, "citation_publication_date"):
+                        validator.check_release_metadata()
+                path.write_text(original, encoding="utf-8")
             validator.check_release_metadata()
 
     def test_real_candidate_metadata_validator_rejects_issued_ids_and_wrong_creator(self):

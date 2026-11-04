@@ -1,22 +1,21 @@
-# Perfect Functional Representations case study — approval draft
+# Perfect Functional Representations case study — approved wording
 
-**Wording and link selection: pending lead/release-chat approval.** This is planned
-second-release content. Preparing or reviewing the draft does not publish it,
+**Wording and link selection approved on 2026-11-04; publication pending.** This is planned
+second-release content. Approval of the wording does not publish it,
 authorize outreach, or authorize disclosure of historical private assessment
 material. The verified public project is PerfectFunctionalRepresentationsLean,
 not the distinct Polynomial Freiman–Ruzsa project `teorth/pfr`.
 
-## Proposed release summary
+## Approved release summary
 
-> PerfectFunctionalRepresentationsLean is a public downstream formalization of
-> perfect functional representations. Its public documentation reports completion
-> of the finite-discrete six-page ISIT target within its stated alphabet,
-> support and auxiliary-variable qualifications. It builds on LeanInfoTheory
-> **v0.1.0** for reusable information-theory infrastructure while keeping
-> paper-specific constructions downstream. This historical case study does not
-> establish use or compatibility of the unpublished v0.2.0 candidate.
+> [PerfectFunctionalRepresentationsLean](https://serhatemrecoban.github.io/PerfectFunctionalRepresentationsLean/)
+> formalizes the definitions and main results of *On Perfect Functional
+> Representations*, within its documented finite-alphabet, support and
+> auxiliary-variable qualifications. It was completed using unchanged
+> LeanInfoTheory v0.1.0, with paper-specific constructions kept downstream.
+> It demonstrates historical library reuse.
 
-Suggested links for wording/link approval:
+Approved supporting links:
 
 - [Public repository](https://github.com/serhatemrecoban/PerfectFunctionalRepresentationsLean).
 - [Public project website](https://serhatemrecoban.github.io/PerfectFunctionalRepresentationsLean/).
@@ -52,5 +51,13 @@ be cited as public project reports; historical private review evidence remains
 separate and requires its own disclosure decision. Optional publicity/outreach
 and candidate dependency adoption also remain separate decisions.
 
-Before publication, approve the exact paragraph and links, recheck their public
-availability and scope, and identify any edits since the observations above.
+The 2026-11-04 read-only refresh found the same public repository head and
+historical dependency resolution, and accessible home, discussion and reproduction
+pages. Candidate compatibility is supported separately by C24's retained-API
+comparisons and exact-SHA external consumer; those checks are not a PFR rebuild.
+
+The release-preparation approval accepted the paragraph and links above, with
+the requested final disclaimer clause removed. Before publication, recheck public
+availability, scope and any intervening edits. See the
+[release-preparation plan](../plans/v0.2-release-preparation.md) for the remaining
+publication decisions. No private evidence disclosure or outreach is selected.

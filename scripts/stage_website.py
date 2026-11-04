@@ -709,6 +709,8 @@ def require_clean_checkout(repository: Path, *, label: str) -> None:
 
 
 def validate_current_maintenance_checkout() -> str:
+    if release_state.load_state(ROOT)["phase"] == "release-ready":
+        raise StagingError("second-release metadata requires the separately qualified two-site publication path")
     require_clean_checkout(ROOT, label="maintenance staging")
     branch = run(["git", "branch", "--show-current"])
     commit = exact_commit(ROOT)
