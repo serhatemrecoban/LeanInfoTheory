@@ -17,12 +17,12 @@ and finite-channel capacity and weak converses. Definitions and theorems are
 checked by Lean; release validation rejects proof placeholders.
 License: **Apache-2.0**.
 
-[Get started](#installation) Â·
-[Practical guides](https://serhatemrecoban.github.io/LeanInfoTheory/docs/) Â·
-[API reference](https://serhatemrecoban.github.io/LeanInfoTheory/docs/v0.2.0/) Â·
-[Theorem highlights](https://serhatemrecoban.github.io/LeanInfoTheory/theorems.html) Â·
-[PFR case study](https://serhatemrecoban.github.io/LeanInfoTheory/docs/research-projects.html#pfr-case-study) Â·
-[Cite v0.2.0](https://doi.org/10.5281/zenodo.23973538) Â·
+[Get started](#installation) ·
+[Practical guides](https://serhatemrecoban.github.io/LeanInfoTheory/docs/) ·
+[API reference](https://serhatemrecoban.github.io/LeanInfoTheory/docs/v0.2.0/) ·
+[Theorem highlights](https://serhatemrecoban.github.io/LeanInfoTheory/theorems.html) ·
+[PFR case study](https://serhatemrecoban.github.io/LeanInfoTheory/docs/research-projects.html#pfr-case-study) ·
+[Cite v0.2.0](https://doi.org/10.5281/zenodo.23973538) ·
 [Watch my LeanInfoTheory talk at EPFL](https://youtu.be/CXHebbD7ouA)
 
 ## What you can build
@@ -200,21 +200,21 @@ import LeanInfoTheory.Shannon
 
 open LeanInfoTheory.Shannon
 
-example (p : PMF (Bool Ã— Bool)) :
-    condEntropy p â‰¤ entropy (fstMarginal p) := by
+example (p : PMF (Bool × Bool)) :
+    condEntropy p ≤ entropy (fstMarginal p) := by
   exact condEntropy_le_entropy_fstMarginal p
 ```
 
 ### Focused channel import
 
-Channels are ordinary functions `Î± â†’ PMF Î²`; an input law `p` is sent through
+Channels are ordinary functions `α → PMF β`; an input law `p` is sent through
 `W` using `p.bind W`:
 
 <!-- lean-example:focused-channel -->
 ```lean
 import LeanInfoTheory.Probability.FiniteChannel
 
-noncomputable def flipChannel : Bool â†’ PMF Bool :=
+noncomputable def flipChannel : Bool → PMF Bool :=
   PMF.deterministicChannel Bool.not
 
 example (p : PMF Bool) :
@@ -236,7 +236,7 @@ open LeanInfoTheory.Shannon
 
 example (p : PMF Bool) :
     natsToBits (entropy p) =
-      âˆ‘ b, -(p b).toReal * Real.logb 2 (p b).toReal := by
+      ∑ b, -(p b).toReal * Real.logb 2 (p b).toReal := by
   simpa [natsToBits, natsToBase] using entropy_div_log p 2
 ```
 
@@ -252,10 +252,10 @@ import LeanInfoTheory.Shannon.SemanticBridge.KL
 open LeanInfoTheory.Shannon
 open MeasureTheory
 
-example {Î± : Type*} [Finite Î±]
-    [MeasurableSpace Î±] [MeasurableSingletonClass Î±]
-    (p q : PMF Î±) (h : p.support âŠ† q.support) :
-    (InformationTheory.klDiv p.toMeasure q.toMeasure).toReal = 0 â†” p = q := by
+example {α : Type*} [Finite α]
+    [MeasurableSpace α] [MeasurableSingletonClass α]
+    (p q : PMF α) (h : p.support ⊆ q.support) :
+    (InformationTheory.klDiv p.toMeasure q.toMeasure).toReal = 0 ↔ p = q := by
   exact toReal_klDiv_pmf_eq_zero_iff p q h
 ```
 
@@ -335,9 +335,9 @@ statements to Lean and mathlib.
   laws may use a documented fallback on null fibers, but no theorem assigns
   probabilistic meaning to that fallback.
 - `InformationTheory.klDiv` remains canonically `ENNReal`-valued. Do not treat
-  `ENNReal.toReal âŠ¤ = 0` as a finite KL value; establish support inclusion,
+  `ENNReal.toReal ⊤ = 0` as a finite KL value; establish support inclusion,
   absolute continuity, or another finiteness guard before real conversion.
-- Channels remain functions `Î± â†’ PMF Î²`; the library does not introduce a
+- Channels remain functions `α → PMF β`; the library does not introduce a
   second bundled finite-channel abstraction.
 
 Version 0.2.0 adds the quantitative, product, AEP, source-coding and
@@ -510,7 +510,7 @@ resolve to commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`.
 The approved automatic integration archived the immutable GitHub Release as
 [Zenodo record `22229599`](https://zenodo.org/records/22229599).
 `CITATION.cff` remains the canonical repository metadata source; no
-`.zenodo.json` is used. Zenodo and DataCite record Ã‰cole Polytechnique FÃ©dÃ©rale
+`.zenodo.json` is used. Zenodo and DataCite record École Polytechnique Fédérale
 de Lausanne as the structured `RightsHolder`, while Serhat Emre Coban remains
 the sole creator with affiliation `EPFL, Mathematics of Information
 Laboratory`. The archived ZIP was verified byte-for-byte against the immutable
@@ -551,8 +551,8 @@ statement has the intended mathematical interpretation.
 ## Authorship, copyright, and license
 
 I developed LeanInfoTheory at EPFL, Mathematics of Information Laboratory.
-Copyright Â©
-2026 Ã‰cole polytechnique fÃ©dÃ©rale de Lausanne (EPFL), the project rights
+Copyright ©
+2026 École polytechnique fédérale de Lausanne (EPFL), the project rights
 holder. The project is licensed under the Apache License, Version 2.0; see
 [LICENSE](LICENSE).
 

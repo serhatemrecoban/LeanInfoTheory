@@ -91,6 +91,10 @@ def check_maintenance() -> None:
             require(WORKFLOW in page.links and WORKFLOW + "/badge.svg" in page.images,
                     "Homepage badge must link to the current deployment")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    rights_holder = "École polytechnique fédérale de Lausanne (EPFL)"
+    license_page = (ROOT / "home_page/license.html").read_text(encoding="utf-8")
+    for text in (readme, license_page):
+        require(rights_holder in " ".join(text.split()), "Missing EPFL rights-holder attribution")
     for marker in (doi_url, 'rev = "v0.2.0"', "811 supported declarations. 57 supported modules.",
                    WORKFLOW + "/badge.svg", "youtu.be/CXHebbD7ouA", "#pfr-case-study"):
         require(marker in readme, f"Missing release information in README: {marker}")
