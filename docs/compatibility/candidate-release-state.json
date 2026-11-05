@@ -1,0 +1,16 @@
+{
+  "current_route": "/docs/current/",
+  "phase": "release-ready",
+  "publication": {
+    "api_repository": "serhatemrecoban/LeanInfoTheory-API",
+    "api_url": "https://serhatemrecoban.github.io/LeanInfoTheory-API/v0.2.0/",
+    "main_url": "https://serhatemrecoban.github.io/LeanInfoTheory/",
+    "release_date": "2026-11-05"
+  },
+  "reserved_route": "/docs/v0.2.0/",
+  "retention": "established",
+  "schema": "lean-info-theory.candidate-release-state.v1",
+  "stable_route": "/docs/v0.1.0/",
+  "stable_version": "0.1.0",
+  "target_version": "0.2.0"
+}

@@ -5,6 +5,58 @@ Lean environment with [`doc-gen4`](https://github.com/leanprover/doc-gen4).
 The build is deliberately separate from the library package: downstream users
 still acquire only LeanInfoTheory and its pinned mathlib dependency.
 
+## Candidate and stable references
+
+The current source inventory covers **811 declarations in 57 supported modules**;
+the unpublished v0.2.0 candidate retains the lightweight root's 92 aliases and
+94 reviewed simp declarations. Published `/docs/v0.1.0/` remains the separate
+601-declaration/31-module release reference. Use the
+[module guide](../home_page/module-guide.html) for current focused imports and
+the [candidate notes](releases/v0.2.0.md) for assumptions and delivered scope.
+
+The root package/CFF prepare 0.2.0 with approved date 2026-11-05 and no DOI;
+publication remains pending. Docbuild's internal package and dependency pins
+are unchanged. This metadata transition changes API build
+inputs and invalidates automatic reuse of an older content attestation. C24.08
+owns fresh two-pass generation/checking and exact rendered-contract applicability;
+Step 5 documentation/example checks do not establish that milestone.
+`/docs/current/` is the isolated development/candidate route and `/docs/v0.2.0/`
+is reserved. No public artifact or stable-pointer switch is asserted here.
+
+## Two-site local preview during v0.2.0 preparation
+
+The main website retains its existing address and historical v0.1.0 route. The
+selected release layout puts the complete newer API snapshot on a separate
+GitHub Pages project site. No dependency pages or search data are discarded to
+meet the size limit. The [release-preparation plan](plans/v0.2-release-preparation.md)
+records the approved destination and the remaining publication gates. The new
+release-review layout uses `/LeanInfoTheory-API/` as its reusable entry page and
+`/LeanInfoTheory-API/v0.2.0/` for the preserved complete snapshot. Later snapshots
+may be linked from other sites if their combined size would exceed the per-site
+limit. The original split preview below remains historical evidence of its
+earlier layout; it is not the final destination or a newly qualified artifact.
+
+For local review, `scripts/split_website.py prepare` accepts an existing candidate
+composition, its exact clean source checkout and commit, and the independently
+validated frozen checkout/site. Supply `--candidate-source-root`,
+`--candidate-site-root`, `--expected-commit`, `--frozen-source-root`,
+`--frozen-site-root`, and a fresh `--output` directory under `.lake/website-split/`.
+Use `--working-site` to overlay current local `home_page/` edits. This option
+records their hashes without treating them as qualified source. The command
+reruns the original candidate-site validation before preparing the split.
+
+Serve the output directory, then visit `/LeanInfoTheory/` and
+`/LeanInfoTheory-API-v0.2.0/`. The main preview's `/docs/current/` entry links to
+the complete new API. Run the same arguments with `check` in place of `prepare`
+to revalidate the original composition and compare every output file against
+its inputs and permitted transformations. Existing previews are never overwritten.
+
+Both outputs remain explicitly **NOT_FOR_PUBLICATION**, with no publication mode.
+This checks the layout; it neither generates new API evidence nor qualifies the
+working source. In particular, historical rebuilt and deployed artifacts have
+different digests and need explicit provenance reconciliation for publication.
+The original qualification and all retained historical evidence remain unchanged.
+
 ## Pinned environment
 
 The nested [`docbuild/lakefile.toml`](../docbuild/lakefile.toml) and
@@ -150,11 +202,280 @@ the pinned Zig and docbuild-scoped Lean prerequisites are checked before that
 targeted invalidation, so a missing or invalid prerequisite does not discard a
 valid prior documentation output. A failed rebuild leaves no success attestation.
 
-The release-candidate gate runs GitHub mode from a clean exact commit. Tag
-publication and live-link verification remain explicitly approved publication
-and post-publication work.
+The publication-facing release gate runs GitHub mode from a clean exact commit.
+The separately approved C24 local API milestone uses file mode; its output
+remains nonpublishing. GitHub-mode generation, tag publication and live-link
+verification remain separately authorized release/publication work.
 
-## Current C11 milestone
+## Historical C23 milestone — initial gate and all 36 inspections completed
+
+The following records that milestone's preparation stage, including its then
+pending closure wording. Actual C23 completion is determined by its supported
+completion record and handoff; this history does not qualify the C24 candidate.
+
+The separately approved initial scoped checkpoint `beb99362718489c17dfe150e5c8be0281ab34aa3` passed the complete maintained clean routine. The current local two-pass API build/check gate passed, and the parent substantively inspected all 36 new rendered signatures, hypotheses, result types, docstrings, owners and source links.
+
+The first API attempt failed after cached final docs-facet replay left all three C23 HTML pages missing despite new docInfo builds. Its original failure remains `FAIL`: `.lit-review/setup/c23-06-api-initial-20261025/result.json` (SHA-256 `d69971fc3975e2be6953a44077bafed3d9443bdc8950f4553a863ddce66bd354`); exact missing-page stderr is `.lit-review/setup/c23-06-api-initial-20261025/stderr.txt` (SHA-256 `ead6d30f919cdf35d32c9c3b0e07b083a16e455b50b32de6b87af3547d0b20e9`). The bounded recovery preserved/moved only the three ignored Shannon final-facet markers: `.lit-review/setup/c23-06-api-cache-recovery-20261025/result.json` (SHA-256 `1c2ac2906f25906b2e6831e1f3b86927197504ca54dc2090a3f2af9d8702c4e3`). Source, configuration, pins and Git were unchanged. That recovery is not passing API qualification; only the separate actual complete retry plus all 36 inspections and applicability supplies milestone credit. Replayed Qq dependency warnings are separate diagnostics; the missing supported pages caused the first milestone failure.
+
+These are warm/cached local checks with file-mode owner links; no cold build, browser visual QA, GitHub line-range verification, operational-capacity equality or publication is claimed. Original failures retain their recorded outcomes.
+
+The 36 new declarations split as 23 ChannelCode, seven ChannelCoding and six ChannelCodingAsymptotic entries. Nonempty output/name coverage is not substituted for the separately retained substantive parent observations. Actual source/configuration/ dependency/attestation/relevant-output identity and the clean/primary LF correspondence are bound by the passing applicability record in notes Section 23.
+
+Every bounded amendment, including these documentation updates, requires the entire clean rerun and renewed API applicability before R; rerun the API gate if invalidated. Fresh original review of all 21 criteria, substantive all-criterion reconciliation and final qualification/applicability/capture remain pending. Only actual `.lit-review/setup/c23-06-completion-20261025.json` and its linked genuine original records determine completion; no cumulative SAT assessment or future result is predicted.
+
+## Historical C22 milestone — two-pass local gate and declaration inspection
+
+The lead separately authorized this current milestone. The maintained
+`python scripts/validate_release.py api-docs` command completed both actual
+build/semantic-check passes using reviewed Zig 0.16.0, `DOCGEN_SRC=file` and
+the pinned isolated doc-gen project. Configuration, source/dependency identity,
+relevant output and the two-pass attestation were checked against the actual
+run. Complete command records and any original failures remain private C22.08
+evidence; a prior failed attempt is not relabeled by later success.
+
+All 26 new declaration blocks were substantively read, including full rendered
+headers/hypotheses and result types, docstrings, owners and actual source links:
+ten core-capacity, three product-capacity, two raw constructors and eleven
+standard-capacity declarations. The inspection checks independent universes,
+explicit nonempty input, actual attaining PMFs, dependent-product and arbitrary-q/
+all-n quantifiers, the full closed binary interval, correct BEC weighting and
+all four scalar bits formulas. Their attributes and source links match the
+current source; file mode verifies the owner path, not GitHub line ranges.
+The [C22 handoff](handoffs/chunk-22.md) lists all names, imports and consumers.
+
+Current inventory is 775 declarations in 54 owners, with 92 root exports and
+94 reviewed simp names.
+The gate and semantic inspection are distinct: nonempty generated text and
+name coverage alone do not establish intended mathematical meaning. Output is
+local, cached documentation; no cold-build or browser visual-QA claim is made.
+
+The complete clean routine runs on the exact scoped local candidate. Every
+amendment requires a complete clean rerun and renewed API content/configuration/
+dependency/attestation/output applicability; invalidation requires the full
+two-pass gate again. Explicit primary/clean correspondence preserves unrelated
+intake and the established LF representation differences. Qualification and
+readiness evidence is prepared. Actual cumulative review, substantive
+reconciliation, final applicability and closure are established only by
+`.lit-review/setup/c22-08-completion-20261024.json` and its linked evidence.
+No future review result or closure is asserted. No release-route staging or
+publication is authorized.
+
+## Historical C21 milestone — initial local API qualification passed
+
+C21.01--C21.04 and their reviews are closed. Selected C21.05 adds no new
+mathematics. The separately authorized initial checkpoint `463021c1493dd2b28e0730dc64fbace3fd29a67a` passed the complete maintained clean routine. Both actual local API build/check passes and the parent inspection of all four new elaborated declarations passed on their recorded inputs. That initial candidate is validation-ready. Final candidate qualification, readiness, cumulative acceptance and closure are established only by `.lit-review/setup/c21-05-completion-20261023.json` and its linked actual current-candidate validation/API applicability, genuine original independent report, complete seventeen-criterion matrix, substantive parent reconciliation and final-source qualification. This wording asserts no future PASS or closure. Every amended checkpoint, including the evidence updates here, requires the complete clean rerun and renewed API applicability before qualification; these initial results do not qualify later writes automatically. The final checkpoint identity belongs in that actual evidence chain, not in a prediction of a commit containing this text.
+
+| Actual evidence | Retained record / identity |
+| --- | --- |
+| Human milestone approvals | `.lit-review/setup/c21-05-milestone-approval-20261023.json`, SHA-256 `94b252282f81a756b11228b297b7e5479a69e12a8b9a5d10f7495300791dd4b7` |
+| Full clean routine at `463021c1493dd2b28e0730dc64fbace3fd29a67a` | `.lit-review/setup/c21-05-clean-01/result.json`, SHA-256 `6c8981a2d3bb5119252c62b1c2fe48ccefcffa1b89a4cd11c2f580a55e32c093` |
+| Actual two-pass local API retry 02 | `.lit-review/setup/c21-05-api-retry-02.json`, SHA-256 `399d0a94125797029e22b0f328507fd00d3c517766ec0799a2ae261fda913b29` |
+| All four parent API meaning inspections | `.lit-review/setup/c21-05-api-inspection-20261023.json`, SHA-256 `9b016b5c7a120de836f91302e1567d9fae895acf1bbd0435a6339035e17549d7` |
+| Actual four-declaration extracts | `.lit-review/setup/c21-05-api-extracts-20261023.json`, SHA-256 `5ae161dd0ce0b38a3adc6d081a7fd10010cb29fa5618380f388ff713957de473` |
+| API/inspection/clean applicability | `.lit-review/setup/c21-05-api-applicability-01.json`, SHA-256 `0ac684748ceab720b00ecdc9d630a4f31898279b3313e3dd5153ed526d609d93` |
+| API source content / attestation | `9fd39bdc6b51749c437996c0734eea75d03ecdd7bed7d3d08f5ca36f9d337d66` / `44a5d9b96ff81c5438f3245277c9fa2f5e480659639626c6e9e0ffb1d0d3225a` |
+| API relevant / full-tree output | `26e57f955a4352af74ae8cbc86770c54789e56e54055f39c83c0a5b46dc3d2a1` / `903adee15aa8491b77eece8bc211234b599e3420d118b0e9736a1c1a50469453` |
+| Initial API FAIL, retained | `.lit-review/setup/c21-05-api-initial.json`, SHA-256 `7241e858b0039a9d8ee0be3295f0df42cf638be555e418bfbcda17a21f059ddf` |
+| Bounded generated-marker recovery | `.lit-review/setup/c21-05-api-cache-recovery-20261023/result.json`, SHA-256 `f0c9f575d7065aa3bb75520458ece718afb7e03d3a5d6daca36448e2e7b0500c` |
+
+The first API attempt remains FAIL: new-owner declaration data built, but cached final HTML replay omitted its page. The parent preserved the exact three generated final-facet markers before the bounded recovery, with source/configuration/pins unchanged. Recovery is not a passing milestone; the complete two-pass retry and subsequent inspection are separate evidence.
+
+The parent inspected all four actual elaborated signatures, hypotheses,
+docstrings, owners and local source links in `Shannon.SourceCodingAsymptotic`.
+The inspection checks same-family quantifiers, the eventual cap in the strong
+converse, the unrestricted general converse and the exact inline threshold set.
+The gate used reviewed Zig 0.16.0, local file links and available incremental
+caches; no cold-build, browser visual-QA or publication claim is made.
+Historical C20 output does not qualify this owner. Recheck source/configuration/
+dependency, attestation and output applicability after every amendment.
+
+See the [C21 notes](plans/post-release-chunk-21-notes.md#13-c2105-cumulative-qualification-and-maintained-handoff)
+and [maintained handoff](handoffs/chunk-21.md). The actual completion record and
+its linked evidence determine any final qualification or closure under the
+conditions above. All seventeen criteria require fresh independent consideration
+and substantive parent reconciliation; neither a native status nor this initial
+API milestone substitutes for those obligations. Publication and frozen-route
+staging are unauthorized.
+
+## Historical C20 milestone — local API qualification
+
+The approved C20 plan and explicit Step 5 selection authorize this local milestone.
+Both actual file-mode build/check passes have succeeded with reviewed Zig 0.16.0.
+The parent inspected all 24 C20 additions: the generic Fano event bridge, twelve
+SourceCoding declarations and eleven CodingRate declarations, including each
+elaborated signature, hypothesis, docstring, owner and local source link.
+Current coverage is 745 public declarations in 49 owners, with 92 root exports,
+94 reviewed simp names and 41 non-stable exclusions.
+
+Exact configuration/source/attestation identities and original failures are in
+the [C20 notes](plans/post-release-chunk-20-notes.md#15-c2005-cumulative-qualification-and-handoff)
+and private Step 5 records. The [maintained handoff](handoffs/chunk-20.md)
+distinguishes these warm/incremental local results from pending authorized
+clean-checkpoint qualification, cumulative review and source-bound closure.
+Generated output stays in `docbuild/.lake/build/doc/`; no publication or frozen
+release-route staging is authorized. Reassess source/configuration/dependency
+applicability after every amendment; prose status is not a completion certificate.
+
+## Historical C19 milestone — initial qualification
+
+The lead approved the exact 23-path local checkpoint, necessary C19.05-only
+amendments, reuse of the existing detached validation checkout, and the separate
+actual two-pass local API-documentation milestone.
+
+Initial checkpoint `66b65b9e14af0d10cd127b66ad1f3d16f8cea3fd` passed the complete
+`python scripts/validate_release.py` routine in the clean validation checkout.
+API01 remains **FAIL**: its first build completed (6361 jobs), but the semantic
+check found the new AEP and TypicalSet HTML pages missing after cached final
+HTML replay. The parent preserved and moved only the final HTML marker and its
+`.trace`/`.hash` companions; source, pins, checkers and Git identity were unchanged.
+This bounded generated-cache recovery is not passing API evidence.
+
+The parent reran `python scripts/validate_release.py api-docs` as API02 in the
+primary checkout in file mode, using reviewed Zig 0.16.0. Both actual build/check
+passes of API02 succeeded. The parent inspected all eight new declarations' actual
+signatures, hypotheses, docstrings, owners and local source links, and verified
+API-source correspondence to that clean checkpoint. These are warm/incremental
+executions and local output, with no cold-build or publication claim.
+Clean correspondence is byte-identical for 109/110 API inputs and 102/103 validation
+inputs. The sole `docs/v0.1-public-api.json` difference is the existing maintained
+LF/CRLF two-hash allowance: uniform CRLF-to-LF bytes and parsed values agree, and
+the clean file equals the requested Git blob. Primary API02 inputs are unchanged.
+Later applicability checks retain that explicit correspondence, configuration, dependencies and
+the two owner pages; whole-tree validity is reused from completed API02 and its
+original wrapper check, without claiming a fresh whole-tree rehash.
+
+API source-content SHA-256: `379a1d1f9b542279941b11b78bfd0c1b4f032e85a86abdd149147e2824b708bf`.
+Configuration SHA-256: `ddf4e00291e15a882bfd8de74a166591d706f3e93eae99d9b6df74a31a3f11ba`.
+Two-pass attestation SHA-256: `f544cbfac344b81539655e2345c65819d41265fca1b622117170a590e1ef7491`.
+Applicability covers 110 API input files and 103 compiled-validation
+input files with their recorded dependencies and the one explicit frozen-manifest
+line-ending correspondence above. Original commands, complete logs and
+before/after identities are retained under `.lit-review/setup/c19-05-20261020/`
+in `checkpoint-01/`, `clean-01/` and successful `api-milestone-02/`. The original
+`api-milestone-01/` failure and `api-cache-recovery-01/` marker-move evidence remain
+separate; neither supports a passing criterion. `api-inspection.json` records the
+parent's API02 substantive inspections separately from automated extraction.
+`api-cache-recovery-guard-failure.json` separately retains the parent's observed
+first recovery-helper refusal before any move or output-directory creation;
+its tuple/list comparison diagnosis is distinct from the actual API01 failure.
+`api-applicability-attempt01-observation.json` retains the later private guard
+refusal before the inspection record: it overlooked that maintained frozen-file
+allowance, created no record and changed no source/workflow. API02 remains PASS.
+
+| Declaration | Owner | Signature/hypotheses/docstring/source link |
+| --- | --- | --- |
+| `card_weakTypicalSet_le` | `Shannon.TypicalSet` | Inspected |
+| `mem_weakTypicalSet` | `Shannon.TypicalSet` | Inspected |
+| `prob_mul_exp_le_card_weakTypicalSet` | `Shannon.TypicalSet` | Inspected |
+| `selfInfo_iid_of_mem_support` | `Shannon.SemanticBridge.AEP` | Inspected |
+| `tendsto_prob_weakTypicalSet` | `Shannon.SemanticBridge.AEP` | Inspected |
+| `tendsto_selfInfo_iid_deviation` | `Shannon.SemanticBridge.AEP` | Inspected |
+| `weakTypicalSet` | `Shannon.TypicalSet` | Inspected |
+| `weakTypicalSet_mass_bounds` | `Shannon.TypicalSet` | Inspected |
+
+These are initial qualification facts. Any amended checkpoint requires the complete
+clean rerun and exact API-evidence applicability assessment. The fresh all-sixteen-
+criterion review, original-report reconciliation, final validation and F capture
+are established only by their actual source-bound records. Final closure depends on
+`.lit-review/setup/c19-05-completion-20261020.json`, when present, and its linked completion chain;
+this prose asserts no future gate, review result or closure. C20--C24 and publication
+remain unselected.
+
+See the [C19 handoff](handoffs/chunk-19.md). The C18 account below is historical evidence.
+
+## Historical C18 milestone
+
+C18 adds fifteen theorems across semantic FiniteProduct, ProductKL,
+ProductChannel, FiniteFamily and FiniteFamilyIndependence. Current source
+coverage is 713 documented declarations in 45 supported owners, with 92 root
+exports, 94 reviewed simp declarations and 36 non-stable exclusions.
+
+<!-- c18-06-api-docs:start -->
+Both actual current file-mode build/check passes passed; the full successful
+gate took 693.925 seconds. The parent inspected all fifteen new
+declaration signatures, hypotheses, docstrings, owners and local source links
+against the v2 content/configuration identity and two-pass attestation. Guarded
+Real KL, swapped conditional-output entropy, actual marginals, full output mutual
+independence, unrestricted length and arbitrary-source/four-universe statements
+match source. This was semantic HTML inspection, not browser visual QA.
+The first missing-page failure and bounded three-marker recovery remain retained.
+All source/configuration/dependency inputs were unchanged during the successful
+gate; evidence-prose changes require separate applicability. Existing caches
+were used. Under the lead's scoped checkpoint/amendment/reuse approval, initial
+checkpoint `8b30dc96e89a9b4e0224b059faed48e19a4e5f1e` passed the complete
+maintained clean routine separately. Readiness, fresh cumulative review,
+reconciliation, exact final applicability and closure require their actual
+source-bound records, including `.lit-review/setup/c18-06-completion-20261018.json`
+when present; this captured account does not certify them. Every amendment
+requires the complete maintained clean rerun and exact API applicability.
+<!-- c18-06-api-docs:end -->
+
+The [C18 handoff](handoffs/chunk-18.md) records captured qualification and evidence boundaries.
+Actual local output stays under `docbuild/.lake/build/doc/`; the frozen v0.1.0
+route, dependencies and build/checker contracts are unchanged. The API gate,
+complete maintained clean routine, cumulative independent review and exact
+closure retain separate evidence and applicability requirements.
+
+## Historical C14 milestone
+
+C14 adds `Shannon.Continuity` and six public declarations. Current coverage is
+653 documented declarations in 36 supported owners, with 92 root exports,
+94 reviewed simp declarations and 24 non-stable exclusions. Inspect the exact-TV
+entropy statement, total capped scalar definition, monotonicity on nonnegative
+budgets and the three entropy/conditional-entropy/MI budget statements. Preserve
+Nat subtraction, independent coordinate universes, the sole TV-budget premise,
+and separate joint/marginal cardinalities and thresholds.
+
+<!-- c14-04-api-docs:start -->
+Both actual current file-mode build/check passes passed (160.9s and 22.0s),
+followed by inspection of all six new declaration blocks and the full Shannon
+umbrella against the v2 source/configuration identity and two-pass attestation.
+The original missing-Continuity-page failure and bounded three-marker repair
+remain separately recorded. The recovered run kept all tracked/unignored source
+unchanged. Later result-recording prose does not alter the exact API inputs;
+applicability is checked separately. Existing pinned dependencies/caches were used.
+The clean routine, cumulative review and closure remain pending.
+<!-- c14-04-api-docs:end -->
+
+The [C14 handoff](handoffs/chunk-14.md) records source/configuration identities,
+original checks, failures and limits. Current output stays in
+`docbuild/.lake/build/doc/`, outside the frozen release route. Exact applicability
+must be checked after any source amendment; caches may be reused without calling
+this a cold rebuild.
+
+## Historical C13 milestone
+
+C13 added `Shannon.SemanticBridge.Pinsker` and five public theorems. Its milestone
+coverage was 647 documented declarations in 35 supported owners, with 92
+canonical exports, 94 reviewed simp declarations and 23 non-stable exclusions.
+The new page must retain canonical ENNReal KL, both explicit support guards,
+the constant two and the two MI forms without public measurable-space premises.
+The [C13 handoff](handoffs/chunk-13.md) and private C13.04 records retain the actual
+checks and their limits. Both actual build/check passes succeeded (112.2s and
+14.6s), followed by all-five-declaration inspection and v2 attestation checks.
+The initial missing-Pinsker-page failure and bounded aggregate-marker repair
+remain separately recorded. Exact applicability is checked after amendments.
+C12 output is historical and cannot qualify the new source. The clean routine
+suite and cumulative review remain separate requirements. Current generated
+output stays in `docbuild/.lake/build/doc/`, outside the frozen release route.
+
+## Historical C12 milestone
+
+C12 adds the supported `Shannon.SemanticBridge.Gluing` owner and four public
+theorems across Gluing, Coupling and FiniteChannel. That milestone covered 642
+documented declarations in 34 supported modules, with 92 canonical exports,
+94 reviewed simp declarations and 21 non-stable modules excluded.
+C12.04's preparation completed both actual current file-mode passes and
+inspection of all four new declarations, including the new Gluing page.
+The initial stale aggregate-HTML-marker failure and bounded recovery are retained
+separately from that success; exact applicability must be checked after changes.
+The [C12 handoff](handoffs/chunk-12.md) and private C12.04 evidence retain the exact
+source/configuration identity, output attestation, observations and failures.
+Earlier C11 output is historical evidence and does not qualify the C12 source.
+The full clean routine suite and fresh cumulative review are separate duties.
+Current output stays local and separate from the frozen release route.
+
+## Historical C11 milestone
 
 C11 adds `LeanInfoTheory.Probability.Coupling` and its ten public declarations.
 The explicitly authorized initial C11 checkpoint
@@ -340,6 +661,31 @@ selects `publish=true`.
 
 ## Third-party provenance
 
+For second-release review staging, `scripts/prepare_publication.py` keeps the
+complete API/search tree on the separate API project path and repairs its project
+return and licence-page links. The main site's historical route must match the
+recovered live digest recorded in the [release plan](plans/v0.2-release-preparation.md),
+not merely the later rebuild. Both resulting sites remain `NOT_FOR_PUBLICATION`.
+Main pages are derived from the clean checkout's exact tracked website source;
+project Lean source links are pinned to its commit. Ignored or untracked website
+files are refused. The original preview command and historical release/maintenance
+commands retain their existing meanings; the maintenance producer explicitly
+refuses release-ready state. None is a deployment path for the second release.
+
+After approved metadata/checkpoint changes and fresh GitHub-mode API qualification,
+the new commands are run from that exact clean checkout:
+
+```powershell
+python scripts/prepare_publication.py prepare --expected-commit <exact-sha> --historical-route <recovered-live-v0.1.0> --frozen-source-root <v0.1.0-checkout> --frozen-site-root <validated-rebuilt-v0.1.0-site> --output .lake/publication-review/<fresh-name>
+python scripts/prepare_publication.py check --expected-commit <exact-sha> --historical-route <recovered-live-v0.1.0> --frozen-source-root <v0.1.0-checkout> --frozen-site-root <validated-rebuilt-v0.1.0-site> --output .lake/publication-review/<fresh-name>
+```
+
+The rebuilt artifact validates the original candidate composition; the recovered
+live route supplies the byte-exact historical publication input. Neither is
+silently treated as the other. Each command reruns the full candidate-site check,
+which can take substantial time. The final manual deployment packaging and
+production-host validation are still required before any upload is approved.
+
 Doc-gen4 is an Apache-2.0-licensed build-only dependency and is not vendored
 into LeanInfoTheory. The generated tree copies 13 identified doc-gen runtime/
 search assets and also contains imported dependency documentation. The staged
@@ -352,3 +698,23 @@ inventory found no reason to add a redundant root `NOTICE`, and the Step 14
 attribution review confirmed that final determination. Exact upstream licence
 copies and the provenance inventory remain part of the assembled artifact.
 Project EPFL/MIL headers are not applied to upstream or generated material.
+
+## Packaging the v0.2.0 Pages sites
+
+The publication-off dispatch of the Lean build workflow accepts `api_docs=true`,
+`pages_dry_run=true` and `publish=false`. It builds the two-pass API with
+GitHub links pinned to the checked-out commit. The packager validates the
+retained API producer, recovers the public v0.1.0 files listed in
+`scripts/data/pages-v0.1.0-files.txt`, and checks their whole-tree digest.
+Each site has its own size check, content digest and GitHub Pages archive.
+The source links and search results in the complete newer API resolve under
+`/LeanInfoTheory-API/v0.2.0/`. The main project entry is `/LeanInfoTheory/`.
+
+For a local replay after the GitHub-mode API gate, use
+`python scripts/package_release_pages.py build --expected-commit SHA --historical-route PATH`
+with the full commit and the verified deployed historical directory. The
+`check` command compares an existing pair with the same inputs. Both outputs
+are under `.lake/release-pages/SHA/`. The workflow's two named archive
+artifacts contain public site files only. The website deployment handoff uses
+those verified bytes after GitHub publication, first checking the API site
+live and then updating the main site.

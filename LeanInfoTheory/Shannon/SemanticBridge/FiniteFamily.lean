@@ -40,6 +40,11 @@ singleton entropies. The corresponding equality characterization by mutual
 independence is developed in the separate downstream
 `LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence` module.
 
+Conditional entropy of a finite dependent tuple is at most the sum of its
+coordinate conditional entropies under the same finite observation. This
+random-variable interface permits an arbitrary source type and an observation
+alphabet in a separate universe; no independence premise is needed.
+
 Submodularity is stated as nonnegativity of
 `H(A) + H(B) - H(A ∪ B) - H(A ∩ B)`, directly in terms of finite-family
 entropy.
@@ -50,7 +55,7 @@ namespace Shannon
 
 open scoped BigOperators
 
-universe u v w
+universe u v w z
 
 noncomputable section
 
@@ -342,6 +347,86 @@ theorem familyEntropyOf_subadditivity_of_nodup
     familyEntropyOf p X l.toFinset ≤
       ∑ k : Fin l.length, familyEntropyOf p X {l.get k} := by
   exact familyEntropy_subadditivity_of_nodup (familyLawOf p X) l hl
+
+/-! ## Conditional entropy of a dependent tuple -/
+
+private theorem condEntropyOf_comp_equiv_left
+    {Ω : Type u} {α : Type v} {β : Type w} {C : Type z}
+    [Fintype α] [Fintype β] [Fintype C]
+    (p : PMF Ω) (X : Ω → α) (Y : Ω → C) (e : α ≃ β) :
+    condEntropyOf p (fun ω => e (X ω)) Y = condEntropyOf p X Y := by
+  rw [condEntropyOf_eq, condEntropyOf_eq]
+  have h := entropyOf_comp_equiv p (fun ω => (X ω, Y ω))
+    (e.prodCongr (Equiv.refl C))
+  exact congrArg (fun a : ℝ => a - entropyOf p Y) h
+
+open Classical in
+/-- Conditional entropy of a finite dependent tuple is at most the sum of the
+coordinate conditional entropies given the same observation. The source type
+is arbitrary, and the finite observation alphabet may inhabit a separate
+universe. No independence or conditional factorization is assumed. -/
+theorem condEntropyOf_pi_le_sum
+    {I : Type u} {A : I → Type v} {Ω : Type w} {C : Type z}
+    [Fintype I] [∀ i, Fintype (A i)] [Fintype C]
+    (p : PMF Ω) (X : ∀ i, Ω → A i) (Y : Ω → C) :
+    condEntropyOf p (fun ω i => X i ω) Y ≤
+      ∑ i, condEntropyOf p (X i) Y := by
+  classical
+  let P (J : Type u) [Fintype J] : Prop :=
+    ∀ (B : J → Type v) [∀ j, Fintype (B j)] (Z : ∀ j, Ω → B j),
+      condEntropyOf p (fun ω j => Z j ω) Y ≤
+        ∑ j, condEntropyOf p (Z j) Y
+  have main : P I := by
+    refine Fintype.induction_empty_option (P := P) ?_ ?_ ?_ I
+    · intro J K _ e ih B _ Z
+      let : Fintype J := Fintype.ofEquiv K e.symm
+      have h := ih (fun j => B (e j)) (fun j => Z (e j))
+      have he : condEntropyOf p (fun ω (j : J) => Z (e j) ω) Y =
+          condEntropyOf p (fun ω (k : K) => Z k ω) Y :=
+        condEntropyOf_comp_equiv_left p (fun ω k => Z k ω) Y
+          (Equiv.piCongrLeft B e).symm
+      rw [he] at h
+      calc
+        condEntropyOf p (fun ω k => Z k ω) Y ≤
+            ∑ j, condEntropyOf p (Z (e j)) Y := h
+        _ = ∑ k, condEntropyOf p (Z k) Y :=
+          e.sum_comp (fun k => condEntropyOf p (Z k) Y)
+    · intro B _ Z
+      have hinj : Function.Injective
+          (Prod.snd : ((i : PEmpty) → B i) × C → C) := by
+        intro a b h
+        exact Prod.ext (Subsingleton.elim _ _) h
+      have h := entropyOf_comp_injective p
+        (fun ω => ((fun i => Z i ω), Y ω)) hinj
+      change entropyOf p Y = jointEntropyOf p (fun ω i => Z i ω) Y at h
+      have hzero : condEntropyOf p (fun ω (i : PEmpty) => Z i ω) Y = 0 := by
+        rw [condEntropyOf_eq]
+        exact sub_eq_zero.mpr h.symm
+      have hle : condEntropyOf p (fun ω (i : PEmpty) => Z i ω) Y ≤
+          ∑ i, condEntropyOf p (Z i) Y := by
+        rw [hzero]
+        simp
+      convert! hle
+    · intro J _ ih B _ Z
+      have step : condEntropyOf p (fun ω (i : Option J) => Z i ω) Y ≤
+          ∑ i, condEntropyOf p (Z i) Y := by
+        have he := condEntropyOf_comp_equiv_left p (fun ω i => Z i ω) Y
+          (Equiv.piOptionEquivProd (β := B))
+        calc
+          condEntropyOf p (fun ω i => Z i ω) Y =
+              condEntropyOf p (fun ω => (Z none ω, fun j => Z (some j) ω)) Y :=
+            he.symm
+          _ ≤ condEntropyOf p (Z none) Y +
+              condEntropyOf p (fun ω j => Z (some j) ω) Y :=
+            condEntropyOf_pair_le_add_condEntropyOf p (Z none)
+              (fun ω j => Z (some j) ω) Y
+          _ ≤ condEntropyOf p (Z none) Y +
+              ∑ j, condEntropyOf p (Z (some j)) Y :=
+            add_le_add le_rfl (ih (fun j => B (some j)) (fun j => Z (some j)))
+          _ = ∑ j, condEntropyOf p (Z j) Y :=
+            (Fintype.sum_option (fun j => condEntropyOf p (Z j) Y)).symm
+      convert! step
+  exact main A X
 
 end
 

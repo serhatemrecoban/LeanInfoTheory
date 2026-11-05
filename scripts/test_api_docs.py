@@ -134,6 +134,13 @@ class CurrentDocumentationTests(unittest.TestCase):
     def test_exact_current_coverage_has_no_historical_count_floor(self):
         self.check()
 
+    def test_identity_boolean_cannot_be_replaced_by_zero(self):
+        self.actual_identity["publishable"] = False
+        self.config["api_identity"] = dict(self.actual_identity, publishable=0)
+        checker.DOC_CONFIG.write_text(json.dumps(self.config), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "source-content identity is stale"):
+            self.check()
+
     def test_missing_declaration_block(self):
         self.mutate_page(f'id="{self.name}"', 'id="unexpected"')
         with self.assertRaisesRegex(checker.DocumentationError, "coverage differs"):
@@ -237,10 +244,39 @@ class CurrentDocumentationTests(unittest.TestCase):
 
 
 class ContentIdentityTests(unittest.TestCase):
+    def test_candidate_state_and_later_baseline_bytes_invalidate_current_identity(self):
+        """Synthetic identity inputs, not candidate retention approval/export."""
+        import release_state
+        with tempfile.TemporaryDirectory(prefix="candidate-api-identity-") as raw:
+            root = Path(raw)
+            (root / "LeanInfoTheory").mkdir()
+            (root / "LeanInfoTheory.lean").write_text("-- Synthetic source.\n", encoding="utf-8")
+            for relative in release_state.PRODUCTION_INPUTS:
+                path = root / relative
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("# Synthetic policy input.\n", encoding="utf-8")
+            state_path = root / release_state.STATE_PATH
+            state = dict(release_state.FIXED, phase="preparation", retention="pending")
+            state_path.write_text(json.dumps(state), encoding="utf-8")
+            with patch.object(identity, "INPUTS", ()):
+                before = identity.source_inputs(root)
+                state["phase"] = "candidate"
+                state_path.write_text(json.dumps(state), encoding="utf-8")
+                after_state = identity.source_inputs(root)
+                self.assertNotEqual(before, after_state)
+                for relative in (release_state.CANDIDATE_CONTRACT_PATH, release_state.CANDIDATE_APPROVAL_PATH):
+                    (root / relative).write_text('{"synthetic":true}\n', encoding="utf-8")
+                    after_artifact = identity.source_inputs(root)
+                    self.assertNotEqual(after_state, after_artifact)
+                    self.assertIn(relative, after_artifact)
+                    after_state = after_artifact
+
     def test_same_manifest_signature_body_docstring_and_input_changes_invalidate(self):
         (ROOT / "tmp").mkdir(exist_ok=True)
         with tempfile.TemporaryDirectory(prefix="c9-03-doc-fingerprint-", dir=ROOT / "tmp") as raw:
             root = Path(raw)
+            (root / "scripts").mkdir()
+            (root / "scripts/release_state.py").write_text("# Synthetic identity input.\n", encoding="utf-8")
             owner = root / "LeanInfoTheory/Owner.lean"
             owner.parent.mkdir()
             (root / "LeanInfoTheory.lean").write_text("import LeanInfoTheory.Owner\n", encoding="utf-8")

@@ -26,6 +26,7 @@ import generate_current_public_api as current_api
 import generate_website_blueprint as blueprint
 import export_retained_api as retained
 import current_policy
+import release_state
 
 POLICY = ROOT / "docs/compatibility/current-api-policy.json"
 DRIVER = ROOT / "scripts/compatibility/CurrentAudit.lean"
@@ -37,6 +38,7 @@ INPUTS = (*CONFIGURATION, "docs/v0.1-public-api.json",
           "docs/compatibility/v0.1.0-retained-contract.json",
           "docs/compatibility/current-api-policy.json",
           "scripts/check_public_api_compatibility.py", "scripts/validate_release.py",
+          "scripts/release_state.py",
           "scripts/frozen_public_api.py", "scripts/generate_current_public_api.py",
           "scripts/generate_website_api_index.py", "scripts/generate_website_blueprint.py",
           "scripts/compatibility/export_retained_api.py",
@@ -228,7 +230,7 @@ def unredirected_tree(path: Path) -> None:
 
 def source_identity() -> dict[str, str]:
     require(not (ROOT / "lakefile.lean").exists(), "alternate effective Lake configuration")
-    paths = set(INPUTS) | {p.relative_to(ROOT).as_posix() for p in blueprint.lean_files()}
+    paths = set(INPUTS) | set(release_state.validation_inputs(ROOT)) | {p.relative_to(ROOT).as_posix() for p in blueprint.lean_files()}
     for rel in paths:
         path = ROOT / rel
         require(path.is_file() and path.resolve() == path.absolute(), f"missing or redirected input: {rel}")
@@ -339,10 +341,7 @@ class RunEvidence:
 def run_compatibility(evidence: RunEvidence) -> dict:
     manifest, baseline = load_baseline()
     before = source_identity()
-    for rel in CONFIGURATION:
-        raw = (ROOT / rel).read_bytes().replace(b"\r\n", b"\n")
-        require(sha256(raw) == baseline["release_source_sha256"][rel],
-                f"unapproved pinned build configuration change: {rel}")
+    release_state.check_legacy_configuration(ROOT, baseline["release_source_sha256"])
     dependencies = retained.dependency_identity(ROOT)
     require(dependencies == baseline["dependencies"], "retained dependency identity mismatch")
     unredirected_tree(ROOT / ".lake/build")
@@ -357,7 +356,7 @@ def run_compatibility(evidence: RunEvidence) -> dict:
     match = re.search(r"version 4\.33\.1,.*commit ([0-9a-f]{7,40})", version)
     require(match is not None and LEAN_COMMIT.startswith(match.group(1)),
             f"unexpected effective Lean compiler: {version}")
-    evidence.run("build", ["lake", "-KwarningAsError=true", "build", "LeanInfoTheory.Shannon"])
+    evidence.run("build", ["lake", "--wfail", "build", "LeanInfoTheory.Shannon"])
     exported = evidence.run("retained", ["lake", "env", "lean", "-DwarningAsError=true", "--run",
                                         str(retained.EXPORTER), str(frozen.FROZEN_PATH)])
     compare_types(baseline, exported, manifest)

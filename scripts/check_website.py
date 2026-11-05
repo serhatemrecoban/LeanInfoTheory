@@ -26,6 +26,9 @@ VERSION_TAG_OBJECT = "bcd9090ea2720fe14b0a3e168c76ebeef1dafd47"
 VERSION_SOURCE_COMMIT = "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f"
 VERSION_STAGE_SCHEMA = "lean-info-theory.website-stage.v1"
 COMPOSITION_STAGE_SCHEMA = "lean-info-theory.website-stage.v2"
+CANDIDATE_STAGE_SCHEMA = "lean-info-theory.website-candidate.v1"
+CURRENT_ROUTE = "docs/current"
+RESERVED_ROUTE = "docs/v0.2.0"
 HTML_LINK_RE = re.compile(r"\b(?:href|src)\s*=\s*([\"'])(.*?)\1", re.IGNORECASE)
 HTML_ID_RE = re.compile(r"\b(?:id|name)\s*=\s*([\"'])(.*?)\1", re.IGNORECASE)
 HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
@@ -66,6 +69,11 @@ EXPECTED_DEPENDENCY_MISSING_COUNT = 109
 EXPECTED_DEPENDENCY_CASING_COUNT = 2
 EXPECTED_DEPENDENCY_ADVISORY_SHA256 = (
     "bf8682253b1141fa6d97226f32d94fe599e4af7e4f69d8e363609f2155cfdd12"
+)
+# The current route has its own exact policy; the historical policy is unchanged.
+EXPECTED_CURRENT_DEPENDENCY_ADVISORY_BASELINE = (
+    110, 108, 2,
+    "8ba462e28375d42a4bab86bd742f66453d1ceecc680a5458a5543ff33ab7acbe",
 )
 TEXT_SAFETY_SUFFIXES = {
     ".css",
@@ -574,11 +582,15 @@ class CuratedTableAuditParser(HTMLParser):
 
 
 class WebsiteValidator:
-    def __init__(self, site_root: Path, mode: str):
+    def __init__(self, site_root: Path, mode: str, *, expected_commit: str | None = None,
+                 frozen_source_root: Path | None = None, frozen_site_root: Path | None = None):
+        self.supplied_site_root = site_root
         self.site_root = site_root.resolve()
         self.mode = mode
         self.errors: list[str] = []
         self.advisories: list[str] = []
+        # Local candidate diagnostics never enter the fixed dependency-link baseline.
+        self.publication_blockers: list[str] = []
         self.files: set[str] = set()
         self.directories: set[str] = {""}
         self.casefold_files: dict[str, str] = {}
@@ -589,6 +601,10 @@ class WebsiteValidator:
         self.total_bytes = 0
         self.metadata: dict[str, object] | None = None
         self.version_metadata: dict[str, object] | None = None
+        self.expected_commit = expected_commit
+        self.frozen_source_root = frozen_source_root
+        self.frozen_site_root = frozen_site_root
+        self.current_metadata: dict[str, object] | None = None
 
     def error(self, message: str) -> None:
         self.errors.append(message)
@@ -598,6 +614,8 @@ class WebsiteValidator:
 
     def is_imported_dependency_page(self, relative: str) -> bool:
         prefix = VERSION_ROUTE + "/"
+        if self.mode == "candidate" and relative.startswith(CURRENT_ROUTE + "/"):
+            prefix = CURRENT_ROUTE + "/"
         if not relative.startswith(prefix):
             return False
         nested = relative.removeprefix(prefix)
@@ -644,9 +662,15 @@ class WebsiteValidator:
             if self.mode != "source" and stat.st_size > 100 * 1024 * 1024:
                 self.error(f"staged file exceeds 100 MiB: {rel}")
         if self.mode != "source" and self.total_bytes >= 1_000_000_000:
-            self.error(
+            message = (
                 f"staged site is {self.total_bytes} bytes and reaches the 1 GB Pages limit"
             )
+            if self.mode == "candidate":
+                self.publication_blockers.append(
+                    message + "; unpublished local candidate only (NOT_FOR_PUBLICATION); do not deploy"
+                )
+            else:
+                self.error(message)
 
     def validate_json(self) -> None:
         for relative in REQUIRED_JSON:
@@ -965,6 +989,14 @@ class WebsiteValidator:
             )
 
     def validate_stage_contract(self) -> None:
+        if self.mode == "candidate":
+            self.validate_candidate_contract()
+            return
+        if self.mode == "publishable":
+            if any(Path(name).name == PREVIEW_MARKER for name in self.files):
+                self.error("publishable artifact contains NOT_FOR_PUBLICATION")
+            if any(name.startswith((CURRENT_ROUTE + "/", RESERVED_ROUTE + "/")) for name in self.files):
+                self.error("current and reserved candidate routes cannot be published by this contract")
         version = self.site_root / Path(VERSION_ROUTE)
         metadata_path = version / STAGE_METADATA
         if self.mode == "source":
@@ -1156,6 +1188,149 @@ class WebsiteValidator:
             if 'href="../">Project documentation</a>' not in navbar:
                 self.error("doc-gen navbar has no route back to project documentation")
 
+    def validate_candidate_contract(self) -> None:
+        """Compare a local composition with independent raw/current/frozen inputs."""
+        import stage_website as staging
+        if self.expected_commit is None or self.frozen_source_root is None or self.frozen_site_root is None:
+            self.error("candidate checking requires expected commit and both frozen roots")
+            return
+        try:
+            config, attestation, manifest, contract = staging.validate_candidate_inputs(self.expected_commit)
+            frozen = staging.validate_frozen_artifact(self.frozen_source_root, self.frozen_site_root)
+            staging.require_unredirected_components(self.supplied_site_root, label="candidate output")
+            staging.require_unredirected_tree(self.site_root, label="candidate output")
+            metadata = staging.strict_object(self.site_root / ROOT_STAGE_METADATA)
+            current = self.site_root / CURRENT_ROUTE
+            current_raw = (current / STAGE_METADATA).read_bytes()
+            current_metadata = staging.strict_object(current / STAGE_METADATA)
+            frozen_raw = (self.site_root / VERSION_ROUTE / STAGE_METADATA).read_bytes()
+        except (OSError, ValueError, staging.StagingError) as exc:
+            self.error(f"candidate input/metadata validation failed: {exc}")
+            return
+        self.metadata = metadata
+        self.current_metadata = current_metadata
+        root_keys = {"schema", "mode", "publishable", "release_contract", "site_source_identity",
+            "current_metadata_sha256", "current_route_sha256", "current_route_files",
+            "current_route_html_files", "current_route_bytes", "api_source_identity", "release_tag_object",
+            "version_metadata_sha256", "version_route_sha256", "version_route_files",
+            "version_route_html_files", "version_route_bytes", "version_project_source_links"}
+        if set(metadata) != root_keys:
+            self.error("candidate composition metadata has missing or unknown fields")
+        expected_root = {"schema": CANDIDATE_STAGE_SCHEMA, "mode": "candidate", "publishable": False,
+            "release_contract": contract, "site_source_identity": self.expected_commit,
+            "api_source_identity": VERSION_SOURCE_COMMIT, "release_tag_object": VERSION_TAG_OBJECT,
+            "current_metadata_sha256": hashlib.sha256(current_raw).hexdigest(),
+            "version_metadata_sha256": hashlib.sha256(frozen[1]).hexdigest(),
+            "version_route_sha256": frozen[2], "version_route_files": frozen[3],
+            "version_route_html_files": frozen[4], "version_route_bytes": frozen[5],
+            "version_project_source_links": frozen[6]}
+        for key, value in expected_root.items():
+            if staging.api_doc_identity.encode(metadata.get(key)) != staging.api_doc_identity.encode(value):
+                self.error(f"candidate composition {key} does not match trusted inputs")
+        if frozen_raw != frozen[1] or tree_digest(self.site_root / VERSION_ROUTE) != frozen[2:6]:
+            self.error("candidate frozen route differs from the independently supplied historical artifact")
+        expected_current = staging.candidate_evidence_fields(config, attestation, manifest, contract, self.expected_commit)
+        extra_keys = {"sanitized_file_source_links", "disabled_current_source_index_links", "license_records",
+                      "generated_static_assets", "external_runtime"}
+        if set(current_metadata) != set(expected_current) | extra_keys:
+            self.error("current candidate metadata has missing or unknown fields")
+        for key, value in expected_current.items():
+            if staging.api_doc_identity.encode(current_metadata.get(key)) != staging.api_doc_identity.encode(value):
+                self.error(f"current candidate {key} does not match current source/API evidence")
+        for key, value in zip(("current_route_sha256", "current_route_files", "current_route_html_files",
+                               "current_route_bytes"), tree_digest(current)):
+            if type(metadata.get(key)) is not type(value) or metadata.get(key) != value:
+                self.error(f"candidate composition {key} differs from staged output")
+        sanitized = 0
+        expected_files = {STAGE_METADATA, PREVIEW_MARKER, "licenses/index.html"}
+        try:
+            for source in sorted(staging.DOC_SOURCE.rglob("*")):
+                if not source.is_file():
+                    continue
+                relative = source.relative_to(staging.DOC_SOURCE)
+                expected_files.add(relative.as_posix())
+                expected = source.read_bytes()
+                if source.suffix.lower() == ".html":
+                    text, count = staging.transform_current_doc_html(source.read_text(encoding="utf-8"),
+                        relative=relative, source_mode=str(config["source_mode"]), manifest=manifest,
+                        commit=self.expected_commit)
+                    expected = text.encode("utf-8")
+                    sanitized += count
+                if (current / relative).read_bytes() != expected:
+                    self.error(f"current staged page differs from trusted API output: {relative.as_posix()}")
+        except (OSError, ValueError, staging.StagingError) as exc:
+            self.error(f"current staged-output correspondence failed: {exc}")
+        if type(current_metadata.get("sanitized_file_source_links")) is not int \
+                or current_metadata.get("sanitized_file_source_links") != sanitized:
+            self.error("current candidate sanitized-source count differs from actual transform")
+        records = current_metadata.get("license_records")
+        if not isinstance(records, list) or not all(isinstance(r, dict) for r in records) \
+                or tuple(r.get("name") for r in records) != EXPECTED_LICENSE_NAMES:
+            self.error("current candidate licence inventory differs from reviewed names")
+        else:
+            for record in records:
+                for field in ("license_file", "additional_licenses"):
+                    if field in record:
+                        name = str(record[field])
+                        if Path(name).name != name or not name.endswith(".txt"):
+                            self.error("current candidate licence path is unsafe")
+                        else:
+                            expected_files.add("licenses/" + name)
+        if current_metadata.get("generated_static_assets") != list(EXPECTED_GENERATED_STATIC_ASSETS) \
+                or current_metadata.get("external_runtime") != list(EXPECTED_EXTERNAL_RUNTIME):
+            self.error("current candidate runtime inventory differs from reviewed assets")
+        actual_files = {p.relative_to(current).as_posix() for p in current.rglob("*") if p.is_file()}
+        if actual_files != expected_files:
+            self.error("current candidate file inventory has missing or unexpected files")
+        # Compare project pages with the independent clean source, rather than
+        # accepting a self-rehashed composition as evidence of its provenance.
+        expected_site_files = {ROOT_STAGE_METADATA, PREVIEW_MARKER, "LICENSE.txt"}
+        try:
+            disabled = 0
+            for source in sorted(staging.SITE_SOURCE.rglob("*")):
+                if not source.is_file():
+                    continue
+                relative = source.relative_to(staging.SITE_SOURCE).as_posix()
+                if relative.startswith((VERSION_ROUTE + "/", CURRENT_ROUTE + "/", RESERVED_ROUTE + "/")):
+                    continue
+                expected_site_files.add(relative)
+                expected = source.read_bytes()
+                if relative == "docs/api-index.html":
+                    text, disabled = staging.candidate_source_index(source.read_text(encoding="utf-8"))
+                    expected = text.encode("utf-8")
+                elif relative == "docs/index.html":
+                    expected = staging.candidate_landing(source.read_text(encoding="utf-8")).encode("utf-8")
+                if (self.site_root / relative).read_bytes() != expected:
+                    self.error(f"candidate project page differs from exact clean source: {relative}")
+            if (self.site_root / "LICENSE.txt").read_bytes() != (staging.ROOT / "LICENSE").read_bytes():
+                self.error("candidate project licence differs from exact source")
+            if type(current_metadata.get("disabled_current_source_index_links")) is not int \
+                    or current_metadata.get("disabled_current_source_index_links") != disabled:
+                self.error("candidate disabled-source count differs from actual source-index transform")
+            outside_routes = {p.relative_to(self.site_root).as_posix() for p in self.site_root.rglob("*")
+                if p.is_file() and not p.relative_to(self.site_root).as_posix().startswith(
+                    (VERSION_ROUTE + "/", CURRENT_ROUTE + "/", RESERVED_ROUTE + "/"))}
+            if outside_routes != expected_site_files:
+                self.error("candidate project-site file inventory has missing or unexpected files")
+        except (OSError, ValueError, staging.StagingError) as exc:
+            self.error(f"candidate project-page correspondence failed: {exc}")
+        for relative in (PREVIEW_MARKER, CURRENT_ROUTE + "/" + PREVIEW_MARKER,
+                         RESERVED_ROUTE + "/" + PREVIEW_MARKER):
+            path = self.site_root / relative
+            if not path.is_file() or "NOT_FOR_PUBLICATION" not in path.read_text(encoding="utf-8"):
+                self.error(f"candidate is missing its nonpublication marker: {relative}")
+        reserved = self.site_root / RESERVED_ROUTE
+        if {p.relative_to(reserved).as_posix() for p in reserved.rglob("*") if p.is_file()} != {"index.html", PREVIEW_MARKER}:
+            self.error("reserved v0.2.0 route must contain only its unpublished placeholder and marker")
+        try:
+            if 'data-api-reserved="true"' not in (reserved / "index.html").read_text(encoding="utf-8"):
+                self.error("reserved v0.2.0 route is not explicitly reserved")
+            landing = (self.site_root / "docs/index.html").read_text(encoding="utf-8")
+            if 'href="v0.1.0/"' not in landing or 'data-current-candidate="true"' not in landing:
+                self.error("candidate documentation landing lost stable0.1 or current unpublished context")
+        except OSError as exc:
+            self.error(f"candidate route landing is missing: {exc}")
+
     def anchors(self, relative: str) -> set[str]:
         cached = self.anchor_cache.get(relative)
         if cached is not None:
@@ -1239,6 +1414,11 @@ class WebsiteValidator:
 
     def validate_text_safety(self, relative: str, source: str) -> None:
         development_index = self.mode == "source" and relative == "docs/api-index.html"
+        if self.mode == "source" and relative.endswith(".html") and not development_index \
+                and not self.is_versioned_path(relative):
+            visible = html.unescape(re.sub(r"<[^>]+>", " ", HTML_COMMENT_RE.sub("", source)))
+            if re.search(r"\bchunks?\s+[0-9]|\bC[1-9][0-9]*(?:\.[0-9]+|[–-](?:C)?[0-9]+)?\b", visible, re.IGNORECASE):
+                self.error(f"{relative}: public coverage uses internal work-package numbering")
         if FILE_URL_LITERAL_RE.search(source):
             self.error(f"{relative}: contains a local file URL")
         if MACHINE_LOCAL_PATH_RE.search(source):
@@ -1258,6 +1438,26 @@ class WebsiteValidator:
             self.error(f"{relative}: contains a mutable GitHub source link")
         if development_index and "Source links target current" not in source:
             self.error(f"{relative}: current development source links need their explicit context")
+        if self.mode == "candidate":
+            for ref, project_path in project_links:
+                if self.is_versioned_path(relative):
+                    expected = VERSION_SOURCE_COMMIT
+                elif relative.startswith(CURRENT_ROUTE + "/"):
+                    expected = self.expected_commit if self.current_metadata is not None \
+                        and self.current_metadata.get("source_mode") == "github" else None
+                    if expected is None:
+                        self.error(f"{relative}: file-mode current preview contains a project source URL")
+                        continue
+                else:
+                    # Existing curated historical citations stay historical. In
+                    # particular, no unpublished local SHA is advertised online.
+                    expected = "v0.1.0"
+                    contract = (self.current_metadata or {}).get("release_contract") or {}
+                    if relative == "license.html" and project_path == "CITATION.cff" \
+                            and contract.get("phase") == "release-ready" and ref == "v" + contract["target_version"]:
+                        continue
+                if ref != expected:
+                    self.error(f"{relative}: candidate project link uses {ref!r}, expected {expected!r}")
         if self.mode == "publishable":
             assert self.metadata is not None
             for ref, project_path in project_links:
@@ -1306,6 +1506,25 @@ class WebsiteValidator:
                     self.validate_target(relative, target)
 
     def validate_advisory_baseline(self) -> None:
+        if self.mode == "candidate":
+            # Check each explicit route against its own exact normalized policy.
+            for route, expected in (
+                (VERSION_ROUTE, (EXPECTED_DEPENDENCY_ADVISORY_COUNT, EXPECTED_DEPENDENCY_MISSING_COUNT,
+                    EXPECTED_DEPENDENCY_CASING_COUNT, EXPECTED_DEPENDENCY_ADVISORY_SHA256)),
+                (CURRENT_ROUTE, EXPECTED_CURRENT_DEPENDENCY_ADVISORY_BASELINE),
+            ):
+                selected = [message for message in self.advisories if message.startswith(route + "/")]
+                normalized = [message.replace(route + "/", VERSION_ROUTE + "/") for message in selected]
+                observed = (len(normalized), sum("missing local link" in m for m in normalized),
+                    sum("incorrect path casing" in m for m in normalized),
+                    hashlib.sha256("\n".join(sorted(normalized)).encode("utf-8")).hexdigest())
+                if observed != expected:
+                    self.error(f"{route}: dependency advisory baseline changed: {observed!r}; "
+                               "exact current artifact review is required before changing this policy")
+            if any(not message.startswith((VERSION_ROUTE + "/", CURRENT_ROUTE + "/"))
+                   for message in self.advisories):
+                self.error("candidate has dependency advisories outside its two explicit API routes")
+            return
         digest = hashlib.sha256(
             "\n".join(sorted(self.advisories)).encode("utf-8")
         ).hexdigest()
@@ -1370,13 +1589,22 @@ def main() -> int:
     )
     parser.add_argument(
         "--mode",
-        choices=("source", "preview", "publishable"),
+        choices=("source", "preview", "publishable", "candidate"),
         default="source",
         help="validation policy for the tracked site or a staged artifact",
     )
+    parser.add_argument("--expected-commit", help="exact clean local candidate HEAD")
+    parser.add_argument("--frozen-source-root", type=Path, help="independent immutable v0.1.0 checkout")
+    parser.add_argument("--frozen-site-root", type=Path, help="independent validated frozen website artifact")
     args = parser.parse_args()
-    validator = WebsiteValidator(args.site_root, args.mode)
+    if args.mode != "candidate" and any(value is not None for value in
+            (args.expected_commit, args.frozen_source_root, args.frozen_site_root)):
+        parser.error("candidate identity arguments require --mode candidate")
+    validator = WebsiteValidator(args.site_root, args.mode, expected_commit=args.expected_commit,
+        frozen_source_root=args.frozen_source_root, frozen_site_root=args.frozen_site_root)
     validator.run()
+    for blocker in validator.publication_blockers:
+        print(f"PUBLICATION BLOCKER: {blocker}")
     if validator.errors:
         shown = validator.errors[:200]
         print("\n".join(shown))

@@ -30,11 +30,12 @@
 
     <main class="main-content" role="main">
       <p class="lead">
-        This hand-written page lists the declarations that currently form the
-        public mathematical story of the project. For a broader source-derived
-        inventory, see the <a href="docs/api-index.html">generated declaration index</a>.
-        Declaration names below link to their generated index entries, with
-        direct source links beside them.
+        This hand-written page selects theorem highlights from the
+        original foundation. Version <code>v0.2.0</code> also includes finite AEP,
+        source-coding results, channel capacities and channel-coding weak converses.
+        For current declaration names and owners, see the
+        <a href="docs/api-index.html">source-derived declaration index</a>.
+        The signature-bearing API gives exact release types and source links.
       </p>
 
       <table class="status-table">
@@ -219,11 +220,38 @@
         </tbody>
       </table>
 
-      <h2>Not Yet Covered</h2>
+      <section aria-labelledby="candidate-results">
+        <h2 id="candidate-results">v0.2.0 capabilities and limits</h2>
+        <p>
+          The <code>v0.2.0</code> source inventory contains 811
+          supported declarations across 57 modules. These additions are
+          separate from the historical selection above. Use the
+          <a href="module-guide.html#candidate-modules">focused import guide</a>
+          and <a href="docs/api-index.html">current source inventory</a> to find
+          exact names, owners and assumptions.
+        </p>
+        <ul>
+          <li><strong>Quantitative finite probability:</strong> half-L1 total variation, maximal coupling and gluing, Pinsker, quantitative independence, entropy continuity, and finite-PMF compactness/topology. Null fibers and finite-KL guards remain explicit.</li>
+          <li><strong>Products and AEP:</strong> dependent products, iid words, product entropy/KL and actual product-channel information. Finite iid AEP uses supported self-information and strict typical sets; it does not assert a stationary/ergodic extension.</li>
+          <li><strong>Fixed-length source coding:</strong> total deterministic codes, integer message budgets, one code family above entropy, a source strong converse and an <code>IsGLB</code> entropy threshold. This does not assert an efficient encoder or attainment exactly at entropy.</li>
+          <li><strong>Finite information capacity:</strong> an attained maximizing input law, product/repeated capacity and standard-channel values. Product upper bounds allow correlated inputs; information capacity is distinct from operational coding capacity.</li>
+          <li><strong>Channel weak converses:</strong> uniform message indices, possibly colliding encoders and the same actual code throughout Fano, Markov/data processing and capacity bounds. Undivided forms cover zero length; normalized forms retain positive-length/rate guards. Eventual and frequent rate gaps have distinct conclusions.</li>
+        </ul>
+        <p>
+          Information is measured in nats unless explicitly converted. Channel
+          achievability, operational-capacity equality and the channel strong
+          converse remain outside scope. The source strong converse supplies
+          none of those channel claims. Randomized/list decoding, feedback,
+          cost constraints, infinite alphabets and variable/prefix coding also
+          remain outside this programme.
+        </p>
+      </section>
+
+      <h2>Outside v0.1.0</h2>
       <p>
         Canonical/minimal or general measurable sufficiency, exact Fano
         equality and sharpness, randomized/list decoding, AEP, source/channel
-        coding theorems, and network converse examples are not formalized yet.
+        coding theorems, and network converse examples are outside that release.
       </p>
     </main>
   </body>

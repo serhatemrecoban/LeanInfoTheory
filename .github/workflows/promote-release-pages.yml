@@ -22,6 +22,11 @@ jobs:
     permissions:
       contents: read
     steps:
+      - name: Read the reviewed maintenance pages at the dispatch commit
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+          sparse-checkout: home_page
       - name: Verify the public release and retrieve its qualified Pages archive
         env:
           GH_TOKEN: ${{ github.token }}
@@ -48,6 +53,19 @@ jobs:
           mv artifact.tar qualified.tar
           mkdir site restored
           tar -xf qualified.tar -C site
+          # Only the two unversioned citation pages are maintained here.
+          install -m 0644 home_page/index.html site/index.html
+          install -m 0644 home_page/license.html site/license.html
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          marker = Path("site/website-stage.json")
+          metadata = json.loads(marker.read_bytes())
+          metadata["release_source_identity"] = metadata["site_source_identity"]
+          metadata["site_source_identity"] = os.environ["GITHUB_SHA"]
+          metadata["maintained_pages"] = ["index.html", "license.html"]
+          marker.write_text(json.dumps(metadata, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+          PY
           tar --format=gnu --sort=name -cf artifact.tar -C site .
           tar -xf artifact.tar -C restored
           diff --recursive --brief --no-dereference site restored

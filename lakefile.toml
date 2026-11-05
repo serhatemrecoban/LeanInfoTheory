@@ -1,5 +1,5 @@
 name = "LeanInfoTheory"
-version = "0.1.0"
+version = "0.2.0"
 description = "A Lean 4 and mathlib library for finite discrete information theory"
 keywords = ["math", "information-theory", "probability", "formal-verification"]
 homepage = "https://serhatemrecoban.github.io/LeanInfoTheory/"

@@ -24,6 +24,11 @@ from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
+import api_doc_identity
+import current_api
+import release_state
+from check_public_api_compatibility import strict_json
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE_SOURCE = ROOT / "home_page"
@@ -43,6 +48,10 @@ VERSION_TAG_OBJECT = "bcd9090ea2720fe14b0a3e168c76ebeef1dafd47"
 VERSION_SOURCE_COMMIT = "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f"
 VERSION_STAGE_SCHEMA = "lean-info-theory.website-stage.v1"
 COMPOSITION_STAGE_SCHEMA = "lean-info-theory.website-stage.v2"
+CANDIDATE_STAGE_SCHEMA = "lean-info-theory.website-candidate.v1"
+CURRENT_STAGE_SCHEMA = "lean-info-theory.website-current.v1"
+CURRENT_ROUTE = Path("docs/current")
+RESERVED_ROUTE = Path("docs/v0.2.0")
 
 DOCGEN_REVISION = "e2af49a7b7e5e1a9224008c1f15e7aa4f58a4015"
 LEAN_REVISION = "819816b2e0a3bf405af45ae5c7af2491d8f5bee6"
@@ -442,7 +451,8 @@ def validate_owned_destination() -> None:
         raise StagingError(
             f"refusing to replace an unowned directory: {STAGE_ROOT}"
         ) from exc
-    if marker.get("schema") not in {VERSION_STAGE_SCHEMA, COMPOSITION_STAGE_SCHEMA}:
+    if marker.get("schema") not in {VERSION_STAGE_SCHEMA, COMPOSITION_STAGE_SCHEMA,
+                                    CANDIDATE_STAGE_SCHEMA}:
         raise StagingError(f"refusing to replace an unrecognized staging tree: {STAGE_ROOT}")
 
 
@@ -699,6 +709,8 @@ def require_clean_checkout(repository: Path, *, label: str) -> None:
 
 
 def validate_current_maintenance_checkout() -> str:
+    if release_state.load_state(ROOT)["phase"] == "release-ready":
+        raise StagingError("second-release metadata requires the separately qualified two-site publication path")
     require_clean_checkout(ROOT, label="maintenance staging")
     branch = run(["git", "branch", "--show-current"])
     commit = exact_commit(ROOT)
@@ -997,12 +1009,249 @@ def assemble_maintenance(
     return STAGE_ROOT
 
 
+def strict_object(path: Path) -> dict[str, object]:
+    value = strict_json(path.read_bytes())
+    if not isinstance(value, dict):
+        raise StagingError(f"metadata must be an object: {display_path(path)}")
+    return value
+
+
+def validate_candidate_checkout(expected_commit: str) -> str:
+    """Local qualification is exact and clean, independent of branch/CI identity."""
+    if re.fullmatch(r"[0-9a-f]{40}", expected_commit or "") is None:
+        raise StagingError("candidate staging requires an exact expected commit")
+    require_clean_checkout(ROOT, label="local candidate staging")
+    commit = exact_commit(ROOT)
+    if commit != expected_commit:
+        raise StagingError("candidate expected commit does not match clean HEAD")
+    release_state.contract_identity(ROOT)
+    release_state.require_candidate_content(ROOT)
+    return commit
+
+
+def validate_candidate_inputs(expected_commit: str) -> tuple[dict, dict, dict, dict]:
+    validate_candidate_checkout(expected_commit)
+    contract = release_state.contract_identity(ROOT)
+    for path in (SITE_SOURCE, DOC_SOURCE, DOC_CONFIG, DOC_ATTESTATION):
+        require_unredirected_components(path, label="candidate input")
+    for path in (SITE_SOURCE, DOC_SOURCE):
+        require_unredirected_tree(path, label="candidate input")
+    config = strict_object(DOC_CONFIG)
+    api_doc_identity.verify_configuration(config)
+    if api_doc_identity.encode(config["api_identity"].get("release_contract")) != api_doc_identity.encode(contract):
+        raise StagingError("candidate API identity has a different release contract")
+    if config["source_mode"] == "github" and config["source_identity"] != expected_commit:
+        raise StagingError("candidate GitHub API identity differs from expected commit")
+    manifest = current_api.load_current_manifest()
+    attestation = strict_object(DOC_ATTESTATION)
+    keys = {"schema", "configuration", "relevant_output_sha256", "doc_tree_sha256",
+            "doc_files", "doc_html_files", "doc_bytes", "validated_passes"}
+    if set(attestation) != keys or attestation.get("schema") != api_doc_identity.ATTESTATION_SCHEMA:
+        raise StagingError("candidate requires the exact current v2 API attestation")
+    if api_doc_identity.encode(attestation["configuration"]) != api_doc_identity.encode(config) \
+            or type(attestation["validated_passes"]) is not int \
+            or attestation["validated_passes"] != 2:
+        raise StagingError("candidate attestation must bind this configuration and both validated passes")
+    if re.fullmatch(r"[0-9a-f]{64}", str(attestation["relevant_output_sha256"])) is None:
+        raise StagingError("candidate attestation has no relevant-output digest")
+    observed = tree_digest(DOC_SOURCE)
+    for key, value in zip(("doc_tree_sha256", "doc_files", "doc_html_files", "doc_bytes"), observed):
+        if attestation[key] != value or (isinstance(value, int) and type(attestation[key]) is not int):
+            raise StagingError(f"candidate attestation {key} differs from actual API output")
+    return config, attestation, manifest, contract
+
+
+def candidate_evidence_fields(config: dict, attestation: dict, manifest: dict,
+                              contract: dict, commit: str) -> dict:
+    """Portable bindings only: file-mode absolute paths stay in local evidence."""
+    return {
+        "schema": CURRENT_STAGE_SCHEMA, "mode": "candidate", "publishable": False,
+        "route": contract["current_route"], "version": contract["package_version"],
+        "target_version": contract["target_version"], "source_identity": commit,
+        "source_mode": config["source_mode"], "release_contract": contract,
+        "api_configuration_sha256": hashlib.sha256(DOC_CONFIG.read_bytes()).hexdigest(),
+        "api_attestation_sha256": hashlib.sha256(DOC_ATTESTATION.read_bytes()).hexdigest(),
+        "api_identity_sha256": api_doc_identity.sha256(api_doc_identity.encode(config["api_identity"])),
+        "current_manifest_sha256": config["api_identity"]["current_manifest_sha256"],
+        "api_doc_relevant_sha256": attestation["relevant_output_sha256"],
+        "doc_tree_sha256": attestation["doc_tree_sha256"],
+        "doc_files": attestation["doc_files"], "doc_html_files": attestation["doc_html_files"],
+        "doc_source_bytes": attestation["doc_bytes"],
+        "supported_modules": len(manifest["supported_modules"]),
+        "supported_declarations": len(manifest["declarations"]),
+        "root_exports": len(manifest["root_exports"]),
+        "excluded_modules": len(manifest["non_stable_modules"]), "equation_rows": 0,
+        "docgen_revision": config["docgen_revision"], "lean_revision": config["lean_revision"],
+        "mathlib_revision": config["mathlib_revision"],
+    }
+
+
+def transform_current_doc_html(source: str, *, relative: Path, source_mode: str,
+                               manifest: dict, commit: str) -> tuple[str, int]:
+    """Transform current output without touching the historical renderer."""
+    sanitized = 0
+    if source_mode == "file":
+        source, sanitized = FILE_SOURCE_LINK_RE.subn(
+            '<span title="Validated local source; unavailable in this portable preview.">'
+            'source unavailable in local preview</span>', source)
+    if FILE_URL_RE.search(source) or MUTABLE_GITHUB_RE.search(source):
+        raise StagingError(f"unsafe source link in current API page: {relative}")
+    for ref, _path in project_blob_links(source):
+        if source_mode != "github" or ref != commit:
+            raise StagingError(f"current API page has an unsupported project source target: {relative}")
+    if 'href="#top"' in source and 'id="top"' not in source:
+        if source.count("<main>") != 1:
+            raise StagingError(f"cannot add current top anchor: {relative}")
+        source = source.replace("<main>", '<main><a id="top"></a>', 1)
+    if relative.as_posix() == "navbar.html":
+        old = '<nav class="nav">'
+        if source.count(old) != 1:
+            raise StagingError("current doc-gen navbar must have one nav root")
+        source = source.replace(old, old + '<h3>LeanInfoTheory current — unpublished</h3>'
+            '<div class="nav_link"><a href="../">Project documentation</a></div>'
+            '<div class="nav_link"><a href="../../">Project home</a></div>'
+            '<h3>Local candidate — not for publication</h3>', 1)
+    if relative.as_posix() == "index.html":
+        old = '<h1>Welcome to the documentation page </h1>'
+        if source.count(old) != 1:
+            raise StagingError("current doc-gen index has an unexpected heading")
+        source = source.replace(old, '<h1>LeanInfoTheory current API — unpublished</h1>'
+            f'<p>{len(manifest["supported_modules"])} supported modules and '
+            f'{len(manifest["declarations"])} declarations. This local candidate is '
+            'NOT_FOR_PUBLICATION; the stable release remains v0.1.0.</p>', 1)
+    return source, sanitized
+
+
+def copy_current_doc_tree(destination: Path, *, config: dict, manifest: dict, commit: str) -> int:
+    sanitized = 0
+    for source in sorted(DOC_SOURCE.rglob("*")):
+        relative = source.relative_to(DOC_SOURCE)
+        target = destination / relative
+        if source.is_dir():
+            target.mkdir(parents=True, exist_ok=True)
+        elif source.is_file():
+            target.parent.mkdir(parents=True, exist_ok=True)
+            if source.suffix.lower() == ".html":
+                rendered, count = transform_current_doc_html(source.read_text(encoding="utf-8"),
+                    relative=relative, source_mode=str(config["source_mode"]), manifest=manifest, commit=commit)
+                sanitized += count
+                target.write_text(rendered, encoding="utf-8", newline="\n")
+            else:
+                shutil.copy2(source, target)
+        else:
+            raise StagingError(f"unsupported current documentation input: {relative}")
+    return sanitized
+
+
+def candidate_source_index(source: str) -> tuple[str, int]:
+    """Pure source-index transform, shared with independent output checking."""
+    pattern = re.compile(r'<a href="' + re.escape(REPOSITORY_URL) +
+                         r'/blob/master/LeanInfoTheory[^"<>]*">(.*?)</a>', re.DOTALL)
+    source, disabled = pattern.subn(
+        r'<span title="Current source is local; no public commit availability is claimed.">\1</span>', source)
+    if MUTABLE_GITHUB_RE.search(source):
+        raise StagingError("candidate source index has unsupported mutable links")
+    source = source.replace("Source links target current", "Disabled source links refer to local current")
+    return source, disabled
+
+
+def candidate_landing(source: str) -> str:
+    if source.count('<div class="link-grid">') != 1 or 'href="v0.1.0/"' not in source:
+        raise StagingError("candidate documentation landing has no unambiguous stable route")
+    source = source.replace('<div class="link-grid">', '<div class="link-grid">'
+        '\n<a href="current/" data-current-candidate="true">Current API — unpublished local candidate</a>', 1)
+    return source
+
+
+def prepare_candidate_site(site: Path) -> int:
+    """Disable supplementary mutable source links without inventing a remote SHA."""
+    index = site / "docs/api-index.html"
+    source, disabled = candidate_source_index(index.read_text(encoding="utf-8"))
+    index.write_text(source, encoding="utf-8", newline="\n")
+    landing = site / "docs/index.html"
+    landing.write_text(candidate_landing(landing.read_text(encoding="utf-8")), encoding="utf-8", newline="\n")
+    return disabled
+
+
+def assemble_candidate(*, expected_commit: str, frozen_source_root: Path,
+                       frozen_site_root: Path) -> Path:
+    config, attestation, manifest, contract = validate_candidate_inputs(expected_commit)
+    frozen = validate_frozen_artifact(frozen_source_root, frozen_site_root)
+    frozen_dir, frozen_metadata, digest, files, html_files, byte_count, links = frozen
+    validate_owned_destination()
+    STAGE_PARENT.mkdir(parents=True, exist_ok=True)
+    temporary = Path(tempfile.mkdtemp(prefix=".LeanInfoTheory-candidate-", dir=STAGE_PARENT))
+    try:
+        site = temporary / "LeanInfoTheory"
+        shutil.copytree(SITE_SOURCE, site)
+        shutil.copy2(ROOT / "LICENSE", site / "LICENSE.txt")
+        for route in (VERSION_ROUTE, CURRENT_ROUTE, RESERVED_ROUTE):
+            path = site / route
+            if path.exists():
+                shutil.rmtree(path)
+        shutil.copytree(frozen_dir, site / VERSION_ROUTE)
+        if tree_digest(site / VERSION_ROUTE) != (digest, files, html_files, byte_count):
+            raise StagingError("candidate composition changed the frozen route")
+        current = site / CURRENT_ROUTE
+        current.mkdir(parents=True)
+        sanitized = copy_current_doc_tree(current, config=config, manifest=manifest, commit=expected_commit)
+        licenses = stage_licenses(current / "licenses", config)
+        disabled = prepare_candidate_site(site)
+        marker = "UNPUBLISHED LOCAL CANDIDATE. NOT_FOR_PUBLICATION. DO NOT DEPLOY.\n"
+        for path in (site, current, site / RESERVED_ROUTE):
+            path.mkdir(parents=True, exist_ok=True)
+            (path / PREVIEW_MARKER).write_text(marker, encoding="utf-8", newline="\n")
+        (site / RESERVED_ROUTE / "index.html").write_text(
+            '<!doctype html><html><body><h1 data-api-reserved="true">v0.2.0 is reserved</h1>'
+            '<p>Unpublished; NOT_FOR_PUBLICATION. No release or public API artifact is claimed.</p>'
+            '<a href="../">Documentation</a></body></html>\n', encoding="utf-8", newline="\n")
+        metadata = candidate_evidence_fields(config, attestation, manifest, contract, expected_commit)
+        metadata.update({"sanitized_file_source_links": sanitized,
+            "disabled_current_source_index_links": disabled, "license_records": licenses,
+            "generated_static_assets": list(DOCGEN_STATIC_ASSETS), "external_runtime": list(EXTERNAL_RUNTIME)})
+        rendered = (json.dumps(metadata, indent=2, sort_keys=True) + "\n").encode("utf-8")
+        (current / VERSION_STAGE_METADATA).write_bytes(rendered)
+        current_digest, current_files, current_html, current_bytes = tree_digest(current)
+        root_metadata = {"schema": CANDIDATE_STAGE_SCHEMA, "mode": "candidate", "publishable": False,
+            "release_contract": contract, "site_source_identity": expected_commit,
+            "current_metadata_sha256": hashlib.sha256(rendered).hexdigest(),
+            "current_route_sha256": current_digest, "current_route_files": current_files,
+            "current_route_html_files": current_html, "current_route_bytes": current_bytes,
+            "api_source_identity": VERSION_SOURCE_COMMIT, "release_tag_object": VERSION_TAG_OBJECT,
+            "version_metadata_sha256": hashlib.sha256(frozen_metadata).hexdigest(),
+            "version_route_sha256": digest, "version_route_files": files,
+            "version_route_html_files": html_files, "version_route_bytes": byte_count,
+            "version_project_source_links": links}
+        (site / ROOT_MARKER).write_text(json.dumps(root_metadata, indent=2, sort_keys=True) + "\n",
+                                      encoding="utf-8", newline="\n")
+        # Refuse concurrent tracked/input drift before replacing any existing artifact.
+        if validate_candidate_inputs(expected_commit) != (config, attestation, manifest, contract):
+            raise StagingError("candidate inputs changed during staging")
+        if tree_digest(frozen_dir) != (digest, files, html_files, byte_count):
+            raise StagingError("frozen artifact changed during candidate staging")
+        if STAGE_ROOT.exists():
+            shutil.rmtree(STAGE_ROOT)
+        site.replace(STAGE_ROOT)
+    finally:
+        if temporary.exists():
+            shutil.rmtree(temporary)
+    return STAGE_ROOT
+
+
 def assemble(
     mode: str,
     *,
     frozen_source_root: Path | None = None,
     frozen_site_root: Path | None = None,
+    expected_commit: str | None = None,
 ) -> Path:
+    if mode == "candidate":
+        if expected_commit is None or frozen_source_root is None or frozen_site_root is None:
+            raise StagingError("candidate requires --expected-commit and both frozen roots")
+        return assemble_candidate(expected_commit=expected_commit,
+            frozen_source_root=frozen_source_root, frozen_site_root=frozen_site_root)
+    if expected_commit is not None:
+        raise StagingError("--expected-commit is valid only for local candidate staging")
     if mode != "maintenance":
         if frozen_source_root is not None or frozen_site_root is not None:
             raise StagingError(
@@ -1023,12 +1272,13 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "mode",
-        choices=("preview", "release", "maintenance"),
+        choices=("preview", "release", "maintenance", "candidate"),
         help=(
             "sanitize a local preview, stage the immutable release checkout, or "
             "compose current site pages with the frozen release API"
         ),
     )
+    parser.add_argument("--expected-commit", help="exact clean local candidate commit; detached is allowed")
     parser.add_argument(
         "--frozen-source-root",
         type=Path,
@@ -1045,6 +1295,7 @@ def main() -> int:
             args.mode,
             frozen_source_root=args.frozen_source_root,
             frozen_site_root=args.frozen_site_root,
+            expected_commit=args.expected_commit,
         )
     except (OSError, StagingError, ValueError, json.JSONDecodeError) as exc:
         print(f"website staging failed: {exc}")

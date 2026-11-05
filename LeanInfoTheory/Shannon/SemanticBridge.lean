@@ -10,6 +10,7 @@ Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.SemanticBridge.Entropy
+import LeanInfoTheory.Shannon.SemanticBridge.AEP
 import LeanInfoTheory.Shannon.SemanticBridge.Product
 import LeanInfoTheory.Shannon.SemanticBridge.FiniteSums
 import LeanInfoTheory.Shannon.SemanticBridge.Conditional
@@ -19,10 +20,15 @@ import LeanInfoTheory.Shannon.SemanticBridge.Convexity
 import LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily
 import LeanInfoTheory.Shannon.SemanticBridge.Independence
 import LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence
+import LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct
 import LeanInfoTheory.Shannon.SemanticBridge.Markov
+import LeanInfoTheory.Shannon.SemanticBridge.Gluing
 import LeanInfoTheory.Shannon.SemanticBridge.Sufficiency
 import LeanInfoTheory.Shannon.SemanticBridge.DataProcessing
+import LeanInfoTheory.Shannon.SemanticBridge.Pinsker
 import LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL
+import LeanInfoTheory.Shannon.SemanticBridge.ProductKL
+import LeanInfoTheory.Shannon.SemanticBridge.ProductChannel
 import LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL
 
 /-!
@@ -61,6 +67,8 @@ definitions agree with the textbook/measure-theoretic semantics.
   positive-fiber, zero-CMI, and reversal characterizations and the Markov law
   for channel-generated triples, its canonical and existential channel-
   factorization converses, and the exact mutual-information loss identity;
+- gluing two pair laws with a common middle marginal into one Markov triple,
+  with finiteness required only for the final coordinate alphabet;
 - `IsSufficientStatisticOf`, the fixed-prior reverse-Markov sufficiency
   predicate, together with `statisticTripleLawOf`, its induced parameter-
   statistic-observation law, its information-preservation characterizations,
@@ -81,6 +89,9 @@ definitions agree with the textbook/measure-theoretic semantics.
 - finite KL data processing through a common stochastic channel, with
   unconditional `ENNReal`, support-guarded real, deterministic-map, and
   channel-cascade forms;
+- finite-PMF Pinsker in nats, with canonical `ENNReal` KL including singular
+  support, support-guarded Real forms, and mutual-information bounds on TV
+  between a joint law and the product of its marginals;
 - finite-selector KL joint convexity, entropy concavity and mutual-information
   concavity in the input law, and mutual-information convexity in the channel,
   together with binary textbook forms;
@@ -101,10 +112,22 @@ definitions agree with the textbook/measure-theoretic semantics.
 - semantic theorem API: `0 <= I(A;B)`, `0 <= I(A;B|C)`, and the chain rule
   `I(A;B,C) = I(A;C) + I(A;B|C)`.
 - finite-family entropy monotonicity, nonnegative conditional entropy and CMI,
-  and entropy submodularity, without requiring a finite family index.
+  and entropy submodularity, without requiring a finite family index;
+- conditional tuple entropy subadditivity and the independent-source mutual-
+  information lower bound for one common observation, with arbitrary source
+  spaces and separate alphabet and observation universes.
 - finite-family mutual independence through pointwise PMF factorization,
   including empty, singleton, restriction, pair compatibility, and exact
-  entropy-additivity characterizations.
+  entropy-additivity characterizations;
+- constructed finite-product laws as family marginals, mutually independent
+  selected families, and independent distinct coordinate random variables;
+- finite-product and iid entropy additivity, and unconditional extended-valued
+  product KL additivity with support-guarded Real forms;
+- conditional output entropy additivity and mutual-information bounds for
+  product channels under arbitrary input laws and actual coordinate marginals;
+- exact output entropy gaps and equality precisely under full output mutual
+  independence, together with general independent-pair, product-input and iid
+  mutual-information equalities.
 
 Keeping this file separate prevents KL divergence, kernels, and related
 measure-theoretic imports from becoming dependencies of the lightweight finite

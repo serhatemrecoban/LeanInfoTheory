@@ -43,7 +43,7 @@
 
       <h2>PFR Formalization</h2>
       <p>
-        The Lean PFR project is an important reference for entropy and mutual
+        The Polynomial Freiman-Ruzsa (PFR) Lean project is an important reference for entropy and mutual
         information in a serious formalization. LeanInfoTheory keeps the first
         project layer finite and <code>PMF</code>-oriented, while auditing PFR
         and mathlib APIs before adding more general measure-theoretic layers.
@@ -53,6 +53,13 @@
         <a href="https://teorth.github.io/pfr/">PFR project website</a>
         <a href="https://teorth.github.io/pfr/blueprint/">PFR blueprint</a>
       </div>
+
+      <p>
+        This prior-art project is distinct from
+        <em>Perfect Functional Representations</em>, the downstream
+        LeanInfoTheory <code>v0.1.0</code> case study described in the
+        <a href="docs/research-projects.html#pfr-case-study">research-project guide</a>.
+      </p>
 
       <h2>Rocq Infotheo</h2>
       <p>
@@ -169,7 +176,11 @@
         LeanInfoTheory currently adds a finite <code>PMF</code>-based Shannon
         layer, semantic bridges to expected self-information and KL divergence,
         and reusable APIs for channels, finite families, Fano inequalities,
-        Markov structure, data processing, and sufficiency.
+        Markov structure, data processing, and sufficiency. Version
+        <code>v0.2.0</code> extends this with quantitative finite
+        probability, products, iid AEP, source coding, attained information
+        capacity and channel weak converses; see the
+        <a href="theorems.html#candidate-results">current scope and limits</a>.
       </p>
     </main>
   </body>

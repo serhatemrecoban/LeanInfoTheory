@@ -17,6 +17,7 @@ import subprocess
 import sys
 import tempfile
 import textwrap
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -1184,6 +1185,244 @@ class CollaborationTransportTests(unittest.TestCase):
         self.assertEqual((f.root / f.plan_path).read_bytes(), proposed)
         self.assertIsNone(f.state()["active"])
         self.assertFalse(f.state()["completed"])
+
+
+class ReportFormatProjectTests(unittest.TestCase):
+    """Exact-pair remediation in temporary source-copy sessions, never C18 state."""
+
+    def setUp(self):
+        self.f = ProjectWorkflowTests(methodName="runTest")
+        self.f.setUp()
+        self.addCleanup(self.f.doCleanups)
+
+    def pair(self):
+        f = self.f
+        f.session()
+        ev, req = f.prepared("format-conflict")
+        f.w.dispatch_intent(req["reference"])
+        receipt = f.w.record_submission(req["reference"], "UNCERTAIN", f.empty_submission(req))
+        body = json.loads(f.report(req))
+        failure = copy.deepcopy(body["new_evidence"][0])
+        failure.update(id="reviewer:fixture-failed-transport", outcome="FAIL",
+                       output="Synthetic failed context transport, retained verbatim.")
+        body["new_evidence"].append(failure)
+        body["report"]["verification"].append(failure["id"])
+        body["report"]["criteria"][0]["evidence"].append(failure["id"])
+        initial_raw = json.dumps(body, indent=2)
+        initial_observation = f.observation(req, initial_raw, event_ref="synthetic-source-copy:format-initial")
+        delivery = f.w.confirm_delivery(req["reference"], receipt, initial_raw,
+            initial_observation, f.auth("CONFIRM_DIAGNOSTIC_DELIVERY", req["reference"]))
+        initial = f.w.receive_report(initial_raw, initial_observation,
+            req["payload"]["request_id"], req["payload"]["attempt"])
+        self.assertEqual(initial["classification"], "REPORT_EVIDENCE_INVALID")
+        body["report"]["criteria"][0]["evidence"].remove(failure["id"])
+        corrected_raw = json.dumps(body)
+        corrected = f.w.receive_report(corrected_raw,
+            f.observation(req, corrected_raw, event_ref="synthetic-source-copy:format-corrected"),
+            req["payload"]["request_id"], req["payload"]["attempt"])
+        self.assertEqual(corrected["classification"], "CONFLICTING_DUPLICATE")
+        return dict(ev=ev, req=req, receipt=receipt, delivery=delivery,
+                    initial=initial["capture"], corrected=corrected["capture"],
+                    initial_raw=initial_raw, corrected_raw=corrected_raw)
+
+    def resolve(self, pair, approval=None):
+        f = self.f
+        if approval is None:
+            target = f.w.report_format_conflict_target(pair["initial"], pair["corrected"])
+            approval = f.auth("RESOLVE_REPORT_FORMAT_CONFLICT", target)
+        return f.w.resolve_report_format_conflict(pair["initial"], pair["corrected"], approval)
+
+    def test_project_resolution_reloads_and_requires_fresh_candidate_review(self):
+        f = self.f
+        pair = self.pair()
+        original = {ref: f.w.fs.read("durable/objects/" + ref + ".json")
+                    for ref in f.state()["records"]}
+        old_active = copy.deepcopy(f.state()["active"])
+        old_manifest = f.w.store.get(pair["req"]["payload"]["source_ref"], "manifest")
+        # Registered tooling/source can change before supported recovery. This
+        # is a temporary source-copy fixture, not a live pending request edit.
+        f.put("Case.lean", "-- Synthetic changed candidate; no compiler claim.\n")
+        result = self.resolve(pair)
+        f.w = project.load_session(f.root, f.chunk, "execution", test=True)
+        self.assertIsNone(f.state()["active"]["report"])
+        self.assertFalse(f.state()["completed"])
+        with self.assertRaises(Refusal):
+            f.w.project_closure()
+        restarted = f.w.requalify_report_format_conflict(result["resolution"],
+            f.auth("REQUALIFY_REPORT_FORMAT_CONFLICT", result["resolution"]),
+            "Synthetic implementation changed; requalify this exact current candidate.")
+        self.assertEqual(restarted["phase"], "IMPLEMENTING")
+        f.w = project.load_session(f.root, f.chunk, "execution", test=True)
+        self.assertEqual(f.state()["active"]["B"], old_active["B"])
+        for ref, data in original.items():
+            self.assertEqual(f.w.fs.read("durable/objects/" + ref + ".json"), data)
+        with self.assertRaises(Refusal):
+            f.w.initial_validation([pair["ev"]])
+        with self.assertRaises(Refusal):
+            f.w.prepare_review("lit-review:C10:execution:too-early", [pair["ev"]])
+        fresh = f.w.parent_evidence("Post-requalification source-copy inspection",
+            "Synthetic PASS on changed Case.lean after reset.", "No actual Lean or native review.")
+        f.w.initial_validation([fresh])
+        f.w.self_review([], "Fresh source-copy contextual self-review")
+        f.w.reassess({})
+        with self.assertRaises(Refusal):
+            f.w.prepare_review(pair["req"]["payload"]["request_id"], [fresh])
+        new = f.w.prepare_review("lit-review:C10:execution:format-fresh", [fresh])
+        manifest = f.w.store.get(new["payload"]["source_ref"], "manifest")
+        self.assertNotEqual(manifest["inventory"]["Case.lean"]["hash"],
+                            old_manifest["inventory"]["Case.lean"]["hash"])
+        self.assertEqual(new["payload"]["attempt"], 2)
+        self.assertEqual(f.state()["request_registry"][pair["req"]["payload"]["request_id"]]["status"],
+                         "SUPERSEDED")
+        f.acknowledged_report(new)
+        self.assertFalse(f.state()["completed"])
+        self.assertEqual(f.w.store.get(pair["initial"], "capture")["classification"],
+                         "REPORT_EVIDENCE_INVALID")
+        self.assertEqual(f.w.store.get(pair["corrected"], "capture")["classification"],
+                         "CONFLICTING_DUPLICATE")
+        self.assertEqual(f.w.store.get(pair["receipt"])["result"], "UNCERTAIN")
+        f.w.reconcile_report()
+        f.final_ready(fresh)
+        closed = f.w.project_closure()
+        self.assertFalse(closed["production_acceptance"])
+        self.assertIn("C10.01", f.state()["completed"])
+        for ref, data in original.items():
+            self.assertEqual(f.w.fs.read("durable/objects/" + ref + ".json"), data)
+
+    def test_project_resolution_does_not_accept_checkpoint_or_cross_session_authority(self):
+        f = self.f
+        pair = self.pair()
+        target = f.w.report_format_conflict_target(pair["initial"], pair["corrected"])
+        good = f.auth("RESOLVE_REPORT_FORMAT_CONFLICT", target)
+        wrong_scope = f.auth("APPROVE_CHECKPOINT", target)
+        wrong_binding = {**good, "binding": digest({"chunk": "C99", "session": "other"})}
+        reviewer_origin = {**good, "provenance": {**good["provenance"], "role": "assistant"}}
+        for approval in [None, wrong_scope, wrong_binding, reviewer_origin]:
+            with self.subTest(approval=approval), self.assertRaises(Refusal):
+                f.w.resolve_report_format_conflict(pair["initial"], pair["corrected"], approval)
+        with patch.dict(os.environ, {"CODEX_THREAD_ID": "another-parent"}):
+            with self.assertRaisesRegex(Refusal, "WRONG_ORIGINATING_PARENT"):
+                project.load_session(f.root, f.chunk, "execution", test=True)
+        self.assertIsNone(f.state()["active"]["report"])
+        self.assertFalse(f.state()["completed"])
+        self.assertEqual(self.resolve(pair, good)["status"], "RESOLVED_NOT_ACCEPTED")
+
+    def test_collaboration_original_arrivals_resolve_without_promoting_transport_or_verdict(self):
+        transport = CollaborationTransportTests(methodName="runTest")
+        transport.setUp()
+        self.addCleanup(transport.doCleanups)
+        self.f = transport.f
+        pair = self.pair()
+        result = self.resolve(pair)
+        self.assertFalse(result["report_accepted"])
+        self.f.w = project.load_session(self.f.root, self.f.chunk, "execution", test=True)
+        self.assertIsNone(self.f.state()["active"]["report"])
+        self.assertFalse(self.f.state()["completed"])
+        self.assertEqual(self.f.w.store.get(pair["delivery"]["confirmation"])["raw_sha256"],
+                         digest(pair["initial_raw"].encode()))
+
+
+class CandidateVersionRecorderTests(unittest.TestCase):
+    """Isolated recorder-unit fixtures; no journal, native review or acceptance."""
+
+    def setUp(self):
+        directory=tempfile.TemporaryDirectory(prefix='lit-version-recorder-')
+        self.addCleanup(directory.cleanup);self.root=Path(directory.name)
+        self.config={'lakefile.toml':b'name = "LeanInfoTheory"\r\nversion = "0.1.0"\r\nmaxSynthPendingDepth = 3\r\n',
+                     'lean-toolchain':b'fixture-toolchain\n','lake-manifest.json':b'{"fixture":true}\n'}
+        self.policy={'schema':'lean-info-theory.candidate-release-state.v1','phase':'preparation',
+            'target_version':'0.2.0','stable_version':'0.1.0','current_route':'/docs/current/',
+            'stable_route':'/docs/v0.1.0/','reserved_route':'/docs/v0.2.0/','retention':'pending'}
+        for p,raw in self.config.items():(self.root/p).write_bytes(raw)
+        self.put_json('docs/compatibility/candidate-release-state.json',self.policy)
+        def frozen_config(root,operation,ref):
+            self.assertEqual(root,self.root);self.assertEqual(operation,'show')
+            commit,p=ref.split(':',1);self.assertEqual(commit,project.BASELINE_COMMIT)
+            return self.config[p].replace(b'\r\n',b'\n')
+        frozen=patch.object(project,'_git',side_effect=frozen_config)
+        frozen.start();self.addCleanup(frozen.stop)
+        self.state={'active':{'step':'C24.05','edits':[]}}
+        self.criteria=[{'id':'C24.05-METADATA'}];self.records={}
+        self.w=project.ProjectWorkflow.__new__(project.ProjectWorkflow)
+        self.w.fs=SimpleNamespace(checkout=self.root);self.w.tag=project.TEST_TAG
+        self.w.contract={'plan_path':'docs/plans/post-release-chunk-24.md'}
+        self.w._active=lambda state,phases:state['active']
+        self.w._criteria=lambda state:self.criteria
+        self.contract_checks=[]
+        self.w._contract_hash=lambda state:self.contract_checks.append('checked-frozen-contract')
+        self.w._change=lambda operation,action:action(self.state)
+        def remember(state,kind,value):
+            ref=str(len(self.records));self.records[ref]=value;return ref
+        self.w._remember=remember
+        self.w.store=SimpleNamespace(get=lambda ref,kind:self.records[ref])
+
+    def put_json(self,p,value):
+        target=self.root/p;target.parent.mkdir(parents=True,exist_ok=True)
+        target.write_bytes(json.dumps(value).encode())
+
+    def begin(self):
+        return self.w.begin_edit(['lakefile.toml'],'Synthetic already-selected metadata fixture',
+                                 candidate_version_metadata=True)
+
+    def apply(self):
+        (self.root/'lakefile.toml').write_bytes(self.config['lakefile.toml'].replace(b'0.1.0',b'0.2.0'))
+        self.put_json('docs/compatibility/candidate-release-state.json',{**self.policy,'phase':'candidate'})
+
+    def test_exact_transition_retains_before_after_and_other_config(self):
+        ref=self.begin();self.assertEqual(self.contract_checks,['checked-frozen-contract'])
+        self.assertEqual((self.root/'lakefile.toml').read_bytes(),self.config['lakefile.toml'])
+        self.apply();self.w.finish_edit(ref)
+        self.assertEqual(self.state['active']['edits'][0]['status'],'APPLIED')
+        old=self.records[ref];self.assertEqual(bytes.fromhex(old['before_files']['lakefile.toml']),self.config['lakefile.toml'])
+        after=self.records[self.state['active']['edits'][0]['after']]['after_files']
+        self.assertEqual(bytes.fromhex(after['lakefile.toml']),self.config['lakefile.toml'].replace(b'0.1.0',b'0.2.0'))
+
+    def test_normal_configuration_refusal_is_unchanged(self):
+        for p in self.config:
+            with self.subTest(path=p),self.assertRaisesRegex(Refusal,'EDIT_SCOPE'):
+                self.w.begin_edit([p],'Synthetic unselected configuration edit')
+
+    def test_scope_cannot_select_other_step_criterion_plan_or_paths(self):
+        for mutate in (lambda:self.state['active'].update(step='C24.04'),
+                       lambda:self.criteria.clear(),
+                       lambda:self.w.contract.update(plan_path='docs/plans/other.md')):
+            before_step=self.state['active']['step'];before_criteria=self.criteria[:];before_plan=self.w.contract.copy()
+            mutate()
+            with self.assertRaisesRegex(Refusal,'CANDIDATE_VERSION_EDIT_SCOPE'):self.begin()
+            self.state['active']['step']=before_step;self.criteria[:]=before_criteria;self.w.contract=before_plan
+        with self.assertRaisesRegex(Refusal,'CANDIDATE_VERSION_EDIT_SCOPE'):
+            self.w.begin_edit(['lakefile.toml','lean-toolchain'],'Synthetic mixed scope',candidate_version_metadata=True)
+
+    def test_preexisting_configuration_or_state_drift_is_refused(self):
+        for p in self.config:
+            (self.root/p).write_bytes(self.config[p]+b'\n# drift\n')
+            with self.subTest(path=p),self.assertRaisesRegex(Refusal,'CANDIDATE_VERSION_EDIT_CONFIG'):self.begin()
+            (self.root/p).write_bytes(self.config[p])
+        self.put_json('docs/compatibility/candidate-release-state.json',{**self.policy,'phase':'candidate'})
+        with self.assertRaisesRegex(Refusal,'CANDIDATE_VERSION_EDIT_STATE'):self.begin()
+        self.put_json('docs/compatibility/candidate-release-state.json',self.policy)
+        (self.root/'lakefile.lean').write_bytes(b'-- fixture alternate config\n')
+        with self.assertRaisesRegex(Refusal,'CANDIDATE_VERSION_EDIT_STATE'):self.begin()
+
+    def test_finish_refuses_options_pin_toolchain_and_alternate_config_drift(self):
+        ref=self.begin();self.apply();candidate=(self.root/'lakefile.toml').read_bytes()
+        for p,raw in [('lakefile.toml',candidate.replace(b'Depth = 3',b'Depth = 4')),
+                      ('lean-toolchain',b'other-toolchain\n'),('lake-manifest.json',b'{"other":true}\n')]:
+            original=(self.root/p).read_bytes();(self.root/p).write_bytes(raw)
+            with self.subTest(path=p),self.assertRaisesRegex(Refusal,'CANDIDATE_VERSION_EDIT_CONFIG'):self.w.finish_edit(ref)
+            self.assertEqual(self.state['active']['edits'][0]['status'],'INTENT');(self.root/p).write_bytes(original)
+        (self.root/'lakefile.lean').write_bytes(b'-- fixture alternate config\n')
+        with self.assertRaisesRegex(Refusal,'CANDIDATE_VERSION_EDIT_CONFIG'):self.w.finish_edit(ref)
+        (self.root/'lakefile.lean').unlink()
+        self.w.finish_edit(ref)
+
+    def test_finish_requires_exact_candidate_pending_state(self):
+        ref=self.begin();self.apply()
+        for updates in ({'phase':'preparation'},{'retention':'established'},{'stable_route':'/docs/v0.2.0/'}):
+            self.put_json('docs/compatibility/candidate-release-state.json',{**self.policy,'phase':'candidate',**updates})
+            with self.subTest(updates=updates),self.assertRaisesRegex(Refusal,'CANDIDATE_VERSION_EDIT_STATE'):self.w.finish_edit(ref)
+        self.put_json('docs/compatibility/candidate-release-state.json',{**self.policy,'phase':'candidate'})
+        self.w.finish_edit(ref)
 
 
 if __name__ == "__main__":

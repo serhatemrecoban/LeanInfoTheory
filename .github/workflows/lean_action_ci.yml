@@ -11,6 +11,17 @@ on:
         default: false
         type: boolean
 
+      pages_dry_run:
+        description: Build and verify both v0.2.0 Pages archives (requires api_docs)
+        required: false
+        default: false
+        type: boolean
+      publish:
+        description: Must be false for release qualification
+        required: false
+        default: false
+        type: boolean
+
 permissions:
   contents: read
 
@@ -25,18 +36,42 @@ jobs:
     timeout-minutes: 90
 
     steps:
+      - name: Reserve disk for the Lean toolchain and documentation
+        if: ${{ runner.environment == 'github-hosted' }}
+        run: |
+          df -h .
+          sudo rm -rf -- /usr/local/lib/android /usr/share/dotnet /opt/ghc
+          df -h .
+
       - name: Checkout
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
-      - name: Check static release contract
-        run: python scripts/validate_release.py static
+      - name: Enforce qualification-only dispatch
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        env:
+          PUBLISH: ${{ inputs.publish }}
+          PAGES_DRY_RUN: ${{ inputs.pages_dry_run }}
+          API_DOCS: ${{ inputs.api_docs }}
+        run: |
+          test "$PUBLISH" = false
+          test "$PAGES_DRY_RUN" != true || test "$API_DOCS" = true
+
+      - name: Check static release contract and Pages packaging regressions
+        run: |
+          mkdir -p tmp
+          python scripts/validate_published.py static
+          python scripts/test_release_pages.py
+          python tests/external-consumer/test_run.py
 
       - name: Set up Lean and build the default target
         uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596 # v1
         with:
           auto-config: "false"
           build: "true"
-          build-args: "-KwarningAsError=true"
+          build-args: "--wfail"
           test: "false"
           lint: "false"
           use-mathlib-cache: "true"
@@ -61,23 +96,68 @@ jobs:
     timeout-minutes: 360
 
     steps:
+      - name: Reserve disk for the Lean toolchain and documentation
+        if: ${{ runner.environment == 'github-hosted' }}
+        run: |
+          df -h .
+          sudo rm -rf -- /usr/local/lib/android /usr/share/dotnet /opt/ghc
+          df -h .
+
       - name: Checkout
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
 
       - name: Check static documentation-build contract
-        run: python scripts/validate_release.py static
+        run: |
+          mkdir -p tmp
+          python scripts/validate_published.py static
 
       - name: Set up Lean and restore the mathlib cache
         uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596 # v1
         with:
           auto-config: "false"
           build: "true"
-          build-args: "-KwarningAsError=true"
+          build-args: "--wfail"
           test: "false"
           lint: "false"
           use-mathlib-cache: "true"
+
+      - name: Materialize the pinned documentation dependencies
+        working-directory: docbuild
+        run: |
+          lake env lean --version
+          git diff --exit-code -- lake-manifest.json
 
       - name: Build and validate signature-bearing API documentation
         env:
           DOCGEN_SRC: github
         run: python scripts/validate_release.py api-docs
+
+      - name: Assemble and verify the two Pages packages
+        if: ${{ inputs.pages_dry_run && !inputs.publish }}
+        run: |
+          python scripts/package_release_pages.py build --expected-commit "$GITHUB_SHA"
+          pair=".lake/release-pages/$GITHUB_SHA"
+          python scripts/archive_release_pages.py "$pair" LeanInfoTheory "$RUNNER_TEMP/main/artifact.tar"
+          python scripts/archive_release_pages.py "$pair" LeanInfoTheory-API "$RUNNER_TEMP/api/artifact.tar"
+          cat "$pair/receipt.json" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Retain the main website dry run
+        if: ${{ inputs.pages_dry_run && !inputs.publish }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: main-pages-${{ github.sha }}
+          path: ${{ runner.temp }}/main/artifact.tar
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Retain the versioned API dry run
+        if: ${{ inputs.pages_dry_run && !inputs.publish }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: api-pages-${{ github.sha }}
+          path: ${{ runner.temp }}/api/artifact.tar
+          if-no-files-found: error
+          retention-days: 14

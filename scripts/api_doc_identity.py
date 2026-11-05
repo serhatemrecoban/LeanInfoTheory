@@ -15,6 +15,7 @@ from pathlib import Path
 
 import current_api
 import frozen_public_api
+import release_state
 from check_public_api_compatibility import strict_json
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -48,6 +49,19 @@ INPUTS = (
     "scripts/compatibility/ExportRetained.lean",
     "scripts/compatibility/export_retained_api.py",
     "scripts/compatibility/CurrentAudit.lean", "scripts/stage_website.py",
+    "scripts/check_website.py", "scripts/release_state.py",
+)
+
+# Pending candidate retention is not a successful baseline capture. Presence of
+# each later reviewed artifact nevertheless invalidates older documentation.
+OPTIONAL_CANDIDATE_INPUTS = (
+    release_state.STATE_PATH,
+    release_state.CANDIDATE_CONTRACT_PATH,
+    release_state.CANDIDATE_APPROVAL_PATH,
+    "scripts/compatibility/candidate_contract.py",
+    "scripts/check_candidate_api_compatibility.py",
+    "scripts/compatibility/test_candidate_contract.py",
+    "scripts/compatibility/run_candidate_fixtures.py",
 )
 
 
@@ -76,6 +90,9 @@ def require_local_file(root: Path, relative: str) -> Path:
 def source_inputs(root: Path = ROOT) -> dict[str, str]:
     """Hash the exact maintained inputs, detecting additions/removals of Lean files."""
     paths = set(INPUTS) | {"LeanInfoTheory.lean"}
+    paths.update(release_state.validation_inputs(root))
+    paths.update(relative for relative in OPTIONAL_CANDIDATE_INPUTS
+                 if (root / relative).exists() or (root / relative).is_symlink())
     paths.update(path.relative_to(root).as_posix()
                  for path in (root / "LeanInfoTheory").rglob("*.lean"))
     return {relative: sha256(require_local_file(root, relative).read_bytes())
@@ -133,7 +150,7 @@ def current_doc_identity() -> dict[str, object]:
             raise ValueError(f"API-doc toolchain differs from the reviewed pin: {relative}")
     inputs = source_inputs()
     dependencies = dependency_identity()
-    return {
+    identity = {
         "schema": IDENTITY_SCHEMA,
         "current_manifest_sha256": inputs["docs/current-public-api.json"],
         "retained_contract_sha256": inputs["docs/compatibility/v0.1.0-retained-contract.json"],
@@ -142,6 +159,9 @@ def current_doc_identity() -> dict[str, object]:
         "inputs": inputs,
         "dependencies": dependencies,
     }
+    if release_state.load_state(ROOT).get("phase") != "historical":
+        identity["release_contract"] = release_state.contract_identity(ROOT)
+    return identity
 
 
 def verify_configuration(configuration: dict[str, object]) -> None:
@@ -170,5 +190,5 @@ def verify_configuration(configuration: dict[str, object]) -> None:
         raise ValueError("current API-doc source mode must be file or github")
     if configuration["source_identity"] != source:
         raise ValueError("current API-doc source identity differs from this checkout")
-    if configuration.get("api_identity") != current_doc_identity():
+    if encode(configuration.get("api_identity")) != encode(current_doc_identity()):
         raise ValueError("API-doc source-content identity is stale; rebuild current documentation")

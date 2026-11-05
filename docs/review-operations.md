@@ -136,6 +136,13 @@ not fresh automated acceptance or a PFR C01 prerequisite recheck.
    retains before-images; patch normally and `finish_edit(ref)`. Restore only your
    own changes after comparing current bytes with saved after-images, then record
    `finish_reversal(ref)`. These records do not authorize overwriting other work.
+   The already selected C24.05 candidate package transition has one narrow recorder:
+   `begin_edit(['lakefile.toml'], reason, candidate_version_metadata=True)`. It
+   requires the approved C24.05 metadata criterion, unchanged historical config,
+   preparation/pending state, then records only the exact 0.1.0→0.2.0 version line.
+   `finish_edit` also requires candidate/pending state and unchanged options,
+   toolchain, manifest and absence of alternate Lake config. Normal configuration
+   edits remain refused. This is edit accounting, not new approval or acceptance.
 3. Run required checks; `parent_evidence` records actual output, source, command,
    outcome and limitations. `initial_validation`, read-only `self_review` and
    separate `reassess` retain the two decision phases. Use stable `lit-finding:`
@@ -221,9 +228,60 @@ Durable `.lit-review/` is never scratch. `backup --chunk ... --input ...` takes
 making only a same-disk journal copy. With no writer, manually back up the full store
 and checkout/version privately. Before restore inspect tip, identities, source and
 outstanding dispatch; never overwrite blindly. No automatic stale-lock removal,
-migration, corruption repair, cancellation reactivation, conflict/substantive
-adjudication or historical reopening is supported. Legacy `FIXTURE`/`DIAGNOSTIC`
+migration, corruption repair, cancellation reactivation, general conflict or
+substantive adjudication, or historical reopening is supported. The bounded
+exceptions below require separate exact authority. Legacy `FIXTURE`/`DIAGNOSTIC`
 labels do not establish provenance or acceptance scope.
+
+For an invalid report followed by a reviewer-authored correction that removes
+exactly one FAIL citation from one SATISFIED criterion, use the read-only
+`report_format_conflict_target(initial_capture, corrected_capture)` to obtain the
+exact authority target. After the lead authorizes that pair and correction, call
+`resolve_report_format_conflict` with `RESOLVE_REPORT_FORMAT_CONFLICT` authority.
+It retains both original classifications and delivery bytes, and appends only a
+resolution. It does not accept either report or clear any other persistent barrier.
+
+After independently reviewing and testing the remedial tooling, use separately
+scoped `REQUALIFY_REPORT_FORMAT_CONFLICT` authority with
+`requalify_report_format_conflict(resolution_ref, approval, reason)`, with an
+explicit source-change and requalification rationale. This supersedes only
+the unaccepted old request and resets the step to `IMPLEMENTING`, retaining its
+history. Complete fresh initial validation, self-review, separate reassessment
+and a newly captured source-bound review through the usual operations. Keep
+actual old checks attributed to their original source; changed tooling needs
+qualification. Never edit journal objects, relabel the conflicting capture,
+resend an old report as a new arrival, or use ordinary `recover` to bypass this
+procedure. Inspect retained results after any partial operation before continuing.
+
+For the separately approved C24.06 noncanonical dispatch repair, the project API
+offers `noncanonical_dispatch_target(evidence, repairs)` and
+`adjudicate_noncanonical_dispatch(evidence, repairs, approval, reason)`.
+This is limited to the three C24.06 criteria and a pending collaboration dispatch
+with an empty native result, known independently corroborated inventory mismatch,
+no canonical receipt, and no original report or acceptance. Ordinary `recover`
+continues to refuse that missing-receipt case. A rejected submission preflight is
+retained as a preflight, never promoted to a receipt.
+
+Preserve both original native frames and the root/reviewer transport observations;
+opaque message bytes remain opaque, and no full received-text hash is asserted.
+Prepare exact before/after bytes only for `tools/lit_review/project.py`,
+`tools/lit_review/tests/test_noncanonical_dispatch.py`, and this operations guide.
+Record actual focused tests and independent examination against the complete
+fixed-label `NONCANONICAL_REPAIR_SOURCE` snapshot before application. The returned
+target binds the original request/source, qualified repair snapshot, evidence and
+byte delta. Use the actual lead authorization with action
+`ADJUDICATE_NONCANONICAL_DISPATCH`; the mutator recomputes the target and all live
+guards. Check the separately approved candidate ref/tree and protected primary
+index before applying. The operation grants no checkpoint or publication authority.
+
+The append-only adjudication supersedes only the unaccepted request and resets
+readiness to `IMPLEMENTING`, preserving B, completed steps, findings, originals and
+all history. Complete fresh initial validation, contextual self-review, separate
+reassessment and a new unique request/attempt. Changed tooling needs its own
+qualification; unchanged compiler evidence retains its exact original source and
+candidate attribution. No delivery, report, criterion or closure credit follows
+from adjudication. The original review, reconciliation and closure gates still
+apply. This exceptional API has no CLI exposure or general force-recovery option.
 
 Reusable C9 startup prompt, to be issued **only after separate planning instruction**:
 

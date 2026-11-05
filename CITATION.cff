@@ -2,9 +2,9 @@ cff-version: 1.2.0
 message: "If you use LeanInfoTheory in your work, please cite the software using this metadata."
 type: software
 title: "LeanInfoTheory"
-version: "0.1.0"
-date-released: 2026-09-01
-doi: "10.5281/zenodo.22229599"
+version: "0.2.0"
+date-released: 2026-11-05
+doi: "10.5281/zenodo.23973538"
 authors:
   - family-names: "Coban"
     given-names: "Serhat Emre"

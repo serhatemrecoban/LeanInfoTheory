@@ -17,7 +17,9 @@ import LeanInfoTheory.Probability.TotalVariation
 
 A coupling is an existing joint PMF whose coordinate pushforwards are the
 specified laws. The coordinate alphabets may have different types and universes;
-the predicate and elementary witnesses need no finiteness or measurable spaces.
+the predicate, elementary witnesses, coordinate transport and supplied-channel
+lifting need no finiteness or measurable spaces. Lifting requires the supplied
+rows to be couplings only on the input joint law's actual support.
 
 Independent existence reuses the constant-channel `PMF.channelJoint`. Diagonal
 coupling and coordinate swap use `PMF.map`, preserving the raw joint-law interface
@@ -39,7 +41,7 @@ the first coordinate has law `p`, and the second has law `q`.
 
 namespace PMF
 
-universe u v
+universe u v w x
 
 open scoped BigOperators ENNReal
 
@@ -79,6 +81,73 @@ theorem IsCoupling.map_swap {alpha : Type u} {beta : Type v}
     exact h.2
   · rw [map_comp]
     exact h.1
+
+/-- Mapping each coordinate of a supplied coupling gives a coupling of the two
+pushforward laws. The maps may merge atoms and have different codomains. -/
+theorem IsCoupling.map
+    {alpha : Type u} {beta : Type v} {gamma : Type w} {delta : Type x}
+    {joint : PMF (alpha × beta)} {p : PMF alpha} {q : PMF beta}
+    (h : IsCoupling joint p q) (f : alpha → gamma) (g : beta → delta) :
+    IsCoupling (joint.map (fun ab => (f ab.1, g ab.2)))
+      (p.map f) (q.map g) := by
+  constructor
+  · calc
+      (joint.map (fun ab => (f ab.1, g ab.2))).map Prod.fst =
+          (joint.map Prod.fst).map f := by
+            rw [PMF.map_comp, PMF.map_comp]
+            rfl
+      _ = p.map f := congrArg (fun r : PMF alpha => r.map f) h.1
+  · calc
+      (joint.map (fun ab => (f ab.1, g ab.2))).map Prod.snd =
+          (joint.map Prod.snd).map g := by
+            rw [PMF.map_comp, PMF.map_comp]
+            rfl
+      _ = q.map g := congrArg (fun r : PMF beta => r.map g) h.2
+
+/-- Lifting a supplied coupling through a channel of couplings gives a coupling
+of the two output laws. Row marginals are required only on the input joint's
+support; unused rows may have arbitrary marginals, even when their individual
+coordinates belong to the two marginal supports. -/
+theorem IsCoupling.bind
+    {alpha : Type u} {beta : Type v} {gamma : Type w} {delta : Type x}
+    {joint : PMF (alpha × beta)} {p : PMF alpha} {q : PMF beta}
+    (h : IsCoupling joint p q)
+    (W : alpha → PMF gamma) (V : beta → PMF delta)
+    (K : alpha × beta → PMF (gamma × delta))
+    (hK : ∀ ab, ab ∈ joint.support →
+      IsCoupling (K ab) (W ab.1) (V ab.2)) :
+    IsCoupling (joint.bind K) (p.bind W) (q.bind V) := by
+  constructor
+  · calc
+      (joint.bind K).map Prod.fst =
+          joint.bind (fun ab => (K ab).map Prod.fst) :=
+        PMF.map_bind joint K Prod.fst
+      _ = joint.bind (W ∘ Prod.fst) := by
+        have hrows :=
+          (PMF.channelJoint_eq_iff_eq_on_support joint
+            (fun ab => (K ab).map Prod.fst) (W ∘ Prod.fst)).2
+            (fun ab hab => (hK ab hab).1)
+        have houtputs := congrArg
+          (fun r : PMF ((alpha × beta) × gamma) => r.map Prod.snd) hrows
+        simpa only [PMF.channelJoint_map_snd] using houtputs
+      _ = (joint.map Prod.fst).bind W :=
+        (PMF.bind_map joint Prod.fst W).symm
+      _ = p.bind W := congrArg (fun r : PMF alpha => r.bind W) h.1
+  · calc
+      (joint.bind K).map Prod.snd =
+          joint.bind (fun ab => (K ab).map Prod.snd) :=
+        PMF.map_bind joint K Prod.snd
+      _ = joint.bind (V ∘ Prod.snd) := by
+        have hrows :=
+          (PMF.channelJoint_eq_iff_eq_on_support joint
+            (fun ab => (K ab).map Prod.snd) (V ∘ Prod.snd)).2
+            (fun ab hab => (hK ab hab).2)
+        have houtputs := congrArg
+          (fun r : PMF ((alpha × beta) × delta) => r.map Prod.snd) hrows
+        simpa only [PMF.channelJoint_map_snd] using houtputs
+      _ = (joint.map Prod.snd).bind V :=
+        (PMF.bind_map joint Prod.snd V).symm
+      _ = q.bind V := congrArg (fun r : PMF beta => r.bind V) h.2
 
 /-- Total variation is at most the probability that the coupled coordinates differ.
 The event uses first-versus-second coordinate order. This is the coupling inequality

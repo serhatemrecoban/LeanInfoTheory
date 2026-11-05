@@ -32,7 +32,8 @@ constructions that later Markov and data-processing proofs will repeat:
 
 The accompanying theorem layer gives their pointwise masses, natural
 projections, composition laws, deterministic reductions, and support
-characterizations without adding alphabet finiteness assumptions.
+characterizations without adding alphabet finiteness assumptions. An extension
+depends on its channel only on the support of the pair law's second marginal.
 
 No entropy, measurable-space, kernel, or KL-divergence dependency is introduced
 here. Those belong in the separately importable Shannon semantic bridge.
@@ -405,6 +406,32 @@ theorem channelJoint_eq_iff_eq_on_support
         by_contra hne
         exact ha ((p.mem_support_iff a).2 hne)
       rw [hzero, zero_mul, zero_mul]
+
+/-- Two channels give the same whole triple law when extending a pair PMF exactly
+when they agree on its second marginal's support. Values on null middle fibers
+may change arbitrarily without changing the extension. -/
+theorem channelExtension_eq_iff_eq_on_support
+    {alpha : Type u} {beta : Type v} {gamma : Type w}
+    (p : PMF (alpha × beta)) (W V : beta → PMF gamma) :
+    channelExtension p W = channelExtension p V ↔
+      ∀ b, b ∈ (p.map Prod.snd).support → W b = V b := by
+  constructor
+  · intro h
+    apply (channelJoint_eq_iff_eq_on_support (p.map Prod.snd) W V).1
+    have hpairs := congrArg (fun t : PMF (alpha × beta × gamma) => t.map Prod.snd) h
+    simpa only [channelExtension_map_outputPair] using hpairs
+  · intro h
+    apply PMF.ext
+    rintro ⟨a, b, c⟩
+    rw [channelExtension_apply, channelExtension_apply]
+    by_cases hb : b ∈ (p.map Prod.snd).support
+    · rw [h b hb]
+    · have hab : p (a, b) = 0 := by
+        by_contra hne
+        apply hb
+        rw [PMF.mem_support_map_iff]
+        exact ⟨(a, b), hne, rfl⟩
+      rw [hab, zero_mul, zero_mul]
 
 /-- A triple is supported by an extension exactly when its pair and new output are supported. -/
 @[simp]

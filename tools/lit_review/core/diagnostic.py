@@ -225,6 +225,114 @@ class DiagnosticWorkflow(Workflow):
                     for r in (self.store.get(ref) for ref in state["records"])),
                 "REPORT_CONFLICT_UNRESOLVED")
 
+    def _report_format_pair(self, state, initial_capture, corrected_capture):
+        """Validate originals without reclassifying, rewriting or accepting either."""
+        require(initial_capture != corrected_capture and initial_capture in state["captures"]
+                and corrected_capture in state["captures"] and
+                state["captures"].index(initial_capture) < state["captures"].index(corrected_capture),
+                "REPORT_FORMAT_CAPTURE_PAIR")
+        first = self.store.get(initial_capture, "capture")
+        second = self.store.get(corrected_capture, "capture")
+        require(first["classification"] == "REPORT_EVIDENCE_INVALID" and
+                second["classification"] == "CONFLICTING_DUPLICATE" and
+                first.get("request_ref") == second.get("request_ref") and
+                first.get("request_ref") in state["records"], "REPORT_FORMAT_CLASSIFICATION_PAIR")
+        request_ref = first["request_ref"]
+        request = self.store.get(request_ref, "review_request")["payload"]
+        registration = self._registration(state, request_ref)
+        # The pair remains historical evidence if its request later fails or is
+        # cancelled. Current PENDING status is checked by each live entry point.
+        require(request["binding"] == asdict(self.identity) and request["kind"] == "STEP" and
+                registration["target"] == request["target_id"] and registration["dispatched"] and
+                request["source_ref"] in state["records"], "REPORT_FORMAT_REQUEST_BINDING")
+        self.store.get(request["source_ref"], "manifest")
+        expected = {**request, "reviewer": self.identity.reviewer,
+                    "binding_digest": digest(asdict(self.identity))}
+        wrappers = []
+        for capture in (first, second):
+            require(capture["original_capture"] in state["records"], "REPORT_FORMAT_RAW_CAPTURE_MISSING")
+            raw = self.store.get(capture["original_capture"], "capture")
+            require(raw["classification"] == "UNCLASSIFIED" and
+                    raw["original_text"] == capture["original_text"] and raw["envelope"] == capture["envelope"] and
+                    raw["request_ref_at_arrival"] == request_ref, "REPORT_FORMAT_ORIGINAL_CHANGED")
+            envelope = capture["envelope"]
+            observation = envelope["observation"]
+            self._observation(observation, report=True)
+            require(observation.get("request_ref") == request_ref and
+                    observation.get("extracted_text") == capture["original_text"] and
+                    envelope.get("sender") == self.identity.reviewer and
+                    envelope.get("request_id") == request["request_id"] and
+                    envelope.get("attempt") == request["attempt"], "REPORT_FORMAT_ORIGIN")
+            wrapper = strict_json(capture["original_text"])
+            require(isinstance(wrapper, dict) and set(wrapper) == {"report", "new_evidence"},
+                    "REPORT_FORMAT_WRAPPER")
+            body = copy.deepcopy(wrapper["report"])
+            require(isinstance(body, dict), "REPORT_FORMAT_WRAPPER")
+            if isinstance(body.get("earlier_reconciliation"), str):
+                body["earlier_reconciliation"] = [body["earlier_reconciliation"]]
+            code, _ = self._classify_body(canonical(body), envelope, expected, {})
+            require(code == "VALID", "REPORT_FORMAT_IDENTITY_OR_SCHEMA", code)
+            wrappers.append(wrapper)
+        require(first["envelope"]["observation"]["event_ref"] !=
+                second["envelope"]["observation"]["event_ref"], "REPORT_FORMAT_DISTINCT_ORIGIN")
+        initial, corrected = wrappers
+        require(initial["new_evidence"] == corrected["new_evidence"], "REPORT_FORMAT_SUBSTANCE_CHANGED")
+        required = {"id", "actor", "method", "source_ref", "inspected_source", "command", "output", "outcome", "limitations"}
+        evidence = {}
+        require(isinstance(initial["new_evidence"], list) and initial["new_evidence"], "REPORT_FORMAT_EVIDENCE")
+        for item in initial["new_evidence"]:
+            require(isinstance(item, dict) and set(item) == required and
+                    isinstance(item["id"], str) and item["id"].startswith("reviewer:") and
+                    item["id"] not in evidence and item["actor"] == self.identity.reviewer and
+                    item["source_ref"] == request["source_ref"] and item["outcome"] in {"PASS", "FAIL"} and
+                    all(isinstance(item[key], str) and item[key].strip()
+                        for key in ("method", "inspected_source", "output", "limitations")) and
+                    (item["command"] is None or isinstance(item["command"], str)), "REPORT_FORMAT_EVIDENCE")
+            evidence[item["id"]] = item
+        before, after = initial["report"]["criteria"], corrected["report"]["criteria"]
+        require(len(before) == len(after), "REPORT_FORMAT_SUBSTANCE_CHANGED")
+        changed = [(old, new) for old, new in zip(before, after) if old != new]
+        require(len(changed) == 1, "REPORT_FORMAT_SINGLE_CITATION_REQUIRED")
+        old, new = changed[0]
+        require(old["id"] == new["id"] and old["status"] == new["status"] == "SATISFIED",
+                "REPORT_FORMAT_SUBSTANCE_CHANGED")
+        removed = [ref for ref in old["evidence"] if ref not in new["evidence"]]
+        require(len(removed) == 1 and old["evidence"].count(removed[0]) == 1 and
+                removed[0] in evidence and evidence[removed[0]]["outcome"] == "FAIL" and
+                removed[0] in initial["report"]["verification"] and
+                new["evidence"] == [ref for ref in old["evidence"] if ref != removed[0]],
+                "REPORT_FORMAT_SINGLE_FAIL_CITATION_REQUIRED")
+        derived = copy.deepcopy(initial)
+        derived["report"]["criteria"][before.index(old)]["evidence"] = new["evidence"]
+        require(derived == corrected, "REPORT_FORMAT_SUBSTANCE_CHANGED")
+        verification = corrected["report"]["verification"]
+        require(verification and all(ref in evidence for ref in verification), "REPORT_FORMAT_EVIDENCE")
+        for row in after:
+            require(all(ref in verification for ref in row["evidence"]), "REPORT_FORMAT_EVIDENCE")
+            if row["status"] == "SATISFIED":
+                require(row["evidence"] and all(evidence[ref]["outcome"] == "PASS" for ref in row["evidence"]),
+                        "REPORT_FORMAT_OTHER_INVALID_CITATION")
+        delivery = self._delivery(state, request_ref)
+        require(delivery is not None, "REPORT_FORMAT_DELIVERY_REQUIRED")
+        delivery_ref, confirmation = delivery
+        basis = self.store.get(confirmation["basis"], "delivery_observation")
+        receipt = self.store.get(confirmation["receipt"], "submission_observation")
+        require(confirmation["basis"] in state["records"] and confirmation["receipt"] in state["records"] and
+                confirmation["source"] == request["source_ref"] and
+                confirmation["raw_sha256"] == digest(first["original_text"].encode()) and
+                confirmation["original_receipt_unchanged"] is True and confirmation["report_accepted"] is False and
+                confirmation["criterion_success"] is False and basis["request"] == receipt["request"] == request_ref and
+                basis["receipt"] == confirmation["receipt"] and basis["original_text"] == first["original_text"] and
+                basis["observation"] == first["envelope"]["observation"] and receipt["result"] in {"UNCERTAIN", "ACKNOWLEDGED"},
+                "REPORT_FORMAT_DELIVERY_BINDING")
+        self._retained_authority(state, confirmation["authority"], "CONFIRM_DIAGNOSTIC_DELIVERY", request_ref)
+        return {"request": request_ref, "request_id": request["request_id"], "attempt": request["attempt"],
+                "step": request["target_id"], "source_ref": request["source_ref"],
+                "binding_digest": digest(asdict(self.identity)), "initial_capture": initial_capture,
+                "corrected_capture": corrected_capture, "initial_sha256": digest(first["original_text"].encode()),
+                "corrected_sha256": digest(second["original_text"].encode()), "criterion": old["id"],
+                "removed_evidence": removed[0], "preserved_outcome": "FAIL", "delivery": delivery_ref}
+
     def confirm_delivery(self, request_ref, receipt_ref, original_text, observation, approval):
         """Append report-backed delivery, never rewrite a receipt or accept a report.
 
@@ -431,7 +539,8 @@ class DiagnosticWorkflow(Workflow):
             ref=self._remember(state,"evidence",{"schema":1,"tag":self.tag,"actor":self.identity.parent,
                 "source":self._manifest(state,"PARENT_CHECK_SOURCE"),"method":method,"output":output,
                 "command":command,"outcome":outcome,"limitations":limitations,
-                "check_ownership":"PARENT_CHECK_NOT_REVIEWER_CHECK",**self._dimensions()})
+                "check_ownership":"PARENT_CHECK_NOT_REVIEWER_CHECK",**self._dimensions(),
+                **self._requalification_context(state,a)})
             a["evidence"].append(ref);result.append(ref)
         self._change("EXPLICIT_PARENT_EVIDENCE",action)
         return result[0]

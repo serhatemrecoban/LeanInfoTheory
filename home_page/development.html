@@ -66,6 +66,21 @@ python scripts/validate_release.py static</code></pre>
         commit GitHub-source build.
       </p>
 
+      <h2 id="candidate-staging">Versioned documentation and release validation</h2>
+      <p>Version <code>v0.2.0</code> contains 811 supported declarations across 57 modules.
+      The main site and historical <code>docs/v0.1.0/</code> route retain their existing
+      address. The complete second-release API is served under
+      <code>/LeanInfoTheory-API/v0.2.0/</code>, with its dependencies and search data.</p>
+      <p>Release validation binds clean source, retained APIs, external-consumer builds
+      and two-pass API evidence to the exact candidate. Source, docstring or metadata
+      changes require renewed applicability checks. Public source links identify an
+      exact public commit; versioned references retain their own identities.</p>
+      <p>Local review bundles carry <code>NOT_FOR_PUBLICATION</code> and cannot be
+      promoted merely by removing that marker. Publication requires separate approval,
+      including checks on the intended host. Verify the API deployment before updating
+      the main site's stable links. Each complete deployed site must remain within
+      its hosting limit; version subdirectories do not provide separate quotas.</p>
+
       <h2>Project Hygiene</h2>
       <ul>
         <li>Local validation and CI share strict source, trust, API-boundary, generated-artifact, and hygiene gates.</li>
@@ -93,7 +108,7 @@ python scripts/validate_release.py static</code></pre>
         <li>Use <code>LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily</code> directly for family Shannon inequalities.</li>
         <li>Use <code>LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL</code> directly for common-base channel conditional KL, its finite weighted semantics, and joint chain rule.</li>
         <li>Use <code>LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence</code> directly for finite-atom mutual independence and the n-way entropy-equality characterization.</li>
-        <li>The <code>LeanInfoTheory.Examples</code> hierarchy is maintained regression coverage, not stable <code>0.1.x</code> API.</li>
+        <li>The <code>LeanInfoTheory.Examples</code> hierarchy is maintained regression coverage, outside the supported release API.</li>
         <li>Use <code>LeanInfoTheory.Examples.FiniteFamily</code> for maintained family-chain, mutual-independence, and dependent-alphabet examples.</li>
         <li>Use <code>LeanInfoTheory.Examples.ConditionalKL</code> for maintained non-public conditional-KL boundary regressions.</li>
         <li>Use <code>LeanInfoTheory.Examples.Convexity</code> for maintained non-public Section 2.7 regression consumers.</li>

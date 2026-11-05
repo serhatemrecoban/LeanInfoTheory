@@ -12,6 +12,8 @@ mathematical documentation. Do not reproduce textbook prose or proofs.
 
 ## Source selection
 
+- C23.06 cumulative pointer: the [handoff](handoffs/chunk-23.md) and notes Section 23 bind actual approved initial clean/API/all-36 inspection records. Earlier source readings retain their actors, pages, hashes and limits; this documentation update claims no fresh PDF inspection. Every bounded amendment requires the entire clean rerun and renewed API applicability before R. All 21 fresh cumulative judgments and final reconciliation/closure depend only on the genuine original records linked by actual `.lit-review/setup/c23-06-completion-20261025.json`.
+
 - `CT91` remains the Chapter 2 historical anchor and supplies the textbook
   AEP/typical-set and finite-channel viewpoints.
 - `PW24` is the preferred Polyanskiy--Wu planning reference for the proposed
@@ -49,6 +51,149 @@ is Chapter 8 in this edition, not Chapter 7.
   converse). Only relevant sections are to be used, not all intervening
   chapters. Chapter 3's variable-length description argument is not by itself
   the selected fixed-length, almost-lossless coding contract.
+- C22.01 adaptation: Sections 8.1–8.3, printed 184–191 / PDF
+  206–213, supply the finite-channel information-capacity viewpoint. The
+  implementation uses the existing PMF-valued channel objective and canonical nats,
+  an explicit nonempty input domain, actual attainment and alphabet bounds.
+  Prior selected-section reading is recorded in the [C22 notes](plans/post-release-chunk-22-notes.md);
+  this entry claims no fresh textbook inspection. C22.01 selected-step checks and
+  independent review passed; the notes distinguish review and actual closure.
+- C22.02 adaptation: Section 2.8, printed 32–33 / PDF 54–55.
+  The parent freshly read these pages on 2026-10-24 through pypdf text
+  extraction and checked the registered hash; no fresh visual inspection
+  is claimed. Capacity inequalities apply existing finite-channel DPI to
+  every input law. Relabeling transports law and channel together; no public
+  symmetry or optimizer framework is added. C22.02 selected-step validation and
+  independent review passed; see C22 notes sections 11–12 for evidence and limits.
+- C22.04 adaptation: Section 8.1.1 and the capacity properties in 8.3,
+  printed 184–185 and 190–191 / PDF 206–207 and 212–213. The parent freshly
+  inspected these pages as UTF-8 text on 2026-10-24 and verified the registered
+  hash; no visual inspection is claimed. The binary noiseless example extends
+  to finite nonempty alphabets through existing diagonal MI and uniform entropy.
+  The input-independent result follows from the existing independent-joint MI
+  theorem: every input has zero objective and attains zero capacity. Canonical
+  nats, sparse laws and singleton alphabets are retained. This does not assert
+  operational capacity or a general symmetry theorem. Selected-step validation
+  and independent review passed; see C22 notes sections 15–16 for actual evidence,
+  reconciliation and applicability limits.
+- C22.05 adaptation: Section 8.1.4, printed 186–187 / PDF 208–209,
+  supplies BSC row entropy, the output-entropy bound and uniform attainment.
+  The parent freshly extracted PDF 208–210 as text on 2026-10-24 at the
+  registered CT91 hash; adjacent BEC material is context, not selected work.
+  Replace the bit-valued expression by log 2 minus Real.binEntropy in nats.
+  The raw channel parameter is exactly the crossover probability on [0,1].
+  The uniform input attains capacity, without uniqueness at crossover one half;
+  every input attains zero there. Pure and biased inputs need no full-support
+  premise. Selected-step validation and independent review passed, including
+  the full compiled trust audit. Final applicability and scoped closure remain
+  tied to the actual private completion record. See C22 notes sections 17–18.
+  No operational capacity equality is asserted.
+- C22.06 adaptation: Section 8.1.5, printed 187–188 / PDF 209–210,
+  supplies BEC output entropy and uniform attainment. The parent freshly
+  extracted those pages as text on 2026-10-24 at the registered hash, and
+  compared PW24 section 19.3, printed 380 / PDF 405, with adjacent context
+  from PDF 404–406 at its registered hash. No parent visual check is claimed.
+  The exact all-input identity is (1-epsilon) times input entropy; the capacity
+  is (1-epsilon) times log 2 in nats. This retains the erasure weight omitted
+  in PW24's displayed conditional-entropy expression and avoids its unqualified
+  uniform-only equality claim at full erasure. Existing finite-sum entropy
+  and negMulLog product algebra cover zero masses without conditional fibers
+  or division. Selected-step validation and independent review passed, including
+  the full compiled trust audit. Final applicability and scoped closure remain
+  tied to the actual private completion record. See C22 notes sections 19–20.
+  No operational capacity equality is asserted.
+- C22.07 adaptation: the parent freshly extracted CT91 printed 184 and
+  187–188 / PDF 206 and 209–210, and PW24 section 6.1, Theorem 6.1(a) and
+  Example 6.1, printed 106–107 / PDF 131–132, as text on 2026-10-24 at the
+  registered hashes. No visual inspection is claimed. Four scalar bits
+  equations follow from the existing nats capacity values through natsToBits;
+  the same achieving laws remain witnesses. Private consumers convert product
+  and repeated capacity identities and arbitrary-input bounds. The C23-facing
+  encoded-word consumer permits noninjective encoders and correlated inputs.
+  This adds no operational coding theorem or capacity definition in bits.
+  Selected-step validation and independent review passed, including the full
+  compiled trust audit. Final applicability and scoped closure remain tied to
+  the actual private completion record. See C22 notes sections 21–22 for evidence
+  and limits.
+- C22.08 cumulative preparation: no new mathematical endpoint or convention.
+  The [maintained handoff](handoffs/chunk-22.md) reconciles the delivered finite
+  information-capacity contracts, source adaptations and boundary consumers.
+  Previous readings retain their actual actors/pages/hashes. Authorized initial
+  clean and current two-pass API checks passed; all 26 rendered entries were
+  inspected. The actual C22.08 private completion record and linked evidence
+  determine current-candidate applicability, cumulative independent review,
+  substantive reconciliation and closure; no future outcome, operational
+  capacity equality or C23 implementation is asserted.
+- C23.01 adaptation: Section 8.5, printed 192–194 / PDF 214–216, supplies
+  deterministic indexed codes and uniform-message average error. These pages
+  were inspected during C23 planning at the registered hash; this entry claims
+  no fresh PDF access. The actual encoder pushforward may be nonuniform or
+  correlated, and colliding messages retain their distinct identities. Total
+  decoders use every message index with no reserved erasure value. The source
+  explicitly treats singleton messages and zero-length error `1-1/M`, while
+  capacity/converse results remain outside C23.01. That step is now closed by its
+  actual private completion chain; see the [C23 notes](plans/post-release-chunk-23-notes.md).
+- C23.02 adaptation: Section 8.9, printed 204–207 / PDF 226–229, was freshly
+  read through UTF-8 text extraction by the parent's read-only source support;
+  the registered CT91 hash matched. No fresh visual check is claimed. Its Fano,
+  actual-law data processing and arbitrary-input repeated-channel capacity route
+  gives the undivided finite converse, with the bits constant 1 replaced by
+  `log 2` in nats and arbitrary positive natural message budgets. The source
+  includes zero length, singleton messages and complete error; positive length
+  and a positive lower rate enter only when dividing. C23.02 producer/consumer
+  and aggregate builds, focused/umbrella signatures, static/generated checks and
+  all nine documentation examples and full maintained trust passed. The accepted
+  independent review assessed all four criteria as satisfied with no findings;
+  parent substantive reconciliation is complete. C23.02 is now closed by its
+  actual supported private completion record. See
+  [C23 notes](plans/post-release-chunk-23-notes.md).
+- C23.03 adaptation: Section 8.9, printed 204–207 / PDF 226–229, was freshly
+  read as UTF-8 text at the registered hash by read-only parent support. The
+  complete PDF 228 page was also rendered and visually inspected in memory;
+  no render or extraction artifact was saved. Its fixed-rate limiting argument
+  motivates an additional derivation for arbitrary varying natural budgets:
+  finite Fano and vanishing error first give an eventual uniform rate bound,
+  then control error times that bound. The real limsup endpoint explicitly
+  supplies derived upper boundedness and lower control from rate nonnegativity.
+  Focused/aggregate builds, focused/umbrella signature and rate/unit ownership
+  checks, static validation and all nine documentation examples passed. Full
+  maintained trust passed, and the accepted original independent report assessed
+  all four criteria as satisfied with no findings. Parent substantive
+  reconciliation is complete. The reviewer separately verified the hash, reused
+  its earlier weak-converse reading and visually checked PDF 228. C23.03 is
+  now closed by its actual supported completion record. See
+  [C23 notes](plans/post-release-chunk-23-notes.md).
+- Historical C23.05 integration/qualification snapshot, subsequently closed: read-only support freshly matched the registered
+  hash and read complete §8.1 PDF 206–210 (printed 184–188) and §8.9 PDF 228
+  (printed 206) as UTF-8 text. Complete PDF 207, 209, 210 and 228 pages were also
+  visually inspected in memory, including preferred Poppler reinspection. The
+  standard capacity examples and finite Fano converse retain canonical nats,
+  actual uniform-message sampling and explicit division guards. Private codes
+  consume the existing bound/capacities; no production theorem or operational-
+  capacity equality is added. Finite/composition/aggregate builds, all 36 focused/
+  full compiled contracts, generation/static checks and all nine documentation
+  examples and full maintained trust passed. The accepted original independent
+  report satisfied all three criteria without findings and is substantively
+  reconciled. The reviewer separately hash-verified/text-read nine book pages and
+  visually inspected complete CT91 PDF 207, 209, 210 and 228 pages. Its inspection
+  remains distinct from the parent support above. Fresh final static/applicability
+  checks, capture and supported closure remain required. No extracts or renders
+  were saved.
+- Historical C23.04 adaptation snapshot, subsequently closed by its actual record: Section 8.9, printed 204–207 / PDF 226–229, was freshly
+  read as UTF-8 text at the verified registered hash by read-only parent support.
+  Complete PDF 228/229 pages were visually inspected in memory; no renders or
+  extracts were saved. Equation 8.112's bits constant becomes `log 2` in nats.
+  An eventual rate lower bound above capacity yields the quantitative eventual
+  error bound and explicit half-gap floor, with positivity of the lower rate
+  derived from nonnegative capacity. The frequent fixed-gap obstruction is a
+  project consequence of the public tolerance theorem, not an explicit statement
+  on these pages. Fixed-rate concatenation and strong-converse context do not
+  imply an eventual floor for the intermittent family. Initial checks and full
+  maintained trust passed. The accepted original independent report satisfied
+  all three criteria with no findings; core and substantive parent reconciliation
+  is complete. The reviewer separately hash-verified/extracted the relevant
+  references and freshly visually inspected PDF 228–229. Fresh final static/
+  applicability checks and supported closure remain required.
 - Units: typically bits; adapt through the project's existing units layer.
 
 ## PW22: Polyanskiy and Wu, historical draft
@@ -73,6 +218,85 @@ August 16, 2024 prepublication version. The source footer identifies the date.
 - SHA-256: `c76c5cd867818ef66e9d63c2f899dccdff9a501456160df153d0fa981db83de3`.
 - [Author-hosted PDF](https://people.lids.mit.edu/yp/homepage/data/itbook-export.pdf).
   This URL can change; the local hash identifies the copy inspected here.
+- C23.01 adaptation: Section 17.1, Definition 17.1/(17.1), printed 342–343 /
+  PDF 367–368, supplies the message/input/output/decoded-message sampling model.
+  The planning inspection at the registered hash is retained in the
+  [C23 notes](plans/post-release-chunk-23-notes.md); no new PDF read is claimed.
+  The selected interface uses total deterministic encoding/decoding, uniform
+  positive message budgets and average error through the existing Fano API.
+  Actual PMF marginals keep message identity under encoder collisions, with no
+  iid input or image-uniformity premise. C23.01 constructs these laws and
+  boundary identities and is closed by its actual private completion chain;
+  the finite capacity converse is separately selected in C23.02.
+- C23.02 adaptation: Section 17.4, Theorem 17.3, printed 348–349 /
+  PDF 373–374, was freshly read as UTF-8 text by the parent's read-only source
+  support at the verified registered hash. No fresh visual check is claimed.
+  The divided textbook presentation is replaced by the existing undivided Fano
+  lower bound, so `Pe=1` needs no division by `1-Pe`; binary entropy is bounded
+  by `log 2` in nats. The extracted alternative proof defines its indicator with
+  disagreement but then uses success probabilities. C23 consistently reuses the
+  existing decoding-error semantics and actual message law. The normalized
+  result needs `n>0`; the pointwise error result additionally needs `R>0` and
+  `R≤codeRate n M`, without an above-capacity premise. This reading is support
+  evidence, distinct from the accepted original C23.02 independent review, which
+  also inspected the relevant textbook material. Review and parent substantive
+  reconciliation passed; C23.02 is now closed by its actual supported private
+  completion record.
+- C23.03 adaptation: Sections 17.4 and 19.1/selected start of 19.2, printed
+  348–349 and 371–376 / PDF 373–374 and 396–401, were freshly read as UTF-8 text
+  at the registered hash by read-only parent support. Complete PDF pages 373,
+  398 and 401 were also visually inspected in memory; no renders or extracted
+  text artifacts were saved. Definition 19.2's block/rate convention is adapted
+  to total deterministic decoders and nats `codeRate`; its optimized budgets and
+  operational-capacity liminf definitions are context, not new project APIs.
+  C23.03 bounds each supplied actual positive-budget family, deriving the
+  boundedness needed for real limsup without rate convergence or a global
+  positive-length premise. Definition 19.6/Theorem 19.7 separate information
+  capacity from operational capacity. Expurgation and Theorem 19.8 achievability
+  remain excluded context. The selected extra prefix-mutation fixture is optional
+  and deferred absent proof pressure. Source reading is separate from completed
+  initial build/signature/static/documentation and full trust checks. The
+  accepted independent reviewer separately verified the hash, reused earlier
+  weak-converse reading, freshly read PDF 396–401 as text and visually inspected
+  PDF 373, 396, 398, 400 and 401. These five reviewer PW24 visual pages are
+  distinct from the three parent-support PW24 visual pages above. All four
+  review criteria are satisfied without findings; substantive parent
+  reconciliation is complete. C23.03 is now closed by its actual supported
+  completion record.
+- Historical C23.05 integration/qualification snapshot, subsequently closed: read-only support freshly matched the registered
+  hash and read complete §17.1 PDF 367–368 (printed 342–343) and the selected BEC
+  discussion PDF 405 (printed 380) as UTF-8 text. Complete PDF 368 and 405 pages
+  were visually inspected in memory, including preferred Poppler reinspection.
+  Uniform message identities and average error remain distinct from codeword-image
+  uniformity and maximum error. The private total BEC fallback gives error ε/2.
+  The displayed BEC conditional-entropy omission and uniform-only optimizer
+  wording at complete erasure are not adopted: production retains the correct
+  erasure weighting without uniqueness. Initial consumer/interface/static and
+  documentation checks and full maintained trust passed. The accepted original
+  independent report and substantive reconciliation passed without findings. The
+  reviewer separately hash-verified/text-read the selected references and visually
+  inspected complete PW24 PDF 367, 368 and 405 pages; its additional PDF 367 visual
+  check is distinct from the parent support above. Parent support totals nine text/
+  six visual pages across both books; reviewer reading totals nine text/seven visual
+  pages. Fresh final static/applicability, capture and supported closure remain
+  required. No extracts/renders were saved.
+- Historical C23.04 adaptation snapshot, subsequently closed by its actual record: Section 17.4, Theorem 17.3, printed 348–349 /
+  PDF 373–374, was freshly text-read at the verified registered hash by read-only
+  parent support. Complete PDF 373 was also visually inspected in memory;
+  no render or extraction artifact was saved. Existing undivided Fano and its
+  positive-rate consequence avoid division by `1-Pe`; eventual positive lengths
+  and the derived positive lower rate justify the quantitative error bound.
+  The displayed indicator/probability mismatch is retained as a source adaptation,
+  without replacing the existing decoding-error semantics. The selected pages
+  do not state the arbitrary-family frequent-gap theorem; C23 derives it from
+  the tolerance cap under hypothetical vanishing error, with no bounded-rate
+  premise or eventual-floor conclusion. Initial validation and full maintained
+  trust passed. The accepted original independent report satisfied all three
+  criteria without findings; substantive reconciliation is complete. The reviewer
+  separately verified the hash/extracted relevant pages and inspected the PDF 373
+  weak-converse context; its observations remain distinct from the parent
+  support's explicitly recorded visual inspection. Fresh final static/applicability
+  and supported closure remain required.
 - Section 7.3, Theorem 7.7: total variation characterizations and coupling.
 - Recorded C10 use: Theorem 7.7(a), equation (7.18), printed pages 122--123 /
   PDF pages 147--148, supplies attained event and bounded-test forms. C10 uses
@@ -86,16 +310,133 @@ August 16, 2024 prepublication version. The source footer identifies the date.
   page 116 / PDF page 141. The actual finite-PMF witness attains disagreement
   equal to TV. The [C11 handoff](handoffs/chunk-11.md) records the finite event
   convention, endpoint handling and remaining-work boundaries.
+- Recorded C12 use: Section 7.3, Theorem 7.7(b), equation (7.20), printed
+  pages 122--123 / PDF pages 147--148, for coupling conventions and the attained
+  disagreement bound. Transport, finite gluing and the quantitative regressions
+  are derived uses of existing PMF/channel algebra. The
+  [C12 handoff](handoffs/chunk-12.md) records adaptations and limits.
 - Section 7.4, Theorem 7.10: Pinsker via binary reduction; its full
   f-divergence/joint-range programme is not selected.
+- Recorded C13.01 use: Theorem 7.10, equation (7.27), printed pages
+  126--127 / PDF pages 151--152. The canonical finite-PMF inequality uses
+  nats and half-L1 TV, so its constant is 2. The proof uses C10's attained
+  event and KL map data processing, then closed-interval convexity for the
+  binary estimate, with explicit reference endpoints and singular support.
+  The [C13 implementation notes](plans/post-release-chunk-13-notes.md)
+  record the adaptation and its validation scope.
+- C13.02 derives the Real and square-root forms from that canonical theorem
+  using actual support inclusion and finite KL. The sparse and singular
+  consumers make the guard explicit; no further textbook theorem or stronger
+  support assumption is used.
+- C13.03 applies those bounds to the existing independent product of the
+  joint law's marginals. Existing absolute continuity establishes finite KL
+  before the MI-as-KL identity is used. Event and bounded-test estimates are
+  derived uses of C10, with factor two for signed tests. This adds no separately
+  numbered textbook theorem. The [C13 handoff](handoffs/chunk-13.md) records
+  the delivered contracts, source adaptation and deferred refinements.
 - Section 4.5, Proposition 4.8: finite entropy continuity; Section 4.7,
   Proposition 4.13: finite MI continuity. Sections 5.1--5.2 provide information
   optimization context; general-measure minimax and infinite-alphabet results
   are not commitments.
+- C22.01 adaptation: Chapter 5, printed 91–105 / PDF 116–130,
+  supplies optimization context. Theorem 5.4 assumes an achieving input; it
+  does not prove the selected finite attainment result. The implementation instead
+  applies C15 compactness and continuity to the nonempty finite-PMF domain.
+  It asserts neither constrained/infinite-alphabet capacity nor operational
+  coding equivalence; the C22 notes retain the earlier reading, selected-step validation and independent review.
+- C22.02 adaptation: Theorem 5.3, printed 92–93 / PDF 117–118.
+  The parent freshly read these pages on 2026-10-24 through pypdf text
+  extraction and checked the registered hash; no fresh visual inspection
+  is claimed. A private consumer combines existing input concavity and the
+  capacity bound to show that mixtures of maximizing laws still maximize,
+  including weights 0 and 1. No public convex-set or optimizer framework
+  is introduced. C22.02 selected-step validation and independent review passed;
+  see C22 notes sections 11–12 for evidence and limits.
 - Section 6.1, Theorem 6.1: block MI and memoryless-channel single-letterization.
+- C22.03 adaptation: Theorem 6.1(a) and Example 6.1, printed 106–107 /
+  PDF 131–132. The parent freshly read the text on 2026-10-24 and checked
+  the registered hash. The first extraction reached page 106 but failed to
+  print page 107 under the console encoding; an explicit UTF-8 extraction
+  then supplied page 107. No new visual inspection is claimed. Existing C18
+  bounds for arbitrary correlated inputs and independent-product identities,
+  together with C22.01 attainment, prove finite dependent-alphabet capacity
+  additivity. A product of maximizers is sufficient; optimizer uniqueness
+  or necessary input independence is not asserted. Empty products and n=0
+  are retained, including the vacuous empty-base zero-word consumer. The
+  duplicated-bit strict-gap consumer uses nats. Selected-step validation and
+  independent review passed; see C22 notes sections 13–14 for actual evidence,
+  reconciliation and applicability limits.
+- Recorded C16 use: Section 6.1, Theorem 6.1/proof, printed pages 106--107 /
+  PDF 131--132; Section 11.2, Proposition 11.6/proof, printed pages 217--218 /
+  PDF 242--243, in this exact hashed draft. The planning notes record the
+  original reading and visual inspection. These passages provide product
+  notation and downstream motivation; C16 constructs finite-alphabet PMFs
+  and proves normalization/transport using existing PMF algebra, not those
+  information or AEP results. The [C16 handoff](handoffs/chunk-16.md#mathematical-sources-and-adaptations)
+  records the adaptation and remaining C19 support/strict-versus-closed
+  typicality decisions. Closeout does not claim new textbook inspection.
+- Recorded C17 use: Section 6.1, Theorem 6.1/proof, printed 106--107 /
+  PDF 131--132; Section 19.1, printed 370--375 / PDF 395--400, especially
+  Definition 19.1 and (19.1)--(19.3), printed 371--372 / PDF 396--397.
+  The [C17 handoff](handoffs/chunk-17.md#mathematical-sources-and-adaptations)
+  records finite dependent conditional products, the identical-coordinate
+  repeated specialization, and conditional versus input independence.
+  C17 proves raw PMF channel/joint laws; the source information, capacity and
+  coding conclusions remain later work. The notes retain earlier reading;
+  closeout preparation rechecked the saved selected-page extraction, not a
+  new visual PDF audit. No matrix-channel replacement is introduced.
 - Section 11.1: one-shot source coding; Section 11.2, Proposition 11.6:
   AEP, typicality, and their coding consequence. These sections differ from
   the older draft, which grouped AEP under Section 11.1.
+- C21.01 source use: Section 11.2 motivates above-entropy achievability,
+  assembled from C19 strict supported typicality and C20 selected-set coding
+  and rounded integer budgets. The source uses nats, total deterministic
+  decoders and one dependent code family; the complement probability is an
+  error bound, not an asserted equality. Pure and biased sparse sources require
+  no full-support premise. C21.01 is closed by its source-bound record. The
+  [C21 notes](plans/post-release-chunk-21-notes.md)
+  retain prior reference evidence and adaptations; this update claims no new
+  textbook inspection, converse or entropy-threshold endpoint.
+- Historical C21.02 source use (subsequently completed by its source-bound
+  private record): the strong source converse combines C20 one-shot success
+  counting with C19 strict supported typicality and atom/mass bounds. Pointwise
+  rate estimates and positive-gap decay yield error tending to one under an
+  eventual cap below entropy. No broader information-spectrum API or channel
+  strong converse is asserted. Validation: Initial focused builds, static checks, all nine documentation examples and compiled compatibility/trust checks passed on their recorded inputs. The candidate is validation ready; final-source qualification and applicability require their actual evidence.
+  Review: The original independent report is accepted and reconciled, with all three C21.02 criteria satisfied. Closure remains subject to the private completion record and its linked source-bound certificate. The C21 notes retain actual evidence/adaptations;
+  fresh PW24 text inspection covered the relevant source-coding/AEP passages
+  (printed 214--215 and 218, PDF 239--240 and 243). No Step 2 closure is claimed.
+- Historical C21.03 source adaptation (subsequently completed by its source-bound
+  private record): the general necessary-rate converse reuses
+  the pointwise C20/C19 success estimate at arbitrarily large low-rate indices,
+  with one fixed positive gap and an eventual positive success lower bound.
+  Thus vanishing error excludes those indices without assuming bounded or
+  convergent rates. The public endpoint is
+  `eventually_entropy_sub_le_codeRate_of_tendsto_errorProbability_zero`.
+  Consumer status: Compiled private fair-source families cover exact recovery with zero error and unbounded oscillating rates plus a persistent bounded branch, and intermittent low rates with one fixed positive gap, no eventual below-entropy cap and nonvanishing error derived through the public general converse. Validation: C21.03 producer and four-target consumer/aggregate builds, all nine documentation examples, static/scope checks and compiled compatibility/trust qualification passed on their recorded inputs. The candidate is validation ready; final-source qualification and applicability require their actual evidence.
+  Review: The original independent C21.03 report is accepted and reconciled, with all three criteria satisfied. Closure remains subject to the actual private completion record and its linked source-bound certificate. Actual reference inspection, evidence and
+  adaptations are recorded in C21 notes section 11. The full
+  entropy-threshold endpoint remains C21.04; no Step 3 closure is claimed.
+- Historical C21.04 source adaptation (subsequently completed by its
+  source-bound private record): `sourceCoding_threshold` combines
+  established achievability and the general converse as an `IsGLB` statement for
+  the inline set of asymptotic upper rates of actual almost-lossless families.
+  One budget/code family serves every positive tolerance at a chosen rate. The
+  theorem asserts neither membership at entropy nor a universal exact-rate code
+  there. Required operational consumers combine all four endpoints for the same
+  finite source and nats, and include strict compression below support size and
+  a valid finite-prefix modification. Consumer status: Compiled private consumers assemble all four endpoints for one source, prove biased sparse compression with support cardinality two and 0<H<R<log 2 using one actual family, and cover explicit pure/singleton codes plus a genuinely changed finite prefix with scalar limit and eventual-cap preservation.
+  Validation: C21.04 producer and four-target consumer/aggregate builds, all nine documentation examples, static/scope checks and compiled compatibility/trust qualification passed on their recorded inputs. The candidate is validation ready; final-source qualification and applicability require their actual evidence. Review: The original independent C21.04 report is accepted and reconciled, with all four criteria satisfied. Closure remains subject to the actual private completion record and its linked source-bound certificate. Actual reference
+  inspection and evidence belong in C21 notes section 12; no additional textbook
+  inspection or Step 4 closure is inferred here.
+- C21.05 adds no mathematical source claim or new textbook inspection.
+  C21.01--C21.04 and their reviews are closed. The
+  [maintained C21 handoff](handoffs/chunk-21.md) reconciles the delivered
+  PW24/CT91 adaptations, total-decoder/natural-budget/nats conventions,
+  strict supported typicality and same-family operational quantifiers.
+  Initial authorized clean/API qualification and all-four API inspection have
+  passed on recorded inputs. Final candidate qualification, readiness, cumulative acceptance and closure are established only by `.lit-review/setup/c21-05-completion-20261023.json` and its linked actual current-candidate validation/API applicability, genuine original independent report, complete seventeen-criterion matrix, substantive parent reconciliation and final-source qualification. This wording asserts no future PASS or closure.
+  No new textbook reading or mathematical source claim follows from validation.
 - Chapters 17 and 19: code/error conventions, operational capacity, and
   channel examples. The proposed release proves only an upper bound on
   operationally achievable rates, not the full noisy-channel coding theorem.
@@ -119,7 +460,40 @@ The local copy is arXiv `1209.5259v5`, dated July 23, 2013.
 - Recorded C11 use: Section I, Theorem 1 and equations (3)--(9), printed/PDF
   pages 2--3; Theorem 2 and equation (10), page 3. The finite construction uses
   the common diagonal mass and an independent residual matrix, with explicit
-  zero/unit-TV endpoints. Section II's continuity result remains C14 work.
+  zero/unit-TV endpoints. Section II's continuity result is the C14 source below.
+- Recorded C14 planning use (2026-10-04): Definition 3/(2), page 1; Theorem
+  2/(10) and the base-e convention, page 3; Section II, Theorem 3/(11), its
+  proof and upper-distance-budget discussion, pages 3--4. The local hash was
+  rechecked and both theorem/proof pages visually inspected. The
+  [C14 plan](plans/post-release-chunk-14.md) records exact-TV versus
+  capped-budget contracts, Nat-cardinality/singleton conventions, and derived
+  conditional-entropy/MI bounds. Compiling feasibility probes are not production
+  implementation or formal plan approval. No sharpness classification or
+  Section III refinement is selected.
+- Recorded C14.01 implementation use (2026-10-07): Section II, Theorem 3/(11)
+  and its complete proof on pages 3--4. `Shannon.Continuity` uses one actual
+  maximal joint PMF and its swap, exact identity-decoder errors, existing Fano
+  and entropy identities. The public theorem extends the conventional
+  cardinal-at-least-two expression to all finite PMFs by the library's Nat
+  subtraction and total-log conventions, with explicit singleton/empty
+  consumers. The threshold discussion explains why this step accepts exact TV
+  only; the capped upper-budget theorem remains C14.02. The ternary example
+  tests equality at `2/3` without asserting a general sharpness classification.
+- Recorded C14.02 implementation use (2026-10-07): the upper-distance-budget
+  discussion following Theorem 3 on pages 3--4 motivates the cap at `log m`.
+  The public scalar modulus equals the raw expression through `1 - 1/m`,
+  including equality, and saturates above it for every nonnegative real budget.
+  Singleton and zero-cardinal scalar conventions are explicit; an empty law
+  remains impossible. Pinned mathlib q-ary monotonicity supplies the interval
+  argument, and the existing entropy range supplies the saturated law bound.
+- Recorded C14.03 implementation use (2026-10-07): the two joint-law bounds
+  are derived library consequences, not separately numbered SA13 theorems.
+  Existing conditional-entropy/MI identities and both projection TV contractions
+  combine the C14.02 entropy-budget result with separate joint/marginal alphabet
+  sizes. No new attribution, optimality claim or null-fiber continuity is made.
+- C14.04 qualification adds no mathematical source claim. The
+  [maintained C14 handoff](handoffs/chunk-14.md) reconciles the exact/capped/derived
+  distinction, implemented consumers, prior evidence and deferred refinements.
 - Section II credits prior entropy-continuity results; cite the actual route
   used without claiming that every ingredient originated in this paper.
 - Uses natural logarithms. Distinguish a bound at exact TV distance from a
@@ -144,14 +518,19 @@ edition, with contributions by Elizabeth L. Wilmer, 2017.
   Section 4.2's overlap identity is used without constructing a coupling;
   Proposition 4.7's coupling witness remains C11 work. C10 consistently uses
   the non-strict dominating event; tied atoms contribute zero.
+- Recorded C12 use: Section 4.2 definition and Example 4.6, printed pages
+  49--50 / PDF pages 65--66; Proposition 4.7, Remark 4.8 and equations
+  (4.8)--(4.13), printed pages 50--52 / PDF pages 66--68. These establish
+  the convention; the [C12 handoff](handoffs/chunk-12.md) distinguishes the
+  delivered derived gluing and consumer proofs from numbered source theorems.
 - Recorded C11 use: Section 4.2, Proposition 4.7, Remark 4.8 and equations
   (4.8)--(4.13), printed pages 50--52 / PDF pages 66--68, with the definition
   on printed page 49 / PDF page 65. The universal coupling inequality and an
   actual attaining law are delivered; no general gluing or process theorem is
   attributed to this section.
 - Chapter 5 is optional background for later coupling applications, not a
-  Markov-process or mixing-time commitment. The proposed finite gluing law
-  will be proved using conditional PMFs; no unverified numbered gluing theorem
+  Markov-process or mixing-time commitment. The C12 finite gluing law
+  is proved using conditional PMFs; no unverified numbered gluing theorem
   is attributed to this book.
 
 ## Other available background

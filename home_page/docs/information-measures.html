@@ -24,7 +24,7 @@
       <nav class="project-links" aria-label="Project links">
         <a href="../" class="btn">Home</a>
         <a href="./" class="btn">Guides</a>
-        <a href="v0.1.0/" class="btn">API Reference</a>
+        <a href="v0.2.0/" class="btn">API Reference</a>
         <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
     </header>
@@ -32,14 +32,14 @@
       <p class="lead">Use familiar information-theoretic quantities directly in Lean proofs. LeanInfoTheory provides both joint-law and random-variable APIs over mathlib probability mass functions.</p>
       <h2>From textbook notation to the API</h2>
       <p>All names in this table live in <code>LeanInfoTheory.Shannon</code>. The random variables are functions on a common source carrying the law <code>p</code>; their quantities are defined through pushforward laws.</p>
-      <table class="notation-table"><caption>Random-variable notation in v0.1.0</caption><thead><tr><th scope="col">Quantity</th><th scope="col">Lean expression</th></tr></thead><tbody>
+      <table class="notation-table"><caption>Random-variable notation in v0.2.0</caption><thead><tr><th scope="col">Quantity</th><th scope="col">Lean expression</th></tr></thead><tbody>
         <tr><td>H(X)</td><td><code>entropyOf p X</code></td></tr>
         <tr><td>H(X | Y)</td><td><code>condEntropyOf p X Y</code></td></tr>
         <tr><td>I(X;Y)</td><td><code>mutualInfoOf p X Y</code></td></tr>
         <tr><td>I(X;Y | Z)</td><td><code>condMutualInfoOf p X Y Z</code></td></tr>
       </tbody></table>
       <p>For a law <code>q</code> directly on the relevant alphabet, use <code>entropy q</code>; on a pair use <code>condEntropy q</code> or <code>mutualInfo q</code>; on a triple use <code>condMutualInfo q</code>. Conditional entropy conditions the first coordinate on the second, and conditional mutual information conditions the first two on the third.</p>
-      <p>Lean product types are right-associated. In the conditional mutual information API, the <strong>last argument is the conditioning variable</strong>. Check exact finite-type assumptions in the <a href="https://serhatemrecoban.github.io/LeanInfoTheory/docs/v0.1.0/LeanInfoTheory/Shannon/InfoMeasures.html">information-measure reference</a>.</p>
+      <p>Lean product types are right-associated. In the conditional mutual information API, the <strong>last argument is the conditioning variable</strong>. Check exact finite-type assumptions in the <a href="https://serhatemrecoban.github.io/LeanInfoTheory-API/v0.2.0/LeanInfoTheory/Shannon/InfoMeasures.html">information-measure reference</a>.</p>
       <h2>Mutual information is nonnegative</h2>
       <pre><code class="language-lean" data-lean-example="guide-mi-nonneg">import LeanInfoTheory.Shannon.SemanticBridge.Theorems
 
@@ -49,9 +49,9 @@ example (p : PMF (Bool &times; Bool)) : 0 &lt;= mutualInfo p := by
   exact mutualInfo_nonneg p</code></pre>
       <p>The semantic layer connects the finite definitions to conditional laws and mathlib KL divergence. Elementary definitions and identities remain in the lightweight layer.</p>
       <h2>Nats and bits</h2>
-      <p>Canonical real-valued information quantities use natural logarithms and are measured in <strong>nats</strong>. Import <code>LeanInfoTheory.Shannon.Units</code> to use <code>natsToBits</code>, which divides by <code>Real.log 2</code>. The <a href="https://serhatemrecoban.github.io/LeanInfoTheory/docs/v0.1.0/LeanInfoTheory/Shannon/Units.html">units API</a> also supports other valid bases; their information-theoretic interpretation requires a base greater than one.</p>
+      <p>Canonical real-valued information quantities use natural logarithms and are measured in <strong>nats</strong>. Import <code>LeanInfoTheory.Shannon.Units</code> to use <code>natsToBits</code>, which divides by <code>Real.log 2</code>. The <a href="https://serhatemrecoban.github.io/LeanInfoTheory-API/v0.2.0/LeanInfoTheory/Shannon/Units.html">units API</a> also supports other valid bases; their information-theoretic interpretation requires a base greater than one.</p>
       <h2>KL divergence can be infinite</h2>
-      <p>The canonical KL divergence is mathlib's <code>InformationTheory.klDiv p.toMeasure q.toMeasure</code>, valued in <code>ENNReal</code>. The <a href="https://serhatemrecoban.github.io/LeanInfoTheory/docs/v0.1.0/LeanInfoTheory/Shannon/SemanticBridge/KL.html">finite-PMF bridge</a> relates support, finiteness, and equality. Establish the theorem's support or finiteness hypothesis before converting KL to <code>Real</code>: Lean's total conversion sends infinity to zero, which is not a finite divergence interpretation.</p>
+      <p>The canonical KL divergence is mathlib's <code>InformationTheory.klDiv p.toMeasure q.toMeasure</code>, valued in <code>ENNReal</code>. The <a href="https://serhatemrecoban.github.io/LeanInfoTheory-API/v0.2.0/LeanInfoTheory/Shannon/SemanticBridge/KL.html">finite-PMF bridge</a> relates support, finiteness, and equality. Establish the theorem's support or finiteness hypothesis before converting KL to <code>Real</code>: Lean's total conversion sends infinity to zero, which is not a finite divergence interpretation.</p>
       <h2>Mathematical sources</h2>
       <p>Cover and Thomas, <cite>Elements of Information Theory</cite> (1991), Chapter 2, especially Sections 2.1-2.6. This guide explains the library's finite-discrete contracts, not a verbatim transcription of the textbook. See also <a href="mathlib.html">the relationship with mathlib</a>.</p>
       <footer class="site-footer">

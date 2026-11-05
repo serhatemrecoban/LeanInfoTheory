@@ -79,5 +79,34 @@ class CommandTests(unittest.TestCase):
                 choices = next(ast.literal_eval(item.value) for item in node.keywords if item.arg == 'choices')
         self.assertTrue({'all', 'focused', 'static', 'documentation', 'api-docs', 'hygiene', 'targets'} <= set(choices))
 
+    def test_format_conflict_api_exposes_exact_pair_and_separate_requalification(self):
+        methods = cli.entry(Path.cwd(), 'api')['methods']
+        self.assertIn('initial_capture', methods['report_format_conflict_target'])
+        self.assertIn('corrected_capture', methods['report_format_conflict_target'])
+        self.assertIn('approval', methods['resolve_report_format_conflict'])
+        self.assertIn('reason', methods['requalify_report_format_conflict'])
+        self.assertIn('approval', methods['requalify_report_format_conflict'])
+
+    def test_format_conflict_calls_forward_explicit_authority_without_auto_acceptance(self):
+        cases = [
+            ('report_format_conflict_target', ['initial-capture', 'corrected-capture']),
+            ('resolve_report_format_conflict', ['initial-capture', 'corrected-capture',
+                {'action': 'RESOLVE_REPORT_FORMAT_CONFLICT', 'target': 'exact-pair'}]),
+            ('requalify_report_format_conflict', ['resolution-ref',
+                {'action': 'REQUALIFY_REPORT_FORMAT_CONFLICT', 'target': 'resolution-ref'},
+                'Explicit synthetic fresh-review reason']),
+        ]
+        for method, args in cases:
+            with self.subTest(method=method):
+                workflow = Mock()
+                with patch.object(cli, 'load_session', return_value=workflow):
+                    result = cli.entry(Path.cwd(), 'call', {'method': method, 'args': args}, chunk='C10')
+                getattr(workflow, method).assert_called_once_with(*args)
+                self.assertIs(result, getattr(workflow, method).return_value)
+                workflow.authority.assert_not_called()
+                workflow.receive_report.assert_not_called()
+                workflow.reconcile_report.assert_not_called()
+                workflow.project_closure.assert_not_called()
+
 
 if __name__=='__main__':unittest.main()

@@ -29,16 +29,48 @@
         "local": [
           "LeanInfoTheory",
           "LeanInfoTheory.Probability.Coupling",
+          "LeanInfoTheory.Probability.FiniteProduct",
+          "LeanInfoTheory.Probability.FiniteTopology",
+          "LeanInfoTheory.Probability.Iid",
+          "LeanInfoTheory.Probability.ProductChannel",
+          "LeanInfoTheory.Probability.StandardChannels",
           "LeanInfoTheory.Probability.TotalVariation",
+          "LeanInfoTheory.Probability.TotalVariationTopology",
+          "LeanInfoTheory.Shannon.ChannelCapacity",
+          "LeanInfoTheory.Shannon.ChannelCode",
+          "LeanInfoTheory.Shannon.ChannelCoding",
+          "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+          "LeanInfoTheory.Shannon.CodingRate",
+          "LeanInfoTheory.Shannon.Continuity",
           "LeanInfoTheory.Shannon.Fano",
+          "LeanInfoTheory.Shannon.ProductChannelCapacity",
           "LeanInfoTheory.Shannon.SemanticBridge",
+          "LeanInfoTheory.Shannon.SourceCoding",
+          "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
+          "LeanInfoTheory.Shannon.StandardChannelCapacity",
+          "LeanInfoTheory.Shannon.Topology",
+          "LeanInfoTheory.Shannon.TypicalSet",
           "LeanInfoTheory.Shannon.Units"
         ],
         "external": []
       },
-      "rationale": "The approved full mathematical umbrella exposes finite total variation and generic coupling while preserving its retained direct imports and the lightweight root boundary.",
-      "consumer": "Full-stack users import LeanInfoTheory.Shannon; the independently importing total-variation and coupling consumers verify focused access.",
-      "approval_reference": "Approved Chunk 10 plan revision 2, Sections 3.1 and 5 / C10.01-BOUNDARY (docs/plans/post-release-chunk-10.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-20. Authority intake: .lit-review/setup/c10-01-authority-intake-20260920.json. Approved Chunk 11 plan revision 2, Sections 3.1 and 4 / C11.01-BOUNDARY (docs/plans/post-release-chunk-11.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-26. Authority intake: .lit-review/setup/c11-execution-approval-context-20260926.json."
+      "rationale": "The approved full mathematical umbrella exposes finite total variation, generic coupling and exact-TV entropy continuity while preserving its retained direct imports and the lightweight root boundary. C15.01 adds the approved PMF product/subtype topology and real-simplex compactness owner. C15.02 adds the separate TV/topology bridge to the full umbrella. C15.04 adds the separately focused qualitative finite-information topology owner while preserving the lightweight root. C16.01 adds the approved focused finite dependent product owner; the root boundary and all retained direct imports remain unchanged. C16.03 adds the approved focused homogeneous Fin block and iid owner, preserving all retained direct imports and the root boundary. C17.01 adds the approved product-channel row/restriction owner, preserving every retained import and the lightweight root. C19.03 adds the approved finite TypicalSet owner while retaining existing imports and the lightweight root boundary. C20.01 adds the focused deterministic SourceCoding owner, retaining prior imports and the lightweight root boundary. C20.03 adds the approved focused scalar CodingRate owner, retaining existing imports and the lightweight root boundary. C21.01 adds the focused SourceCodingAsymptotic owner for finite-iid almost-lossless families above entropy, preserving retained imports and the lightweight root boundary. C22.01 adds the attained finite-channel information-capacity core, retaining the root and semantic umbrella boundaries. C22.03 adds the focused product-capacity owner while preserving the root and semantic umbrella boundaries. C22.04 adds the focused standard-channel capacity owner for noiseless and input-independent channels. C22.05 adds the probability-only standard-channel owner and BSC capacity through the existing focused information owner. C23.01 adds the focused deterministic channel-code model, actual uniform-message laws and average error, retaining the lightweight root and semantic umbrella boundaries. No capacity/converse endpoint is introduced in this step. C23.02 adds the focused finite ChannelCoding owner for actual-law Markov/DPI and Fano-capacity bounds. It preserves every earlier direct import, the lightweight root and semantic umbrella boundaries; asymptotic imports remain a later step. C23.03 adds the focused ChannelCodingAsymptotic owner for vanishing-error rate tolerance and real limsup bounds. Eventual boundedness is proved from the finite converse, keeping focused limit imports out of finite code consumers and retaining the lightweight root and semantic aggregate boundaries. C23.04 extends the existing ChannelCodingAsymptotic owner with quantitative eventual above-capacity error, a positive eventual floor and nonvanishing-error consequences for eventual or infinitely-often fixed positive rate gaps. Existing imports and all lightweight root/semantic boundaries are retained.",
+      "consumer": "Full-stack users import LeanInfoTheory.Shannon; the independently importing total-variation, coupling and continuity consumers verify focused access. Examples.ChannelOptimization independently imports the focused Topology owner for actual MI attainment and boundary/degeneracy consumers. Examples.FiniteProduct independently exercises its probability-only import. Examples.Iid independently imports Probability.Iid and exercises both non-iid block transports and sparse iid laws. Examples.ProductChannel exercises the new probability-only owner independently. Examples.TypicalSet independently exercises the finite owner without AEP. Examples.SourceCoding independently imports only SourceCoding and exercises the pair interface, exact error, success counting and the public selected-set existence and converse endpoints, including constructed fair, pure, singleton and empty-word cases. Examples.CodingRate privately exercises scalar boundaries and actual code padding into binary strings with exact error preservation and finite rate overhead. Examples.SourceCodingAsymptotic independently imports the focused owner and uses the same public family for vanishing error and eventual rate bounds, including pure and sparse sources. Examples.ProductChannelCapacity independently imports the focused owner for arbitrary correlated inputs, independent maximizing witnesses and empty/singleton products. Examples.StandardChannelCapacity independently imports that owner for actual uniform/pure attaining laws, non-pure constant output, sparse inputs and singleton alphabets. Examples.StandardChannels checks raw BSC masses and endpoints with only the probability owner; Examples.StandardChannelCapacity uses the objective, capacity and direct uniform-attainment formulas. Examples.ChannelCode independently imports only the focused channel-code owner for the law/error interface, unequal encoder fibers and singleton/zero/one-length boundaries. Examples.ChannelCoding exercises the actual-law Markov and information-processing chain, the finite Fano-capacity endpoint and normalized/error forms on a colliding correlated two-letter code and singleton/zero/one-length cases. Examples.ChannelCodingAsymptotic uses actual singleton-message families and a lossless noiseless family whose rates need not converge, applying both public asymptotic endpoints without a bounded/convergent-rate assumption. Examples.ChannelCodingAsymptotic adds positive-capacity noiseless finite/eventual quantitative consumers and a zero-capacity intermittent family with unbounded rate spikes and infinitely many zero-error lengths, distinguishing nonvanishing error from an eventual positive floor.",
+      "approval_reference": "Approved Chunk 10 plan revision 2, Sections 3.1 and 5 / C10.01-BOUNDARY (docs/plans/post-release-chunk-10.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-20. Authority intake: .lit-review/setup/c10-01-authority-intake-20260920.json. Approved Chunk 11 plan revision 2, Sections 3.1 and 4 / C11.01-BOUNDARY (docs/plans/post-release-chunk-11.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-26. Authority intake: .lit-review/setup/c11-execution-approval-context-20260926.json. Approved Chunk 14 plan revision 2, Sections 3.4 and C14.01-BOUNDARY (docs/plans/post-release-chunk-14.md); the lead explicitly requested step 1 with review on 2026-10-07. Authority intake: .lit-review/setup/c14-01-authority-intake-20261007.json. Approved C15 revision 2, Sections 3.1/4 and C15.01 (docs/plans/post-release-chunk-15.md); the lead accepted the plan and explicitly requested step 1 with its review process on 2026-10-12. Intake: .lit-review/setup/c15-01-20261012/authority.json. Formal PLAN review was not dispatched; no such acceptance is claimed. Approved C15 revision 2, Sections 3.2, 3.7, 4 and C15.02 (docs/plans/post-release-chunk-15.md); the lead conditionally requested step 2 with its review process on 2026-10-13. C15.01 closure and exact predecessor source were verified before selection. Intake: .lit-review/setup/c15-02-20261013/next-input.json. Approved C15 revision 2, Sections 3.4-3.7, 4 and C15.04 (docs/plans/post-release-chunk-15.md); the lead conditionally requested Step 4 with review on 2026-10-13. Successful C15.03 closure and its entire exact final source were verified before intake. Authority: .lit-review/setup/c15-04-20261013/next-input.json. Approved C16 revision 2, Sections 3.1/4/5 and C16.01 (docs/plans/post-release-chunk-16.md). The lead accepted the revised plan and freshly requested \"Continue Step 1 with review.\" on 2026-10-13; supported intake accepted only C16.01. Provenance: .lit-review/setup/c16-01-20261013/authority.json and continue-input.json/continue-result.json. The earlier malformed intake and skipped conditional requests remain retained; no revision-2 PLAN review is claimed. Approved C16 revision 2, Sections 3.4/4/5 and C16.03 (docs/plans/post-release-chunk-16.md). The lead freshly requested Step 3 with review conditional on successful Step 2 on 2026-10-13. C16.02 closure and all 244 exact final-source entries were verified before admission. Authority intake: .lit-review/setup/c16-03-20261013/continue-input.json and continue-result.json. No separate revision-2 PLAN review is claimed. Approved C17 revision 2, Sections 3.1/4/5 and C17.01 (docs/plans/post-release-chunk-17.md). The lead accepted revision 2 and requested \"do step 1 with its review process\" on 2026-10-15. Authority and exact substantive revision bytes: .lit-review/setup/c17-01-20261015/authority.json and approved-r2-before-status.md; session-input.json and next-result.json record administrative approval reconciliation and selection. No fresh revision-2 PLAN review is claimed. Approved C19 revision 2, sections 3.4/3.6/3.7/4/5 and C19.03 (docs/plans/post-release-chunk-19.md). On 2026-10-20 the lead requested Step 3 with review conditional on successful Step 2; supported closure and all 263 exact predecessor source entries, environment and Git identity were verified. Intake: .lit-review/setup/c19-03-20261020/next-input.json, predecessor-check.json and admission-result.json. Only C19.03 is selected. Approved C20 revision 2, sections 3.1/3.2/4/5 and C20.01 (docs/plans/post-release-chunk-20.md). On 2026-10-22 the lead approved revision 2 and subsequently requested step 1 with its review process. Exact intake: .lit-review/setup/c20-01-20261022/authority.json, session-input.json and admission-result.json. Only C20.01 is selected. Approved C20 revision 2, sections 3.4/3.5/4/5 and C20.03 (docs/plans/post-release-chunk-20.md). On 2026-10-23 the lead requested Step 3 with review conditional on successful Step 2. C20.02 closure, reconciled review, all four criteria and all 272 exact predecessor source entries were verified before admission. Intake: .lit-review/setup/c20-03-20261023/next-input.json, precheck.json and admission-result.json. Only C20.03 is selected. Approved C21 revision 2, sections 3.1/3.5/4/5 and C21.01 (docs/plans/post-release-chunk-21.md). On 2026-10-23 the lead accepted revision 2 and selected Step 1 with review. Exact execution authority and admission: .lit-review/setup/c21-01-session-input-20261023.json and .lit-review/setup/c21-01-admission-result-20261023.json. Only C21.01 is selected; no formal PLAN-review acceptance is claimed. Approved C22 revision 2, sections 3.1/4/5 and C22.01 (docs/plans/post-release-chunk-22.md). The lead endorsed revision 2 and selected Step 1 with its review process on 2026-10-24. Exact intake: .lit-review/setup/c22-01-session-input-20261024.json and c22-01-admission-result-20261024.json. Only C22.01 is selected; no fresh revision-2 PLAN review is claimed. Approved C22 revision 2, sections 3.3/4/5 and C22.03 (docs/plans/post-release-chunk-22.md). On 2026-10-24 the lead requested Step 3 with review conditional on successful Step 2. Actual Step 2 closure, all three criteria and all 276 final source/environment entries plus HEAD/index were verified before admission. Exact intake: .lit-review/setup/c22-03-user-request-20261024.json, c22-03-precheck-20261024.json and c22-03-admission-result-20261024.json. Only C22.03 is selected by this request. Approved C22 revision 2, sections 3.4/4/5 and C22.04 (docs/plans/post-release-chunk-22.md). On 2026-10-24 the lead requested Step 4 with review conditional on successful Step 3. Actual Step 3 closure, all four criteria and all 278 final source/environment entries plus HEAD/index were verified before admission. Exact intake: .lit-review/setup/c22-04-user-request-20261024.json, c22-04-precheck-20261024.json and c22-04-admission-result-20261024.json. Only C22.04 is selected by this request. Approved C22 revision 2, sections 3.4/4/5 and C22.05 (docs/plans/post-release-chunk-22.md). On 2026-10-24 the lead requested Step 5 with review conditional on successful Step 4. Actual Step 4 closure, all three criteria and all 280 final source/environment entries plus HEAD/index were verified before admission. Exact intake: .lit-review/setup/c22-05-user-request-20261024.json, c22-05-precheck-20261024.json and c22-05-admission-result-20261024.json. Only C22.05 is selected by this request. Approved C23 revision 2, sections 3.1/3.5/4/5 and C23.01 (docs/plans/post-release-chunk-23.md). On 2026-10-24 the lead accepted the revised plan and explicitly requested \"good, do step 1 with its review process\". Actual instruction: local-user-capture:c23-01-request-20261024-no-native-message-id-exposed; execution intake: .lit-review/setup/c23-execution-open-20261024.json and c23-01-admission-20261024.json. Only C23.01 is selected; no formal PLAN-review verdict is claimed. Approved C23 revision 2, sections 3.2/3.5/4/5 and C23.02 (docs/plans/post-release-chunk-23.md). On 2026-10-24 the lead requested Step 2 with its review process conditional on completion of Step 1. The parent verified the actual supported C23.01 closure and all 287 predecessor final-source/environment entries before admitting C23.02. Exact authority and admission remain in the private C23 execution records. Only C23.02 is selected by that request; no later step or new formal PLAN review is inferred. Approved C23 revision 2, sections 3.3/4/5 and C23.03 (docs/plans/post-release-chunk-23.md). On 2026-10-25 the lead conditionally requested exactly Step 3 with review. The parent verified actual C23.02 closure 5e0f0b0341c7b519e135c85b92c4d5b42ab2341ba04f57cfd9c8d2e7ebbce045 and all 289 predecessor final-source/environment entries before admission. Actual instruction and admission are retained in the private C23 execution records. Only C23.03 is selected by that request; above-capacity obstructions remain C23.04 and no later-step execution is inferred. Approved C23 revision 2, sections 3.4/4/5 and C23.04 (docs/plans/post-release-chunk-23.md). On 2026-10-25 the lead requested exactly Step 4 with review after C23.03 completion. The parent verified the actual predecessor closure and source applicability before admitting only C23.04. Actual instruction/admission remain in the private C23 execution records; the scoped integration edit intent is .lit-review/setup/c23-04-integration-edit-intent-20261025.json. No later step, clean checkpoint, expensive API-doc gate or publication is selected by this request."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.Continuity",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.Coupling",
+          "LeanInfoTheory.Shannon.Fano"
+        ],
+        "external": []
+      },
+      "rationale": "The approved C14.01 owner derives the exact absolute entropy difference from the actual maximal coupling, its swap and existing Fano. All decoder/event and signed-orientation glue stays private; no Pinsker, gluing, extra analysis, root export or simp change is needed. C14.02 adds the capped scalar modulus, monotonicity on nonnegative budgets and the entropy-budget bound using already imported q-ary monotonicity and entropy range; all normalization and auxiliary scalar facts remain private. C14.03 adds the approved conditional-entropy and mutual-information budget theorems by existing entropy identities and both projection contractions. Each term uses its own whole-alphabet cap; no helper, import, root or simp expansion is needed.",
+      "consumer": "LeanInfoTheory.Examples.Continuity imports only the focused owner and applies its theorem to both law orders, equal/zero-distance and empty/singleton cases, distinct pure Boolean laws, pure/fair Boolean laws and pure/uniform Fin 3 with exact threshold equality. C14.02 adds exact zero/threshold/saturation and greater-than-one checks, a raw-substitution counterexample, a noninjective output-law contraction and explicit public-monotonicity budget weakening across the ternary threshold. C14.03 adds generic joint-law approximation, sparse Bool-by-Fin3 diagonal/independent/pure comparisons with established information and TV values, changing marginals and mixed cap branches, actual marginal budget weakening, both singleton coordinates, impossible empty coordinates, swap orientation and arbitrary-source finite-valued RV applications.",
+      "approval_reference": "Approved Chunk 14 plan revision 2, Sections 3.1, 3.4-3.5 and C14.01-BOUNDARY (docs/plans/post-release-chunk-14.md); the lead accepted the revision and explicitly requested step 1 with its review process on 2026-10-07. Authority intake: .lit-review/setup/c14-01-authority-intake-20261007.json. This also approves the full Shannon umbrella addition while preserving its retained imports. Approved revision 2 Sections 3.2 and C14.02; conditional Step 2 with review was explicitly requested on 2026-10-07, with successful Step 1 closure and exact source applicability verified before acceptance. Intake: .lit-review/setup/c14-02-ingress-20261007.json. Direct imports are unchanged. Approved revision 2 Sections 3.3-3.5 and C14.03; conditional Step 3 with review explicitly requested on 2026-10-07 after successful Step 2 closure and exact source verification. Intake: .lit-review/setup/c14-03-ingress-20261007.json. Direct imports remain unchanged."
     },
     {
       "owner": "LeanInfoTheory.Probability.Coupling",
@@ -53,6 +85,402 @@
       "rationale": "The approved coupling owner supplies the generic joint-law predicate and elementary independent, diagonal and swap witnesses while keeping semantic dependencies outside the probability layer.",
       "consumer": "LeanInfoTheory.Examples.Coupling independently imports the owner and exercises both marginals, different coordinate types, diagonal coupling, repeated swap and empty-alphabet impossibility.",
       "approval_reference": "Approved Chunk 11 plan revision 2, Sections 3.1 and 4 / C11.01-BOUNDARY (docs/plans/post-release-chunk-11.md); project lead accepted the revised plan and explicitly requested step 1 with its review process on 2026-09-26. Authority intake: .lit-review/setup/c11-execution-approval-context-20260926.json."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.SemanticBridge.Gluing",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Shannon.SemanticBridge.Markov"
+        ],
+        "external": []
+      },
+      "rationale": "The approved separate semantic owner glues consistent pair PMFs through existing Markov conditional-channel reconstruction, requiring only a finite final alphabet. It imports Markov only and leaves raw probability owners lightweight.",
+      "consumer": "LeanInfoTheory.Examples.CouplingGluing imports this owner and Coupling directly, preserves both pair laws, derives the same-triple endpoint coupling and checks whole-law null-fiber invariance.",
+      "approval_reference": "Approved Chunk 12 plan revision 2, Sections 3.4-3.5 and C12.02-BOUNDARY (docs/plans/post-release-chunk-12.md); project lead approved the plan and requested step 2 with its review process conditional on successful step 1 completion on 2026-10-03. The predecessor condition was verified. Authority intake: .lit-review/setup/c12-02-ingress-20261003.json."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.SemanticBridge",
+      "kind": "umbrella_addition",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Shannon.SemanticBridge.AEP",
+          "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
+          "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL",
+          "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+          "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
+          "LeanInfoTheory.Shannon.SemanticBridge.Entropy",
+          "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+          "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+          "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
+          "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
+          "LeanInfoTheory.Shannon.SemanticBridge.Gluing",
+          "LeanInfoTheory.Shannon.SemanticBridge.Independence",
+          "LeanInfoTheory.Shannon.SemanticBridge.KL",
+          "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+          "LeanInfoTheory.Shannon.SemanticBridge.Pinsker",
+          "LeanInfoTheory.Shannon.SemanticBridge.Product",
+          "LeanInfoTheory.Shannon.SemanticBridge.ProductChannel",
+          "LeanInfoTheory.Shannon.SemanticBridge.ProductKL",
+          "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
+          "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
+          "LeanInfoTheory.Shannon.SemanticBridge.Theorems"
+        ],
+        "external": []
+      },
+      "rationale": "The approved semantic aggregate retains its prior imports and adds the focused Pinsker owner. The full Shannon umbrella reaches canonical Pinsker transitively, and the lightweight root remains unchanged. C16.04 adds the approved finite-product semantic bridge, preserving all retained imports and the lightweight root boundary. C18.02 adds the separate ProductKL owner to the semantic aggregate; the full Shannon stack reaches it transitively while the lightweight root and retained imports remain unchanged. C18.03 adds the focused ProductChannel semantic owner for arbitrary-input conditional output entropy; all retained imports and the lightweight root remain unchanged. C19.01 adds the approved focused AEP foundations owner to this semantic aggregate; the lightweight root and all retained direct imports remain unchanged.",
+      "consumer": "Focused Gluing and Pinsker consumers exercise their owners; the semantic aggregate exposes both to full-stack consumers. Examples.FiniteProductSemantics independently imports the focused semantic owner and exercises selected-family and distinct-coordinate independence. Examples.ProductKL separately imports only ProductKL and exercises supported sparse and singular product laws and iid boundaries. Examples.ProductChannelInformation imports ProductChannel and explicitly Markov for supported/null reconstruction checks, without relying on the umbrella. Examples.AEP exercises the new focused owner independently.",
+      "approval_reference": "Approved Chunk 12 plan revision 2, Sections 3.4-3.5 and C12.02-BOUNDARY (docs/plans/post-release-chunk-12.md); project lead approved the plan and requested step 2 with its review process conditional on successful step 1 completion on 2026-10-03. The predecessor condition was verified. Authority intake: .lit-review/setup/c12-02-ingress-20261003.json. Approved Chunk 13 plan revision 2, Sections 3.1 and 3.4, C13.01-BOUNDARY (docs/plans/post-release-chunk-13.md); the lead accepted revision 2 and explicitly requested step 1 with its review process on 2026-10-03. Authority intake: .lit-review/setup/c13-01-authority-intake-20261003.json. Approved C16 revision 2, Sections 3.5/4/5 and C16.04 (docs/plans/post-release-chunk-16.md). The lead freshly requested Step 4 with review conditional on successful Step 3 on 2026-10-13. C16.03 closure and all 246 exact final-source entries were verified before admission. Authority intake: .lit-review/setup/c16-04-20261013/continue-input.json and continue-result.json. No separate revision-2 PLAN review is claimed. Approved C18 revision 2, Sections 3.2/4 and C18.02 (docs/plans/post-release-chunk-18.md). The lead conditionally requested Step 2 with review on 2026-10-17; C18.01 supported closure and exact final source/environment/Git identity were verified before admission. Authority: .lit-review/setup/c18-02-20261017/next-input.json, predecessor-check.json and next-result.json. No later step, commit or release is selected. Approved C18 revision 2, Sections 3.3/4 and C18.03 (docs/plans/post-release-chunk-18.md). The lead conditionally requested Step 3 with review on 2026-10-17; C18.02 supported closure and all 255 final-source entries, environment and Git identity were verified before admission. Intake: .lit-review/setup/c18-03-20261017/next-input.json, predecessor-check.json and next-result.json. No later step, commit or release is selected. Approved C19 revision 2, sections 3.2/4/5 and C19.01 (docs/plans/post-release-chunk-19.md). The lead accepted the plan and explicitly requested step 1 with its review process on 2026-10-18. Exact supported execution intake: .lit-review/setup/c19-01-20261018/session-packet.json and step1-message.json; .lit-review/setup/c19-01-start-20261018.json. Only C19.01 is selected; no separate revision-2 PLAN-review acceptance is claimed."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.SemanticBridge.Pinsker",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.TotalVariation",
+          "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing"
+        ],
+        "external": [
+          "Mathlib.Analysis.Convex.Deriv",
+          "Mathlib.Analysis.Real.Sqrt",
+          "Mathlib.Analysis.SpecialFunctions.BinaryEntropy",
+          "Mathlib.Tactic.FieldSimp",
+          "Mathlib.Tactic.FunProp"
+        ]
+      },
+      "rationale": "Finite-PMF Pinsker combines existing half-L1 TV and unconditional KL map data processing with private closed-interval binary analysis. The Real and square-root consequences first derive finite KL from support inclusion. Focused analytic and tactic imports support the proofs; no coupling/gluing or root dependency is added. The direct Sqrt import names the owner of the square-root conversion lemma instead of relying on its incidental transitive exposure through derivative analysis. Quantitative independence reuses the existing joint absolute-continuity and MI-as-KL interfaces through the same imports; finite KL is established privately before conversion.",
+      "consumer": "LeanInfoTheory.Examples.Pinsker imports the focused owner and exercises Boolean boundaries, positive three-atom reduction, both finite-KL guards, a sparse reference law, extended-valued event budgets and actual singular counterexamples. LeanInfoTheory.Examples.QuantitativeIndependence imports the same focused owner and checks MI budgets, events, unit-interval and signed tests, arbitrary-source pushforwards and an exact sparse joint with a null marginal row.",
+      "approval_reference": "Approved Chunk 13 plan revision 2, Sections 3.1 and 3.4, C13.01-BOUNDARY (docs/plans/post-release-chunk-13.md); the lead accepted revision 2 and explicitly requested step 1 with its review process on 2026-10-03. Authority intake: .lit-review/setup/c13-01-authority-intake-20261003.json. Approved Chunk 13 plan revision 2, Section 3.2 and C13.02 (docs/plans/post-release-chunk-13.md); the lead requested step 2 with review conditional on successful step 1 completion on 2026-10-03. The condition and exact predecessor source were verified. Authority intake: .lit-review/setup/c13-02-ingress-20261003.json. Approved Chunk 13 plan revision 2, Section 3.3 and C13.03 (docs/plans/post-release-chunk-13.md); the lead requested step 3 with review conditional on successful step 2 completion on 2026-10-03. The condition and exact predecessor source were verified. Authority intake: .lit-review/setup/c13-03-ingress-20261003.json."
+    },
+    {
+      "owner": "LeanInfoTheory.Probability.FiniteTopology",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.FiniteChannel"
+        ],
+        "external": [
+          "Mathlib.Analysis.Convex.StdSimplex",
+          "Mathlib.Topology.Homeomorph.Lemmas"
+        ]
+      },
+      "rationale": "C15.01 forwards the existing PMF subtype topology, relates finite PMFs to the existing real simplex, derives finite compactness and arbitrary-filter real-coordinate convergence. No new uniform/metric instance, simp rule, root export or Shannon proof dependency. FiniteChannel is the approved owner dependency for the later C15.03 channel maps. C15.03 adds fixed map/bind continuity with only finite source and arbitrary output, plus fixed-channel joint continuity for arbitrary alphabets, without new imports or instances.",
+      "consumer": "LeanInfoTheory.Examples.FiniteTopology independently imports this owner for sparse coordinates, both round trips, pure vertices, empty/singleton laws and limits. Separate fresh-import focused/umbrella probes check global instances. C15.03 adds direct infinite-output/infinite-input and Finite-only universe-polymorphic signature checks, actual bind compact-image use, a nonconstant noninjective finite map, and connected stochastic-channel mass/projection/boundary-limit consumers.",
+      "approval_reference": "Approved C15 revision 2, Sections 3.1/4 and C15.01 (docs/plans/post-release-chunk-15.md); the lead accepted the plan and explicitly requested step 1 with its review process on 2026-10-12. Intake: .lit-review/setup/c15-01-20261012/authority.json. Formal PLAN review was not dispatched; no such acceptance is claimed. Approved C15 revision 2, Sections 3.3, 3.7, 4 and C15.03; the lead conditionally requested Step 3 with review on 2026-10-13 after successful C15.02 closure and exact predecessor-source verification. Intake: .lit-review/setup/c15-03-20261013/next-input.json. Existing direct imports are unchanged."
+    },
+    {
+      "owner": "LeanInfoTheory.Probability.TotalVariationTopology",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.TotalVariation",
+          "LeanInfoTheory.Probability.FiniteTopology"
+        ],
+        "external": []
+      },
+      "rationale": "C15.02 relates existing finite half-L1 TV to the inherited PMF topology using continuous real atom coordinates and the existing singleton-event bound. No new metric/topology instance or Shannon dependency.",
+      "consumer": "LeanInfoTheory.Examples.TotalVariationTopology imports only this focused owner and composes both convergence iff theorems under arbitrary filters; its Boolean family has exact coordinates and TV and tends to the pure boundary law, with singleton/empty cases.",
+      "approval_reference": "Approved C15 revision 2, Sections 3.2, 3.7, 4 and C15.02 (docs/plans/post-release-chunk-15.md); the lead conditionally requested step 2 with its review process on 2026-10-13. C15.01 closure and exact predecessor source were verified before selection. Intake: .lit-review/setup/c15-02-20261013/next-input.json."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.Topology",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Shannon.InfoMeasures",
+          "LeanInfoTheory.Probability.FiniteTopology"
+        ],
+        "external": []
+      },
+      "rationale": "C15.04 proves continuity of finite entropy, conditional entropy, mutual information and the actual fixed-channel input MI objective using the existing algebraic formulas, continuous negMulLog and finite PMF maps. No TV, coupling, Fano or KL proof dependency, instance, alias or simp rule is added.",
+      "consumer": "LeanInfoTheory.Examples.ChannelOptimization imports only this owner and directly obtains an actual maximizing input from compactness and continuity, proves both connected information limits and exercises empty/singleton input/output cases.",
+      "approval_reference": "Approved C15 revision 2, Sections 3.4-3.7, 4 and C15.04 (docs/plans/post-release-chunk-15.md); the lead conditionally requested Step 4 with review on 2026-10-13. Successful C15.03 closure and its entire exact final source were verified before intake. Authority: .lit-review/setup/c15-04-20261013/next-input.json."
+    },
+    {
+      "owner": "LeanInfoTheory.Probability.FiniteProduct",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.FiniteChannel"
+        ],
+        "external": [
+          "Mathlib.Data.Fintype.BigOperators",
+          "Mathlib.Algebra.BigOperators.Ring.Finset",
+          "Mathlib.Logic.Equiv.Basic",
+          "Mathlib.Logic.Equiv.Set"
+        ]
+      },
+      "rationale": "C16.01 constructs normalized finite dependent product PMFs and proves atom/support, coordinate marginal, empty-product and pure-product laws. The coordinate/complement split remains private. Index and fiber universes are independent; no nonemptiness, positivity, full-support, public DecidableEq or new simp premise is added. No project Shannon, information-measure or topology owner is imported. C16.02 adds exact injective restriction, dependent reindexing, ordered sum splitting and distinct-pair laws; private predicate/range splitting reuses upstream equivalences, and pair projection reuses the private coordinate split and public evaluation. No new project dependency, simp attribute or public premise is added.",
+      "consumer": "LeanInfoTheory.Examples.FiniteProduct imports only this owner and privately exercises heterogeneous sparse Boolean/ternary atoms and marginals, zero/support equivalence, empty and singleton round trips, pure laws, impossible empty components, and selected-only finite alphabets over an infinite ambient index with infinite unselected fibers. C16.02 extends this private owner with singleton and nested 3-to-2-to-1 restrictions, heterogeneous reindex/inverse, non-iid sum split/inverse and ordered projections, both empty sides, sparse ordered pairs, independent index universes, and an exact duplicate-coordinate failure.",
+      "approval_reference": "Approved C16 revision 2, Sections 3.1/4/5 and C16.01 (docs/plans/post-release-chunk-16.md). The lead accepted the revised plan and freshly requested \"Continue Step 1 with review.\" on 2026-10-13; supported intake accepted only C16.01. Provenance: .lit-review/setup/c16-01-20261013/authority.json and continue-input.json/continue-result.json. The earlier malformed intake and skipped conditional requests remain retained; no revision-2 PLAN review is claimed. Approved C16 revision 2, Sections 3.2-3.3/4/5 and C16.02. The fresh conditional Step 2 request was admitted on 2026-10-13 after successful C16.01 closure and exact verification of all 244 final-source entries. Authority intake: .lit-review/setup/c16-02-20261013/continue-input.json and continue-result.json."
+    },
+    {
+      "owner": "LeanInfoTheory.Probability.Iid",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.FiniteProduct"
+        ],
+        "external": [
+          "Mathlib.Logic.Equiv.Fin.Basic"
+        ]
+      },
+      "rationale": "C16.03 adds the thin iid specialization, two general non-iid Fin block transport laws and iid permutation invariance. Existing product reindexing/sum splitting and Fin.appendEquiv supply all transports. No second normalization, block datatype, public helper, positivity assumption, simp rule or project semantic dependency is added.",
+      "consumer": "Examples.Iid imports only this owner and privately exercises nondegenerate Boolean and sparse ternary atoms/support/coordinates, genuine permutation and injective selection, a non-iid length-three 1+2 split/reconstruction, iid specialization, zero/one lengths, both empty sides, singleton alphabets and impossible symbols, distinguishing a general empty product from unavailable PMF Empty.",
+      "approval_reference": "Approved C16 revision 2, Sections 3.4/4/5 and C16.03 (docs/plans/post-release-chunk-16.md). The lead freshly requested Step 3 with review conditional on successful Step 2 on 2026-10-13. C16.02 closure and all 244 exact final-source entries were verified before admission. Authority intake: .lit-review/setup/c16-03-20261013/continue-input.json and continue-result.json. No separate revision-2 PLAN review is claimed."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.FiniteProduct",
+          "LeanInfoTheory.Probability.Iid",
+          "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence"
+        ],
+        "external": []
+      },
+      "rationale": "The three approved bridges identify selected marginals with finiteProduct, establish existing mutual independence on every selected atom, and establish existing IsIndependentOf for distinct coordinates by reuse of generic product laws. The original C16 addition introduced no new independence predicate, measure infrastructure, entropy identity or simp rule. C18.01 adds exactly entropy_finiteProduct and entropy_iid using the existing full-family independence/entropy equivalence. The direct Probability.Iid import supports the homogeneous specialization; full-word restriction and singleton conversion remain local. No new helper API, attribute, probability-owner dependency or root export is introduced. C18.04 adds the general independent-pair mutual-information equality, retaining separate index/input/output universes and allowing positive dependence within each pair. Private full-product normalization and pair-to-word marginal transports reuse finite sums and entropy additivity; no channel representation, additional import, public helper or simp rule is introduced.",
+      "consumer": "Examples.FiniteProductSemantics exercises heterogeneous sparse Boolean/ternary families, empty/singleton/two/full three-coordinate non-iid atoms, source-family identity and distinct-coordinate indepProd/IsIndependentOf. Existing Examples.FiniteFamily and both lightweight probability consumers remain required checks. C18.01 extends the heterogeneous sparse, genuinely non-iid family consumer with word/family entropy and adds the focused private IidInformation owner: positive sparse/fair n*log2, zero/one lengths, singleton alphabets and genuine empty-product versus impossible-base-law boundaries. E2 directly uses the focused owner for independent fair diagonal pairs with each MI log 2 and total MI 2 log 2, and a heterogeneous, sparse, nonidentical pair family.",
+      "approval_reference": "Approved C16 revision 2, Sections 3.5/4/5 and C16.04 (docs/plans/post-release-chunk-16.md). The lead freshly requested Step 4 with review conditional on successful Step 3 on 2026-10-13. C16.03 closure and all 246 exact final-source entries were verified before admission. Authority intake: .lit-review/setup/c16-04-20261013/continue-input.json and continue-result.json. No separate revision-2 PLAN review is claimed. Approved C18 revision 2, Sections 3.1/4 and C18.01. The lead accepted the presented revision and freshly requested \"do step 1 with its review process\" on 2026-10-16. Exact authority and supported intake: .lit-review/setup/c18-01-20261016/authority.json, session-input.json and next-result.json. No revision-2 PLAN review or later-step authority is claimed. Approved C18 revision 2, Sections 3.4/4/5 and C18.04. The lead conditionally requested Step 4 with review on 2026-10-17; successful C18.03 closure and all 257 final-source entries, environment and Git identity were verified before admission. Intake: .lit-review/setup/c18-04-20261017/step-ingress.json, predecessor-source-check.json and admission-result.json. Optional gap and equality-iff exports are selected within the approved envelope; C18.05 and later work remain unselected."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamilyIndependence",
+      "kind": "focused_exception",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.FiniteProduct",
+          "LeanInfoTheory.Shannon.SemanticBridge.FiniteFamily",
+          "LeanInfoTheory.Shannon.SemanticBridge.Independence"
+        ],
+        "external": []
+      },
+      "rationale": "The approved downward probability import replaces only the existing private familyProduct constructor with the public finiteProduct. All retained direct imports and public predicates, theorem statements, assumptions and attributes are preserved, including arbitrary ambient index types. C18.05 adds the general independent-source MI lower bound here, consuming conditional tuple subadditivity in the existing SemanticBridge.FiniteFamily owner. Both interfaces preserve arbitrary source spaces and four independent universes; the observation is common and need not preserve conditional independence. Private equivalence/induction and full-word entropy bridges retain all direct imports, previous declarations, root exports and simp attributes. No ProductChannel or ProductKL dependency is introduced.",
+      "consumer": "Examples.FiniteProductSemantics exercises heterogeneous sparse Boolean/ternary families, empty/singleton/two/full three-coordinate non-iid atoms, source-family identity and distinct-coordinate indepProd/IsIndependentOf. Existing Examples.FiniteFamily and both lightweight probability consumers remain required checks. The new focused Examples.FiniteFamilyInformation independently imports this owner and exercises both public endpoints: XOR strictness and conditional dependence, heterogeneous Boolean/ternary variables on an infinite source carrier, separately lifted observation, fully polymorphic signatures, and empty/singleton families.",
+      "approval_reference": "Approved C16 revision 2, Sections 3.5/4/5 and C16.04 (docs/plans/post-release-chunk-16.md). The lead freshly requested Step 4 with review conditional on successful Step 3 on 2026-10-13. C16.03 closure and all 246 exact final-source entries were verified before admission. Authority intake: .lit-review/setup/c16-04-20261013/continue-input.json and continue-result.json. No separate revision-2 PLAN review is claimed. Approved C18 revision 2, Sections 3.5/4/5 and C18.05. The lead conditionally requested Step 5 with review on 2026-10-18; successful C18.04 closure and all 257 captured entries, environment and Git state were verified before admission. Intake: .lit-review/setup/c18-05-20261018/step-ingress.json, predecessor-source-check.json and admission-result.json. No later step or new import exception is selected; the existing FiniteFamily import boundary itself is unchanged."
+    },
+    {
+      "owner": "LeanInfoTheory.Probability.ProductChannel",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.Iid"
+        ],
+        "external": []
+      },
+      "rationale": "C17.01 approves exactly PMF.productChannel, productChannel_apply, mem_support_productChannel_iff, productChannel_map_eval and productChannel_map_restrict. Each reuses finiteProduct and its existing laws; inputs require no Fintype or distribution. Separate index/input/output/restriction universes, zero masses, dependent fibers and empty/vacuous cases are retained. No new simp, helper API or semantic dependency. C17.02 adds exactly finiteProduct_bind_productChannel, channelComp_productChannel and productChannel_deterministicChannel. Finite dependent sum/product interchange proves independent processing; row specialization proves composition without finite original inputs; finiteProduct_pure proves deterministic reduction. No new imports, public helpers, representation or simp attribute. C17.03 adds only memorylessChannel as the thin identical-channel specialization. Finite block transports remain private consumers of existing C16 equivalences and generic channel laws. No new imports, simp rules or public block aliases. C17.04 adds exactly channelJoint_productChannel_map_eval, channelJoint_productChannel_map_restrict and finiteProduct_channelJoint_map. Map/bind algebra transports arbitrary-input coordinate/block joints without finite-input or independence premises; the independent-input law uses the existing dependent tuple/pair equivalence. Only the latter requires finite inputs. No extra output alias, semantic producer, import or simp rule.",
+      "consumer": "Examples.ProductChannel independently imports only this owner for input-dependent Boolean/sparse ternary rows, atoms/support/evaluation, nested and heterogeneous transports, finite selected subtypes of an infinite ambient index, repeated-output failure and empty/infinite-input boundaries. C17.02 adds nonidentical heterogeneous independent laws with zero masses, an exact processed atom, two input-dependent stochastic stages with a 3/8 versus 1/8 sampling-order atom, infinite original-input composition, arbitrary-input-law sequential processing, and identity/constant/preprocessing/noninjective-postprocessing/coordinatewise-map consumers. C17.03 adds nonconstant-input permutation covariance and failure of fixed-input invariance, prefix/suffix and finite-length consistency, exact nonidentical 1+2 splitting/reconstruction and both marginals, dependent sum blocks, and zero/one/empty-side/singleton/vacuous-channel boundaries. C17.04 adds full joint atoms/support/marginals and sequential sampling; forward/inverse sparse and iid zero/one factorization; diagonal identity and genuinely noisy correlated outputs (1/8 versus 1/16); nonconstant deterministic encoding with supported collisions and joint/extension endpoints. Private Examples.ProductChannelSemantics connects selected/full three-coordinate rows and coordinate-pair products to retained independence predicates, the released binary indepProd law, generic supported recovery with arbitrary inputs, and a two-product-channel null-coordinate comparison preserving the fallback.",
+      "approval_reference": "Approved C17 revision 2, Sections 3.1/4/5 and C17.01 (docs/plans/post-release-chunk-17.md). The lead accepted revision 2 and requested \"do step 1 with its review process\" on 2026-10-15. Authority and exact substantive revision bytes: .lit-review/setup/c17-01-20261015/authority.json and approved-r2-before-status.md; session-input.json and next-result.json record administrative approval reconciliation and selection. No fresh revision-2 PLAN review is claimed. Approved C17 revision 2, Section 3.2/P3 and C17.02. The lead freshly requested Step 2 with review after successful Step 1 on 2026-10-15. C17.01 actual closure caf4873a17c4dd5cc4e9272473a8a98e61953dba78b74a33473686619ef65ca0 and exact final-source equality were verified before supported admission. Intake: .lit-review/setup/c17-02-20261015/precheck.json, authority.json and next-result.json. Older skipped messages remain skipped. Approved C17 revision 2, Section 3.3/B1/B2 and C17.03. The fresh Step 3 request arrived during Step 2 closeout and remained unprocessed until actual C17.02 closure and exact full-source verification. Supported admission accepted only C17.03 on 2026-10-15. Evidence: .lit-review/setup/c17-03-20261015/precheck.json, next-input.json, authority.json and next-result.json. Earlier consumed messages remain skipped. Approved C17 revision 2, Sections 3.4/3.5/J1--J4/S1/S2 and C17.04. The lead freshly requested Step 4 with review after successful Step 3 on 2026-10-15. Actual C17.03 closure 6f1c37a638c042aa63c151cac05afd84e326217fccaf944b4d163e3c44944c19 and exact final-source equality were verified before supported admission. Intake: .lit-review/setup/c17-04-20261015/precheck.json, next-input.json, next-authority.json and next-result.json. C17.05 is not selected."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.SemanticBridge.ProductKL",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.Iid",
+          "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL"
+        ],
+        "external": []
+      },
+      "rationale": "C18.02 adds exactly klDiv_finiteProduct, toReal_klDiv_finiteProduct, klDiv_iid and toReal_klDiv_iid. The existing ENNReal joint chain rule yields binary constant-channel additivity, and dependent finite-index induction uses private equivalence/splitting proofs. Separate index/fiber universes, arbitrary finite discrete measurable structures, singular values and zero length are preserved. Real forms retain actual support guards; no public helper, new KL definition, simp rule or probability/root dependency is added.",
+      "consumer": "Examples.ProductKL directly imports this owner for finite supported heterogeneous sparse products, actual product support, singleton/empty indices, singleton alphabets and iid zero/one/general lengths. The paired-support regression retains overlap, witnesses against both support inclusions, coordinate top and positive finite log 2, and failure of unguarded heterogeneous Real summation.",
+      "approval_reference": "Approved C18 revision 2, Sections 3.2/4 and C18.02 (docs/plans/post-release-chunk-18.md). The lead conditionally requested Step 2 with review on 2026-10-17; C18.01 supported closure and exact final source/environment/Git identity were verified before admission. Authority: .lit-review/setup/c18-02-20261017/next-input.json, predecessor-check.json and next-result.json. No later step, commit or release is selected."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.SemanticBridge.ProductChannel",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.ProductChannel",
+          "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+          "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct"
+        ],
+        "external": []
+      },
+      "rationale": "C18.03 adds exactly condEntropy_channelJoint_productChannel. Private helpers derive weighted row entropy from the existing public MI formula and transport finite expectations to actual coordinate marginals. Arbitrary correlated/sparse inputs, independent index/input/output universes and the swapped joint orientation are retained. No independence, full-support or nonempty assumption, public helper, simp rule, ProductKL dependency or probability/root import is added. C18.04 adds the arbitrary-input mutual-information upper bound, product-input and iid equalities, and separately selects the exact output entropy gap and equality iff full output mutual independence. Private univ/word and output-marginal bridges connect existing family entropy APIs. The independent-input specialization consumes the general pair theorem through C17 exact joint transport; imports and existing C18.03 statement remain unchanged.",
+      "consumer": "Private Examples.ProductChannelInformation applies the endpoint to genuinely noisy correlated inputs, checks C17 actual coordinate joints, and separately exercises sparse absent-coordinate row changes preserving joint and information, supported recovery and the existing null fallback. Markov is explicitly imported only by this semantic consumer for its total conditional channel API. C2/C3/H1 additionally exercise noisy correlated inputs, strict correlated identity processing, correlated constant and singleton-output equality, heterogeneous independent processing, iid zero/one/general length, the parity triple with pairwise but not mutual output independence, and noninjective encoded input laws plus generic coordinate-objective caps.",
+      "approval_reference": "Approved C18 revision 2, Sections 3.3/4 and C18.03 (docs/plans/post-release-chunk-18.md). The lead conditionally requested Step 3 with review on 2026-10-17; C18.02 supported closure and all 255 final-source entries, environment and Git identity were verified before admission. Intake: .lit-review/setup/c18-03-20261017/next-input.json, predecessor-check.json and next-result.json. No later step, commit or release is selected. Approved C18 revision 2, Sections 3.4/4/5 and C18.04. The lead conditionally requested Step 4 with review on 2026-10-17; successful C18.03 closure and all 257 final-source entries, environment and Git identity were verified before admission. Intake: .lit-review/setup/c18-04-20261017/step-ingress.json, predecessor-source-check.json and admission-result.json. Optional gap and equality-iff exports are selected within the approved envelope; C18.05 and later work remain unselected."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.SemanticBridge.AEP",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Shannon.SemanticBridge.Entropy",
+          "LeanInfoTheory.Shannon.SemanticBridge.FiniteProduct",
+          "LeanInfoTheory.Shannon.TypicalSet"
+        ],
+        "external": [
+          "Mathlib.Probability.Moments.Variance",
+          "Mathlib.Analysis.SpecificLimits.Basic"
+        ]
+      },
+      "rationale": "C19.01 adds selfInfo_iid_of_mem_support with support qualification at every blocklength and private actual-iid moment/event bridges. C19.02 adds exactly tendsto_selfInfo_iid_deviation: the real probability of absolute normalized deviation at least a positive epsilon tends to zero. A private positive-length Chebyshev bound and scalar squeeze prove the limit without measurable-space, full-support or nonempty public hypotheses. Concentration and limit imports remain in this semantic owner. No public variance definition, typical-set API, new simp attribute or root export is introduced. C19.03 imports the finite TypicalSet owner and adds tendsto_prob_weakTypicalSet. Support-intersection invariance justifies the private complement/deviation probability bridge at positive lengths; complement probability conversion and the existing deviation limit prove convergence to one. The complementary limit remains derived in a private consumer.",
+      "consumer": "Examples.AEP independently imports the focused owner for sparse supported/impossible words, an actual additivity counterexample, zero/one lengths, pure and singleton sources and no PMF on Empty. C19.02 adds public-limit consumers for nonuniform (1/3,2/3) and sparse sources, and exact deterministic zero-deviation probabilities. A private producer fixture checks positive finite second moment and actual normalized block variance at n=2. Examples.AEP consumes typical-probability convergence and derives complement convergence through supported PMF interfaces.",
+      "approval_reference": "Approved C19 revision 2, sections 3.2/4/5 and C19.01 (docs/plans/post-release-chunk-19.md). The lead accepted the plan and explicitly requested step 1 with its review process on 2026-10-18. Exact supported execution intake: .lit-review/setup/c19-01-20261018/session-packet.json and step1-message.json; .lit-review/setup/c19-01-start-20261018.json. Only C19.01 is selected; no separate revision-2 PLAN-review acceptance is claimed. Approved C19 revision 2, sections 3.3/3.7/4/5 and C19.02. A fresh user request on 2026-10-19 selected Step 2 with review after completed Step 1. Exact predecessor closure and all 263 captured entries were verified before admission; see .lit-review/setup/c19-02-20261019/next-input.json, predecessor-check.json and admission-result.json. No later step or publication is selected. Approved C19 revision 2, sections 3.4/3.6/3.7/4/5 and C19.03 (docs/plans/post-release-chunk-19.md). On 2026-10-20 the lead requested Step 3 with review conditional on successful Step 2; supported closure and all 263 exact predecessor source entries, environment and Git identity were verified. Intake: .lit-review/setup/c19-03-20261020/next-input.json, predecessor-check.json and admission-result.json. Only C19.03 is selected."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.TypicalSet",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.Iid",
+          "LeanInfoTheory.Shannon.SemanticBridge.Entropy"
+        ],
+        "external": []
+      },
+      "rationale": "C19.03 adds weakTypicalSet, mem_weakTypicalSet and weakTypicalSet_mass_bounds. Membership requires positive length, actual iid support and strict normalized deviation; both Real exponential mass bounds use nats. No AEP/concentration import, cardinality endpoint, full-support or positive-entropy assumption, simp attribute or root export is added. C19.04 adds exactly card_weakTypicalSet_le and prob_mul_exp_le_card_weakTypicalSet for arbitrary natural lengths and real widths. Finite atom sums and positive exponential cancellation yield the real-cast upper bound and actual-probability-weighted lower bound. Existing PMF finite-event sums discharge finiteness locally; no duplicate general event theorem, import, public helper, stronger hypothesis, simp attribute or root export is introduced.",
+      "consumer": "Private Examples.TypicalSet independently exercises finite membership and atom bounds, zero/nonpositive boundaries, pure/singleton and sparse supported/impossible words, and exact binary strict-boundary empty and probability-2/3 cases. SemanticBridge.AEP consumes the same finite definition for probability convergence. C19.04 finite consumers instantiate both cardinality endpoints at zero length, nonpositive widths, entropy-zero pure laws and the binary empty/nonempty strict bands, including failure when the probability factor is removed. One private Examples.AEP consumer assembles complement convergence, atom and cardinality upper bounds and natural message-budget conversion for the same set and probability representation. Another derives the eventual lower bound for independent positive epsilon and delta, without delta < 1.",
+      "approval_reference": "Approved C19 revision 2, sections 3.4/3.6/3.7/4/5 and C19.03 (docs/plans/post-release-chunk-19.md). On 2026-10-20 the lead requested Step 3 with review conditional on successful Step 2; supported closure and all 263 exact predecessor source entries, environment and Git identity were verified. Intake: .lit-review/setup/c19-03-20261020/next-input.json, predecessor-check.json and admission-result.json. Only C19.03 is selected. Approved C19 revision 2, sections 3.5/4/5/7 and C19.04. On 2026-10-20 the lead freshly requested Step 4 with review conditional on successful Step 3. Actual Step 3 closure, all four satisfied criteria, reconciled review and all 265 exact final-source entries, environment and Git identity were verified before admission. Intake: .lit-review/setup/c19-04-20261020/next-input.json, predecessor-check.json and admission-result.json. Only C19.04 is selected."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.SourceCoding",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Shannon.Fano"
+        ],
+        "external": [
+          "Mathlib.Data.Fintype.EquivFin"
+        ]
+      },
+      "rationale": "C20.01 adds the transparent core/block code aliases, encoder/decoder/error accessors and finite success-set membership, counting and probability complement. Fano supplies the generic error-event bridge with unchanged imports. EquivFin supports finite source interfaces and the selected-set construction checkpoint. No iid, typical-set, AEP, rate-owner, example or root dependency is introduced. No new simp attributes are added.",
+      "consumer": "Examples.SourceCoding compiles actual colliding fair-binary codes, public selected-set existence and converse consumers for arbitrary laws, strict empty-set error bounds, sparse correlated blocks and zero-mass selected words. It also exercises constructed exact fair error, pure and singleton sources, arbitrary empty-word codes and explicit zero-message impossibility. The separate private Examples.SourceCodingTypicalSet combines public coding, rate and C19 inputs; it does not change this producer import boundary.",
+      "approval_reference": "Approved C20 revision 2, sections 3.1/3.2/4/5 and C20.01 (docs/plans/post-release-chunk-20.md). On 2026-10-22 the lead approved revision 2 and subsequently requested step 1 with its review process. Exact intake: .lit-review/setup/c20-01-20261022/authority.json, session-input.json and admission-result.json. Only C20.01 is selected."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.CodingRate",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Shannon.Units"
+        ],
+        "external": [
+          "Mathlib.Algebra.Order.Floor.Semiring"
+        ]
+      },
+      "rationale": "C20.03 adds eleven approved scalar rate, ceiling-budget and binary-length declarations. Units supplies nats-to-bits conversion and focused logarithm arithmetic; Floor.Semiring supplies natural ceiling bounds. No source-code, iid, typical-set, AEP, example or root dependency and no new simp attribute is added.",
+      "consumer": "Examples.CodingRate consumes every endpoint, demonstrates actual binary padding and exact recovered-output/error preservation, proves minimal-length rate overhead, and checks zero/one, exact-integer, non-power-of-two and negative-target boundaries.",
+      "approval_reference": "Approved C20 revision 2, sections 3.4/3.5/4/5 and C20.03 (docs/plans/post-release-chunk-20.md). On 2026-10-23 the lead requested Step 3 with review conditional on successful Step 2. C20.02 closure, reconciled review, all four criteria and all 272 exact predecessor source entries were verified before admission. Intake: .lit-review/setup/c20-03-20261023/next-input.json, precheck.json and admission-result.json. Only C20.03 is selected."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Shannon.CodingRate",
+          "LeanInfoTheory.Shannon.SemanticBridge.AEP",
+          "LeanInfoTheory.Shannon.SourceCoding"
+        ],
+        "external": []
+      },
+      "rationale": "C21.01 adds exactly exists_blockSourceCode_tendsto_errorProbability_zero: for a finite iid source and any target strictly above entropy, one positive-budget dependent code family has vanishing error and eventually rate at most the target, in nats. A connected private construction retains rounded budgets, typical-word recovery, complement error bounds, rate convergence and zero-length properties. This owner combines the existing finite coding, scalar rate and semantic AEP interfaces without changing those producers, the semantic umbrella or the lightweight root. No new simp attribute or root export is added.",
+      "consumer": "Examples.SourceCodingAsymptotic independently imports the focused owner, extracts one public witness for both error and rate guarantees, derives the tolerance upper-rate formulation, and instantiates pure and sparse sources. Hidden construction properties are checked in private production checkpoints rather than inferred from the public existential.",
+      "approval_reference": "Approved C21 revision 2, sections 3.1/3.5/4/5 and C21.01 (docs/plans/post-release-chunk-21.md). On 2026-10-23 the lead accepted revision 2 and selected Step 1 with review. Exact execution authority and admission: .lit-review/setup/c21-01-session-input-20261023.json and .lit-review/setup/c21-01-admission-result-20261023.json. Only C21.01 is selected; no formal PLAN-review acceptance is claimed."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.ChannelCapacity",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Shannon.EntropyBounds",
+          "LeanInfoTheory.Shannon.SemanticBridge.Markov",
+          "LeanInfoTheory.Shannon.Topology"
+        ],
+        "external": []
+      },
+      "rationale": "C22.01 adds exactly channelCapacity, mutualInfo_channelJoint_le_channelCapacity, channelCapacity_le_iff, exists_mutualInfo_channelJoint_eq_channelCapacity, channelCapacity_nonneg, channelCapacity_le_log_card_input and channelCapacity_le_log_card_output. Topology supplies compact finite PMFs and continuous MI; existing entropy/semantic bounds control the nonempty objective range. C22.01 used the lighter Theorems owner; C22.02 now replaces that direct import with Markov for actual stochastic and deterministic DPI use. The explicit nonempty-input domain, independent universes and derived output nonemptiness are preserved. No public helper, new simp attribute or root export. C22.02 adds only channelCapacity_congr_equiv, channelCapacity_channelComp_le and channelCapacity_map_output_le. The simultaneous equivalence law transports target input nonemptiness locally and preserves four independent universes. Private law/objective transport helpers remain non-stable; Convexity is needed only by the private mixture consumer.",
+      "consumer": "Examples.ChannelCapacity independently imports this owner and reuses one actual optimizer through objective and universal-bound laws; tests pure ternary inputs, singleton input/output capacities, empty-input PMF/maximizer impossibility and no inhabited-input empty-output channel. C22.02 consumers exercise a nonuniform Fin 3 three-cycle and distinct rows with joint-law and wrong-inverse witnesses, one-sided relabeling, stochastic processing, noninjective output collapse and binary mixtures of achieving inputs including weights zero and one.",
+      "approval_reference": "Approved C22 revision 2, sections 3.1/4/5 and C22.01 (docs/plans/post-release-chunk-22.md). The lead endorsed revision 2 and selected Step 1 with its review process on 2026-10-24. Exact intake: .lit-review/setup/c22-01-session-input-20261024.json and c22-01-admission-result-20261024.json. That request selected only C22.01; no fresh revision-2 PLAN review is claimed. Approved revision 2 sections 3.2/4/5 and C22.02. On 2026-10-24 the lead requested Step 2 with review conditional on successful Step 1. Actual Step 1 closure, all four criteria and all 276 final source/environment entries plus HEAD/index were verified before admission. Exact intake: .lit-review/setup/c22-02-user-request-20261024.json, c22-02-precheck-20261024.json and c22-02-admission-result-20261024.json. Only C22.02 is selected by this request."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.ProductChannelCapacity",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Shannon.ChannelCapacity",
+          "LeanInfoTheory.Shannon.SemanticBridge.ProductChannel"
+        ],
+        "external": []
+      },
+      "rationale": "C22.03 adds exactly channelCapacity_productChannel, channelCapacity_memorylessChannel and mutualInfo_channelJoint_memorylessChannel_le. The upper proof passes every input law through its actual coordinate marginals; the lower proof selects actual coordinate maximizing PMFs and applies finite-product additivity. Index/input/output universes are independent. Empty products and zero blocklength are retained; no input independence, output nonemptiness or public helper/simp rule is introduced.",
+      "consumer": "Private Examples.ProductChannelCapacity exercises heterogeneous dependent alphabets, supplied attaining products and iid inputs, genuinely correlated duplicated bits with a strict capacity gap, singleton/empty indices and alphabets, zero/one blocklength and vacuous empty-base zero-word channels.",
+      "approval_reference": "Approved C22 revision 2, sections 3.3/4/5 and C22.03 (docs/plans/post-release-chunk-22.md). On 2026-10-24 the lead requested Step 3 with review conditional on successful Step 2. Actual Step 2 closure, all three criteria and all 276 final source/environment entries plus HEAD/index were verified before admission. Exact intake: .lit-review/setup/c22-03-user-request-20261024.json, c22-03-precheck-20261024.json and c22-03-admission-result-20261024.json. Only C22.03 is selected by this request."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.StandardChannelCapacity",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.StandardChannels",
+          "LeanInfoTheory.Shannon.BinaryEntropy",
+          "LeanInfoTheory.Shannon.ChannelCapacity",
+          "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
+          "LeanInfoTheory.Shannon.Units"
+        ],
+        "external": []
+      },
+      "rationale": "C22.04 adds exactly channelCapacity_deterministicChannel_id and channelCapacity_const. Existing graph/diagonal entropy and independent-joint laws supply private objective identities; every input is bounded and the specified uniform/pure laws attain capacity. The sole core import supplies all needed interfaces. Independent alphabets and explicit nonempty input are retained, with no separate output-nonempty premise. No new channel wrapper, optimizer helper, simp attribute, binary constructor or later-step endpoint is introduced. In C22.05 this owner additionally exports exactly mutualInfo_channelJoint_binarySymmetricChannel, channelCapacity_binarySymmetricChannel and mutualInfo_channelJoint_binarySymmetricChannel_uniformOfFintype. The raw constructor, Boolean entropy identity and weighted-row MI formula justify the three added direct imports. The all-input bound and actual uniform witness cover every crossover in [0,1]; auxiliary mass, row entropy and uniform-output calculations stay private. At that checkpoint BEC and bits remained later steps. C22.06 adds exactly mutualInfo_channelJoint_binaryErasureChannel and channelCapacity_binaryErasureChannel. The arbitrary-input objective is (1-epsilon) times input entropy, including both endpoints and zero masses; the matching uniform witness and alphabet entropy bound establish capacity. Existing direct imports suffice. Auxiliary mass, output/row entropy and witness calculations stay private; no separate BEC uniform-attainment export or simp rule is introduced. Bits remain C22.07. C22.07 adds exactly the four approved capacity-value _bits scalar consequences in this same owner. Units supplies natsToBits and log-base conversion; existing nats capacities and positive log 2 give the formulas without new capacity definitions, public algebra helpers, simp attributes or additional domain assumptions. The root and semantic aggregate remain unchanged.",
+      "consumer": "Private Examples.StandardChannelCapacity checks actual uniform noiseless attainment, pure and sparse inputs, universal bounds, every-input constant attainment, a non-pure constant output law, explicit pure witnesses and singleton input/output capacities. C22.05 consumers use the direct uniform-attainment equation, check crossover zero/one-half/one, pure input at interior noise, every-input zero attainment at one-half, and a biased input at crossover three-quarters with output true-mass five-eighths and symbolic MI via the public objective formula. C22.06 derives uniform attainment from the public objective/capacity and uniform entropy, checks pure input and absent-symbol zeros, zero/full erasure and every-input full-erasure attainment, and the existing biased input at erasure one-third with masses one-third, one-sixth and one-half plus its public symbolic objective. C22.07 permanent consumers in Examples.StandardChannelCapacity use all four bits formulas with their specified achieving laws, endpoint degeneracies, arbitrary-input bounds and product/repeated capacity and attainment conversions. Its focused ProductChannelCapacity import supplies product interfaces; Examples.ProductChannelCapacity separately applies both C23 bounds to arbitrary laws and a correlated pushforward from a noninjective encoder, retaining n=0 and n=1.",
+      "approval_reference": "Approved C22 revision 2, sections 3.4/4/5 and C22.04 (docs/plans/post-release-chunk-22.md). On 2026-10-24 the lead requested Step 4 with review conditional on successful Step 3. Actual Step 3 closure, all four criteria and all 278 final source/environment entries plus HEAD/index were verified before admission. Exact intake: .lit-review/setup/c22-04-user-request-20261024.json, c22-04-precheck-20261024.json and c22-04-admission-result-20261024.json. Only C22.04 is selected by this request. Approved C22 revision 2, sections 3.4/4/5 and C22.05 (docs/plans/post-release-chunk-22.md). On 2026-10-24 the lead requested Step 5 with review conditional on successful Step 4. Actual Step 4 closure, all three criteria and all 280 final source/environment entries plus HEAD/index were verified before admission. Exact intake: .lit-review/setup/c22-05-user-request-20261024.json, c22-05-precheck-20261024.json and c22-05-admission-result-20261024.json. Only C22.05 is selected by this request. Approved C22 revision 2, sections 3.4/4/5 and C22.06 (docs/plans/post-release-chunk-22.md). On 2026-10-24 the lead requested Step 6 with review conditional on successful Step 5. Actual Step 5 closure, all three criteria and all 282 final source/environment entries plus HEAD/index were verified before admission. Exact intake: .lit-review/setup/c22-06-user-request-20261024.json, c22-06-precheck-20261024.json and c22-06-admission-result-20261024.json. Only C22.06 is selected by this request. Approved C22 revision 2, sections 3.5/4/5 and C22.07 (docs/plans/post-release-chunk-22.md). On 2026-10-24 the lead requested Step 7 with review conditional on successful Step 6. Its actual closure, all three criteria, all 282 final source/environment entries and HEAD/index were verified before admission. Exact intake: .lit-review/setup/c22-07-user-request-20261024.json, c22-07-precheck-20261024.json and c22-07-admission-result-20261024.json. Only C22.07 is selected by this request."
+    },
+    {
+      "owner": "LeanInfoTheory.Probability.StandardChannels",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.FiniteMixture"
+        ],
+        "external": []
+      },
+      "rationale": "C22.05 adds exactly binarySymmetricChannel as a transparent raw Bool-to-PMF Bool function using binaryMixture, with first branch weight epsilon on the complemented input and second weight one minus epsilon on the unchanged input. The parameter is NNReal with epsilon at most one. No bundled channel, alternate noise law, public apply lemma, Shannon import or simp attribute is added. At that checkpoint BEC was deferred to C22.06. C22.06 adds exactly binaryErasureChannel as a transparent Bool-to-PMF (Option Bool) function using the same binaryMixture: first branch pure none has erasure weight epsilon, second branch pure (some a) has weight one minus epsilon. The same closed parameter interval and sole FiniteMixture import remain; no public apply helper, extra abstraction or simp attribute is added.",
+      "consumer": "Examples.StandardChannels imports only this owner to check same/flipped masses and deterministic endpoints. Shannon.StandardChannelCapacity consumes it for the general BSC objective and capacity. C22.06 probability-only consumers check erasure/transmitted/absent masses and zero/full deterministic endpoints; the information owner proves the all-input entropy objective and capacity.",
+      "approval_reference": "Approved C22 revision 2, sections 3.4/4/5 and C22.05 (docs/plans/post-release-chunk-22.md). On 2026-10-24 the lead requested Step 5 with review conditional on successful Step 4. Actual Step 4 closure, all three criteria and all 280 final source/environment entries plus HEAD/index were verified before admission. Exact intake: .lit-review/setup/c22-05-user-request-20261024.json, c22-05-precheck-20261024.json and c22-05-admission-result-20261024.json. Only C22.05 is selected by this request. Approved C22 revision 2, sections 3.4/4/5 and C22.06 (docs/plans/post-release-chunk-22.md). On 2026-10-24 the lead requested Step 6 with review conditional on successful Step 5. Actual Step 5 closure, all three criteria and all 282 final source/environment entries plus HEAD/index were verified before admission. Exact intake: .lit-review/setup/c22-06-user-request-20261024.json, c22-06-precheck-20261024.json and c22-06-admission-result-20261024.json. Only C22.06 is selected by this request."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.ChannelCode",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Probability.ProductChannel",
+          "LeanInfoTheory.Shannon.Fano"
+        ],
+        "external": []
+      },
+      "rationale": "C23.01 defines a transparent deterministic block encoder/total decoder pair and constructs its actual uniform-message/output and message/input/output PMFs using existing raw channel laws. The Fano owner supplies the sole decoding-error semantics, range and event/finite-sum bridges; ProductChannel supplies finite memoryless rows. Positive budgets are explicit, input alphabets have independent universes and require no finiteness/nonemptiness instances for raw laws, and message identity survives encoder collisions. Singleton and zero/one-length identities remain in this focused owner. No new channel bundle, capacity theorem, asymptotic import, root export or simp attribute is added. C23.05 reconciles this unchanged actual-law interface and retains its private unequal-fiber, singleton and zero/one-length fixtures; the consumer integration uses the same channel, positive budgets and actual code data.",
+      "consumer": "Private Examples.ChannelCode imports only this owner and exercises the actual marginal/error interfaces, the Fin 3 unequal-fiber noiseless code with masses 2/3 and 1/3 and error 1/3, singleton-message zero error, zero-length error 1-1/M and one-letter reduction. C23.05 retains these focused fixtures as the sampling/error boundary checks alongside the finite and same-family asymptotic consumers.",
+      "approval_reference": "Approved C23 revision 2, sections 3.1/3.5/4/5 and C23.01 (docs/plans/post-release-chunk-23.md). On 2026-10-24 the lead accepted the revised plan and explicitly requested \"good, do step 1 with its review process\". Actual instruction: local-user-capture:c23-01-request-20261024-no-native-message-id-exposed; execution intake: .lit-review/setup/c23-execution-open-20261024.json and c23-01-admission-20261024.json. Only C23.01 is selected; no formal PLAN-review verdict is claimed. Approved C23 revision 2, sections 3.5/4/5 and C23.05 (docs/plans/post-release-chunk-23.md). On 2026-10-25 the lead requested exactly Step 5 with review after C23.04 completion. The parent admitted the scoped consumer/API reconciliation; actual instruction and admission remain in the private C23 execution records. This step adds no production declaration, owner, import, attribute, root export or simp name. No validation outcome, later step, checkpoint, expensive API-doc gate or publication is inferred."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.ChannelCoding",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Shannon.ChannelCode",
+          "LeanInfoTheory.Shannon.CodingRate",
+          "LeanInfoTheory.Shannon.ProductChannelCapacity"
+        ],
+        "external": []
+      },
+      "rationale": "C23.02 connects the actual channel-code message/input/output law to existing Markov data processing and applies the existing uniform-source Fano lower bound and arbitrary-input memoryless capacity bound. The undivided finite inequality retains every natural blocklength and positive message budget, including singleton messages and complete decoding error. Positive length and rate hypotheses enter only in the normalized and pointwise error forms. ChannelCode supplies actual laws/error, ProductChannelCapacity supplies finite capacity and Markov dependencies, and CodingRate supplies the existing nats rate. No encoder injectivity, independent codeword law, bounded-rate premise, asymptotic import, root export or new simp attribute is introduced. C23.05 adds private downstream standard-channel consumers using the existing finite bound and delivered capacities; this production owner and its seven public declarations remain unchanged.",
+      "consumer": "Private Examples.ChannelCoding independently consumes the public law-to-Markov-to-Fano-to-capacity chain for a Fin 4 repeated-bit encoder with collisions, correlated two-letter input and actual error 1/2 over the noiseless Boolean channel, and applies the finite converse at singleton messages and zero/one blocklengths. C23.05 extends this private module with actual one-letter noiseless and input-independent-output codes, BSC identity decoding with error epsilon, and BEC total erasure fallback with error epsilon/2, including zero/full noise and quarter-noise values. These consumers apply the public finite converse and existing standard capacities; StandardChannelCapacity is imported only in the private consumer.",
+      "approval_reference": "Approved C23 revision 2, sections 3.2/3.5/4/5 and C23.02 (docs/plans/post-release-chunk-23.md). On 2026-10-24 the lead requested Step 2 with its review process conditional on completion of Step 1. The parent verified the actual supported C23.01 closure and all 287 predecessor final-source/environment entries before admitting C23.02. Exact authority and admission remain in the private C23 execution records. Only C23.02 is selected by that request; no later step or new formal PLAN review is inferred. Approved C23 revision 2, sections 3.5/4/5 and C23.05 (docs/plans/post-release-chunk-23.md). On 2026-10-25 the lead requested exactly Step 5 with review after C23.04 completion. The parent admitted the scoped consumer/API reconciliation; actual instruction and admission remain in the private C23 execution records. This step adds no production declaration, owner, import, attribute, root export or simp name. No validation outcome, later step, checkpoint, expensive API-doc gate or publication is inferred."
+    },
+    {
+      "owner": "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+      "kind": "new_module",
+      "imports": {
+        "local": [
+          "LeanInfoTheory.Shannon.ChannelCoding"
+        ],
+        "external": [
+          "Mathlib.Analysis.SpecificLimits.Basic",
+          "Mathlib.Order.LiminfLimsup"
+        ]
+      },
+      "rationale": "C23.03 exports eventually_codeRate_le_channelCapacity_add and limsup_codeRate_le_channelCapacity for one arbitrary dependent deterministic channel-code family with positive natural budgets and vanishing average error. A private helper derives eventual rate boundedness from the finite Fano-capacity inequality; nonnegative codeRate supplies the real limsup lower/coboundedness condition. No bounded-rate, convergent-rate, eventual-rate-cap or global positive-length premise is added. The two focused mathlib imports supply reciprocal-length limits and conditionally complete real limsup tools; ChannelCoding supplies the entire finite interface. Derived-bound and limit side-condition machinery remain private. No sequence structure, EReal-limsup wrapper, source-coding dependency, root export or simp attribute is introduced; at the C23.03 checkpoint, above-capacity error obstructions remained a later step. C23.04 now adds exactly eventually_one_sub_channelCapacity_div_sub_le_errorProbability, eventually_pos_le_errorProbability_of_eventually_le_codeRate, not_tendsto_errorProbability_zero_of_eventually_le_codeRate and not_tendsto_errorProbability_zero_of_frequently_channelCapacity_add_le_codeRate in the same BlockChannelCode namespace. The eventual rate lower bound R above capacity yields the quantitative eventual error bound and a positive error floor, deriving R>0 from capacity nonnegativity. A fixed positive gap occurring infinitely often rules out vanishing error for possibly unbounded rates without asserting an eventual floor or using an unguarded real limsup. These extensions reuse the existing three direct imports and finite pointwise error theorem; no new production module/import, public helper, alias, simp attribute, root export, EReal-limsup equivalence or strong-converse endpoint is added. C23.05 reconciles these unchanged six public family endpoints through private same-family composition rather than adding a sequence abstraction or production helper.",
+      "consumer": "Private Examples.ChannelCodingAsymptotic applies the same public tolerance and real-limsup endpoints to actual singleton-message code families and a lossless noiseless family alternating singleton and all-binary-word budgets, retaining zero-length initialization and nonconvergent rates. An additional finite-prefix mutation fixture remains optional under the approved plan. C23.04 extends this same private consumer with noiseless Boolean capacity log 2, message budgets 4^n and constant encoding/decoding, checking error 1-1/4^n, positive-length rate 2*log 2 and the public bound Pe>=1/2-1/(2*n), including n=2 with Pe>=1/4. A constant-output zero-capacity family uses singleton budgets on even lengths and 2^(n*n) on odd lengths, showing unbounded spikes, infinitely many zero-error lengths and no eventual positive floor. StandardChannelCapacity is added only to this private consumer to specialize the delivered capacity values; production imports remain unchanged. C23.05 composes actual sampling, induced input, error, Markov/DPI, Fano, finite/normalized/pointwise bounds and tolerance/limsup interfaces on the existing alternating lossless family, retaining its nonconvergent rates and all earlier singleton, boundary, positive-capacity and unbounded intermittent-rate fixtures.",
+      "approval_reference": "Approved C23 revision 2, sections 3.3/4/5 and C23.03 (docs/plans/post-release-chunk-23.md). On 2026-10-25 the lead conditionally requested exactly Step 3 with review. The parent verified actual C23.02 closure 5e0f0b0341c7b519e135c85b92c4d5b42ab2341ba04f57cfd9c8d2e7ebbce045 and all 289 predecessor final-source/environment entries before admission. Actual instruction and admission are retained in the private C23 execution records. Only C23.03 is selected by that request; above-capacity obstructions remain C23.04 and no later-step execution is inferred. Approved C23 revision 2, sections 3.4/4/5 and C23.04 (docs/plans/post-release-chunk-23.md). On 2026-10-25 the lead requested exactly Step 4 with review after C23.03 completion. The parent verified the actual predecessor closure and source applicability before admitting only C23.04. Actual instruction/admission remain in the private C23 execution records; the scoped integration edit intent is .lit-review/setup/c23-04-integration-edit-intent-20261025.json. No later step, clean checkpoint, expensive API-doc gate or publication is selected by this request. Approved C23 revision 2, sections 3.5/4/5 and C23.05 (docs/plans/post-release-chunk-23.md). On 2026-10-25 the lead requested exactly Step 5 with review after C23.04 completion. The parent admitted the scoped consumer/API reconciliation; actual instruction and admission remain in the private C23 execution records. This step adds no production declaration, owner, import, attribute, root export or simp name. No validation outcome, later step, checkpoint, expensive API-doc gate or publication is inferred."
     }
   ],
   "simp_additions": [],

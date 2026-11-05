@@ -198,8 +198,23 @@ validation, finished edits, context and barriers at preparation and dispatch; th
 concern still blocks closure. Repeated non-progress, material dispute or incompatible
 requirements needs the lead, not automatic rounds. Durable substantive obligations
 survive recovery, restoration, reclassification, favorable reports and pause/release.
-Continuation, deferred-report acceptance and unaccepted-request retry are distinct;
-unsupported adjudication/rebasing or historical-closure reopening must stop.
+Continuation, deferred-report acceptance and unaccepted-request retry are distinct.
+One narrow exception permits an explicitly authorized report-format correction:
+an original classified `REPORT_EVIDENCE_INVALID` and its later
+`CONFLICTING_DUPLICATE` may be linked by an append-only resolution when the only
+decoded change removes one FAIL observation from one SATISFIED criterion's
+passing-evidence list. The FAIL observation, verification membership, all other
+evidence, criteria, findings and prose must remain unchanged. Bind authority to
+the exact original pair, byte hashes, request, source and removed citation; retain
+both classifications and the original delivery confirmation. Other conflicts and
+unclassified captures remain barriers. This resolves no substantive disagreement.
+
+Resolution grants no report acceptance or closure. A separate authorized
+requalification supersedes only the unaccepted request and starts fresh initial
+validation, contextual self-review and reassessment before a new source capture
+and independent review. Preserve the old source/readiness and every historical
+obligation; never rebind an old report to changed tooling. Other unsupported
+adjudication/rebasing or historical-closure reopening must stop.
 
 ## 6. Final step, closure, and storage
 

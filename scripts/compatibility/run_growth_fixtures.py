@@ -24,6 +24,9 @@ check = previous.check
 run = previous.run
 OWNER = previous.OWNER
 UMBRELLA = "LeanInfoTheory/Shannon.lean"
+UMBRELLA_MODULE = "LeanInfoTheory.Shannon"
+FIXTURE_APPROVAL = "fixture-only:C9.03-R1:approved-module"
+IMPORT_REFUSALS = {"IMPORT_APPROVAL_REQUIRED", "IMPORT_APPROVAL_MISMATCH"}
 MODULE = "LeanInfoTheory.Shannon.GrowthFixture"
 MODULE_PATH = MODULE.replace(".", "/") + ".lean"
 MODULE_IMPORT = "LeanInfoTheory.Shannon.InfoMeasures"
@@ -170,27 +173,71 @@ def source_imports(source: Path, relative: str) -> dict[str, list[str]]:
             "external": sorted(name for name in names if name != "LeanInfoTheory" and not name.startswith("LeanInfoTheory."))}
 
 
-def add_module(source: Path, *, approved: bool) -> None:
+def add_module(source: Path, *, approved: bool) -> str:
+    """Extend only the isolated fixture's policy; preserve existing review evidence.
+
+    Return the exact refusal expected after restoring the original policy while
+    keeping the new module/import: missing approval at the release baseline, or
+    an exact-import mismatch when current growth already has umbrella approval.
+    """
     target = source / MODULE_PATH
-    check.require(not target.exists(), "new-module mutation must start from restored source")
-    target.write_text(module_source(source), encoding="utf-8", newline="\n")
+    check.require(not target.exists() and not target.is_symlink(),
+                  "new-module mutation must start from restored source")
+    before_imports = source_imports(source, UMBRELLA)
+    check.require(MODULE not in before_imports["local"],
+                  "new-module import must start from restored source")
+    policy_path = source / POLICY
+    policy = check.strict_json(policy_path.read_bytes())
+    # Validation normalizes import order in an independent copy. Preserve the
+    # original representation of every unrelated approval in this fixture.
+    validated = check.current_policy.validate_policy(policy, check.frozen.baseline_identity())
+    records = policy["import_approvals"]
+    check.require(not any(item["owner"] == MODULE for item in records),
+                  f"fixture approval conflicts with existing owner: {MODULE}")
+    check.require(not any(FIXTURE_APPROVAL in item["approval_reference"] for item in records),
+                  "fixture approval already present in original policy")
+    existing = next((item for item in records if item["owner"] == UMBRELLA_MODULE), None)
+    if existing is not None:
+        checked = next(item for item in validated["import_approvals"]
+                       if item["owner"] == UMBRELLA_MODULE)
+        check.require(existing["kind"] == "umbrella_addition"
+                      and checked["imports"] == before_imports,
+                      "existing umbrella approval does not match original source")
+        expected_refusal = "IMPORT_APPROVAL_MISMATCH"
+    else:
+        retained = check.strict_json(
+            (source / "docs/compatibility/v0.1.0-retained-contract.json").read_bytes())
+        check.require(before_imports == retained["direct_imports"][UMBRELLA_MODULE],
+                      "unapproved preexisting umbrella growth is not a fixture approval")
+        expected_refusal = "IMPORT_APPROVAL_REQUIRED"
+
+    # Finish all logical/schema checks and construction before writing source.
+    new_source = module_source(source)
     umbrella = source / UMBRELLA
-    umbrella.write_text(previous.insert_header_import(umbrella.read_text(encoding="utf-8"), MODULE),
-                        encoding="utf-8", newline="\n")
+    new_umbrella = previous.insert_header_import(umbrella.read_text(encoding="utf-8"), MODULE)
     if approved:
-        policy_path = source / POLICY
-        policy = check.strict_json(policy_path.read_bytes())
-        for owner, relative, kind in (("LeanInfoTheory.Shannon", UMBRELLA, "umbrella_addition"),
-                                     (MODULE, MODULE_PATH, "new_module")):
-            check.require(not any(item["owner"] == owner for item in policy["import_approvals"]),
-                          f"fixture approval conflicts with existing owner: {owner}")
-            policy["import_approvals"].append({
-                "owner": owner, "kind": kind, "imports": source_imports(source, relative),
-                "rationale": "Isolated C9.03 reviewed additive opt-in qualification; no production approval.",
-                "consumer": "tmp/c9-growth-consumer.lean: " + NEW_NAME,
-                "approval_reference": "fixture-only:C9.03-R1:approved-module",
-            })
-        policy_path.write_bytes(check.encode(policy))
+        provenance = {
+            "rationale": "Isolated C9.03 reviewed additive opt-in qualification; no production approval.",
+            "consumer": "tmp/c9-growth-consumer.lean: " + NEW_NAME,
+            "approval_reference": FIXTURE_APPROVAL,
+        }
+        after_imports = {"local": sorted([*before_imports["local"], MODULE]),
+                         "external": list(before_imports["external"])}
+        if existing is None:
+            records.append({"owner": UMBRELLA_MODULE, "kind": "umbrella_addition",
+                            "imports": after_imports, **provenance})
+        else:
+            existing["imports"] = after_imports
+            for field, addition in provenance.items():
+                existing[field] += "\n" + addition
+        records.append({"owner": MODULE, "kind": "new_module",
+                        "imports": {"local": [MODULE_IMPORT], "external": []}, **provenance})
+        policy_bytes = check.encode(policy)
+    target.write_text(new_source, encoding="utf-8", newline="\n")
+    umbrella.write_text(new_umbrella, encoding="utf-8", newline="\n")
+    if approved:
+        policy_path.write_bytes(policy_bytes)
+    return expected_refusal
 
 
 def hashes(source: Path, relatives: tuple[str, ...]) -> dict[str, str]:
@@ -244,26 +291,43 @@ def output_text(out: Path, label: str) -> str:
         "utf-8", errors="replace")
 
 
-def is_import_policy_refusal(text: str) -> bool:
-    return re.search(r"IMPORT_APPROVAL_REQUIRED: LeanInfoTheory\.Shannon(?:;|$)", text, re.MULTILINE) is not None
+def is_import_policy_refusal(text: str, expected_refusal: str) -> bool:
+    check.require(expected_refusal in IMPORT_REFUSALS, "unknown expected import-policy refusal")
+    pattern = r"(?<![A-Za-z0-9_])" + re.escape(expected_refusal + ": " + UMBRELLA_MODULE) + r"(?:;|$)"
+    return re.search(pattern, text, re.MULTILINE) is not None
 
 
-def maintained_gate(source: Path, out: Path, gate: str, *, approved: bool) -> dict:
+def require_import_policy_refusal(exit_code: int, text: str, expected_refusal: str,
+                                  label: str) -> None:
+    check.require(exit_code != 0 and is_import_policy_refusal(text, expected_refusal),
+                  f"{label} did not refuse specifically for {expected_refusal}: {UMBRELLA_MODULE}")
+
+
+def maintained_gate(source: Path, out: Path, gate: str, *, approved: bool,
+                    expected_refusal: str | None = None) -> dict:
+    check.require(approved or expected_refusal in IMPORT_REFUSALS,
+                  "unapproved gate needs its exact expected import-policy refusal")
     result = run([sys.executable, "-B", "scripts/validate_release.py", gate], source, out,
                  gate, expected=0 if approved else None)
     if not approved:
-        check.require(result["exit_code"] != 0 and is_import_policy_refusal(output_text(out, gate)),
-                      f"{gate} did not refuse specifically for missing import approval")
+        require_import_policy_refusal(result["exit_code"], output_text(out, gate),
+                                      expected_refusal, gate)
     return result
 
 
-def qualification_gates(source: Path, out: Path, case: str) -> dict:
+def qualification_gates(source: Path, out: Path, case: str, *,
+                        expected_refusal: str | None = None) -> dict:
     check.require(case in CASES, f"unknown growth qualification case: {case}")
     approved = case != "unapproved_module"
-    static = maintained_gate(source, out, "static", approved=approved)
-    trust = None if case == "unchanged" else maintained_gate(source, out, "trust", approved=approved)
+    check.require(approved or expected_refusal in IMPORT_REFUSALS,
+                  "unapproved case needs its exact expected import-policy refusal")
+    static = maintained_gate(source, out, "static", approved=approved,
+                             expected_refusal=expected_refusal)
+    trust = None if case == "unchanged" else maintained_gate(
+        source, out, "trust", approved=approved, expected_refusal=expected_refusal)
     if not approved:
-        maintained_gate(source, out, "compatibility", approved=False)
+        maintained_gate(source, out, "compatibility", approved=False,
+                        expected_refusal=expected_refusal)
     return {"static_exit": static["exit_code"], "trust_exit": trust["exit_code"] if trust else None,
             "trust_status": "NOT_RUN" if trust is None else "PASS" if approved else "EXPECTED_POLICY_REFUSAL"}
 
@@ -477,19 +541,23 @@ def main() -> int:
         frozen = hashes(source, ("docs/v0.1-public-api.json", "docs/compatibility/v0.1.0-retained-contract.json"))
         approved_surface = None
         approved_docs = None
+        expected_refusal = None
         for case in CASES:
             out = workspace / case
             out.mkdir()
             if case == "unapproved_module":
                 # Keep exactly the same Lean, generated artifacts and HTML as
-                # the approved sibling. Only its two fixture approvals disappear.
+                # the approved sibling. Revert only the fixture policy changes;
+                # original umbrella approvals and their evidence remain intact.
+                check.require(expected_refusal in IMPORT_REFUSALS,
+                              "matched negative is missing its approved sibling expectation")
                 (source / POLICY).write_bytes(originals[POLICY])
             else:
                 restore_source(source, originals)
                 if case == "compatible_addition":
                     previous.mutate(case, source)
                 elif case == "approved_module":
-                    add_module(source, approved=True)
+                    expected_refusal = add_module(source, approved=True)
             approved = case != "unapproved_module"
             generated = generate_twice(source, out)
             check_growth_inventory(source, baseline, case)
@@ -503,7 +571,8 @@ def main() -> int:
             })
             if case == "unapproved_module":
                 check.require(surface == approved_surface, "matched module pair changed Lean or generated bytes")
-            gates = qualification_gates(source, out, case)
+            gates = qualification_gates(source, out, case,
+                                        expected_refusal=expected_refusal if not approved else None)
             consumer(source, out, case)
             # The maintained synthetic writer and checker retain their normal
             # source-policy checks. The unapproved sibling reuses identical HTML
@@ -515,9 +584,9 @@ def main() -> int:
             docs_result = run([sys.executable, "-B", "scripts/check_api_docs.py", "--source-mode", "file",
                                "--build-root", str(docs)], source, out, "check-synthetic-docs", expected=0 if approved else None)
             if not approved:
-                check.require(docs_result["exit_code"] != 0
-                              and is_import_policy_refusal(output_text(out, "check-synthetic-docs")),
-                              "unapproved docs failed for a different cause than source policy")
+                require_import_policy_refusal(
+                    docs_result["exit_code"], output_text(out, "check-synthetic-docs"),
+                    expected_refusal, "unapproved synthetic docs")
             doc_hashes = {path.relative_to(docs).as_posix(): check.sha256(path.read_bytes())
                           for path in sorted(docs.rglob("*")) if path.is_file()}
             write_record(out / "synthetic-doc-hashes.json", doc_hashes)
@@ -534,6 +603,7 @@ def main() -> int:
                 check.require(doc_hashes == approved_doc_hashes, "matched module pair changed HTML fixture bytes")
             check_frozen(source, frozen)
             result = {"case": case, "outcome": "PASS", "expected_policy_pass": approved,
+                      "expected_policy_refusal": expected_refusal if not approved else None,
                       **gates,
                       "docs_checker_exit": docs_result["exit_code"], "direct_consumer_passed": True,
                       "generated_sha256": check.sha256(check.encode(generated)),

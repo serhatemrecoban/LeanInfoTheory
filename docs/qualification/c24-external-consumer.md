@@ -1,0 +1,92 @@
+# C24 external-package consumer contract
+
+**Current reconciliation — 2026-10-28.** C24.01–C24.08 are closed with independent
+review on their recorded sources. Step 7's containing candidate was
+`72a129a4fdff67c7f811fba89787c6dfb1d03976`; Step 8's was `ad6cf61f52738b8c381cd3179beedf52a963db0b`.
+The [C24 handoff](../handoffs/chunk-24.md) records their exact evidence and limits.
+Step 9 qualifies its own resulting candidate; its final identity and acceptance
+exist only through actual `.lit-review/setup/c24-09-completion-20261028.json` when present. Earlier dated
+preparation descriptions below retain their historical attribution.
+
+**Historical C24.06 preparation contract.** C24.06 requires successful
+C24.05 closure, a fresh eligible step request and the separate exact local
+checkpoint/location approval required by the [plan](../plans/post-release-chunk-24.md#c24-06).
+The [portable fixture/recipe](../../tests/external-consumer/README.md) supplies
+seven separately compiled import boundaries and public theorem applications.
+
+| Coverage | Actual supplied objects and composition |
+| --- | --- |
+| Retained/root | Invertible relabeling and diagonal joint MI through the lightweight root. |
+| Coupling/continuity | A supplied coupling's actual disagreement budget bounds its marginals' entropy difference; a maximal coupling attains TV. |
+| Product/correlated MI | Arbitrary dependent input law, its actual coordinate marginals and channel objectives; an explicit duplicated-coordinate input. |
+| Source coding | Extract one above-entropy family, preserve global positive budgets and error convergence, apply the necessary-rate converse to that same family. |
+| Attained/standard capacity | One actual maximizing input dominates every competing input; BSC uniform attainment composes with its closed-interval capacity formula. |
+| Weak converse | One actual deterministic-code family, uniform-message error, all-length Fano bound and eventual capacity upper-rate bound. |
+| Full umbrella | Repeated BSC bound for arbitrary, potentially correlated input and every length including zero. |
+
+Information/rates use nats. Finite/nonempty alphabets, support/null-fiber limits,
+positive budgets and strict source-rate hypotheses remain explicit. No exact-H
+attainment, efficient encoder, channel achievability or channel strong converse
+is inferred. The fixture imports no non-stable examples/private helpers and adds
+no declarations to the supported library API.
+
+The execution recipe is parameterized by the actual candidate SHA. It checks
+committed fixture-byte correspondence, exact local-Git resolution, transitive
+manifest revisions/URLs, clean clone state and Lean's physical source/olean
+origins, after removing inherited LEAN_PATH and related overrides. Every command
+retains its actual output, exit, timing and hashes. Incremental/downloaded caches
+are allowed and disclosed; local success is not remote installation.
+
+The exact checkpoint proposal records raw-to-committed byte correspondence,
+approved CRLF/LF treatment, selective log projection and every excluded private
+or unrelated hunk. It preserves primary HEAD/index and local protected bytes;
+the candidate tree alone omits private working material. No original release,
+tag, frozen API or historical source is rewritten. No PFR/ShannonCert checkout
+is mutated.
+
+Private/in-tree proposal preflight and bounded recipe tests are supporting
+preparation only. Actual C24.06 acceptance requires the exact external run,
+read-only self-review, separate reassessment, neutral original independent
+all-three-criterion report, substantive reconciliation and final applicability.
+Only `.lit-review/setup/c24-06-completion-20261026.json` and its linked originals
+establish completion when present; a draft status, source count or #check does not.
+
+Every change to candidate SHA, fixture or relevant config/dependencies requires
+repinning as applicable and fresh external compilation. Source inspection may
+survive a documentation-only amendment; it cannot replace that compilation.
+Later full clean/retained-baseline/API/artifact/cumulative checks remain separate.
+PFR wording/link approval and publication are unexecuted by this contract.
+
+## Historical checkpoint and review-requalification snapshot — 2026-10-27
+
+The separately approved candidate is `05f9bec97d73329877d4f52a6c52f20e7fad4c92`.
+All 64 external recipe commands passed; the seven-fixture build passed 3098 jobs
+in 1033.258 seconds (complete recipe: 2745.221 seconds). The exact manifest/pin,
+clean-clone, source/olean-origin and artifact evidence remains privately retained.
+Existing caches and the local dependency URL limit the claim to this local run.
+
+The interrupted noncanonical review dispatch received no substantive acceptance.
+The separately approved recorder repair preserves that failure and requires fresh
+validation, self-review, reassessment and independent review. Its tooling changes
+do not change the compiled candidate or any fixture/library/dependency input.
+Current evidence must distinguish this exact compiler attribution from the new
+review-tooling source. Completion remains conditional on the actual closure record
+specified above; Step 7 has separate baseline/clean-candidate/external obligations.
+
+## Actual Step 6 closure and successor boundary — 2026-10-27
+
+C24.06 is closed by `13b6f258d65ef6819b9bf3610600c6e7f934bacda5971da79a607d70eb39dbb7` at final source `0e5822dddee9a5e63fe650917e872602bc83617f035cb2b33366ec3a91178a39`. Its genuine original review, substantive reconciliation and final applicability are linked from `.lit-review/setup/c24-06-completion-20261026.json`. The earlier interrupted dispatch and checker failures remain preserved. The compiled package identity remains checkpoint 05f9bec, separate from the repaired review-tooling source.
+
+C24.07's [retained baseline](c24-candidate-retention.md) does not extend that external run to a new commit. The containing successor requires fresh exact-SHA resolution, compilation and origin/pin evidence, including after documentation-only amendments. No remote installation is inferred.
+
+## Step 7–8 qualification and final candidate duty
+
+The Step 7 and Step 8 completion records establish their separate exact-SHA
+external runs. Step 8's consumer `run-03` resolved `ad6cf61f52738b8c381cd3179beedf52a963db0b`
+through local Git and passed all 64 recorded commands. Lake reported 3098 total
+jobs for the Consumer target, including dependencies and cached jobs; seven
+independent import/source-origin boundaries were checked. This used
+existing caches; it is not remote installation, a cold build or a PFR rebuild.
+Step 9 must repeat resolution and compilation for its own final SHA, even though
+its changes are documentation-only. The [handoff](../handoffs/chunk-24.md)
+provides the actual completion/evidence pointers and post-C24 obligations.

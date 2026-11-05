@@ -207,6 +207,12 @@ to an approved plan.
 
 ## Validation
 
+On the published v0.2.0 maintenance branch, run
+`python scripts/validate_published.py` (or add `static` for just the static
+checks). It checks the maintained citation and promotion workflow alongside
+the frozen release contracts. Use the tagged validator for the exact tagged
+snapshot and the focused build, documentation and trust commands below.
+
 The cross-platform release validator is the executable source of truth for the
 maintained target list and trust policy. During iteration, run focused targets
 through it:
@@ -359,9 +365,9 @@ checker must verify the frozen route digest and source-link boundary.
   affiliation `EPFL, Mathematics of Information Laboratory`. Under the
   approved automatic post-release GitHub--Zenodo route, the immutable tagged
   CFF remains DOI-free and no `.zenodo.json` is added. The evolving default-
-  branch CFF records the `v0.1.0` version DOI
-  `10.5281/zenodo.22229599`; the all-versions DOI is
-  `10.5281/zenodo.22229598`. The `v0.1.0` publication date is `2026-09-01`.
+  branch CFF records the v0.2.0 DOI `10.5281/zenodo.23973538` (2026-11-05).
+  The historical v0.1.0 DOI is `10.5281/zenodo.22229599` (2026-09-01).
+  The all-versions DOI is `10.5281/zenodo.22229598`.
 - Do not create, register, link, or configure a Zenodo account for the project
   lead. When a signed-in account is required for the integration preflight, ask
   the project lead to create or connect it, then inspect it read-only unless a
