@@ -276,6 +276,7 @@ EXPECTED_WORKFLOWS = frozenset(
     {
         "lean_action_ci.yml",
         "pages.yml",
+        "promote-release-pages.yml",
         "update.yml",
     }
 )
@@ -285,6 +286,10 @@ EXPECTED_WORKFLOWS = frozenset(
 # trigger, permission, job, or guard change, requires a deliberate hash update.
 EXPECTED_PAGES_WORKFLOW_SHA256 = (
     "c1f2c1080d0e1c587401faa7468db30a6c60e088e40805c75d12432543f85e52"
+)
+
+EXPECTED_RELEASE_PAGES_WORKFLOW_SHA256 = (
+    "466fa0dfc5b8100b5922cec2d223664727bf68d4968896895df8e6bf74a8afc6"
 )
 
 TEXT_SUFFIXES = {
@@ -1208,6 +1213,14 @@ def check_release_interlock() -> None:
                 mutable_actions.append(
                     f"{path.relative_to(ROOT).as_posix()}:{line_number}: {action}"
                 )
+
+    release_pages_path = workflow_dir / "promote-release-pages.yml"
+    release_pages_source = release_pages_path.read_text(encoding="utf-8")
+    if hashlib.sha256(release_pages_source.encode("utf-8")).hexdigest() != EXPECTED_RELEASE_PAGES_WORKFLOW_SHA256:
+        hits.append(
+            ".github/workflows/promote-release-pages.yml changed from its reviewed "
+            "manual release deployment; review before updating its checksum"
+        )
 
     pages_path = workflow_dir / "pages.yml"
     pages = pages_path.read_text(encoding="utf-8")
