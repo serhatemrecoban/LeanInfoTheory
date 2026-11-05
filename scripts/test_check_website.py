@@ -360,6 +360,22 @@ class CuratedTheoremLinkTests(unittest.TestCase):
 class VersionedWebsiteBoundaryTests(unittest.TestCase):
     SITE_COMMIT = "1" * 40
 
+    def test_release_ready_review_accepts_only_the_approved_current_citation(self) -> None:
+        for phase, page, ref, path, accepted in (
+            ("release-ready", "license.html", "v0.2.0", "CITATION.cff", True),
+            ("release-ready", "license.html", "v0.1.0", "CITATION.cff", True),
+            ("candidate", "license.html", "v0.2.0", "CITATION.cff", False),
+            ("release-ready", "other.html", "v0.2.0", "CITATION.cff", False),
+            ("release-ready", "license.html", "v0.2.0", "LeanInfoTheory.lean", False),
+            ("release-ready", "license.html", "v0.3.0", "CITATION.cff", False),
+        ):
+            with self.subTest(phase=phase, page=page, ref=ref, path=path):
+                validator = WebsiteValidator(Path.cwd(), "candidate")
+                validator.current_metadata = {"release_contract": {"phase": phase, "target_version": "0.2.0"}}
+                url = f"https://github.com/serhatemrecoban/LeanInfoTheory/blob/{ref}/{path}"
+                validator.validate_text_safety(page, f'<a href="{url}">citation</a>')
+                self.assertEqual(not validator.errors, accepted)
+
     def validator(self) -> WebsiteValidator:
         validator = WebsiteValidator(SITE_ROOT, "publishable")
         validator.metadata = {

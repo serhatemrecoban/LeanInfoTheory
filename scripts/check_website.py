@@ -1452,6 +1452,10 @@ class WebsiteValidator:
                     # Existing curated historical citations stay historical. In
                     # particular, no unpublished local SHA is advertised online.
                     expected = "v0.1.0"
+                    contract = (self.current_metadata or {}).get("release_contract") or {}
+                    if relative == "license.html" and project_path == "CITATION.cff" \
+                            and contract.get("phase") == "release-ready" and ref == "v" + contract["target_version"]:
+                        continue
                 if ref != expected:
                     self.error(f"{relative}: candidate project link uses {ref!r}, expected {expected!r}")
         if self.mode == "publishable":
