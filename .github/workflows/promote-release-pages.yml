@@ -1,0 +1,77 @@
+name: Deploy main website from a qualified release
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish the verified website to GitHub Pages
+        type: boolean
+        required: true
+        default: false
+
+permissions: {}
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Verify the public release and retrieve its qualified Pages archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE: 953b785fbdbcc9bffe22834124d5e1cbd14a4835
+          BUNDLES_REV: de641b1486b1b974faa0f5524fd35b9ab2e3d799
+          ZIP_SHA: 264e47231f2b7e8754fca143df9442a531c94c0e950576f0758dd0a9cf623e8b
+          TAR_SHA: ee4bd5a5f23c39d3f4811a05fba8733879ed728a692d523f7179f69c9b534ae8
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/master
+          repo=serhatemrecoban/LeanInfoTheory
+          gh api "repos/$repo/releases/tags/v0.2.0" | jq -e --arg sha "$SOURCE" '.immutable and (.draft == false) and (.target_commitish == $sha)' > /dev/null
+          tag=$(gh api "repos/$repo/git/ref/tags/v0.2.0" --jq '.object.sha')
+          test "$(gh api "repos/$repo/git/tags/$tag" --jq '.object.sha')" = "$SOURCE"
+          curl --fail --silent --show-error --location --retry 3 -o api-stage.json https://serhatemrecoban.github.io/LeanInfoTheory-API/v0.2.0/leaninfotheory-stage.json
+          echo "fe33be11049dfc3fac7d1563b0df8fd28a3e89ce38789e7cf54153c5fbc83d5a  api-stage.json" | sha256sum --check --strict
+          curl --fail --silent --show-error --location --retry 3 -o site.zip "https://raw.githubusercontent.com/serhatemrecoban/LeanInfoTheory-API/$BUNDLES_REV/packages/v0.2.0/main.zip"
+          echo "$ZIP_SHA  site.zip" | sha256sum --check --strict
+          unzip -p site.zip artifact.tar > artifact.tar
+          echo "$TAR_SHA  artifact.tar" | sha256sum --check --strict
+      - name: Include directory entries for the Pages hosting service
+        run: |
+          set -euo pipefail
+          mv artifact.tar qualified.tar
+          mkdir site restored
+          tar -xf qualified.tar -C site
+          tar --format=gnu --sort=name -cf artifact.tar -C site .
+          tar -xf artifact.tar -C restored
+          diff --recursive --brief --no-dereference site restored
+          sha256sum artifact.tar
+      - name: Upload the verified tar for Pages
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: github-pages
+          path: artifact.tar
+          if-no-files-found: error
+          retention-days: 7
+
+  deploy:
+    if: ${{ inputs.publish }}
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish the verified site
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
