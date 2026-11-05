@@ -16,13 +16,15 @@ SOURCE = "953b785fbdbcc9bffe22834124d5e1cbd14a4835"
 TAG = "c3ffcc3e8fd826e19ba354b169b4610d8b8f10c5"
 DOI = "10.5281/zenodo.23973538"
 WORKFLOW = "https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/promote-release-pages.yml"
-# All other release inputs, including the source-bound compatibility checker, stay exact.
-MAINTENANCE_PATHS = {
-    ".github/workflows/lean_action_ci.yml", ".github/workflows/promote-release-pages.yml",
-    "AGENTS.md", "README.md", "CITATION.cff", "docs/lean-info-theory-living-summary.md",
-    "docs/project-log.md", "scripts/validate_published.py", "home_page/index.html",
-    "home_page/license.html",
-}
+# These files are historical release evidence or the fixed package/legal inputs.
+# Current documentation and development work use the normal source checks below.
+FROZEN_PATHS = (
+    ".gitattributes", "LICENSE", "lean-toolchain", "lakefile.toml", "lake-manifest.json",
+    "docs/releases/v0.1.0.md", "docs/releases/v0.2.0-publication.md",
+    "docs/v0.1-release-contract.md", "docs/v0.1-legal-metadata-audit.md",
+    "docs/compatibility/candidate-release-state.json", "home_page/docs/v0.1.0",
+    ".github/workflows/pages.yml", ".github/workflows/update.yml",
+)
 WORKFLOW_HASHES = {
     "lean_action_ci.yml": "0c1a3bec7d7c824f74c0e6a00b7b26c1fd87da3a43dcc22271a69029f159e329",
     "promote-release-pages.yml": "6c14d7d5dd86344a65366fd42fb6c5266aa6934df9f4e84f1a785b72e09c6a93",
@@ -60,10 +62,17 @@ def check_maintenance() -> None:
     require(git("rev-parse", "v0.2.0").decode().strip() == TAG and
             git("rev-parse", "v0.2.0^{commit}").decode().strip() == SOURCE,
             "Fetch the immutable v0.2.0 tag before validating maintenance.")
-    paths = git("diff", "--no-renames", "--name-only", "-z", SOURCE, "--")
-    paths += git("ls-files", "--others", "--exclude-standard", "-z")
-    unexpected = {p.decode() for p in paths.split(b"\0") if p} - MAINTENANCE_PATHS
-    require(not unexpected, f"Changes outside v0.2.0 maintenance: {sorted(unexpected)}")
+    changed = git("diff", "--name-only", "-z", SOURCE, "--", *FROZEN_PATHS)
+    require(not changed, "Immutable release evidence or fixed package inputs changed: " +
+            ", ".join(p.decode() for p in changed.split(b"\0") if p))
+    workflows = ROOT / ".github/workflows"
+    found = {p.name for p in workflows.iterdir() if p.suffix in {".yml", ".yaml"}}
+    require(found == set(WORKFLOW_HASHES) | {"pages.yml", "update.yml"},
+            "Review changes to the set of GitHub workflows")
+    require(not git("ls-files", "--", "docs/next-website-tasks.md", ".zenodo.json", "NOTICE"),
+            "Unexpected tracked private file or publication metadata")
+    require(not (ROOT / ".zenodo.json").exists() and not (ROOT / "NOTICE").exists(),
+            "Unexpected post-release licensing or Zenodo override")
     for name, digest in WORKFLOW_HASHES.items():
         data = (ROOT / ".github/workflows" / name).read_bytes()
         require(hashlib.sha256(data).hexdigest() == digest, f"Review changed workflow: {name}")
@@ -99,8 +108,13 @@ def check_static() -> None:
         subprocess.run(["git", "clone", "--quiet", "--shared", "--no-checkout", str(ROOT), str(ref)], check=True)
         subprocess.run(["git", "checkout", "--quiet", "--detach", SOURCE], cwd=ref, check=True)
         (ref / "tmp").mkdir(exist_ok=True)
-        subprocess.run([sys.executable, "scripts/validate_release.py", "static"], cwd=ref, check=True)
+        subprocess.run([sys.executable, "scripts/validate_release.py", "metadata"], cwd=ref, check=True)
         subprocess.run([sys.executable, "scripts/test_release_state.py"], cwd=ref, check=True)
+    release.check_lean_source()
+    release.load_public_manifest()
+    release.check_toolchain_contract()
+    release.check_docbuild_contract()
+    release.check_candidate_release_contract()
     release.check_release_documentation_contract()
     release.check_generated_artifacts()
     release.check_hygiene()
