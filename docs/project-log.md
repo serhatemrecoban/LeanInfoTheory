@@ -5,6 +5,50 @@ detail. It is not meant to list every small command or proof attempt. It should
 help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
+<!-- v02-release-date-log:start -->
+## Target release date revised to November 5, decision on 2026-11-04
+
+The user explicitly requested 5 November 2026 after discussing the remaining
+qualification/publication work. Updated only primary working release metadata,
+current citation dates and release prose, plus canonical context. Historical
+dates, retained artifacts and the qualified 02b06aa checkout remain unchanged.
+The completed run is bound to its actual November 4 metadata; the next candidate
+with the date change requires fresh exact-SHA qualification. No invariant capture
+producer input changes, and no commit/public action follows from this date update.
+The visible README/homepage dates, GitHub release draft and API guide are also
+updated. A direct comparison against the selected release date passed. Two tests
+that copy real pages had assumed November 4 in their fixtures; the fixtures now
+read the selected date. All 18 release-state tests and the static suite pass.
+<!-- v02-release-date-log:end -->
+
+<!-- v02-binding-qualification-log:start -->
+## Approved retained binding and qualification preflight, 2026-11-04
+
+Installed the approved exact eight-path baseline/envelope and documentation packet
+in the existing release checkout and mirrored owned changes to the primary source.
+Created local containing commit `12a046b59a9d46d3e1dcc38c51a8aa9d46a98907`, tree
+`e85785c2c57ed870e6e0000ab480cfd856154ce0`, without amending the export checkpoint.
+The first installation attempt stopped on raw CRLF/LF correspondence in the shared
+log before staging. A guarded resume preserved all unrelated primary log bytes
+and verified the exact approved LF candidate payload; original outcomes remain.
+
+The full suite then failed its static contract-marker check because the reviewed
+prose replacement omitted the historical C24.07 reference. Prepared a one-line
+restoration naming C24.07/C24.09. It changes no producer, retained data, checker or
+mathematics. Fresh static validation and independent correction review passed.
+The user approved the exact corrective commit, creating clean candidate
+`02b06aaed8a3318c208df7827cd4a25e44c83bf2`, tree
+`404de53511a81a13acda6e9fef6d133e3d0d30f9`. Its complete routine suite passed in
+5,615.869 seconds on November 5 with both normal retained comparisons and clean
+final hygiene. The first local consumer stopped in dependency extraction, before compilation.
+Both affected archives reproduced the error at the original path length and extracted
+successfully at the shorter length. The fresh run of the unchanged recipe passed
+on the same SHA, verifying all seven external examples and their physical origins.
+Independent review of this local result is complete; no mandatory finding remains. The original failed suite
+run remains attributed to 12a046b. No remote, API milestone or publication action
+occurred.
+<!-- v02-binding-qualification-log:end -->
+
 <!-- v02-capture-log:start -->
 ## Approved source checkpoint for release capture, 2026-11-04
 

@@ -140,6 +140,8 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--repository', type=Path, required=True,
                         help='approved clean candidate checkout (local Git source)')
+    parser.add_argument('--github', action='store_true',
+                        help='install from the canonical public GitHub repository')
     parser.add_argument('--candidate-sha', required=True)
     parser.add_argument('--workspace', type=Path, required=True,
                         help='primary repository owning the approved ignored locations')
@@ -160,12 +162,16 @@ def main(argv: list[str] | None = None) -> int:
     require(not child_of(work, repository) and not child_of(repository, work),
             'consumer and candidate checkouts must be physically separate')
     environment, removed = clean_environment(dict(os.environ))
+    if args.github:
+        # URL rewrites and alternate protocols must not substitute a local clone.
+        environment.update(GIT_CONFIG_GLOBAL=os.devnull, GIT_CONFIG_SYSTEM=os.devnull,
+                           GIT_CONFIG_NOSYSTEM="1", GIT_ALLOW_PROTOCOL="https")
     evidence.mkdir(parents=True, exist_ok=False)
     commands = Commands(evidence, environment)
     report = {'schema': 1, 'status': 'RUNNING', 'candidate_sha': args.candidate_sha,
               'repository': str(repository), 'work_dir': str(work),
               'removed_inherited_environment_names': removed,
-              'evidence_class': 'LOCAL_GIT_EXTERNAL_PACKAGE',
+              'evidence_class': ('REMOTE_GIT_EXTERNAL_PACKAGE' if args.github else 'LOCAL_GIT_EXTERNAL_PACKAGE'),
               'remote_installation_verified': False, 'full_clean_suite': False}
     try:
         commands.run(['git', '--no-optional-locks', '-C', str(workspace),
@@ -196,7 +202,8 @@ def main(argv: list[str] | None = None) -> int:
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(data)
         (work / 'lean-toolchain').write_bytes(toolchain)
-        url = repository.as_uri()
+        url = ('https://github.com/serhatemrecoban/LeanInfoTheory' if args.github
+               else repository.as_uri())
         (work / 'lakefile.toml').write_text(configuration(url, args.candidate_sha), encoding='utf-8')
         report['package_configuration_sha256'] = sha256((work / 'lakefile.toml').read_bytes())
         commands.run(['lake', 'update'], work)
@@ -247,6 +254,10 @@ def main(argv: list[str] | None = None) -> int:
             if name.endswith('.lean'):
                 require((work / name).read_bytes() == data, f'{name}: fixture changed')
         report['resolved_manifest_sha256'] = sha256(raw)
+        if args.github:
+            origin = commands.git(packages_dir / 'LeanInfoTheory', 'remote', 'get-url', 'origin')
+            require(origin.decode().strip().removesuffix('.git') == url, 'wrong GitHub clone origin')
+            report['remote_installation_verified'] = True
         report['status'] = 'PASS'
     except Exception as exc:
         report.update(status='FAIL', error_type=type(exc).__name__, error=str(exc))

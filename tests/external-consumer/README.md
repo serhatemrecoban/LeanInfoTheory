@@ -43,6 +43,10 @@ python -B tests/external-consumer/run.py `
   --evidence-dir '.lit-review/setup/c24-06-20261026/external-run-01'
 ```
 
+For public qualification after the exact commit is on GitHub, pass `--github`.
+Use fresh work and evidence folders. This installs from the canonical HTTPS URL,
+verifies the resolved Git origin, and runs the same seven compiler and origin checks.
+
 Use approved paths appropriate to the execution host. Both output directories
 must be new: the recipe refuses to overwrite or clean an earlier run. Keep prior
 attempts and use a fresh numbered child under the approved consumer location

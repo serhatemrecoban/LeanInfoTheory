@@ -14,7 +14,7 @@ the unpublished v0.2.0 candidate retains the lightweight root's 92 aliases and
 [module guide](../home_page/module-guide.html) for current focused imports and
 the [candidate notes](releases/v0.2.0.md) for assumptions and delivered scope.
 
-The root package/CFF prepare 0.2.0 with approved date 2026-11-04 and no DOI;
+The root package/CFF prepare 0.2.0 with approved date 2026-11-05 and no DOI;
 publication remains pending. Docbuild's internal package and dependency pins
 are unchanged. This metadata transition changes API build
 inputs and invalidates automatic reuse of an older content attestation. C24.08
@@ -698,3 +698,23 @@ inventory found no reason to add a redundant root `NOTICE`, and the Step 14
 attribution review confirmed that final determination. Exact upstream licence
 copies and the provenance inventory remain part of the assembled artifact.
 Project EPFL/MIL headers are not applied to upstream or generated material.
+
+## Packaging the v0.2.0 Pages sites
+
+The publication-off dispatch of the Lean build workflow accepts `api_docs=true`,
+`pages_dry_run=true` and `publish=false`. It builds the two-pass API with
+GitHub links pinned to the checked-out commit. The packager validates the
+retained API producer, recovers the public v0.1.0 files listed in
+`scripts/data/pages-v0.1.0-files.txt`, and checks their whole-tree digest.
+Each site has its own size check, content digest and GitHub Pages archive.
+The source links and search results in the complete newer API resolve under
+`/LeanInfoTheory-API/v0.2.0/`. The main project entry is `/LeanInfoTheory/`.
+
+For a local replay after the GitHub-mode API gate, use
+`python scripts/package_release_pages.py build --expected-commit SHA --historical-route PATH`
+with the full commit and the verified deployed historical directory. The
+`check` command compares an existing pair with the same inputs. Both outputs
+are under `.lake/release-pages/SHA/`. The workflow's two named archive
+artifacts contain public site files only. The website deployment handoff uses
+those verified bytes after GitHub publication, first checking the API site
+live and then updating the main site.

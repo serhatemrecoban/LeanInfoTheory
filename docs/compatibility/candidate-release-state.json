@@ -5,7 +5,7 @@
     "api_repository": "serhatemrecoban/LeanInfoTheory-API",
     "api_url": "https://serhatemrecoban.github.io/LeanInfoTheory-API/v0.2.0/",
     "main_url": "https://serhatemrecoban.github.io/LeanInfoTheory/",
-    "release_date": "2026-11-04"
+    "release_date": "2026-11-05"
   },
   "reserved_route": "/docs/v0.2.0/",
   "retention": "established",

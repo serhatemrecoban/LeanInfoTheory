@@ -20,7 +20,8 @@ License: **Apache-2.0**.
 [Get started](#installation) ·
 [Practical guides](https://serhatemrecoban.github.io/LeanInfoTheory/docs/) ·
 [API reference](https://serhatemrecoban.github.io/LeanInfoTheory/docs/v0.2.0/) ·
-[Theorem highlights](https://serhatemrecoban.github.io/LeanInfoTheory/theorems.html)
+[Theorem highlights](https://serhatemrecoban.github.io/LeanInfoTheory/theorems.html) ·
+[Watch my LeanInfoTheory talk at EPFL](https://youtu.be/CXHebbD7ouA)
 
 ## What you can build
 
@@ -57,7 +58,7 @@ results stay in LeanInfoTheory when their ownership and assumptions are general.
 
 ## Release
 
-Version **0.2.0**, dated **4 November 2026**, expands the library by 210
+Version **0.2.0**, dated **5 November 2026**, expands the library by 210
 supported declarations and 26 modules while retaining the original surface.
 The [release overview](docs/releases/v0.2.0-publication.md) describes the
 mathematical coverage, assumptions and limits. The
@@ -96,7 +97,7 @@ all-versions DOI is
 `CITATION.cff` and GitHub Release intentionally remain DOI-free. After v0.1.0
 publication, default-branch citation metadata recorded the issued version DOI
 without moving the tag; the current CFF prepares v0.2.0 with the approved date
-`2026-11-04` and no version DOI. Archive verification and any DOI follow-up
+`2026-11-05` and no version DOI. Archive verification and any DOI follow-up
 remain separate from the immutable tagged citation.
 
 The released `v0.1.0` surface contains 31 modules, 601 documented
@@ -565,7 +566,7 @@ holder. The project is licensed under the Apache License, Version 2.0; see
 ## Citation
 
 [CITATION.cff](CITATION.cff) records version **0.2.0**, release date
-**2026-11-04**, the creator and affiliation, and Apache-2.0 licensing. The tagged
+**2026-11-05**, the creator and affiliation, and Apache-2.0 licensing. The tagged
 metadata intentionally remains DOI-free under the GitHub–Zenodo archive route.
 Use the verified version record for the software version actually used; before
 publication, identify the exact source checkpoint instead of an assumed tag.

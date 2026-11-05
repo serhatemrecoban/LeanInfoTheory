@@ -52,8 +52,9 @@ class ReleaseStateTests(unittest.TestCase):
         _, historical = compatibility.load_baseline()
         cls.config = {p: (ROOT / p).read_bytes() for p in
                       ("lean-toolchain", "lakefile.toml", "lake-manifest.json")}
-        cls.config["lakefile.toml"] = state.project_lakefile(
-            cls.config["lakefile.toml"], state.load_state(ROOT))
+        live = state.load_state(ROOT)
+        cls.site_date = live.get("publication", {}).get("release_date", "2026-09-01")
+        cls.config["lakefile.toml"] = state.project_lakefile(cls.config["lakefile.toml"], live)
         cls.hashes = {p: historical["release_source_sha256"][p] for p in cls.config}
         # The projected fixture must match independent immutable release hashes;
         # deriving expected hashes from live candidate bytes would weaken the test.
@@ -267,7 +268,7 @@ class ReleaseStateTests(unittest.TestCase):
         for name in ("index.html", "license.html"):
             path = self.root / "home_page" / name
             source = path.read_text(encoding="utf-8")
-            source = source.replace('name="citation_publication_date" content="2026-11-04"',
+            source = source.replace(f'name="citation_publication_date" content="{self.site_date}"',
                                     'name="citation_publication_date" content="2026-09-01"')
             if 'name="citation_doi"' not in source:
                 source = source.replace('</head>',
@@ -303,7 +304,7 @@ class ReleaseStateTests(unittest.TestCase):
         self.metadata_fixture()
         self.candidate()
         ready = {**self.policy, "phase": "release-ready", "retention": "established",
-                 "publication": {**state.PUBLICATION, "release_date": "2026-11-04"}}
+                 "publication": {**state.PUBLICATION, "release_date": self.site_date}}
         self.write_policy(ready)
         (self.root / "CITATION.cff").write_text(state.expected_citation(ready), encoding="utf-8")
         (self.root / "README.md").write_bytes((ROOT / "README.md").read_bytes())
@@ -314,9 +315,9 @@ class ReleaseStateTests(unittest.TestCase):
             for name in ("index.html", "license.html"):
                 path = self.root / "home_page" / name
                 original = path.read_text(encoding="utf-8")
-                marker = '<meta name="citation_publication_date" content="2026-11-04">'
+                marker = f'<meta name="citation_publication_date" content="{self.site_date}">'
                 self.assertIn(marker, original)
-                for replacement in (marker.replace("2026-11-04", "2026-09-01"), "", marker * 2):
+                for replacement in (marker.replace(self.site_date, "2026-09-01"), "", marker * 2):
                     path.write_text(original.replace(marker, replacement), encoding="utf-8")
                     with self.subTest(page=name, replacement=replacement), \
                          self.assertRaisesRegex(validator.ValidationError, "citation_publication_date"):

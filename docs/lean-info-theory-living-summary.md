@@ -36,6 +36,45 @@ Status labels used below:
 
 ## 0. AI Assistant Quick Start
 
+<!-- v02-release-date:start -->
+**[Decision] Second-release target date revised to 2026-11-05.**
+
+The user explicitly approved 5 November 2026 after confirming that the remaining
+qualification and publication gates could not reasonably finish before midnight.
+Primary state/CFF, current citation tags and release prose now use the revised
+date. Historical dates and prior evidence remain unchanged. The clean
+02b06aa run tested its committed November 4 metadata; its results cannot
+qualify a successor containing the date revision. Include the new date with the
+remaining publication changes, then run the required exact-SHA checks. No date-
+affected file is an invariant capture producer input; no recapture is inferred
+solely from this edit. The user retains the final Publish release action.
+<!-- v02-release-date:end -->
+
+<!-- v02-binding-qualification:start -->
+**[Current] Second-release local suite and external consumer passed - 2026-11-05.**
+
+The user approved the exact eight-path binding and local qualification. The clean
+containing checkpoint was `12a046b59a9d46d3e1dcc38c51a8aa9d46a98907`, tree
+`e85785c2c57ed870e6e0000ab480cfd856154ce0`, above the examined export checkpoint.
+Its artifact/envelope match the approved proposal. The primary staged identity
+and unrelated bytes, including the shared log history, were preserved.
+
+The first full-suite attempt stopped in the static documentation gate: the updated
+contract omitted its historical C24.07 reference. The one-line correction restores
+explicit C24.07/C24.09 attribution; it changes no capture, producer or acceptance
+rule and passes the fresh static suite. Independent correction review passed, and
+the user approved its exact corrective commit. The clean corrected candidate is
+`02b06aaed8a3318c208df7827cd4a25e44c83bf2`, tree
+`404de53511a81a13acda6e9fef6d133e3d0d30f9`. Its fresh complete routine suite passed
+in 5,615.869 seconds with a clean final checkout, including both normal retained
+comparisons, all nine examples, 57 direct imports and the project trust audit.
+The first consumer attempt stopped during dependency extraction. A fresh run at a
+shorter Windows path passed the unchanged recipe: seven external examples compiled
+against the candidate from local Git. Independent review of this local result is complete; no mandatory finding remains.
+Remote installation, final public API artifacts and the production host remain unqualified.
+The user still performs the final GitHub Publish release action.
+<!-- v02-binding-qualification:end -->
+
 <!-- v02-capture:start -->
 **[Current] Second-release Step 4 retained binding approved; qualification pending - 2026-11-04.**
 

@@ -3,7 +3,7 @@ message: "If you use LeanInfoTheory in your work, please cite the software using
 type: software
 title: "LeanInfoTheory"
 version: "0.2.0"
-date-released: 2026-11-04
+date-released: 2026-11-05
 authors:
   - family-names: "Coban"
     given-names: "Serhat Emre"
