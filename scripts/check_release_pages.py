@@ -22,6 +22,22 @@ class SplitLinks(checks.WebsiteValidator):
         return text.replace(self.frozen, checks.VERSION_ROUTE + "/").replace(
             self.current, checks.CURRENT_ROUTE + "/")
 
+    def advisory_coordinates(self, message: str) -> str:
+        """Compare the mounted result in the original snapshot's coordinate system."""
+        source, detail = message.split(": ", 1)
+        for mount, original in ((self.frozen, checks.VERSION_ROUTE), (self.current, checks.CURRENT_ROUTE)):
+            if not source.startswith(mount):
+                continue
+            description, separator, target = detail.rpartition(" -> ")
+            if not separator:
+                raise ValueError("unexpected dependency advisory: " + message)
+            # A few upstream hrefs point above the snapshot. Keep the actual
+            # href and failure, translating only the reported filesystem path.
+            relative = posixpath.relpath(target, mount.rstrip("/"))
+            reported = posixpath.normpath(posixpath.join(original, relative))
+            return f"{original}/{source[len(mount):]}: {description} -> {reported}"
+        raise ValueError("dependency advisory outside the two versioned snapshots: " + message)
+
     def is_imported_dependency_page(self, relative: str) -> bool:
         # The two versions use the same imported package names.
         mapped = self.canonical(relative).replace(checks.CURRENT_ROUTE + "/", checks.VERSION_ROUTE + "/", 1)
@@ -64,7 +80,7 @@ class SplitLinks(checks.WebsiteValidator):
                     parent = posixpath.dirname(parent)
         self.validate_links()
         baseline = checks.WebsiteValidator(self.site_root, "candidate")
-        baseline.advisories = [self.canonical(message) for message in self.advisories]
+        baseline.advisories = [self.advisory_coordinates(message) for message in self.advisories]
         baseline.validate_advisory_baseline()
         problems = self.errors + baseline.errors
         if problems:
