@@ -11,6 +11,12 @@ theory: entropy, mutual information, KL divergence, channels, Markov chains, dat
 processing, Fano inequalities, and sufficient statistics. LeanInfoTheory brings
 these tools together in a reusable finite-discrete API built on mathlib.
 
+The goal of LeanInfoTheory is to build a foundation for a collaboratively
+maintained information-theory library.
+
+Created and maintained by [Serhat Emre Coban](https://serhatemrecoban.github.io/).
+[Collaboration guide](CONTRIBUTING.md) · [Contributors and acknowledgments](#contributors-and-acknowledgments)
+
 **811 supported declarations. 57 supported modules.** Version **0.2.0**
 adds quantitative probability, independent products, finite-iid source coding
 and finite-channel capacity and weak converses. Definitions and theorems are
@@ -529,6 +535,19 @@ Further work includes reusable finite information theory, downstream research
 formalizations and improved theorem-level documentation. Channel achievability
 and stronger channel-coding results require separate mathematical development;
 they are not part of v0.2.0. See the [public roadmap](home_page/roadmap.html).
+
+## Contributors and acknowledgments
+
+I welcome collaborators, whether you work in information theory, Lean, or both.
+You don't need a finished proof: a theorem you need, a counterexample that
+clarifies an assumption, or a correction to a guide is a useful place to start.
+See the [collaboration guide](CONTRIBUTING.md) or
+[open an issue](https://github.com/serhatemrecoban/LeanInfoTheory/issues).
+
+Thank you to **Yana and Emre** for guidance in information theory, and to
+**Viktor and Thomas** for guidance in Lean.
+
+[See code contributors on GitHub](https://github.com/serhatemrecoban/LeanInfoTheory/graphs/contributors).
 
 ## AI-assisted development
 

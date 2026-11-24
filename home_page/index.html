@@ -33,9 +33,8 @@
         A machine-checked information theory library for Lean 4.
       </h2>
       <p class="project-authors">
-        <a href="https://serhatemrecoban.github.io/" target="_blank" rel="noopener noreferrer">
-          by Serhat Emre Coban
-        </a>
+        Created and maintained by <a href="https://serhatemrecoban.github.io/">Serhat Emre Coban</a>
+        &middot; <a href="#contributors">Contributors and acknowledgments</a>
       </p>
       <nav class="project-links" aria-label="Project links">
         <a href="docs/getting-started.html" class="btn">Get Started</a>
@@ -101,11 +100,10 @@
       <section class="project-summary" aria-labelledby="summary-heading">
         <h2 id="summary-heading">A foundation for your next formalization</h2>
         <p>
-          Put machine-checked information theory to work. LeanInfoTheory is a
-          reusable Lean 4 and mathlib library for finite discrete information
-          theory, bringing entropy, mutual information, KL divergence, channels,
-          Markov chains, data processing, Fano inequalities, and sufficient
-          statistics into one substantial mathematical toolkit.
+          The goal of LeanInfoTheory is to build a foundation for a collaboratively
+          maintained information-theory library. It brings finite discrete entropy,
+          mutual information, KL divergence, channels, Markov chains, and their
+          inequalities together in Lean 4 on top of mathlib.
         </p>
         <p>
           Build research formalizations and information-theoretic software on
@@ -117,6 +115,7 @@
         <p>
           <a href="docs/getting-started.html">Install and prove your first result</a>
           or explore <a href="docs/research-projects.html">the research-project guide</a>.
+          To help build the library, start with the <a href="#collaboration">collaboration guide</a>.
         </p>
       </section>
 
@@ -389,6 +388,32 @@
           <li><span class="status-pill planned">Planned</span> Theorem-level blueprint pages and a blueprint PDF extending the current module dependency map.</li>
           <li><span class="status-pill separate">Later</span> Channel-coding achievability, operational channel-capacity equality and the channel strong converse remain outside this release.</li>
         </ul>
+      </section>
+
+      <section aria-labelledby="collaboration">
+        <h2 id="collaboration">Collaboration guide</h2>
+        <p>
+          I welcome collaborators, whether you work in information theory, Lean, or both.
+          You don't need a finished Lean proof to get involved.
+        </p>
+        <ul>
+          <li><strong>Suggest a theorem.</strong> <a href="https://github.com/serhatemrecoban/LeanInfoTheory/issues">Open an issue</a>
+            with the mathematical statement, a reference if you have one, and how you would use it.</li>
+          <li><strong>Plan a formalization.</strong> For a larger project, discuss the hypotheses and
+            which existing results might help before starting the proof.</li>
+          <li><strong>Improve an example or fix a bug.</strong> Small fixes can go straight to a pull request.
+            The <a href="https://github.com/serhatemrecoban/LeanInfoTheory#contributors-and-acknowledgments">contributor section on GitHub</a>
+            links to the full guide, including setup and what to check.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="contributors">
+        <h2 id="contributors">Contributors and acknowledgments</h2>
+        <p>
+          Thank you to <strong>Yana and Emre</strong> for guidance in information theory,
+          and to <strong>Viktor and Thomas</strong> for guidance in Lean.
+        </p>
+        <p><a href="https://github.com/serhatemrecoban/LeanInfoTheory/graphs/contributors">See code contributors on GitHub</a>.</p>
       </section>
 
       <footer class="site-footer">
