@@ -544,8 +544,8 @@ clarifies an assumption, or a correction to a guide is a useful place to start.
 See the [collaboration guide](CONTRIBUTING.md) or
 [open an issue](https://github.com/serhatemrecoban/LeanInfoTheory/issues).
 
-Thank you to **Yana and Emre** for guidance in information theory, and to
-**Viktor and Thomas** for guidance in Lean.
+1. Thanks to **Emre Telatar** and **Yanina Y. Shkel** for their guidance in information theory.
+2. Thanks to **Thomas Bourgeat** and **Viktor Kunčak** for their guidance in formal verification.
 
 [See code contributors on GitHub](https://github.com/serhatemrecoban/LeanInfoTheory/graphs/contributors).
 
