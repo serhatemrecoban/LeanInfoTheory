@@ -1,0 +1,60 @@
+/* The release bundles these additions with the main site's shared stylesheet. */
+.page-header { padding: 2.25rem 1rem 1.75rem; }
+.page-header .project-name { margin: 0 auto; max-width: none; font-size: clamp(2rem, 4vw, 3.1rem); line-height: 1.15; }
+.page-header .project-tagline { margin: .45rem auto 1.1rem; }
+.project-links { display: flex; justify-content: center; flex-wrap: wrap; gap: .55rem; }
+.project-links .btn { display: inline-flex; align-items: center; width: auto; min-height: 44px; padding: .5rem .85rem; margin: 0; color: #fff; }
+.main-content { max-width: 62rem; margin-inline: auto; padding: 2rem clamp(1rem, 5vw, 4.75rem) 3rem; }
+.main-content article h1 { color: #243746; font-weight: 600; line-height: 1.2; font-size: clamp(1.9rem, 4vw, 2.65rem); }
+.main-content article h2 { border-bottom: 1px solid #dce6ea; padding-bottom: .35rem; line-height: 1.25; }
+.main-content article p, .main-content article li { max-width: none; color: #34474e; }
+.chapter-nav { margin: 1.2rem 0 1.75rem; }
+.chapter-nav ul { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; list-style: none; padding: 0; }
+.chapter-nav li + li { margin: 0; }
+.chapter-nav a { text-decoration: underline; text-underline-offset: .18em; }
+.main-content .statement { margin: 1rem 0; padding: .9rem 1.15rem; border-left: 4px solid #159957; background: #f2f8f5; color: #243746; }
+.statement > :last-child { margin-bottom: 0; }
+.main-content .equation { margin: 1rem 0; font: 1.15em/1.5 "Cambria Math", Georgia, serif; color: #243746; }
+article :is(sub,sup) { line-height: 0; }
+article a { overflow-wrap: anywhere; }
+article table { width: 100%; border-collapse: collapse; }
+article caption { text-align: left; color: #34474e; margin: .4rem 0; font-weight: 600; }
+article th, article td { text-align: left; padding: .5rem; border-bottom: 1px solid #dce6ea; }
+.proof-dependencies { margin: 1.4rem 0; max-width: 42rem; break-inside: avoid; }
+.proof-dependencies figcaption { font-weight: 600; color: #34474e; margin-bottom: .6rem; }
+.proof-ingredients { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; list-style: none; margin: 0; padding: 0; }
+.proof-ingredients li + li { margin: 0; }
+.proof-ingredients > *, .main-content .proof-conclusion { padding: .6rem .7rem; border: 1px solid #b9ccc5; border-radius: .3rem; text-align: center; }
+.main-content .proof-conclusion { position: relative; margin: 1rem 0 0; background: #f2f8f5; }
+.proof-conclusion::before, .proof-conclusion::after { content: ""; position: absolute; bottom: 100%; height: 1rem; border-left: 1px solid #78998b; }
+.proof-conclusion::before { left: 25%; }
+.proof-conclusion::after { right: 25%; }
+@media (max-width: 36rem) {
+  article table { font-size: .875rem; }
+  article th, article td { padding: .4rem .2rem; }
+  .chapter-nav ul { display: grid; }
+}
+
+@page { size: A4; margin: 18mm 19mm; @bottom-right { content: counter(page); font: 9pt Arial, sans-serif; color: #586e69; } }
+@media print {
+  html, body { margin: 0; max-width: none; overflow: visible; }
+  body { color: #172e37; font-family: Georgia, "Times New Roman", serif; font-size: 11pt; line-height: 1.45; }
+  #skip-to-content, .project-links, .chapter-nav, .site-footer { display: none; }
+  .page-header { padding: 0 0 8pt; margin-bottom: 14pt; text-align: left; border-bottom: 1pt solid #71978c; background: white; color: #25423b; }
+  .page-header .project-name, .page-header .project-tagline { display: inline; font: 11pt Arial, sans-serif; margin: 0; opacity: 1; }
+  .page-header .project-name { font-weight: 700; margin-right: 12pt; }
+  .main-content { width: auto; max-width: none; margin: 0; padding: 0; font-size: inherit; }
+  .main-content article h1 { margin: 0 0 9pt; color: #172e37; font-size: 25pt; }
+  .main-content article h2 { margin: 14pt 0 7pt; font-size: 18pt; color: #145844; }
+  .main-content article h3 { margin: 10pt 0 4pt; color: #243746; font-size: 12pt; font-weight: 700; }
+  .main-content article p, .main-content article li { color: #172e37; }
+  .main-content article p { margin: 0 0 7pt; }
+  .main-content article section + section, .main-content article + article { break-before: page; }
+  .main-content :is(h1,h2,h3) { break-after: avoid; }
+  .statement, .equation, table { break-inside: avoid; }
+  .main-content .statement { padding: 6pt 10pt; margin: 8pt 0; print-color-adjust: exact; }
+  .main-content .equation { margin: 7pt 0; }
+  .proof-dependencies { font-size: 10pt; margin: 10pt 0; }
+  article a { color: #18587e; text-decoration: underline; }
+  p, li { orphans: 2; widows: 2; }
+}

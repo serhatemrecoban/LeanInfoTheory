@@ -45,7 +45,7 @@ PROMOTION_PINS = "docs/compatibility/v0.3.0-promotion.json"
 PROMOTION_TEMPLATE = "scripts/templates/promote-release3-pages.yml"
 R3_TEMPLATE_SHA256 = "b35a84c9e49d5ec8ddae588b78f722cf486e71026a41f552c3ee39bf3630ec76"
 R3_MAIN_PROMOTION_SHA256 = "029fe109b3408803077207c0f0d4d63050fe9c51a78da913ffa6e04a940dcaf6"
-R3_MAINTENANCE_PROMOTION_SHA256 = "63cbadd0def69d608bb05e11725b3e53a3972bc008750ae1d3d04f10ed94c64b"
+R3_MAINTENANCE_PROMOTION_SHA256 = "f168c38792fad68afcbf01ba2203061d5623d3d4495546f5a207e52dcbe7809c"
 
 
 def check_release3_promotion(current: dict, workflow: bytes) -> None:

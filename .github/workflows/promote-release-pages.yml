@@ -36,6 +36,8 @@ jobs:
             /home_page/index.html
             /home_page/license.html
             /home_page/docs/research-projects.html
+            /home_page/blueprint/index.html
+            /home_page/roadmap.html
             /home_page/docs/figures/reuse-layers.svg
             /home_page/styles.css
             /scripts/compose_release3_citation_pages.py
@@ -53,7 +55,7 @@ jobs:
           sha256sum --check --strict <<'PINS'
           099c686a50d3cfe1671328427917c6733dc4491ecf1eb37ac99c4ee014dbd12c  docs/compatibility/v0.3.0-promotion.json
           fba89f4e195c442d428fb597297bfbd9d3a6ea6ae23a2ca626a93f213d2c8aa0  docs/compatibility/v0.3.0-release-state.json
-          46642d92602bf9eceda6a12447f235b9fb5352a76f7f4752ce6a419cccd2ef4d  scripts/compose_release3_citation_pages.py
+          19805759f198af7dadf8facc2acdee0478138b1d461fcb68d7e14ff59e98983e  scripts/compose_release3_citation_pages.py
           PINS
           source_sha=$(jq -er '.release_commit | select(test("^[a-f0-9]{40}$"))' docs/compatibility/v0.3.0-promotion.json)
           tag_sha=$(jq -er '.annotated_tag | select(test("^[a-f0-9]{40}$"))' docs/compatibility/v0.3.0-promotion.json)

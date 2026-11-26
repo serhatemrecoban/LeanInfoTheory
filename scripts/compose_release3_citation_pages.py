@@ -14,7 +14,7 @@ from stage_website import ROOT_MARKER, require_unredirected_components, tree_dig
 
 
 CITATION_PAGES = ("index.html", "license.html")
-PAGES = (*CITATION_PAGES, "docs/research-projects.html")
+PAGES = (*CITATION_PAGES, "docs/research-projects.html", "blueprint/index.html", "roadmap.html")
 FIGURE = "docs/figures/reuse-layers.svg"
 ASSETS = ("styles.css", FIGURE)
 MAINTAINED_FILES = (*PAGES, *ASSETS)

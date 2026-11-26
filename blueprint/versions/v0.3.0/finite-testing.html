@@ -1,0 +1,63 @@
+<article aria-label="Finite hypothesis testing">
+  <h1>Finite hypothesis testing</h1>
+  <p>How often can a test detect an alternative law if its probability of a false alarm must be exactly one quarter? For two specified laws on a finite alphabet, the Neyman–Pearson theorem answers the same question at every level from zero to one. Its proof has two parts. First, a threshold test maximizes power at its own size. Then a choice of threshold and randomization gives that test the requested size.</p>
+  <nav class="chapter-nav" aria-label="Chapter sections">
+    <ul>
+      <li><a href="#tests">Size, power and a two-outcome test</a></li>
+      <li><a href="#optimality">Why a threshold test is optimal</a></li>
+      <li><a href="#exact-size">How to attain the prescribed size</a></li>
+    </ul>
+  </nav>
+
+  <section id="tests">
+    <h2>Size, power and a two-outcome test</h2>
+    <p>Let <var>p</var>(<var>x</var>) be the probability of observing <var>x</var> under the null law and <var>q</var>(<var>x</var>) its probability under the alternative. In Lean these laws are <code>P0</code> and <code>P1</code>. A randomized test assigns each observation a number <var>f</var>(<var>x</var>) in [0, 1], the probability of rejecting the null after seeing that observation. This definition works on any observation type. A finite alphabet lets us evaluate the test by summing its rejection probabilities under each law. <a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Probability/BinaryTesting.html#PMF.BinaryTest">Test definition</a> · <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/d12af2d34d49ee493f55c8924cebff815b2953be/LeanInfoTheory/Probability/BinaryTesting.lean#L43-L44">Lean source</a></p>
+    <p class="equation">size(<var>f</var>) = ∑<sub><var>x</var></sub> <var>p</var>(<var>x</var>) <var>f</var>(<var>x</var>)<br>
+      power(<var>f</var>) = ∑<sub><var>x</var></sub> <var>q</var>(<var>x</var>) <var>f</var>(<var>x</var>)</p>
+    <p>The size is the type I error. The power is the probability of detecting the alternative. The type II error, or miss probability, is one minus the power. <a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Probability/BinaryTesting.html#PMF.BinaryTest.size">Size</a> (<a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/d12af2d34d49ee493f55c8924cebff815b2953be/LeanInfoTheory/Probability/BinaryTesting.lean#L85-L87">source</a>), <a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Probability/BinaryTesting.html#PMF.BinaryTest.power">power</a> (<a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/d12af2d34d49ee493f55c8924cebff815b2953be/LeanInfoTheory/Probability/BinaryTesting.lean#L89-L91">source</a>), <a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Probability/BinaryTesting.html#PMF.BinaryTest.typeIIError">type II error</a> (<a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/d12af2d34d49ee493f55c8924cebff815b2953be/LeanInfoTheory/Probability/BinaryTesting.lean#L93-L95">source</a>).</p>
+    <table>
+      <caption>A randomized test on two observations</caption>
+      <thead><tr><th scope="col">Observation</th><th scope="col">Null mass <var>p</var></th><th scope="col">Alternative mass <var>q</var></th><th scope="col">Reject with probability</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><code>false</code></th><td>1/2</td><td>3/4</td><td>1/2</td></tr>
+        <tr><th scope="row"><code>true</code></th><td>1/2</td><td>1/4</td><td>0</td></tr>
+      </tbody>
+    </table>
+    <p>The size is (1/2)(1/2) = 1/4. The power is (3/4)(1/2) = 3/8, so the miss probability is 5/8. A deterministic test that rejects either observation has size at least 1/2. At a size cap of 1/4 its only feasible decision is always to accept, which gives power zero. <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/d12af2d34d49ee493f55c8924cebff815b2953be/LeanInfoTheory/Examples/NeymanPearson.lean#L110-L166">Worked example in Lean</a></p>
+  </section>
+
+  <section id="optimality">
+    <h2>Why a threshold test is optimal</h2>
+    <p>Choose a nonnegative threshold <var>c</var> and a rejection probability <var>γ</var> in [0, 1]. The threshold test <var>f</var> compares the alternative atom mass with <var>c</var> times the null atom mass.</p>
+    <p class="equation"><var>f</var>(<var>x</var>) = 1 if <var>q</var>(<var>x</var>) &gt; <var>c p</var>(<var>x</var>)<br>
+      <var>f</var>(<var>x</var>) = 0 if <var>q</var>(<var>x</var>) &lt; <var>c p</var>(<var>x</var>)<br>
+      <var>f</var>(<var>x</var>) = <var>γ</var> if <var>q</var>(<var>x</var>) = <var>c p</var>(<var>x</var>)</p>
+    <p>Every tie uses the same <var>γ</var>. An observation with zero null mass and positive alternative mass lies above the threshold, so the test always rejects there at zero cost in size. If both masses vanish, the test uses <var>γ</var> and that observation contributes zero to both sums. <a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Probability/NeymanPearson.html#PMF.BinaryTest.likelihoodThresholdTest">Threshold test</a> (<a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/d12af2d34d49ee493f55c8924cebff815b2953be/LeanInfoTheory/Probability/NeymanPearson.lean#L41-L49">source</a>) · <a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Probability/NeymanPearson.html#PMF.BinaryTest.likelihoodThresholdTest_apply">Pointwise rule</a> (<a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/d12af2d34d49ee493f55c8924cebff815b2953be/LeanInfoTheory/Probability/NeymanPearson.lean#L52-L60">source</a>)</p>
+    <p class="statement" id="fixed-threshold-comparison"><strong>Fixed-threshold comparison.</strong> On a finite alphabet, every randomized test <var>g</var> with size(<var>g</var>) ≤ size(<var>f</var>) has power(<var>g</var>) ≤ power(<var>f</var>). This holds for each choice of <var>c</var> and <var>γ</var>, including <var>c</var> = 0. <a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Probability/NeymanPearson.html#PMF.BinaryTest.power_le_power_likelihoodThresholdTest">Theorem in the API</a> · <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/d12af2d34d49ee493f55c8924cebff815b2953be/LeanInfoTheory/Probability/NeymanPearson.lean#L64-L93">Lean proof</a></p>
+    <ol class="proof-steps">
+      <li>At each observation, (<var>g</var> − <var>f</var>)(<var>q</var> − <var>c p</var>) ≤ 0. Above the threshold <var>f</var> = 1 and <var>g</var> ≤ 1. Below it <var>f</var> = 0 and <var>g</var> ≥ 0. On a tie the second factor is zero.</li>
+      <li>Sum the pointwise inequalities. This gives power(<var>g</var>) − power(<var>f</var>) ≤ <var>c</var> (size(<var>g</var>) − size(<var>f</var>)). The right-hand side is nonpositive by the size hypothesis and <var>c</var> ≥ 0.</li>
+    </ol>
+    <p>In the table, the two alternative-to-null mass ratios are 3/2 and 1/2. Take <var>c</var> = 3/2 and <var>γ</var> = 1/2. The first observation is a tie and the second is below threshold. The comparison now shows that even a randomized competitor of size at most 1/4 cannot exceed power 3/8.</p>
+  </section>
+
+  <section id="exact-size">
+    <h2>How to attain the prescribed size</h2>
+    <p class="statement" id="most-powerful-test"><strong>Finite Neyman–Pearson theorem.</strong> For two laws on a finite observation alphabet and each <var>a</var> in [0, 1], there exist a nonnegative threshold <var>c</var> and a common tie probability <var>γ</var> such that the resulting test has size exactly <var>a</var>. Its power is at least that of every randomized test of size at most <var>a</var>. The same choice works against all competitors. <a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Probability/NeymanPearson.html#PMF.BinaryTest.exists_likelihoodThresholdTest">Exact-size theorem in the API</a> · <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/d12af2d34d49ee493f55c8924cebff815b2953be/LeanInfoTheory/Probability/NeymanPearson.lean#L268-L291">Lean proof</a></p>
+    <p>To select the threshold, restrict attention to observations with positive null mass. On this support the ratio <var>r</var>(<var>x</var>) = <var>q</var>(<var>x</var>)/<var>p</var>(<var>x</var>) is defined. For a realized ratio <var>c</var>, write <var>U</var> for the null mass strictly above it and <var>B</var> for the null mass tied at it. The threshold test spends <var>U</var> + <var>γB</var> of its size budget.</p>
+    <ol class="proof-steps">
+      <li>Choose the largest realized ratio whose weak upper tail, <var>U</var> + <var>B</var>, is at least <var>a</var>. At the smallest realized ratio this tail has null mass one. If there is a next higher ratio, its weak upper tail is exactly <var>U</var> and falls below <var>a</var>. Otherwise <var>U</var> is zero. Thus <var>U</var> ≤ <var>a</var> ≤ <var>U</var> + <var>B</var>. <a href="https://github.com/serhatemrecoban/LeanInfoTheory/blob/d12af2d34d49ee493f55c8924cebff815b2953be/LeanInfoTheory/Probability/NeymanPearson.lean#L196-L266">Finite threshold selection in Lean</a></li>
+      <li id="threshold-calibration">The threshold is realized on positive null support, so <var>B</var> &gt; 0. Set <var>γ</var> = (<var>a</var> − <var>U</var>)/<var>B</var>. It lies in [0, 1] and gives size <var>a</var>. Apply the fixed-threshold comparison to this test to obtain the power bound.</li>
+    </ol>
+    <figure class="proof-dependencies">
+      <figcaption>How calibration and comparison yield the theorem</figcaption>
+      <ul class="proof-ingredients">
+        <li><a href="#threshold-calibration">Calibrate the boundary</a> to construct a threshold test of size <var>a</var>.</li>
+        <li><a href="#fixed-threshold-comparison">Compare powers</a> to show that a threshold test is optimal at its own size.</li>
+      </ul>
+      <p class="proof-conclusion">Together they give <a href="#most-powerful-test">a most powerful test at the prescribed size</a>.</p>
+    </figure>
+    <p>The closed interval includes sizes zero and one. Even at size zero the test can detect observations found only under the alternative. Both laws may have different supports. The theorem provides an optimal test for each level, without requiring the threshold or the optimizer to be unique.</p>
+    <p>The focused Lean import is <code>LeanInfoTheory.Probability.NeymanPearson</code>. The textbook counterpart is Polyanskiy and Wu, <cite>Information Theory: From Coding to Learning</cite> (2024), §14.4, Theorem 14.11. Their boundary parameter is the probability of accepting the null. Here <var>γ</var> is the probability of rejecting it.</p>
+  </section>
+</article>

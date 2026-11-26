@@ -7,6 +7,7 @@ from tempfile import TemporaryDirectory
 import unittest
 
 import compose_release3_citation_pages as citation
+from check_release_pages import AnchorLinks
 
 
 class CitationPagesTests(unittest.TestCase):
@@ -21,8 +22,11 @@ class CitationPagesTests(unittest.TestCase):
         self.pins = {"release_commit": self.release, "annotated_tag": self.archive["tag_object"]}
         self.pages = {name: f"{name} https://doi.org/{self.archive['version_doi']}".encode()
                       for name in citation.CITATION_PAGES}
+        home = Path(__file__).resolve().parents[1] / "home_page"
         self.pages.update({
             "docs/research-projects.html": b'<img src="figures/reuse-layers.svg" alt="Reuse layers">',
+            "blueprint/index.html": (home / "blueprint/index.html").read_bytes(),
+            "roadmap.html": (home / "roadmap.html").read_bytes(),
             "styles.css": b"figure { margin: 0 }",
             citation.FIGURE: b'<svg xmlns="http://www.w3.org/2000/svg"><title>Reuse</title></svg>',
         })
@@ -32,6 +36,9 @@ class CitationPagesTests(unittest.TestCase):
         self.historical_entry = self.site / "docs/v0.2.0/index.html"
         self.historical_entry.parent.mkdir()
         self.historical_entry.write_bytes(b"historical bridge")
+        self.module_map = self.site / "blueprint/dep_graph_document.html"
+        self.module_map.parent.mkdir()
+        self.module_map.write_bytes(b"qualified module import map")
         for name in self.pages:
             if name != citation.FIGURE:
                 (self.site / name).write_bytes(b"qualified")
@@ -69,6 +76,28 @@ class CitationPagesTests(unittest.TestCase):
         self.assertEqual(marker["source_identity"], self.release)
         self.assertEqual(marker["site_source_identity"], self.maintenance)
         self.assertEqual(marker["qualified_site_tree_sha256"], self.decision["site_tree_sha256"])
+
+    def test_blueprint_entry_redirects_and_keeps_the_local_module_map(self):
+        self.compose()
+        companion = "https://serhatemrecoban.github.io/LeanInfoTheory-Blueprint/"
+        edition = companion + "v0.3.0/"
+        page = (self.site / "blueprint/index.html").read_text(encoding="utf-8")
+        self.assertIn(f'<meta http-equiv="refresh" content="0; url={companion}">', page)
+        self.assertIn(f'<link rel="canonical" href="{companion}">', page)
+        links = AnchorLinks()
+        links.feed(page)
+        links.close()
+        for target in (companion, edition, edition + "blueprint.pdf", self.module_map.name):
+            self.assertIn(target, links.hrefs)
+        self.assertEqual(self.module_map.read_bytes(), b"qualified module import map")
+
+    def test_roadmap_links_to_the_published_blueprint_and_pdf(self):
+        self.compose()
+        roadmap = AnchorLinks()
+        roadmap.feed((self.site / "roadmap.html").read_text(encoding="utf-8"))
+        roadmap.close()
+        self.assertIn("blueprint/", roadmap.hrefs)
+        self.assertIn("https://serhatemrecoban.github.io/LeanInfoTheory-Blueprint/v0.3.0/blueprint.pdf", roadmap.hrefs)
 
     def test_corrupt_qualified_tree_fails_before_writing(self):
         self.frozen.write_bytes(b"unexpected")
@@ -112,7 +141,8 @@ class CitationPagesTests(unittest.TestCase):
                 content = self.pages.pop(name)
                 self.assert_rejected_without_writes("reviewed set")
                 self.pages[name] = content
-        for name in ("docs/v0.1.0/index.html", "docs/v0.2.0/index.html", "../unexpected.html"):
+        for name in ("docs/v0.1.0/index.html", "docs/v0.2.0/index.html",
+                     "blueprint/dep_graph_document.html", "../unexpected.html"):
             with self.subTest(extra=name):
                 self.pages[name] = b"override"
                 self.assert_rejected_without_writes("reviewed set")
