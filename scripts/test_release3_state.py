@@ -178,6 +178,9 @@ class MetadataTest(unittest.TestCase):
         self.select(self.ready, self.tagged_cff, self.tagged_package)
         from_repo = state.ROOT / ".github/workflows"
         shutil.copytree(from_repo, self.root / ".github/workflows")
+        # This fixture models the candidate before its production pins were selected.
+        promotion_path = ".github/workflows/promote-release-pages.yml"
+        (self.root / promotion_path).write_bytes(published.git("show", "v0.3.0:" + promotion_path))
         template = self.root / published.PROMOTION_TEMPLATE
         template.parent.mkdir(parents=True)
         shutil.copyfile(state.ROOT / published.PROMOTION_TEMPLATE, template)
@@ -223,6 +226,7 @@ class MetadataTest(unittest.TestCase):
     def test_promotion_activation_requires_reviewed_workflow_and_bound_pins(self):
         import validate_published as published
         template = (state.ROOT / published.PROMOTION_TEMPLATE).read_bytes()
+        workflow = (state.ROOT / ".github/workflows/promote-release-pages.yml").read_bytes()
         archive = EXAMPLE_ARCHIVE
         pins = {"release_commit": archive["source_commit"], "annotated_tag": archive["tag_object"],
                 "bundles_revision": "e" * 40, "receipt_sha256": "f" * 64,
@@ -232,20 +236,23 @@ class MetadataTest(unittest.TestCase):
         pins_file.write_bytes(json.dumps(pins).encode())
         with patch.object(published, "ROOT", self.root), patch.object(state, "check_tag") as check_tag, \
                 patch.object(published, "git", return_value=template) as git:
-            published.check_release3_promotion(self.reviewed, template)
+            published.check_release3_promotion(self.reviewed, workflow)
             check_tag.assert_called_once_with(self.root, EXAMPLE_DATE, pins["annotated_tag"], pins["release_commit"],
                                               self.tagged_cff, self.tagged_package)
             git.assert_called_once_with("show", pins["release_commit"] + ":" + published.PROMOTION_TEMPLATE)
             with self.assertRaisesRegex(ValueError, "active workflow"):
-                published.check_release3_promotion(self.reviewed, template + b"# changed")
+                published.check_release3_promotion(self.reviewed, workflow + b"# changed")
+            with patch.object(published, "git", return_value=template + b"# changed"):
+                with self.assertRaisesRegex(ValueError, "promotion template"):
+                    published.check_release3_promotion(self.reviewed, workflow)
             with self.assertRaisesRegex(ValueError, "annotated public-release target"):
-                published.check_release3_promotion({**state.FIXED, "phase": "preparation"}, template)
+                published.check_release3_promotion({**state.FIXED, "phase": "preparation"}, workflow)
             pins_file.write_bytes(json.dumps({**pins, "archives": {"api": {}}}).encode())
             with self.assertRaisesRegex(ValueError, "archive pins"):
-                published.check_release3_promotion(self.reviewed, template)
+                published.check_release3_promotion(self.reviewed, workflow)
             pins_file.write_bytes(json.dumps({**pins, "release_commit": "0" * 40}).encode())
             with self.assertRaisesRegex(ValueError, "different sources"):
-                published.check_release3_promotion(self.maintained, template)
+                published.check_release3_promotion(self.maintained, workflow)
 
     def test_check_on_published_v02_tree_still_uses_its_811_contract(self):
         import check_candidate_api_compatibility as exporter

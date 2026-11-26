@@ -152,3 +152,23 @@ C40.05 replays these files from clean candidate A with inherited Lean search pat
 ### C40.03 independent review
 
 The independent reviewer marked the one-shot, rate and separation criteria satisfied with no findings. They compiled the six archived inputs with warnings as errors, reproduced each compiled import probe and checked all 98 indexed artifacts. Their exact enumerations recovered the four-symbol and ternary bounds, the concentrated-prior counterexample and the repeated-bit reconstruction error. I reconciled all three assessments against the caller sources and validation records. The working-checkout qualification leaves the equality case of separation and the planned C40.05 clean-candidate replay open. The report capture is `229f14f32ca80fe69ee3685653fb95299b8aa2c55c4be97791e91a5eb7e30143` and the parent reconciliation is `d75f46a5e094ffc3b275e4e5d99aa323f93216bab782ff72fcdd1993173f71b0`.
+
+## C40.04 — External consumer preflight
+
+The external fixture retained its seven existing roots and added two focused consumers. The prefix caller constructed a rounded code of mean two bits for the uniform three-symbol law and proved that the optimal mean is 5/3 bits. The type-probability caller recovered the same class from counts and an independently supplied denominator witness. With counts (1,0,0,1) and the prior uniform on labels 0, 1 and 3, each of two words has mass 1/9. The class mass 2/9 lies between 4/729 and 4/9. Concentrating the prior at 0 makes the class impossible. Each caller compiled from its single focused project import. [Prefix caller](../../tests/external-consumer/Consumer/PrefixIid.lean) · [Type-probability caller](../../tests/external-consumer/Consumer/TypeProb.lean)
+
+## C40.05 — Clean candidate and external consumer
+
+The clean C40 candidate retained the 601 and 811 declarations from the first two releases and passed the complete development suite. The root still exports 92 declarations through five reachable project modules. The all-project axiom audit examined 5,173 constants in 149 modules. The finite-testing input and the five coding-to-separation inputs compiled with warnings as errors. Their compiled import checks covered 53 distinct project modules. A separate Git installation built all nine external roots and resolved their source and compiled dependencies inside the installed package. [Integration inputs](../../tests/release-3-qualification) · [External fixture](../../tests/external-consumer)
+
+### Four historical clean-checkpoint obligations
+
+The four historical clean runs remain open. The accepted comparisons distinguish the prefix endpoint, the count and empirical-law endpoint, the corrected cardinality and bounds endpoint, and the final general-prior type-probability inventory. [Individual C36–C39 decisions](../project-log.md#release-3-historical-checkpoint-decisions)
+
+## C40.06 — Signature-bearing documentation and local host layouts
+
+Two passes on the C40 candidate agreed on the signature-bearing output. Comparison with the compiler covered all 918 declarations and 5,902 binders. The combined API host exceeded the decimal 1 GB limit by 325,717,955 bytes. Each of the three separately staged sites fit the limit. The browser exercised theorem search and return navigation, and the versioned project source links were checked against 601, 811 and 918 declarations respectively. The handoff records the measured sizes and the permanent version URLs. [Documentation and hosting](../handoffs/chunk-40.md#documentation-and-hosting)
+
+## C40.07 — Cumulative validation and release handoff
+
+The final checks compared the inputs used by the preceding steps, repeated each integration replay on the C40 candidate and verified the staged documentation. Independent cumulative review found all 19 criteria satisfied. The released commit then underwent its own complete qualification. [Handoff](../handoffs/chunk-40.md) · [Public release](https://github.com/serhatemrecoban/LeanInfoTheory/releases/tag/v0.3.0)

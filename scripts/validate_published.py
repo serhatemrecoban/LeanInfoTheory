@@ -44,6 +44,7 @@ def git(*args: str) -> bytes:
 PROMOTION_PINS = "docs/compatibility/v0.3.0-promotion.json"
 PROMOTION_TEMPLATE = "scripts/templates/promote-release3-pages.yml"
 R3_TEMPLATE_SHA256 = "b35a84c9e49d5ec8ddae588b78f722cf486e71026a41f552c3ee39bf3630ec76"
+R3_MAIN_PROMOTION_SHA256 = "029fe109b3408803077207c0f0d4d63050fe9c51a78da913ffa6e04a940dcaf6"
 
 
 def check_release3_promotion(current: dict, workflow: bytes) -> None:
@@ -71,8 +72,10 @@ def check_release3_promotion(current: dict, workflow: bytes) -> None:
     r3.check_tag(ROOT, current["release_date"], pins["annotated_tag"], pins["release_commit"],
                  cff, r3.require_file(ROOT, "lakefile.toml").read_bytes())
     template = git("show", pins["release_commit"] + ":" + PROMOTION_TEMPLATE)
-    require(hashlib.sha256(template).hexdigest() == R3_TEMPLATE_SHA256 and workflow == template,
-            "active workflow differs from the approved template in the tagged source")
+    require(hashlib.sha256(template).hexdigest() == R3_TEMPLATE_SHA256,
+            "promotion template differs from the reviewed release source")
+    require(hashlib.sha256(workflow).hexdigest() == R3_MAIN_PROMOTION_SHA256,
+            "active workflow differs from the reviewed main-site promotion workflow")
 
 
 class Page(HTMLParser):

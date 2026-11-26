@@ -375,6 +375,8 @@ checker must verify the frozen route digest and source-link boundary.
   the rights holder; Serhat Emre Coban is the author, software creator, and
   project lead. Use `Coban` in repository and release metadata unless an
   official field explicitly requires another spelling.
+- Omit copyright-holder statements from the public website's main landing
+  page. Keep its contributor invitation and EPFL/MIL affiliation.
 - Every new project-authored Lean source file must use the exact EPFL/MIL
   header recorded in Section 7 of `docs/v0.1-release-contract.md`.
 - Never overwrite mathlib, upstream, vendored, dependency, or other

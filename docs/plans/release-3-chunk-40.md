@@ -4,6 +4,8 @@
 **Plan status:** Approved revision 2. On 24 November 2026 the lead directed the successor Chunk 40 chat to use this revision and requested C40.01 with review. The approved proposal has SHA-256 `9665bee8f74243ab37db0085ad6fb066243e68ef8f12385026b815be70d12131`. The independent plan review covered all 19 criteria of revision 1. Revision 2 incorporates the two sets of advisory suggestions. The separate **LeanInfoTheory Third Release** thread owns release decisions.
 <!-- lit-review-status:end -->
 
+C40 completed on 25 November 2026. The cumulative review covered all 19 criteria. The handoff distinguishes results on the C40 candidate, the four historical clean-checkpoint obligations and the subsequent tagged release. [C40 handoff](../handoffs/chunk-40.md)
+
 ## Intake and source of authority
 
 C40 will qualify one identifiable, local, clean candidate containing the six mathematical packages. The [programme map](release-3-chunk-map.md#c40-programme-integration-and-release-qualification) supplies context. The approved C25–C39 plans and actual declarations supply the contracts. The [C39 handoff](../handoffs/chunk-39.md) links the six endpoint handoffs. C40 integrates existing theorems. A missing required result is a finding for the lead, never an alias, assumed lemma, or silent reduction in scope.

@@ -36,7 +36,7 @@ Status labels used below:
 
 ## 0. AI Assistant Quick Start
 
-**[Current] C40.01 programme integration.** The six Release 3 packages are mapped to 107 additions over v0.2.0. Fresh compiled signatures and public callers qualify the current development source. The C39.06 completion receipt is verified. Candidate qualification and the four historical clean-checkpoint obligations have separate records. [C40.01 coverage ledger](plans/release-3-chunk-40-ledger.md) · [Provenance and limits](plans/release-3-chunk-40-notes.md)
+**[Current] LeanInfoTheory v0.3.0.** Published on 26 November 2026. Six packages add 107 declarations to v0.2.0, for 918 declarations in 77 supported modules. The tagged commit passed its own compatibility, trust, integration and external-installation checks. The C40 handoff explains what the preceding programme qualification covered and which historical clean checks remain open. [Release](https://github.com/serhatemrecoban/LeanInfoTheory/releases/tag/v0.3.0) · [Versioned API](https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/) · [C40 handoff](handoffs/chunk-40.md) · [Six-package ledger](plans/release-3-chunk-40-ledger.md)
 
 **[Current] General-prior iid type probabilities.** At positive length, support inclusion gives the mass of each word and the whole class in nats, together with both KL bounds. An observed symbol with zero prior mass gives an impossible class and infinite canonical KL. The four permanent numerical checks include a sparse prior with finite divergence. The cumulative review and final-source records govern closure. [C40 handoff](handoffs/chunk-39.md) · [Step notes](plans/release-3-chunk-39-notes.md)
 
@@ -4613,11 +4613,13 @@ certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
 
-**[Current] C40.03 coding through separation.** Focused callers connect the sampled-book estimate, one rounded all-length family, expurgation and the source-induced reconstruction error. The working-checkout archive includes the original finite-testing input and the two-owner separation caller for C40.05. [C40.03 evidence](plans/release-3-chunk-40-notes.md#c4003--coding-through-sourcechannel-separation)
+**[Current] Historical checkpoint qualification.** C40 completed. The lead accepted separate C36.06, C37.07, C38.06 and C39.06 source comparisons for release preparation. Each checkpoint’s own complete clean-suite and hygiene run remains open. [Four dispositions](project-log.md#release-3-historical-checkpoint-decisions)
 
-**[Current] C40.02 finite testing.** C40.01 closed by supervised receipt. The standalone probability caller reaches four project modules and qualifies both attained TV losses, exact threshold calibration, and the randomized and singular fixtures. Its sealed input is available for C40.05 replay on candidate A. [C40.02 evidence](plans/release-3-chunk-40-notes.md#c4002--standalone-finite-testing)
+**[History] C40.03 coding through separation.** The one-shot bound, rate family, expurgation and source-induced reconstruction error were exercised together. The archived coding and separation inputs were subsequently recompiled in C40.05 and on the tagged release. [Qualification notes](plans/release-3-chunk-40-notes.md#c4005--clean-candidate-and-external-consumer)
 
-**[Current] C40.01 coverage and provenance.** Approved revision 2 is active. C39.06 completed with closure `d3ddf84699ffbaa2d237039be1e55a79691b2f7271983238448894e60885c7de`. The [C39 handoff](handoffs/chunk-39.md) supplies the type-probability endpoint. The C40.01 ledger covers all six packages and the historical limits. [C40.01 coverage ledger](plans/release-3-chunk-40-ledger.md) · [Provenance and limits](plans/release-3-chunk-40-notes.md)
+**[History] C40.02 finite testing.** The standalone caller uses four testing and probability modules to check both attained TV losses, exact threshold calibration, shared tie randomization and singular atoms. The same input passed on the C40 candidate and the tagged release. [Finite-testing qualification](plans/release-3-chunk-40-notes.md#c4002--standalone-finite-testing)
+
+**[History] C40.01 coverage and provenance.** The six-package ledger records the new and reused mathematics, its source conventions, focused imports and permanent consumers. The C39 handoff supplies the general-prior type-probability endpoint. [C39 handoff](handoffs/chunk-39.md) · [C40 ledger](plans/release-3-chunk-40-ledger.md)
 
 
 **[Current] C38.06.** The selected cumulative step covers validation, canonical
@@ -6783,7 +6785,7 @@ not reproduce textbook prose or proofs.
 
 ## 16. Validation State
 
-**[Current] C40.01 compiled comparison.** All 918 current structural records agree with C39.06. The 601 and 811 released signatures match their respective authenticated controls. The focused build and six public callers passed with warnings as errors. Later exact-commit gates remain open. [C40.01 coverage ledger](plans/release-3-chunk-40-ledger.md) · [Provenance and limits](plans/release-3-chunk-40-notes.md)
+**[Current] v0.3.0 validation.** The clean tagged source retained all 601 v0.1.0 declarations and all 811 v0.2.0 declarations. Its checks covered all 77 module boundaries, the 918-declaration release contract, axiom trust and both integration routes. All nine external callers also built from the public tag. [Release contract](compatibility/README.md) · [C40 qualification and historical limits](handoffs/chunk-40.md)
 
 **[Current] C39.06 independent review.** The parent reconciled the original cumulative assessment of all eighteen criteria. The supported private receipt determines scoped closure. [Evidence and qualifications](plans/release-3-chunk-39-notes.md)
 

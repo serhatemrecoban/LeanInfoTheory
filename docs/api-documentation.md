@@ -47,21 +47,26 @@ the approved public presentation files and their hashes, marks the output as reh
 requires `--allow-rehearsal` for local archiving. Production promotion
 accepts only a candidate receipt.
 
-After the immutable release exists, the two deploying repositories can adopt
-the [manual promotion workflow](../scripts/templates/promote-release3-pages.yml)
-from the tagged source. Check in `docs/compatibility/v0.3.0-promotion.json`
-as a subsequent maintenance change. It records the full `release_commit`,
-annotated tag object `annotated_tag`, full `bundles_revision`,
-`receipt_sha256`, and the `zip_sha256` and `tar_sha256` for each of
-`archives.main` and `archives.api`. The workflow selects its own site from
-the repository name and defaults to a verification-only run.
+The [production pins](compatibility/v0.3.0-promotion.json) identify the
+annotated tag, release commit, permanent archive revision, qualification
+receipt and ZIP/TAR checksums for both sites. The [main-site promotion
+workflow](../.github/workflows/promote-release-pages.yml) uses the verifier
+from the tagged source. It checks the live API before preparing the homepage.
+It authenticates the four release and Git object reads against GitHub's API.
+Pages and archive reads use public access.
 
-Deploy the API first. Check its search, six theorem links and links back to
-the existing documentation hub. Main-site promotion verifies the live
-version marker against the qualified bytes and source, then resolves all six
-theorems in the live search index and checks their signatures and GitHub
-source links before switching the homepage. Later DOI maintenance uses the verified Zenodo
-version record and preserves the separately identified all-versions DOI.
+Run the workflow first with `publish` set to false. It verifies the qualified
+site tree and reports the SHA-256 of its reproducible Pages TAR, including
+directory entries. After review, supply the same TAR digest in
+`rehearsed_tar_sha256` when running the workflow with `publish` set to true.
+
+The deployed v0.3.0 API marker has SHA-256
+`b8d99fbe60da4bbe0a277563ca91e47d81a675b82622ec435e846eb6425d520a`.
+The pinned receipt binds that digest to the release tree and the two-pass
+documentation build. Main-site promotion checks the marker, searches for the
+six featured theorems and verifies their rendered signatures and GitHub source
+ranges. Check the homepage's return paths through the version selector after
+deployment. DOI maintenance follows verification of the Zenodo version archive.
 
 ## Historical v0.2.0 candidate and stable references
 

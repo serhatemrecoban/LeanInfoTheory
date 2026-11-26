@@ -1,13 +1,17 @@
-name: Deploy main website from a qualified release
+name: Deploy a qualified LeanInfoTheory v0.3.0 site
 
 on:
   workflow_dispatch:
     inputs:
       publish:
-        description: Publish the verified website to GitHub Pages
-        type: boolean
+        description: Publish the verified archive to this repository's Pages site
         required: true
+        type: boolean
         default: false
+      rehearsed_tar_sha256:
+        description: SHA-256 of the Pages TAR from the successful publication-off rehearsal (required to publish)
+        required: false
+        type: string
 
 permissions: {}
 
@@ -18,60 +22,123 @@ concurrency:
 jobs:
   prepare:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     permissions:
       contents: read
     steps:
-      - name: Read the reviewed maintenance pages at the dispatch commit
-        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           persist-credentials: false
-          sparse-checkout: home_page
-      - name: Verify the public release and retrieve its qualified Pages archive
+          sparse-checkout: docs/compatibility
+      - name: Select the reviewed site and tooling revision
+        id: select
         env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           GH_TOKEN: ${{ github.token }}
-          SOURCE: 953b785fbdbcc9bffe22834124d5e1cbd14a4835
-          BUNDLES_REV: de641b1486b1b974faa0f5524fd35b9ab2e3d799
-          ZIP_SHA: 264e47231f2b7e8754fca143df9442a531c94c0e950576f0758dd0a9cf623e8b
-          TAR_SHA: ee4bd5a5f23c39d3f4811a05fba8733879ed728a692d523f7179f69c9b534ae8
         run: |
           set -euo pipefail
-          test "$GITHUB_REF" = refs/heads/master
+          test "$GITHUB_REF" = "refs/heads/$DEFAULT_BRANCH"
+          case "$GITHUB_REPOSITORY" in
+            serhatemrecoban/LeanInfoTheory) test "$DEFAULT_BRANCH" = master; site=main ;;
+            serhatemrecoban/LeanInfoTheory-API-v0.3.0) site=api ;;
+            *) exit 1 ;;
+          esac
+          source_sha=$(jq -er '.release_commit | select(test("^[a-f0-9]{40}$"))' docs/compatibility/v0.3.0-promotion.json)
+          tag_sha=$(jq -er '.annotated_tag | select(test("^[a-f0-9]{40}$"))' docs/compatibility/v0.3.0-promotion.json)
           repo=serhatemrecoban/LeanInfoTheory
-          gh api "repos/$repo/releases/tags/v0.2.0" | jq -e --arg sha "$SOURCE" '.immutable and (.draft == false) and (.target_commitish == $sha)' > /dev/null
-          tag=$(gh api "repos/$repo/git/ref/tags/v0.2.0" --jq '.object.sha')
-          test "$(gh api "repos/$repo/git/tags/$tag" --jq '.object.sha')" = "$SOURCE"
-          curl --fail --silent --show-error --location --retry 3 -o api-stage.json https://serhatemrecoban.github.io/LeanInfoTheory-API/v0.2.0/leaninfotheory-stage.json
-          echo "fe33be11049dfc3fac7d1563b0df8fd28a3e89ce38789e7cf54153c5fbc83d5a  api-stage.json" | sha256sum --check --strict
-          curl --fail --silent --show-error --location --retry 3 -o site.zip "https://raw.githubusercontent.com/serhatemrecoban/LeanInfoTheory-API/$BUNDLES_REV/packages/v0.2.0/main.zip"
-          echo "$ZIP_SHA  site.zip" | sha256sum --check --strict
-          unzip -p site.zip artifact.tar > artifact.tar
-          echo "$TAR_SHA  artifact.tar" | sha256sum --check --strict
-      - name: Include directory entries for the Pages hosting service
+          gh api "repos/$repo/releases/tags/v0.3.0" | jq -e --arg sha "$source_sha" '.immutable == true and .draft == false and .prerelease == false and .tag_name == "v0.3.0" and .target_commitish == $sha' > /dev/null
+          gh api "repos/$repo/git/ref/tags/v0.3.0" | jq -e --arg tag "$tag_sha" '.object.type == "tag" and .object.sha == $tag' > /dev/null
+          gh api "repos/$repo/git/tags/$tag_sha" | jq -e --arg tag "$tag_sha" --arg sha "$source_sha" '.sha == $tag and .tag == "v0.3.0" and .object.type == "commit" and .object.sha == $sha' > /dev/null
+          echo "site=$site" >> "$GITHUB_OUTPUT"
+          echo "source_sha=$source_sha" >> "$GITHUB_OUTPUT"
+      - name: Read the release verifier at the reviewed source commit
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          repository: serhatemrecoban/LeanInfoTheory
+          ref: ${{ steps.select.outputs.source_sha }}
+          path: verifier
+          sparse-checkout: scripts
+          persist-credentials: false
+      - name: Verify the public tag, qualification receipt and archive
+        env:
+          SITE: ${{ steps.select.outputs.site }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          mv artifact.tar qualified.tar
-          mkdir site restored
-          tar -xf qualified.tar -C site
-          # Only the two unversioned citation pages are maintained here.
-          install -m 0644 home_page/index.html site/index.html
-          install -m 0644 home_page/license.html site/license.html
-          python - <<'PY'
-          import json, os
+          PYTHONPATH=verifier/scripts python -B - <<'PY' > decision.json
+          from http.client import HTTPSConnection
+          import json
+          import os
           from pathlib import Path
-          marker = Path("site/website-stage.json")
-          metadata = json.loads(marker.read_bytes())
-          metadata["release_source_identity"] = metadata["site_source_identity"]
-          metadata["site_source_identity"] = os.environ["GITHUB_SHA"]
-          metadata["maintained_pages"] = ["index.html", "license.html"]
-          marker.write_text(json.dumps(metadata, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+          from urllib.parse import urlsplit
+          from check_release3_promotion import REPO_API, read_public, resolve
+          from release_state import strict_json
+
+          pins = strict_json(Path("docs/compatibility/v0.3.0-promotion.json").read_bytes())
+          tag = pins["annotated_tag"]
+          source = pins["release_commit"]
+          authenticated = {f"{REPO_API}/{route}" for route in (
+              "releases/tags/v0.3.0", "git/ref/tags/v0.3.0", f"git/tags/{tag}", f"git/commits/{source}"
+          )}
+
+          def read(url):
+              if url not in authenticated:
+                  return read_public(url)
+              # This connection sends a credential only to the four exact GitHub endpoints and never follows redirects.
+              conn = HTTPSConnection("api.github.com", timeout=60)
+              try:
+                  conn.request("GET", urlsplit(url).path, headers={
+                      "Authorization": "Bearer " + os.environ["GH_TOKEN"], "User-Agent": "LeanInfoTheory-release-promotion"
+                  })
+                  response = conn.getresponse()
+                  if response.status != 200:
+                      raise RuntimeError(f"GitHub returned HTTP {response.status} for {url}")
+                  return response.read()
+              finally:
+                  conn.close()
+
+          print(json.dumps(resolve(os.environ["SITE"], pins, read=read), sort_keys=True))
           PY
-          tar --format=gnu --sort=name -cf artifact.tar -C site .
-          tar -xf artifact.tar -C restored
+          url=$(jq -er .bundle_url decision.json)
+          curl --proto '=https' --fail --silent --show-error --location --retry 3 -o site.zip "$url"
+          echo "$(jq -er .zip_sha256 decision.json)  site.zip" | sha256sum --check --strict
+          test "$(unzip -Z1 site.zip)" = artifact.tar
+          unzip -p site.zip artifact.tar > qualified.tar
+          echo "$(jq -er .tar_sha256 decision.json)  qualified.tar" | sha256sum --check --strict
+      - name: Add directory entries and compare the restored site to its qualified tree
+        env:
+          PUBLISH: ${{ inputs.publish }}
+          REHEARSED_TAR_SHA256: ${{ inputs.rehearsed_tar_sha256 }}
+        run: |
+          set -euo pipefail
+          umask 022
+          mkdir site restored
+          tar --extract --file qualified.tar --directory site
+          tar --format=gnu --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -cf artifact.tar -C site .
+          tar --extract --file artifact.tar --directory restored
           diff --recursive --brief --no-dereference site restored
-          sha256sum artifact.tar
-      - name: Upload the verified tar for Pages
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+          PYTHONPATH=verifier/scripts python -B - <<'PY'
+          import json
+          from pathlib import Path
+          from stage_website import tree_digest
+          expected = json.loads(Path("decision.json").read_bytes())["site_tree_sha256"]
+          root = Path("restored")
+          tree, files, _, size = tree_digest(root)
+          maximum = max(p.stat().st_size for p in root.rglob("*") if p.is_file())
+          if size >= 1_000_000_000 or maximum > 100 * 1024**2:
+              raise SystemExit("Restored Pages tree exceeds the hosting limits")
+          print(f"Restored {files} files, {size} bytes, largest file {maximum} bytes, tree {tree}")
+          if tree != expected:
+              raise SystemExit("Restored Pages tree differs from its qualification receipt")
+          PY
+          tar_sha=$(sha256sum artifact.tar | cut -d' ' -f1)
+          echo "Pages TAR SHA-256: $tar_sha"
+          echo "Pages TAR SHA-256: $tar_sha" >> "$GITHUB_STEP_SUMMARY"
+          if [[ "$PUBLISH" == true ]]; then
+            [[ "$REHEARSED_TAR_SHA256" =~ ^[a-f0-9]{64}$ ]]
+            test "$tar_sha" = "$REHEARSED_TAR_SHA256"
+          fi
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: github-pages
           path: artifact.tar
@@ -90,6 +157,5 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Publish the verified site
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

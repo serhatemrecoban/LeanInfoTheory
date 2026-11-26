@@ -1,0 +1,16 @@
+{
+  "annotated_tag": "0ecd9fe98bdd3712da4469a5fa81d2893c202cb6",
+  "archives": {
+    "api": {
+      "tar_sha256": "f9ad1e4a1818f2553cfeab0d7581d8be1687b2b6f00243fb2d2799f5e5a5b50d",
+      "zip_sha256": "6f4c6ee4aff71318d3d21ddf975fe9af222f73522d88157ab6ae5691311aedee"
+    },
+    "main": {
+      "tar_sha256": "a035fd367a68b89aca7418e71f301dcd7ca59a83367422e99bd2e5f518a2e05e",
+      "zip_sha256": "4a2dc743322e899ca8931bd0039a6427ac2d598eae1b86677271ae37dd817bef"
+    }
+  },
+  "bundles_revision": "8bea3423019cb848670b87cf9bdd7765bf404495",
+  "receipt_sha256": "7a096965f8c83fc97f49ac9634fe09fc9aeef42e9fa46b2bc309458bd07fda18",
+  "release_commit": "d12af2d34d49ee493f55c8924cebff815b2953be"
+}

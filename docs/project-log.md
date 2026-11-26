@@ -5,6 +5,25 @@ detail. It is not meant to list every small command or proof attempt. It should
 help a future contributor understand what has been built, why the files are
 organized as they are, and which ideas are waiting for the right moment.
 
+## Third release, 26 November 2026
+
+LeanInfoTheory v0.3.0 was published at `d12af2d34d49ee493f55c8924cebff815b2953be`. The tagged source passed its own clean suite, compiled compatibility and trust checks, finite-testing and coding-to-separation replays, and external Lake build. A fresh installation from the public `v0.3.0` tag built all nine caller roots. The separate v0.3.0 API provides the elaborated types and source links for 918 declarations in 77 supported modules. [Published release](https://github.com/serhatemrecoban/LeanInfoTheory/releases/tag/v0.3.0) · [Versioned API](https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/)
+
+## Release 3 historical checkpoint decisions
+
+On 25 November 2026 the project lead accepted these comparisons with the C40 candidate for release preparation. Each historical checkpoint’s own complete clean-suite and hygiene run remains open.
+
+| Historical source | Comparison accepted | Historical clean run |
+| --- | --- | --- |
+| C36.06 · 888 declarations | The prefix-code owners and examples match. C40 adds 30 method-of-types declarations and expands the umbrellas and consumer fixtures. | Open |
+| C37.07 · 908 declarations | The count, type-class and empirical-law endpoints match. C40 adds ten declarations for cardinality, bounds and general-prior probabilities. | Open |
+| C38.06 · 913 declarations | The corrected cardinality and entropy-bound owners match. The first check exposed duplicate ownership of `PMF.iid.eq_1`. Seven proof sites were corrected and the component checks passed on rerun. C40 adds five general-prior declarations. | Open |
+| C39.06 · 918 declarations | All 918 inventory entries and both the Shannon and Examples umbrellas match. C40 changes the qualification fixtures, external runner, review tooling and documentation. | Open |
+
+## C40.04–C40.07 — Programme qualification, 24–25 November 2026
+
+The two new external callers exercise binary prefix lengths and type-class probabilities. C40 then qualified the integrated six packages on its clean local candidate. The finite-testing route and the five coding-to-separation inputs were replayed separately. A fresh Lake installation built the nine external caller roots. Two API builds agreed on the signature-bearing output, and the hosting rehearsal showed why the third release needed a separate API site. Independent cumulative review concluded that all 19 criteria were satisfied. [C40 handoff](handoffs/chunk-40.md) · [Qualification notes](plans/release-3-chunk-40-notes.md#c4004--external-consumer-preflight)
+
 ## C40.03 — Coding through separation, 24 November 2026
 
 Four focused callers and the existing two-owner consumer trace the deterministic coding experiment through separation. The concentrated source gives reconstruction error one despite a uniform channel error of 1/4. The archive identifies the six inputs, their imports, compiled origins and warning-as-error commands for exact-candidate replay. [C40.03 evidence](plans/release-3-chunk-40-notes.md#c4003--coding-through-sourcechannel-separation)
