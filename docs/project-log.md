@@ -9,6 +9,8 @@ organized as they are, and which ideas are waiting for the right moment.
 
 LeanInfoTheory v0.3.0 was published at `d12af2d34d49ee493f55c8924cebff815b2953be`. The tagged source passed its own clean suite, compiled compatibility and trust checks, finite-testing and coding-to-separation replays, and external Lake build. A fresh installation from the public `v0.3.0` tag built all nine caller roots. The separate v0.3.0 API provides the elaborated types and source links for 918 declarations in 77 supported modules. [Published release](https://github.com/serhatemrecoban/LeanInfoTheory/releases/tag/v0.3.0) · [Versioned API](https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/)
 
+Zenodo issued the [v0.3.0 version DOI](https://doi.org/10.5281/zenodo.24563089) on 26 November. All 456 files in the deposited ZIP matched their Git blobs at the public tag. The ZIP SHA-256 is `6486a1f0d9802de74e3a2c03eaad7a6439b8db2a45bca6dec4805539aaa4de4c`. The [all-versions DOI](https://doi.org/10.5281/zenodo.22229598) lists the three releases.
+
 ## Release 3 historical checkpoint decisions
 
 On 25 November 2026 the project lead accepted these comparisons with the C40 candidate for release preparation. Each historical checkpoint’s own complete clean-suite and hygiene run remains open.

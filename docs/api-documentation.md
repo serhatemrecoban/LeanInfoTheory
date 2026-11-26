@@ -66,7 +66,12 @@ The pinned receipt binds that digest to the release tree and the two-pass
 documentation build. Main-site promotion checks the marker, searches for the
 six featured theorems and verifies their rendered signatures and GitHub source
 ranges. Check the homepage's return paths through the version selector after
-deployment. DOI maintenance follows verification of the Zenodo version archive.
+deployment.
+
+For citation maintenance, the main-site workflow starts with the same qualified
+archive. It reads the homepage and citation page from the exact maintenance
+commit and records that commit, the tagged source and the verified version DOI
+in `website-stage.json`. The rehearsal and deployment use the same TAR digest.
 
 ## Historical v0.2.0 candidate and stable references
 

@@ -231,25 +231,28 @@ class MetadataTest(unittest.TestCase):
         pins = {"release_commit": archive["source_commit"], "annotated_tag": archive["tag_object"],
                 "bundles_revision": "e" * 40, "receipt_sha256": "f" * 64,
                 "archives": {site: {"zip_sha256": "1" * 64, "tar_sha256": "2" * 64} for site in ("main", "api")}}
-        self.select(self.reviewed, self.tagged_cff, self.tagged_package)
+        cff = self.tagged_cff.replace(b"authors:\n", f'doi: "{archive["version_doi"]}"\nauthors:\n'.encode())
+        self.select(self.maintained, cff, self.tagged_package)
         pins_file = self.root / published.PROMOTION_PINS
         pins_file.write_bytes(json.dumps(pins).encode())
         with patch.object(published, "ROOT", self.root), patch.object(state, "check_tag") as check_tag, \
                 patch.object(published, "git", return_value=template) as git:
-            published.check_release3_promotion(self.reviewed, workflow)
+            published.check_release3_promotion(self.maintained, workflow)
             check_tag.assert_called_once_with(self.root, EXAMPLE_DATE, pins["annotated_tag"], pins["release_commit"],
                                               self.tagged_cff, self.tagged_package)
             git.assert_called_once_with("show", pins["release_commit"] + ":" + published.PROMOTION_TEMPLATE)
             with self.assertRaisesRegex(ValueError, "active workflow"):
-                published.check_release3_promotion(self.reviewed, workflow + b"# changed")
+                published.check_release3_promotion(self.reviewed, workflow)
+            with self.assertRaisesRegex(ValueError, "active workflow"):
+                published.check_release3_promotion(self.maintained, workflow + b"# changed")
             with patch.object(published, "git", return_value=template + b"# changed"):
                 with self.assertRaisesRegex(ValueError, "promotion template"):
-                    published.check_release3_promotion(self.reviewed, workflow)
+                    published.check_release3_promotion(self.maintained, workflow)
             with self.assertRaisesRegex(ValueError, "annotated public-release target"):
                 published.check_release3_promotion({**state.FIXED, "phase": "preparation"}, workflow)
             pins_file.write_bytes(json.dumps({**pins, "archives": {"api": {}}}).encode())
             with self.assertRaisesRegex(ValueError, "archive pins"):
-                published.check_release3_promotion(self.reviewed, workflow)
+                published.check_release3_promotion(self.maintained, workflow)
             pins_file.write_bytes(json.dumps({**pins, "release_commit": "0" * 40}).encode())
             with self.assertRaisesRegex(ValueError, "different sources"):
                 published.check_release3_promotion(self.maintained, workflow)

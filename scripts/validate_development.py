@@ -26,6 +26,7 @@ def check_static() -> None:
     release.run_command((sys.executable, "scripts/test_release3_state.py"))
     release.run_command((sys.executable, "scripts/compatibility/test_candidate_contract.py"))
     release.run_command((sys.executable, "scripts/test_release3_promotion.py"))
+    release.run_command((sys.executable, "scripts/test_compose_release3_citation_pages.py"))
     release.run_command((sys.executable, "scripts/test_release3_links.py"))
     release.run_command((sys.executable, "scripts/test_release_pages.py"))
     release.run_command((sys.executable, "tests/external-consumer/test_run.py"))

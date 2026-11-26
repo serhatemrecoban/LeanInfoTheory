@@ -4,6 +4,7 @@ type: software
 title: "LeanInfoTheory"
 version: "0.3.0"
 date-released: 2026-11-26
+doi: "10.5281/zenodo.24563089"
 authors:
   - family-names: "Coban"
     given-names: "Serhat Emre"

@@ -45,6 +45,7 @@ PROMOTION_PINS = "docs/compatibility/v0.3.0-promotion.json"
 PROMOTION_TEMPLATE = "scripts/templates/promote-release3-pages.yml"
 R3_TEMPLATE_SHA256 = "b35a84c9e49d5ec8ddae588b78f722cf486e71026a41f552c3ee39bf3630ec76"
 R3_MAIN_PROMOTION_SHA256 = "029fe109b3408803077207c0f0d4d63050fe9c51a78da913ffa6e04a940dcaf6"
+R3_CITATION_PROMOTION_SHA256 = "f3c35d33927f493c7ae47d7df0205a302a35d5fe791bc9938e44a8d09590a09b"
 
 
 def check_release3_promotion(current: dict, workflow: bytes) -> None:
@@ -74,7 +75,9 @@ def check_release3_promotion(current: dict, workflow: bytes) -> None:
     template = git("show", pins["release_commit"] + ":" + PROMOTION_TEMPLATE)
     require(hashlib.sha256(template).hexdigest() == R3_TEMPLATE_SHA256,
             "promotion template differs from the reviewed release source")
-    require(hashlib.sha256(workflow).hexdigest() == R3_MAIN_PROMOTION_SHA256,
+    expected_workflow = (R3_CITATION_PROMOTION_SHA256 if current["phase"] == "published-maintenance"
+                         else R3_MAIN_PROMOTION_SHA256)
+    require(hashlib.sha256(workflow).hexdigest() == expected_workflow,
             "active workflow differs from the reviewed main-site promotion workflow")
 
 

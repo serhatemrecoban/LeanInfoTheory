@@ -1,8 +1,16 @@
 {
   "api_repository": "serhatemrecoban/LeanInfoTheory-API-v0.3.0",
   "api_url": "https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/",
+  "archive": {
+    "archive_sha256": "6486a1f0d9802de74e3a2c03eaad7a6439b8db2a45bca6dec4805539aaa4de4c",
+    "concept_doi": "10.5281/zenodo.22229598",
+    "git_tree": "255afd15f8935a73e62bbaecadff6e7c2ed93399",
+    "source_commit": "d12af2d34d49ee493f55c8924cebff815b2953be",
+    "tag_object": "0ecd9fe98bdd3712da4469a5fa81d2893c202cb6",
+    "version_doi": "10.5281/zenodo.24563089"
+  },
   "main_url": "https://serhatemrecoban.github.io/LeanInfoTheory/",
-  "phase": "candidate-ready",
+  "phase": "published-maintenance",
   "release_date": "2026-11-26",
   "retained_api": {
     "docs/compatibility/v0.3.0-candidate-approval.json": "8d553320102fd99b786cfa6257865605ee9352d5937a814097c1cb552a01a819",

@@ -619,8 +619,9 @@ holder. The project is licensed under the Apache License, Version 2.0; see
 
 ## Citation
 
-Serhat Emre Coban (2026). *LeanInfoTheory* (v0.3.0) [Software].
-[Release and source](https://github.com/serhatemrecoban/LeanInfoTheory/releases/tag/v0.3.0) · [Tagged citation metadata](https://github.com/serhatemrecoban/LeanInfoTheory/blob/v0.3.0/CITATION.cff).
+Serhat Emre Coban (2026). *LeanInfoTheory* (v0.3.0) [Software]. Zenodo. [10.5281/zenodo.24563089](https://doi.org/10.5281/zenodo.24563089).
+
+[Repository citation file](CITATION.cff) · [BibTeX](https://zenodo.org/records/24563089/export/bibtex) · [Release and source](https://github.com/serhatemrecoban/LeanInfoTheory/releases/tag/v0.3.0) · [Tagged citation metadata](https://github.com/serhatemrecoban/LeanInfoTheory/blob/v0.3.0/CITATION.cff).
 
 The [v0.2.0 archive](https://doi.org/10.5281/zenodo.23973538) and
 [v0.1.0 archive](https://doi.org/10.5281/zenodo.22229599) identify those specific releases.
