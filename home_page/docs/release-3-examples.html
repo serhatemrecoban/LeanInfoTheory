@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Six finite information theory examples | LeanInfoTheory</title>
+    <meta name="description" content="Six Lean examples for v0.3.0, from finite hypothesis testing and one-shot coding to prefix lengths and type-class probabilities.">
+    <link rel="canonical" href="https://serhatemrecoban.github.io/LeanInfoTheory/docs/release-3-examples.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="LeanInfoTheory">
+    <meta property="og:title" content="Six finite information theory examples | LeanInfoTheory">
+    <meta property="og:description" content="Six Lean examples for v0.3.0, from finite hypothesis testing and one-shot coding to prefix lengths and type-class probabilities.">
+    <meta property="og:url" content="https://serhatemrecoban.github.io/LeanInfoTheory/docs/release-3-examples.html">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Six finite information theory examples | LeanInfoTheory">
+    <meta name="twitter:description" content="Six Lean examples for v0.3.0, from finite hypothesis testing and one-shot coding to prefix lengths and type-class probabilities.">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
+    <header class="page-header">
+      <h1 class="project-name">Six finite information theory examples</h1>
+      <nav class="project-links" aria-label="Project links">
+        <a href="../" class="btn">Home</a>
+        <a href="./" class="btn">Documentation</a>
+        <a href="v0.3.0/" class="btn">v0.3.0 API</a>
+      </nav>
+    </header>
+    <main id="content" class="main-content">
+      <p class="lead">Each example imports one focused module from v0.3.0. Put a block in its own Lean file and run <code>lake env lean YourFile.lean</code> from your project.</p>
+      <p><a href="getting-started.html">Install v0.3.0 with Lake</a> or open a linked theorem to read its full Lean signature.</p>
+      <nav aria-label="Examples">
+        <ul>
+          <li><a href="#finite-testing">Finite hypothesis testing and Neyman–Pearson</a></li>
+          <li><a href="#one-shot">Information density and one-shot coding</a></li>
+          <li><a href="#capacity">Operational channel capacity and expurgation</a></li>
+          <li><a href="#separation">Lossless source–channel separation</a></li>
+          <li><a href="#prefix">Binary prefix coding</a></li>
+          <li><a href="#types">The method of types</a></li>
+        </ul>
+      </nav>
+      <section id="finite-testing">
+        <h2>A test that spends its size budget</h2>
+        <p>At each observation, the test returns the probability of rejecting the null law P. Ask for size 1/4. The proof extracts one threshold and one tie probability, then uses their common test to dominate every competitor whose size is at most 1/4.</p>
+        <pre><code class="language-lean" data-lean-example="r3-finite-testing">import LeanInfoTheory.Probability.NeymanPearson
+
+open PMF.BinaryTest
+
+example {X : Type*} [Fintype X] (P Q : PMF X) :
+    ∃ f : PMF.BinaryTest X, size f P = 1 / 4 ∧
+      ∀ g : PMF.BinaryTest X, size g P ≤ 1 / 4 → power g Q ≤ power f Q := by
+  obtain ⟨c, γ, hsize, hbest⟩ :=
+    exists_likelihoodThresholdTest P Q (1 / 4) (by constructor &lt;;&gt; norm_num)
+  exact ⟨likelihoodThresholdTest P Q c γ, hsize, hbest⟩</code></pre>
+        <p>Suppose false and true each have null probability 1/2. Under the alternative their probabilities are 3/4 and 1/4. At threshold 3/2, reject on false with probability 1/2 and accept on true. The size is (1/2)(1/2) = 1/4, the power is (3/4)(1/2) = 3/8, and the type II error is 5/8. The same theorem admits endpoint sizes and atoms outside the null support.</p>
+        <p><a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Probability/NeymanPearson.html#PMF.BinaryTest.exists_likelihoodThresholdTest">Exact-size Neyman–Pearson theorem</a></p>
+      </section>
+
+      <section id="one-shot">
+        <h2>A two-message error bound</h2>
+        <p>Choose a blocklength n, a law q on input words, a channel W and a threshold t in nats. For a uniformly chosen message, a decoding error can come from the transmitted word missing the threshold or a competitor passing it. The example bounds that uniform-message average error. With two messages there is one competitor, so the competing term becomes exp(−t).</p>
+        <pre><code class="language-lean" data-lean-example="r3-one-shot">import LeanInfoTheory.Shannon.ChannelCodingOneShot
+
+open LeanInfoTheory.Shannon
+
+example {X Y : Type*} [Fintype X] [Fintype Y] {n : ℕ}
+    (q : PMF (Fin n → X)) (W : X → PMF Y) (t : ℝ) :
+    ∃ c : BlockChannelCode X Y n 2,
+      c.errorProbability W (by decide) ≤
+        ((PMF.channelJoint q (PMF.memorylessChannel W n)).toOuterMeasure
+          (infoDensityThresholdEvent q (PMF.memorylessChannel W n) t)ᶜ).toReal +
+        Real.exp (-t) := by
+  obtain ⟨c, _, _, hb⟩ :=
+    exists_blockChannelCode_errorProbability_le_of_infoDensityThreshold
+      (M := 2) q W t (by decide)
+  rw [show ((2 : ℕ) : ℝ) - 1 = 1 by norm_num, one_mul] at hb
+  exact ⟨c, hb⟩</code></pre>
+        <p>The witness is a deterministic code with a total decoder. Its codebook belongs to the support of the random-book law. The strict comparison of masses handles every pair, including zeros. Replacing it pointwise by a log-information-density comparison requires joint support, and a tie contributes to the miss probability.</p>
+        <p><a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Shannon/ChannelCodingOneShot.html#LeanInfoTheory.Shannon.exists_blockChannelCode_errorProbability_le_of_infoDensityThreshold">Threshold coding theorem</a></p>
+      </section>
+
+      <section id="capacity">
+        <h2>The zero-capacity case</h2>
+        <p>An achievable rate comes with one family of positive-message codes whose uniform-message average error tends to zero. The family meets the asymptotic rate floor for every positive tolerance. The least-upper-bound theorem supplies the upper bound on R, while a one-message code witnesses achievability at zero.</p>
+        <pre><code class="language-lean" data-lean-example="r3-capacity">import LeanInfoTheory.Shannon.OperationalCapacity
+
+open LeanInfoTheory.Shannon
+
+example {X Y : Type*} [Fintype X] [Nonempty X] [Fintype Y]
+    (W : X → PMF Y) {R : ℝ} (hC : channelCapacity W = 0) :
+    IsAchievableRate W R ↔ R = 0 := by
+  constructor
+  · intro hR
+    have hle : R ≤ channelCapacity W := (isLUB_isAchievableRate W).1 hR
+    exact le_antisymm (hle.trans_eq hC) hR.1
+  · rintro rfl
+    exact isAchievableRate_zero W</code></pre>
+        <p>Expurgation also controls individual messages. Retain all messages whose conditional error is at most twice the original uniform-message average. At least half survive, the maximal error tends to zero, and the rate loss for this full retained set is at most log(2)/n nats per use at positive n. A smaller positive message budget that fits admits a restriction working for every message prior.</p>
+        <p><a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Shannon/OperationalCapacity.html#LeanInfoTheory.Shannon.isLUB_isAchievableRate">Capacity as a least upper bound</a></p>
+      </section>
+
+      <section id="separation">
+        <h2>An encoder and decoder for every tolerance</h2>
+        <p>For an iid source and a finite memoryless channel, suppose H(source) &lt; C(channel), with one channel use per source symbol. Pick the encoder and decoder families once. Then for any ε &gt; 0, all sufficiently long blocks have reconstruction error below ε. The filter notation <code>∀ᶠ n in atTop</code> expresses that last condition.</p>
+        <pre><code class="language-lean" data-lean-example="r3-separation">import LeanInfoTheory.Shannon.SourceChannelSeparation
+
+open Filter LeanInfoTheory.Shannon
+
+example {S X Y : Type*} [Fintype S] [Fintype X] [Nonempty X] [Fintype Y]
+    (p : PMF S) (W : X → PMF Y) (gap : entropy p &lt; channelCapacity W) :
+    ∃ (E : ∀ n : ℕ, (Fin n → S) → (Fin n → X))
+      (D : ∀ n : ℕ, (Fin n → Y) → (Fin n → S)),
+      ∀ ε : ℝ, 0 &lt; ε →
+        ∀ᶠ n in atTop, sourceChannelErrorProbability p W n (E n) (D n) &lt; ε := by
+  obtain ⟨E, D, h⟩ := exists_sourceChannelCode_tendsto_errorProbability_zero p W gap
+  exact ⟨E, D, fun ε hε =&gt; (tendsto_order.1 h).2 ε hε⟩</code></pre>
+        <p>Compression induces a message distribution. For example, suppose a decoder recovers three of four labels correctly and always gets label 3 wrong. The uniform-message error is 1/4. If the source encoder always sends label 3, both the channel error under its induced prior and the block reconstruction error are 1. The composition bound uses that induced prior.</p>
+        <p>The weak converse uses the same reconstruction error and allows correlations across the encoded inputs. Vanishing error implies H(source) ≤ C(channel). At equality these theorems leave achievability open.</p>
+        <p><a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Shannon/SourceChannelSeparation.html#LeanInfoTheory.Shannon.exists_sourceChannelCode_tendsto_errorProbability_zero">Direct separation theorem</a></p>
+      </section>
+
+      <section id="prefix">
+        <h2>A half-bit redundancy bound</h2>
+        <p>Use an optimal binary prefix code on pairs of iid source symbols. Divide its expected length by two. The upper bound gives redundancy strictly below half a bit per symbol. For any positive blocklength n, the full theorem places the per-symbol mean between entropy in bits and the strict upper endpoint of entropy plus 1/n.</p>
+        <pre><code class="language-lean" data-lean-example="r3-prefix">import LeanInfoTheory.Shannon.PrefixCodeLengthIid
+
+open LeanInfoTheory.Shannon
+
+example {A : Type*} [Fintype A] (p : PMF A) :
+    optimalPrefixLength (PMF.iid p 2) / 2 &lt; natsToBits (entropy p) + 1 / 2 := by
+  exact (optimalPrefixLength_iid_div_bounds p 2 (by decide)).2</code></pre>
+        <p>For three equally likely symbols, rounding each ideal length up gives lengths 2, 2, 2 and a mean of 2 bits. The codewords 0, 10 and 11 have lengths 1, 2, 2 and mean 5/3 bits, which attains the minimum. Both constructions assign codewords on the source support.</p>
+        <p><a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Shannon/PrefixCodeLengthIid.html#LeanInfoTheory.Shannon.optimalPrefixLength_iid_div_bounds">Optimal iid prefix-length bounds</a></p>
+      </section>
+
+      <section id="types">
+        <h2>From one word to a whole type class</h2>
+        <p>A type records how many times each symbol occurs in a word. At positive length its counts give an empirical law q. If p gives positive probability to every observed symbol, each member of the class has mass exp(−n[H(q) + D(q ∥ p)]), with entropy and divergence in nats. The two rewrites identify class mass with its multinomial cardinality times the mass of any one member.</p>
+        <pre><code class="language-lean" data-lean-example="r3-types">import LeanInfoTheory.Shannon.TypeClassProbability
+
+open LeanInfoTheory.Shannon
+
+example {A : Type*} [Fintype A] [MeasurableSpace A] [MeasurableSingletonClass A]
+    {n : ℕ} (hn : 0 &lt; n) (t : ↥(wordTypes A n)) (p : PMF A)
+    (hs : (empiricalPMF hn t).support ⊆ p.support)
+    {x : Fin n → A} (hx : x ∈ typeClass t) :
+    ((PMF.iid p n).toOuterMeasure (typeClass t)).toReal =
+      ((typeClass t).card : ℝ) * ((PMF.iid p n) x).toReal := by
+  rw [iid_toOuterMeasure_typeClass hn t p hs, iid_apply_of_mem_typeClass hn t p hs hx]</code></pre>
+        <p>On the alphabet {0, 1, 2, 3}, take p uniform on {0, 1, 3}. The length-two type with one 0 and one 3 consists of (0, 3) and (3, 0). Each word has probability (1/3)² = 1/9, so the class has probability 2/9. Symbol 2 has zero mass and is unobserved. If an observed symbol has zero prior mass, the whole class has probability zero and the canonical KL divergence is infinite.</p>
+        <p><a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Shannon/TypeClassProbability.html#LeanInfoTheory.Shannon.iid_toOuterMeasure_typeClass">Exact iid probability of a type class</a></p>
+      </section>
+      <footer class="site-footer">
+        <p><a href="./">Documentation</a> · <a href="../module-guide.html">Module guide</a> · <a href="../license.html">License and citation</a></p>
+      </footer>
+    </main>
+  </body>
+</html>

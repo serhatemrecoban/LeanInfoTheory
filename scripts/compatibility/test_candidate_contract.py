@@ -18,6 +18,7 @@ import candidate_contract as candidate
 import check_candidate_api_compatibility as command
 import check_public_api_compatibility as legacy
 import release_state
+import release3_state as r3
 import run_candidate_fixtures as fixture
 
 
@@ -233,7 +234,7 @@ class ApprovalTests(unittest.TestCase):
 
     def test_pending_check_does_not_claim_pass_or_run_a_build(self):
         with patch.object(release_state, "load_state", return_value={"phase": "candidate"}), \
-             patch.object(release_state, "contract_identity", return_value=identity()), \
+             patch.object(release_state, "effective_contract_identity", return_value=identity()), \
              patch.object(command, "fresh_contract") as fresh:
             result = command.run_check(object())
         self.assertEqual(result["outcome"], "NOT_ESTABLISHED")
@@ -294,7 +295,7 @@ class FreshnessOrchestrationTests(unittest.TestCase):
     """Mocked sequencing checks; these do not assert a successful Lean run."""
 
     def run_mock(self, *, fail_label=None, drifting=False, nondeterministic=False,
-                 phase="candidate", private_content=False):
+                 phase="candidate", private_content=False, release_identity=None):
         value = contract()
         calls = []
         with tempfile.TemporaryDirectory(dir=ROOT / "tmp") as directory, ExitStack() as stack:
@@ -332,12 +333,15 @@ class FreshnessOrchestrationTests(unittest.TestCase):
                     return b""
 
             files = value["producer"]["files"]
+            if release_identity is not None:
+                files["scripts/release3_state.py"] = "f" * 64
             after = {**files, "scripts/release_state.py": "9" * 64} if drifting else files
             historical = {"release_source_sha256": {}, "dependencies": value["producer"]["dependencies"]}
             replacements = [
                 patch.object(command, "ROOT", root),
                 patch.object(command, "checkpoint", return_value=value["checkpoint"]),
-                patch.object(release_state, "contract_identity", return_value={**identity(), "phase": phase}),
+                patch.object(release_state, "effective_contract_identity",
+                             return_value=release_identity or {**identity(), "phase": phase}),
                 patch.object(release_state, "check_legacy_configuration"),
                 patch.object(release_state, "require_candidate_content",
                              side_effect=ValueError("private content rejected") if private_content else None),
@@ -365,6 +369,26 @@ class FreshnessOrchestrationTests(unittest.TestCase):
         self.assertIsNone(error)
         self.assertEqual(result["declaration_count"], 2)
         self.assertEqual(calls, ["compiler", "build", "candidate-types", "candidate-types-repeat", "boundaries"])
+
+    def test_release3_observation_can_complete_fresh_export_but_cannot_supply_v02_approval(self):
+        observed = {**r3.FIXED, "schema": r3.IDENTITY_SCHEMA, "historical_v0.2.0": dict(r3.V02_REFERENCE),
+                    "package_version": "0.3.0", "phase": "candidate-ready", "state_sha256": "1" * 64,
+                    "citation_sha256": "2" * 64, "publishable": False}
+        result, calls, error = self.run_mock(release_identity=observed)
+        self.assertIsNone(error)
+        self.assertEqual(calls, ["compiler", "build", "candidate-types", "candidate-types-repeat", "boundaries"])
+        self.assertEqual(result["release_identity"], observed)
+        raw = legacy.encode(result)
+        with self.assertRaises(ValueError):
+            candidate.validate_approval(approval(result, raw), raw, result)
+        reviewed = {**approval(result, raw), "target_version": "0.3.0", "artifact_path": r3.CONTRACT_PATH,
+                    "review_reference": r3.REVIEW_PATH, "review_sha256": "5" * 64,
+                    "capture_commit_payload": "tree " + result["checkpoint"]["tree"] + "\n"}
+        candidate.validate_approval(reviewed, raw, result)
+        for field, bad in (("review_sha256", None), ("review_reference", ".lit-review/unbound"),
+                           ("target_version", "0.2.0"), ("artifact_sha256", "0" * 64)):
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                candidate.validate_approval({**reviewed, field: bad}, raw, result)
 
     def test_build_failure_never_reaches_export(self):
         _, calls, error = self.run_mock(fail_label="build")

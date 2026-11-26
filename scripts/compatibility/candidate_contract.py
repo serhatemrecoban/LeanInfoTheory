@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
 import check_public_api_compatibility as legacy
 import release_state
+import release3_state as r3
 
 SCHEMA = "lean-info-theory.candidate-retained-contract.v1"
 APPROVAL_SCHEMA = "lean-info-theory.candidate-retained-approval.v1"
@@ -64,6 +65,8 @@ def portable_path(value, label: str) -> None:
 
 def identity_projection(identity: dict) -> dict:
     """Lifecycle observations are provenance, not a self-referential producer input."""
+    if isinstance(identity, dict) and identity.get("schema") == r3.IDENTITY_SCHEMA:
+        return r3.identity_projection(identity)
     object_fields(identity, IDENTITY_FIELDS | {"phase", "retention", "state_sha256"},
                   "observed release identity")
     require(identity["schema"] == "lean-info-theory.candidate-release-identity.v1"
@@ -144,7 +147,8 @@ def compare_declarations(old: list[dict], current: list[dict]) -> None:
 
 def excluded_producer_paths() -> set[str]:
     return {release_state.STATE_PATH, release_state.CANDIDATE_CONTRACT_PATH,
-            release_state.CANDIDATE_APPROVAL_PATH}
+            release_state.CANDIDATE_APPROVAL_PATH, r3.STATE_PATH,
+            r3.CONTRACT_PATH, r3.APPROVAL_PATH}
 
 
 def producer_identity(root: Path = ROOT) -> dict[str, str]:
@@ -152,6 +156,8 @@ def producer_identity(root: Path = ROOT) -> dict[str, str]:
     root = Path(root).absolute()
     require(not (root / "lakefile.lean").exists(), "INPUT: alternate effective Lake configuration")
     paths = set(legacy.INPUTS) | set(OWN_INPUTS)
+    if (root / r3.STATE_PATH).exists():
+        paths.add("scripts/release3_state.py")
     paths |= {path.relative_to(root).as_posix() for path in (root / "LeanInfoTheory").rglob("*.lean")}
     paths.add("LeanInfoTheory.lean")
     paths -= excluded_producer_paths()
@@ -208,6 +214,8 @@ def validate_contract(contract: dict) -> dict:
         require(rel not in excluded_producer_paths(), "INPUT: recursive producer output/state")
         digest(value, "producer " + rel)
     require(set(OWN_INPUTS) <= set(producer["files"]), "INPUT: missing candidate machinery")
+    if contract["release_identity"]["schema"] == r3.IDENTITY_SCHEMA:
+        require("scripts/release3_state.py" in producer["files"], "INPUT: missing Release 3 state reader")
     require(isinstance(producer["dependencies"], dict) and bool(producer["dependencies"]),
             "INPUT: empty dependency identity")
     for name, revision in producer["dependencies"].items():
@@ -253,10 +261,20 @@ def compare_contracts(baseline: dict, current: dict) -> None:
 
 
 def validate_approval(approval: dict, raw: bytes, contract: dict) -> None:
-    object_fields(approval, APPROVAL_FIELDS, "approval")
+    release = contract["release_identity"]
+    third_release = release["schema"] == r3.IDENTITY_SCHEMA
+    extra = {"review_sha256", "capture_commit_payload"} if third_release else set()
+    object_fields(approval, APPROVAL_FIELDS | extra, "approval")
+    if third_release:
+        digest(approval["review_sha256"], "independent review")
+        payload = approval["capture_commit_payload"]
+        require(isinstance(payload, str) and payload.startswith("tree " + contract["checkpoint"]["tree"] + "\n")
+                and "\x00" not in payload, "APPROVAL: invalid public capture commit payload")
+    version = r3.TAG[1:] if third_release else release_state.TARGET_VERSION
+    path = r3.CONTRACT_PATH if third_release else release_state.CANDIDATE_CONTRACT_PATH
     require(approval["schema"] == APPROVAL_SCHEMA
-            and approval["target_version"] == release_state.TARGET_VERSION
-            and approval["artifact_path"] == release_state.CANDIDATE_CONTRACT_PATH,
+            and approval["target_version"] == version
+            and approval["artifact_path"] == path,
             "APPROVAL: wrong schema/version/artifact path")
     require(approval["artifact_sha256"] == legacy.sha256(raw), "APPROVAL: artifact digest mismatch")
     require(approval["manifest_sha256"] == contract["manifest_sha256"]
@@ -267,19 +285,22 @@ def validate_approval(approval: dict, raw: bytes, contract: dict) -> None:
             "APPROVAL: reviewed identity does not match captured artifact")
     require(contract["checkpoint"]["kind"] == "git" and contract["checkpoint"]["clean"] is True,
             "APPROVAL: experimental/dirty capture cannot establish a canonical baseline")
-    require(contract["release_identity"]["phase"] in {"candidate", "release-ready"}
-            and contract["release_identity"]["package_version"] == release_state.TARGET_VERSION,
+    allowed_phases = {"candidate-ready"} if third_release else {"candidate", "release-ready"}
+    require(release["phase"] in allowed_phases and release["package_version"] == version,
             "APPROVAL: preparation capture cannot establish the candidate baseline")
     reference = approval["review_reference"]
     require(isinstance(reference, str) and bool(reference.strip()) and "\n" not in reference
-            and reference.startswith(".lit-review/"), "APPROVAL: missing explicit independent review reference")
+            and (reference == r3.REVIEW_PATH if third_release else reference.startswith(".lit-review/")),
+            "APPROVAL: missing explicit independent review reference")
     portable_path(reference, "review reference")
 
 
 def load_approved_snapshot(root: Path = ROOT) -> tuple[dict, bytes, bytes]:
     """Return the parsed contract and the exact bytes validated in this load."""
-    identity = release_state.contract_identity(root)
-    require(identity["retention"] == "established", "NOT_ESTABLISHED: complete candidate retention is pending")
+    identity = release_state.effective_contract_identity(root)
+    third_release = identity["schema"] == r3.IDENTITY_SCHEMA
+    if not third_release:
+        require(identity["retention"] == "established", "NOT_ESTABLISHED: complete candidate retention is pending")
     path = root / release_state.CANDIDATE_CONTRACT_PATH
     approval_path = root / release_state.CANDIDATE_APPROVAL_PATH
     for item in (path, approval_path):
@@ -292,10 +313,49 @@ def load_approved_snapshot(root: Path = ROOT) -> tuple[dict, bytes, bytes]:
     require(contract["producer"]["dependencies"] == historical["dependencies"]
             and contract["producer"]["exporter_sha256"] == historical["exporter"]["sha256"],
             "APPROVAL: capture differs from immutable dependency/exporter pins")
-    require(identity_projection(contract["release_identity"]) == identity_projection(identity),
-            "IDENTITY: approved capture differs from current candidate identity")
+    if third_release:
+        require(legacy.sha256(raw) == r3.V02_REFERENCE[release_state.CANDIDATE_CONTRACT_PATH]
+                and legacy.sha256(approval_raw) == r3.V02_REFERENCE[release_state.CANDIDATE_APPROVAL_PATH],
+                "IDENTITY: historical v0.2.0 capture or approval differs from the released bytes")
+    else:
+        require(identity_projection(contract["release_identity"]) == identity_projection(identity),
+                "IDENTITY: approved capture differs from current candidate identity")
     return contract, raw, approval_raw
 
 
 def load_approved_contract(root: Path = ROOT) -> dict:
     return load_approved_snapshot(root)[0]
+
+
+def load_release3_snapshot(root: Path) -> tuple[dict, bytes, bytes]:
+    """Read the reviewed 918 contract separately from the published 811 reference."""
+    identity = r3.contract_identity(root)
+    pins = r3.load_state(root).get("retained_api")
+    require(pins is not None, "NOT_ESTABLISHED: v0.3.0 requires the separately approved contract and review digests")
+    raw = release_state.require_file(root, r3.CONTRACT_PATH).read_bytes()
+    approval = release_state.require_file(root, r3.APPROVAL_PATH).read_bytes()
+    require(legacy.sha256(raw) == pins[r3.CONTRACT_PATH] and legacy.sha256(approval) == pins[r3.APPROVAL_PATH],
+            "APPROVAL: v0.3.0 retained files differ from the reviewed digests")
+    contract = validate_contract(legacy.strict_json(raw))
+    envelope = legacy.strict_json(approval)
+    require(contract["release_identity"]["schema"] == r3.IDENTITY_SCHEMA,
+            "APPROVAL: expected a third-release contract")
+    validate_approval(envelope, raw, contract)
+    capture = contract["release_identity"]
+    require(identity_projection(capture) == identity_projection(identity),
+            "IDENTITY: approved v0.3.0 capture differs from the current release")
+    if identity["phase"] == "candidate-ready":
+        require(capture["citation_sha256"] == identity["citation_sha256"], "IDENTITY: candidate citation changed")
+    require(contract["declaration_count"] == 918 and len(contract["boundaries"]["supported_modules"]) == 77
+            and len(contract["boundaries"]["root_exports"]) == 92 and len(contract["boundaries"]["simp"]) == 94,
+            "BOUNDARY: reviewed v0.3.0 coverage differs from the qualified release surface")
+    review = release_state.require_file(root, r3.REVIEW_PATH).read_bytes()
+    require(legacy.sha256(review) == envelope["review_sha256"],
+            "APPROVAL: independent review differs from the approved bytes")
+    return contract, raw, approval
+
+
+def recheck_release3_snapshot(root: Path, raw: bytes, approval: bytes) -> None:
+    _, current_raw, current_approval = load_release3_snapshot(root)
+    require((current_raw, current_approval) == (raw, approval),
+            "FRESHNESS: v0.3.0 contract, approval or review changed during comparison")

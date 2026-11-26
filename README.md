@@ -6,10 +6,9 @@
 
 **A machine-checked information theory library for Lean 4.**
 
-Build your next formalization on a substantial foundation of Shannon information
-theory: entropy, mutual information, KL divergence, channels, Markov chains, data
-processing, Fano inequalities, and sufficient statistics. LeanInfoTheory brings
-these tools together in a reusable finite-discrete API built on mathlib.
+LeanInfoTheory brings finite probability laws, Shannon information measures,
+channels and coding theorems together in a reusable API built on mathlib.
+Use it to prove statements about finite distributions, tests and codes in Lean.
 
 The goal of LeanInfoTheory is to build a foundation for a collaboratively
 maintained information-theory library.
@@ -17,19 +16,49 @@ maintained information-theory library.
 Created and maintained by [Serhat Emre Coban](https://serhatemrecoban.github.io/).
 [Collaboration guide](CONTRIBUTING.md) · [Contributors and acknowledgments](#contributors-and-acknowledgments)
 
-**811 supported declarations. 57 supported modules.** Version **0.2.0**
-adds quantitative probability, independent products, finite-iid source coding
-and finite-channel capacity and weak converses. Definitions and theorems are
-checked by Lean; release validation rejects proof placeholders.
-License: **Apache-2.0**.
+Version **0.3.0** adds 107 declarations across six packages. The library now has
+**918 supported declarations in 77 supported modules**.
+LeanInfoTheory uses the **Apache-2.0** license.
 
 [Get started](#installation) ·
 [Practical guides](https://serhatemrecoban.github.io/LeanInfoTheory/docs/) ·
-[API reference](https://serhatemrecoban.github.io/LeanInfoTheory/docs/v0.2.0/) ·
+[v0.3.0 API reference](https://serhatemrecoban.github.io/LeanInfoTheory/docs/v0.3.0/) ·
 [Theorem highlights](https://serhatemrecoban.github.io/LeanInfoTheory/theorems.html) ·
 [PFR case study](https://serhatemrecoban.github.io/LeanInfoTheory/docs/research-projects.html#pfr-case-study) ·
-[Cite v0.2.0](https://doi.org/10.5281/zenodo.23973538) ·
+[Cite v0.3.0](#citation) ·
 [Watch my LeanInfoTheory talk at EPFL](https://youtu.be/CXHebbD7ouA)
+
+## What's new in v0.3.0
+
+Use a focused import to bring a package into your own proof. Each example links to the theorem’s full Lean signature.
+
+- **Finite hypothesis testing and Neyman–Pearson.**
+  For two finite laws and any size budget in [0, 1], a randomized likelihood-threshold test attains that size and maximizes power. A shared randomization probability handles threshold ties.
+  Import `LeanInfoTheory.Probability.NeymanPearson`.
+  [Exact-size test](https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Probability/NeymanPearson.html#PMF.BinaryTest.exists_likelihoodThresholdTest) · [Test at size ¼](https://serhatemrecoban.github.io/LeanInfoTheory/docs/release-3-examples.html#finite-testing)
+- **Information density and one-shot coding.**
+  At fixed blocklength and positive message count `M`, a deterministic code has uniform-message average error at most the probability of missing threshold `t` under the true input–output law plus `(M − 1) exp(−t)`. Threshold ties count as misses. The log-likelihood interpretation requires joint support.
+  Import `LeanInfoTheory.Shannon.ChannelCodingOneShot`.
+  [One-shot error bound](https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Shannon/ChannelCodingOneShot.html#LeanInfoTheory.Shannon.exists_blockChannelCode_errorProbability_le_of_infoDensityThreshold) · [Bound two-message error](https://serhatemrecoban.github.io/LeanInfoTheory/docs/release-3-examples.html#one-shot)
+- **Operational channel capacity and expurgation.**
+  For a finite memoryless channel with nonempty input, information capacity is the least upper bound of rates achievable with vanishing average error. Expurgating the high-error messages retains at least half the messages and gives vanishing maximal error.
+  Import `LeanInfoTheory.Shannon.OperationalCapacity` and `LeanInfoTheory.Shannon.OperationalExpurgation`.
+  [Capacity as a least upper bound](https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Shannon/OperationalCapacity.html#LeanInfoTheory.Shannon.isLUB_isAchievableRate) · [Handle zero capacity](https://serhatemrecoban.github.io/LeanInfoTheory/docs/release-3-examples.html#capacity)
+- **Lossless source–channel separation.**
+  With one channel use per iid source symbol, source entropy below channel capacity (`H < C`) suffices for vanishing block error, and vanishing block error implies `H ≤ C`. The equality case remains open here.
+  Import `LeanInfoTheory.Shannon.SourceChannelSeparation` and `LeanInfoTheory.Shannon.SourceChannelConverse`.
+  [Direct separation theorem](https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Shannon/SourceChannelSeparation.html#LeanInfoTheory.Shannon.exists_sourceChannelCode_tendsto_errorProbability_zero) · [Apply an error tolerance](https://serhatemrecoban.github.io/LeanInfoTheory/docs/release-3-examples.html#separation)
+- **Binary prefix coding.**
+  On the actual support of a finite source, the optimal expected prefix length per symbol for an iid block of positive length `n` is at least the entropy in bits and less than that entropy plus `1/n`.
+  Import `LeanInfoTheory.Shannon.PrefixCodeLengthIid`.
+  [Per-symbol length bounds](https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Shannon/PrefixCodeLengthIid.html#LeanInfoTheory.Shannon.optimalPrefixLength_iid_div_bounds) · [Bound two-symbol blocks](https://serhatemrecoban.github.io/LeanInfoTheory/docs/release-3-examples.html#prefix)
+- **Method of types.**
+  For positive blocklength, a type class has iid probability equal to its multinomial cardinality times `exp(−n(H(q) + D(q‖p)))` when empirical law `q` is supported by prior `p`. Entropy and KL use nats. If an observed symbol has zero prior mass, the class has probability zero and KL is infinite.
+  Import `LeanInfoTheory.Shannon.TypeClassProbability`.
+  [Exact type-class probability](https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Shannon/TypeClassProbability.html#LeanInfoTheory.Shannon.iid_toOuterMeasure_typeClass) · [Compute type-class mass](https://serhatemrecoban.github.io/LeanInfoTheory/docs/release-3-examples.html#types)
+
+The [v0.3.0 release notes](docs/releases/v0.3.0.md) give the assumptions
+and scope of each package.
 
 ## What you can build
 
@@ -66,24 +95,29 @@ results stay in LeanInfoTheory when their ownership and assumptions are general.
 
 ## Release
 
+### v0.3.0
+
+The [third-release notes](docs/releases/v0.3.0.md) cover six packages, the supported imports and the limits of the coding theorems. The lightweight root exports 92 declarations.
+
+### Historical v0.2.0
+
+**811 supported declarations. 57 supported modules.**
 Version **0.2.0**, dated **5 November 2026**, expands the library by 210
 supported declarations and 26 modules while retaining the original surface.
 The [published release notes](https://github.com/serhatemrecoban/LeanInfoTheory/releases/tag/v0.2.0)
 describe the mathematical coverage, assumptions and limits. Zenodo archives this version at
 [10.5281/zenodo.23973538](https://doi.org/10.5281/zenodo.23973538).
 
-The new mathematical coverage includes total variation, maximal couplings and
+Its mathematical coverage includes total variation, maximal couplings and
 transport, Markov gluing, Pinsker, finite-alphabet continuity and topology;
 independent finite products and iid blocks; weak AEP and fixed-length source
 coding, with achievability strictly above entropy and source converses below
 entropy; and attained finite-channel information capacity, product and standard
 channel formulas, and actual-code finite/asymptotic weak converses.
 
-Channel-coding achievability, operational channel-capacity equality and a channel
-strong converse remain outside this release. Canonical units are **nats**;
-finite/nonempty, support, independence and positive-budget hypotheses remain
-explicit. These are mathematical existence and bound APIs, with no claim of an
-efficient executable codec or a complete textbook formalization.
+Version 0.2.0 proves a channel weak converse. The third release
+adds channel achievability and the operational capacity theorem. Canonical
+units are **nats**.
 
 ### Historical v0.1.0
 
@@ -119,21 +153,23 @@ See the [compatibility checks](docs/compatibility/README.md) for their limits.
 
 ## Installation
 
-LeanInfoTheory `v0.2.0` targets Lean 4 and mathlib `v4.33.1`. Align the
+LeanInfoTheory `v0.3.0` targets Lean 4 and mathlib `v4.33.1`. Align the
 consumer project's `lean-toolchain` with:
 
 ```text
 leanprover/lean4:v4.33.1
 ```
 
-To install v0.2.0, add the tagged Git dependency to `lakefile.toml`.
+Add the tagged v0.3.0 dependency to your project's `lakefile.toml`.
 
 ```toml
 [[require]]
 name = "LeanInfoTheory"
 git = "https://github.com/serhatemrecoban/LeanInfoTheory"
-rev = "v0.2.0"
+rev = "v0.3.0"
 ```
+
+Projects pinned to a previous version can use the [v0.2.0 API](https://serhatemrecoban.github.io/LeanInfoTheory/docs/v0.2.0/) or the [v0.1.0 API](https://serhatemrecoban.github.io/LeanInfoTheory/docs/v0.1.0/).
 
 Update dependencies, fetch the mathlib cache, and build:
 
@@ -145,7 +181,7 @@ lake build
 
 LeanInfoTheory declares `fixedToolchain = true`. Lake may prioritize that
 toolchain during dependency resolution, so a consumer should not silently mix
-LeanInfoTheory `v0.2.0` with incompatible Lean, mathlib, or other fixed-toolchain
+LeanInfoTheory `v0.3.0` with incompatible Lean, mathlib, or other fixed-toolchain
 dependencies. Use the immutable version tag rather than an untagged branch when
 reproducibility matters.
 
@@ -267,8 +303,10 @@ example {α : Type*} [Finite α]
 
 ## Choosing imports
 
-The table describes v0.2.0. Rows marked **New in v0.2.0** extend the
-original foundation; the frozen v0.1.0 manifest gives the historical surface. Umbrella imports load the supported stack of the version used.
+The table lists imports available in both v0.2.0 and v0.3.0.
+The [six new packages](#whats-new-in-v030) list the focused
+imports added in v0.3.0. Umbrella imports load the supported stack
+of the version you installed.
 
 | Import | Intended use |
 | --- | --- |
@@ -292,8 +330,8 @@ Focused semantic submodules remain supported imports when the full bridge is
 unnecessary. The exact historical supported list and frozen declarations are in
 the [`v0.1.x` public API contract](docs/v0.1-public-api.md) and its
 [frozen release manifest](docs/v0.1-public-api.json). The
-[current manifest](docs/current-public-api.json) records the complete v0.2.0
-surface; post-v0.1.0 modules such as Pinsker are absent from the frozen release.
+[current manifest](docs/current-public-api.json) lists all 918 supported
+declarations and their owning modules in v0.3.0.
 
 `LeanInfoTheory.Basic`, `LeanInfoTheory.MathlibFragments`, and the
 `LeanInfoTheory.Examples` hierarchy are maintained development, reference, and
@@ -346,12 +384,11 @@ statements to Lean and mathlib.
 - Channels remain functions `α → PMF β`; the library does not introduce a
   second bundled finite-channel abstraction.
 
-Version 0.2.0 adds the quantitative, product, AEP, source-coding and
-information-capacity areas described in the [release overview](docs/releases/v0.2.0-publication.md).
-Channel achievability, operational channel-capacity equality and a channel strong
-converse remain excluded. Continuous/differential entropy, general stationary or
-ergodic source coding, randomized/list decoding, feedback, cost constraints and
-variable/prefix coding are not supplied by these finite fixed-length results.
+Version 0.3.0 proves finite memoryless channel achievability strictly below
+capacity and a weak converse. The separation theorem uses an iid source and
+one channel use per symbol. Binary prefix lengths are measured in bits on the
+source support. A channel strong converse, feedback or cost-constrained coding,
+and general stationary or ergodic sources remain outside this scope.
 See the [limitations register](docs/lean-info-theory-living-summary.md#11-known-limitations-and-open-questions).
 
 ## Compatibility policy
@@ -389,6 +426,7 @@ paper-specific downstream constructions.
 ### Guides and examples
 
 - [Getting started with information theory in Lean](home_page/docs/getting-started.html).
+- [Six worked examples for v0.3.0](https://serhatemrecoban.github.io/LeanInfoTheory/docs/release-3-examples.html).
 - [Entropy, mutual information, and KL divergence](home_page/docs/information-measures.html).
 - [Markov chains and data processing](home_page/docs/markov-data-processing.html).
 - [Formalizing a research paper](home_page/docs/research-projects.html).
@@ -418,9 +456,10 @@ and semantic choices. The source-derived
 [declaration index](home_page/docs/api-index.html) remains a lightweight
 supplement. The separate [signature-bearing API documentation
 gate](docs/api-documentation.md) renders the current supported surface for local
-inspection. The v0.2.0 API entry links to its complete versioned snapshot at
-`/LeanInfoTheory-API/v0.2.0/`; the historical `/docs/v0.1.0/` route remains bound
-to its original 601-declaration source. The supporting website is
+inspection. The [v0.2.0 API](https://serhatemrecoban.github.io/LeanInfoTheory-API/v0.2.0/)
+and [v0.1.0 API](https://serhatemrecoban.github.io/LeanInfoTheory/docs/v0.1.0/)
+document those published versions. The v0.3.0 API uses its own
+versioned host, as linked in the six packages above. The supporting website is
 <https://serhatemrecoban.github.io/LeanInfoTheory/>.
 
 <details>
@@ -433,10 +472,10 @@ do not need Python or documentation-build tools at runtime. Obtain the release
 snapshot with Git, Elan/Lake, and Python 3.11+ available:
 
 ```sh
-git clone --branch v0.2.0 --depth 1 https://github.com/serhatemrecoban/LeanInfoTheory.git
+git clone --branch v0.3.0 https://github.com/serhatemrecoban/LeanInfoTheory.git
 cd LeanInfoTheory
 lake exe cache get
-python scripts/validate_release.py
+python scripts/validate_development.py
 ```
 
 The validator runs the default build and the eight-target warning-as-error
@@ -450,7 +489,11 @@ checkout policy keeps Lake manifests byte-stable on Windows as well as Unix.
 This routine suite deliberately excludes the much heavier signature-bearing
 documentation build.
 
-For the post-release default branch, run `python scripts/validate_published.py` from a clean
+The third-release validator’s `static` command checks source
+and policy, `compatibility` rebuilds the comparisons against v0.1.0 and
+v0.2.0, and `trust` checks imports, reviewed attributes and permitted axioms.
+
+For the v0.2.0 maintenance branch, run `python scripts/validate_published.py` from a clean
 clone that includes the v0.2.0 tag. Its `static` command checks the current citation,
 website, deployment safeguards and the release inputs. The full command also builds the
 current checkout and runs the retained API and trust checks.
@@ -460,9 +503,9 @@ Useful focused commands are:
 ```sh
 python scripts/validate_release.py documentation
 python scripts/validate_release.py focused LeanInfoTheory.Shannon.FiniteFamily
-python scripts/validate_published.py static
-python scripts/validate_release.py compatibility
-python scripts/validate_release.py trust
+python scripts/validate_development.py static
+python scripts/validate_development.py compatibility
+python scripts/validate_development.py trust
 ```
 
 At release and documentation milestones, run the separate API-documentation
@@ -531,10 +574,9 @@ maintainer signing identity is available, but it is not a `v0.1.0` blocker.
 
 ## Roadmap
 
-Further work includes reusable finite information theory, downstream research
-formalizations and improved theorem-level documentation. Channel achievability
-and stronger channel-coding results require separate mathematical development;
-they are not part of v0.2.0. See the [public roadmap](home_page/roadmap.html).
+The [public roadmap](home_page/roadmap.html) describes further finite
+information theory, downstream research formalizations and documentation.
+The v0.3.0 operational capacity and separation results use weak converses.
 
 ## Contributors and acknowledgments
 
@@ -577,9 +619,9 @@ holder. The project is licensed under the Apache License, Version 2.0; see
 
 ## Citation
 
-Serhat Emre Coban (2026). *LeanInfoTheory* (v0.2.0) [Software]. Zenodo.
-[10.5281/zenodo.23973538](https://doi.org/10.5281/zenodo.23973538).
+Serhat Emre Coban (2026). *LeanInfoTheory* (v0.3.0) [Software].
+[Release and source](https://github.com/serhatemrecoban/LeanInfoTheory/releases/tag/v0.3.0) · [Tagged citation metadata](https://github.com/serhatemrecoban/LeanInfoTheory/blob/v0.3.0/CITATION.cff).
 
-[CITATION.cff](CITATION.cff) provides this citation in machine-readable form.
-For work using v0.1.0, cite [10.5281/zenodo.22229599](https://doi.org/10.5281/zenodo.22229599).
-To refer to the software across versions, use [10.5281/zenodo.22229598](https://doi.org/10.5281/zenodo.22229598).
+The [v0.2.0 archive](https://doi.org/10.5281/zenodo.23973538) and
+[v0.1.0 archive](https://doi.org/10.5281/zenodo.22229599) identify those specific releases.
+The [all-versions DOI](https://doi.org/10.5281/zenodo.22229598) identifies LeanInfoTheory across releases.

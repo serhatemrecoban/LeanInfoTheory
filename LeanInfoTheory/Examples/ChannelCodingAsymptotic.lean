@@ -10,6 +10,7 @@ Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory.Shannon.ChannelCodingAsymptotic
+import LeanInfoTheory.Shannon.OperationalCapacity
 import LeanInfoTheory.Shannon.StandardChannelCapacity
 
 /-!
@@ -220,6 +221,36 @@ private theorem alternating_rates_not_convergent (l : ℝ) :
   have hllog : Real.log 2 = l := tendsto_const_nhds_iff.mp hodd
   have hlog : 0 < Real.log 2 := Real.log_pos (by norm_num)
   linarith only [hlzero, hllog, hlog]
+
+/-! The same alternating family achieves zero despite having no rate limit.
+At the positive target below, odd lengths satisfy the lower bound and every
+even length fails it. Thus this family's good subsequence supplies no eventual
+lower bound for that target. -/
+
+example : IsAchievableRate noiseless 0 := by
+  refine ⟨le_rfl, alternatingBudget, alternatingBudget_pos, alternatingCode,
+    alternating_error_tendsto_zero, ?_⟩
+  intro δ hδ
+  exact Eventually.of_forall fun n => by
+    have hr := codeRate_nonneg n (alternatingBudget n) (alternatingBudget_pos n)
+    linarith
+
+example (n : ℕ) :
+    Real.log 2 / 2 - Real.log 2 / 4 ≤
+      codeRate (2 * n + 1) (alternatingBudget (2 * n + 1)) := by
+  rw [alternating_rate_odd (by omega) (by omega)]
+  have hlog : 0 < Real.log 2 := Real.log_pos (by norm_num)
+  linarith
+
+example :
+    ¬ (∀ᶠ n in atTop, Real.log 2 / 2 - Real.log 2 / 4 ≤
+      codeRate n (alternatingBudget n)) := by
+  intro h
+  obtain ⟨N, hN⟩ := eventually_atTop.1 h
+  have heven := hN (2 * N) (by omega)
+  rw [alternating_rate_even (by omega)] at heven
+  have hlog : 0 < Real.log 2 := Real.log_pos (by norm_num)
+  linarith
 
 /-! ## Constant-decoder codes and a positive-capacity obstruction -/
 

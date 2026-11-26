@@ -28,6 +28,7 @@ import current_api
 import api_doc_identity
 import website_discovery
 import release_state
+import release3_state as r3
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -597,6 +598,12 @@ def raw_sha256(path: Path) -> str:
 
 
 def check_release_metadata() -> None:
+    if (ROOT / r3.STATE_PATH).exists():
+        from validate_development import DEVELOPMENT_CI_SHA256
+        import validate_published
+        validate_published.check_maintenance(ci_sha256=DEVELOPMENT_CI_SHA256)
+        check_toolchain_contract()
+        return
     errors: list[str] = []
     state = release_state.load_state(ROOT)
     candidate = state["phase"] in release_state.SECOND_RELEASE_PHASES
@@ -1037,7 +1044,6 @@ def check_candidate_release_contract() -> None:
     state = release_state.load_state(ROOT)
     if state["phase"] == "historical":
         return
-    identity = release_state.contract_identity(ROOT)
     release_state.validation_inputs(ROOT)
     requirements = {
         "docs/v0.2-release-contract.md": (
@@ -1063,12 +1069,21 @@ def check_candidate_release_contract() -> None:
         print("candidate retention artifact/approval input contract passed; compiled comparison is separate")
     else:
         print("candidate retained baseline: NOT_ESTABLISHED (pending C24.07; no baseline PASS claimed)")
-    print(f"unpublished candidate policy passed: {identity['phase']}, stable v0.1.0, publication disabled")
+    print("Historical v0.2.0 candidate policy and immutable references checked; publication disabled")
 
 
 def check_release_documentation_contract() -> None:
     state = release_state.load_state(ROOT)
     candidate_documents = []
+    if (ROOT / r3.STATE_PATH).is_file():
+        from check_release_pages import R3_ENDPOINTS
+        notes = release_state.require_file(ROOT, "docs/releases/v0.3.0.md")
+        source = notes.read_text(encoding="utf-8")
+        for name, module in R3_ENDPOINTS.items():
+            url = f"{r3.API_URL}{module.replace('.', '/')}.html#{name}"
+            if url not in source:
+                raise ValidationError(f"third release notes are missing the API link for {name}")
+        candidate_documents.append((notes, source))
     if state["phase"] in release_state.SECOND_RELEASE_PHASES:
         candidate_notes = ROOT / "docs/releases/v0.2.0.md"
         source = release_state.require_file(ROOT, candidate_notes.relative_to(ROOT).as_posix()).read_text(encoding="utf-8")
@@ -1106,7 +1121,10 @@ def check_release_documentation_contract() -> None:
         "enabled immutable GitHub Releases",
     )
     if state["phase"] == "release-ready":
-        readme_markers = tuple('rev = "v0.2.0"' if marker == 'rev = "v0.1.0"'
+        install_tag = "v0.2.0"
+        if (ROOT / r3.STATE_PATH).exists() and r3.load_state(ROOT)["phase"] != "preparation":
+            install_tag = r3.TAG
+        readme_markers = tuple(f'rev = "{install_tag}"' if marker == 'rev = "v0.1.0"'
                               else marker for marker in readme_markers)
     errors = [
         f"README.md is missing the release-documentation marker: {marker}"
@@ -1243,14 +1261,15 @@ def check_documentation_examples() -> None:
             label=f"README example {index}/{len(examples)}: {example_id}",
         )
     print(f"independently compiled {len(examples)} README examples with warnings as errors")
-    for example_id, source in website_discovery.read_guide_examples():
+    guide_examples = website_discovery.read_guide_examples()
+    for example_id, source in guide_examples:
         run_command(
             ("lake", "env", "lean", "-DwarningAsError=true", "--stdin"),
             input_text=source,
             capture_output=True,
             label=f"website guide example: {example_id}",
         )
-    print("independently compiled four website guide examples with warnings as errors")
+    print(f"independently compiled {len(guide_examples)} website guide examples with warnings as errors")
 
 
 def check_release_interlock() -> None:
@@ -1783,8 +1802,10 @@ run_cmd do
     )
 
 
-def check_trust_contract() -> None:
-    before = current_validation_identity()
+def check_trust_contract(*, development: bool = False) -> None:
+    if (ROOT / r3.STATE_PATH).exists():
+        development = True
+    before = current_validation_identity(development=development)
     check_lean_source()
     manifest = load_public_manifest()
     # This gate builds its own current supported closure and checks retained
@@ -1795,7 +1816,10 @@ def check_trust_contract() -> None:
         label="retained compatibility and current reviewed boundaries before trust",
     )
     check_candidate_release_contract()
-    if release_state.load_state(ROOT)["retention"] == "established":
+    if development:
+        run_command((sys.executable, "scripts/validate_development.py", "compatibility"),
+                    label="retained v0.2.0 API on the current development surface")
+    elif release_state.load_state(ROOT)["retention"] == "established":
         run_command((sys.executable, "scripts/check_candidate_api_compatibility.py", "check"),
                     label="complete candidate retained type and boundary comparison")
     run_command(
@@ -1835,12 +1859,12 @@ def check_trust_contract() -> None:
     check_supported_environment(manifest, non_stable_names, private_names)
     check_root_boundary(manifest)
     check_all_project_axioms()
-    if current_validation_identity() != before:
+    if current_validation_identity(development=development) != before:
         raise ValidationError("source/configuration/dependencies changed during current trust probes")
     print("retained compatibility and exact current API/trust/import contract passed")
 
 
-def current_validation_identity() -> dict:
+def current_validation_identity(*, development: bool = False) -> dict:
     """Bind the maintained trust sequence, including its current manifest reader."""
     compatibility = current_api.compatibility
     files = compatibility.source_identity()
@@ -1848,6 +1872,12 @@ def current_validation_identity() -> dict:
         files[relative] = raw_sha256(ROOT / relative)
     if release_state.load_state(ROOT)["phase"] != "historical":
         for relative in ("docs/v0.2-release-contract.md", "docs/qualification/c24-candidate-content-proposal.md"):
+            files[relative] = raw_sha256(ROOT / relative)
+    if development:
+        from compatibility import candidate_contract
+        for relative in (*candidate_contract.OWN_INPUTS, "scripts/check_development_api_compatibility.py",
+                         "scripts/validate_development.py", "scripts/validate_published.py",
+                         ".github/workflows/lean_action_ci.yml"):
             files[relative] = raw_sha256(ROOT / relative)
     return {"files": files, "dependencies": compatibility.retained.dependency_identity(ROOT)}
 

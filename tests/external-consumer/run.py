@@ -25,6 +25,8 @@ MODULE_IMPORTS = {
     'Capacity': 'LeanInfoTheory.Shannon.StandardChannelCapacity',
     'WeakConverse': 'LeanInfoTheory.Shannon.ChannelCodingAsymptotic',
     'FullUmbrella': 'LeanInfoTheory.Shannon',
+    'PrefixIid': 'LeanInfoTheory.Shannon.PrefixCodeLengthIid',
+    'TypeProb': 'LeanInfoTheory.Shannon.TypeClassProbability',
 }
 FIXTURE_FILES = ['README.md', 'run.py', 'test_run.py'] + [
     f'Consumer/{name}.lean' for name in MODULE_IMPORTS]
@@ -46,7 +48,7 @@ def child_of(path: Path, parent: Path) -> bool:
 
 
 def clean_environment(inherited: dict[str, str]) -> tuple[dict[str, str], list[str]]:
-    names = {'LEAN_PATH', 'LEAN_SRC_PATH', 'LEAN_SYSROOT', 'LAKE_PACKAGES_DIR',
+    names = {'LEAN_PATH', 'LEAN_SRC_PATH', 'LEAN_SYSROOT', 'ELAN_TOOLCHAIN', 'LAKE_PACKAGES_DIR',
              'GIT_DIR', 'GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_COMMON_DIR',
              'GIT_OBJECT_DIRECTORY', 'GIT_ALTERNATE_OBJECT_DIRECTORIES',
              'GIT_CONFIG_COUNT'}
@@ -136,6 +138,25 @@ class Commands:
                 f'dirty dependency checkout: {repository}')
 
 
+def check_caller_imports(commands: Commands, fixture: Path, cwd: Path) -> dict[str, list[str]]:
+    files = [str(fixture / 'Consumer' / f'{name}.lean') for name in MODULE_IMPORTS]
+    rows = json.loads(commands.run(['lean', '--deps-json', *files], cwd))['imports']
+    require(len(rows) == len(files), 'incomplete Lean import-header results')
+    actual = {}
+    for (name, expected), row in zip(MODULE_IMPORTS.items(), rows, strict=True):
+        caller = 'Consumer.' + name
+        require(not row['errors'], f'{caller}: invalid Lean import header: {row["errors"]}')
+        imports = row['result']['imports']
+        # Lean inserts ordinary and meta Init imports at the start of non-prelude files.
+        first_two = [(imp['module'], imp['isMeta']) for imp in imports[:2]]
+        if first_two == [('Init', False), ('Init', True)]:
+            imports = imports[2:]
+        modules = [imp['module'] for imp in imports]
+        require(modules == [expected], f'{caller}: expected only {expected}, found {modules}')
+        actual[caller] = modules
+    return actual
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--repository', type=Path, required=True,
@@ -195,6 +216,7 @@ def main(argv: list[str] | None = None) -> int:
                     f'{name}: invoked fixture differs from candidate commit')
             fixture_bytes[name] = data
         report['fixture_sha256'] = {k: sha256(v) for k, v in fixture_bytes.items()}
+        report['source_imports'] = check_caller_imports(commands, fixture, repository)
         work.mkdir(parents=True, exist_ok=False)
         for name, data in fixture_bytes.items():
             if name.endswith('.lean'):
@@ -202,6 +224,7 @@ def main(argv: list[str] | None = None) -> int:
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(data)
         (work / 'lean-toolchain').write_bytes(toolchain)
+        report['materialized_imports'] = check_caller_imports(commands, work, work)
         url = ('https://github.com/serhatemrecoban/LeanInfoTheory' if args.github
                else repository.as_uri())
         (work / 'lakefile.toml').write_text(configuration(url, args.candidate_sha), encoding='utf-8')
@@ -221,7 +244,8 @@ def main(argv: list[str] | None = None) -> int:
         commands.run(['lake', 'env', 'lean', '--print-prefix'], work)
         commands.run(['lake', 'exe', 'cache', 'get'], work)
         commands.run(['lake', '--wfail', 'build', 'Consumer'], work)
-        modules = sorted(set(MODULE_IMPORTS.values()))
+        modules = sorted({module for imports in report['materialized_imports'].values()
+                          for module in imports})
         probe = 'import Lean\n\n#eval do\n  let sp ← Lean.getSrcSearchPath\n'
         for module in modules:
             probe += (f'  let s ← Lean.findLean sp `{module}\n'

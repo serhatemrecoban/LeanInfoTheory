@@ -9,13 +9,25 @@ See the LICENSE file for details.
 Author: Serhat Emre Coban
 -/
 
+import LeanInfoTheory.Examples.BinaryTesting
+import LeanInfoTheory.Examples.ChannelCodingOneShot
+import LeanInfoTheory.Examples.ChannelCodingOneShotBinary
+import LeanInfoTheory.Examples.ChannelCodingOneShotTernary
+import LeanInfoTheory.Examples.ChannelCodingOneShotSparse
+import LeanInfoTheory.Examples.ChannelCodingOneShotFinite
+import LeanInfoTheory.Examples.NeymanPearson
 import LeanInfoTheory.Examples.ChannelOptimization
 import LeanInfoTheory.Examples.ChannelCapacity
 import LeanInfoTheory.Examples.ChannelCode
+import LeanInfoTheory.Examples.ChannelCodeExpurgation
 import LeanInfoTheory.Examples.ChannelCoding
 import LeanInfoTheory.Examples.ChannelCodingAsymptotic
 import LeanInfoTheory.Examples.AEP
 import LeanInfoTheory.Examples.CodingRate
+import LeanInfoTheory.Examples.SourceChannelCode
+import LeanInfoTheory.Examples.SourceChannelConverse
+import LeanInfoTheory.Examples.SourceChannelSeparation
+import LeanInfoTheory.Examples.SourceChannelSeparationPackage
 import LeanInfoTheory.Examples.SourceCoding
 import LeanInfoTheory.Examples.SourceCodingAsymptotic
 import LeanInfoTheory.Examples.SourceCodingTypicalSet
@@ -39,6 +51,15 @@ import LeanInfoTheory.Examples.IidInformation
 import LeanInfoTheory.Examples.ProductKL
 import LeanInfoTheory.Examples.IndependenceProcessing
 import LeanInfoTheory.Examples.InformationDecomposition
+import LeanInfoTheory.Examples.InformationDensity
+import LeanInfoTheory.Examples.IidInformationDensity
+import LeanInfoTheory.Examples.RandomCodebook
+import LeanInfoTheory.Examples.PrefixCode
+import LeanInfoTheory.Examples.PrefixCodeLength
+import LeanInfoTheory.Examples.WordType
+import LeanInfoTheory.Examples.TypeClass
+import LeanInfoTheory.Examples.TypeClassProbability
+import LeanInfoTheory.Examples.TypeClassProbabilityInterface
 import LeanInfoTheory.Examples.KLTop
 import LeanInfoTheory.Examples.Pinsker
 import LeanInfoTheory.Examples.ProductChannel
@@ -55,9 +76,16 @@ import LeanInfoTheory.Examples.TotalVariation
 import LeanInfoTheory.Examples.TotalVariationTopology
 import LeanInfoTheory.Examples.TotalVariationChannels
 import LeanInfoTheory.Examples.Units
+import LeanInfoTheory.Examples.OperationalCapacity
+import LeanInfoTheory.Examples.OperationalExpurgation
 
 /-!
 # Examples aggregate
+
+Word-type consumers check binary and sparse empirical laws, position cycles,
+exact denominator conversion, impossible denominators and empty/singleton
+boundaries. A weighted partition and a shared class-cardinality/iid-event
+expression exercise the same finite class interface for later chunks.
 
 Focused channel-code consumers use the actual sampling laws and Fano error
 interface, including unequal encoder fibers, singleton messages and zero/one
@@ -79,6 +107,8 @@ Above-capacity consumers apply the public quantitative bound to positive-capacit
 noiseless codes and separate it from intermittent unbounded rates on a
 zero-capacity channel, with infinitely many error-zero lengths.
 
+The source-channel separation example uses a biased Boolean source and an erasure
+channel, obtaining one code family for all positive error tolerances.
 Asymptotic source-coding consumers use one public code-family witness for both
 vanishing error and eventual rate bounds, including pure and sparse sources.
 

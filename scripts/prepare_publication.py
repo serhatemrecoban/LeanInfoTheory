@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare review material for v0.2.0; never mutate Git, publish, or deploy.
+"""Prepare release metadata proposals and the historical v0.2.0 review layout.
 
 Metadata proposals do not edit canonical files. Review staging requires a clean,
 source-bound candidate with GitHub API links and preserves the recovered live
@@ -19,6 +19,7 @@ import subprocess
 import sys
 
 import release_state
+import release3_state as r3
 import split_website as split
 import stage_website as staging
 from compatibility import candidate_contract
@@ -58,6 +59,18 @@ def validate_tracked_site_source(root: Path) -> None:
 
 
 def metadata_proposal(root: Path, release_date: str) -> dict[str, bytes]:
+    if (root / r3.STATE_PATH).exists():
+        current = r3.check_metadata(root)
+        if current["phase"] != "preparation":
+            raise ValueError("the Release 3 metadata proposal starts from preparation")
+        proposed = r3.validate_state({**current, "phase": "candidate-ready", "release_date": release_date})
+        package = release_state.require_file(root, "lakefile.toml").read_bytes()
+        citation = release_state.require_file(root, "CITATION.cff").read_bytes()
+        return {Path(r3.STATE_PATH).name: split.encoded(proposed),
+                "lakefile.toml": package.replace(b'version = "0.2.0"', b'version = "0.3.0"', 1),
+                "CITATION.cff": citation.replace(b'version: "0.2.0"', b'version: "0.3.0"', 1)
+                .replace(b'date-released: 2026-11-05', f'date-released: {release_date}'.encode(), 1)
+                .replace(b'doi: "10.5281/zenodo.23973538"\n', b'', 1)}
     current = release_state.load_state(root)
     if current["phase"] != "candidate" or current["retention"] != "established":
         raise ValueError("metadata proposal requires the established candidate state")

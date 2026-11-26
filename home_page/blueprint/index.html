@@ -23,8 +23,8 @@
         This blueprint mixes implemented modules with planned layers. The
         <a href="dep_graph_document.html">module-level dependency map</a> is
         generated from Lean <code>import</code> lines. A source-derived inventory
-        and the separate <a href="../docs/v0.1.0/">signature-bearing v0.1.0 API
-        reference</a> are available under documentation. Theorem-level
+        and <a href="../docs/">versioned API references with Lean signatures</a>
+        are available under documentation. Theorem-level
         blueprint pages and a blueprint PDF remain future work.
       </p>
 
@@ -69,7 +69,7 @@
         <li>finite Fano, log-sum, entropy concavity, and KL-convexity results</li>
       </ul>
 
-      <h2>Finite information theory in v0.2.0</h2>
+      <h2>Finite probability and coding in v0.2.0</h2>
       <p>
         Version 0.2.0 contains 811 supported declarations across 57 modules.
       </p>
@@ -81,11 +81,15 @@
         <li>attained finite information capacity, product/repeated and standard-channel values</li>
         <li>same-code finite/asymptotic channel weak converses with explicit length, rate and eventual/frequent distinctions</li>
       </ul>
+      <h2>The third release</h2>
       <p>
-        See the <a href="../module-guide.html#candidate-modules">current import guide</a>
-        and <a href="../theorems.html#candidate-results">mathematical limits</a>.
-        Channel achievability, operational-capacity equality, the channel strong
-        converse and stationary/ergodic AEP remain outside this programme.
+        The third release adds finite hypothesis testing, one-shot coding,
+        operational capacity and expurgation, lossless source–channel separation,
+        binary prefix coding and the method of types. It proves finite memoryless
+        channel achievability and the weak converse. A channel strong converse and
+        stationary or ergodic AEP remain open here.
+        <a href="../docs/release-3-examples.html">Explore the six packages in Lean</a>
+        or see the <a href="../theorems.html#candidate-results">theorem assumptions</a>.
       </p>
 
       <h2>Layer 3: Documentation and downstream use</h2>

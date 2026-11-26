@@ -9,14 +9,15 @@ from pathlib import Path
 import sys
 import uuid
 
-from project import (ProjectRecordFS, bind, setup, open_session, load_session,
+from project import (ProjectRecordFS, bind, bind_c40_successor, setup, open_session, load_session,
                      inspect_checkout, snapshot, Refusal, canonical, strict_json, chunk_id)
 
 ROOT=Path(__file__).absolute().parents[2]
 METHODS=('inspect','current','authority','process_next','process_named_next','parent_evidence',
     'initial_validation','self_review','reassess','disposition','reassess_finding',
     'begin_edit','finish_edit','finish_reversal','prepare_review','dispatch_intent',
-    'record_submission','record_wait','confirm_delivery','receive_report',
+    'verified_file_packet','record_submission','record_wait','confirm_delivery',
+    'confirm_verified_file_delivery','receive_report',
     'report_format_conflict_target','resolve_report_format_conflict','requalify_report_format_conflict',
     'reconcile_report','begin_corrections','finish_corrections','assess','extra_review',
     'finalize_documents','prepare_final','project_closure','refresh_final',
@@ -47,6 +48,7 @@ def entry(checkout,command,data=None,chunk=None,session='execution'):
         return {'native_calls':'Agent invokes its actual tools; Python never does.',
             'methods':{m:str(inspect.signature(getattr(ProjectWorkflow,m))) for m in METHODS}}
     if command=='bind':return bind(root,**data)
+    if command=='bind-c40-successor':return bind_c40_successor(root,**data)
     if command=='open':
         w=open_session(root,**data)
         return {'status':'SESSION_OPENED_NOT_A_STEP','root':str(w.fs.root),'state':w.inspect()}
@@ -72,7 +74,8 @@ def entry(checkout,command,data=None,chunk=None,session='execution'):
 def main():
     if hasattr(sys.stdout,'reconfigure'):sys.stdout.reconfigure(encoding='utf-8')
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command',choices=['setup','inspect','snapshot','instructions','api','bind','open','call','next','backup'])
+    parser.add_argument('command',choices=['setup','inspect','snapshot','instructions','api','bind',
+                                           'bind-c40-successor','open','call','next','backup'])
     parser.add_argument('--checkout',default=str(ROOT))
     parser.add_argument('--input',type=Path,help='Exact JSON packet file. No code evaluation.')
     parser.add_argument('--chunk')

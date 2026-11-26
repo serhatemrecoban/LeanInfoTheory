@@ -1,4 +1,4 @@
-"""Build or verify the two versioned GitHub Pages artifacts, without deployment."""
+"""Build or verify versioned GitHub Pages artifacts, without deployment."""
 from __future__ import annotations
 
 import argparse
@@ -40,13 +40,14 @@ def exact_replace(source: str, old: str, new: str) -> str:
     return source.replace(old, new, 1)
 
 
-def api_bytes(raw: bytes, rel: str, manifest: dict, commit: str) -> bytes:
+def api_bytes(raw: bytes, rel: str, manifest: dict, commit: str, *,
+              release_html=publication.release_api_html) -> bytes:
     if rel.endswith(".html"):
         source, _ = stage.transform_current_doc_html(
             raw.decode("utf-8").replace("\r\n", "\n"), relative=Path(rel), source_mode="github",
             manifest=manifest, commit=commit)
         if rel in {"index.html", "navbar.html"}:
-            source = publication.release_api_html(source.encode(), rel).decode()
+            source = release_html(source.encode(), rel).decode()
         return DOUBLE_SLASH.sub(r'\1./', source).encode()
     if rel in {"declaration-data.js", "find/find.js"}:
         source = raw.decode("utf-8")
@@ -140,23 +141,8 @@ def public_sources(config: dict, attestation: dict, manifest: dict, commit: str,
         "source_mode": "github", "source_identity": commit,
         "raw_tree_sha256": attestation["doc_tree_sha256"], "validated_passes": attestation["validated_passes"],
     })
-    module_paths = json.loads((stage.DOC_SOURCE.parent / "doc-manifest.json").read_bytes())
-    if not isinstance(module_paths, list) or not all(isinstance(m, str) for m in module_paths):
-        raise ValueError("unexpected doc-gen module manifest")
-    modules = {p.replace("\\", "/").removeprefix("doc/") for p in module_paths}
-    actual = split.inventory(stage.DOC_SOURCE)
-    if len(modules) != len(module_paths) or any(not p.endswith(".html") for p in modules) \
-            or set(actual) != modules | RAW_EXTRAS:
-        raise ValueError("raw doc-gen files differ from the module and asset inventory")
-    raw_digest = hashlib.sha256()
-    for rel in sorted(actual):
-        raw = (stage.DOC_SOURCE / rel).read_bytes()
-        raw_digest.update(rel.encode() + b"\0")
-        raw_digest.update(raw)
-        raw_digest.update(b"\0")
-        yield api, prefix + rel, api_bytes(raw, rel, manifest, commit)
-    if raw_digest.hexdigest() != attestation["doc_tree_sha256"]:
-        raise ValueError("raw API changed while building the package")
+    for rel, raw in api_snapshot(stage.DOC_SOURCE, attestation, manifest, commit, publication.release_api_html):
+        yield api, prefix + rel, raw
     licenses = scratch / "licenses"
     stage.stage_licenses(licenses, config)
     for rel in sorted(split.inventory(licenses)):
@@ -165,6 +151,35 @@ def public_sources(config: dict, attestation: dict, manifest: dict, commit: str,
             raw = publication.release_api_html(raw, "licenses/index.html")
         yield api, prefix + "licenses/" + rel, raw
     yield api, ".nojekyll", b""
+
+
+def api_snapshot(source: Path, attestation: dict, manifest: dict, commit: str, release_html):
+    """Render the full attested doc-gen tree and verify the byte stream used."""
+    module_paths = json.loads((source.parent / "doc-manifest.json").read_bytes())
+    if not isinstance(module_paths, list) or not all(isinstance(m, str) for m in module_paths):
+        raise ValueError("unexpected doc-gen module manifest")
+    modules = {p.replace("\\", "/").removeprefix("doc/") for p in module_paths}
+    stage.require_unredirected_tree(source, label="raw API")
+    actual = {p.relative_to(source).as_posix() for p in source.rglob("*") if p.is_file()}
+    if len(modules) != len(module_paths) or any(not p.endswith(".html") for p in modules) \
+            or set(actual) != modules | RAW_EXTRAS:
+        raise ValueError("raw doc-gen files differ from the module and asset inventory")
+    raw_digest = hashlib.sha256()
+    size = 0
+    for rel in sorted(actual):
+        path = source / rel
+        if path.stat().st_nlink != 1:
+            raise ValueError(f"hard-linked raw API file: {rel}")
+        raw = path.read_bytes()
+        size += len(raw)
+        raw_digest.update(rel.encode() + b"\0")
+        raw_digest.update(raw)
+        raw_digest.update(b"\0")
+        yield rel, api_bytes(raw, rel, manifest, commit, release_html=release_html)
+    if (raw_digest.hexdigest(), len(actual), sum(p.endswith(".html") for p in actual), size) != (
+            attestation["doc_tree_sha256"], attestation["doc_files"],
+            attestation["doc_html_files"], attestation["doc_bytes"]):
+        raise ValueError("raw API changed while building the package")
 
 
 def check_navigation(site: Path, files: dict, manifest: dict) -> None:
@@ -288,8 +303,19 @@ def main() -> None:
     parser.add_argument("action", choices=("build", "check"))
     parser.add_argument("--expected-commit", required=True)
     parser.add_argument("--historical-route", type=Path, help="use a previously recovered, hash-verified live route")
+    parser.add_argument("--release-3", action="store_true", help="prepare all three permanent Release 3 sites")
+    parser.add_argument("--v02-site", type=Path, help="complete, authenticated historical v0.2.0 API host")
+    parser.add_argument("--rehearsal-source", type=Path, help="C40-qualified clean checkout for a nonpublishable local rehearsal")
+    parser.add_argument("--output", type=Path, help="Release 3 package destination")
     args = parser.parse_args()
-    run(args.expected_commit, args.historical_route, args.action == "check")
+    if args.release_3:
+        from release3_pages import package
+        package(args.expected_commit, args.historical_route, args.v02_site, args.output,
+                rehearsal_source=args.rehearsal_source, check=args.action == "check")
+    elif args.rehearsal_source or args.v02_site or args.output:
+        parser.error("--output, --v02-site and --rehearsal-source require --release-3")
+    else:
+        run(args.expected_commit, args.historical_route, args.action == "check")
 
 
 if __name__ == "__main__":

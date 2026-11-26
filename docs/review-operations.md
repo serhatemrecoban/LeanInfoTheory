@@ -24,7 +24,7 @@ success; exit 2 is refusal with a reason. `call` accepts
 `{"method":"inspect","args":[],"kwargs":{}}` and only allowlisted `api` methods;
 importing `project.py` uses the same interfaces. Never patch journals to fix refusal.
 
-Canonical chunks are `C9` through `C24`; `C09` aliases normalize storage to `C9`.
+Canonical chunks are `C9` through `C40`; `C09` aliases normalize storage to `C9`.
 Use exact approved step IDs (`C9.01`, etc.); an approved padded `C09.01` is also
 accepted but never silently rewritten to a different plan ID.
 Prefixes are `lit-review:`, `lit-message:`, `lit-finding:`, and `lit-auth:`; owned
@@ -80,10 +80,33 @@ waiting for the source-bound request; omit implementation transcripts/verdicts.
 Reuse one binding for plan/execution sessions; do not recreate it after error.
 Read-only instructions are not OS isolation; conflicting settings are not "unknown."
 
+### C40 execution in the lead-designated successor chat
+
+The lead authorized a successor implementation parent for C40 after plan review
+and before execution. The original planning parent's `binding.json` and both
+plan journals retain their original reviewer and identity. This exception uses
+the original binding's SHA-256, the two recorded parent IDs, and an independent
+reviewer created by the successor parent. It applies only to C40 execution.
+
+From the successor chat, use `python -B tools/lit_review/cli.py bind-c40-successor
+--input <packet.json>` (one command). Include the ordinary collaboration
+`bind` fields and the top-level `predecessor_sha256`
+`200127d8e587016457ccc8f02bfa430e53997772c6fb5ae4744f2ddffd881157`.
+Use the actual lead instruction and its reference in `approval`, with scope
+`C40_EXECUTION_PARENT_SUCCESSION`. Preserve the new native creation call and
+result with a distinct reviewer handle. The recorder writes the exclusive
+`.lit-review/chunks/C40/execution-parent-successor.json` record only before
+an execution session exists. The successor then uses ordinary `open`, `next`
+and step review with its own identity, approved plan and step selection.
+
 ## Plan and session contract
 
-The proposed map is not execution approval. Installation/inspection need no C9
-plan; planning needs separate instruction. Plan review assesses a proposal only.
+In rendered PLAN and STEP requests, C9--C24 use the
+[post-release map](plans/post-release-chunk-map.md) and C25--C40 use the
+[Release 3 map](plans/release-3-chunk-map.md) for programme context. Review the
+exact chunk plan and its criteria. Planning needs a separate instruction, and
+plan review assesses a proposal only. The C24.05 and C24.06 exceptions below
+apply only to their original steps.
 Do not create dummy plans or retrospective automation acceptance for Chunks 1--8.
 
 `open` retains `chunk`, `session`, `contract`, and actual `approval`. Use `execution`
@@ -191,15 +214,46 @@ not fresh automated acceptance or a PFR C01 prerequisite recheck.
    only this step, and starts nothing. Record the closure reference through private
    completion and the user report; do not edit captured documents after F.
 
+## Verified-file delivery (PLAN and STEP)
+
+Choose delivery when preparing the authorized review. Use inline for small
+requests or `verified_file=true` for large requests or unreliable inline sends.
+There is no required threshold, failed inline attempt, or separate lead prompt.
+
+1. Pass the keyword `verified_file=true` to `plan_review_request` or
+   `prepare_review` (in CLI JSON: `"kwargs":{"verified_file":true}`). Call
+   `verified_file_packet(request_ref)` with the resulting reference. It exports
+   the frozen request's exact UTF-8 text, without a BOM or newline conversion,
+   into the owned session. It neither sends nor acknowledges anything.
+2. Record the usual PLAN `INTENT` or STEP `dispatch_intent`. Send the packet's
+   exact `message` to its `target` using the bound native tool. The reviewer may
+   read that one file, not neighboring private records. It must compute the byte
+   count and SHA-256, read the full request (in sections if needed), review it,
+   and end `report.scope` with the specified line only if verification succeeded.
+3. Record the actual native call (name and exact target/message arguments) and
+   its original result through ordinary PLAN `SUBMISSION` or STEP
+   `record_submission`. Empty is still `UNCERTAIN`, not a reason to resend.
+   When a correlated original report arrives for an uncertain file send, use
+   `confirm_verified_file_delivery(request_ref, receipt_ref, original_text,
+   observation)` before normal report intake. It uses the originating plan-review
+   or step instruction and all ordinary confirmation checks; it does not approve
+   the report. Preserve real native evidence, including negative findings.
+4. If the reviewer or file cannot be verified, do not claim delivery or accept
+   the review. Surface the blocker rather than substituting a summary, changing
+   reviewers, or switching the mode of an already dispatched request. No
+   historical records, separate step approvals, or closure rules change.
+
 ## Validation and plan review
 
-Use the library validator, not downstream build recipes:
+For C25–C40, use the development CI gates and the library's focused build commands:
 
 ```text
 python scripts/validate_release.py focused <targets>
-python scripts/validate_release.py static
+python scripts/validate_development.py static
+python scripts/validate_development.py compatibility
+python scripts/validate_development.py trust
 python scripts/validate_release.py documentation
-python scripts/validate_release.py
+python scripts/validate_development.py
 python scripts/validate_release.py api-docs
 ```
 
@@ -211,8 +265,10 @@ Report pending clean gates; never weaken them or commit user work to pass.
 API-docs is a justified separate milestone, not a per-step/publication requirement.
 Windows needs Zig 0.16.0 via `LEANINFOTHEORY_ZIG`; file mode is local-only and
 `DOCGEN_SRC=github` needs a clean exact-commit checkout. Serialize artifact-producing
-Lean builds and inspect diagnostics. Installation changes no historical API counts,
-frozen baseline or C9 growth gates.
+Lean builds and inspect diagnostics. Match the development qualification evidence
+to the actual checkout before the first public addition. The
+[compatibility guide](compatibility/README.md) describes the two retained
+comparisons, approval fixtures and separate exact-release replay.
 
 For `plan-*` sessions use `plan_review_request`, `plan_review_record` stages
 `INTENT`, `SUBMISSION`, `REPORT`, `reconcile_plan_review(decisions)`, then
@@ -283,7 +339,35 @@ candidate attribution. No delivery, report, criterion or closure credit follows
 from adjudication. The original review, reconciliation and closure gates still
 apply. This exceptional API has no CLI exposure or general force-recovery option.
 
-Reusable C9 startup prompt, to be issued **only after separate planning instruction**:
+The separately approved C25.05 repair uses those same two API operations and
+append-only/fresh-readiness guards, with a distinct incident scope. It requires
+exactly `C25.05-EXAMPLES` and `C25.05-CALLER`; in `OBSERVED` mode it pins the original
+request `1dbf1a64bcdb40c328073a04f1154e3843e79b3bb64cbcd9ce8cb733ac065d93`, source
+`4b1fb420550a05a552e868f76bf55a301416a9439d9d281d8e4656f617807767`, complete binding,
+attempt 1 and the native call identified by the recorded evidence digest. The known
+`README.md` discrepancy is the independently corroborated 67-character value
+`74c6c416f679b0af3a00d890944bf1e71f71f4268650ad177d9054713774bb8ff94`, compared with
+canonical `74c6c416f679b0af3a00d890944bf1e71f4268650ad177d9054713774bb8ff94`.
+This identifies one known difference; it asserts no complete plaintext comparison.
+Retain the original interrupted-review/stop evidence without treating it as a
+criterion report or successful validation.
+
+For C25.05, `evidence.candidate` is exactly
+`{head, index_entries_sha256, cached_diff_sha256}` for the protected primary
+checkout. Its approved HEAD is `2eb80d0e746688511618aaefc2624ffa4ae88f6e`, index hash
+is `3dc563e8c905ebcbd9ca18752d57526e3df8897ae2030d03e4cafcbcabf9cb59`, and cached
+diff hash is `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`
+(empty staged diff). The adapter compares these with both snapshots and re-reads
+them before applying; C25.05 does not use the C24 candidate branch. All three
+listed repair paths must have their exact changed before/after bytes qualified.
+The unchanged guards reject any receipt, report arrival, source drift or absent
+exact user authority. After supersession, fresh readiness and a new unique
+source-bound request to the same reviewer remain mandatory; C25.05 receives no
+acceptance credit from this repair and C25.06 remains unselected. Temporary
+`REPLAYED` tests use explicitly synthetic identities and hash values; they confer
+no observed authority. The historical C24.06 scope and records are unchanged.
+
+Historical C9 installation prompt (original planning context):
 
 > Begin C9 planning only. Read AGENTS.md, the living-summary quick start, the proposed
 > C9--C24 map, relevant references, and both review documents. Run read-only `inspect`
@@ -295,6 +379,115 @@ Reusable C9 startup prompt, to be issued **only after separate planning instruct
 > request plan review. Do not implement until I approve the exact plan; thereafter
 > perform one eligible requested step with review and stop.
 
-No C9 planning/binding occurs at installation. Distinguish model-free tests, replays,
+The original installation did not start C9 or bind its reviewer. Distinguish model-free tests, replays,
 live diagnostics and desktop queue use; report platform skips/unknown settings.
 Cooperative checks establish neither hostile-process isolation nor unattended readiness.
+
+
+### Approved C26.05 stopped-dispatch recovery
+
+The lead separately authorized the incident-specific C26.05 recovery after the
+reviewer detected two omitted inventory entries in the emitted request. This case
+uses the same target/adjudication operations and fresh-readiness requirements,
+not ordinary recovery or a new reviewer. It is limited to the two C26.05 consumer
+criteria and exact request `dbabcf14746813d5e1b48bdaba6594449c80262e9f02f3a2012e006658bac7cd`,
+source `70b7b030b5ac6ba3b55e3a22b17e74ab7a5ca7631433d27040e3701d60ea8820`,
+attempt 1, complete binding and the original send/stop native frames. The observed
+guard pins the four preserved frame byte hashes; opaque arguments remain opaque.
+The known omitted entries are Examples/Fano.lean and
+Shannon/SemanticBridge/FiniteFamilyIndependence.lean under LeanInfoTheory/.
+Canonical hashes and semantic roles come from that prepared inventory. No full
+received-plaintext comparison or exhaustive mismatch count is claimed.
+
+Unlike the C24/C25 cases, the original uncertain receipt already exists:
+`78516b58a05484259ff8f4ea4f4e1e2e4f43c936329ec3f6f7cafb885b2d1391`.
+Preserve it unchanged. The repair evidence binds its entire immutable record and
+appends `CANONICAL_MESSAGE_CLAIM_CONTRADICTED` with no acceptance credit. Its derived
+canonical-message assertion is contradicted by the attributed root/reviewer
+observations; the empty native result remains uncertain. Permit only that exact
+attached uncertain record, rejecting every other receipt, delivery, acceptance,
+report capture or criterion assessment. The genuine stopped-review list result is
+retained as a delivery incident, never as a criterion report. Keep all partial and
+interrupted checks under their original actor/source/limitations.
+
+Require all three original repair paths, exact before/after bytes, qualified
+fixed-label source, independent examination, explicit lead authority and unchanged
+other source/configuration/dependencies. C26 protects the main-checkout HEAD,
+index and cached-diff tuple used by C25, not C24's candidate branch; re-read this
+tuple before mutation. The append-only adjudication preserves B and all earlier
+records, supersedes only this unaccepted request, and requires fresh validation,
+self-review, reassessment and a new canonical request to the same bound reviewer.
+There is no delivery, criterion, reconciliation or closure credit. C26.06 remains
+unselected, including the already consumed conditional request. No commit,
+publication or worktree authority follows. This exception has no CLI exposure and
+does not relax either historical recovery case or the ordinary uncertainty guard.
+
+
+Only the replacement C26.05 STEP request named
+`lit-review:C26:execution:c26-05-r2-20261107`, attempt 2, uses a compact inventory
+presentation. Its immutable payload still retains the entire source inventory.
+Before rendering, the adapter reads
+`.lake/compatibility/c26-05-recovery-20261107/review-source-inventory.json` and
+requires exact equality to that payload inventory. The canonical native text
+binds this neutral complete file by path, SHA-256, bytes and entry count and
+requires the reviewer to read and verify it before assessing any criterion.
+All normative criteria, binding/source identity, library rubric, reading rules
+and report instructions remain directly present. Other requests keep their
+original rendering. A missing or altered inventory refuses preparation. Dispatch intent rechecks the
+reference and exact bytes, so changes between preparation and dispatch also
+refuse. This
+changes presentation, not capture, report classification or acceptance gates;
+opaque native arguments remain opaque and no independent received-text hash is
+asserted from the local file. Preserve the exact file as delivery evidence.
+
+
+Compact presentation is selected by one predicate shared by rendering and
+dispatch. The textual request ID and attempt are insufficient. It also checks
+the current binding/session, the validated C26 incident adjudication linked to
+the active first superseded request and original B, and fresh self-review and
+reassessment recorded after that adjudication. In observed mode the original
+pinned request/binding/frame tuple is revalidated. Dispatch additionally ties
+the pending replacement and its R to the immutable payload. An ordinary
+unrelated retry, including a different binding using the same textual ID,
+retains its full inline inventory and requires no incident file. A stored
+compact reference whose qualifying history is absent refuses dispatch.
+
+### C28.01 rejected-preflight adjudication
+
+The C28.01 exception to the missing-receipt barrier uses the project API's
+`noncanonical_dispatch_target` and `adjudicate_noncanonical_dispatch`. It
+applies only to attempt 1 of `lit-review:C28:execution:c28-01-r1-20261109`,
+send identified by the recorded evidence digest. The rejected preflight preserved
+the relative target, opaque stored message and empty result. The bound reviewer's
+completed `list_agents` event corroborates its reading of the canonical 70,027-byte file.
+Keep the four saved native frames, exact report and observation, including the
+reviewer's two FAIL observations. The report and completion are incident evidence.
+The operation grants no submission receipt, delivery, report acceptance, criterion
+assessment or closure. Other receipts and registered arrivals block it.
+This includes the delivery basis that an unsuccessful confirmation can retain
+before checking its missing receipt.
+
+Check the pinned original request, source, reviewer binding, preflight, artifact
+hashes, and primary HEAD/index/cached-diff tuple. Record the before/after bytes
+of all three permitted repair paths. Qualify the candidate with tests and
+independent examination on the exact repaired snapshot. Obtain explicit lead
+authority for the resulting `noncanonical-dispatch:<digest>` before adjudication.
+The mutator rechecks that target. It supersedes only the old request and requires
+fresh validation, self-review and reassessment, then a new source capture.
+
+Only the linked replacement `lit-review:C28:execution:c28-01-r2-20261109`
+uses the compact presentation. Put the full neutral inventory at
+`.lake/compatibility/c28-01-recovery-20261109/review-source-inventory.json`.
+Preparation and dispatch both check its contents and the byte-bound reference.
+The reviewer must verify the file before assessment. All normative instructions
+remain in the native text. Before dispatch, establish how the literal originating
+invocation and its complete native result can be observed and preserved. Use
+the canonical reviewer handle and send the exact rendered message. Retain any
+opaque stored frame in its original representation, separately from the actual
+model-visible invocation. A stored ciphertext or intended local file supplies
+no observation of emitted plaintext. If genuine observation is unavailable,
+leave delivery blocked. The recorder classifies the actual output field of a
+native function-call result frame and preserves the complete original observation.
+An empty output permits only UNCERTAIN, even when its outer frame is nonempty JSON.
+All ordinary submission, delivery, reconciliation
+and closure requirements continue to apply.

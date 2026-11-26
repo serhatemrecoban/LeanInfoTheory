@@ -545,9 +545,11 @@ def copy_doc_tree(destination: Path, *, mode: str) -> tuple[int, int, int, int, 
     return file_count, html_count, byte_count, sanitized_count, top_anchor_count
 
 
-def docbuild_packages() -> dict[str, dict[str, object]]:
+def docbuild_packages(root: Path | None = None) -> dict[str, dict[str, object]]:
+    if root is None:
+        root = ROOT
     manifest = json.loads(
-        (ROOT / "docbuild" / "lake-manifest.json").read_text(encoding="utf-8")
+        (root / "docbuild" / "lake-manifest.json").read_text(encoding="utf-8")
     )
     result: dict[str, dict[str, object]] = {}
     for package in manifest.get("packages", []):
@@ -564,18 +566,21 @@ def lean_prefix() -> Path:
     return prefix
 
 
-def stage_licenses(destination: Path, config: dict[str, object]) -> list[dict[str, object]]:
+def stage_licenses(destination: Path, config: dict[str, object], *,
+                   root: Path | None = None, prefix: Path | None = None) -> list[dict[str, object]]:
     destination.mkdir(parents=True, exist_ok=True)
-    packages = docbuild_packages()
+    if root is None:
+        root = ROOT
+    packages = docbuild_packages(root)
     records: list[dict[str, object]] = []
 
     for manifest_name, directory_name, label, doc_roots in PACKAGE_LICENSES:
         package = packages.get(manifest_name)
         if package is None:
             raise StagingError(f"missing locked documentation package: {manifest_name}")
-        source = ROOT / ".lake" / "packages" / directory_name / "LICENSE"
+        source = root / ".lake" / "packages" / directory_name / "LICENSE"
         if not source.is_file():
-            raise StagingError(f"missing upstream licence: {source.relative_to(ROOT)}")
+            raise StagingError(f"missing upstream licence: {source.relative_to(root)}")
         filename = f"{directory_name}-LICENSE.txt"
         shutil.copy2(source, destination / filename)
         records.append(
@@ -588,7 +593,8 @@ def stage_licenses(destination: Path, config: dict[str, object]) -> list[dict[st
             }
         )
 
-    prefix = lean_prefix()
+    if prefix is None:
+        prefix = lean_prefix()
     lean_revision = config.get("lean_revision")
     for source_name, output_name in (
         ("LICENSE", "lean4-LICENSE.txt"),

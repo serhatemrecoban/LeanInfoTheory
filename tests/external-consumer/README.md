@@ -7,9 +7,8 @@ Use it only after approval of the exact checkpoint and repository-local location
 
 ## Applications
 
-Each module compiles separately with the imports listed here. The generated Lake
-library has seven explicit roots; one module's imports cannot supply another's.
-There are no imports of non-stable examples or references to their private helpers.
+Each module compiles separately with the import listed here. The generated Lake
+library has nine explicit roots. Each caller uses supported declarations.
 
 | Module | Import and application |
 | --- | --- |
@@ -20,9 +19,13 @@ There are no imports of non-stable examples or references to their private helpe
 | `Consumer.Capacity` | `Shannon.StandardChannelCapacity`: extract an actual maximizing input and compose BSC uniform attainment with its capacity formula. |
 | `Consumer.WeakConverse` | `Shannon.ChannelCodingAsymptotic`: all-length Fano and asymptotic weak-converse bounds for one actual code family and its error. |
 | `Consumer.FullUmbrella` | `LeanInfoTheory.Shannon`: arbitrary-input repeated-BSC MI bound, including correlated inputs and length zero. |
+| `Consumer.PrefixIid` | `Shannon.PrefixCodeLengthIid` supplies a rounded prefix code, an attained minimum and the positive-block iid bounds. |
+| `Consumer.TypeProb` | `Shannon.TypeClassProbability` relates raw counts and exact-denominator laws to the iid probability of their class, including finite and singular support cases. |
 
-Quantities use nats. Positive message budgets, finite/nonempty alphabets and actual
-support requirements remain explicit. Source achievability is strictly above
+Canonical information quantities use nats. The binary prefix caller measures
+lengths in bits and compares them with entropy in bits. Positive message budgets,
+finite/nonempty alphabets and actual support requirements remain explicit.
+Source achievability is strictly above
 entropy; channel achievability and a channel strong converse are not asserted.
 
 ## Run
@@ -45,7 +48,7 @@ python -B tests/external-consumer/run.py `
 
 For public qualification after the exact commit is on GitHub, pass `--github`.
 Use fresh work and evidence folders. This installs from the canonical HTTPS URL,
-verifies the resolved Git origin, and runs the same seven compiler and origin checks.
+verifies the resolved Git origin, and runs the same compiler and origin checks for all nine roots.
 
 Use approved paths appropriate to the execution host. Both output directories
 must be new: the recipe refuses to overwrite or clean an earlier run. Keep prior
@@ -59,9 +62,12 @@ The default locations above are examples, not a grant to create/change them.
 The recipe checks the candidate checkout's clean exact HEAD, unchanged toolchain,
 and omission of the private website-task path. It compares its invoked fixture
 bytes to `git show SHA:tests/external-consumer/...`, with explicit CRLF-to-LF
-normalization, and materializes the committed Lean sources. The sole dependency
+normalization, and materializes the committed Lean sources. The pinned compiler
+reads every caller's imports with `lean --deps-json` in both the invoked sources
+and the materialized copies. Each header must have exactly its listed explicit
+import. The result records both mappings. The sole dependency
 is a `file:` Git URL plus the exact supplied SHA, not the primary working tree.
-It removes inherited `LEAN_PATH`, `LEAN_SRC_PATH`, `LEAN_SYSROOT`, package-directory
+It removes inherited `LEAN_PATH`, `LEAN_SRC_PATH`, `LEAN_SYSROOT`, `ELAN_TOOLCHAIN`, package-directory
 overrides and Git worktree/index redirection variables before invoking tools.
 
 The recipe then:
@@ -87,8 +93,9 @@ Run the recipe's bounded isolation tests from the repository root with:
 python -B -m unittest discover -s tests/external-consumer -p test_run.py -v
 ```
 
-These tests cover environment isolation, exact pin/origin refusal and physical
-origin substitution. They create only disposable files beneath the root's ignored
+These tests cover environment isolation, the nine roots, report handling for
+incorrect import headers, exact pin/origin refusal and physical origin substitution.
+They create only disposable files beneath the root's ignored
 `.lake/`; they do not commit, stage, publish, or qualify a candidate.
 
 ## Applicability and discovery

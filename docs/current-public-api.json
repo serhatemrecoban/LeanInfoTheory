@@ -13,7 +13,7 @@
     "release_commit": "0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f",
     "release_tag": "v0.1.0"
   },
-  "declaration_count": 811,
+  "declaration_count": 918,
   "declarations": [
     {
       "attributes": [],
@@ -29,6 +29,12 @@
     },
     {
       "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.RandomCodebook",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.decoder_ofAcceptanceEvent_eq_of_unique"
+    },
+    {
+      "attributes": [],
       "kind": "abbrev",
       "module": "LeanInfoTheory.Shannon.ChannelCode",
       "name": "LeanInfoTheory.Shannon.BlockChannelCode.encoder"
@@ -41,9 +47,45 @@
     },
     {
       "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbabilityWithPrior"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbabilityWithPrior_eq_sum"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbabilityWithPrior_le_maximalErrorProbability"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbabilityWithPrior_pure"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbabilityWithPrior_uniformOfFintype"
+    },
+    {
+      "attributes": [],
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.ChannelCode",
       "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_eq_decodingErrorProbabilityOf"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_eq_mean_messageErrorProbability"
     },
     {
       "attributes": [],
@@ -108,6 +150,18 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.exists_expurgated_restrictions"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.half_le_card_filter_messageErrorProbability"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.ChannelCoding",
       "name": "LeanInfoTheory.Shannon.BlockChannelCode.isMarkovChainOf_decoder"
     },
@@ -122,6 +176,30 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
       "name": "LeanInfoTheory.Shannon.BlockChannelCode.limsup_codeRate_le_channelCapacity"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.maximalErrorProbability"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.maximalErrorProbability_le_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageErrorProbability"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageErrorProbability_restrictMessages_le"
     },
     {
       "attributes": [],
@@ -215,6 +293,12 @@
     },
     {
       "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.RandomCodebook",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.ofAcceptanceEvent"
+    },
+    {
+      "attributes": [],
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.ChannelCoding",
       "name": "LeanInfoTheory.Shannon.BlockChannelCode.one_sub_channelCapacity_div_sub_le_errorProbability"
@@ -233,6 +317,18 @@
     },
     {
       "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.restrictMessages"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.restrictMessages_decoder_of_eq"
+    },
+    {
+      "attributes": [],
       "kind": "abbrev",
       "module": "LeanInfoTheory.Shannon.SourceCoding",
       "name": "LeanInfoTheory.Shannon.BlockSourceCode"
@@ -242,6 +338,24 @@
       "kind": "abbrev",
       "module": "LeanInfoTheory.Shannon.FiniteFamily",
       "name": "LeanInfoTheory.Shannon.FamilyOutcome"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.OperationalCapacity",
+      "name": "LeanInfoTheory.Shannon.IsAchievableRate"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.PrefixCode",
+      "name": "LeanInfoTheory.Shannon.IsBinaryPrefixCode"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.PrefixCode",
+      "name": "LeanInfoTheory.Shannon.IsBinaryPrefixCode.kraft_sum_le_one"
     },
     {
       "attributes": [],
@@ -462,8 +576,26 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.TypeClassCardinality",
+      "name": "LeanInfoTheory.Shannon.card_typeClass_eq_multinomial"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.TypeClassBounds",
+      "name": "LeanInfoTheory.Shannon.card_typeClass_le_exp_entropy"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.TypicalSet",
       "name": "LeanInfoTheory.Shannon.card_weakTypicalSet_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.card_wordTypes_le"
     },
     {
       "attributes": [],
@@ -588,6 +720,12 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InformationDensity",
+      "name": "LeanInfoTheory.Shannon.channelJoint_infoDensityThresholdEvent_compl_eq"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
       "name": "LeanInfoTheory.Shannon.channelJoint_toMeasure"
     },
@@ -637,7 +775,31 @@
       "attributes": [],
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.CodingRate",
+      "name": "LeanInfoTheory.Shannon.codeRate_sub_log_two_div_le_of_le_two_mul"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.CodingRate",
       "name": "LeanInfoTheory.Shannon.codeRate_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.RandomCodebook",
+      "name": "LeanInfoTheory.Shannon.codebookOutputLaw"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.RandomCodebook",
+      "name": "LeanInfoTheory.Shannon.codebookOutputLaw_map_competingOutput"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.RandomCodebook",
+      "name": "LeanInfoTheory.Shannon.codebookOutputLaw_map_sentOutput"
     },
     {
       "attributes": [],
@@ -1484,6 +1646,18 @@
     {
       "attributes": [],
       "kind": "def",
+      "module": "LeanInfoTheory.Shannon.EmpiricalPMF",
+      "name": "LeanInfoTheory.Shannon.empiricalPMF"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.EmpiricalPMF",
+      "name": "LeanInfoTheory.Shannon.empiricalPMF_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
       "module": "LeanInfoTheory.Shannon.Entropy",
       "name": "LeanInfoTheory.Shannon.entropy"
     },
@@ -1738,6 +1912,12 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SourceChannelConverse",
+      "name": "LeanInfoTheory.Shannon.entropy_le_channelCapacity_of_tendsto_sourceChannelErrorProbability"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.DataProcessing",
       "name": "LeanInfoTheory.Shannon.entropy_le_entropy_bind_of_doublyStochastic"
     },
@@ -1866,8 +2046,44 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.existsUnique_mem_typeClass"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodingOneShot",
+      "name": "LeanInfoTheory.Shannon.exists_blockChannelCode_errorProbability_le_of_acceptanceEvent"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodingOneShot",
+      "name": "LeanInfoTheory.Shannon.exists_blockChannelCode_errorProbability_le_of_infoDensityThreshold"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
       "name": "LeanInfoTheory.Shannon.exists_blockSourceCode_tendsto_errorProbability_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.OperationalExpurgation",
+      "name": "LeanInfoTheory.Shannon.exists_expurgated_family_of_tendsto_errorProbability"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.PrefixCodeLength",
+      "name": "LeanInfoTheory.Shannon.exists_isBinaryPrefixCode_length_eq_ceil"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.PrefixCode",
+      "name": "LeanInfoTheory.Shannon.exists_isBinaryPrefixCode_of_kraft_sum_le_one"
     },
     {
       "attributes": [],
@@ -1884,8 +2100,20 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodingOneShot",
+      "name": "LeanInfoTheory.Shannon.exists_mem_support_codebook_error_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.ChannelCapacity",
       "name": "LeanInfoTheory.Shannon.exists_mutualInfo_channelJoint_eq_channelCapacity"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SourceChannelSeparation",
+      "name": "LeanInfoTheory.Shannon.exists_sourceChannelCode_tendsto_errorProbability_zero"
     },
     {
       "attributes": [],
@@ -1902,8 +2130,26 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.TypeClassBounds",
+      "name": "LeanInfoTheory.Shannon.exp_entropy_div_pow_le_card_typeClass"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.CodingRate",
       "name": "LeanInfoTheory.Shannon.exp_mul_codeRate"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.TypeClassProbability",
+      "name": "LeanInfoTheory.Shannon.exp_neg_klDiv_div_pow_le_iid_toOuterMeasure_typeClass"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.PrefixCodeLength",
+      "name": "LeanInfoTheory.Shannon.expectedCodewordLength"
     },
     {
       "attributes": [],
@@ -2645,6 +2891,42 @@
     },
     {
       "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.TypeClassProbability",
+      "name": "LeanInfoTheory.Shannon.iid_apply_of_mem_typeClass"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.TypeClassBounds",
+      "name": "LeanInfoTheory.Shannon.iid_empiricalPMF_apply_of_mem_typeClass"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.TypeClassBounds",
+      "name": "LeanInfoTheory.Shannon.iid_empiricalPMF_toOuterMeasure_typeClass"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.TypeClassProbability",
+      "name": "LeanInfoTheory.Shannon.iid_toOuterMeasure_typeClass"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.TypeClassProbability",
+      "name": "LeanInfoTheory.Shannon.iid_toOuterMeasure_typeClass_eq_zero_of_not_support_subset"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.TypeClassProbability",
+      "name": "LeanInfoTheory.Shannon.iid_toOuterMeasure_typeClass_le_exp_neg_klDiv"
+    },
+    {
+      "attributes": [],
       "kind": "def",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
       "name": "LeanInfoTheory.Shannon.indepProd"
@@ -2676,6 +2958,12 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InformationDensity",
+      "name": "LeanInfoTheory.Shannon.indepProd_infoDensityThresholdEvent_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
       "name": "LeanInfoTheory.Shannon.indepProd_map_swap"
     },
@@ -2690,6 +2978,36 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.Product",
       "name": "LeanInfoTheory.Shannon.indepProd_toMeasure_prod"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.InformationDensity",
+      "name": "LeanInfoTheory.Shannon.infoDensity"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.InformationDensity",
+      "name": "LeanInfoTheory.Shannon.infoDensityThresholdEvent"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.IidInformationDensity",
+      "name": "LeanInfoTheory.Shannon.infoDensity_iid_of_mem_support"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.OperationalCapacity",
+      "name": "LeanInfoTheory.Shannon.isAchievableRate_of_lt_channelCapacity"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.OperationalCapacity",
+      "name": "LeanInfoTheory.Shannon.isAchievableRate_zero"
     },
     {
       "attributes": [],
@@ -2762,6 +3080,18 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.Independence",
       "name": "LeanInfoTheory.Shannon.isIndependent_map_swap"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.OperationalCapacity",
+      "name": "LeanInfoTheory.Shannon.isLUB_isAchievableRate"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.PrefixCodeLength",
+      "name": "LeanInfoTheory.Shannon.isLeast_optimalPrefixLength"
     },
     {
       "attributes": [],
@@ -3217,6 +3547,12 @@
     },
     {
       "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.OperationalCapacity",
+      "name": "LeanInfoTheory.Shannon.le_channelCapacity_of_isAchievableRate"
+    },
+    {
+      "attributes": [],
       "kind": "def",
       "module": "LeanInfoTheory.Shannon.LogSum",
       "name": "LeanInfoTheory.Shannon.logSumTerm"
@@ -3254,8 +3590,56 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.RandomCodebook",
+      "name": "LeanInfoTheory.Shannon.mean_codebookOutputLaw_error_eq_mean_errorProbability"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.ChannelCodingOneShot",
+      "name": "LeanInfoTheory.Shannon.mean_codebookOutputLaw_error_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InformationDensity",
+      "name": "LeanInfoTheory.Shannon.mem_infoDensityThresholdEvent_iff_of_mem_support"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.EmpiricalPMF",
+      "name": "LeanInfoTheory.Shannon.mem_support_empiricalPMF_iff"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.mem_typeClass"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.EmpiricalPMF",
+      "name": "LeanInfoTheory.Shannon.mem_typeClass_iff_empiricalPMF_eq"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.TypicalSet",
       "name": "LeanInfoTheory.Shannon.mem_weakTypicalSet"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.mem_wordTypes"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SourceChannelConverse",
+      "name": "LeanInfoTheory.Shannon.mul_entropy_le_mul_channelCapacity_add_error"
     },
     {
       "attributes": [],
@@ -3718,6 +4102,12 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.PrefixCodeLength",
+      "name": "LeanInfoTheory.Shannon.natsToBits_entropy_le_expectedCodewordLength"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.Units",
       "name": "LeanInfoTheory.Shannon.negMulLog_div_log"
     },
@@ -3726,6 +4116,24 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.Pinsker",
       "name": "LeanInfoTheory.Shannon.ofReal_two_mul_totalVariation_sq_le_klDiv"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.PrefixCodeLength",
+      "name": "LeanInfoTheory.Shannon.optimalPrefixLength"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.PrefixCodeLength",
+      "name": "LeanInfoTheory.Shannon.optimalPrefixLength_bounds"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.PrefixCodeLengthIid",
+      "name": "LeanInfoTheory.Shannon.optimalPrefixLength_iid_div_bounds"
     },
     {
       "attributes": [],
@@ -3979,6 +4387,18 @@
     },
     {
       "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.SourceChannelCode",
+      "name": "LeanInfoTheory.Shannon.sourceChannelErrorProbability"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.SourceChannelCode",
+      "name": "LeanInfoTheory.Shannon.sourceChannelErrorProbability_comp_le"
+    },
+    {
+      "attributes": [],
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
       "name": "LeanInfoTheory.Shannon.sourceCoding_threshold"
@@ -4004,6 +4424,12 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InformationDensity",
+      "name": "LeanInfoTheory.Shannon.sum_mul_infoDensity_eq_mutualInfo"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.Convexity",
       "name": "LeanInfoTheory.Shannon.sum_mul_mutualInfo_channelJoint_le"
     },
@@ -4022,6 +4448,12 @@
     {
       "attributes": [],
       "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.sum_symbolCount"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
       "name": "LeanInfoTheory.Shannon.sum_toReal_mul_fstMarginal"
     },
@@ -4030,6 +4462,12 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SemanticBridge.FiniteSums",
       "name": "LeanInfoTheory.Shannon.sum_toReal_mul_sndMarginal"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.InformationDensity",
+      "name": "LeanInfoTheory.Shannon.support_channelJoint_subset_indepProd"
     },
     {
       "attributes": [
@@ -4049,9 +4487,39 @@
     },
     {
       "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.symbolCount"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.symbolCount_comp_perm"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.symbolCount_zero"
+    },
+    {
+      "attributes": [],
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
       "name": "LeanInfoTheory.Shannon.tendsto_errorProbability_iid_one_of_eventually_codeRate_le"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.IidInformationDensity",
+      "name": "LeanInfoTheory.Shannon.tendsto_infoDensity_iid_deviation"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.IidInformationDensity",
+      "name": "LeanInfoTheory.Shannon.tendsto_prob_infoDensityThresholdEvent_iid_compl"
     },
     {
       "attributes": [],
@@ -4284,6 +4752,12 @@
     {
       "attributes": [],
       "kind": "def",
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.typeClass"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
       "module": "LeanInfoTheory.Shannon.TypicalSet",
       "name": "LeanInfoTheory.Shannon.weakTypicalSet"
     },
@@ -4292,6 +4766,174 @@
       "kind": "theorem",
       "module": "LeanInfoTheory.Shannon.TypicalSet",
       "name": "LeanInfoTheory.Shannon.weakTypicalSet_mass_bounds"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.wordType"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.EmpiricalPMF",
+      "name": "LeanInfoTheory.Shannon.wordTypeEquivPMF"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.EmpiricalPMF",
+      "name": "LeanInfoTheory.Shannon.wordTypeEquivPMF_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.wordType_comp_perm"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.wordType_surjective"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.wordTypes"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.wordTypes_zero"
+    },
+    {
+      "attributes": [],
+      "kind": "abbrev",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.equalPriorError"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.errorSum"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.errorSum_tvTest"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.NeymanPearson",
+      "name": "PMF.BinaryTest.exists_likelihoodThresholdTest"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.isLeast_equalPriorError"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.isLeast_errorSum"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.NeymanPearson",
+      "name": "PMF.BinaryTest.likelihoodThresholdTest"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.NeymanPearson",
+      "name": "PMF.BinaryTest.likelihoodThresholdTest_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.ofEvent"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.ofEvent_apply"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.one_sub_totalVariation_le_errorSum"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.power"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.NeymanPearson",
+      "name": "PMF.BinaryTest.power_le_power_likelihoodThresholdTest"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.rejectProb"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.rejectProb_mem_Icc"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.rejectProb_ofEvent"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.size"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.tvTest"
+    },
+    {
+      "attributes": [],
+      "kind": "def",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.typeIIError"
+    },
+    {
+      "attributes": [],
+      "kind": "theorem",
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.typeIIError_ofEvent"
     },
     {
       "attributes": [],
@@ -5070,33 +5712,40 @@
       "name": "PMF.two_mul_totalVariation_isGreatest_bounded"
     }
   ],
-  "documented_declaration_count": 811,
+  "documented_declaration_count": 918,
   "full_umbrella": "LeanInfoTheory.Shannon",
   "kind_counts": {
-    "abbrev": 17,
-    "def": 75,
+    "abbrev": 18,
+    "def": 103,
     "instance": 3,
-    "theorem": 716
+    "theorem": 794
   },
   "lightweight_root": "LeanInfoTheory",
   "lightweight_root_direct_imports": [
     "LeanInfoTheory.InformationMeasures",
     "LeanInfoTheory.Probability.Finite"
   ],
-  "local_module_count": 106,
+  "local_module_count": 149,
   "namespace_counts": {
-    "LeanInfoTheory.Shannon": 689,
-    "PMF": 122
+    "LeanInfoTheory.Shannon": 775,
+    "PMF": 143
   },
-  "non_stable_module_count": 49,
+  "non_stable_module_count": 72,
   "non_stable_modules": [
     "LeanInfoTheory.Basic",
     "LeanInfoTheory.Examples",
     "LeanInfoTheory.Examples.AEP",
+    "LeanInfoTheory.Examples.BinaryTesting",
     "LeanInfoTheory.Examples.ChannelCapacity",
     "LeanInfoTheory.Examples.ChannelCode",
+    "LeanInfoTheory.Examples.ChannelCodeExpurgation",
     "LeanInfoTheory.Examples.ChannelCoding",
     "LeanInfoTheory.Examples.ChannelCodingAsymptotic",
+    "LeanInfoTheory.Examples.ChannelCodingOneShot",
+    "LeanInfoTheory.Examples.ChannelCodingOneShotBinary",
+    "LeanInfoTheory.Examples.ChannelCodingOneShotFinite",
+    "LeanInfoTheory.Examples.ChannelCodingOneShotSparse",
+    "LeanInfoTheory.Examples.ChannelCodingOneShotTernary",
     "LeanInfoTheory.Examples.ChannelOptimization",
     "LeanInfoTheory.Examples.CodingRate",
     "LeanInfoTheory.Examples.CommonCause",
@@ -5115,16 +5764,28 @@
     "LeanInfoTheory.Examples.FiniteTopology",
     "LeanInfoTheory.Examples.Iid",
     "LeanInfoTheory.Examples.IidInformation",
+    "LeanInfoTheory.Examples.IidInformationDensity",
     "LeanInfoTheory.Examples.IndependenceProcessing",
     "LeanInfoTheory.Examples.InformationDecomposition",
+    "LeanInfoTheory.Examples.InformationDensity",
     "LeanInfoTheory.Examples.KLTop",
+    "LeanInfoTheory.Examples.NeymanPearson",
+    "LeanInfoTheory.Examples.OperationalCapacity",
+    "LeanInfoTheory.Examples.OperationalExpurgation",
     "LeanInfoTheory.Examples.Pinsker",
+    "LeanInfoTheory.Examples.PrefixCode",
+    "LeanInfoTheory.Examples.PrefixCodeLength",
     "LeanInfoTheory.Examples.ProductChannel",
     "LeanInfoTheory.Examples.ProductChannelCapacity",
     "LeanInfoTheory.Examples.ProductChannelInformation",
     "LeanInfoTheory.Examples.ProductChannelSemantics",
     "LeanInfoTheory.Examples.ProductKL",
     "LeanInfoTheory.Examples.QuantitativeIndependence",
+    "LeanInfoTheory.Examples.RandomCodebook",
+    "LeanInfoTheory.Examples.SourceChannelCode",
+    "LeanInfoTheory.Examples.SourceChannelConverse",
+    "LeanInfoTheory.Examples.SourceChannelSeparation",
+    "LeanInfoTheory.Examples.SourceChannelSeparationPackage",
     "LeanInfoTheory.Examples.SourceCoding",
     "LeanInfoTheory.Examples.SourceCodingAsymptotic",
     "LeanInfoTheory.Examples.SourceCodingTypicalSet",
@@ -5136,8 +5797,12 @@
     "LeanInfoTheory.Examples.TotalVariation",
     "LeanInfoTheory.Examples.TotalVariationChannels",
     "LeanInfoTheory.Examples.TotalVariationTopology",
+    "LeanInfoTheory.Examples.TypeClass",
+    "LeanInfoTheory.Examples.TypeClassProbability",
+    "LeanInfoTheory.Examples.TypeClassProbabilityInterface",
     "LeanInfoTheory.Examples.TypicalSet",
     "LeanInfoTheory.Examples.Units",
+    "LeanInfoTheory.Examples.WordType",
     "LeanInfoTheory.MathlibFragments"
   ],
   "root_export_count": 92,
@@ -5519,10 +6184,11 @@
     "Declaration types and assumptions remain governed by the Lean source and signature-bearing API documentation."
   ],
   "simp_declaration_count": 94,
-  "supported_module_count": 57,
+  "supported_module_count": 77,
   "supported_modules": [
     "LeanInfoTheory",
     "LeanInfoTheory.InformationMeasures",
+    "LeanInfoTheory.Probability.BinaryTesting",
     "LeanInfoTheory.Probability.Coupling",
     "LeanInfoTheory.Probability.Finite",
     "LeanInfoTheory.Probability.FiniteChannel",
@@ -5530,6 +6196,7 @@
     "LeanInfoTheory.Probability.FiniteProduct",
     "LeanInfoTheory.Probability.FiniteTopology",
     "LeanInfoTheory.Probability.Iid",
+    "LeanInfoTheory.Probability.NeymanPearson",
     "LeanInfoTheory.Probability.ProductChannel",
     "LeanInfoTheory.Probability.StandardChannels",
     "LeanInfoTheory.Probability.TotalVariation",
@@ -5538,18 +6205,29 @@
     "LeanInfoTheory.Shannon.BinaryEntropy",
     "LeanInfoTheory.Shannon.ChannelCapacity",
     "LeanInfoTheory.Shannon.ChannelCode",
+    "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
     "LeanInfoTheory.Shannon.ChannelCoding",
     "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+    "LeanInfoTheory.Shannon.ChannelCodingOneShot",
     "LeanInfoTheory.Shannon.CodingRate",
     "LeanInfoTheory.Shannon.Continuity",
+    "LeanInfoTheory.Shannon.EmpiricalPMF",
     "LeanInfoTheory.Shannon.Entropy",
     "LeanInfoTheory.Shannon.EntropyBounds",
     "LeanInfoTheory.Shannon.EntropyConcavity",
     "LeanInfoTheory.Shannon.Fano",
     "LeanInfoTheory.Shannon.FiniteFamily",
+    "LeanInfoTheory.Shannon.IidInformationDensity",
     "LeanInfoTheory.Shannon.InfoMeasures",
+    "LeanInfoTheory.Shannon.InformationDensity",
     "LeanInfoTheory.Shannon.LogSum",
+    "LeanInfoTheory.Shannon.OperationalCapacity",
+    "LeanInfoTheory.Shannon.OperationalExpurgation",
+    "LeanInfoTheory.Shannon.PrefixCode",
+    "LeanInfoTheory.Shannon.PrefixCodeLength",
+    "LeanInfoTheory.Shannon.PrefixCodeLengthIid",
     "LeanInfoTheory.Shannon.ProductChannelCapacity",
+    "LeanInfoTheory.Shannon.RandomCodebook",
     "LeanInfoTheory.Shannon.SemanticBridge",
     "LeanInfoTheory.Shannon.SemanticBridge.AEP",
     "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
@@ -5572,11 +6250,18 @@
     "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
     "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
     "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+    "LeanInfoTheory.Shannon.SourceChannelCode",
+    "LeanInfoTheory.Shannon.SourceChannelConverse",
+    "LeanInfoTheory.Shannon.SourceChannelSeparation",
     "LeanInfoTheory.Shannon.SourceCoding",
     "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
     "LeanInfoTheory.Shannon.StandardChannelCapacity",
     "LeanInfoTheory.Shannon.Topology",
+    "LeanInfoTheory.Shannon.TypeClassBounds",
+    "LeanInfoTheory.Shannon.TypeClassCardinality",
+    "LeanInfoTheory.Shannon.TypeClassProbability",
     "LeanInfoTheory.Shannon.TypicalSet",
-    "LeanInfoTheory.Shannon.Units"
+    "LeanInfoTheory.Shannon.Units",
+    "LeanInfoTheory.Shannon.WordType"
   ]
 }

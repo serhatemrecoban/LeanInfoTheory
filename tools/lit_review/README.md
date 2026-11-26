@@ -13,12 +13,17 @@ workflow state; the actual implementation agent makes native reviewer calls.
 - `core/`: inherited state, original-report/evidence contracts and guarded fixtures.
 - `tests/`: isolated source-copy/adapter checks; not mathematical acceptance.
 
-Canonical C9--C24 chunks use exact approved IDs such as `C9.01`; `C09` aliases do
-not rename steps. Prefixes: `lit-review:`, `lit-message:`, `lit-finding:`, `lit-auth:`.
+Canonical chunks run from C9 through C40. `C09` uses `C9` storage and preserves
+the exact approved step spelling. PLAN and STEP requests include the
+[post-release map](../../docs/plans/post-release-chunk-map.md) for C9--C24 and the
+[Release 3 map](../../docs/plans/release-3-chunk-map.md) for C25--C40. The exact
+chunk plan and criteria govern each review.
+Prefixes: `lit-review:`, `lit-message:`, `lit-finding:`, `lit-auth:`.
 Private records are durable, outside source capture/scratch cleanup. Production,
 replay and fixture identities remain separate regardless of legacy operation labels.
-See operations for actual-chunk-parent binding. Installation neither binds C9 nor
-starts its planning. The omitted creation `transport` retains the installed
+See operations for actual-chunk-parent binding. The original C9 installation
+and the C25--C40 extension grant no planning or review authority. The omitted
+creation `transport` retains the installed
 `multi_agent_v1` contract; `transport: "collaboration"` explicitly selects the
 additional native format below. The adapter never guesses between identity fields.
 
@@ -39,7 +44,11 @@ Do not synthesize an `agent_id`. Transport and original provenance are frozen in
 the binding and session, with the existing parent/installer separation unchanged.
 
 After durable dispatch intent, use `collaboration.followup_task` for the idle
-persistent reviewer. Preserve its exact target, request text, and entire result.
+persistent reviewer. Preserve its exact target, sent message, and entire result.
+For PLAN or STEP, the message is either the inline request or the recorder's
+[verified-file packet](../../docs/review-operations.md#verified-file-delivery-plan-and-step).
+Choosing the latter needs no separate user approval. The reviewer still reads
+the complete neutral request and confirms the exact bytes in its original report.
 Empty immediate results must be recorded as `UNCERTAIN`, with no invented
 submission ID. The existing original-report delivery confirmation can establish
 delivery separately; it never constitutes report acceptance or closure.
@@ -87,7 +96,8 @@ Fixture guards/audit hooks are not OS isolation. Record commands, fingerprints,
 outcomes and limits; report Windows symlink-privilege skips without changing machine
 settings. Model-free sequences are not desktop queue tests; replays are not live
 reviews or unattended readiness. Use `scripts/validate_release.py` for library
-validation as documented; this port implements no C9 growth gates.
+validation as documented. Before the first Release 3 public API addition, the
+development validation route needs separate qualification against both releases.
 
 The adapter reuses the shared core safeguards and unchanged criterion-gap policy,
 not PFR live records, identities, manuscripts or historical archives. Provenance/

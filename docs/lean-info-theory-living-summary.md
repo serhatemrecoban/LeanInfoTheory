@@ -36,11 +36,1132 @@ Status labels used below:
 
 ## 0. AI Assistant Quick Start
 
+**[Current] C40.01 programme integration.** The six Release 3 packages are mapped to 107 additions over v0.2.0. Fresh compiled signatures and public callers qualify the current development source. The C39.06 completion receipt is verified. Candidate qualification and the four historical clean-checkpoint obligations have separate records. [C40.01 coverage ledger](plans/release-3-chunk-40-ledger.md) · [Provenance and limits](plans/release-3-chunk-40-notes.md)
+
+**[Current] General-prior iid type probabilities.** At positive length, support inclusion gives the mass of each word and the whole class in nats, together with both KL bounds. An observed symbol with zero prior mass gives an impossible class and infinite canonical KL. The four permanent numerical checks include a sparse prior with finite divergence. The cumulative review and final-source records govern closure. [C40 handoff](handoffs/chunk-39.md) · [Step notes](plans/release-3-chunk-39-notes.md)
+
+C38.06's supported completion receipt was inspected: closure `eb8e38e499788244176aaf1451e804cfc605ff1a2e496cb7dd5acf223b61943c`, F `c6c395812b68152ebd2563d7eeab06aa10816e4224360ef7d47caae3c3de7511`. This resolves its pre-final public wording through the actual private record. C36, C37 and C38 mathematics remains closed; each complete clean-checkpoint suite/hygiene qualification remains separately outstanding. C39 planning carries the documented iid-equation ownership correction forward.
+
+
+**[Current] C38.06 — Cumulative review reconciled; final records govern closure.**
+C38 implements exact multinomial counting and both positive-length entropy
+bounds on C37's original class, plus the independent own-law iid seed and
+permanent binary, biased, pure, sparse, boundary and public-interface consumers.
+The [C39 handoff](handoffs/chunk-38.md) records the five exact public signatures,
+focused imports, source/consumer locations, source adaptations and all seventeen
+criteria. C38.05 is closed by receipt
+`48ac467748bb373002fdbba4b9b534fd86caa6f06e271c550f9dc01640284045`.
+C38.06 admission/exact-F applicability: verified C38.05 F `ccd27dc6b07fac07d9647beb9fd6bfb6e1d91391f058772238558d62f8326e42` with no source difference, then admitted only C38.06; original records in `.lit-review/setup/c38-06-20261118/`.
+The initial cumulative compatibility check failed on duplicate generated
+iid-equation ownership in AEP/Bounds. Seven C38-only proof-body sites now use
+definitional finiteProduct conversion; mathematics, public contracts, imports
+and acceptance policy remain unchanged. Fresh corrected focused, compatibility, trust and documentation gates pass;
+the validation index binds their actual receipts and source applicability. The baseline remains 913 declarations in 76 modules,
+94 simp names and root direct/reachable/export counts 2/5/92.
+Cumulative validation: `.lake/compatibility/c38-06-validation-20261118/index.json` (original commands, outputs, actors and source maps; the generated/static records are sealed before review capture). Fresh independent cumulative review (`c38c67f0b6c044aff0a5c5630554d31dc033d7fce7353d68af1a2f19ff7e0db3`) marks the four selected
+criteria and all seventeen chunk criteria SATISFIED, without material findings; the
+parent agrees in `b95f53aa4c31515e03695a491b0d2712d2657629a66dfbc2fa2abeb722ad930a`. Final applicability is governed by
+`.lit-review/setup/c38-06-20261118/final-checks.json`; actual closure is governed by
+`.lit-review/setup/c38-06-20261118/completion.json`, not earlier step reviews.
+General-prior probabilities and KL remain C39 work. C36/C37 mathematics stays
+closed; their complete clean-checkpoint suite/hygiene qualifications and C38's
+own clean qualification remain separate outstanding obligations.
+[Evidence and limits](plans/release-3-chunk-38-notes.md#c3806--cumulative-qualification-and-c39-handoff)
+
+**[History] C38.05 — Permanent type-class consumer candidate.**
+The selected work adds private numerical and public-interface consumers in
+[Examples.TypeClass](../LeanInfoTheory/Examples/TypeClass.lean): the binary
+`(2,1)` class of three words, a positive-length pure class, the sparse
+`(2,2,0)` class on `Fin 3`, retained empty/singleton boundaries, and arbitrary
+count/denominator-witness callers. The biased length-four comparison distinguishes
+larger class size from greater probability under one fixed law. The generic caller
+recovers the ENNReal own-law event identity with explicit finite-mass conversion.
+Focused/static and fresh compiled checks pass. Independent review satisfies all
+five selected criteria without material findings; parent reconciliation agrees.
+Final source qualification/private receipt govern closure.
+The unchanged compiled surface is 913 declarations in 76 modules, simp 94 and
+root direct/reachable/export counts 2/5/92; no public growth is introduced.
+C38.06 is not started and retains cumulative qualification and the C39 handoff.
+General-prior/KL work remains C39. C36/C37 clean-checkpoint qualifications remain
+outstanding separately, without reopening their mathematics.
+[Evidence and limits](plans/release-3-chunk-38-notes.md#c3805--permanent-type-class-consumers-18-november-2026)
+
+**[History] C38.04 — Type-class entropy lower-bound candidate.**
+The [TypeClassBounds owner](../LeanInfoTheory/Shannon/TypeClassBounds.lean) now
+proves `exp (n H(q))/(n+1)^k ≤ card T(q)` at positive length, completing the
+implemented pair of entropy estimates on C37's original class. The approved
+division-free factorial argument proves a mode of count-vector probability
+under the fixed empirical law, with exact weight sum `n^n`. A private real
+iid-event bridge and an explicit zero ENNReal event handle sparse competitors;
+the polynomial retains the full ambient alphabet. A generic permanent caller
+pairs both inequalities. The natural machinery includes length zero, while
+empirical laws still require positive length.
+C38.03 closure and exact final source were verified before conditional selection.
+The production focused build and fresh compiled retention/boundary checks pass:
+913 declarations in 76 modules, all 912 incoming rows retained, root 2/5/92 and
+simp 94 unchanged. Focused/static checks pass, and independent review satisfies
+both selected criteria without material findings; parent reconciliation agrees.
+Final validation and the private receipt govern closure. Detailed fixtures remain C38.05; cumulative validation,
+fresh review and the maintained C39 handoff remain C38.06. General-prior/KL work
+remains C39. C36/C37 mathematics is closed; their clean-checkpoint suite/hygiene
+qualifications remain outstanding separately.
+[Evidence and limits](plans/release-3-chunk-38-notes.md#c3804--count-vector-mode-and-entropy-lower-bound-18-november-2026)
+
+**[History] C38.03 — Type-class entropy upper-bound candidate.**
+The [TypeClassBounds owner](../LeanInfoTheory/Shannon/TypeClassBounds.lean) proves
+`card T(q) ≤ exp (n H(q))` at positive length for every admissible count index.
+The proof uses C38.02's own-law class identity, probability at most one and
+positive exponential cancellation. Zero-count symbols remain in the alphabet;
+no full-support or positive-entropy assumption is added. A private generic
+caller covers both a supplied index and `wordType x`.
+Focused/static and compiled retention/boundary checks pass. Independent review
+satisfies C38.03-UPPER without material findings, and parent reconciliation agrees.
+Final validation and the private receipt establish closure. The inventory is 912 declarations in 76 modules,
+with all 911 incoming signatures unchanged, root exports 92 and simp names 94.
+C38.02 closure and exact final source were verified before conditional selection.
+At that checkpoint the lower bound remained C38.04, detailed fixtures C38.05
+and cumulative closeout/C39 handoff C38.06. C36/C37 clean-checkpoint qualifications remain outstanding.
+[Evidence and limits](plans/release-3-chunk-38-notes.md#c3803--entropy-upper-bound-18-november-2026)
+
+**[Current] C37.07 — Symbol counts, type classes and empirical laws.**
+For a word `x : Fin n → A`, `symbolCount x a` counts the positions carrying
+`a`. On a finite alphabet the counts sum to `n`. The index `wordType x` has
+these counts as its underlying function. At length zero the only admissible
+count vector is zero, including on the empty alphabet. Every admissible
+vector is realized by a word. Its `typeClass` is the finset of words with
+that vector, and every word belongs to exactly one such class. Reordering
+positions preserves membership in every class. For an alphabet of size
+`k`, the number of distinct types is at most `(n + 1) ^ k`.
+At positive length, `empiricalPMF hn t` assigns each label its count divided
+by `n`. Its actual support contains exactly the labels with positive counts.
+An equivalence converts counts to laws with an exact denominator witness
+and back. Both round trips recover the supplied object; empirical-law
+equality characterizes membership in the same type class.
+Permanent binary, sparse and boundary consumers now exercise the interface,
+including an impossible denominator and weighted partition over all classes.
+Cumulative primary validation and the maintained C38 handoff cover the entire
+interface. Actual review and closure are established by
+`.lit-review/setup/c37-07-20261117/completion.json` and its linked records.
+C37 has no clean checkpoint; its complete clean suite and hygiene
+remain outstanding, separately from C36.
+[Final contracts, cumulative criteria and C38 handoff](handoffs/chunk-37.md)
+[Permanent consumers](../LeanInfoTheory/Examples/WordType.lean)
+[Focused owner](../LeanInfoTheory/Shannon/WordType.lean) · [Step notes](plans/release-3-chunk-37-notes.md)
+
+**[History] C36.06 — Finite binary variable-length source coding.**
+For a finite PMF, a prefix encoder on its positive support attains the least
+mean length. Every prefix encoder has mean at least the entropy in bits,
+and the rounded Shannon encoder has mean strictly below that entropy plus
+one. For a positive iid block length `n`, the attained optimum per symbol
+lies in `[natsToBits (entropy p), natsToBits (entropy p) + 1/n)`. The
+private C36.06 receipt records supervised closure. The C36 candidate's
+complete clean-checkpoint suite and hygiene gate remain outstanding.
+[Contracts and C40 endpoint ledger](handoffs/chunk-36.md#c40-endpoint-ledger) ·
+[Qualification and review identities](handoffs/chunk-36.md#qualification-and-review-identities)
+
+**[History] C36.05 — Binary prefix-length examples.**
+A dyadic law attains its entropy of `3/2` bits and a Boolean point mass
+attains zero with the empty word. For the biased Boolean law with masses
+`(3/4, 1/4)`, the rounded Shannon code averages `5/4` bits and the optimum
+is one. A joint code for two iid draws averages `27/16` bits per pair,
+strictly improving on the two bits used by concatenated one-symbol codes.
+[Word assignments and exact comparisons](plans/release-3-chunk-36-notes.md#c3605--permanent-examples)
+
+**[History] C36.04 — Optimal prefix length per iid source symbol.**
+For every positive block length `n`, a prefix encoder on the positive
+support of the whole iid block attains the block optimum. Dividing its
+mean length by `n` gives at least the one-symbol entropy in bits and
+strictly less than that entropy plus `1/n` bits per symbol.
+[Iid block theorem and focused caller](plans/release-3-chunk-36-notes.md#c3604--per-symbol-bounds-for-iid-blocks)
+
+**[History] C36.03 — An attained minimum for binary prefix coding.**
+For every finite source, some prefix encoder on its positive support
+attains `optimalPrefixLength p`. This least expected length lies in
+`[natsToBits (entropy p), natsToBits (entropy p) + 1)`.
+[Scalar optimum and caller](plans/release-3-chunk-36-notes.md#c3603--an-attained-scalar-optimum)
+
+**[History] C36.02 — A prefix code with Shannon lengths.**
+On each positive atom of mass `m`, one binary prefix encoder assigns a
+word of length `⌈−log₂ m⌉`. Its mean length is strictly below
+`natsToBits (entropy p) + 1`. At mass one the prescribed word is empty.
+[Shannon witness and its focused caller](plans/release-3-chunk-36-notes.md#c3602--a-prefix-code-with-shannon-lengths)
+
+**[History] C36.01 — Entropy lower bound for every binary prefix code.**
+The mean codeword length sums over the finite PMF's positive support.
+C35 Kraft necessity gives a lower bound of `natsToBits (entropy p)` for
+every prefix encoder on those labels, including a singleton encoded by
+the empty word. [Contracts and step evidence](plans/release-3-chunk-36-notes.md)
+
+**[History] C35.04 — Binary Kraft theorem and C36 handoff.**
+For binary words indexed by a finite alphabet, the prefix condition implies
+the real Kraft bound. Conversely, the bound on prescribed natural lengths
+gives a prefix assignment with the requested length at every original label.
+C36 can take the alphabet to be the positive support of its finite PMF. A
+point mass then needs only the empty word at a known symbol count.
+[C35 contracts, consumers and cumulative evidence](handoffs/chunk-35.md)
+
+**[History] C35.03 — Binary prefix-code examples (14 November 2026).**
+The permanent examples exercise both Kraft directions on three named labels,
+including repeated lengths, strict slack and an impossible budget. A Boolean
+point mass uses the empty word on its one supported label. The singleton
+example checks separately what happens when the symbol count is known and
+when it must be recovered from the bits. [Examples and step evidence](plans/release-3-chunk-35-notes.md#c3503--permanent-prefix-code-consumers)
+
+**[History] C35.02 — Prescribed binary codeword lengths (14 November 2026).**
+A finite alphabet's Kraft budget now gives a binary prefix code on the
+original labels. Each label receives its prescribed length, including when
+several labels request the same depth. Independent review assessed both
+step criteria as satisfied. [Realization contract and proof](plans/release-3-chunk-35-notes.md#c3502--realization-of-prescribed-lengths)
+
+**[History] C35.01 — Binary prefix codes and Kraft necessity (14 November 2026).**
+The focused prefix-code owner proves the labeled Kraft inequality. An
+empty codeword contributes exactly one on its singleton label type.
+Realization of prescribed lengths is the next separately selected step.
+[C35.01 evidence](plans/release-3-chunk-35-notes.md)
+
+**[History] C34.04 — Separation package and C35 handoff (14 November 2026).**
+C33 constructs one all-length family below capacity. C34 rules out vanishing
+reconstruction error above capacity for every deterministic word encoder and
+decoder, using the same error in both directions. Equality and a strong
+converse remain outside the contract. The independent prefix-code package is
+next in the release map. [Public contracts, examples and qualification](handoffs/chunk-34.md)
+
+**[History] C34.03 — Examples for both separation directions (14 November 2026).**
+The examples exercise a two-bit collision, a biased source on a constant-output
+channel, and singleton and empty words. A separate two-import caller passes a
+family constructed by C33 directly into the C34 converse and rules out any
+vanishing-error pair above capacity. [Step notes](plans/release-3-chunk-34-notes.md)
+
+**[History] C34.02 — Vanishing reconstruction error (14 November 2026).**
+For every family of total encoders and reconstruction decoders, vanishing C33
+block error implies `entropy p ≤ channelCapacity W`. Dividing the finite bound
+on the positive-length tail makes the Fano overhead vanish. Combined with C33,
+this gives achievability strictly below capacity and rules out vanishing error
+strictly above it. These results leave equality and a strong converse undecided.
+[Step notes](plans/release-3-chunk-34-notes.md)
+
+**[History] C34.01 — Finite source–channel converse (14 November 2026).**
+For any total encoder and reconstruction decoder, iid block entropy is at most
+blocklength times channel capacity plus the weak Fano correction in C33's actual
+block error. The proof uses the induced input distribution even when its coordinates
+are dependent. The bound holds at length zero.
+[Step notes](plans/release-3-chunk-34-notes.md)
+
+**[History] C33.06 — Direct separation and the C34 handoff (14 November 2026).**
+C33 supplies the arbitrary-map block error, the finite composition bound at the
+source-induced prior, and one all-length family below capacity. The maintained
+handoff identifies the joint law for Fano, its input/output projection for block
+capacity and the comparison C34 still needs. It indexes all fifteen C33 criteria,
+their consumers, and the cumulative checkpoint and review records.
+[C34 handoff](handoffs/chunk-33.md) · [Step evidence](plans/release-3-chunk-33-notes.md)
+
+**[History] C33.05 — Biased-source erasure example (14 November 2026).**
+For a Boolean source with true mass 3/4 and a binary erasure channel with
+erasure probability 1/8, capacity exceeds entropy by exactly
+`(3/8) * Real.log (9/8)` nats. The example takes one pair of word maps from
+the direct theorem and uses it for every positive error tolerance.
+[Example and step evidence](plans/release-3-chunk-33-notes.md)
+
+**[History] C33.04 — Direct lossless source–channel separation (14 November 2026).**
+For a finite iid source and a finite memoryless channel with one use per
+symbol, a strict entropy–capacity gap gives deterministic word encoders and
+decoders whose reconstruction error tends to zero. The component budgets fit
+eventually. The construction supplies total maps at all remaining lengths.
+[Theorem and step evidence](plans/release-3-chunk-33-notes.md)
+
+**[History] C33.03 — Collision and repair examples (14 November 2026).**
+The two length-one examples exercise the finite composition bound on C32's
+original four-label code. Concentrating the source on the never-decoded label
+gives reconstruction error 1 and uniform channel error 1/4. For a many-to-one
+compressor, a wrong channel decision repairs a source error with probability
+3/8. The full reconstruction error is 1/8.
+[Finite examples and step notes](plans/release-3-chunk-33-notes.md)
+
+**[History] C33.02 — Finite composition error (14 November 2026).**
+For source and channel codes at a common message budget, the new theorem
+bounds reconstruction error by the source error plus channel error averaged
+under the source encoder's image law. A restricted channel code also admits
+the sharper maximum over its embedded original rows.
+[Implementation and review](plans/release-3-chunk-33-notes.md)
+
+**[History] C33.01 — Block reconstruction error (14 November 2026).**
+The lead approved C33 revision 2 and selected the shared finite experiment.
+For arbitrary total word encoder `E` and decoder `D`, the source word has
+iid law `q`. Conditional on word `s`, the channel output has the memoryless
+row at `E s`. The error event is `D y ≠ s`. Projecting the same pair to
+`(E s, y)` gives the input/output joint at prior `q.map E`, including
+when source words collide. This identity is a development consumer for C34.
+See the [C33.01 notes](plans/release-3-chunk-33-notes.md) for validation and
+review status. [Approved plan](plans/release-3-chunk-33.md)
+
+**[History] C32.06 — Cumulative qualification and C33 handoff (13 November 2026).**
+C32.05's supported closure, original report/reconciliation and exact final
+source, Git state and installed environment were verified before only Step 6
+was admitted. All C32 mathematical endpoints are delivered: index-specific
+row error and actual priors; total retained-label restriction; ceiling-half
+selection and exact positive budgets; positive-length `log 2/n` rate loss;
+and one full retained family with vanishing maximal error and the original
+eventual rate floors. One exact-budget family is fixed before every sequence
+of priors in the permanent C33-facing caller. Its rate guarantee stays on L.
+The [maintained C33 handoff](handoffs/chunk-32.md) gives all sixteen public
+names, focused imports, exact statements, collision/fallback and boundary
+calculations, source adaptations, earlier finding dispositions and the full
+fifteen-criterion matrix. C33 owns eventual budget fitting, exceptional short
+lengths, the actual joint reconstruction inequality and biased-source test.
+The supported surface is 873 names / 66 modules; all 857 C31 manifest records
+remain, root 2/5/92 and reviewed simp 94 are unchanged. C32.06 adds no Lean
+declaration, import, attribute, growth policy or pin. A targeted operational
+proof rewrite removes an unused compiler-generated congruence-helper collision;
+the theorem statement and mathematical argument are unchanged. Fresh cumulative gate
+records, named compiled retention, exact separately authorized clean-checkpoint
+qualification, original independent review, parent reconciliation and final
+source applicability are bound by
+`.lit-review/setup/c32-06-20261113/completion.json`. Source and checks are
+validation ready; the supported private record alone establishes closure.
+The main Desktop checkout and unrelated work are preserved. No release,
+publication, or C33 plan/implementation is started by this closeout.
+[Approved plan](plans/release-3-chunk-32.md)
+
+**[History] C32.05 — Collision, boundary and C33 consumers (13 November 2026).**
+C32.04's supported closure, original report/reconciliation and exact final
+source, Git state and environment were checked before only Step 5 was admitted.
+The permanent four-index collision consumer has uniform error 1/4 but error
+one under the never-decoded index's point mass. The returned three-index
+embedding has range {0,1,2}; its restricted code has maximal error zero.
+The permuted odd-five fixture checks range {1,3,4} and count three, independent
+of enumeration. Zero mean, singleton codes at any length and empty words are
+covered, including the zero-length M=2 threshold tie. A length-one M=4,K=1
+calculation rules out extending the half-budget rate guarantee to arbitrary K.
+The C33-facing consumer opens one C31 witness, keeps its full retained
+family and rate floors, and selects an exact-budget restricted family for
+each fitting positive budget sequence before all priors. Its actual errors
+are bounded by the full family's vanishing maxima for every prior sequence,
+including pushforward laws and point masses on the same code at each length.
+The rate guarantee remains on the full retained count L. C33 owns eventual
+budget fitting, exceptional lengths and the joint reconstruction bound.
+No public declaration or supported import changes: 873 names / 66 modules,
+root 2/5/92, reviewed simp 94, policies and pins retained. The finite consumer
+adds only CodingRate for the required rate counterexample. Strict focused,
+static and fresh all-project axiom checks passed. The original independent
+report satisfies all three criteria with no findings; parent reconciliation
+accepts those assessments. Historical compiled compatibility retains its
+C32.01 attribution. Only three Markdown review records change after R; all
+Lean and generated source, policies and pins remain byte-identical. Final
+static and exact R-to-F checks govern applicability. Scoped closure follows
+`.lit-review/setup/c32-05-20261113/completion.json`. C32.06 retains cumulative
+qualification and the maintained C33 handoff and is unselected.
+[Approved plan](plans/release-3-chunk-32.md)
+
+**[History] C32.04 — Rate loss and one expurgated family (13 November 2026).**
+C32.03's actual closure, original clean report/reconciliation and exact final
+source, Git state and environment were verified before only Step 4 was admitted.
+The scalar rate lemma in `CodingRate` bounds the loss by `log 2/n` nats per
+use for `n>0` and `M≤2L`, with positive retained budget derived from `M≥1`.
+The new focused `OperationalExpurgation` owner takes one supplied family
+and its error limit/rate-floor components. It selects full good-set codes
+at every length, returns their exact range and restriction identities,
+bounds each maximum by twice the original uniform error, and proves those
+maxima vanish. One retained family serves every eventual rate tolerance.
+The rate estimate applies at positive lengths to that full retained count;
+the finite identities and error bound also hold at zero length.
+The consumer opens one actual C31 witness and specializes two positive
+tolerances on the same returned family. The owner imports only finite
+expurgation and CodingRate; only the consumer adds OperationalCapacity.
+The source inventory has grown from 871 to 873 names and 65 to 66 supported
+modules. All 871 prior records are retained; root 2/5/92, reviewed simp 94,
+all retained imports and pins are preserved. The new owner and full-umbrella
+import follow the reviewed growth approval. Strict focused builds, static and
+owner-only compiled signatures/targeted axioms passed. The bound independent
+report satisfies both criteria without findings; parent reconciliation accepts
+both assessments. Full historical compiled and whole-project axiom results
+retain their C32.01 attribution, and cumulative clean qualification remains
+C32.06. Actual evidence and scoped closure follow
+`.lit-review/setup/c32-04-20261113/completion.json` when established.
+C32.05 retains the numerical boundary fixtures and exact-budget/prior-sequence
+caller and awaits selection. [Approved plan](plans/release-3-chunk-32.md)
+
+**[History] C32.03 — Good-index counts and exact budgets (13 November 2026).**
+C32.02's closure, original review/reconciliation and exact final source,
+Git state and environment were verified before only Step 3 was admitted.
+The finite owner counts the entire set of indices with row error at most
+`2e`, obtaining `(M+1)/2` as a lower bound. At zero mean every row error
+vanishes and all indices are good; ties at the threshold remain.
+The exact-budget theorem returns an embedding whose range is precisely
+that good set. For every fitting positive requested budget it selects one
+restriction of the original code, then bounds its maximal error and its
+actual error under every prior by `2e`. Consumers exercise arbitrary
+budgets, the full retained count, budget one, point masses, odd counts and
+zero mean. No positive-length hypothesis is used in these finite results.
+The source inventory has grown from 869 to 871 supported names in the same
+65 modules, with all 869 incoming source records retained. Root 2/5/92,
+reviewed simp 94, imports and pins are unchanged. Focused builds, static,
+compiled signatures and targeted axiom checks passed. The bound independent
+report satisfies both criteria with no findings, and the parent accepts both
+assessments after reconciliation. Complete historical compiled and whole-project
+axiom results retain their C32.01 attribution; cumulative clean qualification
+remains C32.06. Actual evidence and scoped closure follow
+`.lit-review/setup/c32-03-20261113/completion.json` when established.
+C32.04 retains the rate estimate and lengthwise transfer and awaits selection.
+[Approved plan](plans/release-3-chunk-32.md)
+
+**[History] C32.02 — Message restriction and total decoder transport (13 November 2026).**
+C32.01's supported closure, original review/reconciliation and exact final
+source were verified before the conditional instruction admitted only Step 2.
+The focused owner now restricts along an embedding of retained indices and
+takes an explicit retained fallback. Every formerly correct decision for a
+retained index remains correct on every output, and each retained row error
+can only decrease.
+The consumer compares arbitrary-prior error with the old error under
+`π.map i` and applies restriction twice. On the four-index collision code,
+retaining old labels 0 and 3 gives uniform error 1/2 with new fallback 0
+(old label 0) and zero with new fallback 1 (old label 3). The old four-label
+uniform mean is 1/4. The supported surface is 869 names in the same 65
+modules, with all 866 incoming source records retained.
+The existing imports, root 2/5/92, reviewed simp 94 and pins are preserved.
+Focused, static and new-signature/axiom checks passed. The independent report
+satisfied both criteria; its sole fallback-index wording finding is resolved.
+Full historical compiled and whole-project axiom checks retain their C32.01
+attribution. Actual evidence, reconciliation and scoped closure follow
+`.lit-review/setup/c32-02-20261113/completion.json` when established.
+C32.03 retains counting and expurgation and awaits selection.
+[Approved plan](plans/release-3-chunk-32.md)
+
+**[History] C32.01 — Sent-index, arbitrary-prior and maximal error (13 November 2026).**
+The lead approved revision 2 and selected only Step 1 with review. The focused
+`Shannon.ChannelCodeExpurgation` owner defines each sent-index error using
+its actual memoryless row and total decoder. Its arithmetic mean equals the
+released uniform error. The arbitrary-prior quantity is the actual joint-law
+Fano error, with weighted-sum, uniform and point-mass identities. A finite
+maximum characterizes common row bounds and controls every prior on the
+same code. The focused consumers cover generic probability ranges, repeated
+codewords with unequal row errors, sparse priors and empty zero-length words.
+The supported surface is 866 names in 65 modules, retaining all 857 C31 names. Root
+2/5/92, reviewed simp 94 and dependency pins retain their C31 values.
+Actual validation, original independent review, reconciliation and scoped
+closure follow `.lit-review/setup/c32-01-20261113/completion.json` when
+established. C32.02–06 retain decoder transport, expurgation, rates and C33
+handoff. [Approved plan](plans/release-3-chunk-32.md)
+
+**[History] C31.05 — Cumulative qualification and C32 handoff (12 November 2026).**
+C31.04's closure, original clean review and exact final source were verified
+before only the final C31 step was admitted. The five supported declarations
+supply the one-family predicate, singleton zero witness, strict-subcapacity
+direct theorem, same-family converse and least-upper-bound characterization.
+The permanent conditional C32 caller retains one witness before any proposed
+budget and tolerance, then transfers its rate floor under a log 2/n loss using
+delta/2. It constructs no retained code or error guarantee. The
+[maintained handoff](handoffs/chunk-31.md) and
+[thirteen-criterion matrix](plans/release-3-chunk-31-notes.md#complete-cumulative-criterion-matrix)
+record exact interfaces, consumers, source adaptations and C32 responsibilities.
+The supported surface stays 857 declarations / 64 modules, with root 2/5/92,
+reviewed simp 94 and pins preserved. Actual fresh cumulative validation,
+separately authorized matched clean-checkpoint qualification, original review,
+reconciliation, helper restoration and exact-source closure follow
+`.lit-review/setup/c31-05-20261112/completion.json` when established. Readiness
+alone establishes no closure. C32 remains unstarted. [Approved plan](plans/release-3-chunk-31.md)
+
+**[History] C31.04 — Positive and zero-capacity channel consumers (12 November 2026).**
+C31.03's closure, reconciled review and exact final source were verified before
+only Step 4 was admitted. The permanent OperationalCapacity consumer now uses
+the half-erasure binary channel at capacity log 2 / 2 nats per use. It proves
+the positive rate log 2 / 4 achievable and specializes the least-upper-bound
+statement to the computed value. For any constant output row on nonempty finite
+input and finite output, it proves the achievable-rate set exactly {0}. The
+singleton theorem supplies zero when strict subcapacity has no nonnegative target.
+Only the development consumer adds StandardChannelCapacity as a direct import.
+The supported surface remains 857 declarations in 64 modules, with producer,
+root and simp boundaries preserved. Actual validation, original independent
+review, reconciliation and scoped closure follow
+`.lit-review/setup/c31-04-20261112/completion.json` when established.
+C31.05 retains cumulative qualification and the maintained C32 handoff and has
+not started. [Approved plan](plans/release-3-chunk-31.md) ·
+[Step notes](plans/release-3-chunk-31-notes.md)
+
+**[History] C31.03 — Operational capacity is the least upper bound (12 November 2026).**
+C31.02's closure and exact final source were verified before admission.
+The new converse applies C23 to the same positive-budget family witnessing
+IsAchievableRate and intersects its rate cap with the witness's lower tail.
+The least-upper-bound theorem combines this converse, strict-subcapacity
+achievability and the zero-rate family. Every other upper bound is nonnegative,
+and a smaller one would have an achievable midpoint above it. The same
+operational predicate serves both directions, including zero-capacity leastness.
+Focused consumers exercise arbitrary families and both IsLUB projections,
+also specialized at capacity zero. The supported surface is 857 declarations
+in 64 modules, with the root/import/simp boundaries preserved.
+Actual validation, original independent review, reconciliation and closure
+follow `.lit-review/setup/c31-03-20261112/completion.json` when established.
+C31.04–05 retain the concrete channel tests and cumulative C32 handoff.
+[Approved plan](plans/release-3-chunk-31.md) ·
+[Step notes](plans/release-3-chunk-31-notes.md)
+
+
+
+**[History] C31.02 — One subcapacity code family (12 November 2026).**
+C31.01's closure and exact final source were verified before this step.
+The strict-subcapacity theorem fixes one attaining input law, one intermediate
+slope, and one rounded-budget code per natural length. C28 controls the literal
+miss; the ceiling bounds the competing term by exp(-n*(s-R)). Both vanish.
+The same selected family has the released lower rate bound for every positive
+length and hence every positive operational tolerance. A focused generic
+consumer extracts that family and both obligations. Expected supported growth
+is 854 to 855 names in 64 modules, with root and simp boundaries preserved.
+Actual checks, original independent review, reconciliation and scoped closure
+follow `.lit-review/setup/c31-02-20261112/completion.json` when established.
+C31.03 owns the converse and least-upper-bound theorem.
+[Approved plan](plans/release-3-chunk-31.md) ·
+[Step notes](plans/release-3-chunk-31-notes.md)
+
+
+
+**[History] C31.01 — Operational rate predicate and zero witness (12 November 2026).**
+The approved revision 2 selects only Step 1. The focused
+`Shannon.OperationalCapacity` owner defines `IsAchievableRate` with one positive
+budget and deterministic code family before both the error limit and every rate
+tolerance. Uniform-message average error and rates use the released definitions.
+The singleton theorem covers every length with only nonempty input and finite
+output. A focused consumer specializes two tolerances on one witness; C23's
+existing alternating noiseless family witnesses zero while the positive target
+`log 2 / 2` has arbitrarily late failing even lengths at tolerance `log 2 / 4`.
+The supported surface has 854 declarations in 64 modules, with the
+lightweight root and 94-name reviewed simp boundary preserved. Actual validation, original independent review, reconciliation and
+scoped closure follow `.lit-review/setup/c31-01-20261112/completion.json` when
+established. Subcapacity achievability and the operational converse/LUB remain
+C31.02–03. [Approved plan](plans/release-3-chunk-31.md) ·
+[Step notes](plans/release-3-chunk-31-notes.md)
+
+
+**[History] C30.06 — One-shot qualification and C31 handoff (11 November 2026).**
+C30.05's supported closure and exact382-entry source/environment/Git check
+admitted only the final C30 step. Four theorems bound ensemble error, select a
+supported book, return a code at the caller's original n/M with released error,
+and specialize C27's literal strict threshold. Arbitrary word laws and dependent
+competitors sharing one output retain their meaning. Five permanent consumers
+cover sparse selection at mean 5/16, boundary codes and C31's identical finite
+miss, binary bounds 5/8 and 19/24, and ternary bounds 11/32 and 2/5 on one supported
+code per example. At log(8/3), positive-mass ties fail: miss 3/4, independent
+pass 1/16. Every constant decoder at two uniform messages has error 1/2.
+Selected-code numbers remain upper bounds.
+The [maintained C31 handoff](handoffs/chunk-30.md) and fourteen-criterion matrix
+link exact headers/imports and the compiling finite caller. Registered source
+adaptations and package 2 effort are reconciled. The supported API stays 852
+declarations in 63 modules; no new attribute, root import or pin is added.
+Actual fresh checks, exact clean-checkpoint authority/full-suite results,
+original cumulative review, reconciliation and closure follow
+`.lit-review/setup/c30-06-20261111/completion.json` when established. Earlier
+passes and source readiness alone do not establish final qualification.
+C31 owns one code family, the rate-margin limits and operational capacity;
+it is not started.
+[Approved plan](plans/release-3-chunk-30.md) · [Cumulative matrix](plans/release-3-chunk-30-notes.md#complete-cumulative-criterion-matrix)
+
+**[History] C30.05 — Ternary one-shot improvement and threshold ties (11 November 2026).**
+After C30.04's supported closure and exact 381-entry source/environment/Git
+verification, the selected ternary fixture uses the noiseless `Fin 3` channel
+at n=1, M=2 with prior masses 3/8, 3/8, 1/4. At log(5/2), the global strict
+event is symbol equality: true miss zero and independent false match 11/32.
+One supported code with its acceptance decoder has released error at most
+11/32 and at most 2/5. A separate caller uses the public threshold theorem.
+Both bounds are strictly below the exact error 1/2 of every constant decoder
+with two uniform messages, regardless of encoder or chosen label.
+At log(8/3), the first two positive-mass diagonal atoms tie and fail, leaving
+joint miss 3/4 and independent pass probability 1/16. The numerical guarantees
+are upper bounds, not asserted exact errors of the selected code.
+All new helpers remain private in the development Examples aggregate. The
+supported API stays at 852 declarations in 63 modules. Actual focused/static,
+fresh all-project axioms, matched earlier compiled API evidence, original
+review/reconciliation and scoped closure follow
+`.lit-review/setup/c30-05-20261111/completion.json` when established.
+C30.06 owns cumulative qualification and the maintained C31 handoff; C31 owns
+asymptotic achievability and operational capacity.
+[Approved plan](plans/release-3-chunk-30.md) · [Step notes](plans/release-3-chunk-30-notes.md)
+
+**[History] C30.04 — Noisy binary one-shot bounds (11 November 2026).**
+The conditional request admitted C30.04 after C30.03's supported closure,
+original review/reconciliation and exact 380-entry source, environment and Git
+verification. The new development binary fixture uses the released BSC with
+crossover 1/8 at n=1, M=2 and threshold log(3/2). Its strict event is matching
+bits; the true miss is 1/8, the independent false match 1/2, and the exponential
+relaxation 2/3. One supported code with its acceptance decoder has released
+error at most 5/8 and at most 19/24. These are bounds, not exact code errors.
+A separate consumer also instantiates the public threshold theorem.
+The supported API stays at 852 declarations in 63 modules; the additional
+private fixture belongs only to the development Examples aggregate.
+Actual fresh checks, matched earlier API evidence, original review/reconciliation
+and scoped closure follow `.lit-review/setup/c30-04-20261111/completion.json`
+when established. C30.05 owns the ternary bounds/tie/comparison, C30.06 the
+cumulative qualification and handoff, and C31 asymptotic achievability/capacity.
+[Approved plan](plans/release-3-chunk-30.md) · [Step notes](plans/release-3-chunk-30-notes.md)
+
+**[History] C30.03 — Supported codes and strict-threshold error (11 November 2026).**
+After C30.02's interrupted closeout was safely finished and its exact final source
+verified, the lead's sequential instruction admitted C30.03. The acceptance-event
+theorem now returns an actual `BlockChannelCode X Y n M` in the sampling support,
+with its decoder identified and its released `errorProbability W hM` bounded.
+A private fixed-book identity carries C30.02's same witness into this result.
+The threshold theorem keeps that code and the literal C27 miss, replacing the
+false-match probability by exp(-t) for every real t. The finite C31-style consumer
+uses iid words, the exact rounded message budget, and C28's identical miss event;
+its limit and budget imports remain consumer-side. Singleton and zero-length
+empty-alphabet cases, ties and negative-threshold null atoms are covered.
+The source inventory contains 852 declarations in 63 supported modules.
+Actual checks, original review/reconciliation and scoped completion follow
+`.lit-review/setup/c30-03-20261111/completion.json` when established.
+Numerical examples remain C30.04–05, cumulative qualification/handoff C30.06,
+and asymptotic achievability and operational capacity C31.
+[Approved plan](plans/release-3-chunk-30.md) · [Step notes](plans/release-3-chunk-30-notes.md)
+
+**[History] C30.02 — Supported raw-channel book extraction (11 November 2026).**
+The conditional request selected Step 2 after C30.01's supported closure,
+original review/reconciliation and exact final source matched the checkout.
+`exists_mem_support_codebook_error_le` returns a book in the actual iid
+sampling support with its explicit uniform row-error mean bounded by the
+sent miss plus competing passes. A private finite-support minimum attains
+error at most the weighted mean first. The sparse repeated-bit regression
+uses that selector's witness at mean 5/16 to force distinct supported words
+and zero error. The weaker event bound is 5/8. The general caller keeps the
+focused import, and the separate sparse development example reuses C29's
+private fixture arithmetic. The source inventory contains 850 declarations
+in 63 supported modules. Actual validation, original independent review,
+reconciliation and scoped closure follow
+`.lit-review/setup/c30-02-20261111/completion.json` when established.
+The released-error code and strict threshold are C30.03. C31 owns asymptotic
+achievability and operational capacity.
+[Approved plan](plans/release-3-chunk-30.md) · [Step notes](plans/release-3-chunk-30-notes.md)
+
+**[History] C30.01 — One-shot ensemble error bound (11 November 2026).**
+The lead accepted C30 revision 2 and selected only Step 1 with review.
+The new `Shannon.ChannelCodingOneShot` owner proves
+`mean_codebookOutputLaw_error_le` for arbitrary word laws and raw block
+channels, with an arbitrary output alphabet. Expected uniform-message error
+is at most the sent miss plus `M - 1` competing passes under the same output
+law. The focused examples check arbitrary/Nat outputs, coincident rivals,
+strict event containment and singleton budgets. The generated source inventory contains
+849 declarations in 63 supported modules. All 848 incoming records, released
+601/811 contracts, root 2/5/92 and reviewed simp 94 remain validation controls.
+Actual validation, original independent review and reconciliation are retained
+under `.lit-review/setup/c30-01-20261111/`. Supported scoped completion
+follows its `completion.json` when established. Supported-book extraction,
+released-error code existence and strict-threshold specialization remain
+later C30 steps. C31 owns asymptotic achievability and operational capacity.
+[Approved plan](plans/release-3-chunk-30.md) · [Step notes](plans/release-3-chunk-30-notes.md)
+
+**[History] C29.05 — Cumulative qualification and the C30 handoff (10 November 2026).**
+The conditional request selected only Step 5 after C29.04's supported closure,
+original review/reconciliation and all 369 final source entries, environment,
+protected Git state and nine installed dependency pins matched the main checkout.
+All six approved mathematical declarations are implemented, with arbitrary word
+laws, whole-experiment sent/competing projections, the total first-match decoder,
+and equality with the released average error at the caller's original n and M.
+The [maintained C30 handoff](handoffs/chunk-29.md) gives exact headers/imports,
+the compiling literal-event caller, fixed-book and weighted examples, first-match
+semantics, and the C30/C31 boundaries. The
+[fourteen-criterion matrix](plans/release-3-chunk-29-notes.md#complete-cumulative-criterion-matrix)
+maps every execution criterion to its source, permanent consumer and checks.
+
+The surface remains 848 declarations in 62 supported modules. Both released
+601/811 contracts, C28's 842 records, all 848 incoming C29 records, root 2/5/92
+and reviewed simp 94 remain exact controls. Main focused/static/documentation
+checks, the separately authorized clean-candidate suite, cumulative independent
+review and final applicability have distinct records under
+`.lit-review/setup/c29-05-20261110/`. Their preparation grants no passing credit.
+Actual scoped completion follows that directory's `completion.json` when
+established. C30's event inclusion, union bound and supported-book extraction,
+and C31's achievability, require their own chunk selection. API-doc generation
+and publication are separate milestones.
+
+**[History] C29.04 — Ensemble error and released code error (10 November 2026).**
+C29.03's supported closure, original review/reconciliation and all 369 final
+source entries, environment and protected Git state were verified before
+the conditional request admitted only Step 4. The new equality averages
+the actual sampled-book decoder-error event uniformly over transmitted
+indices and identifies it with the book-mass-weighted mean of the realized
+code's released `errorProbability W hM`, at the original n and M. The word
+law q remains arbitrary. The focused owner adds TotalVariation for its
+existing finite real event-mass formula; the lightweight root stays fixed.
+The permanent literal strict-event caller accepts any real per-message bound.
+Singleton/empty-length checks and the asymmetric 13/32 and correlated-word
+5/16 examples exercise the averaging law. The surface is 848 declarations
+in 62 supported modules. All incoming 847 records, C28's 842, both released
+baselines and root/simp boundaries remain validation controls. Actual checks,
+original independent review, reconciliation and final applicability are
+retained under `.lit-review/setup/c29-04-20261110/`. Supported scoped closure
+follows its `completion.json` when established. Cumulative validation and
+the maintained C30 handoff remain Step 5.
+[Approved plan](plans/release-3-chunk-29.md) · [Step notes](plans/release-3-chunk-29-notes.md)
+
+**[History] C29.03 — A total acceptance-event decoder (10 November 2026).**
+C29.02's supported closure, original review/reconciliation and exact final
+source, environment and protected Git state were verified before the
+conditional request admitted only Step 3. The realized book is the encoder
+at its original n and M. The total decoder returns the least passing message
+index, or index zero when none passes. Both alphabets are arbitrary and equal
+words retain their distinct indices. The public unique-pass implication and
+focused caller use C27's literal strict threshold event without C26 or C28
+premises. Private examples check the duplicate book (0,1,1), empty passing
+set with a nonzero transmitted index, and every singleton-message decoder.
+The surface is 847 declarations in 62 supported modules. All incoming 845
+records, C28's 842, both released baselines and root/simp boundaries remain
+validation controls. Actual validation, original independent review,
+reconciliation and final applicability are retained under
+`.lit-review/setup/c29-03-20261110/`. Supported scoped closure follows its
+`completion.json` when established. The error averaging identity remains Step 4.
+[Approved plan](plans/release-3-chunk-29.md) · [Step notes](plans/release-3-chunk-29-notes.md)
+
+**[History] C29.02 — Competing pairs in the ensemble (10 November 2026).**
+C29.01's actual closure and exact final source, environment and protected Git
+state were verified before the conditional request admitted only Step 2.
+The new competing-word/output pushforward uses the same retained book/output
+experiment and gives `indepProd q (q.bind K)` for each index distinct from
+the transmitted index. Its output alphabet is arbitrary. The generic event
+caller and Nat specialization preserve that generality. The permanent uniform
+binary check contrasts a fixed book's pure pair with the ensemble's four
+equiprobable pairs. The asymmetric one-letter fixture computes output masses
+7/8 and 1/8 and the sent/competing masses 0 and 3/32 at (0,1).
+The surface is 845 names in 62 supported modules, with all incoming 844 records
+and both released baselines retained as separate validation obligations.
+Actual validation, independent review, reconciliation and final applicability
+are recorded under `.lit-review/setup/c29-02-20261110/`.
+Supported scoped closure follows its `completion.json` when established.
+[Approved plan](plans/release-3-chunk-29.md) · [Step notes](plans/release-3-chunk-29-notes.md)
+
+**[History] C29.01 — Random books and the sent pair (10 November 2026).**
+The lead accepted C29 revision 2 and selected only its first step with review.
+The focused `Shannon.RandomCodebook` owner samples M whole words independently
+from arbitrary q and keeps the book together with the raw channel output at
+the sent index. Its sent-pair pushforward is `PMF.channelJoint q K`.
+The permanent focused consumer transports every sent-pair event with arbitrary
+output alphabet and blocklength. The two additions give 844 supported names
+in 62 modules, retaining C28's incoming 842 records, both released contracts
+and the root 2/5/92 and simp 94 boundaries.
+Fresh validation, independent review, reconciliation and final applicability
+are recorded separately under `.lit-review/setup/c29-01-20261110/`.
+Actual scoped closure follows its `completion.json` when established.
+[Approved plan](plans/release-3-chunk-29.md) · [Step notes](plans/release-3-chunk-29-notes.md)
+
+**[History] C28.05 — Cumulative validation, review and handoff (10 November 2026).**
+C28.01–C28.04 have supported closure records. Step 4's exact final source,
+environment and Git state were verified before this conditional admission.
+The three public iid-density results and permanent sparse/tie consumers are
+implemented. The [maintained handoff](handoffs/chunk-28.md) gives exact signatures,
+domains and C31's literal n*s miss interface. The
+[complete matrix](plans/release-3-chunk-28-notes.md#complete-cumulative-criterion-matrix)
+maps all thirteen approved criteria. Fresh main checks, the separately authorized
+clean byte-and-pin-matched candidate and its full suite, fresh independent
+cumulative review, reconciliation and final applicability are separate records.
+Actual closure follows `.lit-review/setup/c28-05-20261110/completion.json` when
+established. That record establishes C28.05 closure. C29's entry above gives the current selection.
+
+**[History] C28.04 — Sparse identity-channel and tie consumers (10 November 2026).**
+The lead selected only Step 4 after C28.03's closure and exact final source,
+environment and protected Git state were verified. The private focused examples
+check uniform Boolean identity-channel diagonal support, MI = log 2, supported
+block density n*log 2, zero strict miss below MI at positive lengths and miss
+one at equality. The impossible 00/01 pair has block density zero, coordinate
+sum log 2 and independent mass 1/16; the strict event rejects it at -1.
+For the 3/4,1/4 identity input at s = log(4/3), the length-two closed miss is
+9/16 entirely at equality, while the open sublevel has joint probability zero.
+The same law and threshold consume C28.03's vanishing-miss limit.
+No public mathematical declaration or supported import changes. The [step notes](plans/release-3-chunk-28-notes.md)
+record the source adaptation and evidence. Actual validation, independent review,
+reconciliation and scoped closure follow
+`.lit-review/setup/c28-04-20261110/completion.json` when established.
+All three independent criteria were SATISFIED and reconciled; one optional overview wording finding was corrected.
+Fresh focused/static/current 842-export and maintained environment/root/axiom
+checks passed; earlier released/focused-import evidence has explicit source
+applicability. Final source qualification and actual private closure remain separate.
+The cumulative clean suite and handoff remain C28.05, awaiting separate selection.
+
+**[History] C28.03 — Exact iid strict-threshold miss (9 November 2026).**
+After verifying C28.02's supported closure and exact final source, environment
+and protected Git state, the lead's new conditional request selected only C28.03.
+The focused owner derives the all-natural-index literal strict-event complement
+limit at threshold `(n : ℝ) * s` for every fixed real `s < mutualInfo J`.
+It reuses the closed C27 miss and the positive-length C28.02 deviation with the
+full gap `mutualInfo J - s`; equality remains a miss. The focused caller composes
+this exact term with an arbitrary vanishing sequence. The empty-word check gives
+miss probability one for every real s. No normalization occurs at zero, and no
+vanishing miss is claimed at s = MI. The [step notes](plans/release-3-chunk-28-notes.md)
+give source adaptation and attributed evidence. Actual validation, independent
+review, reconciliation and scoped closure follow
+`.lit-review/setup/c28-03-20261109/completion.json` when established.
+All three independent criteria received SATISFIED assessments with no findings
+and were reconciled. Fresh focused/static/full trust checks passed, retaining
+all 841 predecessor records, C27's 839 and both released baselines. Final-source
+applicability and actual private closure remain separate records.
+C28.04 and C28.05 await separate selection.
+
+**[History] C28.02 — Positive-length information-density concentration (9 November 2026).**
+The lead conditionally selected only Step 2 of the approved C28 revision 2 after
+C28.01's supported closure and exact final-source/environment/Git correspondence
+were verified. The focused owner proves a closed two-sided deviation limit on
+the actual pair of iid-input/memoryless-channel word spaces at lengths `k + 1`.
+Three C19 AEP limits, existing joint/marginal transports and a private union bound
+give the single-letter mutual-information center in nats, allowing sparse laws
+and dependence between input and output. The permanent focused caller exposes
+the positive denominator. The [step notes](plans/release-3-chunk-28-notes.md) give
+source adaptation and attributed evidence. Validation, review and actual scoped
+closure follow `.lit-review/setup/c28-02-20261109/completion.json` when established.
+Both step criteria received SATISFIED independent assessments with no findings
+and were reconciled. Focused/static and the full development trust checks passed,
+retaining all 840 predecessor declarations and both released baselines. The
+source-qualified review and final validation records remain separate from the
+actual private closure pointer.
+Later steps await their own selection; skipped requests do not revive.
+
+**[History] C28.01 — Supported iid information density (9 November 2026).**
+The lead approved [C28 revision 2](plans/release-3-chunk-28.md) and selected
+only its first step with review. The focused `Shannon.IidInformationDensity`
+owner proves coordinate additivity on the actual joint support of iid input
+and memoryless channel words, including length zero. A private supported
+self-information decomposition and existing C19/product transports supply
+the proof. The permanent focused consumer checks word-pair orientation and
+the empty sum. The [step notes](plans/release-3-chunk-28-notes.md) record
+source, validation and review applicability. Supported closure follows
+`.lit-review/setup/c28-01-20261109/completion.json` when established.
+The replacement independent review assessed both step criteria as SATISFIED
+with no findings, and both assessments were reconciled. Fresh focused/static
+checks passed. Exact correspondence of all 151 mathematical inputs and the
+environment establishes applicability of the earlier compiled retention and
+axiom checks, including all 839 incoming C27 declarations and both released
+contracts. The step notes preserve the superseded first request and the
+approved recorder recovery separately from the accepted replacement review.
+
+
+**[History] C27.06 — Cumulative qualification and C28 handoff (8 November 2026).**
+C27.05 closure `c714fdd975bd5956da50733b1363761b357dd21dd824b9bde7a83cbca054d90d`
+and exact final source were verified before this conditional admission.
+The seven planned public declarations and permanent focused consumers are
+implemented. The [maintained handoff](handoffs/chunk-27.md) and
+[complete criterion matrix](plans/release-3-chunk-27-notes.md#complete-criterion-to-source-and-evidence-matrix)
+identify the exact laws, imports, sparse/tie cases and C28–C30 consumers.
+Fresh cumulative results, the expressly authorized clean candidate and
+main correspondence, original independent report, reconciliation and scoped
+closure belong to `.lit-review/setup/c27-06-20261108/completion.json` when
+established. That record now establishes C27.06 closure. The C28 entry above gives the current selection.
+
+**[History] C27.05 — Permanent event-test consumers (8 November 2026).**
+C27.04 closure `b57136f444371dd3062aff18f87a74bb9d03cf585e484d0da2ad5c523765df74`
+and exact final source were verified before this conditional admission.
+Private focused examples cover uniform noiseless Boolean input and an
+input-independent channel, using C25's event-test API with Q null and J
+alternative. They check impossible pairs at a negative threshold, strictness
+at zero and common-null atoms. Only C27.05 is selected. Public declarations,
+mathematical imports and compatibility policy are unchanged. The
+[step notes](plans/release-3-chunk-27-notes.md) distinguish fresh focused,
+static and all-project axiom checks from source-qualified prior compiled
+compatibility evidence. The independent reviewer assessed both criteria as
+SATISFIED with no findings, and both assessments were reconciled. Final
+validation and supported closure follow
+`.lit-review/setup/c27-05-20261108/completion.json` when established.
+
+**[History] C27.04 — Independent-law tail (8 November 2026).**
+C27.03 closure `62d449e6aafe30fac1cc59ea83607a37fc97fd6eeccbc73a6017c8d1300ae09c`
+and exact final source were verified before this conditional admission.
+The new finite theorem bounds the strict event under the independent law
+by `exp (-t)` at every real threshold. It exposes `Finite` assumptions and
+uses the existing finite-event sum through the approved TotalVariation
+import. The private weighted word caller combines it with the closed joint
+miss for arbitrary `n`, `k`, input-word law and block channel. Only C27.04
+is selected. Focused/static, compiled compatibility and a fresh all-project
+axiom component passed. All 838 preceding compiler records and both released
+contracts were retained. The independent reviewer assessed both criteria as
+SATISFIED with no findings, and the assessments were reconciled. Its fresh
+Lean checks include zero length and zero competitors separately and together.
+The [step notes](plans/release-3-chunk-27-notes.md) record the exact import
+growth and attributed checks. Supported closure follows
+`.lit-review/setup/c27-04-20261108/completion.json` when established.
+
+**[History] C27.03 — Strict threshold and closed joint miss (8 November 2026).**
+C27.02 closure `dcf7eb64cf6890ddbfb2e8865b8dad16d739d7fffec3fe9aa8b2720732c18d98`
+and exact final source were verified before the conditional Step 3 admission.
+The global event compares real masses, the supported iff uses the signed
+log ratio, and the complementary J-probability equals the weak density
+sublevel, including equality. The three additions need no new owner import
+and no finiteness assumption. Private focused callers provide the safe
+global guard, zero-joint exclusion and word-level miss specialization.
+Focused/static, compiled compatibility and a fresh all-project axiom
+component passed. All 835 preceding compiler records were retained. The
+negative tie fixture proves J closed miss 1/8 and open miss zero at
+`log (1/4)`. The independent reviewer assessed all three criteria as
+SATISFIED with no findings, and the assessments were reconciled. The
+[step notes](plans/release-3-chunk-27-notes.md) record the exact fixture and
+validation limits. Only C27.03 is selected; supported closure follows
+`.lit-review/setup/c27-03-20261108/completion.json` when established.
+
+**[History] C27.02 — Joint mean (8 November 2026).**
+After verifying C27.01 closure `45e4aa99cc3f0dc0f365a1bcbdc2c03dcdd94c9ef27ad71216983f9b14433abc`
+and exact final source, the conditional request selected C27.02.
+The focused mean theorem reuses `mutualInfo_eq_sum_log_ratio`, channel
+marginals and the existing independent-product atom formula.
+Its source inventory is 835 declarations in 60 supported modules.
+Focused/static and compatibility validation passed; a fresh all-project
+axiom component also passed. All 834 preceding compiler records and both
+released contracts were retained. The independent reviewer assessed
+C27.02-MEAN as SATISFIED with no findings, and the assessment was reconciled.
+The [step notes](plans/release-3-chunk-27-notes.md) distinguish those checks
+from the full clean suite reserved for C27.06. Only C27.02 is selected.
+Its supported closure follows
+`.lit-review/setup/c27-02-20261108/completion.json` when established.
+
+**[History] C27.01 — Information density and joint support (8 November 2026).**
+The [approved C27 plan](plans/release-3-chunk-27.md) selects the signed real
+density in nats for a raw channel. Its [step notes](plans/release-3-chunk-27-notes.md)
+record the support theorem, focused callers and pre-edit verification.
+C26 closed all six steps at its supported final record `963c196f79dd96c19b2015ca318e2bec083b500b13e4313a10870a3b393512a5`.
+Its clean checkpoint was `b882bb00572b8831783f34979c25ba7af5c44e81`.
+Both C27.01 criteria received satisfactory independent assessments with no
+findings. The focused/static and trust gates passed, with all 832 prior
+compiler records retained. The reconciled [step notes](plans/release-3-chunk-27-notes.md)
+distinguish the auxiliary historical line-ending check from criterion evidence.
+Only C27.01 is selected. Its supported closure follows
+`.lit-review/setup/c27-01-20261108/completion.json` when established.
+
+**[History] C26.06 cumulative qualification and handoff preparation (7 November 2026).**
+The new conditional instruction selects the final C26 step after actual
+C26.05 supported closure, both satisfactory original assessments and exact
+final source/environment/Git correspondence were verified. The
+[maintained handoff](handoffs/chunk-26.md) and the twelve-criterion
+[source/evidence matrix](plans/release-3-chunk-26-notes.md#complete-criterion-to-source-and-evidence-matrix)
+describe the delivered finite Neyman–Pearson package and cumulative duties.
+The exact clean checkpoint requires separate authorization. Actual candidate,
+checks, source applicability, fresh cumulative independent review,
+reconciliation and supported completion follow
+.lit-review/setup/c26-06-20261107/completion.json when established; this
+status predicts no result. Existing local work is preserved. C27 remains
+unselected. Earlier dated selection/status paragraphs retain their
+source-specific chronology; the current selection is the one stated here.
+
+**[Current] C26.05 permanent consumers are closed.** The ordinary replacement
+review assessed both complete criteria as SATISFIED with no findings.
+Its independent Lean checks, substantive parent reconciliation and exact
+final-source validation precede supported closure
+2792951a32092ba7e4f19eb47284528958f421247c7a31170324bfdd2b763eb7.
+The completion pointer is .lit-review/setup/c26-05-20261107/completion.json;
+originals and final details are in .lit-review/setup/c26-05-r2-20261107/.
+Private focused examples prove optimal power3/8 at size1/4 for the Boolean
+pair, where every feasible event has power zero. Disjoint point masses on
+Fin3 have optimal power1 at size0, explicitly distinguishing alternative-only
+rejection from common-null randomization. All public contracts/imports and
+attributes remain at 832 declarations in 59 modules. The first stopped
+dispatch, uncertain receipt and authorized three-file recovery remain
+durable history with no mathematical credit; the replacement STEP review
+provides that credit. The earlier skipped Step6 request does not revive.
+
+**[Current] C26.04 prescribed-level attainment (7 November 2026).**
+The new conditional request selected only C26.04 after C26.03's supported
+closure and exact final source were verified. The focused NeymanPearson owner
+now supplies the approved threshold-and-common-tie-weight existence theorem:
+one test has exactly the requested closed-unit-interval size and dominates
+every randomized competitor under that cap. Private focused callers derive
+attained minimum type-II error and exercise levels zero and one, including
+alternative-only rejection at zero. The two four-atom calibration rows are
+checked in retained private development evidence. Current inventory growth
+is one theorem, to 832 declarations in 59 modules; imports, root exports and
+simp attributes are unchanged. The [approved plan](plans/release-3-chunk-26.md)
+and [notes](plans/release-3-chunk-26-notes.md#c2604--exact-level-and-finite-neymanpearson)
+record the adaptation. Source-bound validation, independent review and
+supported completion follow .lit-review/setup/c26-04-20261107/completion.json
+when established. Both complete criteria received satisfactory independent
+assessments with no new findings. Fresh focused/static, retained 601/811/831
+compiler comparisons, affected imports, supported environment, root and
+all-project axiom checks passed. Unaffected focused imports reuse explicitly
+applicable prior evidence. Final source applicability and static validation
+cover the subsequent documentation-only reconciliation. The cumulative clean suite remains C26.06. The two permanent
+consumers were assigned to C26.05, which was unselected at that checkpoint.
+
+**[Current] C26.03 private calibration foundations (7 November 2026).**
+After C26.02's supported closure and final source were verified, the new
+conditional request selected only C26.03. The focused NeymanPearson owner
+proves the private threshold-size identity and a realized nonnegative crossing
+with positive boundary mass for every closed-unit-interval level. It uses the
+existing PMF.supportFinset with a private real-positivity bridge; null atoms
+contribute zero size before any ratio comparison. The [approved plan](plans/release-3-chunk-26.md)
+and [notes](plans/release-3-chunk-26-notes.md#c2603--threshold-size-and-finite-crossing)
+record actual source adaptation and validation. Both full criteria received
+satisfactory independent assessments. The optional canonical-support reuse
+finding was applied without public API or import changes, and the corrected
+private proofs receive fresh final validation. Original evidence and supported
+closure follow .lit-review/setup/c26-03-20261107/completion.json when established.
+The full clean cumulative suite remains C26.06. Calibration and public
+attainment were assigned to C26.04; no later step was selected at that checkpoint.
+
+**[Current] C26.02 supplied-threshold comparison (7 November 2026).**
+The lead's new sequential instruction selected C26.02 after C26.01's successful
+supported closure was verified. The focused NeymanPearson module now proves
+power dominance for every supplied nonnegative threshold, common tie weight
+and randomized competitor under that test's own size cap. It handles ties,
+zero threshold and singular atoms without division. Two private focused callers
+supply parameters and size bounds. The [approved plan](plans/release-3-chunk-26.md)
+and [notes](plans/release-3-chunk-26-notes.md#c2602--supplied-threshold-power-comparison)
+record the proof and actual validation. Fresh focused/aggregate and static
+checks passed, as did exact compiler comparisons to 601/811 released records
+and all 830 preceding records, affected import probes, the full supported
+environment, root boundary and all-project axiom audit. The unaffected import
+checks reuse verified applicable C26.01 evidence. The bound reviewer independently
+assessed the complete criterion as satisfied with no findings. Its original
+report and parent reconciliation remain under .lit-review/setup/c26-02-20261107/.
+Completion requires the supported closure and completion.json there. The clean
+cumulative suite remains C26.06; prescribed-level calibration and attainment
+were assigned to C26.03–C26.04. At that checkpoint no later step was selected.
+
+**[Current] C26.01 threshold construction (7 November 2026).**
+The lead accepted the [C26 revision 2 plan](plans/release-3-chunk-26.md) and
+selected only C26.01 with its review process. The focused NeymanPearson owner
+adds the likelihood-threshold constructor and application equation on the
+existing BinaryTest representation, with private branch/null-atom consumers.
+The full Shannon umbrella exposes it. C25 focused imports and the lightweight
+root retain their existing boundaries. The [step notes](plans/release-3-chunk-26-notes.md)
+record source adaptation, preceding 828-declaration evidence and current
+validation/review boundaries. Completion is determined by the supported private
+record and .lit-review/setup/c26-01-20261107/completion.json when established.
+Fresh focused and aggregate builds, static checks and the full development
+trust gate passed. All 601/811 released contracts and the 828 preceding compiler
+records are retained. The bound reviewer assessed both complete step criteria
+as satisfied. Its optional policy consumer note was applied, and the original
+report and substantive reconciliation remain in the private step records.
+The power comparison was assigned to C26.02; prescribed-level attainment remains later work.
+
+**[Current] C25.06 cumulative qualification (6 November 2026).**
+A new conditional request selected only C25.06 after C25.05's supported closure,
+successful fresh review and exact final source were verified. The
+[C25 handoff](handoffs/chunk-25.md) records all 17 public contracts, their focused
+import, permanent consumers, C26's symbolic size/power interface and C27's event
+convention. Fresh dirty-checkout focused/default builds, whole-project trust
+(including independent 601/811 retained comparisons, current imports/simp/root
+checks and all-project axioms) and documentation examples passed. The
+[step notes](plans/release-3-chunk-25-notes.md) distinguish these new checks from
+earlier reports. The lead approved the exact isolated checkpoint and bounded
+six-document status/review amendments. Clean-run records, when produced, are
+retained under
+`.lit-review/setup/c25-06-20261106/approved-checkpoint/`. C25.06 status is
+determined by supported private closure: its `completion.json` under
+`.lit-review/setup/c25-06-20261106/` must identify the final source, original
+cumulative report, substantive reconciliation, applicable clean candidate/result
+and final applicability evidence. Until that supported source-matching record
+exists, completion is not established. Every candidate amendment, including
+post-review prose, requires the full clean suite again. At that checkpoint C26
+remained unselected.
+
+**[Current] C25.05 permanent testing examples (6 November 2026).**
+The lead selected only C25.05 after C25.04's supported closure, successful
+review and exact final source were verified. Private focused examples cover
+equal, disjoint and partially overlapping laws, randomized tie behavior and a
+symbolic two-point caller for C26. Focused builds, static checks, the umbrella
+consumer and all 25 new private-declaration axiom checks passed. The 601/811
+released baselines and all 828 preceding public records are retained; public
+contracts and imports are unchanged. After a separately approved narrow workflow
+repair passed independent qualification, the same reviewer freshly assessed both
+complete criteria as satisfied with no findings. Its build, static and private
+axiom checks passed; reused compiler evidence was independently checked for
+applicability. See the [step notes](plans/release-3-chunk-25-notes.md) for the
+retained interrupted attempt, separate evidence and reconciliation. Completion
+remains subject to the supported private record and
+`.lit-review/setup/c25-05-20261106/completion.json`. The later renewed request
+selected C25.06 as recorded above.
+
+**[Current] C25.04 strict optimizer and equal-prior error (6 November 2026).**
+The lead selected only C25.04 after the supported C25.03 closure and final
+source were verified. The focused BinaryTesting owner supplies the strict test
+and attained minima over all randomized tests: error sum `1 - TV` and equal-prior
+average `(1 - TV) / 2`. The same strict test attains both; ties accept the null.
+Focused and full-umbrella consumers, static checks, five new-declaration axiom
+checks and compiled retention of both released baselines passed. All 823 preceding
+compiler records are retained. Current coverage is 828 declarations in 58 modules
+with 92 unchanged root exports. The independent reviewer assessed both complete
+step criteria as satisfied with no findings; reconciliation is recorded in the
+[step notes](plans/release-3-chunk-25-notes.md). Completion remains subject to the
+supported private record and `.lit-review/setup/c25-04-20261106/completion.json`.
+C25.05 was subsequently selected as recorded above.
+
+**[Current] C25.03 randomized-test lower bound (6 November 2026).**
+The lead selected only C25.03 after the supported C25.02 closure and final
+source were verified. The focused BinaryTesting owner defines the unweighted
+error sum and proves its TV lower bound for every randomized test. Focused and
+full-umbrella consumers, static checks and compiled retention of both released
+baselines and all 821 preceding declarations passed. Coverage at C25.03 was
+823 declarations in 58 supported modules with 92 unchanged root exports. The
+independent reviewer assessed the complete step criterion as satisfied with no
+findings; reconciliation is recorded in the
+[step notes](plans/release-3-chunk-25-notes.md). Completion remains subject to the
+supported private record and `.lit-review/setup/c25-03-20261106/completion.json`.
+C25.04 was subsequently selected as recorded above.
+
+**[Current] C25.02 deterministic event tests (6 November 2026).**
+The lead selected only C25.02 after the supported C25.01 closure and final
+source were verified. The event constructor and evaluation identities passed
+focused and full-umbrella consumers, static checks and compiled retention of
+both released baselines and all 817 preceding declarations. Coverage at C25.02
+was 821 declarations in 58 supported modules with 92 unchanged root exports. The
+independent reviewer assessed the complete step criterion as satisfied with no
+findings; reconciliation is recorded in the
+[step notes](plans/release-3-chunk-25-notes.md). Completion remains subject to the
+supported private record and `.lit-review/setup/c25-02-20261106/completion.json`.
+C25.03 was subsequently selected as recorded above.
+
+**[Current] C25 prerequisites qualified locally (6 November 2026).** The
+C25–C40 review adapter and C25's own persistent reviewer are established.
+The development route now uses `scripts/validate_development.py` to retain
+all 811 released v0.2.0 declarations alongside the independent historical
+601 comparison. The approved-addition fixture passed the complete local
+CI sequence, including focused imports, root exports, simp and axioms.
+Each missing import approval was refused. A compiling post-v0.1 signature
+mutation passed the old comparison and failed the 811 comparison by name.
+The original checker passed separately on the exact clean v0.2.0 tag.
+The primary development checkout passed static and compiled compatibility
+checks. Independent examination and original evidence are retained in
+`.lit-review/setup/r3-growth-qualification-20261106/completion.json`.
+Hosted Ubuntu Actions and optional API-doc qualification remain separate.
+The lead approved C25 revision 2 and selected C25.01 with review on
+6 November 2026. Its bounded-test/evaluation API has passed parent and
+independent checks: 817 declarations at C25.01, both released baselines retained,
+and 92 unchanged root exports. The reviewer found both step criteria satisfied
+with no new findings; reconciliation is recorded in the
+[step notes](plans/release-3-chunk-25-notes.md). Closure is determined by the
+supported private workflow record and
+`.lit-review/setup/c25-01-20261106/completion.json`. C25.02 was subsequently
+selected as recorded above.
+See the [plan](plans/release-3-chunk-25.md) and
+[validation commands](compatibility/README.md#development-after-v020).
+
+**[Decision] Release 3 direction (5 November 2026).** Use the
+[C25--C40 planning reference](plans/release-3-chunk-map.md) when preparing
+future chunk plans. Six mathematical packages are selected; boundaries, proof
+routes and the default ordering are revisable. The detailed C25 revision 2 is approved. C25.01 through C25.05 are complete;
+C25.06 is the last selected step; its completion status follows the record
+identified above. C26 remains unselected.
+The review and growth-validation prerequisites have been qualified.
+
 **[Current] Published v0.2.0 and citation maintenance (5 November 2026).**
 
 The stable release is [v0.2.0](https://github.com/serhatemrecoban/LeanInfoTheory/releases/tag/v0.2.0), published on 5 November 2026 from `953b785fbdbcc9bffe22834124d5e1cbd14a4835`. It has 811 supported declarations in 57 modules. The [main website](https://serhatemrecoban.github.io/LeanInfoTheory/) presents the release and PFR case study. The [v0.2.0 API reference](https://serhatemrecoban.github.io/LeanInfoTheory-API/v0.2.0/) and the original [v0.1.0 reference](https://serhatemrecoban.github.io/LeanInfoTheory/docs/v0.1.0/) have separate permanent routes.
 
 The version DOI is [10.5281/zenodo.23973538](https://doi.org/10.5281/zenodo.23973538). The default-branch citation file includes it. The tagged citation file records the release as published. Post-publication checks compare the mathematical source and its retained-API validation inputs with the immutable tag.
+
+**[History] v0.2.0 default branch and public citation updated (5 November 2026).**
+
+The default branch now contains the published v0.2.0 source and citation maintenance at `bc351576d517d78581213cf26eed4bd708291ca6`. Its [README](https://github.com/serhatemrecoban/LeanInfoTheory#citation), downloadable citation file, and [website citation page](https://serhatemrecoban.github.io/LeanInfoTheory/license.html) identify version DOI [10.5281/zenodo.23973538](https://doi.org/10.5281/zenodo.23973538). The homepage and README use the current deployment badge. All 129 retained-API producer inputs match the tagged release. The [hosted checks](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/42001659539) passed. Only the homepage, citation page, and deployment record changed in the [main-site publication](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/42003500608); all 5,534 frozen v0.1.0 files matched. The versioned v0.2.0 API site continues to serve its qualified archive.
+
+**[History] v0.2.0 published, both websites live, archive verified (5 November 2026).**
+
+The author published [v0.2.0](https://github.com/serhatemrecoban/LeanInfoTheory/releases/tag/v0.2.0) at `953b785fbdbcc9bffe22834124d5e1cbd14a4835` on 5 November 2026.
+The [complete API reference](https://serhatemrecoban.github.io/LeanInfoTheory-API/v0.2.0/) was deployed and verified before updating the [main website](https://serhatemrecoban.github.io/LeanInfoTheory/). Its homepage now presents the 811 declarations in 57 modules, the PFR case study and the EPFL talk. It retains the historical v0.1.0 route. Live desktop and phone tests exercised search, declaration anchors, dependency navigation, source links and both documentation versions.
+
+All 11,130 files in the two archives submitted to Pages were compared against the qualified archives. A fresh public tag checkout resolved to the qualified source and all seven consumer examples compiled using its previously verified dependency cache. The [default-branch build](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/41994404736) verified the pinned manual deployment workflow. The homepage deployment badge still targets the legacy Pages workflow; its target belongs in the next website maintenance pass.
+
+The [Zenodo v0.2.0 record](https://doi.org/10.5281/zenodo.23973538) belongs to concept DOI `10.5281/zenodo.22229598`. The downloaded archive's 335 files matched the tagged Git objects. The author, affiliation, EPFL rights holder, licence and date were verified. The default-branch release and citation update, including propagation of the issued version DOI, is a separate maintenance decision.
+
+**[History] v0.2.0 GitHub draft handoff (5 November 2026).**
+
+The [GitHub draft](https://github.com/serhatemrecoban/LeanInfoTheory/releases/tag/untagged-c436591f17df323f0a03) is ready for the author's final review and
+manual **Publish release** action. Annotated tag `v0.2.0` points to
+`953b785fbdbcc9bffe22834124d5e1cbd14a4835`. The full clean suite, both retained comparisons,
+all seven local and public-Git consumer examples, [remote CI](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/41973495251)
+and the [two-pass API and publication-off site checks](https://github.com/serhatemrecoban/LeanInfoTheory/actions/runs/41974986145)
+passed. The independently verified main/API archives contain 661,629,499 and
+662,452,623 bytes respectively. Browser review exercised the EPFL talk, PFR
+case study, search, source links, cross-site navigation and mobile homepage.
+GitHub still lists v0.1.0 as the latest published release. API-site deployment
+and live verification, the main-site update, and Zenodo archive/DOI verification
+follow the author's publication and the applicable deployment approval.
 
 <!-- v02-release-date:start -->
 **[Decision] Second-release target date revised to 2026-11-05.**
@@ -1804,7 +2925,7 @@ temporary handoffs. See Section 4 for the conflict protocol.
 
 ## 1. Document Status
 
-**Current C24 closeout:** See the [C24 handoff](handoffs/chunk-24.md) and
+**[History] C24 closeout snapshot:** See the [C24 handoff](handoffs/chunk-24.md) and
 Section 0 for the selected final qualification step. Earlier dated rows retain
 their original source-bound evidence. Standing naming, import, simp, trust and
 source-adaptation duties remain active; optional theorem, alias and blueprint
@@ -1813,7 +2934,13 @@ work is not made complete by cumulative qualification. The actual
 
 | Field | Value |
 | --- | --- |
-| Last updated | 2026-10-28 |
+| Last updated | 2026-11-19 |
+| C38.06 review reconciled | C38.01–05 are closed by their actual receipts; the five public contracts and permanent consumers are implemented. Only cumulative validation, fresh all17 review, reconciliation and the maintained C39 handoff are selected. The initial iid-equation ownership FAIL led to seven C38-only proof-body corrections; mathematical contracts, imports and acceptance remain unchanged. Corrected maintained results pass with their own source-bound receipts. Evidence: `.lake/compatibility/c38-06-validation-20261118/index.json` (original commands, outputs, actors and source maps; the generated/static records are sealed before review capture); `c38c67f0b6c044aff0a5c5630554d31dc033d7fce7353d68af1a2f19ff7e0db3` marks four selected criteria and all seventeen cumulative criteria SATISFIED with no material findings; parent agreement is `b95f53aa4c31515e03695a491b0d2712d2657629a66dfbc2fa2abeb722ad930a`. Final applicability and actual closure are governed by `.lit-review/setup/c38-06-20261118/final-checks.json` and `.lit-review/setup/c38-06-20261118/completion.json`. [Handoff](handoffs/chunk-38.md) |
+| Current Release 3 method-of-types interface | C37 supplies type indices and empirical laws, C38 bounds their class cardinalities, and C39.01–04 give the general-prior word and class formulas, finite-KL bounds and singular zero-event theorem. The generic interface checks exact agreement of the finite and infinite branches. [C39 notes](plans/release-3-chunk-39-notes.md) |
+| Release 3 prefix-code package | C35 gives both Kraft directions on original labels. C36 gives the universal converse, a Shannon code and an attained least mean on positive support. For a positive-length iid block, the optimum has less than one bit of overhead per block, hence less than `1/n` bits per symbol. At C36 closeout the supported surface had 888 declarations in 72 modules. [C35 handoff](handoffs/chunk-35.md) · [C36 endpoint ledger](handoffs/chunk-36.md#c40-endpoint-ledger) |
+| Release 3 separation package | C33 gives achievability below capacity. C34 gives the undivided finite bound for arbitrary joint codes and rules out vanishing error above capacity. [Handoff and qualification](handoffs/chunk-34.md) |
+| Completed Release 3 C32 phase | All six steps closed under `.lit-review/setup/c32-06-20261113/completion.json`. The [C32 handoff](handoffs/chunk-32.md) identifies sixteen public additions, the permanent consumers and fifteen cumulative criteria. The baseline has 873 names in 66 modules, two direct root imports, five root-reachable modules, 92 root exports and 94 reviewed simp names. |
+| C29 cumulative qualification | Only C29.05 is selected under approved revision 2 after C29.04 closure and exact-source verification. All six endpoints are implemented; the maintained C30 handoff and fourteen-criterion matrix cover both projections, the total decoder and the released-error identity. The surface remains 848 declarations in 62 modules. Both released contracts, C28 842, incoming 848 and root/simp boundaries remain controls. Clean-candidate authority, complete validation, cumulative review and final applicability retain their own records; actual closure follows the C29.05 pointer above. |
 | Recorded pre-C9 mathematical checkpoint | Chunk 8 source commit `1eef2289c3475ff978569f285329bdc78e060594`; the released `v0.1.0` source is exact commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f` |
 | Repository transition state | `v0.1.0` is published from immutable tag object `bcd9090ea2720fe14b0a3e168c76ebeef1dafd47` and archived as Zenodo record `22229599`. The evolving default branch carries the current project pages and DOI metadata, while maintenance staging preserves `/docs/v0.1.0/` from exact release commit `0bef5ef5124d7c33afc1aaed8d4f34a1c3a5ce8f`; the tag, Release, archive, released Lean source, and frozen public API remain unchanged |
 | Lean baseline | `v0.1.0` uses Lean `v4.33.1`, commit `819816b2e0a3bf405af45ae5c7af2491d8f5bee6` |
@@ -1926,8 +3053,13 @@ formalization:
   converses; finite source coding, information capacity, standard capacities and
   weak channel-code converses are delivered. Current C23 qualification is recorded
   in Sections 0 and 16;
-- method of types, entropy rates, or a stochastic-process hierarchy;
-  finite-iid AEP, weak typicality and cardinality bounds are implemented, with review status in Section 0;
+- entropy rates or a stochastic-process hierarchy. C38.01 supplies exact
+  multinomial cardinality, C38.02 own-law iid atom/class identities, and
+  C38.03–04 both type-class entropy estimates; current candidate qualification
+  and review/closure qualification are recorded in Sections 0 and 16. C37.05 supplies
+  positive-length empirical laws, support, exact-denominator conversion
+  and empirical membership in the original class. Finite-iid AEP
+  and weak typicality have separate owners;
 - general measurable-space entropy and sufficient-statistics theory;
 - certificate representations, checking, search, primitive recognition, or
   PSITIP/oXitip import;
@@ -2086,6 +3218,84 @@ Use this order when claims disagree:
   original labels, to assign ownership.
 
 ## 5. Current Mathematical Coverage
+
+**[Current] Method of types.** C39 measures C37’s count-indexed class under an arbitrary iid prior. On the finite branch, each member has mass `exp(-n(H(q)+D(q‖p)))`. Summing the members and applying C38’s cardinality bounds leaves `exp(-nD(q‖p))` as the upper endpoint and divides it by `(n+1)^card A` for the lower endpoint. The complementary branch gives an actual ENNReal zero event and infinite canonical KL. [Statements and permanent examples](handoffs/chunk-39.md)
+
+**[Current] Expected binary prefix length.** The source alphabet for the
+encoder is `↥p.supportFinset`. A minimum-cost encoder exists for every finite
+PMF. For masses `(3/4, 1/4)` its mean is one bit, while the prescribed Shannon
+lengths average `5/4`. A point mass has minimum zero under known-count
+coding. On iid blocks the strict additive overhead is `1/n` per symbol.
+[Permanent callers and source interpretation](handoffs/chunk-36.md#permanent-consumers-and-source-interpretation)
+
+**[Current] Binary prefix codes.** For any finite source alphabet and binary prefix assignment, the real sum of `(1 / 2) ^ length` over the labels is at most one. Conversely, any prescribed natural lengths with Kraft sum at most one are realized pointwise on the original labels. Both statements cover an empty alphabet and a single label assigned the empty word. [Focused theorems and assumptions](../LeanInfoTheory/Shannon/PrefixCode.lean)
+
+**[Current] Source–channel reconstruction.** The selected finite interface
+uses one channel use per iid source symbol, and compares two entire words
+at the same blocklength. At length zero all reconstructions agree with the
+unique empty word. On a singleton source alphabet the same holds at every
+length. The finite composition inequality uses the actual source-encoder prior. The direct theorem in `Shannon.SourceChannelSeparation` constructs one family with vanishing block error whenever source entropy is strictly below channel capacity. For arbitrary joint word maps the undivided C34.01 converse bounds source block entropy by block capacity plus the weak Fano correction. C34.02 passes to the limit for the same encoder and decoder families when their reconstruction error tends to zero.
+[C33 plan](plans/release-3-chunk-33.md)
+
+**[Current] Random codebook laws, decoder and released-error average.** `Shannon.RandomCodebook`
+retains the sampled book while the channel uses its sent word. Its sent-pair
+pushforward is channelJoint q K. For each distinct competing index, the
+competitor/output pushforward is indepProd q (q.bind K). The word prior is
+arbitrary and encoder values may collide. Both statements and their focused
+event transports allow arbitrary Y and every natural n. The private endpoint
+calculation keeps (competitor, sent, output) in that order.
+`BlockChannelCode.ofAcceptanceEvent` uses the realized book as its encoder at
+the original n and M. Its total decoder returns the least passing index or zero
+when none passes. The two alphabets need no finiteness instances. The public
+unique-pass theorem is consumed with C27's literal strict event. Duplicate,
+empty-pass and singleton examples retain message identities. The real uniform
+ensemble decoder-error average equals the book-mass-weighted mean of this actual
+code's released `errorProbability W hM`. The original n/M/W and arbitrary word
+law are retained. A literal strict-event caller transports any real common
+per-message bound; asymmetric one-letter and correlated two-letter consumers
+check the weights and original blocklength. When the sent index passes and
+every earlier index fails, the first-match decoder returns it even if later
+indices pass.
+The simpler public unique-pass theorem remains the sufficient condition C30
+needs. A possible earlier-competitor refinement is documented as a later decision,
+not an extra C29 theorem.
+[Focused owner](../LeanInfoTheory/Shannon/RandomCodebook.lean) · [C30 handoff](handoffs/chunk-29.md)
+
+**[Current] Iid block information density.** On the actual iid-input/memoryless-
+channel joint support, block density is the coordinate-pair sum, including zero
+length. Its normalized closed deviation around single-letter MI vanishes on
+successor lengths and varying word spaces. For every fixed real s below MI, the
+literal complement of C27's strict event at n*s has probability tending to zero
+over all natural n. Ties are misses; the empty miss is one. Uniform equality and
+the biased length-two 9/16 tie exclude stronger endpoint or finite-zero claims.
+[Focused owner](../LeanInfoTheory/Shannon/IidInformationDensity.lean) · [C28 handoff](handoffs/chunk-28.md)
+
+**[Current] Channel information density.** The signed `infoDensity p W z` is
+the logarithm of the real joint mass divided by the real independent-pair
+mass. Every supported joint pair has both coordinates in marginal support.
+The value at zero joint mass is zero by convention. Its finite J-mean equals
+mutual information. The global strict event compares real masses; its log
+interpretation needs joint support, while its complementary J-probability
+equals the closed density sublevel. For finite alphabets, the independent-law
+probability of the event is at most `exp (-t)` for every real threshold.
+[Focused owner](../LeanInfoTheory/Shannon/InformationDensity.lean) · [C27 handoff](handoffs/chunk-27.md)
+
+**[Current] C26.05 numerical threshold consumers.** The focused private examples
+prove power 3/8 is optimal at size 1/4 for the fair-versus-biased Boolean pair,
+where every feasible event has power zero. Disjoint point masses on Fin 3 give
+power one at size zero, with an explicit common-null tie weight and a separate
+application of the public exact-level existence theorem. These consumers add
+no public API and preserve the existing test representation and conventions.
+
+**[Current] C26.04 finite prescribed-level testing.** The focused
+Probability.NeymanPearson owner exposes one likelihood-threshold test at every
+level in [0,1], with exact null size and power dominating every randomized
+competitor under the cap. It permits ties, threshold zero, arbitrary supports
+and alternative mass on null atoms. The boundary randomization is common to
+all tied atoms. Private focused callers derive an attained minimum of existing
+typeIIError and exercise both endpoints. C26.05 supplies the two permanent numerical consumers. Cumulative
+qualification follows the [maintained C26 handoff](handoffs/chunk-26.md). See the
+[implementation notes](plans/release-3-chunk-26-notes.md#c2604--exact-level-and-finite-neymanpearson).
 
 **C23.06 cumulative reconciliation; no new mathematical endpoint.** The delivered
 channel-code sampling/error laws, finite Fano-capacity converses, vanishing-error
@@ -2481,6 +3691,94 @@ claim a general measure-theoretic formalization of the whole subject.
 
 ## 7. Current Lean Module and API Architecture
 
+**[Current] Type-class probabilities.** Five theorems belong to `Shannon.TypeClassProbability`, which imports `Shannon.TypeClassBounds` and `Shannon.SemanticBridge.KL`. The full Shannon umbrella exports the focused owner. Two private example modules exercise the numerical results and general public interfaces. [Focused declarations](../LeanInfoTheory/Shannon/TypeClassProbability.lean)
+
+**[Current] Own-law masses and both entropy bounds.** `Shannon.TypeClassBounds`
+retains its imports of TypeClassCardinality, EmpiricalPMF, Probability.Iid and
+Shannon.Entropy. Its four public theorems are the two own-law identities and
+the two cardinality inequalities. Private factorial/weight/mode/normalization
+machinery and the fixed-target iid-event bridge prove the lower bound, including
+an explicit zero ENNReal event for target-zero symbols. No public helper,
+alias or simp attribute is added. Shannon exports the owner; the root remains
+unchanged. Examples.TypeClass imports the focused Bounds owner and remains
+excluded from both supported umbrellas.
+[Bounds owner](../LeanInfoTheory/Shannon/TypeClassBounds.lean)
+
+**[Current] Exact type-class counting.** `Shannon.TypeClassCardinality` imports
+WordType and the pinned multinomial, permutation-stabilizer and orbit–stabilizer
+owners. Its one theorem counts the original class at all lengths; its three
+helpers are private. It is exported by Shannon, while Examples.TypeClass remains
+outside both supported umbrellas. No project probability or entropy module is
+in this focused owner's dependency closure.
+[Cardinality owner](../LeanInfoTheory/Shannon/TypeClassCardinality.lean)
+
+**[Current] Word types.** `Shannon.WordType` uses the pinned finite-fiber
+cardinality and `Finset.piAntidiag` APIs. The owner realizes every admissible
+index and exposes its finite fiber through `typeClass`. It is independently importable and
+exported by `LeanInfoTheory.Shannon`. Its two direct imports are from mathlib.
+[WordType](../LeanInfoTheory/Shannon/WordType.lean)
+
+**[Current] Empirical laws.** `Shannon.EmpiricalPMF` imports `Shannon.WordType`
+and `Probability.Finite`. Its normalization, atom and support interface,
+exact-denominator equivalence and empirical class-membership theorem are
+exported by the full Shannon umbrella.
+[EmpiricalPMF](../LeanInfoTheory/Shannon/EmpiricalPMF.lean)
+
+**[Current] Prefix-length owners.** `Shannon.PrefixCodeLength` imports
+`Shannon.PrefixCode` and `Shannon.Units`. Its six declarations cover the
+supported mean, converse, constructive witness, optimum, leastness and scalar
+bounds. `Shannon.PrefixCodeLengthIid` imports that owner and
+`Shannon.SemanticBridge.FiniteProduct` for the per-symbol theorem. Both
+are exported by the full Shannon umbrella. The example module needs only
+the focused iid import. [Exact contracts and imports](handoffs/chunk-36.md#contracts-and-focused-imports)
+
+**[Current] Prefix-code owner.** The full Shannon umbrella exports `Shannon.PrefixCode`. The owner imports `Mathlib.InformationTheory.Coding.KraftMcMillan` for necessity and `Mathlib.Data.Finset.Max` for maximum-length induction in realization. The finite-image decoding proof and leaf-counting helpers are private. [Focused consumer](../LeanInfoTheory/Examples/PrefixCode.lean)
+
+**[Current] C34 converse owner.** `Shannon.SourceChannelConverse` imports the C33 error owner and product-channel capacity. It exports the finite Fano bound for unrestricted word maps and the consequence for every family with vanishing error. [Exact signatures and consumers](handoffs/chunk-34.md)
+
+**[Current] C33 finite owner.** `Shannon.SourceChannelCode` owns
+`sourceChannelErrorProbability` with direct imports `Shannon.SourceCoding`
+and `Shannon.ChannelCodeExpurgation`. Its arbitrary input alphabet needs
+neither enumeration nor a chosen element. The development consumer checks
+the source/output joint for Fano and its projection to the input/output
+joint for block capacity. The same owner proves `sourceChannelErrorProbability_comp_le`
+for the composition of two codes at a common budget. The separate owner `Shannon.SourceChannelSeparation` combines this finite interface with the source and channel families to prove the direct theorem. [Owners and C34 interfaces](handoffs/chunk-33.md)
+
+**[History] C29 focused owner and complete surface.** `Shannon.RandomCodebook`
+directly imports `Probability.TotalVariation` and `Shannon.ChannelCode`.
+It owns the six approved experiment/decoder/error declarations. Both raw
+projections allow arbitrary Y; the constructor needs neither alphabet finite;
+the averaging identity enumerates books and outputs with Fintype X/Y. The
+full Shannon umbrella exposes all six. The focused development example alone
+adds `Shannon.InformationDensity` for C27's literal event. No C26 or C28 import
+enters the mathematical owner. Current coverage is 848 public declarations in
+62 supported modules. Its focused view is 419 records in an 18-module closure;
+the extra TotalVariation import contributes 25 pre-existing names. The root
+retains two direct imports, five-module closure and 92 exports, with all 94
+reviewed simp names unchanged. Public helpers and aliases are not added at
+closeout. [C29 handoff](handoffs/chunk-29.md)
+
+**[History] C27 focused-owner checkpoint.** `Shannon.InformationDensity` directly
+imports `Probability.FiniteChannel`, `Probability.TotalVariation`,
+`Shannon.SemanticBridge.FiniteSums` and `Shannon.SemanticBridge.Product`.
+The full Shannon umbrella exports the density, support inclusion, finite
+joint mean, strict event, supported threshold iff, joint miss equality and
+finite independent-law tail. The source inventory has 839 declarations in
+60 supported modules. The
+lightweight root retains its two direct imports, five-module closure and
+92 exports. Private focused callers belong to the development Examples aggregate.
+
+**[History] C26 testing API at closure.** Probability.NeymanPearson has the sole direct
+import Probability.BinaryTesting and four public PMF.BinaryTest declarations:
+likelihoodThresholdTest, its application equation, supplied-threshold power
+comparison and prescribed-level existence. The full Shannon umbrella exposes
+them. Private Examples.NeymanPearson imports the focused owner only. The current
+inventory is 832 declarations in 59 supported owners. No root import/export or
+simp attribute is added: the root keeps two direct imports, a five-module
+closure and 92 exports. Both released baselines and preceding C25 contracts
+remain the retention targets; step evidence and cumulative qualification have
+the separate scopes recorded in the current quick start.
+
 **Historical C23.05 qualified API snapshot; subsequently closed.** The three production owners retain
 23/7/6 public declarations, their existing direct imports and no declaration
 attributes. Root exports remain 92 and reviewed simp names 94; the source inventory
@@ -2556,6 +3854,8 @@ review result. Older architecture snapshots below retain their historical identi
 | `LeanInfoTheory.Basic` | Non-stable project metadata and roadmap vocabulary | No |
 | `LeanInfoTheory.Probability.Finite` | Reusable PMF real-mass, finite-bind, map, support, and pure-law helpers | Yes |
 | `LeanInfoTheory.Probability.TotalVariation` | Half-L1 finite-PMF total variation, core laws, attained events, overlap/residual identities, disjoint support, sharp bounded tests and map/channel contraction, in `PMF` | No |
+| `LeanInfoTheory.Probability.BinaryTesting` | Randomized-test size, power and miss, deterministic events and the attained TV error-sum problem | No |
+| `LeanInfoTheory.Probability.NeymanPearson` | Likelihood-threshold construction, supplied-parameter comparison and exact-level finite Neyman–Pearson attainment | No |
 | `LeanInfoTheory.Probability.Coupling` | Generic coupling interface, support-aware map/channel transport, finite coupling inequality and actual maximal constructor, in `PMF` | No |
 | `LeanInfoTheory.Shannon.Entropy` | Entropy, entropy of pushforwards, joint entropy, zero and relabeling facts | Yes, through `InformationMeasures` |
 | `LeanInfoTheory.Shannon.InfoMeasures` | Marginals, conditional entropy, MI, CMI, random-variable forms, core rewrites and auxiliary-variable decomposition | Yes, through `InformationMeasures` |
@@ -2695,6 +3995,8 @@ and [structural type artifact](compatibility/README.md) remain unchanged.
 | `LeanInfoTheory.Shannon.BinaryEntropy` | Boolean-PMF entropy bridge to mathlib `Real.binEntropy` |
 | `LeanInfoTheory.Shannon.Fano` | Type-generic decoding error and exact failure-event identity; finite exact/weak Fano inequalities and corollaries |
 | `LeanInfoTheory.Shannon.ChannelCode` | Closed C23.01: deterministic block codes, actual uniform-message laws and average error; imports only Fano and Probability.ProductChannel |
+| `LeanInfoTheory.Shannon.ChannelCodeExpurgation` | C32.01–03: sent-index, actual-prior and finite maximal error; total fallback restriction and retained-row monotonicity; ceiling-half good-index counting and exact-budget expurgation with one code before all priors. Directly imports ChannelCode. C32.04 supplies rate and lengthwise transfer; C32.05 exercises numerical/boundary consumers. |
+| `LeanInfoTheory.Shannon.OperationalExpurgation` | C32.04: one full good-set family from a supplied positive-budget witness, exact retained-code identities, vanishing maximal error and every eventual rate floor. Imports only ChannelCodeExpurgation and CodingRate. |
 | `LeanInfoTheory.Shannon.ChannelCoding` | Closed C23.02: actual-law Markov/DPI, finite Fano-capacity and positive-length rate/error converses; imports ChannelCode, ProductChannelCapacity and CodingRate |
 | `LeanInfoTheory.Shannon.ChannelCodingAsymptotic` | Closed C23.03–C23.04: tolerance/real-limsup bounds, eventual quantitative/floor/nonvanishing and frequent-gap obstructions. Three production imports unchanged; C23.05 privately composes the same actual family without adding a public endpoint |
 | `LeanInfoTheory.Shannon.SourceCoding` | Transparent total deterministic core/block codes, exact error, finite success sets and law-free success counting; independent of iid, typical sets and AEP |
@@ -3311,7 +4613,475 @@ certificate parsers are downstream application work, not LeanInfoTheory gaps.
 
 ## 12. Active Work
 
-**Current C24 closeout:** See the [C24 handoff](handoffs/chunk-24.md) and
+**[Current] C40.03 coding through separation.** Focused callers connect the sampled-book estimate, one rounded all-length family, expurgation and the source-induced reconstruction error. The working-checkout archive includes the original finite-testing input and the two-owner separation caller for C40.05. [C40.03 evidence](plans/release-3-chunk-40-notes.md#c4003--coding-through-sourcechannel-separation)
+
+**[Current] C40.02 finite testing.** C40.01 closed by supervised receipt. The standalone probability caller reaches four project modules and qualifies both attained TV losses, exact threshold calibration, and the randomized and singular fixtures. Its sealed input is available for C40.05 replay on candidate A. [C40.02 evidence](plans/release-3-chunk-40-notes.md#c4002--standalone-finite-testing)
+
+**[Current] C40.01 coverage and provenance.** Approved revision 2 is active. C39.06 completed with closure `d3ddf84699ffbaa2d237039be1e55a79691b2f7271983238448894e60885c7de`. The [C39 handoff](handoffs/chunk-39.md) supplies the type-probability endpoint. The C40.01 ledger covers all six packages and the historical limits. [C40.01 coverage ledger](plans/release-3-chunk-40-ledger.md) · [Provenance and limits](plans/release-3-chunk-40-notes.md)
+
+
+**[Current] C38.06.** The selected cumulative step covers validation, canonical
+reconciliation, remaining-work dispositions, a maintained C39 handoff and fresh
+independent review of all seventeen criteria. C38.05's successful receipt is
+`48ac467748bb373002fdbba4b9b534fd86caa6f06e271c550f9dc01640284045`;
+admission/exact-F verification is verified C38.05 F `ccd27dc6b07fac07d9647beb9fd6bfb6e1d91391f058772238558d62f8326e42` with no source difference, then admitted only C38.06; original records in `.lit-review/setup/c38-06-20261118/`.
+All five public contracts and required permanent consumers are already
+implemented. A cumulative raw-ownership failure for PMF.iid.eq_1 in AEP/Bounds
+required seven C38-only definitional proof-body corrections. Mathematical routes,
+statements, public contracts, imports and acceptance policy are unchanged; AEP
+and C36/C37 source are untouched. Corrected maintained reruns pass with actual source-bound receipts. Current cumulative evidence: `.lake/compatibility/c38-06-validation-20261118/index.json` (original commands, outputs, actors and source maps; the generated/static records are sealed before review capture). Fresh original review `c38c67f0b6c044aff0a5c5630554d31dc033d7fce7353d68af1a2f19ff7e0db3` marks the four selected criteria and
+all seventeen chunk criteria SATISFIED without material findings; parent reconciliation
+`b95f53aa4c31515e03695a491b0d2712d2657629a66dfbc2fa2abeb722ad930a` agrees. Final applicability and actual closure are governed by
+`.lit-review/setup/c38-06-20261118/final-checks.json` and
+`.lit-review/setup/c38-06-20261118/completion.json`. [Handoff](handoffs/chunk-38.md) · [Notes](plans/release-3-chunk-38-notes.md)
+General-prior/KL work remains C39. C36/C37 mathematics is closed; C36, C37 and
+C38 complete clean-checkpoint suite/hygiene obligations remain separate.
+
+**[History] C38.05 checkpoint.** Admission selects BINARY, PURE, SPARSE, BOUNDARY and
+CALLER only. The private consumer candidate covers exact classes/cardinalities,
+own-law masses, both entropy bounds, the fixed-target biased and zero-symbol
+comparisons, and public-only count/law transport with finite ENNReal recovery.
+Focused/static and fresh compiled controls pass. Independent review satisfies
+all five criteria without material findings; parent reconciliation agrees. Final
+source qualification/private receipt govern scoped closure.
+No supported declaration, import, simp or root growth is introduced. C38.06 is
+not started: cumulative validation/fresh review, reconciliation, remaining-work
+dispositions and the maintained C39 handoff retain that ownership. General-prior
+and KL theorems remain C39. C36/C37 clean-checkpoint qualification remains
+outstanding separately.
+[Notes](plans/release-3-chunk-38-notes.md)
+
+**[History] C37.07 — Cumulative method-of-types qualification.**
+The maintained [C38 handoff](handoffs/chunk-37.md) gives all twenty public
+signatures, focused imports, original-alphabet boundaries, source adaptations,
+permanent callers and the seventeen-criterion matrix. Primary focused, static,
+retained-compatibility, trust and documentation checks passed. Independent
+cumulative review and final applicability are recorded privately; only the
+actual completion receipt establishes closure. At that checkpoint, no clean C37
+checkpoint, C38 implementation or publication was authorized. The subsequent
+approved C38 plan and separately selected steps govern current C38 work. C36
+and C37 clean-checkpoint qualifications remain outstanding separately.
+
+**[History] C37.06 — Permanent word-type consumers.** Binary and sparse
+words exercise labeled counts, coordinate orientation, empirical support and
+both possible and impossible denominators. Empty and singleton alphabets are
+covered. Private generic callers establish membership by counts and partition
+arbitrary word weights. Cardinality and iid event mass use the same finset.
+C37.07 supplies the cumulative qualification and maintained C38 handoff, with
+actual acceptance determined by its private completion record.
+[Permanent consumers](../LeanInfoTheory/Examples/WordType.lean) · [Step notes](plans/release-3-chunk-37-notes.md#c3706--permanent-consumers)
+
+**[History] C37.05 — Exact denominator and round trips.** The empirical
+conversion is an equivalence between count indices and laws with an exact
+natural count witness. Its inverse recovers labeled numerators uniquely,
+and both round trips preserve the supplied object. Equality of empirical
+laws characterizes membership in the original finite type class.
+[Approved criteria](plans/release-3-chunk-37.md#c3705--exact-denominator-and-round-trips)
+
+**[History] C37.04 — Positive-length empirical laws.** A supplied type and
+a proof of positive length determine a law on the original alphabet.
+Its masses are the counts divided by the length, and its support is exactly
+the positive-count symbols. The finite support and word forms follow
+through the public interfaces.
+[Approved criteria](plans/release-3-chunk-37.md#c3704--the-positive-length-empirical-pmf)
+
+**[History] C37.03 — Permutations and type counts.** In the reordered word,
+position `i` reads the symbol at old position `e i`. The counts and bundled
+type agree with those of the original word. The type indices embed in `A → Fin (n + 1)`, giving
+the polynomial bound on the number of distinct classes.
+[Approved criteria](plans/release-3-chunk-37.md#c3703--position-permutations-and-number-of-classes)
+
+**[History] C37.02 — Realization and partition.** A caller starting with a
+function of total `n` can obtain a word with those labeled counts.
+`mem_typeClass` identifies membership with equality of indices, and
+`existsUnique_mem_typeClass` gives unique membership for every word.
+[Approved criteria](plans/release-3-chunk-37.md#c3702--realization-and-partition)
+
+**[History] C37.01 — Counts at every length.** The lead approved revision 2 and
+selected its first step with review. The focused caller constructs a type
+from an arbitrary natural count function and a proof of its total. The
+step's private completion record establishes its review and closure status.
+[Approved plan](plans/release-3-chunk-37.md#c3701--counts-at-every-length)
+
+**[History] C36.06 — Cumulative candidate and handoff.**
+The C36.06 private receipt identifies the final source and supervised closure.
+The handoff records the primary-checkout checks and outstanding clean
+qualification for this candidate.
+[Qualification and review identities](handoffs/chunk-36.md#qualification-and-review-identities) ·
+[Handoff to C37](handoffs/chunk-36.md#handoff-to-c37)
+
+**[History] C36.05 — Permanent numerical consumers.**
+The development example module uses the focused iid import to verify
+the dyadic, biased, point-mass and joint-block code assignments. C36.06
+owns cumulative qualification and the C37 handoff.
+[Example module](../LeanInfoTheory/Examples/PrefixCodeLength.lean) · [Step notes](plans/release-3-chunk-36-notes.md#c3605--permanent-examples)
+
+**[History] C36.04 — Per-symbol bounds for iid blocks.**
+`optimalPrefixLength_iid_div_bounds` applies the scalar interval to
+`PMF.iid p n`. Its focused owner imports the scalar optimum and the
+finite-product entropy identity. C36.05 owns the permanent numerical
+examples. [Approved C36 plan](plans/release-3-chunk-36.md) · [Step notes](plans/release-3-chunk-36-notes.md)
+
+**[History] C36.03 — Scalar minimum and entropy bounds.**
+`isLeast_optimalPrefixLength` supplies both an attaining encoder and a
+comparison with every admissible mean. `optimalPrefixLength_bounds`
+gives the scalar entropy interval for the positive-support source.
+[Approved C36 plan](plans/release-3-chunk-36.md) · [Step notes](plans/release-3-chunk-36-notes.md)
+
+**[History] C36.02 — Shannon witness on positive support.**
+The scalar owner gives a feasible prefix encoder and certifies its
+length at each label together with its strict mean bound. This feasible
+cost bounds the search for a minimizing encoder in C36.03.
+[Approved C36 plan](plans/release-3-chunk-36.md) · [Step notes](plans/release-3-chunk-36-notes.md)
+
+**[History] C36.01 — Supported mean and converse.**
+The scalar owner introduced the expected length and its lower bound for
+every prefix encoder.
+[Approved C36 plan](plans/release-3-chunk-36.md) · [Step notes](plans/release-3-chunk-36-notes.md)
+
+**[History] C35.04 — Qualification and the variable-length coding handoff.**
+The C35 handoff indexes all twelve acceptance criteria, the maintained
+examples and the qualified incoming 878-signature baseline. The three
+C35 declarations bring the total to 881 in 70 supported modules. C36 owns
+expected length, minimum attainment, entropy bounds in bits and the iid
+per-symbol result. [C35 handoff](handoffs/chunk-35.md) · [C36 scope](plans/release-3-chunk-map.md#c36-expected-length-and-the-variable-length-source-coding-theorem)
+
+**[History] C35.03 — Permanent callers of the Kraft theorems (14 November 2026).**
+The development examples import the focused prefix-code owner and finite PMF
+support. They call realization directly on the point mass's support subtype.
+The supported mathematical inventory remains 881 declarations in 70 modules.
+[Permanent callers](../LeanInfoTheory/Examples/PrefixCode.lean)
+
+**[History] C35.02 — Labeled Kraft realization (14 November 2026).**
+The selected step constructs a prefix code on the given finite label type
+from the real Kraft bound. The existence theorem exposes a pointwise length
+equation. Its proof chooses an available leaf at each insertion into the
+finite set of assigned labels. The concrete consumer suite belongs to C35.03.
+[Approved step](plans/release-3-chunk-35.md#c3502--realize-admissible-lengths-on-their-original-labels) · [Step evidence](plans/release-3-chunk-35-notes.md#c3502--realization-of-prescribed-lengths)
+
+**[History] C35.01 — Labeled Kraft necessity (14 November 2026).**
+Revision 2 is approved. Only C35.01 was selected. The full-umbrella export
+includes the labeled predicate and the real sum bound. Realization belongs to
+C35.02. [Plan](plans/release-3-chunk-35.md) · [Evidence](plans/release-3-chunk-35-notes.md)
+
+**[History] C34.04 — Separation package and C35 handoff (14 November 2026).**
+C33 constructs one all-length family below capacity. C34 rules out vanishing
+reconstruction error above capacity for every deterministic word encoder and
+decoder, using the same error in both directions. Equality and a strong
+converse remain outside the contract. The independent prefix-code package is
+next in the release map. [Public contracts, examples and qualification](handoffs/chunk-34.md)
+
+**[History] C34.03 — Examples for both separation directions (14 November 2026).**
+The examples exercise a two-bit collision, a biased source on a constant-output
+channel, and singleton and empty words. A separate two-import caller passes a
+family constructed by C33 directly into the C34 converse and rules out any
+vanishing-error pair above capacity. [Step notes](plans/release-3-chunk-34-notes.md)
+
+**[History] C34.02 — Vanishing reconstruction error (14 November 2026).**
+For every family of total encoders and reconstruction decoders, vanishing C33
+block error implies `entropy p ≤ channelCapacity W`. Dividing the finite bound
+on the positive-length tail makes the Fano overhead vanish. Combined with C33,
+this gives achievability strictly below capacity and rules out vanishing error
+strictly above it. These results leave equality and a strong converse undecided.
+[Step notes](plans/release-3-chunk-34-notes.md)
+
+**[History] C34.01 — Finite source–channel converse (14 November 2026).**
+For any total encoder and reconstruction decoder, iid block entropy is at most
+blocklength times channel capacity plus the weak Fano correction in C33's actual
+block error. The proof uses the induced input distribution even when its coordinates
+are dependent. The bound holds at length zero.
+[Step notes](plans/release-3-chunk-34-notes.md)
+
+**[History] C33.06 — Direct separation and the C34 handoff (14 November 2026).**
+C33 supplies the arbitrary-map block error, the finite composition bound at the
+source-induced prior, and one all-length family below capacity. The maintained
+handoff identifies the joint law for Fano, its input/output projection for block
+capacity and the comparison C34 still needs. It indexes all fifteen C33 criteria,
+their consumers, and the cumulative checkpoint and review records.
+[C34 handoff](handoffs/chunk-33.md) · [Step evidence](plans/release-3-chunk-33-notes.md)
+
+**[History] C33.05 — Biased-source erasure example (14 November 2026).**
+For a Boolean source with true mass 3/4 and a binary erasure channel with
+erasure probability 1/8, capacity exceeds entropy by exactly
+`(3/8) * Real.log (9/8)` nats. The example takes one pair of word maps from
+the direct theorem and uses it for every positive error tolerance.
+[Example and step evidence](plans/release-3-chunk-33-notes.md)
+
+**[History] C33.04 — Direct lossless source–channel separation (14 November 2026).**
+For a finite iid source and a finite memoryless channel with one use per
+symbol, a strict entropy–capacity gap gives deterministic word encoders and
+decoders whose reconstruction error tends to zero. The component budgets fit
+eventually. The construction supplies total maps at all remaining lengths.
+[Theorem and step evidence](plans/release-3-chunk-33-notes.md)
+
+**[History] C33.03 — Collision and repair examples (14 November 2026).**
+The two length-one examples exercise the finite composition bound on C32's
+original four-label code. Concentrating the source on the never-decoded label
+gives reconstruction error 1 and uniform channel error 1/4. For a many-to-one
+compressor, a wrong channel decision repairs a source error with probability
+3/8. The full reconstruction error is 1/8.
+[Finite examples and step notes](plans/release-3-chunk-33-notes.md)
+
+**[History] C33.02 — Finite composition error (14 November 2026).**
+For source and channel codes at a common message budget, the new theorem
+bounds reconstruction error by the source error plus channel error averaged
+under the source encoder's image law. A restricted channel code also admits
+the sharper maximum over its embedded original rows.
+[Implementation and review](plans/release-3-chunk-33-notes.md)
+
+**[History] C33.01 — Block reconstruction error (14 November 2026).**
+The common block experiment and its focused law, projection and boundary
+checks passed validation and independent review. The finite inequality, collision and repair
+calculations, asymptotic family and biased-source caller have separate
+steps in the [approved plan](plans/release-3-chunk-33.md).
+[Validation and review status](plans/release-3-chunk-33-notes.md)
+
+**[History] C32.06 — Cumulative qualification and C33 handoff (13 November 2026).**
+C32.05's supported closure, original report/reconciliation and exact final
+source, Git state and installed environment were verified before only Step 6
+was admitted. All C32 mathematical endpoints are delivered: index-specific
+row error and actual priors; total retained-label restriction; ceiling-half
+selection and exact positive budgets; positive-length `log 2/n` rate loss;
+and one full retained family with vanishing maximal error and the original
+eventual rate floors. One exact-budget family is fixed before every sequence
+of priors in the permanent C33-facing caller. Its rate guarantee stays on L.
+The [maintained C33 handoff](handoffs/chunk-32.md) gives all sixteen public
+names, focused imports, exact statements, collision/fallback and boundary
+calculations, source adaptations, earlier finding dispositions and the full
+fifteen-criterion matrix. C33 owns eventual budget fitting, exceptional short
+lengths, the actual joint reconstruction inequality and biased-source test.
+The supported surface is 873 names / 66 modules; all 857 C31 manifest records
+remain, root 2/5/92 and reviewed simp 94 are unchanged. C32.06 adds no Lean
+declaration, import, attribute, growth policy or pin. A targeted operational
+proof rewrite removes an unused compiler-generated congruence-helper collision;
+the theorem statement and mathematical argument are unchanged. Fresh cumulative gate
+records, named compiled retention, exact separately authorized clean-checkpoint
+qualification, original independent review, parent reconciliation and final
+source applicability are bound by
+`.lit-review/setup/c32-06-20261113/completion.json`. Source and checks are
+validation ready; the supported private record alone establishes closure.
+The main Desktop checkout and unrelated work are preserved. No release,
+publication, or C33 plan/implementation is started by this closeout.
+[Approved plan](plans/release-3-chunk-32.md)
+
+**[History] C32.05 — Collision, boundary and C33 consumers (13 November 2026).**
+C32.04's supported closure, original report/reconciliation and exact final
+source, Git state and environment were checked before only Step 5 was admitted.
+The permanent four-index collision consumer has uniform error 1/4 but error
+one under the never-decoded index's point mass. The returned three-index
+embedding has range {0,1,2}; its restricted code has maximal error zero.
+The permuted odd-five fixture checks range {1,3,4} and count three, independent
+of enumeration. Zero mean, singleton codes at any length and empty words are
+covered, including the zero-length M=2 threshold tie. A length-one M=4,K=1
+calculation rules out extending the half-budget rate guarantee to arbitrary K.
+The C33-facing consumer opens one C31 witness, keeps its full retained
+family and rate floors, and selects an exact-budget restricted family for
+each fitting positive budget sequence before all priors. Its actual errors
+are bounded by the full family's vanishing maxima for every prior sequence,
+including pushforward laws and point masses on the same code at each length.
+The rate guarantee remains on the full retained count L. C33 owns eventual
+budget fitting, exceptional lengths and the joint reconstruction bound.
+No public declaration or supported import changes: 873 names / 66 modules,
+root 2/5/92, reviewed simp 94, policies and pins retained. The finite consumer
+adds only CodingRate for the required rate counterexample. Strict focused,
+static and fresh all-project axiom checks passed. The original independent
+report satisfies all three criteria with no findings; parent reconciliation
+accepts those assessments. Historical compiled compatibility retains its
+C32.01 attribution. Only three Markdown review records change after R; all
+Lean and generated source, policies and pins remain byte-identical. Final
+static and exact R-to-F checks govern applicability. Scoped closure follows
+`.lit-review/setup/c32-05-20261113/completion.json`. C32.06 retains cumulative
+qualification and the maintained C33 handoff and is unselected.
+[Approved plan](plans/release-3-chunk-32.md)
+
+**[History] C32.04 — Rate loss and one expurgated family (13 November 2026).**
+C32.03's actual closure, original clean report/reconciliation and exact final
+source, Git state and environment were verified before only Step 4 was admitted.
+The scalar rate lemma in `CodingRate` bounds the loss by `log 2/n` nats per
+use for `n>0` and `M≤2L`, with positive retained budget derived from `M≥1`.
+The new focused `OperationalExpurgation` owner takes one supplied family
+and its error limit/rate-floor components. It selects full good-set codes
+at every length, returns their exact range and restriction identities,
+bounds each maximum by twice the original uniform error, and proves those
+maxima vanish. One retained family serves every eventual rate tolerance.
+The rate estimate applies at positive lengths to that full retained count;
+the finite identities and error bound also hold at zero length.
+The consumer opens one actual C31 witness and specializes two positive
+tolerances on the same returned family. The owner imports only finite
+expurgation and CodingRate; only the consumer adds OperationalCapacity.
+The source inventory has grown from 871 to 873 names and 65 to 66 supported
+modules. All 871 prior records are retained; root 2/5/92, reviewed simp 94,
+all retained imports and pins are preserved. The new owner and full-umbrella
+import follow the reviewed growth approval. Strict focused builds, static and
+owner-only compiled signatures/targeted axioms passed. The bound independent
+report satisfies both criteria without findings; parent reconciliation accepts
+both assessments. Full historical compiled and whole-project axiom results
+retain their C32.01 attribution, and cumulative clean qualification remains
+C32.06. Actual evidence and scoped closure follow
+`.lit-review/setup/c32-04-20261113/completion.json` when established.
+C32.05 retains the numerical boundary fixtures and exact-budget/prior-sequence
+caller and awaits selection. [Approved plan](plans/release-3-chunk-32.md)
+
+**[History] C32.03 — Good-index counts and exact budgets (13 November 2026).**
+C32.02's closure, original review/reconciliation and exact final source,
+Git state and environment were verified before only Step 3 was admitted.
+The finite owner counts the entire set of indices with row error at most
+`2e`, obtaining `(M+1)/2` as a lower bound. At zero mean every row error
+vanishes and all indices are good; ties at the threshold remain.
+The exact-budget theorem returns an embedding whose range is precisely
+that good set. For every fitting positive requested budget it selects one
+restriction of the original code, then bounds its maximal error and its
+actual error under every prior by `2e`. Consumers exercise arbitrary
+budgets, the full retained count, budget one, point masses, odd counts and
+zero mean. No positive-length hypothesis is used in these finite results.
+The source inventory has grown from 869 to 871 supported names in the same
+65 modules, with all 869 incoming source records retained. Root 2/5/92,
+reviewed simp 94, imports and pins are unchanged. Focused builds, static,
+compiled signatures and targeted axiom checks passed. The bound independent
+report satisfies both criteria with no findings, and the parent accepts both
+assessments after reconciliation. Complete historical compiled and whole-project
+axiom results retain their C32.01 attribution; cumulative clean qualification
+remains C32.06. Actual evidence and scoped closure follow
+`.lit-review/setup/c32-03-20261113/completion.json` when established.
+C32.04 retains the rate estimate and lengthwise transfer and awaits selection.
+[Approved plan](plans/release-3-chunk-32.md)
+
+**[History] C32.02 — Message restriction and total decoder transport (13 November 2026).**
+C32.01's supported closure, original review/reconciliation and exact final
+source were verified before the conditional instruction admitted only Step 2.
+The focused owner now restricts along an embedding of retained indices and
+takes an explicit retained fallback. Every formerly correct decision for a
+retained index remains correct on every output, and each retained row error
+can only decrease.
+The consumer compares arbitrary-prior error with the old error under
+`π.map i` and applies restriction twice. On the four-index collision code,
+retaining old labels 0 and 3 gives uniform error 1/2 with new fallback 0
+(old label 0) and zero with new fallback 1 (old label 3). The old four-label
+uniform mean is 1/4. The supported surface is 869 names in the same 65
+modules, with all 866 incoming source records retained.
+The existing imports, root 2/5/92, reviewed simp 94 and pins are preserved.
+Focused, static and new-signature/axiom checks passed. The independent report
+satisfied both criteria; its sole fallback-index wording finding is resolved.
+Full historical compiled and whole-project axiom checks retain their C32.01
+attribution. Actual evidence, reconciliation and scoped closure follow
+`.lit-review/setup/c32-02-20261113/completion.json` when established.
+C32.03 retains counting and expurgation and awaits selection.
+[Approved plan](plans/release-3-chunk-32.md)
+
+**[History] C32.01 — Sent-index, arbitrary-prior and maximal error (13 November 2026).**
+The lead approved revision 2 and selected only Step 1 with review. The focused
+`Shannon.ChannelCodeExpurgation` owner defines each sent-index error using
+its actual memoryless row and total decoder. Its arithmetic mean equals the
+released uniform error. The arbitrary-prior quantity is the actual joint-law
+Fano error, with weighted-sum, uniform and point-mass identities. A finite
+maximum characterizes common row bounds and controls every prior on the
+same code. The focused consumers cover generic probability ranges, repeated
+codewords with unequal row errors, sparse priors and empty zero-length words.
+The supported surface is 866 names in 65 modules, retaining all 857 C31 names. Root
+2/5/92, reviewed simp 94 and dependency pins retain their C31 values.
+Actual validation, original independent review, reconciliation and scoped
+closure follow `.lit-review/setup/c32-01-20261113/completion.json` when
+established. C32.02–06 retain decoder transport, expurgation, rates and C33
+handoff. [Approved plan](plans/release-3-chunk-32.md)
+
+**[History] C31.05 — Cumulative qualification and C32 handoff (12 November 2026).**
+C31.04's closure, original clean review and exact final source were verified
+before only the final C31 step was admitted. The five supported declarations
+supply the one-family predicate, singleton zero witness, strict-subcapacity
+direct theorem, same-family converse and least-upper-bound characterization.
+The permanent conditional C32 caller retains one witness before any proposed
+budget and tolerance, then transfers its rate floor under a log 2/n loss using
+delta/2. It constructs no retained code or error guarantee. The
+[maintained handoff](handoffs/chunk-31.md) and
+[thirteen-criterion matrix](plans/release-3-chunk-31-notes.md#complete-cumulative-criterion-matrix)
+record exact interfaces, consumers, source adaptations and C32 responsibilities.
+The supported surface stays 857 declarations / 64 modules, with root 2/5/92,
+reviewed simp 94 and pins preserved. Actual fresh cumulative validation,
+separately authorized matched clean-checkpoint qualification, original review,
+reconciliation, helper restoration and exact-source closure follow
+`.lit-review/setup/c31-05-20261112/completion.json` when established. Readiness
+alone establishes no closure. C32 remains unstarted. [Approved plan](plans/release-3-chunk-31.md)
+
+**[History] C31.04 — Positive and zero-capacity channel consumers (12 November 2026).**
+C31.03's closure, reconciled review and exact final source were verified before
+only Step 4 was admitted. The permanent OperationalCapacity consumer now uses
+the half-erasure binary channel at capacity log 2 / 2 nats per use. It proves
+the positive rate log 2 / 4 achievable and specializes the least-upper-bound
+statement to the computed value. For any constant output row on nonempty finite
+input and finite output, it proves the achievable-rate set exactly {0}. The
+singleton theorem supplies zero when strict subcapacity has no nonnegative target.
+Only the development consumer adds StandardChannelCapacity as a direct import.
+The supported surface remains 857 declarations in 64 modules, with producer,
+root and simp boundaries preserved. Actual validation, original independent
+review, reconciliation and scoped closure follow
+`.lit-review/setup/c31-04-20261112/completion.json` when established.
+C31.05 retains cumulative qualification and the maintained C32 handoff and has
+not started. [Approved plan](plans/release-3-chunk-31.md) ·
+[Step notes](plans/release-3-chunk-31-notes.md)
+
+**[History] C31.03 — Operational capacity is the least upper bound (12 November 2026).**
+C31.02's closure and exact final source were verified before admission.
+The new converse applies C23 to the same positive-budget family witnessing
+IsAchievableRate and intersects its rate cap with the witness's lower tail.
+The least-upper-bound theorem combines this converse, strict-subcapacity
+achievability and the zero-rate family. Every other upper bound is nonnegative,
+and a smaller one would have an achievable midpoint above it. The same
+operational predicate serves both directions, including zero-capacity leastness.
+Focused consumers exercise arbitrary families and both IsLUB projections,
+also specialized at capacity zero. The supported surface is 857 declarations
+in 64 modules, with the root/import/simp boundaries preserved.
+Actual validation, original independent review, reconciliation and closure
+follow `.lit-review/setup/c31-03-20261112/completion.json` when established.
+C31.04–05 retain the concrete channel tests and cumulative C32 handoff.
+[Approved plan](plans/release-3-chunk-31.md) ·
+[Step notes](plans/release-3-chunk-31-notes.md)
+
+
+
+**[History] C31.02 — One subcapacity code family (12 November 2026).**
+C31.01's closure and exact final source were verified before this step.
+The strict-subcapacity theorem fixes one attaining input law, one intermediate
+slope, and one rounded-budget code per natural length. C28 controls the literal
+miss; the ceiling bounds the competing term by exp(-n*(s-R)). Both vanish.
+The same selected family has the released lower rate bound for every positive
+length and hence every positive operational tolerance. A focused generic
+consumer extracts that family and both obligations. Expected supported growth
+is 854 to 855 names in 64 modules, with root and simp boundaries preserved.
+Actual checks, original independent review, reconciliation and scoped closure
+follow `.lit-review/setup/c31-02-20261112/completion.json` when established.
+C31.03 owns the converse and least-upper-bound theorem.
+[Approved plan](plans/release-3-chunk-31.md) ·
+[Step notes](plans/release-3-chunk-31-notes.md)
+
+
+
+**[History] C31.01 — Operational rate definition and zero witness.**
+The lead approved revision 2 and selected its first step. The source and
+permanent consumers deliver the planned family quantifiers, singleton witness
+and alternating-rate check. The original independent review assesses all three
+criteria as satisfied. Its editorial reference-pointer correction and current
+status reconciliation are applied before final capture. Passing validation and
+the deliberately bounded trust coverage retain their exact actors and sources
+in the private records. Completion follows
+`.lit-review/setup/c31-01-20261112/completion.json` when established.
+C31.02–05 remain unstarted. Their earlier conditional requests were processed
+while Step 1 was open and were skipped.
+[Approved plan](plans/release-3-chunk-31.md) ·
+[Implementation notes](plans/release-3-chunk-31-notes.md)
+
+
+**[History] Only C29.05 was selected.** The actual C29.04 closure and complete
+final source, reconciliation and environment were verified before admission.
+The six mathematical endpoints remain unchanged. This step maintains the
+[C30 handoff](handoffs/chunk-29.md), reconciles canonical context and the complete
+criterion matrix, and qualifies cumulative checks and independent review.
+The full development suite needs its separately authorized, clean, byte-and-pin-
+matched candidate and repeats after amendments. Preparation does not establish
+that gate or a review verdict. The Section 0 private completion record determines
+scoped completion. C30's one-shot bound/extraction and C31's channel achievability
+remain later selections; no publication or expensive API-doc gate is inferred.
+
+**[History] C24 closeout snapshot:** See the [C24 handoff](handoffs/chunk-24.md) and
 Section 0 for the selected final qualification step. Earlier dated rows retain
 their original source-bound evidence. Standing naming, import, simp, trust and
 source-adaptation duties remain active; optional theorem, alias and blueprint
@@ -4605,7 +6375,15 @@ C14.04 is selected. C15--C24 remain unselected.
 
 ## 13. Future-Work Register
 
-**Current C24 closeout:** See the [C24 handoff](handoffs/chunk-24.md) and
+**[Current] C26 scope and next decision.** The finite prescribed-level
+threshold theorem and both permanent consumers are implemented. Cumulative
+qualification follows the [C26 handoff](handoffs/chunk-26.md). Its deferred
+table assigns information density to separately planned C27; full ROC theory,
+uniqueness, kernel-risk bridges, new aliases and randomized decoders require
+their stated consumer/scope triggers. Standing naming/import/trust rules
+remain in force; no deferred item is implicitly selected.
+
+**[History] C24 closeout snapshot:** See the [C24 handoff](handoffs/chunk-24.md) and
 Section 0 for the selected final qualification step. Earlier dated rows retain
 their original source-bound evidence. Standing naming, import, simp, trust and
 source-adaptation duties remain active; optional theorem, alias and blueprint
@@ -4794,6 +6572,15 @@ These are not approved theorem tasks until assigned to a focused phase.
   ownership. See Sections 6 and 8.
 
 ## 15. Textbook and Reference Coverage
+
+**[Current] Type probabilities.** Cover and Thomas (1991) §12.1, Theorems 12.1.2–12.1.4, supplies the word formula, class-size input and class bounds. Section 2.3 fixes the relative-entropy zero conventions. The formalization uses empirical-to-prior KL in nats and proves the singular branch in ENNReal. [Source register](references.md#source-selection)
+
+**[Current] C26 source adaptation.** PW24 §§14.1–14.2 supply test
+conventions; §14.4 Theorem14.11 supplies randomized attainment. The
+[handoff](handoffs/chunk-26.md#mathematical-source-adaptation) records the
+rejection/acceptance orientation, common-null convention, zero threshold and
+existence-only contract. Current preparation re-read printed284/PDF309 as
+text at the registered hash; earlier readings keep their original attribution.
 
 C23.05 read-only support freshly matched both registered PDF hashes and read nine
 complete text pages: CT91 §8.1 PDF 206–210 and §8.9 PDF 228; PW24 §17.1 PDF
@@ -4995,6 +6782,162 @@ This document records topics, theorem families, and conventions only. It does
 not reproduce textbook prose or proofs.
 
 ## 16. Validation State
+
+**[Current] C40.01 compiled comparison.** All 918 current structural records agree with C39.06. The 601 and 811 released signatures match their respective authenticated controls. The focused build and six public callers passed with warnings as errors. Later exact-commit gates remain open. [C40.01 coverage ledger](plans/release-3-chunk-40-ledger.md) · [Provenance and limits](plans/release-3-chunk-40-notes.md)
+
+**[Current] C39.06 independent review.** The parent reconciled the original cumulative assessment of all eighteen criteria. The supported private receipt determines scoped closure. [Evidence and qualifications](plans/release-3-chunk-39-notes.md)
+
+**[Current] C39 cumulative validation.** Fresh warning-as-error builds, retained release comparisons, trust and all-project axioms, documentation and a focused-only external caller passed on the dirty primary checkout. The full clean-checkpoint suite and hygiene remain separately due for C36, C37, C38 and C39. See the [cumulative evidence and review status](plans/release-3-chunk-39-notes.md).
+
+**[History] C39.05 validation.** The numerical and public-interface consumers compiled, as did the separate focused-only caller. The fresh compiled audit retained 918 declarations in 77 supported modules, with 92 root exports and 94 reviewed simp names. The parent reconciled the independent assessments of all six criteria. Final source and closure are recorded in `.lit-review/setup/c39-05-20261124/completion.json`. [Step evidence](plans/release-3-chunk-39-notes.md)
+
+**[History] C39.04 validation.** The incoming 917 declarations are qualified from the exact C39.03 final source. C39.04 focused builds, generic callers and maintained compatibility passed with 918 declarations in 77 modules. The independent reviewer found both criteria satisfied, and the parent reconciled the report. The final source and scoped closure are recorded in `.lit-review/setup/c39-04-20261124/completion.json`. C36, C37 and C38 each retain their separate clean-checkpoint qualification. [C39 evidence](plans/release-3-chunk-39-notes.md)
+
+**[Current] C38.06 review reconciled; final records govern closure.** Prior C38.01–05 completion receipts and original
+outputs retain their attribution; they do not substitute for this cumulative
+pass. Baseline/source qualification, incoming908/released601/811 retention,
+owner/consumer/aggregate builds, generated/static, trust/import/axiom and
+documentation gates, and the public-only caller are recorded in
+`.lake/compatibility/c38-06-validation-20261118/index.json` (original commands, outputs, actors and source maps; the generated/static records are sealed before review capture). Fresh cumulative review `c38c67f0b6c044aff0a5c5630554d31dc033d7fce7353d68af1a2f19ff7e0db3` marks all four selected criteria and all
+seventeen chunk criteria SATISFIED, without material findings. Substantive parent
+reconciliation `b95f53aa4c31515e03695a491b0d2712d2657629a66dfbc2fa2abeb722ad930a` agrees. Final exact
+source/compiled/pin applicability is governed by
+`.lit-review/setup/c38-06-20261118/final-checks.json`; actual C38.06 and chunk closure
+are governed by `.lit-review/setup/c38-06-20261118/completion.json`. The current mathematical
+surface remains913/76, with94 simp names and root2/5/92. The initial maintained
+compatibility FAIL and confirmed duplicate PMF.iid.eq_1 ownership are preserved.
+Seven C38-only proof-body conversions correct lazy materialization; mathematical
+contracts, imports and acceptance remain unchanged. Isolated corrected probes
+passed; fresh corrected maintained reruns pass with their original source-bound receipts. C36, C37 and C38 full clean-checkpoint
+suite/hygiene qualifications remain separate outstanding duties.
+[Cumulative handoff and limits](handoffs/chunk-38.md)
+
+**[History] C38.05 candidate.** The incoming C38.04 913-row export is qualified
+by source-bound reuse against all 257 producer fingerprints, 146 source paths
+and nine exact installed pin states. This is not a fresh baseline compilation.
+The fresh same-913 export, consumer/focused/full/root audits, isolated public-only
+caller and production build pass. All incoming full rows are retained, and the
+source/compiled consumer deltas are recorded against the sealed baseline.
+Independent review satisfies all five criteria without material findings; parent
+reconciliation agrees. Final source qualification/private receipt govern closure.
+The unchanged
+boundaries are 76 modules, simp 94 and root 2/5/92. C38.06 cumulative
+qualification and C36/C37 full clean-checkpoint suite/hygiene remain separate.
+[Evidence and limits](plans/release-3-chunk-38-notes.md#c3805--permanent-type-class-consumers-18-november-2026)
+
+**[History] C38.04 candidate.** The incoming 912-row export was qualified by
+source-bound reuse against all 252 producer fingerprints and nine installed
+pins. Fresh compiled export and focused/full/root controls retain all 912 rows
+and add exactly the lower bound: 913 declarations in 76 modules, 94 simp names
+and root 2/5/92. Its 257 producer inputs include 25 pinned mathlib source files;
+before/after inputs and all nine installed pins agree. The production focused
+build and static checks pass. Independent review satisfies both selected criteria
+without material findings; parent reconciliation agrees. Final validation and the
+private receipt govern scoped closure. Generated/static and exact final-applicability evidence
+are recorded separately from these compiled checks. Original failed exploratory
+inputs/outputs remain distinct from passing runs. C36/C37 full clean-checkpoint
+suite/hygiene qualifications remain outstanding separately.
+[Bound evidence and limits](plans/release-3-chunk-38-notes.md#c3804--count-vector-mode-and-entropy-lower-bound-18-november-2026)
+
+**[History] C38.03 checkpoint.** The incoming 911-row export was qualified against
+all 251 recorded producer fingerprints and nine pins. Fresh compiled export/control
+checks retain every incoming row and add exactly the upper-bound theorem, with
+unchanged 76 modules, 94 simp names and root 2/5/92. Primary focused/static and
+generated checks pass. Independent review satisfies C38.03-UPPER without material
+findings; parent reconciliation agrees. Final source qualification and the private
+receipt establish closure. The checkpoint's source/compiled/pin evidence is indexed in the [step notes](plans/release-3-chunk-38-notes.md).
+C36/C37 complete clean-checkpoint suite/hygiene qualifications remain outstanding.
+
+**[History] C38.02 checkpoint.** The qualified incoming 909-row export matches all
+230 producer fingerprints and nine installed pins. Fresh current export/control
+checks retain all 909 rows and add exactly two own-law identities; 251 producer
+fingerprints and nine pins remain stable. Focused/full/root audits pass with 76
+modules, 911 declarations, 94 simp names and root 2/5/92. Primary focused builds
+and static/generated checks pass. Both criteria were independently assessed as
+satisfied without material findings, with parent reconciliation retained. Final
+source qualification and the private receipt establish closure. This does not replace the C36/C37 outstanding complete clean
+suite/hygiene qualification. [Validation record](plans/release-3-chunk-38-notes.md)
+
+**[History] C38.01 checkpoint.** The incoming 908-row export is qualified against
+226 unchanged source/compiled/configuration inputs and all nine pinned dependency
+states. Its original compiler receipt and exact bytes are preserved; this is
+qualified reuse, not a fresh pre-growth export. The new exact-count owner,
+count-only consumers and aggregates pass warning-as-error builds. Fresh compiled
+comparison preserves all 908 incoming signatures and adds exactly one; focused,
+full and root import/attribute/axiom controls pass, with 230 stable producer inputs
+and all nine pins unchanged. Generated/static checks pass. The independent reviewer
+freshly repeated focused/static checks, inspected the complete signature comparison
+and compiled an additional public-only probe. All three step criteria were assessed
+as satisfied with no material findings; final documentation/source qualification
+and the private completion receipt establish closure. C36/C37 clean-checkpoint qualification
+remains separately outstanding. [Validation record](plans/release-3-chunk-38-notes.md)
+
+**[Current] C37.07 cumulative qualification.** Fresh primary focused builds
+cover both owners, the permanent example, Examples/Shannon and the light root.
+Generated/static, released 601/811 compatibility, full trust/import/axiom and
+documentation gates passed. A source-bound cumulative export compares all
+888 incoming C36 rows with the 908-name current interface and its twenty
+additions. The controls retain 74 supported modules, 94 reviewed simp names,
+root 2/5/92 and example exclusion from both supported umbrellas. Exact receipts,
+source/configuration fingerprints and all nine dependency states are indexed
+under `.lake/compatibility/c37-07-validation-20261117/` and the corresponding
+private step directory. The independent public caller and compiled audits keep
+their own actors and source identities. The fresh cumulative review covers all
+seventeen approved criteria; its original, reconciliation, final applicability
+and actual closure are determined by the Section 0 completion pointer.
+C37 has no authorized clean checkpoint: the complete clean suite and hygiene
+remain outstanding. C36's own clean-checkpoint qualification remains outstanding
+and is not supplied retroactively. API-doc generation, exact-commit external
+consumers and publication are separate. [Maintained handoff](handoffs/chunk-37.md)
+
+**[History] C29.05 cumulative qualification.** The main source remains the
+Desktop checkout with prior work preserved. C29.01–C29.04 have supported closures;
+Step 4's final doc-only correction has a fresh 848-row export identical to its
+review-source export, with the earlier full trust qualified to that final source.
+The cumulative matrix covers fourteen execution criteria. Main focused/static/
+documentation checks and clean-candidate full-suite runs retain their actual
+commands, actors, source bytes and dependency pins. The clean checkpoint requires
+separate exact authority; the previous C28 grant does not authorize a C29 commit.
+The candidate, every amendment and full rerun, original cumulative review,
+reconciliation and final applicability have separate records under
+`.lit-review/setup/c29-05-20261110/`. The actual completion pointer in Section 0
+establishes closure when present. The released 601/811 and C28 842 comparisons,
+all 848 incoming records, all focused imports, root 2/5/92, reviewed simp 94 and
+all-project axioms remain cumulative controls. API-doc generation and publication
+are separate.
+
+**[History] C28.05 cumulative qualification.** Main focused/trust/documentation
+and static results, retained names and candidate correspondence are attributed
+under `.lit-review/setup/c28-05-20261110/`. The full suite needs a separately
+authorized clean snapshot and repeats after amendment. C28.01–C28.04 results
+retain their actors/sources. Candidate checks, cumulative review and closure
+supply no credit before their actual records exist. The maintained handoff and
+matrix cover all thirteen criteria. API-doc generation and publication are separate.
+
+**[History] C27.06 cumulative qualification.** The actual check results and
+source/pin correspondence live under `.lit-review/setup/c27-06-20261108/`.
+The complete development suite requires an expressly authorized clean
+candidate and repeats after any amendment. Fresh main/candidate runs,
+applicable earlier results and independent reviewer checks keep their actors
+and source identities. The maintained handoff and matrix describe all
+thirteen criteria. Preparing them predicts no clean-suite result, cumulative
+verdict or closure; the private completion pointer in Section 0 determines
+actual acceptance. Full API-doc generation and publication are separate.
+
+**[History] C27.01 intake.** Before the new public declarations, the main
+checkout matched all 352 C26 candidate files, the 147 validation inputs and
+nine dependency pins. C27.01 compares its new compiled surface against C26's
+832 named records and the two published contracts. The step notes identify
+the exact validation, review and closure evidence as it becomes available.
+
+**[History] C26.06 cumulative qualification.** Current commands, raw outputs,
+validation inputs/pins, 601/811 retained comparisons and exact C25-828/full
+focused visibility checks are retained under .lit-review/setup/c26-06-20261107/.
+The full clean suite requires the separately authorized candidate and repeats
+after amendments. Fresh runs, applicable earlier evidence and independent
+reported checks remain distinct. The actual completion.json and linked
+source-matching checks/report/reconciliation alone establish cumulative
+closure. The separate full API-doc milestone and publication are not implied.
 
 **[History] C23.06 pre-qualification snapshot — 2026-10-25.**
 

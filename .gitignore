@@ -1,6 +1,7 @@
 /.lake
 planning-history-extracted.txt
 /tmp/
+/.worktrees/
 /info theory e-books/
 __pycache__/
 *.pyc

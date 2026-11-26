@@ -10,29 +10,49 @@ Author: Serhat Emre Coban
 -/
 
 import LeanInfoTheory
+import LeanInfoTheory.Probability.BinaryTesting
 import LeanInfoTheory.Probability.Coupling
 import LeanInfoTheory.Probability.FiniteProduct
 import LeanInfoTheory.Probability.FiniteTopology
 import LeanInfoTheory.Probability.Iid
+import LeanInfoTheory.Probability.NeymanPearson
 import LeanInfoTheory.Probability.ProductChannel
 import LeanInfoTheory.Probability.StandardChannels
 import LeanInfoTheory.Probability.TotalVariation
 import LeanInfoTheory.Probability.TotalVariationTopology
 import LeanInfoTheory.Shannon.ChannelCapacity
 import LeanInfoTheory.Shannon.ChannelCode
+import LeanInfoTheory.Shannon.ChannelCodeExpurgation
 import LeanInfoTheory.Shannon.ChannelCoding
 import LeanInfoTheory.Shannon.ChannelCodingAsymptotic
+import LeanInfoTheory.Shannon.ChannelCodingOneShot
 import LeanInfoTheory.Shannon.CodingRate
 import LeanInfoTheory.Shannon.Continuity
+import LeanInfoTheory.Shannon.EmpiricalPMF
 import LeanInfoTheory.Shannon.Fano
+import LeanInfoTheory.Shannon.InformationDensity
+import LeanInfoTheory.Shannon.IidInformationDensity
+import LeanInfoTheory.Shannon.PrefixCode
+import LeanInfoTheory.Shannon.PrefixCodeLength
+import LeanInfoTheory.Shannon.PrefixCodeLengthIid
+import LeanInfoTheory.Shannon.RandomCodebook
 import LeanInfoTheory.Shannon.ProductChannelCapacity
 import LeanInfoTheory.Shannon.SemanticBridge
+import LeanInfoTheory.Shannon.SourceChannelCode
+import LeanInfoTheory.Shannon.SourceChannelConverse
+import LeanInfoTheory.Shannon.SourceChannelSeparation
 import LeanInfoTheory.Shannon.SourceCoding
 import LeanInfoTheory.Shannon.SourceCodingAsymptotic
 import LeanInfoTheory.Shannon.StandardChannelCapacity
 import LeanInfoTheory.Shannon.Topology
 import LeanInfoTheory.Shannon.TypicalSet
 import LeanInfoTheory.Shannon.Units
+import LeanInfoTheory.Shannon.WordType
+import LeanInfoTheory.Shannon.TypeClassCardinality
+import LeanInfoTheory.Shannon.TypeClassBounds
+import LeanInfoTheory.Shannon.TypeClassProbability
+import LeanInfoTheory.Shannon.OperationalCapacity
+import LeanInfoTheory.Shannon.OperationalExpurgation
 
 /-!
 # Complete finite Shannon information-theory import
@@ -45,6 +65,20 @@ topology, finite dependent products, Fin block transports and iid laws, finite
 product-channel rows and restrictions, TV
 convergence, quantitative entropy
 continuity, qualitative information continuity, and unit-conversion modules.
+
+The information-density module supplies the signed input-output log ratio in nats
+and support inclusion for the joint and independent-pair laws.
+
+The prefix-code module gives the binary Kraft inequality over the original
+source labels, including a singleton assigned the empty word.
+The least expected length of an iid block code, divided by its positive
+block length `n`, lies between the source entropy in bits and that entropy
+plus `1/n`, with a strict upper bound.
+
+The word-type module counts the positions occupied by each symbol and
+enumerates all natural count vectors totaling the word length.
+At positive length, the empirical-law module normalizes these counts and
+identifies the support with the symbols that occur.
 
 For each target above entropy, the focused asymptotic source-coding owner supplies
 one finite-iid code family with vanishing error and an eventual rate bound.

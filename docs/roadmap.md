@@ -1,5 +1,22 @@
 # Roadmap
 
+## Release 3 planning reference
+
+The [release 3 chunk map](plans/release-3-chunk-map.md) proposes C25--C40 for
+finite hypothesis testing, information density and one-shot coding, the channel
+coding theorem, source-channel separation, binary prefix coding and the method
+of types. The six packages are selected; order and chunk boundaries are
+revisable. This is planning guidance, not approval to implement or publish.
+The dated qualification records below describe the earlier release programme.
+
+C37–C39 supply the method-of-types endpoint for programme integration. The C39 handoff covers finite and singular sampling laws, the exact probability of the class and its members, and the inputs a separate consumer must exercise on the eventual candidate. [C40 integration ledger](handoffs/chunk-39.md)
+
+C33 supplies the direct theorem for finite iid sources using one memoryless
+channel use per symbol. C34 owns the converse for arbitrary total encoders
+and decoders above capacity. Its inputs are the common reconstruction error,
+the source/output joint for Fano, and the projected input/output joint for the
+block-capacity bound. [C33 theorem and C34 handoff](handoffs/chunk-33.md)
+
 <!-- c24-09-current:start -->
 **[Current] C24.09 cumulative qualification and handoff — 2026-10-28.**
 

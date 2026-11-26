@@ -1,5 +1,22 @@
 # Historical and current API evidence
 
+## Development after v0.2.0
+
+Run `python -B scripts/validate_development.py` on a clean development checkpoint to run the same static checks, default warning-as-error Lake build and compiled checks as routine CI. While working in a dirty checkout, use its `static`, `compatibility` or `trust` commands. For an individual Lean target, use `python scripts/validate_release.py focused <target>`.
+
+The development comparison checks the freshly compiled surface against the 811 released v0.2.0 declarations. It retains their kinds, owners, elaborated types, focused visibility and imports, root aliases and simp membership. It reports additional names separately. New supported modules and additions to the full umbrella require their respective records in `current-api-policy.json`. The trust gate also runs the independent historical 601 comparison, checks the current imports and environment, and audits all project axioms. The v0.2.0 contract and its approval envelope are pinned to their published bytes.
+
+Use the tagged checker on the exact tagged checkout to replay release evidence. Use `scripts/validate_published.py` on the published-maintenance checkout to check its citation, workflows and exact retained surface. The development route has its own reviewed build-workflow identity and reuses the published citation and promotion guards.
+
+To repeat the matched Lean fixtures, choose a fresh ignored directory such as `tmp/gq-local` and run these commands from the development checkout:
+
+```powershell
+python -B scripts/compatibility/run_development_fixtures.py prepare tmp/gq-local
+python -B scripts/compatibility/run_development_fixtures.py check tmp/gq-local
+```
+
+The fixture has its own local Git history and project build outputs. The run compares the released surface, a compiling signature mutation and a documented addition with each import approval independently withheld. It compiles the focused, umbrella and lightweight-root consumers and restores the approved addition at a clean fixture checkpoint. Run `python -B scripts/validate_development.py` from that fixture's `s` directory to exercise the complete development CI commands on the growing surface.
+
 `docs/v0.1-public-api.json` is the immutable released inventory.
 `docs/current-public-api.json` is generated from the evolving source, using the
 existing declaration parser and module classifier. Ordinary generation writes
@@ -205,6 +222,40 @@ timestamps or machine-specific paths. Build output goes to stderr. This command
 is an exact-release reproducer, not a current compatibility gate. Its Python
 envelope check validates coverage/schema/owners/kinds for fresh output from the
 actual exporter; it is not a recursive parser for arbitrary submitted type trees.
+
+## Third-release contract capture and qualification
+
+On the clean local checkout selected for the v0.3.0 capture, first verify the
+package version, release date and DOI-free citation. Capture to two new,
+ignored paths and compare their exact bytes. Each capture rebuilds the
+supported umbrella, exports each of the 918 signatures twice and checks the
+compiled import, root-export and simp boundaries.
+
+```powershell
+python -B scripts/check_candidate_api_compatibility.py capture --output tmp/release3-capture/first.json
+python -B scripts/check_candidate_api_compatibility.py capture --output tmp/release3-capture/repeat.json
+Get-FileHash tmp/release3-capture/*.json -Algorithm SHA256
+```
+
+Have the independent reviewer check the producer commit and tree, mathematical
+inputs, compiled types and boundaries against C40 and both prior contracts.
+Record the lead-approved digest and the independent examination in
+`docs/v0.3-release-contract.md`. The envelope binds the reviewed contract to
+its producer and clean capture checkpoint. The release state's `retained_api`
+records the exact SHA-256 digests of the v0.3.0 contract and envelope.
+
+The capture checkpoint and final release share their selected Git parent.
+The release adds the contract, approval envelope and independent review, and
+records their pins in the release state. The envelope preserves the capture
+commit's public Git metadata. From a clone containing the release, run
+`python -B scripts/reproduce_release3_checkpoint.py <full-release-SHA>` to
+reconstruct the capture tree and commit and verify each producer input. This
+works even when the original capture commit is outside the public history.
+
+From the final clean release commit, run `python -B scripts/validate_development.py`.
+Its compatibility gate freshly checks all 601, 811 and 918 records against their
+respective references. Run the archived finite-testing and coding integration
+tests and the nine-root external consumer against that same commit.
 
 ## Initial capture provenance
 

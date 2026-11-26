@@ -1148,7 +1148,7 @@ class WebsiteDependencyBaselinePolicyTests(unittest.TestCase):
 class DiscoveryTests(unittest.TestCase):
     def test_live_source_metadata_and_examples(self) -> None:
         check_discovery(SITE_ROOT)
-        self.assertEqual(len(read_guide_examples(SITE_ROOT)), 4)
+        self.assertEqual(len(read_guide_examples(SITE_ROOT)), 10)
 
     def test_html_entities_decode_to_lean(self) -> None:
         page = DiscoveryPage()

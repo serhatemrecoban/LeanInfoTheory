@@ -8,17 +8,37 @@ from pathlib import Path
 import tarfile
 import tempfile
 
-import package_release_pages as pages
+import release3_pages as release3
 import split_website as split
 import stage_website as stage
 
 
-def archive(package: Path, name: str, output: Path) -> str:
-    stage.require_unredirected_components(package, label="Pages package")
-    stage.require_unredirected_components(output, label="Pages tar output")
-    if output.exists() or output.name != "artifact.tar":
-        raise ValueError("a fresh artifact.tar is required")
+def archive(package: Path, name: str, output: Path, *, allow_rehearsal: bool = False,
+            file_manifest: Path | None = None) -> str:
+    package = release3.filesystem_path(package)
+    output = release3.filesystem_path(output)
+    if output.exists() or output.name != "artifact.tar" or output.is_relative_to(package):
+        raise ValueError("a fresh artifact.tar outside the checked package is required")
+    if file_manifest is not None:
+        file_manifest = release3.filesystem_path(file_manifest)
+        if file_manifest.exists() or file_manifest == output or file_manifest.is_relative_to(package):
+            raise ValueError("a separate fresh file-manifest path outside the checked package is required")
     receipt = json.loads((package / "receipt.json").read_bytes())
+    if name not in release3.SITES:
+        raise ValueError(f"unknown Pages project: {name}")
+    marker = package / release3.MAIN / stage.ROOT_MARKER
+    is_release3 = (receipt.get("schema") == release3.SCHEMA or name == release3.API
+                   or (package / release3.API).exists())
+    if is_release3:
+        purpose = receipt.get("purpose")
+        if (receipt.get("schema") != release3.SCHEMA or set(receipt["sites"]) != set(release3.SITES)
+                or purpose not in ("candidate", "rehearsal") or stage.strict_object(marker)["purpose"] != purpose):
+            raise ValueError("Release 3 requires an identified three-site qualification receipt")
+        if purpose == "rehearsal" and not allow_rehearsal:
+            raise ValueError("nonpublishable rehearsal requires explicit --allow-rehearsal for local archiving")
+        for host in (release3.MAIN, release3.API):
+            if (package / host / stage.PREVIEW_MARKER).exists() != (purpose == "rehearsal"):
+                raise ValueError("release artifact purpose differs from rehearsal markers")
     tree = package / name
     expected = split.inventory(tree)
     size = split.check_capacity(expected)
@@ -50,14 +70,32 @@ def archive(package: Path, name: str, output: Path) -> str:
             raise ValueError("missing files in Pages tar")
         with tar.open("rb") as stream:
             archive_sha = hashlib.file_digest(stream, "sha256").hexdigest()
-        tar.rename(output)
+        if file_manifest is not None:
+            metadata = {"schema": "lean-info-theory.pages-file-manifest.v1", "site": name,
+                        "source": receipt.get("source"), "purpose": receipt.get("purpose", "v0.2.0"),
+                        "tree_sha256": digest, "tar_sha256": archive_sha, "bytes": size,
+                        "file_count": count, "files": expected}
+            file_manifest.parent.mkdir(parents=True, exist_ok=True)
+            with file_manifest.open("xb") as stream:
+                stream.write(split.encoded(metadata))
+        try:
+            tar.rename(output)
+        except OSError:
+            if file_manifest is not None:
+                file_manifest.unlink()
+            raise
     return archive_sha
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("package", type=Path)
-    parser.add_argument("site", choices=pages.SITES)
+    parser.add_argument("site", choices=release3.SITES)
     parser.add_argument("output", type=Path)
+    parser.add_argument("--allow-rehearsal", action="store_true",
+                        help="archive an explicitly nonpublishable three-site rehearsal for local inspection")
+    parser.add_argument("--file-manifest", type=Path,
+                        help="also write the checked path, size and SHA-256 of every archived file")
     args = parser.parse_args()
-    print(archive(args.package, args.site, args.output))
+    print(archive(args.package, args.site, args.output, allow_rehearsal=args.allow_rehearsal,
+                  file_manifest=args.file_manifest))

@@ -116,6 +116,14 @@ def expected_package_version(state: dict) -> str:
     return TARGET_VERSION if state["phase"] in SECOND_RELEASE_PHASES else STABLE_VERSION
 
 
+def effective_contract_identity(root: Path = ROOT) -> dict:
+    """Metadata of the actual doc-gen or structural-export producer."""
+    import release3_state as r3
+    if (root / r3.STATE_PATH).exists():
+        return r3.contract_identity(root)
+    return contract_identity(root)
+
+
 def contract_identity(root: Path = ROOT) -> dict:
     state = load_state(root)
     if state["phase"] == "historical":
@@ -162,6 +170,11 @@ def check_legacy_configuration(root: Path, baseline_release_source_sha256: dict)
     for relative in ("lean-toolchain", "lakefile.toml", "lake-manifest.json"):
         raw = require_file(root, relative).read_bytes().replace(b"\r\n", b"\n")
         if relative == "lakefile.toml":
+            import release3_state as r3
+            if (root / r3.STATE_PATH).exists() and r3.check_metadata(root)["phase"] != "preparation":
+                # The R3 gate has verified the whole package against its tagged
+                # v0.2 bytes after projecting exactly this line.
+                raw = raw.replace(b'\nversion = "0.3.0"\n', b'\nversion = "0.2.0"\n', 1)
             raw = project_lakefile(raw, state)
         if hashlib.sha256(raw).hexdigest() != baseline_release_source_sha256[relative]:
             raise ValueError(f"unapproved pinned build configuration change: {relative}")
@@ -182,6 +195,14 @@ def validation_inputs(root: Path = ROOT) -> tuple[str, ...]:
                 paths.append(relative)
             elif state["retention"] == "established":
                 raise ValueError(f"established candidate retention is missing {relative}")
+        import release3_state as r3
+        if (root / r3.STATE_PATH).exists():
+            inputs = [r3.STATE_PATH, "scripts/release3_state.py", "CITATION.cff"]
+            if "retained_api" in r3.load_state(root):
+                inputs.extend((r3.CONTRACT_PATH, r3.APPROVAL_PATH, r3.REVIEW_PATH))
+            for relative in inputs:
+                require_file(root, relative)
+                paths.append(relative)
     return tuple(paths)
 
 

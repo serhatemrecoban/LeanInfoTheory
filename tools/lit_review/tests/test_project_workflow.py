@@ -70,8 +70,7 @@ class ProjectWorkflowTests(unittest.TestCase):
         self.put("lakefile.toml", 'name = "LeanInfoTheory"\n')
         self.put("lake-manifest.json", json.dumps({"packagesDir": ".lake/packages", "packages": []}))
         self.put("Case.lean", "-- Source-copy fixture; no production theorem or compiler claim.\n")
-        self.put(self.plan_path, "# Source-copy fixture plan\n\n**Status:** Approved\n\n"
-                 "## C10.01\n" + self.claim1 + "\n\n## C10.02\n" + self.claim2 + "\n")
+        self.write_plan()
         self.put("AGENTS.md", "# Synthetic library rules\nUse the maintained library rubric.\n")
         self.put("docs/review-protocol.md", "# Synthetic library review rules\n" +
                  "\n".join(project.LIBRARY_RUBRIC) + "\n")
@@ -84,6 +83,10 @@ class ProjectWorkflowTests(unittest.TestCase):
         path = self.root / rel
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(text, encoding="utf-8", newline="")
+
+    def write_plan(self, status="Approved"):
+        self.put(self.plan_path, f"# Source-copy fixture plan\n\n**Status:** {status}\n\n"
+                 f"## {self.chunk}.01\n{self.claim1}\n\n## {self.chunk}.02\n{self.claim2}\n")
 
     def git(self, *args):
         return subprocess.check_output(["git", "-C", str(self.root), *args], stderr=subprocess.STDOUT)
@@ -104,8 +107,8 @@ class ProjectWorkflowTests(unittest.TestCase):
                     "parent_purpose": "CHUNK_IMPLEMENTATION"}
 
     def criterion(self, step=1):
-        return {"id": f"C10.0{step}-C1", "description": f"Source-copy fixture step {step}",
-                "source_reference": self.plan_path + f"#c100{step}",
+        return {"id": f"{self.chunk}.0{step}-C1", "description": f"Source-copy fixture step {step}",
+                "source_reference": self.plan_path + f"#{self.chunk.lower()}0{step}",
                 "normative_excerpt": self.claim1 if step == 1 else self.claim2,
                 "scope": "Case.lean exact source-copy fixture bytes",
                 "required_evidence": "Inspect exact fixture bytes; no mathematical certification."}
@@ -113,11 +116,14 @@ class ProjectWorkflowTests(unittest.TestCase):
     def contract(self, kind="STEP"):
         return {"plan_path": self.plan_path, "plan_sha256": digest((self.root / self.plan_path).read_bytes()),
                 "kind": kind, "scope": ["Case.lean"], "normative_anchors": [self.claim1, self.claim2],
-                "steps": [{"id": f"C10.0{i}", "criteria": [self.criterion(i)]} for i in (1, 2)] if kind == "STEP" else [],
+                "steps": [{"id": f"{self.chunk}.0{i}", "criteria": [self.criterion(i)]} for i in (1, 2)] if kind == "STEP" else [],
                 "plan_criteria": [self.criterion()] if kind == "PLAN" else []}
 
     def session(self, kind="STEP"):
         self.install_bind()
+        return self.open_bound_session(kind)
+
+    def open_bound_session(self, kind):
         contract = self.contract(kind)
         self.w = project.open_session(self.root, self.chunk, "execution" if kind == "STEP" else "plan-fixture",
             contract, self.user(scope="APPROVED_IMPLEMENTATION_PLAN" if kind == "STEP" else "PLAN_REVIEW",
@@ -143,13 +149,13 @@ class ProjectWorkflowTests(unittest.TestCase):
         return self.w.parent_evidence("Fixture-only source inspection", "Synthetic PASS; no model or Lean run.",
                                       "REPLAYED source-copy test data, not actual mathematical evidence.")
 
-    def prepared(self, identifier="first", start=True):
+    def prepared(self, identifier="first", start=True, **options):
         if start:
             self.assertEqual(self.next(identifier)["status"], "ACCEPTED")
         ev = self.ev()
         self.w.initial_validation([ev]); self.w.self_review([], "Synthetic contextual review.")
         self.w.reassess({})
-        req = self.w.prepare_review(f"lit-review:{self.chunk}:execution:{identifier}", [ev])
+        req = self.w.prepare_review(f"lit-review:{self.chunk}:execution:{identifier}", [ev], **options)
         return ev, req
 
     def observation(self, req, raw=None, **extra):
@@ -318,12 +324,13 @@ class ProjectWorkflowTests(unittest.TestCase):
         self.assertEqual(project.chunk_id("C09"), "C9")
         self.assertEqual(project.step_chunk("C09.01"), "C9")
         self.assertEqual(project.step_chunk("C9.01"), "C9")
-        for number in range(9, 25):
+        for number in range(9, 41):
             self.assertEqual(project.chunk_id(f"C{number}"), f"C{number}")
-        for value in ("C8", "C25", "C010", "PFR-C09", "c9"):
+            self.assertEqual(project.step_chunk(f"C{number}.01"), f"C{number}")
+        for value in ("C8", "C41", "C010", "C025", "PFR-C09", "c9"):
             with self.subTest(value=value), self.assertRaisesRegex(Refusal, "CHUNK_BINDING"):
                 project.chunk_id(value)
-        for value in ("C9-S01", "C9.1", "C09.001", "C25.01"):
+        for value in ("C9-S01", "C9.1", "C09.001", "C41.01", "C025.01"):
             with self.subTest(value=value), self.assertRaisesRegex(Refusal, "STEP_SCHEMA"):
                 project.step_chunk(value)
 
@@ -554,6 +561,41 @@ class ProjectWorkflowTests(unittest.TestCase):
         received = self.w.receive_report(raw, observation, req["payload"]["request_id"], 1)
         self.assertEqual(received["classification"], "VALID")
         self.assertEqual(self.w.store.get(received["capture"], "capture")["original_text"], raw)
+        self.assertFalse(self.state()["completed"])
+
+    def test_legacy_file_request_requires_exact_send_and_original_attestation(self):
+        self.session()
+        _, req = self.prepared(verified_file=True)
+        ref = req["reference"]
+        packet = self.w.verified_file_packet(ref)
+        path = Path(packet["path"])
+        self.assertEqual(path.read_bytes(), req["text"].encode("utf-8"))
+        self.assertEqual(packet["bytes"], len(path.read_bytes()))
+        self.assertEqual(packet["sha256"], digest(path.read_bytes()))
+        self.w.dispatch_intent(ref)
+        observed = self.observation(req, original_event='{"submission_id":"fixture-send"}',
+            tool_call={"name": "multi_agent_v1.send_input",
+                       "arguments": {"target": self.reviewer, "message": packet["message"]}})
+        path.write_bytes(b"substituted")
+        with self.assertRaisesRegex(Refusal, "REVIEW_FILE_CHANGED"):
+            self.w.record_submission(ref, "ACKNOWLEDGED", observed)
+        with self.assertRaisesRegex(Refusal, "REVIEW_FILE_CHANGED"):
+            self.w.verified_file_packet(ref)
+        path.write_bytes(req["text"].encode("utf-8"))
+        for key, value in (("target", "other"), ("message", req["text"])):
+            wrong = copy.deepcopy(observed)
+            wrong["tool_call"]["arguments"][key] = value
+            with self.assertRaisesRegex(Refusal, "OBSERVED_FILE_SUBMISSION"):
+                self.w.record_submission(ref, "ACKNOWLEDGED", wrong)
+        self.w.record_submission(ref, "ACKNOWLEDGED", observed)
+        raw = self.report(req)
+        result = self.w.receive_report(raw, self.observation(req, raw), req["payload"]["request_id"], 1)
+        self.assertIn("REVIEW_FILE_NOT_ATTESTED", result["classification"])
+        body = json.loads(raw)
+        body["report"]["scope"] += "\n" + packet["attestation"]
+        raw = json.dumps(body)
+        self.assertEqual(self.w.receive_report(raw, self.observation(req, raw),
+                         req["payload"]["request_id"], 1)["classification"], "VALID")
         self.assertFalse(self.state()["completed"])
 
     def test_false_origin_wrong_reviewer_and_old_envelope_are_preserved_not_accepted(self):
@@ -891,7 +933,7 @@ class CollaborationTransportTests(unittest.TestCase):
                 "reference": "synthetic-source-copy:collaboration-creation",
                 "original_result": {"task_name": self.f.reviewer},
                 "tool_call": {"name": "collaboration.spawn_agent", "arguments": {
-                    "task_name": "c9_reviewer", "model": "gpt-6-astra", "reasoning_effort": "ultra",
+                    "task_name": self.f.reviewer.rsplit("/", 1)[-1], "model": "gpt-6-astra", "reasoning_effort": "ultra",
                     "fork_turns": "none", "message": "Synthetic read-only bootstrap; no native call."}}}
 
     def observation(self, req, raw=None, **extra):
@@ -909,6 +951,55 @@ class CollaborationTransportTests(unittest.TestCase):
         return self.observation(req, original_event=json.dumps(""),
             tool_call={"name": "collaboration.followup_task",
                        "arguments": {"target": self.f.reviewer, "message": req["text"]}})
+
+    def check_file_delivery(self, kind):
+        f = self.f
+        f.session(kind)
+        if kind == "PLAN":
+            req = f.w.plan_review_request("lit-review:C10:plan-fixture:file", verified_file=True)
+        else:
+            _, req = f.prepared(verified_file=True)
+        ref = req["reference"]
+        packet = f.w.verified_file_packet(ref)
+        if kind == "PLAN":
+            f.w.plan_review_record(ref, "INTENT", "Fixture file dispatch intent", {})
+        else:
+            f.w.dispatch_intent(ref)
+        obs = self.empty_submission(req)
+        obs["tool_call"]["arguments"]["message"] = packet["message"]
+        if kind == "PLAN":
+            obs["submission_result"] = "UNCERTAIN"
+            with self.assertRaisesRegex(Refusal, "DETECTION_SUBMISSION_UNCONFIRMED"):
+                f.w.plan_review_record(ref, "SUBMISSION", "", obs)
+            receipt = next(r for r in f.state()["records"] if f.w.store.get(r).get("stage") == "SUBMISSION")
+        else:
+            with self.assertRaisesRegex(Refusal, "EMPTY_SUBMISSION_MUST_BE_UNCERTAIN"):
+                f.w.record_submission(ref, "ACKNOWLEDGED", obs)
+            receipt = f.w.record_submission(ref, "UNCERTAIN", obs)
+        f.w = project.load_session(f.root, f.chunk, f.w.identity.session, test=True)
+        original_receipt = f.w.store.get(receipt)
+        body = json.loads(f.report(req, status="NOT_ESTABLISHED"))
+        body["report"]["scope"] += "\n" + packet["attestation"]
+        raw = json.dumps(body)
+        wrong = raw.replace(packet["sha256"], "0"*64)
+        with self.assertRaisesRegex(Refusal, "REVIEW_FILE_NOT_ATTESTED"):
+            f.w.confirm_verified_file_delivery(ref, receipt, wrong, self.observation(req, wrong))
+        confirmation = f.w.confirm_verified_file_delivery(ref, receipt, raw, self.observation(req, raw))
+        self.assertFalse(confirmation["report_accepted"])
+        self.assertEqual(original_receipt, f.w.store.get(receipt))
+        if kind == "PLAN":
+            result = f.w.plan_review_record(ref, "REPORT", raw, self.observation(req, raw))
+            self.assertFalse(f.w.plan_review_result()["plan_approved"])
+        else:
+            result = f.w.receive_report(raw, self.observation(req, raw), req["payload"]["request_id"], 1)
+        self.assertEqual(result["classification"], "VALID")
+        self.assertFalse(f.state()["completed"])
+
+    def test_verified_file_plan_with_uncertain_receipt(self):
+        self.check_file_delivery("PLAN")
+
+    def test_verified_file_step_with_uncertain_receipt(self):
+        self.check_file_delivery("STEP")
 
     def acknowledged_submission(self, req):
         self.f.w.dispatch_intent(req["reference"])

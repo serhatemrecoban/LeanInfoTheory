@@ -1,4 +1,4 @@
-"""Validate post-publication maintenance against the immutable v0.2.0 release."""
+"""Validate immutable release inputs and the selected release's public metadata."""
 from __future__ import annotations
 
 import argparse
@@ -10,6 +10,7 @@ import sys
 import tempfile
 
 import validate_release as release
+import release3_state as r3
 
 ROOT = release.ROOT
 SOURCE = "953b785fbdbcc9bffe22834124d5e1cbd14a4835"
@@ -40,6 +41,40 @@ def git(*args: str) -> bytes:
     return subprocess.check_output(["git", *args], cwd=ROOT)
 
 
+PROMOTION_PINS = "docs/compatibility/v0.3.0-promotion.json"
+PROMOTION_TEMPLATE = "scripts/templates/promote-release3-pages.yml"
+R3_TEMPLATE_SHA256 = "b35a84c9e49d5ec8ddae588b78f722cf486e71026a41f552c3ee39bf3630ec76"
+
+
+def check_release3_promotion(current: dict, workflow: bytes) -> None:
+    import check_release3_promotion as promotion
+    require(current["phase"] != "preparation", "R3 promotion requires an annotated public-release target")
+    pins = r3.strict_json(r3.require_file(ROOT, PROMOTION_PINS).read_bytes())
+    require(isinstance(pins, dict) and set(pins) == {
+        "release_commit", "annotated_tag", "bundles_revision", "receipt_sha256", "archives"
+    }, "missing or unexpected R3 promotion pins")
+    for name in ("release_commit", "annotated_tag", "bundles_revision", "receipt_sha256"):
+        promotion.digest(pins[name], 64 if name == "receipt_sha256" else 40)
+    archives = pins["archives"]
+    require(isinstance(archives, dict) and set(archives) == {"main", "api"}, "missing R3 Pages archive pins")
+    for archive in archives.values():
+        require(isinstance(archive, dict) and set(archive) == {"zip_sha256", "tar_sha256"},
+                "invalid R3 Pages archive pins")
+        for digest in archive.values():
+            promotion.digest(digest, 64)
+    cff = r3.require_file(ROOT, "CITATION.cff").read_bytes()
+    if current["phase"] == "published-maintenance":
+        archive = current["archive"]
+        require((pins["annotated_tag"], pins["release_commit"]) == (archive["tag_object"], archive["source_commit"]),
+                "promotion and Zenodo verification identify different sources")
+        cff = cff.replace(f'doi: "{archive["version_doi"]}"\n'.encode(), b"", 1)
+    r3.check_tag(ROOT, current["release_date"], pins["annotated_tag"], pins["release_commit"],
+                 cff, r3.require_file(ROOT, "lakefile.toml").read_bytes())
+    template = git("show", pins["release_commit"] + ":" + PROMOTION_TEMPLATE)
+    require(hashlib.sha256(template).hexdigest() == R3_TEMPLATE_SHA256 and workflow == template,
+            "active workflow differs from the approved template in the tagged source")
+
+
 class Page(HTMLParser):
     def __init__(self, path: Path):
         super().__init__()
@@ -58,11 +93,19 @@ class Page(HTMLParser):
             self.images.append(values.get("src", ""))
 
 
-def check_maintenance() -> None:
+def check_maintenance(*, ci_sha256: str = WORKFLOW_HASHES["lean_action_ci.yml"]) -> None:
+    current = r3.check_metadata(ROOT) if (ROOT / r3.STATE_PATH).exists() else None
+    third_version = current is not None and current["phase"] != "preparation"
+    if current is not None:
+        template = r3.require_file(ROOT, PROMOTION_TEMPLATE).read_bytes()
+        require(hashlib.sha256(template).hexdigest() == R3_TEMPLATE_SHA256, "Review changed R3 promotion template")
     require(git("rev-parse", "v0.2.0").decode().strip() == TAG and
             git("rev-parse", "v0.2.0^{commit}").decode().strip() == SOURCE,
             "Fetch the immutable v0.2.0 tag before validating maintenance.")
-    changed = git("diff", "--name-only", "-z", SOURCE, "--", *FROZEN_PATHS)
+    # The R3 check already compares the entire package with the tagged v0.2.0
+    # bytes after projecting only the version line. All other frozen inputs stay exact.
+    frozen = tuple(p for p in FROZEN_PATHS if p != "lakefile.toml" or not third_version)
+    changed = git("diff", "--name-only", "-z", SOURCE, "--", *frozen)
     require(not changed, "Immutable release evidence or fixed package inputs changed: " +
             ", ".join(p.decode() for p in changed.split(b"\0") if p))
     workflows = ROOT / ".github/workflows"
@@ -75,18 +118,35 @@ def check_maintenance() -> None:
             "Unexpected post-release licensing or Zenodo override")
     for name, digest in WORKFLOW_HASHES.items():
         data = (ROOT / ".github/workflows" / name).read_bytes()
-        require(hashlib.sha256(data).hexdigest() == digest, f"Review changed workflow: {name}")
+        expected = ci_sha256 if name == "lean_action_ci.yml" else digest
+        matches = hashlib.sha256(data).hexdigest() == expected
+        if current is not None and name == "promote-release-pages.yml":
+            pins_present = (ROOT / PROMOTION_PINS).exists()
+            if not matches or pins_present or current["phase"] == "published-maintenance":
+                check_release3_promotion(current, data)
+                continue
+        require(matches, f"Review changed workflow: {name}")
     tagged = git("show", SOURCE + ":CITATION.cff")
     require(tagged.count(b"authors:\n") == 1 and b"\ndoi:" not in tagged, "Unexpected tagged CFF")
     expected = tagged.replace(b"authors:\n", f'doi: "{DOI}"\nauthors:\n'.encode())
-    require((ROOT / "CITATION.cff").read_bytes() == expected, "Incorrect v0.2.0 citation")
-    doi_url = "https://doi.org/" + DOI
+    if not third_version:
+        require((ROOT / "CITATION.cff").read_bytes() == expected, "Incorrect v0.2.0 citation")
+    doi = DOI
+    issued = "2026-11-05"
+    version = "v0.2.0"
+    counts = ("811 supported declarations. 57 supported modules.",)
+    if third_version:
+        doi = current.get("archive", {}).get("version_doi")
+        issued = current["release_date"]
+        version = r3.TAG
+        counts = ("918 supported declarations", "77 supported modules")
+    doi_url = "https://doi.org/" + doi if doi else None
     for name in ("index.html", "license.html"):
         page = Page(ROOT / "home_page" / name)
-        require(page.meta.get("citation_doi") == [DOI] and
-                page.meta.get("citation_publication_date") == ["2026-11-05"] and
+        require(page.meta.get("citation_doi", []) == ([doi] if doi else []) and
+                page.meta.get("citation_publication_date") == [issued] and
                 page.meta.get("citation_author") == ["Coban, Serhat Emre"] and
-                doi_url in page.links, f"Incorrect visible or indexed citation: {name}")
+                (doi_url is None or doi_url in page.links), f"Incorrect visible or indexed citation: {name}")
         if name == "index.html":
             require(WORKFLOW in page.links and WORKFLOW + "/badge.svg" in page.images,
                     "Homepage badge must link to the current deployment")
@@ -95,14 +155,17 @@ def check_maintenance() -> None:
     license_page = (ROOT / "home_page/license.html").read_text(encoding="utf-8")
     for text in (readme, license_page):
         require(rights_holder in " ".join(text.split()), "Missing EPFL rights-holder attribution")
-    for marker in (doi_url, 'rev = "v0.2.0"', "811 supported declarations. 57 supported modules.",
+    if doi_url:
+        require(doi_url in readme, "Missing version DOI link in README")
+    for marker in (f'rev = "{version}"', *counts,
                    WORKFLOW + "/badge.svg", "youtu.be/CXHebbD7ouA", "#pfr-case-study"):
         require(marker in readme, f"Missing release information in README: {marker}")
-    print("Published metadata, release boundaries and reviewed manual deployment passed.", flush=True)
+    phase = current["phase"] if current else "v0.2.0 maintenance"
+    print(f"Release metadata ({phase}), frozen boundaries and reviewed manual deployment passed.", flush=True)
 
 
-def check_static() -> None:
-    check_maintenance()
+def check_static(*, ci_sha256: str = WORKFLOW_HASHES["lean_action_ci.yml"]) -> None:
+    check_maintenance(ci_sha256=ci_sha256)
     # Pre-publication fixtures expect the original, DOI-free tagged pages and CFF.
     # Exercise those fixtures on their actual source, then test the maintained checkout.
     scratch = ROOT / "tmp"
@@ -130,11 +193,16 @@ def main() -> None:
     full = parser.parse_args().command == "all"
     if full:
         release.check_clean_repository_state("before checking the published release")
-    check_static()
+    development = (ROOT / r3.STATE_PATH).exists()
+    if development:
+        from validate_development import DEVELOPMENT_CI_SHA256
+        check_static(ci_sha256=DEVELOPMENT_CI_SHA256)
+    else:
+        check_static()
     if full:
         release.run_complete_build()
         release.check_documentation_examples()
-        release.check_trust_contract()
+        release.check_trust_contract(development=development)
         release.check_hygiene(require_clean=True)
 
 

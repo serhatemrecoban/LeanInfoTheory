@@ -16,6 +16,7 @@ from pathlib import Path
 import current_api
 import frozen_public_api
 import release_state
+import release3_state as r3
 from check_public_api_compatibility import strict_json
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -148,8 +149,8 @@ def current_doc_identity() -> dict[str, object]:
     for relative in ("lean-toolchain", "docbuild/lean-toolchain"):
         if (ROOT / relative).read_text(encoding="utf-8").strip() != "leanprover/lean4:v4.33.1":
             raise ValueError(f"API-doc toolchain differs from the reviewed pin: {relative}")
-    inputs = source_inputs()
-    dependencies = dependency_identity()
+    inputs = source_inputs(ROOT)
+    dependencies = dependency_identity(ROOT)
     identity = {
         "schema": IDENTITY_SCHEMA,
         "current_manifest_sha256": inputs["docs/current-public-api.json"],
@@ -159,8 +160,8 @@ def current_doc_identity() -> dict[str, object]:
         "inputs": inputs,
         "dependencies": dependencies,
     }
-    if release_state.load_state(ROOT).get("phase") != "historical":
-        identity["release_contract"] = release_state.contract_identity(ROOT)
+    if (ROOT / r3.STATE_PATH).exists() or release_state.load_state(ROOT).get("phase") != "historical":
+        identity["release_contract"] = release_state.effective_contract_identity(ROOT)
     return identity
 
 

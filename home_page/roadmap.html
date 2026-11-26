@@ -42,13 +42,13 @@
             <td>finite Shannon and semantic/KL bridges, stochastic data processing, finite sufficiency, Fano, finite-family, finite convexity, conditional-KL, mutual-independence APIs, and generated reference artifacts.</td>
           </tr>
           <tr>
-            <td><span class="status-pill prototype">Active</span></td>
-            <td>Maintenance of the complete <code>v0.2.0</code> supported surface.</td>
-            <td>Version 0.2.0 contains 57 supported modules, 811 declarations and 92 root exports; the original 601-declaration contract is retained separately. Provenance, attribution, Apache-2.0 licensing, citation metadata, and versioned API documentation are part of the release contract.</td>
+            <td><span class="status-pill proved">Implemented</span></td>
+            <td>Third-release mathematics.</td>
+            <td>Version 0.3.0 has 918 supported declarations in 77 modules. Compatibility checks cover the 601 declarations from v0.1.0 and the 811 from v0.2.0.</td>
           </tr>
           <tr>
             <td><span class="status-pill planned">Planned</span></td>
-            <td>Qualification and documentation work still to be completed.</td>
+            <td>Future documentation work.</td>
             <td>Theorem-level blueprint work and optional equation-expanded documentation remain future work.</td>
           </tr>
           <tr>
@@ -59,17 +59,13 @@
         </tbody>
       </table>
 
-      <h2 id="candidate">Second release</h2>
+      <h2 id="candidate">Third release</h2>
       <p>
-        Current source has 811 supported declarations across 57 modules and
-        retains 92 lightweight-root exports. The finite programme now includes
-        total variation/coupling, Pinsker and continuity, finite products and
-        topology, iid AEP, fixed-length source coding, attained information
-        capacity and actual-code channel weak converses. See the
-        <a href="theorems.html#candidate-results">capability boundaries</a>.
-        The <a href="docs/v0.2.0/">versioned API</a> and
-        <a href="docs/research-projects.html#pfr-case-study">downstream case study</a>
-        provide practical entry points.
+        The six new packages cover randomized tests, one-shot channel
+        codes, operational capacity and expurgation, lossless source–channel
+        separation, binary prefix coding and finite type classes.
+        Follow a <a href="docs/release-3-examples.html">worked Lean example</a> or
+        consult the <a href="theorems.html#candidate-results">theorem statements and assumptions</a>.
       </p>
       <h2>Implemented mathematical coverage</h2>
       <ul class="roadmap-list">
@@ -102,7 +98,7 @@
       <h2>Planned</h2>
       <ul class="roadmap-list">
         <li><span class="status-pill planned">Planned</span> Extend the current module dependency map toward theorem-level leanblueprint pages and a blueprint PDF; consider optional equation-expanded API documentation only if its cost and use justify it.</li>
-        <li><span class="status-pill planned">Planned</span> Select any additional theorem family through a separate planning process. Channel achievability, operational-capacity equality and the channel strong converse are outside the current programme.</li>
+        <li><span class="status-pill planned">Open</span> The finite-channel coding results include a weak converse. A channel strong converse and a general result at the source–channel boundary where entropy equals capacity remain open here.</li>
         <li><span class="status-pill planned">Planned</span> Prepare focused mathlib PRs for generic, stable finite-measure lemmas.</li>
       </ul>
 

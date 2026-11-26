@@ -1,0 +1,13 @@
+{
+  "api_repository": "serhatemrecoban/LeanInfoTheory-API-v0.3.0",
+  "api_url": "https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/",
+  "main_url": "https://serhatemrecoban.github.io/LeanInfoTheory/",
+  "phase": "candidate-ready",
+  "release_date": "2026-11-26",
+  "retained_api": {
+    "docs/compatibility/v0.3.0-candidate-approval.json": "8d553320102fd99b786cfa6257865605ee9352d5937a814097c1cb552a01a819",
+    "docs/compatibility/v0.3.0-candidate-contract.json": "c5b5b4e1a898e6faae963c19fc09b61307a9c57a70390c3df677eea41362a501"
+  },
+  "schema": "lean-info-theory.release-3-state.v1",
+  "target_version": "0.3.0"
+}

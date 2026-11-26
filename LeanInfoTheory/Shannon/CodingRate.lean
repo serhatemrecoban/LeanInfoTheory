@@ -113,6 +113,20 @@ theorem natsToBits_codeRate_pow_two (n k : ℕ) :
   simp only [natsToBits, natsToBase, codeRate, Nat.cast_pow, Nat.cast_ofNat, Real.log_pow]
   rw [div_right_comm, mul_div_cancel_right₀ _ hlog]
 
+/-- Retaining at least half of a positive message budget costs at most
+`log 2 / n` nats per use at positive blocklength. -/
+theorem codeRate_sub_log_two_div_le_of_le_two_mul {n M L : ℕ}
+    (hn : 0 < n) (hM : 1 ≤ M) (hML : M ≤ 2 * L) :
+    codeRate n M - Real.log 2 / (n : ℝ) ≤ codeRate n L := by
+  have hMr : (0 : ℝ) < M := by exact_mod_cast (show 0 < M by omega)
+  have hLr : (0 : ℝ) < L := by exact_mod_cast (show 0 < L by omega)
+  have hsize : (M : ℝ) ≤ 2 * (L : ℝ) := by exact_mod_cast hML
+  have hlog := Real.log_le_log hMr hsize
+  rw [Real.log_mul (by norm_num : (2 : ℝ) ≠ 0) hLr.ne'] at hlog
+  unfold codeRate
+  rw [← sub_div]
+  exact div_le_div_of_nonneg_right (by linarith only [hlog]) (by exact_mod_cast hn.le)
+
 end
 
 end LeanInfoTheory.Shannon

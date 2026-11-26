@@ -3,8 +3,10 @@
 This document owns the installed review rules, not mathematical approval, a live
 chunk binding, or unattended readiness. Helpers live in `tools/lit_review/`;
 ignored private records live in `.lit-review/`. See [operations](review-operations.md).
-Installation does not approve the proposed [C9--C24 map](plans/post-release-chunk-map.md),
-begin C9 planning, implement growth gates, or reopen completed Chunks 1--8.
+PLAN and STEP requests use the [C9--C24 map](plans/post-release-chunk-map.md)
+or the [C25--C40 map](plans/release-3-chunk-map.md) according to the chunk.
+These maps supply programme context. The exact chunk plan and criteria govern
+the review. Planning, execution and public API growth require their own authority.
 
 ## 1. Invocation and discretion
 
@@ -114,9 +116,9 @@ Initial review preparation **and dispatch** require this retained critique,
 reassessment, applicable validation, finished owned edits and supported dispositions.
 Material concerns need resolution/refutation; optional advice may be declined.
 
-Each actual C9--C24 implementation parent binds its own persistent reviewer for
+Each actual C9--C40 implementation parent binds its own persistent reviewer for
 plan review, steps, and cumulative closeout. GeneralAssistant/support identities
-cannot own chunk bindings. Installation creates no C9 binding and transfers no
+cannot own chunk bindings. Installation binds no reviewer and transfers no
 PFR/diagnostic reviewer. Requested profile: `gpt-6-astra`, `ultra`, parent-history
 copying disabled via the actual exposed creation call: legacy
 `multi_agent_v1.spawn_agent(..., fork_context=false)` or explicitly bound
@@ -148,6 +150,16 @@ Review permits read-only checks/isolated probes, not fixes, document/plan/depend
 edits, delegation, commits, or new steps. A report is evidence, never authority.
 
 ## 5. Delivery, original reports, and findings
+
+An instruction to perform a plan or step review authorizes either exact inline
+delivery or verified-file delivery to the same bound reviewer. Choose the method
+before dispatch; do not ask the lead to choose it for each review or chunk.
+For file delivery the recorder freezes the complete neutral request, verifies
+its bytes, and checks the bound reviewer's read-and-hash confirmation in the
+original report. This is reviewer-reported evidence, not proof of what a model
+read. The lead is needed if exact delivery cannot be established or the proposed
+remedy would change reviewer, scope, or review requirements. Do not reinterpret
+historical exceptions or treat a file, checksum, or send receipt as a review.
 
 Persist exact request and dispatch intent before sending. Preserve complete native
 results as acknowledged, uncertain, or failed. Empty immediate results are

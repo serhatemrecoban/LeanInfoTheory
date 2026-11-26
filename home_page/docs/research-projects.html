@@ -24,18 +24,18 @@
       <nav class="project-links" aria-label="Project links">
         <a href="../" class="btn">Home</a>
         <a href="./" class="btn">Guides</a>
-        <a href="v0.2.0/" class="btn">API Reference</a>
+        <a href="v0.3.0/" class="btn">v0.3.0 API</a>
         <a href="https://github.com/serhatemrecoban/LeanInfoTheory" class="btn">GitHub</a>
       </nav>
     </header>
     <main id="content" class="main-content" role="main">
       <p class="lead">Spend your formalization effort on the new mathematics. LeanInfoTheory supplies reusable information-theoretic foundations for research projects and downstream software.</p>
       <h2>Start with a dependency, not a copy</h2>
-      <p>Create a separate Lean project and <a href="getting-started.html">depend on v0.2.0 through Lake</a>. Keep the resolved manifest and toolchain under version control. A later library upgrade should be deliberate, followed by a full build of your own project.</p>
+      <p>Create a separate Lean project and <a href="getting-started.html">pin a published version with Lake</a>. Keep the resolved manifest and toolchain under version control. A later library upgrade should be deliberate, followed by a full build of your own project.</p>
       <h2>Map paper statements to existing results</h2>
       <ol>
         <li>List the paper's definitions, theorem statements, and assumptions. Distinguish the target manuscript from supplementary proof sources.</li>
-        <li>Match basic identities and inequalities to the <a href="../theorems.html">theorem highlights</a> and <a href="v0.2.0/">release API</a>, then verify candidate names in a compiling Lean file.</li>
+        <li>Match basic identities and inequalities to the <a href="../theorems.html">theorem highlights</a> and the <a href="./">API for your version</a>, then verify candidate names in a compiling Lean file.</li>
         <li>Keep paper-specific structures and constructions in your project. Propose a library addition when a missing result is independently useful.</li>
         <li>Build one coherent theorem step at a time, including concrete and degenerate examples. Independently review statements as well as proof completion.</li>
       </ol>
@@ -49,15 +49,15 @@
       </ul>
       <h2>What the release provides</h2>
       <p>Entropy and information identities, finite-family algebra, independence and Markov characterizations, stochastic data processing, finite Fano inequalities, convexity, and sufficiency are available now.</p>
-      <h2>New in v0.2.0</h2>
+      <h2>Choosing a release for a proof</h2>
       <p>
-        Version <code>v0.2.0</code> adds finite total
-        variation/coupling, continuity and topology, products, iid AEP,
-        fixed-length source coding, attained information capacity and channel
-        weak converses. Its source inventory has 811 declarations across 57
-        supported modules. Consult the <a href="../theorems.html#candidate-results">exact capability limits</a>
-        and <a href="../module-guide.html#candidate-modules">current imports</a>;
-        channel achievability, operational channel-capacity equality and a channel strong converse remain outside this release.
+        The published <a href="v0.2.0/">v0.2.0 API</a> includes iid AEP,
+        fixed-length source coding, attained information capacity and channel weak converses.
+        The third release also gives codes achieving rates below capacity,
+        identifies capacity as the least upper bound of achievable rates, and proves
+        lossless separation at strict entropy–capacity inequality.
+        The <a href="release-3-examples.html">six Lean examples</a> show the imports
+        and assumptions to use in a downstream proof.
       </p>
 
       <h2>Applications and collaboration</h2>

@@ -21,6 +21,7 @@ import check_public_api_compatibility as legacy
 import candidate_contract as candidate
 import current_api
 import release_state
+import release3_state as r3
 
 
 def checkpoint(evidence: legacy.RunEvidence, label: str) -> dict:
@@ -35,7 +36,7 @@ def checkpoint(evidence: legacy.RunEvidence, label: str) -> dict:
 
 def fresh_contract(evidence: legacy.RunEvidence, *, deterministic: bool) -> dict:
     """Own the compiler/build/export commands; never accept supplied success logs."""
-    identity = release_state.contract_identity(ROOT)
+    identity = release_state.effective_contract_identity(ROOT)
     frozen, historical = legacy.load_baseline()
     release_state.check_legacy_configuration(ROOT, historical["release_source_sha256"])
     manifest = current_api.load_current_manifest()
@@ -44,7 +45,8 @@ def fresh_contract(evidence: legacy.RunEvidence, *, deterministic: bool) -> dict
     dependencies = legacy.retained.dependency_identity(ROOT)
     candidate.require(dependencies == historical["dependencies"], "INPUT: historical dependency pins differ")
     start = checkpoint(evidence, "checkpoint-before")
-    if deterministic and start["clean"] and identity["phase"] in release_state.SECOND_RELEASE_PHASES:
+    if deterministic and start["clean"] and (identity["schema"] == r3.IDENTITY_SCHEMA or
+                                              identity["phase"] in release_state.SECOND_RELEASE_PHASES):
         release_state.require_candidate_content(ROOT)
     legacy.unredirected_tree(ROOT / ".lake/build")
     evidence.write("producer-before.json", {"files": before, "dependencies": dependencies,
@@ -81,7 +83,7 @@ def fresh_contract(evidence: legacy.RunEvidence, *, deterministic: bool) -> dict
     boundaries = candidate.portable_boundaries(expected, actual)
     after = candidate.producer_identity(ROOT)
     dependencies_after = legacy.retained.dependency_identity(ROOT)
-    identity_after = release_state.contract_identity(ROOT)
+    identity_after = release_state.effective_contract_identity(ROOT)
     end = checkpoint(evidence, "checkpoint-after")
     evidence.write("producer-after.json", {"files": after, "dependencies": dependencies_after,
                                           "release_identity": identity_after, "checkpoint": end})
@@ -115,18 +117,30 @@ def capture_destination(output: Path, evidence: legacy.RunEvidence) -> Path:
 
 def run_check(evidence: legacy.RunEvidence) -> dict:
     state = release_state.load_state(ROOT)
-    if state["phase"] == "historical":
+    if state["phase"] == "historical" and not (ROOT / r3.STATE_PATH).exists():
         return {"outcome": "NOT_APPLICABLE", "retention": "not-applicable",
                 "message": "Historical state has no candidate retained baseline."}
-    identity = release_state.contract_identity(ROOT)
-    if identity["retention"] == "pending":
+    identity = release_state.effective_contract_identity(ROOT)
+    if identity["schema"] == r3.IDENTITY_SCHEMA:
+        if "retained_api" not in r3.load_state(ROOT):
+            candidate.require(identity["phase"] == "preparation",
+                              "NOT_ESTABLISHED: dated v0.3.0 candidate requires the reviewed contract for a retention check")
+            return {"outcome": "NOT_ESTABLISHED", "retention": "pending", "release_identity": identity,
+                    "message": "The complete Release 3 retained contract still requires independent approval."}
+        baseline, baseline_raw, approval_raw = candidate.load_release3_snapshot(ROOT)
+        paths = r3.CONTRACT_PATH, r3.APPROVAL_PATH
+    elif identity["retention"] == "pending":
         return {"outcome": "NOT_ESTABLISHED", "retention": "pending", "release_identity": identity,
                 "message": "Complete candidate baseline capture/review belongs to C24.07; no retained-baseline PASS is claimed."}
-    baseline, baseline_raw, approval_raw = candidate.load_approved_snapshot(ROOT)
+    else:
+        baseline, baseline_raw, approval_raw = candidate.load_approved_snapshot(ROOT)
+        paths = release_state.CANDIDATE_CONTRACT_PATH, release_state.CANDIDATE_APPROVAL_PATH
     current = fresh_contract(evidence, deterministic=False)
     candidate.compare_contracts(baseline, current)
-    candidate.require((ROOT / release_state.CANDIDATE_CONTRACT_PATH).read_bytes() == baseline_raw
-                      and (ROOT / release_state.CANDIDATE_APPROVAL_PATH).read_bytes() == approval_raw,
+    if identity["schema"] == r3.IDENTITY_SCHEMA:
+        candidate.recheck_release3_snapshot(ROOT, baseline_raw, approval_raw)
+    candidate.require((ROOT / paths[0]).read_bytes() == baseline_raw
+                      and (ROOT / paths[1]).read_bytes() == approval_raw,
                       "FRESHNESS: approved artifact/envelope changed during check")
     return {"outcome": "PASS", "retention": "established",
             "declaration_count": current["declaration_count"],

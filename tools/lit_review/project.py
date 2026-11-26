@@ -26,7 +26,18 @@ from library import LIBRARY_RUBRIC, VALIDATION_GUIDANCE
 
 PROJECT_TAG = 'LIT_SUPERVISED_REVIEW_V1'
 TEST_TAG = 'LIT_SOURCE_COPY_TEST_V1'
+CANONICAL_CHUNK_PATTERN = r'C(?:9|[1-3][0-9]|40)'
+INPUT_CHUNK_PATTERN = rf'(?:C09|{CANONICAL_CHUNK_PATTERN})'
+POST_RELEASE_MAP = 'docs/plans/post-release-chunk-map.md'
+RELEASE_3_MAP = 'docs/plans/release-3-chunk-map.md'
 PROFILE = {'model':'gpt-6-astra','reasoning_effort':'ultra','fork_context':False}
+C40_PLANNING_PARENT_SHA256 = '4ac2b2ad4b78c3b7b5c509a9e49464c7ce93e96f30c66e03dcb4d57924f927fa'
+C40_EXECUTION_PARENT_SHA256 = 'ad338eeef5e851577fb302d9d6a4aa7f7bf3bdda9d91d66921451eb749227788'
+C40_PLANNING_BINDING_SHA256 = '200127d8e587016457ccc8f02bfa430e53997772c6fb5ae4744f2ddffd881157'
+C25_OBSERVED_BINDING_SHA256 = 'b9f936bebde38ae7c60753b26ed933b26304680f52c624c60c06716fceb979c3'
+C26_OBSERVED_BINDING_SHA256 = 'be7193a0cab35148c9595bd3a851e21f5385859503d9af21eb659939fb9c135c'
+C25_NATIVE_CALL_SHA256 = 'c16db80936b508bf3dd950b3a51c3853b600f8c2e4368b5a48563649dff0e7d2'
+C40_SUCCESSOR_FILE = 'execution-parent-successor.json'
 PLAN_START = '<!-- lit-review-status:start -->'
 PLAN_END = '<!-- lit-review-status:end -->'
 NONCANONICAL_REPAIR_PATHS = frozenset({
@@ -34,6 +45,76 @@ NONCANONICAL_REPAIR_PATHS = frozenset({
     'tools/lit_review/tests/test_noncanonical_dispatch.py',
     'docs/review-operations.md',
 })
+
+
+def _check_c25_noncanonical_observed(request_ref, payload, call, example, candidate):
+    """One observed incident, never a general missing-receipt recovery route."""
+    require(request_ref == '1dbf1a64bcdb40c328073a04f1154e3843e79b3bb64cbcd9ce8cb733ac065d93'
+            and payload['request_id'] == 'lit-review:C25:execution:c25-05-r1-20261106'
+            and payload['attempt'] == 1
+            and payload['source_ref'] == '4b1fb420550a05a552e868f76bf55a301416a9439d9d281d8e4656f617807767'
+            and digest(payload['binding']) == C25_OBSERVED_BINDING_SHA256
+            and digest(call['call_id']) == C25_NATIVE_CALL_SHA256
+            and example == {
+                'path': 'README.md',
+                'canonical_sha256': '74c6c416f679b0af3a00d890944bf1e71f4268650ad177d9054713774bb8ff94',
+                'emitted_visible_sha256': '74c6c416f679b0af3a00d890944bf1e71f71f4268650ad177d9054713774bb8ff94'}
+            and candidate == {
+                'head': '2eb80d0e746688511618aaefc2624ffa4ae88f6e',
+                'index_entries_sha256': '3dc563e8c905ebcbd9ca18752d57526e3df8897ae2030d03e4cafcbcabf9cb59',
+                'cached_diff_sha256': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'},
+            'NONCANONICAL_C25_OBSERVED_CASE')
+
+
+def _check_c26_noncanonical_observed(request_ref, payload, evidence):
+    """The approved stopped C26.05 incident, not a general receipt override."""
+    expected_frames = {
+        'native_call': '62fbfad3a0b6316a27fd1f736c05170d39989802233091ffc9d67caec2eac438',
+        'native_result': '3e69a3ba8b455ba091ac02a601904c8c2cd7d651539e97e6f505b6535cc3979d',
+        'stop_native_call': '334d6a2cc4ab8d1e8e764246b19a56125551a0dd6c3add62031e2c4b1059241d',
+        'stop_native_result': '5f38f90bd85f18ed9ce51bc531ed6596d4013332f13dedd0e61888daee288120',
+    }
+    require(request_ref == 'dbabcf14746813d5e1b48bdaba6594449c80262e9f02f3a2012e006658bac7cd'
+            and payload['request_id'] == 'lit-review:C26:execution:c26-05-r1-20261107'
+            and payload['attempt'] == 1
+            and payload['source_ref'] == '70b7b030b5ac6ba3b55e3a22b17e74ab7a5ca7631433d27040e3701d60ea8820'
+            and digest(payload['binding']) == C26_OBSERVED_BINDING_SHA256
+            and evidence['contradicted_receipt']['reference'] ==
+                '78516b58a05484259ff8f4ea4f4e1e2e4f43c936329ec3f6f7cafb885b2d1391'
+            and all(digest(evidence[k].encode('utf-8')) == v for k,v in expected_frames.items())
+            and evidence['candidate'] == {
+                'head': '2eb80d0e746688511618aaefc2624ffa4ae88f6e',
+                'index_entries_sha256': '3dc563e8c905ebcbd9ca18752d57526e3df8897ae2030d03e4cafcbcabf9cb59',
+                'cached_diff_sha256': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'},
+            'NONCANONICAL_C26_OBSERVED_CASE')
+
+
+def _check_c28_noncanonical_observed(request_ref, payload, evidence):
+    """Pin saved artifact bytes of this one rejected preflight and noncredit report."""
+    hashes = {
+        'native_call': 'f89d1ee0c54864fb70d3c8a66e7f348f56a2b8d3662e43694bb740baa6162bbc',
+        'native_result': 'b8d9b64d84c2ca4ad9e59bcbbf29c79422608302ef9c9a582b52553ec529854d',
+        'report_call': '0a042e463f2094c6009bc90109cf8b5afdd0a143a2169f7cc0c4c4916e91a929',
+        'report_result': '72a38a0abf7806faf972b45810e1baee0ff4349ed8ba3d5b7c79af10cf17cad8',
+        'original_report': '2bba247b0094df1c8c470651a682f6922c53798639c174f2f52e8d178626d8d7',
+        'report_observation': '63191b8672f176d22eb4d33d97018267b96fd634fc31b950f11d7d59ba25ac78',
+    }
+    require(request_ref == 'b3abd2312a3184e74fcb7a7089593478c3332848f24a6053ab35c946fe2ec692'
+            and payload['request_id'] == 'lit-review:C28:execution:c28-01-r1-20261109'
+            and payload['source_ref'] == '8508892e21250212e1a8ad5dfb43b02ac994502186c7ff0f39c1b5ed5c56bb7e'
+            and digest(payload['binding']) == 'f5cc1d5c32769a2af1fda0689ac4d6bc13182e2b2ddefa9577ef3bcecdc86925'
+            and evidence['preflight'] == 'b16c95b54a5844e77df534d0c624bcb87dc0cc2d5077f7d2cca86f9b93993fed'
+            and evidence['canonical_file'] == {
+                'sha256': '68e9aead23636e8355ea961cb3dee64ce40894f0516cc95d752ef9182dfc8a45',
+                'bytes': 70027, 'entries': 366}
+            and digest(strict_json(evidence['native_call'])['payload']['call_id']) ==
+                'ec58d5dff867dcde6869ae9c1084e34db4dc3adf9a95169fe541309293caacb6'
+            and all(digest(evidence[k].encode()) == v for k, v in hashes.items())
+            and evidence['candidate'] == {
+                'head': '2eb80d0e746688511618aaefc2624ffa4ae88f6e',
+                'index_entries_sha256': '3dc563e8c905ebcbd9ca18752d57526e3df8897ae2030d03e4cafcbcabf9cb59',
+                'cached_diff_sha256': 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'},
+            'NONCANONICAL_C28_OBSERVED_CASE')
 
 
 def creation_transport(creation):
@@ -73,12 +154,12 @@ def check_creation_transport(creation, parent, reviewer):
 
 
 def chunk_id(value):
-    require(isinstance(value,str) and re.fullmatch(r'C(?:0?9|1[0-9]|2[0-4])',value), 'CHUNK_BINDING')
-    return 'C'+str(int(value[1:]))
+    require(isinstance(value,str) and re.fullmatch(INPUT_CHUNK_PATTERN,value), 'CHUNK_BINDING')
+    return 'C9' if value == 'C09' else value
 
 
 def step_chunk(value):
-    require(isinstance(value,str) and re.fullmatch(r'C(?:0?9|1[0-9]|2[0-4])\.[0-9]{2}',value), 'STEP_SCHEMA')
+    require(isinstance(value,str) and re.fullmatch(INPUT_CHUNK_PATTERN + r'\.[0-9]{2}',value), 'STEP_SCHEMA')
     return chunk_id(value.split('.')[0])
 
 
@@ -107,7 +188,7 @@ class ProjectRecordFS(FixtureFS):
     def __init__(self, checkout, relative, *, create=False, test=False):
         self.checkout=_root(checkout)
         self.record_tag=TEST_TAG if test else PROJECT_TAG
-        require(re.fullmatch(r'(?:chunks/C(?:9|1[0-9]|2[0-4])(?:/(?:execution|plan-[a-z0-9-]+))?|setup)',relative),
+        require(re.fullmatch(rf'(?:chunks/{CANONICAL_CHUNK_PATTERN}(?:/(?:execution|plan-[a-z0-9-]+))?|setup)',relative),
                 'PRIVATE_RECORD_LOCATION')
         self.root=self.checkout/'.lit-review'/relative
         no_indirection(self.root)
@@ -175,8 +256,7 @@ def setup(checkout, approval, *, test=False):
     return data
 
 
-def bind(checkout, chunk, parent, reviewer, creation, approval, *, test=False):
-    chunk=chunk_id(chunk)
+def _binding_data(checkout, chunk, parent, reviewer, creation, approval, test):
     require(parent==os.environ.get('CODEX_THREAD_ID') and parent!=reviewer,'WRONG_ORIGINATING_PARENT')
     require(isinstance(creation,dict) and reviewer
             and creation.get('parent_purpose')=='CHUNK_IMPLEMENTATION', 'CHUNK_IMPLEMENTATION_PARENT_REQUIRED')
@@ -195,12 +275,51 @@ def bind(checkout, chunk, parent, reviewer, creation, approval, *, test=False):
                 and effective.get('fork_context') in {None,False},'OBSERVED_PROFILE_CONFLICT')
     # The agent verifies the actual native result, not an inferred UUID/profile.
     # This supplied record and instruction-only isolation are cooperative limits.
+    return {'chunk':chunk,'parent':parent,'reviewer':reviewer,'creation':creation,'approval':approval,
+            'input_mode':'REPLAYED' if test else 'OBSERVED','tag':TEST_TAG if test else PROJECT_TAG,
+            'effective_parent':creation.get('effective_parent'),'effective_reviewer':effective}
+
+
+def bind(checkout, chunk, parent, reviewer, creation, approval, *, test=False):
+    chunk=chunk_id(chunk)
+    data=_binding_data(checkout,chunk,parent,reviewer,creation,approval,test)
     fs=ProjectRecordFS(checkout,'chunks/'+chunk,create=True,test=test)
-    data={'chunk':chunk,'parent':parent,'reviewer':reviewer,'creation':creation,'approval':approval,
-          'input_mode':'REPLAYED' if test else 'OBSERVED','tag':fs.record_tag,
-          'effective_parent':creation.get('effective_parent'),'effective_reviewer':effective}
     fs.write('binding.json',canonical(data),exclusive=True)
     return data
+
+
+def bind_c40_successor(checkout, chunk, parent, reviewer, creation, approval, predecessor_sha256, *, test=False):
+    """Record the authorized C40 execution parent without editing its planning history."""
+    require(chunk == 'C40' and digest(parent) == C40_EXECUTION_PARENT_SHA256, 'C40_SUCCESSOR_IDENTITY')
+    fs = ProjectRecordFS(checkout, 'chunks/C40', test=test)
+    raw = fs.read('binding.json')
+    original = strict_json(raw)
+    require(digest(original['parent']) == C40_PLANNING_PARENT_SHA256
+            and digest(raw) == predecessor_sha256 == C40_PLANNING_BINDING_SHA256,
+            'C40_SUCCESSOR_PREDECESSOR')
+    require(not fs.path('execution').exists(), 'C40_EXECUTION_ALREADY_EXISTS')
+    successor = _binding_data(checkout, chunk, parent, reviewer, creation, approval, test)
+    require(approval.get('scope') == 'C40_EXECUTION_PARENT_SUCCESSION', 'C40_SUCCESSOR_APPROVAL')
+    require(creation_transport(creation) == 'collaboration' and creation['parent_role'] == '/root'
+            and reviewer != original['reviewer'], 'C40_SUCCESSOR_REVIEWER')
+    successor['predecessor_sha256'] = predecessor_sha256
+    fs.write(C40_SUCCESSOR_FILE, canonical(successor), exclusive=True)
+    return successor
+
+
+def _session_binding(fs, chunk, session):
+    raw = fs.read('binding.json')
+    original = strict_json(raw)
+    if chunk == 'C40' and session == 'execution' and (
+            digest(original['parent']) == C40_PLANNING_PARENT_SHA256 or fs.path(C40_SUCCESSOR_FILE).exists()):
+        require(digest(raw) == C40_PLANNING_BINDING_SHA256, 'C40_SUCCESSOR_PREDECESSOR')
+        require(fs.path(C40_SUCCESSOR_FILE).is_file(), 'C40_EXECUTION_SUCCESSOR_REQUIRED')
+        successor = strict_json(fs.read(C40_SUCCESSOR_FILE))
+        require(successor.get('chunk') == chunk and digest(successor.get('parent')) == C40_EXECUTION_PARENT_SHA256
+                and successor.get('predecessor_sha256') == C40_PLANNING_BINDING_SHA256,
+                'C40_SUCCESSOR_IDENTITY')
+        return successor
+    return original
 
 
 @dataclass(frozen=True)
@@ -259,11 +378,14 @@ def verify_contract(root, contract, *, first=False):
 def open_session(checkout, chunk, session, contract, approval, *, test=False):
     chunk=chunk_id(chunk)
     binding_fs=ProjectRecordFS(checkout,'chunks/'+chunk,test=test)
-    binding=strict_json(binding_fs.read('binding.json'))
+    binding=_session_binding(binding_fs,chunk,session)
     require(binding['parent']==os.environ.get('CODEX_THREAD_ID'),'WRONG_ORIGINATING_PARENT')
     require(session=='execution' if contract['kind']=='STEP' else bool(re.fullmatch('plan-[a-z0-9-]+',session)),
             'SESSION_KIND')
     checked=verify_contract(binding_fs.checkout,contract,first=True)
+    if int(chunk[1:]) >= 25:
+        require(contract['plan_path'].casefold() not in (POST_RELEASE_MAP, RELEASE_3_MAP),
+                'CHUNK_SPECIFIC_PLAN_REQUIRED')
     if contract['kind']=='STEP':
         require(all(step_chunk(x['id'])==chunk for x in contract['steps']),'CROSS_CHUNK_PLAN')
         require(approval.get('scope')=='APPROVED_IMPLEMENTATION_PLAN','EXACT_PLAN_APPROVAL_REQUIRED')
@@ -332,13 +454,54 @@ class ProjectWorkflow(DiagnosticWorkflow):
         require(state['settings']==self._settings(),'PROJECT_PROFILE_CHANGED')
         require(strict_json(self.fs.read('session.json'))==self.config,'SESSION_CONTRACT_CHANGED')
         shared=ProjectRecordFS(self.fs.checkout,'chunks/'+self.identity.chunk,test=self.mode=='REPLAYED')
-        require(strict_json(shared.read('binding.json'))==self.config['binding'],'CHUNK_REVIEWER_BINDING_CHANGED')
+        require(_session_binding(shared,self.identity.chunk,self.identity.session)==self.config['binding'],
+                'CHUNK_REVIEWER_BINDING_CHANGED')
         self._noncanonical_adjudications(state)
         return state
 
     def _transport(self):
         # The complete creation record is frozen in both shared binding and session.
         return creation_transport(self.config['binding']['creation'])
+
+    def _is_file_request(self, request_ref):
+        return self.store.get(request_ref).get('payload', {}).get('delivery_mode') == 'VERIFIED_FILE'
+
+    def _file_packet(self, request_ref, *, create=False):
+        kind = 'detection_request' if self.contract['kind'] == 'PLAN' else 'review_request'
+        request = self.store.get(request_ref, kind)
+        p = request['payload']
+        require(p.get('delivery_mode') == 'VERIFIED_FILE' and p['binding'] == asdict(self.identity),
+                'NOT_BOUND_FILE_REQUEST')
+        raw = request['text'].encode('utf-8')
+        rel = f'{self.store.prefix}/dispatch/{request_ref}.txt'
+        path = self.fs.path(rel)
+        if create and not path.exists():
+            self.fs.write(rel, raw, exclusive=True)
+        require(self.fs.read(rel) == raw, 'REVIEW_FILE_CHANGED')
+        size, checksum = len(raw), digest(raw)
+        attestation = f'Read and verified complete request {request_ref}: {size} bytes, SHA-256 {checksum}.'
+        message = (f'The only private record you may open is {path} (UTF-8). Verify its byte count {size} and '
+                   f'SHA-256 {checksum} before reading it in full and assessing every criterion. '
+                   'If verification or complete reading fails, stop and report the problem. '
+                   'Otherwise inspect the required sources, follow the complete request, and append this line to report.scope '
+                   f'in your original JSON report:\n{attestation}')
+        return {'path': str(path), 'bytes': size, 'sha256': checksum, 'message': message,
+                'attestation': attestation, 'target': self.identity.reviewer}
+
+    def verified_file_packet(self, request_ref):
+        """Materialize only the frozen neutral text. No native send or receipt."""
+        return self._file_packet(request_ref, create=True)
+
+    def _file_report_check(self, observation):
+        ref = observation.get('request_ref')
+        if not self._is_file_request(ref):
+            return
+        packet = self._file_packet(ref)
+        wrapper = strict_json(observation['extracted_text'])
+        body = wrapper.get('report') if isinstance(wrapper, dict) else None
+        scope = body.get('scope') if isinstance(body, dict) else None
+        require(isinstance(scope, str) and scope.splitlines()[-1:] == [packet['attestation']],
+                'REVIEW_FILE_NOT_ATTESTED')
 
     def _observation(self,value,*,report=False):
         super()._observation(value,report=report)
@@ -367,6 +530,7 @@ class ProjectWorkflow(DiagnosticWorkflow):
                         and isinstance(status['completed'], str) and status['completed'].strip()
                         and status['completed'] == value.get('extracted_text'),
                         'OBSERVED_REPORT_ENVELOPE')
+                self._file_report_check(value)
                 return
             require(call.get('name')=='multi_agent_v1.wait_agent'
                     and self.identity.reviewer in call.get('arguments',{}).get('targets',[]), 'OBSERVED_REPORT_CALL')
@@ -374,8 +538,18 @@ class ProjectWorkflow(DiagnosticWorkflow):
                     and isinstance(event['status'].get(self.identity.reviewer),dict)
                     and event['status'][self.identity.reviewer].get('completed')==value.get('extracted_text'),
                     'OBSERVED_REPORT_ENVELOPE')
+            self._file_report_check(value)
         elif self._transport() == 'collaboration' and 'submission_result' in value:
             self._check_collaboration_submission(value.get('request_ref'), value['submission_result'], value)
+        elif 'submission_result' in value and self._is_file_request(value.get('request_ref')):
+            self._check_file_send_input(value['request_ref'], value['submission_result'], value)
+
+    def _check_file_send_input(self, request_ref, result, observation):
+        packet = self._file_packet(request_ref)
+        require(observation.get('request_ref') == request_ref and observation.get('tool_call') == {
+            'name': 'multi_agent_v1.send_input', 'arguments': {
+                'target': self.identity.reviewer, 'message': packet['message']}}, 'OBSERVED_FILE_SUBMISSION')
+        self._check_submission_output(result, observation)
 
     def _check_collaboration_submission(self, request_ref, result, observation):
         require(result in {'ACKNOWLEDGED', 'UNCERTAIN', 'FAILED'}, 'SUBMISSION_RESULT')
@@ -386,9 +560,29 @@ class ProjectWorkflow(DiagnosticWorkflow):
         args = call['arguments']
         require(set(args) == {'target', 'message'} and args['target'] == self.identity.reviewer,
                 'OBSERVED_SUBMISSION_TARGET')
-        request = self.store.get(request_ref)
-        require(args['message'] == request.get('text'), 'OBSERVED_SUBMISSION_MESSAGE')
+        expected = (self._file_packet(request_ref)['message'] if self._is_file_request(request_ref)
+                    else self.store.get(request_ref).get('text'))
+        require(args['message'] == expected, 'OBSERVED_SUBMISSION_MESSAGE')
+        self._check_submission_output(result, observation)
+
+    def _check_submission_output(self, result, observation):
         original = strict_json(observation['original_event'])
+        # Runtime session exports can wrap the actual result in a nonempty
+        # function_call_output record. Classify its output, retaining every
+        # byte of the original observation already held by the preflight.
+        if isinstance(original, dict):
+            frame = original.get('payload', original)
+            if isinstance(frame, dict) and frame.get('type') == 'function_call_output':
+                require('output' in frame, 'OBSERVED_SUBMISSION_OUTPUT')
+                original = frame['output']
+                if isinstance(original, str):
+                    # A tool result can itself be serialized JSON. Preserve a
+                    # native plain-text error as plain text.
+                    try:
+                        original = strict_json(original)
+                    except Refusal as exc:
+                        if exc.code != 'INVALID_JSON':
+                            raise
         empty = original is None or original == {} or original == [] or (
             isinstance(original, str) and not original.strip())
         require(not empty or result == 'UNCERTAIN', 'EMPTY_SUBMISSION_MUST_BE_UNCERTAIN')
@@ -396,15 +590,33 @@ class ProjectWorkflow(DiagnosticWorkflow):
             require(original['task_name'] == self.identity.reviewer, 'OBSERVED_SUBMISSION_TARGET')
 
     def record_submission(self, request_ref, result, observation):
-        if self._transport() == 'collaboration':
+        if self._transport() == 'collaboration' or self._is_file_request(request_ref):
             # Preserve exact input before transport checks; the inherited receipt and
             # transition remain authoritative only after those checks succeed.
             self._change('PRESERVE_NATIVE_SUBMISSION_PREFLIGHT', lambda s: self._remember(s,
                 'native_submission_preflight', {'request': request_ref, 'result': result,
                     'observation': observation, **self._dimensions()}))
             self._observation(observation)
-            self._check_collaboration_submission(request_ref, result, observation)
+            if self._transport() == 'collaboration':
+                self._check_collaboration_submission(request_ref, result, observation)
+            else:
+                self._check_file_send_input(request_ref, result, observation)
         return super().record_submission(request_ref, result, observation)
+
+    def confirm_verified_file_delivery(self, request_ref, receipt_ref, original_text, observation):
+        """Reuse the initiating user instruction only for this file's report-backed receipt."""
+        require(self._is_file_request(request_ref), 'NOT_BOUND_FILE_REQUEST')
+        state = self.inspect()['state']
+        if self.contract['kind'] == 'PLAN':
+            auth = state['authority_history'][0]
+        else:
+            active = self._active(state, {'REVIEW_PENDING', 'REPORT_CHECK', 'FINDINGS_RECONCILIATION'},
+                                  allow_blocked=True)
+            require(active['pending'] and active['pending']['request'] == request_ref, 'INTENT_REQUEST')
+            auth = self.store.get(active['authorization'], 'ingress_authorization')['authority']
+        origin = self.store.get(auth, 'authority')['provenance']
+        approval = self.authority('CONFIRM_DIAGNOSTIC_DELIVERY', request_ref, 'lit-auth:'+uuid.uuid4().hex, origin)
+        return self.confirm_delivery(request_ref, receipt_ref, original_text, observation, approval)
 
     def confirm_delivery(self, request_ref, receipt_ref, original_text, observation, approval):
         """Append report-backed delivery, never rewrite a receipt or accept a report.
@@ -603,6 +815,13 @@ class ProjectWorkflow(DiagnosticWorkflow):
         state=self.inspect()['state']
         active=self._active(state,{'REVIEW_READY'})
         require(active['pending'] and active['pending']['request']==request_ref,'INTENT_REQUEST')
+        p = self.store.get(request_ref, 'review_request')['payload']
+        compact = self._incident_compact_request(p)
+        case = 'C28' if self.identity.chunk == 'C28' else 'C26'
+        if compact or 'source_inventory_reference' in p:
+            require(compact, case + '_REVIEW_INVENTORY_SCOPE')
+            require(p.get('source_inventory_reference') == self._incident_inventory_reference(p),
+                    case + '_REVIEW_INVENTORY_CHANGED')
         intent={**self._dimensions(),'parent':self.identity.parent,'reviewer':self.identity.reviewer,
             'diagnostic_root':str(self.fs.root),'binding':digest(asdict(self.identity)),'request':request_ref,
             'request_payload':self.store.get(request_ref,'review_request')['payload'],
@@ -611,13 +830,90 @@ class ProjectWorkflow(DiagnosticWorkflow):
         self._dispatch_transition(False,False,{'diagnostic_intent':intent},'DURABLE_DIAGNOSTIC_DISPATCH_INTENT_NO_CALL')
         return intent
 
-    def _render(self,*args):
+    def _incident_compact_request(self, payload):
+        """Select only fresh replacement of this binding's validated incident."""
+        cases = {'C26': ('C26.05', 'lit-review:C26:execution:c26-05-r2-20261107'),
+                 'C28': ('C28.01', 'lit-review:C28:execution:c28-01-r2-20261109')}
+        if self.identity.chunk not in cases:
+            return False
+        step, request_id = cases[self.identity.chunk]
+        if not (self.identity.session == 'execution'
+                and payload.get('binding') == asdict(self.identity)
+                and payload.get('target_id') == step and payload.get('kind') == 'STEP'
+                and payload.get('request_id') == request_id
+                and payload.get('attempt') == 2):
+            return False
+        # _render runs inside preparation, before its new request state commits.
+        # Read the preceding committed history; do not infer an incident from ID.
+        state = self.journal.load()['state']; active = state.get('active')
+        if not (active and active['step'] == step
+                and active['phase'] in {'SELF_REASSESSMENT', 'REVIEW_READY'}
+                and len(active['requests']) in {1, 2}):
+            return False
+        for ref, record in self._noncanonical_adjudications(state):
+            original = record['scope']['request']
+            if not (record['prior_active']['step'] == step
+                    and original == active['requests'][0]
+                    and active['B'] == record['prior_active']['B']):
+                continue
+            boundary = state['records'].index(ref)
+            if not all(active.get(key) in state['records']
+                       and state['records'].index(active[key]) > boundary
+                       for key in ('self_review', 'reassessment')):
+                return False
+            old = self.store.get(original, 'review_request')['payload']
+            if old['binding'] != payload['binding']:
+                return False
+            if self.mode == 'OBSERVED':
+                if step == 'C28.01':
+                    _check_c28_noncanonical_observed(original, old, record['evidence'])
+                else:
+                    _check_c26_noncanonical_observed(original, old, record['evidence'])
+            if len(active['requests']) == 1:
+                return active['pending'] is None
+            current = active['requests'][-1]
+            return (active['phase'] == 'REVIEW_READY' and active['pending'] is not None
+                    and active['pending']['request'] == current
+                    and active['R'] == payload['source_ref']
+                    and self.store.get(current, 'review_request')['payload'] == payload)
+        return False
+
+    def _incident_inventory_reference(self, payload):
+        case = self.identity.chunk
+        folder = {'C26': 'c26-05-recovery-20261107', 'C28': 'c28-01-recovery-20261109'}[case]
+        rel = f'.lake/compatibility/{folder}/review-source-inventory.json'
+        path = _path(self.fs.checkout, rel)
+        require(path.is_file(), case + '_REVIEW_INVENTORY_MISSING')
+        raw = path.read_bytes()
+        require(strict_json(raw) == payload['source_inventory'], case + '_REVIEW_INVENTORY_MISMATCH')
+        return {'path': rel, 'sha256': digest(raw),
+            'bytes': len(raw), 'entries': len(payload['source_inventory']),
+            'instructions': 'Before assessing any criterion, read this entire JSON inventory from '
+                'binding.checkout, verify its SHA256 and byte/entry counts, and use all listed '
+                'paths/hashes/roles as the exact source scope. It replaces only the displayed '
+                'inventory table. The immutable request payload retains every inventory entry. '
+                'Do not treat partial reading or a pointer alone as source verification.'}
+
+    def prepare_review(self, request_id, validation, question="Initial review", *, verified_file=False):
+        require(type(verified_file) is bool, 'FILE_DELIVERY_OPTION')
+        # The inherited preparation calls our renderer inside its journal transaction.
+        self._preparing_file_request = verified_file
+        try:
+            return super().prepare_review(request_id, validation, question)
+        finally:
+            self._preparing_file_request = False
+
+    def _render(self,*args,verified_file=False):
         prefix=f'lit-review:{self.identity.chunk}:{self.identity.session}:'
         payload,_=render_request(*args,tag=self.tag,request_prefix=prefix,
             target_prefixes=(self.identity.chunk+'.',f'C{int(self.identity.chunk[1:]):02d}.',self.identity.chunk+':'))
         source=self.store.get(payload['source_ref'],'manifest')
         payload['source_inventory']={p:{'sha256':v['hash'],'role':v['role']} for p,v in source['inventory'].items()}
         payload['source_access']='Read actual files in binding.checkout and explicit pinned dependency paths. @environment is derived metadata. Do not read .lit-review, tmp, implementation conversation or unrelated manuscripts. Use necessary approved normative excerpts; avoid self-review/status narratives in mixed documents.'
+        if verified_file or getattr(self, '_preparing_file_request', False):
+            payload['delivery_mode'] = 'VERIFIED_FILE'
+            payload['source_access'] += (' The only private-file exception is the exact neutral request '
+                                         'named in the verified-file dispatch. Do not browse its directory.')
         payload['dimensions']=self._dimensions()
         payload['limitations']=['Source scope is explicit; no universal dependency analysis.',
             'Native/user provenance is cooperatively recorded, not authenticated.',
@@ -627,8 +923,27 @@ class ProjectWorkflow(DiagnosticWorkflow):
         payload['review_rules'].append('Follow the independent-review phases of docs/review-protocol.md; no delegation or new reviewer workflow.')
         payload['library_rubric']=LIBRARY_RUBRIC
         payload['validation_guidance']=VALIDATION_GUIDANCE
-        payload['context_documents']=['AGENTS.md','docs/review-protocol.md','docs/references.md',
-            'docs/plans/post-release-chunk-map.md']
+        context_documents = ['AGENTS.md', 'docs/review-protocol.md', 'docs/references.md']
+        if int(self.identity.chunk[1:]) >= 25:
+            context_documents.extend([RELEASE_3_MAP, self.contract['plan_path']])
+            require(all(path in source['inventory'] for path in context_documents),
+                    'REVIEW_CONTEXT_SOURCE_MISSING')
+            payload['review_rules'].append(
+                'Use the Release 3 map for programme context. Assess this request against the exact '
+                'chunk plan identified by the source_reference and normative_excerpt in each requirement.')
+            payload['validation_guidance'] = {
+                **VALIDATION_GUIDANCE,
+                'entry_point': 'scripts/validate_development.py',
+                'step': ['python scripts/validate_release.py focused <affected-targets>',
+                         'python scripts/validate_development.py static'],
+                'clean_checkpoint': 'python scripts/validate_development.py requires an authorized clean '
+                                    'checkpoint. Preserve unrelated work and repeat after amendment.',
+                'growth_boundary': 'Use python scripts/validate_development.py compatibility for both released '
+                                   'baselines and trust for the independent historical comparison and axiom audit. '
+                                   'Check qualification evidence and current import approvals before public growth.'}
+        else:
+            context_documents.append(POST_RELEASE_MAP)
+        payload['context_documents'] = context_documents
         payload['report_format']={'outer_keys':['report','new_evidence'],
             'report_keys':['schema','tag','request_id','attempt','source_ref','kind','binding_digest','scope','findings','criteria','verification','earlier_reconciliation','conclusion'],
             'schema':1,'tag':self.tag,'binding_digest':digest(asdict(self.identity)),
@@ -640,7 +955,13 @@ class ProjectWorkflow(DiagnosticWorkflow):
             'evidence_id_prefix':'reviewer:','evidence_actor':self.identity.reviewer,'evidence_outcomes':['PASS','FAIL'],
             'earlier_reconciliation_format':'List of notes, or one prose string preserved verbatim as a derived singleton list; unresolved concerns remain unresolved.',
             'instructions':'Use reviewer: IDs for verification and criteria. Include actual checks/outputs, null command if not run, and limitations. No findings quota or wrapper prose.'}
-        return payload,'LEANINFOTHEORY SUPERVISED SOURCE REVIEW — NOT PLAN APPROVAL\n\n'+json.dumps(payload,indent=2,ensure_ascii=False)
+        view = payload
+        if self._incident_compact_request(payload):
+            # Display the complete scope through a byte-bound neutral artifact;
+            # retain the full inventory in the immutable request payload.
+            payload['source_inventory_reference'] = self._incident_inventory_reference(payload)
+            view = {k:v for k,v in payload.items() if k != 'source_inventory'}
+        return payload,'LEANINFOTHEORY SUPERVISED SOURCE REVIEW — NOT PLAN APPROVAL\n\n'+json.dumps(view,indent=2,ensure_ascii=False)
 
     def _classify_body(self,raw,envelope,expected,seen):
         return classify_report(raw,envelope,expected,seen,provenance=self._report_provenance(),
@@ -662,10 +983,17 @@ class ProjectWorkflow(DiagnosticWorkflow):
         """Check cooperative originals and exact repair bytes, never delivery."""
         request = self.store.get(request_ref, 'review_request')
         p = request['payload']
+        if p['target_id'] == 'C26.05':
+            return self._c26_noncanonical_scope(request_ref, evidence, repairs, old, new)
+        if p['target_id'] == 'C28.01':
+            return self._c28_noncanonical_scope(request_ref, evidence, repairs, old, new)
+        c25 = p['target_id'] == 'C25.05'
+        criteria = {c['id'] for c in p['requirements']}
         require(self.contract['kind'] == 'STEP' and self._transport() == 'collaboration'
-                and p['target_id'] == 'C24.06'
-                and {c['id'] for c in p['requirements']} == {
-                    'C24.06-IDENTITY', 'C24.06-USE', 'C24.06-REPRODUCIBILITY'},
+                and ((p['target_id'] == 'C24.06' and criteria == {
+                    'C24.06-IDENTITY', 'C24.06-USE', 'C24.06-REPRODUCIBILITY'})
+                or (c25 and len(p['requirements']) == 2
+                    and criteria == {'C25.05-EXAMPLES', 'C25.05-CALLER'})),
                 'NONCANONICAL_CASE_SCOPE')
         require(isinstance(evidence, dict) and set(evidence) == {
             'schema', 'parent', 'reviewer', 'request', 'source_ref', 'native_call',
@@ -719,7 +1047,10 @@ class ProjectWorkflow(DiagnosticWorkflow):
                     reviewer.get('partial_observations'), reviewer.get('canonical_file')))
                 and isinstance(comparison.get('mismatches'), list), 'NONCANONICAL_KNOWN_MISMATCH')
         require(canonical_hash and example.get('canonical_sha256') == canonical_hash
-                and isinstance(observed_hash, str) and re.fullmatch(r'[0-9a-f]{64}', observed_hash)
+                and isinstance(observed_hash, str)
+                and (path == 'README.md'
+                     and observed_hash == canonical_hash[:31] + '71f' + canonical_hash[31:]
+                     if c25 else re.fullmatch(r'[0-9a-f]{64}', observed_hash))
                 and observed_hash != canonical_hash and {
                     'field': 'source_inventory[' + path + '].sha256',
                     'model_visible_received': observed_hash, 'canonical': canonical_hash
@@ -733,17 +1064,33 @@ class ProjectWorkflow(DiagnosticWorkflow):
                 and reviewer['canonical_file'].get('raw_sha256') == digest(request['text'].encode()),
                 'NONCANONICAL_KNOWN_MISMATCH')
         candidate = evidence['candidate']
-        require(isinstance(candidate, dict) and set(candidate) == {'ref', 'commit', 'tree'}
-                and candidate['ref'] == 'refs/heads/codex/c24-candidate'
-                and all(isinstance(candidate[k], str) and re.fullmatch(r'[0-9a-f]{40}', candidate[k])
-                        for k in ('commit', 'tree')), 'NONCANONICAL_CANDIDATE')
-        # This authorization preserves the already compiled checkpoint. Synthetic
-        # source-copy fixtures have their own explicitly REPLAYED Git identities.
-        require(self.mode != 'OBSERVED' or (
-                    candidate['commit'] == '05f9bec97d73329877d4f52a6c52f20e7fad4c92'
-                    and candidate['tree'] == 'd13ecc992bf94ce05b8a9198aed8778aa289c3d5'),
-                'NONCANONICAL_APPROVED_CANDIDATE')
+        if c25:
+            # C25 has no C24 candidate-branch authority. Preserve the selected
+            # checkout's actual HEAD and index, including its empty staged diff.
+            require(isinstance(candidate, dict) and set(candidate) == {
+                        'head', 'index_entries_sha256', 'cached_diff_sha256'}
+                    and candidate == {k: old['git'][k] for k in candidate}
+                    and candidate == {k: new['git'][k] for k in candidate},
+                    'NONCANONICAL_CANDIDATE')
+            if self.mode == 'OBSERVED':
+                _check_c25_noncanonical_observed(request_ref, p, call, example, candidate)
+        else:
+            require(isinstance(candidate, dict) and set(candidate) == {'ref', 'commit', 'tree'}
+                    and candidate['ref'] == 'refs/heads/codex/c24-candidate'
+                    and all(isinstance(candidate[k], str) and re.fullmatch(r'[0-9a-f]{40}', candidate[k])
+                            for k in ('commit', 'tree')), 'NONCANONICAL_CANDIDATE')
+            # Preserve the historical C24 checkpoint. Explicitly REPLAYED
+            # source-copy fixtures have their own Git identities in either case.
+            require(self.mode != 'OBSERVED' or (
+                        candidate['commit'] == '05f9bec97d73329877d4f52a6c52f20e7fad4c92'
+                        and candidate['tree'] == 'd13ecc992bf94ce05b8a9198aed8778aa289c3d5'),
+                    'NONCANONICAL_APPROVED_CANDIDATE')
+        return self._noncanonical_qualified_delta(request_ref, evidence, repairs, old, new, require_all=c25)
+
+    def _noncanonical_qualified_delta(self, request_ref, evidence, repairs, old, new, *, require_all):
+        p = self.store.get(request_ref, 'review_request')['payload']
         require(isinstance(repairs, dict) and repairs and set(repairs) <= NONCANONICAL_REPAIR_PATHS
+                and (not require_all or set(repairs) == NONCANONICAL_REPAIR_PATHS)
                 and set(delta(old, new)) == set(repairs), 'NONCANONICAL_REPAIR_SCOPE')
         for path, change in repairs.items():
             require(isinstance(change, dict) and set(change) == {'before', 'after'}
@@ -783,6 +1130,205 @@ class ProjectWorkflow(DiagnosticWorkflow):
                 'old_source': p['source_ref'], 'new_source_digest': digest(new),
                 'evidence_digest': digest(evidence), 'repairs_digest': digest(repairs)}
 
+    def _c26_noncanonical_receipt(self, request_ref, evidence):
+        """Preserve the one contradicted uncertain record, granting no delivery."""
+        item = evidence.get('contradicted_receipt') if isinstance(evidence, dict) else None
+        require(isinstance(item, dict) and set(item) == {
+                    'reference', 'record', 'disposition', 'acceptance_credit'}
+                and item['disposition'] == 'CANONICAL_MESSAGE_CLAIM_CONTRADICTED'
+                and item['acceptance_credit'] is False
+                and isinstance(item['reference'], str)
+                and re.fullmatch(r'[0-9a-f]{64}', item['reference'])
+                and self.fs.path(f"{self.store.prefix}/objects/{item['reference']}.json").is_file(),
+                'NONCANONICAL_C26_RECEIPT')
+        receipt = self.store.get(item['reference'], 'submission_observation')
+        require(receipt == item['record'] and receipt.get('request') == request_ref
+                and receipt.get('result') == 'UNCERTAIN', 'NONCANONICAL_C26_RECEIPT')
+        # This is the original, incorrect cooperative assertion, never a new
+        # claim that the opaque native argument was canonical plaintext.
+        observation = receipt.get('observation', {})
+        self._observation(observation)
+        self._check_collaboration_submission(request_ref, 'UNCERTAIN', observation)
+        require(observation.get('request_ref') == request_ref
+                and strict_json(observation['original_event']) in ('', None, {}, []),
+                'NONCANONICAL_C26_RECEIPT')
+        return item['reference']
+
+    def _c26_noncanonical_scope(self, request_ref, evidence, repairs, old, new):
+        request = self.store.get(request_ref, 'review_request'); p = request['payload']
+        require(self.contract['kind'] == 'STEP' and self._transport() == 'collaboration'
+                and p['target_id'] == 'C26.05' and len(p['requirements']) == 2
+                and {c['id'] for c in p['requirements']} == {
+                    'C26.05-RANDOMIZED', 'C26.05-SINGULAR'}, 'NONCANONICAL_CASE_SCOPE')
+        require(isinstance(evidence, dict) and set(evidence) == {
+                    'schema', 'parent', 'reviewer', 'request', 'source_ref', 'native_call',
+                    'native_result', 'root_observation', 'reviewer_observation', 'qualification',
+                    'candidate', 'contradicted_receipt', 'stop_native_call', 'stop_native_result'}
+                and evidence['schema'] == 1 and evidence['parent'] == self.identity.parent
+                and evidence['reviewer'] == self.identity.reviewer
+                and evidence['request'] == request_ref and evidence['source_ref'] == p['source_ref']
+                and p['binding'] == asdict(self.identity), 'NONCANONICAL_BINDING')
+        self._c26_noncanonical_receipt(request_ref, evidence)
+        frame_keys = ('native_call', 'native_result', 'stop_native_call', 'stop_native_result')
+        require(all(isinstance(evidence[k], str) and evidence[k] for k in frame_keys),
+                'NONCANONICAL_RAW_FRAMES')
+        frames = [strict_json(evidence[k]) for k in frame_keys]
+        require(all(isinstance(f, dict) and isinstance(f.get('payload'), dict) for f in frames),
+                'NONCANONICAL_RAW_FRAMES')
+        call, result, stop_call, stop_result = [f['payload'] for f in frames]
+        require(call.get('type') == 'function_call' and call.get('namespace') == 'collaboration'
+                and call.get('name') == 'followup_task' and isinstance(call.get('call_id'), str)
+                and call['call_id'] and isinstance(call.get('arguments'), str)
+                and result.get('type') == 'function_call_output'
+                and result.get('call_id') == call['call_id'] and result.get('output') == '',
+                'NONCANONICAL_EMPTY_RESULT')
+        args = strict_json(call['arguments'])
+        require(isinstance(args, dict) and set(args) == {'target', 'message'}
+                and args['target'] == self.identity.reviewer and isinstance(args['message'], str)
+                and args['message'].strip() and args['message'] != request['text'],
+                'NONCANONICAL_NATIVE_ARGUMENTS')
+        stopped = ('Stopped the C26.05 review after confirming that the delivered request omitted two '
+                   'inventory entries. I sent the partial checks and interruption details to the parent. '
+                   'No criterion report or acceptance credit was issued.')
+        require(stop_call.get('type') == 'function_call' and stop_call.get('namespace') == 'collaboration'
+                and stop_call.get('name') == 'list_agents' and isinstance(stop_call.get('call_id'), str)
+                and stop_call['call_id'] and stop_call['call_id'] != call['call_id']
+                and isinstance(stop_call.get('arguments'), str)
+                and strict_json(stop_call['arguments']) == {'path_prefix': self.identity.reviewer}
+                and stop_result.get('type') == 'function_call_output'
+                and stop_result.get('call_id') == stop_call['call_id'], 'NONCANONICAL_C26_STOP')
+        stop_event = strict_json(stop_result.get('output', ''))
+        require(isinstance(stop_event, dict) and isinstance(stop_event.get('agents'), list),
+                'NONCANONICAL_C26_STOP')
+        matches = [x for x in stop_event['agents'] if isinstance(x, dict)
+                   and x.get('agent_name') == self.identity.reviewer]
+        require(len(matches) == 1 and matches[0].get('agent_status') == {'completed': stopped},
+                'NONCANONICAL_C26_STOP')
+        root, reviewer = evidence['root_observation'], evidence['reviewer_observation']
+        require(isinstance(root, dict) and isinstance(reviewer, dict)
+                and root.get('actor') == self.config['binding']['creation']['parent_role']
+                and root.get('native_call_id') == call['call_id'] and root.get('request_ref') == request_ref
+                and root.get('native_result') == 'UNCERTAIN' and root.get('submission_id') is None
+                and root.get('acceptance_credit') is False and root.get('status') == 'FAIL'
+                and root.get('receipt_canonical_claim_contradicted') is True
+                and root.get('canonical_text_sha256') == digest(request['text'].encode())
+                and root.get('physical_frames') == {
+                    k: digest(evidence[k].encode()) for k in frame_keys}
+                and reviewer.get('actor') == self.identity.reviewer
+                and reviewer.get('request_id') == p['request_id'], 'NONCANONICAL_OBSERVATIONS')
+        paths = ('LeanInfoTheory/Examples/Fano.lean',
+                 'LeanInfoTheory/Shannon/SemanticBridge/FiniteFamilyIndependence.lean')
+        require(all(p['source_inventory'].get(path, {}).get('role') == 'semantic' for path in paths),
+                'NONCANONICAL_C26_OMISSIONS')
+        known = [{'path': path, 'canonical_sha256': p['source_inventory'][path]['sha256'],
+                  'emitted_visible_entry': None} for path in paths]
+        require(root.get('known_omissions') == known
+                and reviewer.get('model_visible_comparison') == {'known_omissions': known,
+                    'full_received_hash_or_counts': None, 'complete_mismatch_count': None}
+                and reviewer.get('native_received_event') == {'retained': False,
+                    'decoded_body_sha256': None, 'raw_sha256': None, 'raw_bytes': None}
+                and reviewer.get('partial_observations', {}).get('acceptance_credit') is False
+                and reviewer.get('canonical_file') == {'source_ref': p['source_ref'],
+                    'raw_sha256': digest(request['text'].encode())}, 'NONCANONICAL_C26_OMISSIONS')
+        candidate = evidence['candidate']
+        require(isinstance(candidate, dict) and set(candidate) == {
+                    'head', 'index_entries_sha256', 'cached_diff_sha256'}
+                and candidate == {k: old['git'][k] for k in candidate}
+                and candidate == {k: new['git'][k] for k in candidate}, 'NONCANONICAL_CANDIDATE')
+        if self.mode == 'OBSERVED':
+            _check_c26_noncanonical_observed(request_ref, p, evidence)
+        return self._noncanonical_qualified_delta(request_ref, evidence, repairs, old, new, require_all=True)
+
+    def _c28_noncanonical_scope(self, request_ref, evidence, repairs, old, new):
+        """Correlate the rejected preflight and original report without accepting either."""
+        request = self.store.get(request_ref, 'review_request')
+        p = request['payload']
+        require(self.contract['kind'] == 'STEP' and self._transport() == 'collaboration'
+                and self.identity.chunk == 'C28' and self.identity.session == 'execution'
+                and p['binding'] == asdict(self.identity) and p['target_id'] == 'C28.01'
+                and p['kind'] == 'STEP' and p['attempt'] == 1 and len(p['requirements']) == 2
+                and {c['id'] for c in p['requirements']} == {'C28.01-SUM', 'C28.01-API'},
+                'NONCANONICAL_CASE_SCOPE')
+        frames = ('native_call', 'native_result', 'report_call', 'report_result')
+        keys = {'schema', 'preflight', 'canonical_file', 'original_report', 'report_observation',
+                'disposition', 'candidate', 'qualification', *frames}
+        require(isinstance(evidence, dict) and set(evidence) == keys and evidence['schema'] == 1
+                and evidence['disposition'] == 'REJECTED_PREFLIGHT_AND_ORIGINAL_REPORT_NO_CREDIT'
+                and all(isinstance(evidence[k], str) and evidence[k].strip()
+                        for k in (*frames, 'original_report', 'report_observation')),
+                'NONCANONICAL_C28_EVIDENCE')
+        raw_text = request['text'].encode()
+        require(evidence['canonical_file'] == {'sha256': digest(raw_text), 'bytes': len(raw_text),
+                    'entries': len(p['source_inventory'])}, 'NONCANONICAL_C28_REQUEST_FILE')
+        originals = [strict_json(evidence[k]) for k in frames]
+        require(all(isinstance(f, dict) and isinstance(f.get('payload'), dict) for f in originals),
+                'NONCANONICAL_RAW_FRAMES')
+        call, result, list_call, list_result = [f['payload'] for f in originals]
+        for invoked, returned, name in ((call, result, 'followup_task'),
+                                        (list_call, list_result, 'list_agents')):
+            require(invoked.get('type') == 'function_call' and invoked.get('namespace') == 'collaboration'
+                    and invoked.get('name') == name and isinstance(invoked.get('arguments'), str)
+                    and isinstance(invoked.get('call_id'), str) and invoked['call_id']
+                    and returned.get('type') == 'function_call_output'
+                    and returned.get('call_id') == invoked['call_id'], 'NONCANONICAL_C28_FRAME_PAIR')
+        require(result.get('output') == '' and call['call_id'] != list_call['call_id'],
+                'NONCANONICAL_EMPTY_RESULT')
+        args = strict_json(call['arguments'])
+        require(isinstance(args, dict) and set(args) == {'target', 'message'}
+                and isinstance(args['target'], str) and '/' not in args['target']
+                and self.config['binding']['creation']['parent_role'] + '/' + args['target']
+                    == self.identity.reviewer
+                and isinstance(args['message'], str) and args['message'].strip()
+                and args['message'] != request['text'], 'NONCANONICAL_NATIVE_ARGUMENTS')
+        preflight = self.store.get(evidence['preflight'], 'native_submission_preflight')
+        obs = preflight['observation']
+        self._observation(obs)
+        require(preflight == {'request': request_ref, 'result': 'UNCERTAIN', 'observation': obs,
+                    **self._dimensions()} and obs.get('request_ref') == request_ref
+                and obs['event_ref'] == 'native:' + call['call_id']
+                and obs['tool_call'] == {'name': 'collaboration.followup_task', 'arguments': args}
+                and strict_json(obs['original_event']) == originals[1], 'NONCANONICAL_C28_PREFLIGHT')
+        # An opaque native argument and a later file read do not prove identical
+        # transmitted plaintext. The complete original is retained as evidence only.
+        list_args = strict_json(list_call['arguments'])
+        report_obs = strict_json(evidence['report_observation'])
+        self._observation(report_obs, report=True)
+        require(list_args == {'path_prefix': self.identity.reviewer}
+                and report_obs['event_ref'] == 'native:' + list_call['call_id']
+                and report_obs['tool_call'] == {'name': 'collaboration.list_agents', 'arguments': list_args}
+                and report_obs['original_event'] == list_result.get('output')
+                and report_obs.get('request_ref') == request_ref
+                and report_obs['extracted_text'] == evidence['original_report'],
+                'NONCANONICAL_C28_REPORT')
+        wrapper = strict_json(evidence['original_report'])
+        report = wrapper.get('report') if isinstance(wrapper, dict) else None
+        require(isinstance(report, dict) and all(report.get(k) == p[k] for k in
+                    ('kind', 'source_ref', 'request_id', 'attempt'))
+                and report.get('binding_digest') == digest(p['binding']), 'NONCANONICAL_C28_REPORT')
+        candidate = evidence['candidate']
+        require(isinstance(candidate, dict) and set(candidate) == {
+                    'head', 'index_entries_sha256', 'cached_diff_sha256'}
+                and candidate == {k: old['git'][k] for k in candidate}
+                and candidate == {k: new['git'][k] for k in candidate}, 'NONCANONICAL_CANDIDATE')
+        if self.mode == 'OBSERVED':
+            _check_c28_noncanonical_observed(request_ref, p, evidence)
+        return self._noncanonical_qualified_delta(request_ref, evidence, repairs, old, new, require_all=True)
+
+    def _c28_preflight_history(self, records, request_ref, expected):
+        preflights = []
+        for ref in records:
+            payload = self.store.get(ref)
+            if isinstance(payload, dict) and payload.get('request') == request_ref:
+                obj = strict_json(self.fs.read(f'{self.store.prefix}/objects/{ref}.json'))
+                # Even a refused confirmation retains delivery_observation
+                # before checking the receipt. Such an arrival is outside
+                # this exact rejected-preflight-only incident.
+                require(obj['kind'] in {'self_handoff', 'native_submission_preflight'},
+                        'NONCANONICAL_C28_OTHER_REQUEST_RECORD')
+                if obj['kind'] == 'native_submission_preflight':
+                    preflights.append(ref)
+        require(preflights == [expected], 'NONCANONICAL_C28_PREFLIGHT_HISTORY')
+
     def _noncanonical_adjudications(self, state):
         results, used = [], set()
         for ref in state['records']:
@@ -795,15 +1341,24 @@ class ProjectWorkflow(DiagnosticWorkflow):
                     and r['tag'] == self.tag and isinstance(r['reason'], str) and r['reason'].strip(),
                     'NONCANONICAL_RECORD_SCHEMA')
             scope = r['scope']; request = scope['request']; prior = r['prior_active']
+            target = self.store.get(request, 'review_request')['payload']['target_id']
             boundary = state['records'].index(ref)
             require(all(value in state['records'] and state['records'].index(value) < boundary
                         for value in (request, scope['old_source'], r['new_source'], r['authority']))
-                    and request not in used and prior['step'] == 'C24.06'
+                    and request not in used and prior['step'] == target
                     and prior['phase'] == 'REVIEW_PENDING' and prior['blocker'] == 'DISPATCH_UNCERTAIN'
                     and prior['pending']['request'] == request and prior['pending']['status'] == 'PENDING'
-                    and prior['pending'].get('diagnostic_intent') and not prior['pending'].get('submission_receipt')
+                    and prior['pending'].get('diagnostic_intent')
+                    and (target == 'C26.05' or not prior['pending'].get('submission_receipt'))
                     and prior['R'] == scope['old_source'] and not prior['report'] and not prior['reports']
                     and not prior['reconciliations'] and not prior['F'], 'NONCANONICAL_RECORD_SCOPE')
+            if target == 'C26.05':
+                receipt = self._c26_noncanonical_receipt(request, r['evidence'])
+                require(prior['pending'].get('submission_receipt') == receipt
+                        and receipt in state['records'] and state['records'].index(receipt) < boundary
+                        and not prior['assessments'], 'NONCANONICAL_C26_RECEIPT')
+            if target == 'C28.01':
+                self._c28_preflight_history(state['records'][:boundary], request, r['evidence']['preflight'])
             old = self.store.get(scope['old_source'], 'manifest')
             new = self.store.get(r['new_source'], 'manifest')
             require(scope == self._noncanonical_scope(request, r['evidence'], r['repairs'], old, new),
@@ -847,11 +1402,17 @@ class ProjectWorkflow(DiagnosticWorkflow):
         self._report_format_requalification_barrier(state); self._prerequisites(state)
         pending = a['pending']
         require(a['blocker'] == 'DISPATCH_UNCERTAIN' and pending and pending['status'] == 'PENDING'
-                and pending.get('diagnostic_intent') and not pending.get('submission_receipt')
+                and pending.get('diagnostic_intent')
+                and (a['step'] == 'C26.05' or not pending.get('submission_receipt'))
                 and not a['report'] and not a['reports'] and not a['reconciliations'] and not a['F']
                 and not a['assessments'] and all(e['status'] in {'APPLIED', 'REVERSED'} for e in a['edits']),
                 'NONCANONICAL_PENDING_SCOPE')
         request = pending['request']; p = self.store.get(request, 'review_request')['payload']
+        allowed_receipt = None
+        if p['target_id'] == 'C26.05':
+            allowed_receipt = self._c26_noncanonical_receipt(request, evidence)
+            require(allowed_receipt in state['records']
+                    and pending.get('submission_receipt') == allowed_receipt, 'NONCANONICAL_C26_RECEIPT')
         intent = pending['diagnostic_intent']
         require(a['R'] == p['source_ref'] and intent['request'] == request
                 and intent['binding'] == digest(asdict(self.identity))
@@ -867,7 +1428,8 @@ class ProjectWorkflow(DiagnosticWorkflow):
             if isinstance(r, dict) and r.get('request') == request:
                 # get() has checked the immutable envelope's hash/schema above.
                 kind = strict_json(self.fs.read(f'{self.store.prefix}/objects/{ref}.json'))['kind']
-                require(kind not in {'submission_observation', 'delivery_confirmation', 'review_acceptance'},
+                require((kind == 'submission_observation' and ref == allowed_receipt)
+                        or kind not in {'submission_observation', 'delivery_confirmation', 'review_acceptance'},
                         'NONCANONICAL_ARRIVAL_EXISTS')
         for ref in state['captures']:
             capture = self.store.get(ref, 'capture')
@@ -877,10 +1439,20 @@ class ProjectWorkflow(DiagnosticWorkflow):
         old = self.store.get(a['R'], 'manifest')
         new = self.current(state, 'NONCANONICAL_REPAIR_SOURCE')
         scope = self._noncanonical_scope(request, evidence, repairs, old, new)
+        if p['target_id'] == 'C28.01':
+            self._c28_preflight_history(state['records'], request, evidence['preflight'])
         candidate = evidence['candidate']
-        require(_git(self.fs.checkout, 'rev-parse', '--verify', candidate['ref']).decode().strip() == candidate['commit']
-                and _git(self.fs.checkout, 'rev-parse', '--verify', candidate['commit'] + '^{tree}').decode().strip()
-                    == candidate['tree'], 'NONCANONICAL_CANDIDATE_DRIFT')
+        if p['target_id'] in {'C25.05', 'C26.05', 'C28.01'}:
+            require(candidate == {
+                'head': _git(self.fs.checkout, 'rev-parse', 'HEAD').decode().strip(),
+                'index_entries_sha256': digest(_git(self.fs.checkout, 'ls-files', '--stage', '-z')),
+                'cached_diff_sha256': digest(_git(self.fs.checkout, 'diff', '--cached', '--binary',
+                                               '--no-ext-diff', '--no-textconv'))},
+                'NONCANONICAL_CANDIDATE_DRIFT')
+        else:
+            require(_git(self.fs.checkout, 'rev-parse', '--verify', candidate['ref']).decode().strip() == candidate['commit']
+                    and _git(self.fs.checkout, 'rev-parse', '--verify', candidate['commit'] + '^{tree}').decode().strip()
+                        == candidate['tree'], 'NONCANONICAL_CANDIDATE_DRIFT')
         return scope, new
 
     def noncanonical_dispatch_target(self, evidence, repairs):
@@ -1027,7 +1599,8 @@ class ProjectWorkflow(DiagnosticWorkflow):
     def detection_request(self,*args,**kwargs):
         raise Refusal('USE_EXPLICIT_PLAN_REVIEW_REQUEST')
 
-    def plan_review_request(self,request_id):
+    def plan_review_request(self,request_id,*,verified_file=False):
+        require(type(verified_file) is bool, 'FILE_DELIVERY_OPTION')
         require(self.contract['kind']=='PLAN','EXPLICIT_PLAN_REVIEW_SESSION_REQUIRED')
         state=self.inspect()['state'];self._detection_admission(state)
         require(not any(self.store.get(r).get('diagnostic_kind')=='REVIEWER_DETECTION_ONLY' for r in state['records']),
@@ -1038,7 +1611,8 @@ class ProjectWorkflow(DiagnosticWorkflow):
             source=self._manifest(s,'PLAN_REVIEW_SOURCE')
             payload,text=self._render(self.identity,request_id,1,'PLAN',source,
                 [Criterion(**c) for c in self.contract['plan_criteria']],[],[],
-                'Review the proposed plan, its obligations, reuse, scope and validation. Do not demand nonexistent proofs or approve implementation.',self.plan_id)
+                'Review the proposed plan, its obligations, reuse, scope and validation. Do not demand nonexistent proofs or approve implementation.',self.plan_id,
+                verified_file=verified_file)
             record={'payload':payload,'text':text,'diagnostic_kind':'REVIEWER_DETECTION_ONLY',
                 'purpose':'LIT_PLAN_REVIEW_NOT_IMPLEMENTATION','normal_step_authorized':False,**self._dimensions()}
             ref=self._remember(s,'detection_request',record)

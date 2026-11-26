@@ -12,7 +12,7 @@ on:
         type: boolean
 
       pages_dry_run:
-        description: Build and verify both v0.2.0 Pages archives (requires api_docs)
+        description: Verify all three sites and archive the main site and v0.3.0 API (requires api_docs)
         required: false
         default: false
         type: boolean
@@ -62,9 +62,7 @@ jobs:
       - name: Check static release contract and Pages packaging regressions
         run: |
           mkdir -p tmp
-          python scripts/validate_published.py static
-          python scripts/test_release_pages.py
-          python tests/external-consumer/test_run.py
+          python scripts/validate_development.py static
 
       - name: Set up Lean and build the default target
         uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596 # v1
@@ -76,17 +74,8 @@ jobs:
           lint: "false"
           use-mathlib-cache: "true"
 
-      - name: Build maintained targets with warnings as errors
-        run: python scripts/validate_release.py maintained-build
-
-      - name: Compile release-documentation examples
-        run: python scripts/validate_release.py documentation
-
-      - name: Check frozen API, import boundaries, simp attributes, and axioms
-        run: python scripts/validate_release.py trust
-
-      - name: Check final repository hygiene
-        run: python scripts/validate_release.py hygiene
+      - name: Build maintained targets and check examples, both retained APIs, trust and hygiene
+        run: python scripts/validate_development.py compiled
 
   api-documentation:
     name: API documentation release gate
@@ -112,7 +101,7 @@ jobs:
       - name: Check static documentation-build contract
         run: |
           mkdir -p tmp
-          python scripts/validate_published.py static
+          python scripts/validate_development.py static
 
       - name: Set up Lean and restore the mathlib cache
         uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596 # v1
@@ -135,14 +124,25 @@ jobs:
           DOCGEN_SRC: github
         run: python scripts/validate_release.py api-docs
 
-      - name: Assemble and verify the two Pages packages
+      - name: Verify the three sites and archive the two deployment targets
         if: ${{ inputs.pages_dry_run && !inputs.publish }}
         run: |
-          python scripts/package_release_pages.py build --expected-commit "$GITHUB_SHA"
-          pair=".lake/release-pages/$GITHUB_SHA"
-          python scripts/archive_release_pages.py "$pair" LeanInfoTheory "$RUNNER_TEMP/main/artifact.tar"
-          python scripts/archive_release_pages.py "$pair" LeanInfoTheory-API "$RUNNER_TEMP/api/artifact.tar"
-          cat "$pair/receipt.json" >> "$GITHUB_STEP_SUMMARY"
+          package=".lake/release-pages/$GITHUB_SHA"
+          python scripts/package_release_pages.py build --release-3 --expected-commit "$GITHUB_SHA"
+          mkdir -p "$RUNNER_TEMP/qualification"
+          cp "$package/receipt.json" "$RUNNER_TEMP/qualification/receipt.json"
+          python scripts/archive_release_pages.py "$package" LeanInfoTheory "$RUNNER_TEMP/main/artifact.tar" --file-manifest "$RUNNER_TEMP/qualification/main-files.json"
+          python scripts/archive_release_pages.py "$package" LeanInfoTheory-API-v0.3.0 "$RUNNER_TEMP/api/artifact.tar" --file-manifest "$RUNNER_TEMP/qualification/api-files.json"
+          cat "$package/receipt.json" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Retain the release source and all three site identities
+        if: ${{ inputs.pages_dry_run && !inputs.publish }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: pages-receipt-${{ github.sha }}
+          path: ${{ runner.temp }}/qualification/
+          if-no-files-found: error
+          retention-days: 14
 
       - name: Retain the main website dry run
         if: ${{ inputs.pages_dry_run && !inputs.publish }}

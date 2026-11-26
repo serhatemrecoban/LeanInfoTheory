@@ -5,7 +5,65 @@ Lean environment with [`doc-gen4`](https://github.com/leanprover/doc-gen4).
 The build is deliberately separate from the library package: downstream users
 still acquire only LeanInfoTheory and its pinned mathlib dependency.
 
-## Candidate and stable references
+## Qualifying the third release website
+
+The main homepage introduces the latest published release. The documentation
+hub links to each version. Keep the v0.1.0 reference at
+`/LeanInfoTheory/docs/v0.1.0/` and the v0.2.0 API at
+`/LeanInfoTheory-API/v0.2.0/`. The third-release layout has a main-site
+entry at `/LeanInfoTheory/docs/v0.3.0/` and a full reference at
+`/LeanInfoTheory-API-v0.3.0/v0.3.0/`. Each site has a separate
+1,000,000,000-byte size check.
+
+Prepare the package and DOI-free CFF for the selected date with
+`scripts/prepare_publication.py metadata`. The clean capture checkout
+uses those bytes. After review and lead approval, include the contract and
+its reviewed digests in the final candidate. From that clean commit with the
+two-pass `DOCGEN_SRC=github` API build, run the following commands in
+PowerShell. The default packaging inputs recover both previous versions from
+the pinned v0.2.0 bundles and verify their digests.
+
+```powershell
+$releaseSha = git rev-parse HEAD
+python scripts/package_release_pages.py build --release-3 --expected-commit $releaseSha
+$releaseSites = ".lake/release-pages/$releaseSha"
+python scripts/archive_release_pages.py $releaseSites LeanInfoTheory .lake/release-archives/main/artifact.tar --file-manifest .lake/release-archives/main-files.json
+python scripts/archive_release_pages.py $releaseSites LeanInfoTheory-API-v0.3.0 .lake/release-archives/api/artifact.tar --file-manifest .lake/release-archives/api-files.json
+```
+
+Use fresh output paths for both archives. The package receipt records the
+source commit and tree, the API attestation and marker digests, the three site
+digests, and navigation checks. Archive creation checks every TAR entry
+against the measured site and exports file sizes and digests. The manual CI
+dry run retains both archives, both file manifests and the receipt for 14 days.
+Preserve the reviewed ZIP and TAR hashes, file manifests and the receipt
+at a durable bundles revision before publication.
+
+For a local route rehearsal with C40, pass `--rehearsal-source` with the
+clean qualified checkout of A, its full `--expected-commit`, and a fresh
+`--output`. Optional `--historical-route` and `--v02-site` accept recovered
+v0.1.0 and whole v0.2.0 trees with the expected digests. This mode records
+the approved public presentation files and their hashes, marks the output as rehearsal, and
+requires `--allow-rehearsal` for local archiving. Production promotion
+accepts only a candidate receipt.
+
+After the immutable release exists, the two deploying repositories can adopt
+the [manual promotion workflow](../scripts/templates/promote-release3-pages.yml)
+from the tagged source. Check in `docs/compatibility/v0.3.0-promotion.json`
+as a subsequent maintenance change. It records the full `release_commit`,
+annotated tag object `annotated_tag`, full `bundles_revision`,
+`receipt_sha256`, and the `zip_sha256` and `tar_sha256` for each of
+`archives.main` and `archives.api`. The workflow selects its own site from
+the repository name and defaults to a verification-only run.
+
+Deploy the API first. Check its search, six theorem links and links back to
+the existing documentation hub. Main-site promotion verifies the live
+version marker against the qualified bytes and source, then resolves all six
+theorems in the live search index and checks their signatures and GitHub
+source links before switching the homepage. Later DOI maintenance uses the verified Zenodo
+version record and preserves the separately identified all-versions DOI.
+
+## Historical v0.2.0 candidate and stable references
 
 The current source inventory covers **811 declarations in 57 supported modules**;
 the unpublished v0.2.0 candidate retains the lightweight root's 92 aliases and

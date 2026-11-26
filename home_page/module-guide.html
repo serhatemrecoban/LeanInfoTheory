@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Module guide | LeanInfoTheory</title>
-    <meta name="description" content="Choose LeanInfoTheory imports for finite probability, entropy, mutual information, KL divergence, channels, Markov chains, Fano inequalities, and sufficiency.">
+    <meta name="description" content="Choose a focused LeanInfoTheory import for hypothesis testing, coding, capacity, prefix lengths or type classes. Find the core entropy, KL and finite probability modules.">
     <link rel="canonical" href="https://serhatemrecoban.github.io/LeanInfoTheory/module-guide.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="LeanInfoTheory">
     <meta property="og:title" content="Module guide | LeanInfoTheory">
-    <meta property="og:description" content="Choose LeanInfoTheory imports for finite probability, entropy, mutual information, KL divergence, channels, Markov chains, Fano inequalities, and sufficiency.">
+    <meta property="og:description" content="Choose a focused LeanInfoTheory import for hypothesis testing, coding, capacity, prefix lengths or type classes. Find the core entropy, KL and finite probability modules.">
     <meta property="og:url" content="https://serhatemrecoban.github.io/LeanInfoTheory/module-guide.html">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Module guide | LeanInfoTheory">
-    <meta name="twitter:description" content="Choose LeanInfoTheory imports for finite probability, entropy, mutual information, KL divergence, channels, Markov chains, Fano inequalities, and sufficiency.">
+    <meta name="twitter:description" content="Choose a focused LeanInfoTheory import for hypothesis testing, coding, capacity, prefix lengths or type classes. Find the core entropy, KL and finite probability modules.">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -31,29 +31,45 @@
 
     <main class="main-content" role="main">
       <p class="lead">
-        This hand-written import guide complements the
-        <a href="docs/v0.2.0/">signature-bearing v0.2.0 API reference</a> and the
-        supplementary <a href="docs/api-index.html">source-derived declaration
-        inventory</a>. The versioned API tree is generated from the exact
-        release commit and served at the stable route above.
+        This guide covers all 77 supported modules in v0.3.0.
+        Search the <a href="docs/v0.3.0/">v0.3.0 API reference</a> for exact types
+        or the <a href="docs/api-index.html">source-derived declaration inventory</a> for names and owners.
+        The historical <a href="docs/v0.2.0/">v0.2.0</a> and <a href="docs/v0.1.0/">v0.1.0</a>
+        references document the imports available at each published tag.
       </p>
 
       <section class="notice" aria-labelledby="candidate-modules">
-        <h2 id="candidate-modules">Imports in v0.2.0</h2>
-        <p>
-          This guide lists all 57 supported modules in <code>v0.2.0</code>,
-          whose source inventory has 811 declarations.
-          It also identifies non-stable examples and reference anchors. New
-          modules are not part of the frozen <code>v0.1.0</code> API;
-          use its historical reference when working against that release.
-        </p>
-        <p>
-          Canonical information is in nats; total variation is half L1.
-          Finite alphabets, positive-length guards, support premises and
-          independence hypotheses remain part of each theorem's contract.
-          The <a href="theorems.html#candidate-results">current capability map</a>
-          distinguishes source coding from channel weak converses.
-        </p>
+        <h2 id="candidate-modules">Focused imports for the six new packages</h2>
+        <p>Version 0.3.0 adds 20 modules and 107 declarations to v0.2.0.
+          The <a href="theorems.html#candidate-results">theorem highlights</a> give the mathematical
+          assumptions. Information is in nats except where a result explicitly converts to bits.</p>
+        <ul>
+          <li><a href="docs/release-3-examples.html#finite-testing">Finite hypothesis testing.</a>
+            <code>LeanInfoTheory.Probability.BinaryTesting</code> defines randomized tests and the two attained total-variation optima.
+            <code>LeanInfoTheory.Probability.NeymanPearson</code> supplies optimal tests with exactly the requested size.</li>
+          <li><a href="docs/release-3-examples.html#one-shot">Information density and one-shot coding.</a>
+            <code>LeanInfoTheory.Shannon.InformationDensity</code> defines the signed log ratio and mass threshold.
+            <code>LeanInfoTheory.Shannon.RandomCodebook</code> supplies the random coding experiment,
+            <code>LeanInfoTheory.Shannon.ChannelCodingOneShot</code> extracts a deterministic code, and
+            <code>LeanInfoTheory.Shannon.IidInformationDensity</code> treats the iid threshold probability.</li>
+          <li><a href="docs/release-3-examples.html#capacity">Operational capacity and expurgation.</a>
+            <code>LeanInfoTheory.Shannon.OperationalCapacity</code> identifies capacity as the least upper bound of achievable rates.
+            <code>LeanInfoTheory.Shannon.ChannelCodeExpurgation</code> restricts the messages of one code, and
+            <code>LeanInfoTheory.Shannon.OperationalExpurgation</code> controls the rate loss and maximal error along a family.</li>
+          <li><a href="docs/release-3-examples.html#separation">Lossless source–channel separation.</a>
+            <code>LeanInfoTheory.Shannon.SourceChannelCode</code> composes codes with the source-induced message prior.
+            <code>LeanInfoTheory.Shannon.SourceChannelSeparation</code> proves the strict direct theorem, and
+            <code>LeanInfoTheory.Shannon.SourceChannelConverse</code> gives the necessary entropy bound for reliable reconstruction.</li>
+          <li><a href="docs/release-3-examples.html#prefix">Binary prefix coding.</a>
+            <code>LeanInfoTheory.Shannon.PrefixCode</code> gives Kraft's inequality and converse for binary lengths.
+            <code>LeanInfoTheory.Shannon.PrefixCodeLength</code> bounds and attains the minimum expected length on the support,
+            and <code>LeanInfoTheory.Shannon.PrefixCodeLengthIid</code> gives the per-symbol bounds for positive-length iid blocks.</li>
+          <li><a href="docs/release-3-examples.html#types">Method of types.</a>
+            <code>LeanInfoTheory.Shannon.WordType</code> counts symbols, and <code>LeanInfoTheory.Shannon.EmpiricalPMF</code>
+            identifies the empirical law at positive length. <code>LeanInfoTheory.Shannon.TypeClassCardinality</code>
+            counts a class exactly. <code>LeanInfoTheory.Shannon.TypeClassBounds</code> bounds its size by entropy, and
+            <code>LeanInfoTheory.Shannon.TypeClassProbability</code> gives its iid probability and KL bounds.</li>
+        </ul>
       </section>
 
       <p>

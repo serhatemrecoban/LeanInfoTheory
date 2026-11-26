@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Theorem highlights | LeanInfoTheory</title>
-    <meta name="description" content="Machine-checked information theory in Lean 4: entropy bounds, mutual information, data processing, Fano inequalities, KL divergence, and sufficient statistics.">
+    <meta name="description" content="Read Lean statements for Neyman–Pearson testing, one-shot coding, channel capacity, lossless separation, prefix codes and type classes, with their assumptions and limits.">
     <link rel="canonical" href="https://serhatemrecoban.github.io/LeanInfoTheory/theorems.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="LeanInfoTheory">
     <meta property="og:title" content="Theorem highlights | LeanInfoTheory">
-    <meta property="og:description" content="Machine-checked information theory in Lean 4: entropy bounds, mutual information, data processing, Fano inequalities, KL divergence, and sufficient statistics.">
+    <meta property="og:description" content="Read Lean statements for Neyman–Pearson testing, one-shot coding, channel capacity, lossless separation, prefix codes and type classes, with their assumptions and limits.">
     <meta property="og:url" content="https://serhatemrecoban.github.io/LeanInfoTheory/theorems.html">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Theorem highlights | LeanInfoTheory">
-    <meta name="twitter:description" content="Machine-checked information theory in Lean 4: entropy bounds, mutual information, data processing, Fano inequalities, KL divergence, and sufficient statistics.">
+    <meta name="twitter:description" content="Read Lean statements for Neyman–Pearson testing, one-shot coding, channel capacity, lossless separation, prefix codes and type classes, with their assumptions and limits.">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -30,13 +30,42 @@
 
     <main class="main-content" role="main">
       <p class="lead">
-        This hand-written page selects theorem highlights from the
-        original foundation. Version <code>v0.2.0</code> also includes finite AEP,
-        source-coding results, channel capacities and channel-coding weak converses.
-        For current declaration names and owners, see the
-        <a href="docs/api-index.html">source-derived declaration index</a>.
-        The signature-bearing API gives exact release types and source links.
+        Select a theorem to read its Lean signature, or follow an example to see how to use it.
+        The <a href="docs/api-index.html">declaration index</a> lists names and owning modules.
       </p>
+
+      <section aria-labelledby="candidate-results">
+        <h2 id="candidate-results">Six theorems in v0.3.0</h2>
+        <ul>
+          <li><strong><a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Probability/NeymanPearson.html#PMF.BinaryTest.exists_likelihoodThresholdTest">Neyman–Pearson.</a></strong>
+            Given finite null and alternative laws and a level between zero and one, choose a threshold and a common
+            tie probability. The resulting randomized test attains that size and has greatest power among all tests
+            of at most that size. Null atoms are allowed. <a href="docs/release-3-examples.html#finite-testing">Testing example</a></li>
+          <li><strong><a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Shannon/ChannelCodingOneShot.html#LeanInfoTheory.Shannon.exists_blockChannelCode_errorProbability_le_of_infoDensityThreshold">One-shot channel coding.</a></strong>
+            For a given blocklength, a positive number <i>M</i> of messages and a real threshold <i>t</i>, some
+            supported codebook with a deterministic decoder has uniform-message average error at most the true-pair miss
+            probability plus (<i>M</i> − 1) exp(−<i>t</i>). The mass test applies everywhere. Its log-density
+            interpretation requires joint support. <a href="docs/release-3-examples.html#one-shot">One-shot example</a></li>
+          <li><strong><a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Shannon/OperationalCapacity.html#LeanInfoTheory.Shannon.isLUB_isAchievableRate">Operational capacity.</a></strong>
+            For a finite memoryless channel with nonempty input, information capacity is the least upper bound of
+            achievable rates, including when capacity is zero. For each nonnegative rate strictly below capacity, one code family works for every
+            rate tolerance. Expurgating that family gives vanishing maximal error.
+            <a href="docs/release-3-examples.html#capacity">Capacity and expurgation example</a></li>
+          <li><strong><a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Shannon/SourceChannelSeparation.html#LeanInfoTheory.Shannon.exists_sourceChannelCode_tendsto_errorProbability_zero">Lossless separation.</a></strong>
+            At one channel use per finite iid source symbol, entropy strictly below capacity gives vanishing block
+            reconstruction error. The converse permits correlated channel inputs and implies entropy at most capacity.
+            These results leave equality open. <a href="docs/release-3-examples.html#separation">Separation example</a></li>
+          <li><strong><a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Shannon/PrefixCodeLengthIid.html#LeanInfoTheory.Shannon.optimalPrefixLength_iid_div_bounds">Binary prefix length.</a></strong>
+            For iid blocks of positive length <i>n</i>, the minimum expected number of bits per source symbol is
+            at least entropy in bits and strictly less than entropy plus 1/<i>n</i>. The codewords are assigned on
+            the source support. <a href="docs/release-3-examples.html#prefix">Prefix coding example</a></li>
+          <li><strong><a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Shannon/TypeClassProbability.html#LeanInfoTheory.Shannon.iid_toOuterMeasure_typeClass">Type-class probability.</a></strong>
+            For a positive-length empirical law <i>q</i> supported by the prior <i>p</i>, multiply the class
+            cardinality by exp(−<i>n</i>(<i>H</i>(<i>q</i>) + <i>D</i>(<i>q</i> ‖ <i>p</i>))) to obtain the
+            iid probability of the entire class. Entropy and KL are in nats. An observed zero-prior symbol gives
+            zero class mass and infinite KL. <a href="docs/release-3-examples.html#types">Method-of-types example</a></li>
+        </ul>
+      </section>
 
       <table class="status-table">
         <caption>Finite entropy and information-measure layer</caption>
@@ -220,30 +249,25 @@
         </tbody>
       </table>
 
-      <section aria-labelledby="candidate-results">
-        <h2 id="candidate-results">v0.2.0 capabilities and limits</h2>
+      <section aria-labelledby="v02-results">
+        <h2 id="v02-results">Results in the published v0.2.0</h2>
         <p>
           The <code>v0.2.0</code> source inventory contains 811
           supported declarations across 57 modules. These additions are
-          separate from the historical selection above. Use the
-          <a href="module-guide.html#candidate-modules">focused import guide</a>
-          and <a href="docs/api-index.html">current source inventory</a> to find
-          exact names, owners and assumptions.
+          included in the <a href="docs/v0.2.0/">v0.2.0 reference</a>,
+          with each declaration's exact signature and source.
         </p>
         <ul>
           <li><strong>Quantitative finite probability:</strong> half-L1 total variation, maximal coupling and gluing, Pinsker, quantitative independence, entropy continuity, and finite-PMF compactness/topology. Null fibers and finite-KL guards remain explicit.</li>
           <li><strong>Products and AEP:</strong> dependent products, iid words, product entropy/KL and actual product-channel information. Finite iid AEP uses supported self-information and strict typical sets; it does not assert a stationary/ergodic extension.</li>
           <li><strong>Fixed-length source coding:</strong> total deterministic codes, integer message budgets, one code family above entropy, a source strong converse and an <code>IsGLB</code> entropy threshold. This does not assert an efficient encoder or attainment exactly at entropy.</li>
-          <li><strong>Finite information capacity:</strong> an attained maximizing input law, product/repeated capacity and standard-channel values. Product upper bounds allow correlated inputs; information capacity is distinct from operational coding capacity.</li>
+          <li><strong>Finite information capacity:</strong> an attained maximizing input law, product/repeated capacity and standard-channel values. The product upper bounds allow correlated channel inputs.</li>
           <li><strong>Channel weak converses:</strong> uniform message indices, possibly colliding encoders and the same actual code throughout Fano, Markov/data processing and capacity bounds. Undivided forms cover zero length; normalized forms retain positive-length/rate guards. Eventual and frequent rate gaps have distinct conclusions.</li>
         </ul>
         <p>
-          Information is measured in nats unless explicitly converted. Channel
-          achievability, operational-capacity equality and the channel strong
-          converse remain outside scope. The source strong converse supplies
-          none of those channel claims. Randomized/list decoding, feedback,
-          cost constraints, infinite alphabets and variable/prefix coding also
-          remain outside this programme.
+          Information is measured in nats unless explicitly converted. The third
+          release adds direct channel coding and binary prefix coding. A channel strong
+          converse, feedback, cost-constrained channels and infinite alphabets remain outside its scope.
         </p>
       </section>
 

@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Information Theory in Lean: Guides and API | LeanInfoTheory</title>
-    <meta name="description" content="Practical LeanInfoTheory guides for installation, entropy, mutual information, Markov chains, and research formalization, plus the v0.2.0 API reference.">
+    <meta name="description" content="Install LeanInfoTheory, find a focused import, or try six examples from v0.3.0. Browse Lean signatures and source links by version.">
     <link rel="canonical" href="https://serhatemrecoban.github.io/LeanInfoTheory/docs/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="LeanInfoTheory">
     <meta property="og:title" content="Information Theory in Lean: Guides and API | LeanInfoTheory">
-    <meta property="og:description" content="Practical LeanInfoTheory guides for installation, entropy, mutual information, Markov chains, and research formalization, plus the v0.2.0 API reference.">
+    <meta property="og:description" content="Install LeanInfoTheory, find a focused import, or try six examples from v0.3.0. Browse Lean signatures and source links by version.">
     <meta property="og:url" content="https://serhatemrecoban.github.io/LeanInfoTheory/docs/">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Information Theory in Lean: Guides and API | LeanInfoTheory">
-    <meta name="twitter:description" content="Practical LeanInfoTheory guides for installation, entropy, mutual information, Markov chains, and research formalization, plus the v0.2.0 API reference.">
+    <meta name="twitter:description" content="Install LeanInfoTheory, find a focused import, or try six examples from v0.3.0. Browse Lean signatures and source links by version.">
     <link rel="stylesheet" href="../styles.css">
   </head>
   <body>
@@ -30,29 +30,39 @@
     </header>
     <main class="main-content" role="main">
       <p class="lead">
-        The v0.2.0 API reference covers all 57 supported modules and 811 declarations.
-        Its complete dependency documentation and search data live together on the
-        separate API site. This documentation hub keeps the same address.
+        Search the <a href="v0.3.0/">v0.3.0 API</a> for the signatures and source of
+        918 supported declarations in 77 modules. For a project installed from a public tag,
+        choose its matching reference below.
       </p>
       <section class="notice" aria-labelledby="candidate-source">
-        <h2 id="candidate-source">The second release</h2>
-        <p>Quantitative probability, independent products, finite-iid source coding,
-        attained information capacity and channel weak converses extend the original
-        foundation. Use the <a href="../module-guide.html#candidate-modules">module guide</a>
-        and <a href="../theorems.html#candidate-results">capability map</a> for assumptions and limits.</p>
-        <p>The <a href="v0.1.0/">historical v0.1.0 reference</a> remains available unchanged.
-        The <a href="research-projects.html#pfr-case-study">Perfect Functional Representations case study</a>
-        used that original release.</p>
+        <h2 id="candidate-source">Examples from the third release</h2>
+        <ul>
+          <li><a href="release-3-examples.html#finite-testing">Finite hypothesis testing</a> gives a most powerful randomized test at a prescribed size.</li>
+          <li><a href="release-3-examples.html#one-shot">Information density and one-shot coding</a> bound the decoding error at a chosen blocklength and message count.</li>
+          <li><a href="release-3-examples.html#capacity">Operational capacity and expurgation</a> connect achievable rates to information capacity and control the worst retained message error.</li>
+          <li><a href="release-3-examples.html#separation">Lossless source–channel separation</a> gives reliable reconstruction when entropy is strictly below capacity.</li>
+          <li><a href="release-3-examples.html#prefix">Binary prefix coding</a> bounds the expected number of bits per iid source symbol.</li>
+          <li><a href="release-3-examples.html#types">The method of types</a> computes the probability of a whole empirical class, including impossible classes.</li>
+        </ul>
+        <p>Use the <a href="../module-guide.html#candidate-modules">module guide</a> to choose an import and
+        the <a href="../theorems.html#candidate-results">theorem highlights</a> to check the hypotheses.</p>
       </section>
 
+      <h2>API documentation by version</h2>
+      <ul>
+        <li><a href="v0.3.0/">v0.3.0 API reference</a> for the third release.</li>
+        <li><a href="v0.2.0/">v0.2.0 API reference</a> for the second release, with 811 declarations in 57 modules.</li>
+        <li><a href="v0.1.0/">v0.1.0 API reference</a> for the 601-declaration foundation used in the
+          <a href="research-projects.html#pfr-case-study">Perfect Functional Representations case study</a>.</li>
+      </ul>
+
+      <h2>Guides and tools</h2>
       <div class="link-grid">
         <a href="getting-started.html">Getting started</a>
         <a href="information-measures.html">Entropy, mutual information, and KL</a>
         <a href="markov-data-processing.html">Markov chains and data processing</a>
         <a href="research-projects.html">Formalizing a research paper</a>
         <a href="mathlib.html">LeanInfoTheory and mathlib</a>
-        <a href="v0.2.0/">v0.2.0 API reference</a>
-        <a href="v0.1.0/">Historical v0.1.0 API reference</a>
         <a href="api-index.html">Source-derived declaration inventory</a>
         <a href="../module-guide.html">Module guide</a>
         <a href="../theorems.html">Theorem highlights</a>
@@ -66,11 +76,9 @@
       </div>
 
       <section class="notice" aria-label="Generated docs status">
-        <p>Versioned API snapshots render exact signatures and preserve each release's
-        source identity. Imported dependency pages support navigation; they are not
-        additional LeanInfoTheory declarations. The source-derived inventory is a
-        supplementary discovery aid and also includes non-stable examples and reference
-        anchors. Use the module guide to choose supported imports.</p>
+        <p>API search includes imported dependency pages alongside LeanInfoTheory declarations.
+        Each version links its project declarations to the corresponding source revision.
+        The source-derived inventory also lists non-stable examples and reference modules.</p>
       </section>
     </main>
   </body>

@@ -26,12 +26,12 @@ cd LeanInfoTheory
 lake exe cache get
 lake build LeanInfoTheory</code></pre>
       <p>
-        The v0.1.0 baseline uses Lean <code>v4.33.1</code> and
+        The third release uses Lean <code>v4.33.1</code> and
         mathlib <code>v4.33.1</code>.
       </p>
 
       <h2>Focused Checks</h2>
-      <pre><code>python scripts/validate_release.py
+      <pre><code>python scripts/validate_development.py
 python scripts/validate_release.py focused LeanInfoTheory.Shannon.SemanticBridge</code></pre>
       <p>
         The first command is the canonical local release gate. It checks the
@@ -46,7 +46,7 @@ python scripts/validate_release.py focused LeanInfoTheory.Shannon.SemanticBridge
 python scripts/generate_v0_1_public_api.py --check
 python scripts/generate_website_blueprint.py
 python scripts/generate_website_api_index.py
-python scripts/validate_release.py static</code></pre>
+python scripts/validate_development.py static</code></pre>
       <p>
         Run these after changing Lean imports, public declarations, or doc
         comments. They regenerate the website's module-level dependency map,
@@ -67,10 +67,11 @@ python scripts/validate_release.py static</code></pre>
       </p>
 
       <h2 id="candidate-staging">Versioned documentation and release validation</h2>
-      <p>Version <code>v0.2.0</code> contains 811 supported declarations across 57 modules.
-      The main site and historical <code>docs/v0.1.0/</code> route retain their existing
-      address. The complete second-release API is served under
-      <code>/LeanInfoTheory-API/v0.2.0/</code>, with its dependencies and search data.</p>
+      <p>The third release has 918 supported declarations across 77 modules.
+      The <a href="docs/">documentation hub</a> links to its
+      <a href="docs/v0.3.0/">version entry</a> and the archived references for
+      <a href="docs/v0.1.0/">v0.1.0</a> and <a href="docs/v0.2.0/">v0.2.0</a>.
+      Each snapshot keeps its own signatures, search data and source links.</p>
       <p>Release validation binds clean source, retained APIs, external-consumer builds
       and two-pass API evidence to the exact candidate. Source, docstring or metadata
       changes require renewed applicability checks. Public source links identify an

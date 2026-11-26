@@ -41,6 +41,20 @@ Report conflicts explicitly. Do not silently choose the most convenient
 source, treat historical prose as current implementation, or promote a proposal
 to an approved plan.
 
+## Local workspace hygiene
+
+- Do not create folders directly on the Desktop without the lead's explicit
+  permission. Keep auxiliary validation checkouts under the repository's
+  ignored `.worktrees/` directory unless another location is approved; reuse
+  suitable existing checkouts where possible.
+- Limit folder changes to Lean-project-related folders within the authorized
+  task scope. Do not move, rename, delete, or otherwise modify unrelated
+  folders.
+- Relocate registered validation worktrees with `git worktree move`, preserving
+  their registration and contents. Keep original paths in historical validation
+  evidence; record relocations separately and recheck path-dependent evidence
+  before reusing it.
+
 ## Stable mathematical conventions
 
 - Use mathlib `PMF` for finite probability laws.
@@ -162,6 +176,9 @@ to an approved plan.
   [`docs/review-operations.md`](docs/review-operations.md). The implementation
   task uses native tools and its own persistent chunk reviewer; ordinary
   discussion, inspection, and reviewer work do not recursively invoke it.
+  For an authorized review, choose inline or verified-file delivery without
+  asking the lead. Follow the recorder procedure; neither method changes scope,
+  reviewer, evidence requirements, or authority to start a step.
   Private `.lit-review/` records are durable state, not cleanup scratch. One
   eligible message selects one approved step; reserve the final step for
   cumulative closeout and a maintained next-chunk handoff before final capture.
@@ -213,9 +230,16 @@ checks). It checks the maintained citation and promotion workflow alongside
 the frozen release contracts. Use the tagged validator for the exact tagged
 snapshot and the focused build, documentation and trust commands below.
 
-The cross-platform release validator is the executable source of truth for the
-maintained target list and trust policy. During iteration, run focused targets
-through it:
+On the Release 3 development checkout, CI uses `scripts/validate_development.py`.
+Use its `static` gate for source and policy checks, `compatibility` for compiled
+retention of the 601 and 811 declarations, and `trust` for the independent
+historical comparison, current boundaries and axiom audit. At the third-release
+freeze the compatibility gate also checks all 918 declarations against the
+independently reviewed v0.3.0 capture. The final candidate must carry the
+approved contract and its digest envelope. See the
+[compatibility guide](docs/compatibility/README.md) for the release controls
+and matched growth fixtures. Run focused Lake targets through the shared
+release validator:
 
 ```powershell
 python scripts/validate_release.py focused LeanInfoTheory.Shannon.FiniteFamily
@@ -226,18 +250,19 @@ checks. Once the candidate or checkpoint changes are committed into a clean
 tree, run the complete maintained suite and repeat it after any amendment:
 
 ```powershell
-python scripts/validate_release.py
+python scripts/validate_development.py
 ```
 
-The default command and the standalone `hygiene` command require no staged,
-unstaged, or unignored untracked paths. The root `.gitattributes` fixes tracked
-text to LF so Lake manifests remain byte-stable in ordinary Windows checkouts.
+The default development command and `python scripts/validate_release.py hygiene`
+require no staged, unstaged, or unignored untracked paths. The root `.gitattributes`
+fixes tracked text to LF so Lake manifests remain byte-stable in ordinary Windows
+checkouts.
 The default command runs non-mutating generated-artifact checks, the default
 Lake build, the eight-target warning-as-error build, independently compiles all
-marked README Lean examples and the four maintained website-guide examples with
+marked README Lean examples and all maintained website-guide examples with
 warnings as errors, checks exact direct-import
 closures for all current supported modules, rebuilds and compares retained
-signatures/imports/root exports against the release contract, audits exact current
+signatures/imports/root exports against both released contracts, audits exact current
 inventory/owners and reviewed `simp` sets, runs the full project axiom audit, checks exact
 package/preliminary legal and release-documentation metadata, checks the
 website, and performs final repository hygiene. It is the routine suite and
@@ -300,7 +325,7 @@ python scripts/generate_current_public_api.py
 python scripts/generate_v0_1_public_api.py --check
 python scripts/generate_website_blueprint.py
 python scripts/generate_website_api_index.py
-python scripts/validate_release.py static
+python scripts/validate_development.py static
 ```
 
 The two website generators and the current public-API generator support `--check`
@@ -364,8 +389,9 @@ checker must verify the frozen route digest and source-link boundary.
 - `CITATION.cff` is the canonical release metadata source and uses the
   affiliation `EPFL, Mathematics of Information Laboratory`. Under the
   approved automatic post-release GitHub--Zenodo route, the immutable tagged
-  CFF remains DOI-free and no `.zenodo.json` is added. The evolving default-
-  branch CFF records the v0.2.0 DOI `10.5281/zenodo.23973538` (2026-11-05).
+  CFF remains DOI-free and no `.zenodo.json` is added. Update the default-branch
+  citation after verifying the new Zenodo version record and archive. The
+  v0.2.0 version DOI is `10.5281/zenodo.23973538` (2026-11-05).
   The historical v0.1.0 DOI is `10.5281/zenodo.22229599` (2026-09-01).
   The all-versions DOI is `10.5281/zenodo.22229598`.
 - Do not create, register, link, or configure a Zenodo account for the project

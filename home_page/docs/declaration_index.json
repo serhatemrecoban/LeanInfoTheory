@@ -1,5 +1,5 @@
 {
-  "declaration_count": 926,
+  "declaration_count": 1033,
   "declarations": [
     {
       "doc": "Public project name used by documentation and the website.",
@@ -1152,6 +1152,176 @@
       "short_name": "sideInfo_preserves_condEntropy"
     },
     {
+      "doc": "A randomized binary test, giving the probability of rejecting the null at each observation.",
+      "kind": "abbrev",
+      "kind_label": "Definition",
+      "line": 44,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "BinaryTest"
+    },
+    {
+      "doc": "The deterministic test that rejects the null exactly on the event `s`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 53,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.ofEvent",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "ofEvent"
+    },
+    {
+      "doc": "The rejection weight of an event test is its zero-one indicator.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 59,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.ofEvent_apply",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "ofEvent_apply"
+    },
+    {
+      "doc": "The test rejecting where the alternative has strictly greater mass; ties accept the null.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 64,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.tvTest",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "tvTest"
+    },
+    {
+      "doc": "The probability that a test rejects the null when observations have law `P`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 70,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.rejectProb",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "rejectProb"
+    },
+    {
+      "doc": "The rejection probability of a randomized binary test lies in the unit interval.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 74,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.rejectProb_mem_Icc",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "rejectProb_mem_Icc"
+    },
+    {
+      "doc": "The size (type-I error) is the rejection probability under the null law `P0`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 86,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.size",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "size"
+    },
+    {
+      "doc": "The power is the rejection probability under the alternative law `P1`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 90,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.power",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "power"
+    },
+    {
+      "doc": "The type-II error is the probability of accepting the null under the alternative law `P1`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 94,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.typeIIError",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "typeIIError"
+    },
+    {
+      "doc": "The rejection probability of an event test is the real mass of its rejection event.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 98,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.rejectProb_ofEvent",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "rejectProb_ofEvent"
+    },
+    {
+      "doc": "The type-II error of an event test is the real mass of the complementary acceptance event.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 107,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.typeIIError_ofEvent",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "typeIIError_ofEvent"
+    },
+    {
+      "doc": "The unweighted sum of type-I error under `P0` and type-II error under `P1`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 113,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.errorSum",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "errorSum"
+    },
+    {
+      "doc": "Every randomized test has error sum at least one minus total variation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 117,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.one_sub_totalVariation_le_errorSum",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "one_sub_totalVariation_le_errorSum"
+    },
+    {
+      "doc": "The strict mass-comparison test has error sum one minus total variation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 128,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.errorSum_tvTest",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "errorSum_tvTest"
+    },
+    {
+      "doc": "The least error sum over all randomized tests is one minus total variation.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 142,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.isLeast_errorSum",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "isLeast_errorSum"
+    },
+    {
+      "doc": "The average probability of error under equal priors and zero-one loss.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 151,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.equalPriorError",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "equalPriorError"
+    },
+    {
+      "doc": "The least equal-prior error over all randomized tests is half of one minus TV.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 155,
+      "module": "LeanInfoTheory.Probability.BinaryTesting",
+      "name": "PMF.BinaryTest.isLeast_equalPriorError",
+      "path": "LeanInfoTheory/Probability/BinaryTesting.lean",
+      "short_name": "isLeast_equalPriorError"
+    },
+    {
       "doc": "A joint law couples `p` and `q` when its first and second pushforwards are exactly `p` and `q`, respectively. The joint law is the first argument.",
       "kind": "def",
       "kind_label": "Definition",
@@ -1962,6 +2132,46 @@
       "short_name": "iid_map_perm"
     },
     {
+      "doc": "Reject above the alternative-to-null mass threshold, accept below it, and reject with probability `\u03b3` on its boundary.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 43,
+      "module": "LeanInfoTheory.Probability.NeymanPearson",
+      "name": "PMF.BinaryTest.likelihoodThresholdTest",
+      "path": "LeanInfoTheory/Probability/NeymanPearson.lean",
+      "short_name": "likelihoodThresholdTest"
+    },
+    {
+      "doc": "The rejection weight is one above the threshold, zero below, and `\u03b3` at equality.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 53,
+      "module": "LeanInfoTheory.Probability.NeymanPearson",
+      "name": "PMF.BinaryTest.likelihoodThresholdTest_apply",
+      "path": "LeanInfoTheory/Probability/NeymanPearson.lean",
+      "short_name": "likelihoodThresholdTest_apply"
+    },
+    {
+      "doc": "A likelihood-threshold test has at least the power of every randomized test whose size is at most its own size. The threshold may be zero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 66,
+      "module": "LeanInfoTheory.Probability.NeymanPearson",
+      "name": "PMF.BinaryTest.power_le_power_likelihoodThresholdTest",
+      "path": "LeanInfoTheory/Probability/NeymanPearson.lean",
+      "short_name": "power_le_power_likelihoodThresholdTest"
+    },
+    {
+      "doc": "At every prescribed level in the closed unit interval, one randomized likelihood-threshold test has exactly that size and dominates every randomized competitor under the size cap. The threshold and common boundary weight are chosen before the competitor. No support inclusion is required.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 272,
+      "module": "LeanInfoTheory.Probability.NeymanPearson",
+      "name": "PMF.BinaryTest.exists_likelihoodThresholdTest",
+      "path": "LeanInfoTheory/Probability/NeymanPearson.lean",
+      "short_name": "exists_likelihoodThresholdTest"
+    },
+    {
       "doc": "The product of finite-output coordinate channels, evaluated at an input word. No input distribution or independence assumption on inputs is required.",
       "kind": "def",
       "kind_label": "Definition",
@@ -2712,6 +2922,146 @@
       "short_name": "errorProbability_one_length_eq_sum"
     },
     {
+      "doc": "Failure probability under the channel row of the sent index. It is defined independently of how often that index is sent.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 40,
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageErrorProbability",
+      "path": "LeanInfoTheory/Shannon/ChannelCodeExpurgation.lean",
+      "short_name": "messageErrorProbability"
+    },
+    {
+      "doc": "Uniform block error is the arithmetic mean of the errors at the original message indices, including any indices with identical codewords.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 46,
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_eq_mean_messageErrorProbability",
+      "path": "LeanInfoTheory/Shannon/ChannelCodeExpurgation.lean",
+      "short_name": "errorProbability_eq_mean_messageErrorProbability"
+    },
+    {
+      "doc": "Decoding error for the joint law obtained by sampling an index from the supplied prior and then sampling its channel output.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 53,
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbabilityWithPrior",
+      "path": "LeanInfoTheory/Shannon/ChannelCodeExpurgation.lean",
+      "short_name": "errorProbabilityWithPrior"
+    },
+    {
+      "doc": "Weighting each row error by the mass of its sent index gives the actual decoding error under the supplied prior.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 60,
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbabilityWithPrior_eq_sum",
+      "path": "LeanInfoTheory/Shannon/ChannelCodeExpurgation.lean",
+      "short_name": "errorProbabilityWithPrior_eq_sum"
+    },
+    {
+      "doc": "Sampling uniformly on the positive message budget gives the released uniform-message block error.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 74,
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbabilityWithPrior_uniformOfFintype",
+      "path": "LeanInfoTheory/Shannon/ChannelCodeExpurgation.lean",
+      "short_name": "errorProbabilityWithPrior_uniformOfFintype"
+    },
+    {
+      "doc": "A point-mass prior selects the error of that message index.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 81,
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbabilityWithPrior_pure",
+      "path": "LeanInfoTheory/Shannon/ChannelCodeExpurgation.lean",
+      "short_name": "errorProbabilityWithPrior_pure"
+    },
+    {
+      "doc": "Largest sent-index error over a positive message budget.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 88,
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.maximalErrorProbability",
+      "path": "LeanInfoTheory/Shannon/ChannelCodeExpurgation.lean",
+      "short_name": "maximalErrorProbability"
+    },
+    {
+      "doc": "Bounding the maximal error is equivalent to bounding every sent-index error by the same real number.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 94,
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.maximalErrorProbability_le_iff",
+      "path": "LeanInfoTheory/Shannon/ChannelCodeExpurgation.lean",
+      "short_name": "maximalErrorProbability_le_iff"
+    },
+    {
+      "doc": "The maximum controls the error of the same code under every message prior.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 102,
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.errorProbabilityWithPrior_le_maximalErrorProbability",
+      "path": "LeanInfoTheory/Shannon/ChannelCodeExpurgation.lean",
+      "short_name": "errorProbabilityWithPrior_le_maximalErrorProbability"
+    },
+    {
+      "doc": "Retain the indices specified by an embedding. Invert that embedding on retained decoder outputs and send all other decoder outputs to the fallback.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 119,
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.restrictMessages",
+      "path": "LeanInfoTheory/Shannon/ChannelCodeExpurgation.lean",
+      "short_name": "restrictMessages"
+    },
+    {
+      "doc": "A correct decision on a retained index remains correct after restriction.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 125,
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.restrictMessages_decoder_of_eq",
+      "path": "LeanInfoTheory/Shannon/ChannelCodeExpurgation.lean",
+      "short_name": "restrictMessages_decoder_of_eq"
+    },
+    {
+      "doc": "Restricting the message set can only decrease the error of a retained index. The transmitted word and its channel row are the same in both codes.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 134,
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.messageErrorProbability_restrictMessages_le",
+      "path": "LeanInfoTheory/Shannon/ChannelCodeExpurgation.lean",
+      "short_name": "messageErrorProbability_restrictMessages_le"
+    },
+    {
+      "doc": "At least half the original message indices, rounded up, have row error at most twice the uniform mean. At zero mean every index meets the threshold.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 152,
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.half_le_card_filter_messageErrorProbability",
+      "path": "LeanInfoTheory/Shannon/ChannelCodeExpurgation.lean",
+      "short_name": "half_le_card_filter_messageErrorProbability"
+    },
+    {
+      "doc": "Enumerate all indices with error at most twice the uniform mean. Each positive requested budget up to that count has one restriction whose maximal error, and hence its error under every prior, obeys the same bound.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 200,
+      "module": "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.exists_expurgated_restrictions",
+      "path": "LeanInfoTheory/Shannon/ChannelCodeExpurgation.lean",
+      "short_name": "exists_expurgated_restrictions"
+    },
+    {
       "doc": "Under the actual code law, message \u2192 encoded input \u2192 channel output. This is a raw-law fact and needs no finite or nonempty input alphabet.",
       "kind": "theorem",
       "kind_label": "Theorem",
@@ -2842,6 +3192,46 @@
       "short_name": "not_tendsto_errorProbability_zero_of_frequently_channelCapacity_add_le_codeRate"
     },
     {
+      "doc": "Expected uniform-message decoder error is at most the sent-pair miss plus `M - 1` independent-pair passes. The whole input-word law and raw block channel are arbitrary. Competing events sharing the output may be dependent.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 120,
+      "module": "LeanInfoTheory.Shannon.ChannelCodingOneShot",
+      "name": "LeanInfoTheory.Shannon.mean_codebookOutputLaw_error_le",
+      "path": "LeanInfoTheory/Shannon/ChannelCodingOneShot.lean",
+      "short_name": "mean_codebookOutputLaw_error_le"
+    },
+    {
+      "doc": "Some book in the actual iid sampling support has uniform row error at most the sent-pair miss plus `M - 1` competing passes. The word law and raw block rows are arbitrary, including dependence between letters within each word.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 192,
+      "module": "LeanInfoTheory.Shannon.ChannelCodingOneShot",
+      "name": "LeanInfoTheory.Shannon.exists_mem_support_codebook_error_le",
+      "path": "LeanInfoTheory/Shannon/ChannelCodingOneShot.lean",
+      "short_name": "exists_mem_support_codebook_error_le"
+    },
+    {
+      "doc": "Some deterministic code at the supplied `n` and `M` uses a book in the actual sampling support and the acceptance-event decoder. Its released average error is at most the sent miss plus `M - 1` competing passes. The word law need not be iid and need not equal the input law induced by the selected encoder.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 239,
+      "module": "LeanInfoTheory.Shannon.ChannelCodingOneShot",
+      "name": "LeanInfoTheory.Shannon.exists_blockChannelCode_errorProbability_le_of_acceptanceEvent",
+      "path": "LeanInfoTheory/Shannon/ChannelCodingOneShot.lean",
+      "short_name": "exists_blockChannelCode_errorProbability_le_of_acceptanceEvent"
+    },
+    {
+      "doc": "For every real threshold there is a supported deterministic code at the supplied `n` and `M` with released error at most the literal strict-test miss plus `(M - 1) * exp (-t)`. Threshold ties count as misses.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 258,
+      "module": "LeanInfoTheory.Shannon.ChannelCodingOneShot",
+      "name": "LeanInfoTheory.Shannon.exists_blockChannelCode_errorProbability_le_of_infoDensityThreshold",
+      "path": "LeanInfoTheory/Shannon/ChannelCodingOneShot.lean",
+      "short_name": "exists_blockChannelCode_errorProbability_le_of_infoDensityThreshold"
+    },
+    {
       "doc": "The logarithm of the message budget per source symbol, in nats. The value at zero length is an initialization convention, not a normalized rate.",
       "kind": "def",
       "kind_label": "Definition",
@@ -2952,6 +3342,16 @@
       "short_name": "natsToBits_codeRate_pow_two"
     },
     {
+      "doc": "Retaining at least half of a positive message budget costs at most `log 2 / n` nats per use at positive blocklength.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 118,
+      "module": "LeanInfoTheory.Shannon.CodingRate",
+      "name": "LeanInfoTheory.Shannon.codeRate_sub_log_two_div_le_of_le_two_mul",
+      "path": "LeanInfoTheory/Shannon/CodingRate.lean",
+      "short_name": "codeRate_sub_log_two_div_le_of_le_two_mul"
+    },
+    {
       "doc": "The absolute entropy difference is bounded by binary entropy plus the alphabet-size term at the exact total variation distance. This is Sason's maximal-coupling bound (SA13, Section II, Theorem 3), with entropy in nats and total variation normalized as half the L1 distance. The logarithm uses Nat subtraction before casting to Real. No lower bound on the alphabet cardinality is required: on a singleton, both entropies and total variation are zero; an empty alphabet carries no PMF. The distance on the right is exact. Replacing it by an upper estimate requires a separate monotonicity argument, since the displayed expression need not increase throughout the unit interval.",
       "kind": "theorem",
       "kind_label": "Theorem",
@@ -3010,6 +3410,66 @@
       "name": "LeanInfoTheory.Shannon.abs_mutualInfo_sub_le_entropyContinuityBound",
       "path": "LeanInfoTheory/Shannon/Continuity.lean",
       "short_name": "abs_mutualInfo_sub_le_entropyContinuityBound"
+    },
+    {
+      "doc": "The empirical law of an admissible count vector of positive length.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 38,
+      "module": "LeanInfoTheory.Shannon.EmpiricalPMF",
+      "name": "LeanInfoTheory.Shannon.empiricalPMF",
+      "path": "LeanInfoTheory/Shannon/EmpiricalPMF.lean",
+      "short_name": "empiricalPMF"
+    },
+    {
+      "doc": "Each empirical atom is its labeled count divided by the positive word length.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 44,
+      "module": "LeanInfoTheory.Shannon.EmpiricalPMF",
+      "name": "LeanInfoTheory.Shannon.empiricalPMF_apply",
+      "path": "LeanInfoTheory/Shannon/EmpiricalPMF.lean",
+      "short_name": "empiricalPMF_apply"
+    },
+    {
+      "doc": "A symbol belongs to empirical support exactly when its count is positive.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 49,
+      "module": "LeanInfoTheory.Shannon.EmpiricalPMF",
+      "name": "LeanInfoTheory.Shannon.mem_support_empiricalPMF_iff",
+      "path": "LeanInfoTheory/Shannon/EmpiricalPMF.lean",
+      "short_name": "mem_support_empiricalPMF_iff"
+    },
+    {
+      "doc": "At positive length, admissible counts are equivalent to laws with an exact denominator witness. The prescribed denominator need not be the least one.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 67,
+      "module": "LeanInfoTheory.Shannon.EmpiricalPMF",
+      "name": "LeanInfoTheory.Shannon.wordTypeEquivPMF",
+      "path": "LeanInfoTheory/Shannon/EmpiricalPMF.lean",
+      "short_name": "wordTypeEquivPMF"
+    },
+    {
+      "doc": "The forward conversion of a count index is its empirical law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 82,
+      "module": "LeanInfoTheory.Shannon.EmpiricalPMF",
+      "name": "LeanInfoTheory.Shannon.wordTypeEquivPMF_apply",
+      "path": "LeanInfoTheory/Shannon/EmpiricalPMF.lean",
+      "short_name": "wordTypeEquivPMF_apply"
+    },
+    {
+      "doc": "Empirical-law equality recognizes membership in the existing type class.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 86,
+      "module": "LeanInfoTheory.Shannon.EmpiricalPMF",
+      "name": "LeanInfoTheory.Shannon.mem_typeClass_iff_empiricalPMF_eq",
+      "path": "LeanInfoTheory/Shannon/EmpiricalPMF.lean",
+      "short_name": "mem_typeClass_iff_empiricalPMF_eq"
     },
     {
       "doc": "Shannon entropy, in nats, of a finite probability mass function.",
@@ -4292,6 +4752,36 @@
       "short_name": "familyCondMutualInfoOf_chain_rule"
     },
     {
+      "doc": "Under iid input and a memoryless channel, the information density of a supported word pair is the sum of its coordinate-pair densities, in nats. This includes length zero. The support premise permits sparse input laws and channel rows while respecting the totalized density at impossible pairs.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 64,
+      "module": "LeanInfoTheory.Shannon.IidInformationDensity",
+      "name": "LeanInfoTheory.Shannon.infoDensity_iid_of_mem_support",
+      "path": "LeanInfoTheory/Shannon/IidInformationDensity.lean",
+      "short_name": "infoDensity_iid_of_mem_support"
+    },
+    {
+      "doc": "Under the iid input and memoryless channel, the probability of a closed two-sided deviation of the normalized block information density from single-letter mutual information tends to zero. The word pairs and joint law vary with the positive blocklength, and input and output can be dependent.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 185,
+      "module": "LeanInfoTheory.Shannon.IidInformationDensity",
+      "name": "LeanInfoTheory.Shannon.tendsto_infoDensity_iid_deviation",
+      "path": "LeanInfoTheory/Shannon/IidInformationDensity.lean",
+      "short_name": "tendsto_infoDensity_iid_deviation"
+    },
+    {
+      "doc": "For every fixed real threshold per symbol strictly below single-letter mutual information, the true-pair miss probability of the strict iid word test tends to zero. The threshold is unnormalized and ties count as misses.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 207,
+      "module": "LeanInfoTheory.Shannon.IidInformationDensity",
+      "name": "LeanInfoTheory.Shannon.tendsto_prob_infoDensityThresholdEvent_iid_compl",
+      "path": "LeanInfoTheory/Shannon/IidInformationDensity.lean",
+      "short_name": "tendsto_prob_infoDensityThresholdEvent_iid_compl"
+    },
+    {
       "doc": "The first marginal of a finite joint PMF.",
       "kind": "abbrev",
       "kind_label": "Definition",
@@ -5182,6 +5672,76 @@
       "short_name": "mutualInfoOf_self"
     },
     {
+      "doc": "Information density in nats for an input-output pair. On joint support this is the logarithm of the joint mass divided by the independent-pair mass, and it can be negative. At zero joint mass, real division and `Real.log` give the conventional value zero.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 38,
+      "module": "LeanInfoTheory.Shannon.InformationDensity",
+      "name": "LeanInfoTheory.Shannon.infoDensity",
+      "path": "LeanInfoTheory/Shannon/InformationDensity.lean",
+      "short_name": "infoDensity"
+    },
+    {
+      "doc": "Every supported channel pair has positive mass under the independent product of the input and output laws.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 44,
+      "module": "LeanInfoTheory.Shannon.InformationDensity",
+      "name": "LeanInfoTheory.Shannon.support_channelJoint_subset_indepProd",
+      "path": "LeanInfoTheory/Shannon/InformationDensity.lean",
+      "short_name": "support_channelJoint_subset_indepProd"
+    },
+    {
+      "doc": "The mean information density under the joint law is mutual information in nats.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 53,
+      "module": "LeanInfoTheory.Shannon.InformationDensity",
+      "name": "LeanInfoTheory.Shannon.sum_mul_infoDensity_eq_mutualInfo",
+      "path": "LeanInfoTheory/Shannon/InformationDensity.lean",
+      "short_name": "sum_mul_infoDensity_eq_mutualInfo"
+    },
+    {
+      "doc": "The strict information-density threshold event, defined by real atom masses on the whole product. Every zero-joint atom fails, at every real threshold.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 65,
+      "module": "LeanInfoTheory.Shannon.InformationDensity",
+      "name": "LeanInfoTheory.Shannon.infoDensityThresholdEvent",
+      "path": "LeanInfoTheory/Shannon/InformationDensity.lean",
+      "short_name": "infoDensityThresholdEvent"
+    },
+    {
+      "doc": "On joint support, the mass-comparison event is the strict log-density threshold.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 71,
+      "module": "LeanInfoTheory.Shannon.InformationDensity",
+      "name": "LeanInfoTheory.Shannon.mem_infoDensityThresholdEvent_iff_of_mem_support",
+      "path": "LeanInfoTheory/Shannon/InformationDensity.lean",
+      "short_name": "mem_infoDensityThresholdEvent_iff_of_mem_support"
+    },
+    {
+      "doc": "Under the joint law, the complementary miss includes equality at the threshold. The two sets need only agree on joint support.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 84,
+      "module": "LeanInfoTheory.Shannon.InformationDensity",
+      "name": "LeanInfoTheory.Shannon.channelJoint_infoDensityThresholdEvent_compl_eq",
+      "path": "LeanInfoTheory/Shannon/InformationDensity.lean",
+      "short_name": "channelJoint_infoDensityThresholdEvent_compl_eq"
+    },
+    {
+      "doc": "Under the independent input-output law, the strict event has probability at most `exp (-t)` for every real threshold. Only internal enumeration requires a `Fintype`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 97,
+      "module": "LeanInfoTheory.Shannon.InformationDensity",
+      "name": "LeanInfoTheory.Shannon.indepProd_infoDensityThresholdEvent_le",
+      "path": "LeanInfoTheory/Shannon/InformationDensity.lean",
+      "short_name": "indepProd_infoDensityThresholdEvent_le"
+    },
+    {
       "doc": "The zero-safe extended-real scalar term in the finite log-sum inequality. The conventions are `0 * log (0 / b) = 0` for every `b`, including `b = 0`, and `a * log (a / 0) = top` when `a` is positive.",
       "kind": "def",
       "kind_label": "Definition",
@@ -5272,6 +5832,166 @@
       "short_name": "real_logSum_eq_iff_exists_constant_ratio_of_support"
     },
     {
+      "doc": "A nonnegative rate attained from below, up to every positive tolerance, by one deterministic block-code family with positive message counts and vanishing uniform-message average error. The same family is used at every tolerance.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 42,
+      "module": "LeanInfoTheory.Shannon.OperationalCapacity",
+      "name": "LeanInfoTheory.Shannon.IsAchievableRate",
+      "path": "LeanInfoTheory/Shannon/OperationalCapacity.lean",
+      "short_name": "IsAchievableRate"
+    },
+    {
+      "doc": "The one-message family achieves rate zero at every channel on a nonempty input alphabet. Its rate and error are zero at every length, including zero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 52,
+      "module": "LeanInfoTheory.Shannon.OperationalCapacity",
+      "name": "LeanInfoTheory.Shannon.isAchievableRate_zero",
+      "path": "LeanInfoTheory/Shannon/OperationalCapacity.lean",
+      "short_name": "isAchievableRate_zero"
+    },
+    {
+      "doc": "Every nonnegative rate strictly below information capacity is achievable. One input law, threshold slope and family at the rounded budgets are fixed before any rate tolerance. The released average error tends to zero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 66,
+      "module": "LeanInfoTheory.Shannon.OperationalCapacity",
+      "name": "LeanInfoTheory.Shannon.isAchievableRate_of_lt_channelCapacity",
+      "path": "LeanInfoTheory/Shannon/OperationalCapacity.lean",
+      "short_name": "isAchievableRate_of_lt_channelCapacity"
+    },
+    {
+      "doc": "Every achievable rate is bounded by information capacity. C23's tolerance converse applies to the same arbitrary family witnessing achievability.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 116,
+      "module": "LeanInfoTheory.Shannon.OperationalCapacity",
+      "name": "LeanInfoTheory.Shannon.le_channelCapacity_of_isAchievableRate",
+      "path": "LeanInfoTheory/Shannon/OperationalCapacity.lean",
+      "short_name": "le_channelCapacity_of_isAchievableRate"
+    },
+    {
+      "doc": "Information capacity is the least upper bound of achievable rates. The zero-rate witness gives leastness also when capacity is zero.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 135,
+      "module": "LeanInfoTheory.Shannon.OperationalCapacity",
+      "name": "LeanInfoTheory.Shannon.isLUB_isAchievableRate",
+      "path": "LeanInfoTheory/Shannon/OperationalCapacity.lean",
+      "short_name": "isLUB_isAchievableRate"
+    },
+    {
+      "doc": "A positive-budget family with vanishing average error admits one family of full good-index restrictions with vanishing maximal error. At positive lengths its rate loss is at most `log 2 / n` nats per use, so it meets the same eventual rate floors.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 33,
+      "module": "LeanInfoTheory.Shannon.OperationalExpurgation",
+      "name": "LeanInfoTheory.Shannon.exists_expurgated_family_of_tendsto_errorProbability",
+      "path": "LeanInfoTheory/Shannon/OperationalExpurgation.lean",
+      "short_name": "exists_expurgated_family_of_tendsto_errorProbability"
+    },
+    {
+      "doc": "A binary word can prefix another assigned word only when their labels agree.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 36,
+      "module": "LeanInfoTheory.Shannon.PrefixCode",
+      "name": "LeanInfoTheory.Shannon.IsBinaryPrefixCode",
+      "path": "LeanInfoTheory/Shannon/PrefixCode.lean",
+      "short_name": "IsBinaryPrefixCode"
+    },
+    {
+      "doc": "The binary Kraft sum of any finite labeled prefix code is at most one.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 74,
+      "module": "LeanInfoTheory.Shannon.PrefixCode",
+      "name": "LeanInfoTheory.Shannon.IsBinaryPrefixCode.kraft_sum_le_one",
+      "path": "LeanInfoTheory/Shannon/PrefixCode.lean",
+      "short_name": "IsBinaryPrefixCode.kraft_sum_le_one"
+    },
+    {
+      "doc": "A finite family of binary codeword lengths with Kraft sum at most one is realized by a prefix code on the original labels, with the prescribed length at each label.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 146,
+      "module": "LeanInfoTheory.Shannon.PrefixCode",
+      "name": "LeanInfoTheory.Shannon.exists_isBinaryPrefixCode_of_kraft_sum_le_one",
+      "path": "LeanInfoTheory/Shannon/PrefixCode.lean",
+      "short_name": "exists_isBinaryPrefixCode_of_kraft_sum_le_one"
+    },
+    {
+      "doc": "Mean length in binary digits of a word assignment on the support of a finite source.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 34,
+      "module": "LeanInfoTheory.Shannon.PrefixCodeLength",
+      "name": "LeanInfoTheory.Shannon.expectedCodewordLength",
+      "path": "LeanInfoTheory/Shannon/PrefixCodeLength.lean",
+      "short_name": "expectedCodewordLength"
+    },
+    {
+      "doc": "Every binary prefix code on the supported symbols has mean length at least the source entropy in bits.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 64,
+      "module": "LeanInfoTheory.Shannon.PrefixCodeLength",
+      "name": "LeanInfoTheory.Shannon.natsToBits_entropy_le_expectedCodewordLength",
+      "path": "LeanInfoTheory/Shannon/PrefixCodeLength.lean",
+      "short_name": "natsToBits_entropy_le_expectedCodewordLength"
+    },
+    {
+      "doc": "A binary prefix encoder realizes the rounded-up information of each supported symbol and has mean length strictly less than entropy in bits plus one.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 83,
+      "module": "LeanInfoTheory.Shannon.PrefixCodeLength",
+      "name": "LeanInfoTheory.Shannon.exists_isBinaryPrefixCode_length_eq_ceil",
+      "path": "LeanInfoTheory/Shannon/PrefixCodeLength.lean",
+      "short_name": "exists_isBinaryPrefixCode_length_eq_ceil"
+    },
+    {
+      "doc": "The infimum of mean lengths of binary prefix codes on the positive support.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 124,
+      "module": "LeanInfoTheory.Shannon.PrefixCodeLength",
+      "name": "LeanInfoTheory.Shannon.optimalPrefixLength",
+      "path": "LeanInfoTheory/Shannon/PrefixCodeLength.lean",
+      "short_name": "optimalPrefixLength"
+    },
+    {
+      "doc": "A prefix code attains the least mean length among all prefix codes on the support.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 129,
+      "module": "LeanInfoTheory.Shannon.PrefixCodeLength",
+      "name": "LeanInfoTheory.Shannon.isLeast_optimalPrefixLength",
+      "path": "LeanInfoTheory/Shannon/PrefixCodeLength.lean",
+      "short_name": "isLeast_optimalPrefixLength"
+    },
+    {
+      "doc": "The attained optimal binary prefix length is at least the entropy in bits and strictly smaller than entropy in bits plus one.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 182,
+      "module": "LeanInfoTheory.Shannon.PrefixCodeLength",
+      "name": "LeanInfoTheory.Shannon.optimalPrefixLength_bounds",
+      "path": "LeanInfoTheory/Shannon/PrefixCodeLength.lean",
+      "short_name": "optimalPrefixLength_bounds"
+    },
+    {
+      "doc": "For an iid block of positive length `n`, the optimal mean length per source symbol is at least the entropy in bits and is strictly below that entropy plus `1 / n` bits.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 28,
+      "module": "LeanInfoTheory.Shannon.PrefixCodeLengthIid",
+      "name": "LeanInfoTheory.Shannon.optimalPrefixLength_iid_div_bounds",
+      "path": "LeanInfoTheory/Shannon/PrefixCodeLengthIid.lean",
+      "short_name": "optimalPrefixLength_iid_div_bounds"
+    },
+    {
       "doc": "Capacity adds over finite heterogeneous product channels. The supremum ranges over every input law; independent maximizing inputs attain the sum. The index may be empty, and its universe is independent of both alphabet universes.",
       "kind": "theorem",
       "kind_label": "Theorem",
@@ -5300,6 +6020,66 @@
       "name": "LeanInfoTheory.Shannon.mutualInfo_channelJoint_memorylessChannel_le",
       "path": "LeanInfoTheory/Shannon/ProductChannelCapacity.lean",
       "short_name": "mutualInfo_channelJoint_memorylessChannel_le"
+    },
+    {
+      "doc": "Sample independent codewords from `q`, then send the word at the fixed message index through `K`, retaining the sampled book and output.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 51,
+      "module": "LeanInfoTheory.Shannon.RandomCodebook",
+      "name": "LeanInfoTheory.Shannon.codebookOutputLaw",
+      "path": "LeanInfoTheory/Shannon/RandomCodebook.lean",
+      "short_name": "codebookOutputLaw"
+    },
+    {
+      "doc": "Under the whole book/output experiment, the sent word and output have the joint law induced by `q` and `K`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 58,
+      "module": "LeanInfoTheory.Shannon.RandomCodebook",
+      "name": "LeanInfoTheory.Shannon.codebookOutputLaw_map_sentOutput",
+      "path": "LeanInfoTheory/Shannon/RandomCodebook.lean",
+      "short_name": "codebookOutputLaw_map_sentOutput"
+    },
+    {
+      "doc": "Under the whole book/output experiment, the word at another message index and the output have the independent product of `q` and the output marginal.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 82,
+      "module": "LeanInfoTheory.Shannon.RandomCodebook",
+      "name": "LeanInfoTheory.Shannon.codebookOutputLaw_map_competingOutput",
+      "path": "LeanInfoTheory/Shannon/RandomCodebook.lean",
+      "short_name": "codebookOutputLaw_map_competingOutput"
+    },
+    {
+      "doc": "Use the given book as encoder and return the least message index whose word/output pair lies in `A`, or index zero when no index passes. The decoder is total on every output and permits equal words at different indices.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 98,
+      "module": "LeanInfoTheory.Shannon.RandomCodebook",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.ofAcceptanceEvent",
+      "path": "LeanInfoTheory/Shannon/RandomCodebook.lean",
+      "short_name": "ofAcceptanceEvent"
+    },
+    {
+      "doc": "If the sent message index passes and every other message index fails, the acceptance-event decoder returns the sent index.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 108,
+      "module": "LeanInfoTheory.Shannon.RandomCodebook",
+      "name": "LeanInfoTheory.Shannon.BlockChannelCode.decoder_ofAcceptanceEvent_eq_of_unique",
+      "path": "LeanInfoTheory/Shannon/RandomCodebook.lean",
+      "short_name": "decoder_ofAcceptanceEvent_eq_of_unique"
+    },
+    {
+      "doc": "Uniformly averaging the actual decoder-error event over the transmitted message index equals the book-weighted mean of the realized code's released error probability, at the original blocklength and message count. The word law `q` is arbitrary. The codewords at distinct message indices are sampled independently.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 128,
+      "module": "LeanInfoTheory.Shannon.RandomCodebook",
+      "name": "LeanInfoTheory.Shannon.mean_codebookOutputLaw_error_eq_mean_errorProbability",
+      "path": "LeanInfoTheory/Shannon/RandomCodebook.lean",
+      "short_name": "mean_codebookOutputLaw_error_eq_mean_errorProbability"
     },
     {
       "doc": "The self-information of a supported iid word is the sum of its coordinate self-informations, in nats. This includes the empty word. Impossible words are excluded because self-information is totalized to zero at zero mass.",
@@ -8842,6 +9622,56 @@
       "short_name": "condEntropyOf_pair_le_add_condEntropyOf"
     },
     {
+      "doc": "Probability that a total decoder fails to reconstruct the original iid source word after one memoryless channel use per source symbol.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 33,
+      "module": "LeanInfoTheory.Shannon.SourceChannelCode",
+      "name": "LeanInfoTheory.Shannon.sourceChannelErrorProbability",
+      "path": "LeanInfoTheory/Shannon/SourceChannelCode.lean",
+      "short_name": "sourceChannelErrorProbability"
+    },
+    {
+      "doc": "Reconstructing after compression and transmission fails only if the source decoder fails on the sent index or the channel decoder returns a different index. Channel errors are averaged under the compressor's output law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 52,
+      "module": "LeanInfoTheory.Shannon.SourceChannelCode",
+      "name": "LeanInfoTheory.Shannon.sourceChannelErrorProbability_comp_le",
+      "path": "LeanInfoTheory/Shannon/SourceChannelCode.lean",
+      "short_name": "sourceChannelErrorProbability_comp_le"
+    },
+    {
+      "doc": "For every deterministic word encoder and reconstruction decoder, the iid source block entropy is bounded by the block capacity plus the weak Fano penalty for its actual reconstruction error. The undivided bound includes zero length and singleton sources.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 50,
+      "module": "LeanInfoTheory.Shannon.SourceChannelConverse",
+      "name": "LeanInfoTheory.Shannon.mul_entropy_le_mul_channelCapacity_add_error",
+      "path": "LeanInfoTheory/Shannon/SourceChannelConverse.lean",
+      "short_name": "mul_entropy_le_mul_channelCapacity_add_error"
+    },
+    {
+      "doc": "With one memoryless channel use per iid source symbol, vanishing block reconstruction error for any given deterministic encoder and decoder families forces the source entropy to be at most the channel capacity.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 76,
+      "module": "LeanInfoTheory.Shannon.SourceChannelConverse",
+      "name": "LeanInfoTheory.Shannon.entropy_le_channelCapacity_of_tendsto_sourceChannelErrorProbability",
+      "path": "LeanInfoTheory/Shannon/SourceChannelConverse.lean",
+      "short_name": "entropy_le_channelCapacity_of_tendsto_sourceChannelErrorProbability"
+    },
+    {
+      "doc": "If source entropy is strictly below channel capacity, a single pair of total deterministic word-map families gives vanishing block reconstruction error with one channel use per source symbol.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 35,
+      "module": "LeanInfoTheory.Shannon.SourceChannelSeparation",
+      "name": "LeanInfoTheory.Shannon.exists_sourceChannelCode_tendsto_errorProbability_zero",
+      "path": "LeanInfoTheory/Shannon/SourceChannelSeparation.lean",
+      "short_name": "exists_sourceChannelCode_tendsto_errorProbability_zero"
+    },
+    {
       "doc": "A total deterministic encoder/decoder pair with `M` message indices. Operational budgets are positive; no global recovery law is imposed.",
       "kind": "abbrev",
       "kind_label": "Definition",
@@ -9152,6 +9982,106 @@
       "short_name": "continuous_mutualInfo_channelJoint"
     },
     {
+      "doc": "Every word in a type class has real iid mass `exp (-n * H(q))` under the class's own empirical law.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 98,
+      "module": "LeanInfoTheory.Shannon.TypeClassBounds",
+      "name": "LeanInfoTheory.Shannon.iid_empiricalPMF_apply_of_mem_typeClass",
+      "path": "LeanInfoTheory/Shannon/TypeClassBounds.lean",
+      "short_name": "iid_empiricalPMF_apply_of_mem_typeClass"
+    },
+    {
+      "doc": "The real own-law iid mass of a type class is its cardinality times the common real mass of its words.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 118,
+      "module": "LeanInfoTheory.Shannon.TypeClassBounds",
+      "name": "LeanInfoTheory.Shannon.iid_empiricalPMF_toOuterMeasure_typeClass",
+      "path": "LeanInfoTheory/Shannon/TypeClassBounds.lean",
+      "short_name": "iid_empiricalPMF_toOuterMeasure_typeClass"
+    },
+    {
+      "doc": "At positive length, a type class has at most `exp (n * H(q))` words, where `q` is its empirical law and entropy is measured in nats.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 139,
+      "module": "LeanInfoTheory.Shannon.TypeClassBounds",
+      "name": "LeanInfoTheory.Shannon.card_typeClass_le_exp_entropy",
+      "path": "LeanInfoTheory/Shannon/TypeClassBounds.lean",
+      "short_name": "card_typeClass_le_exp_entropy"
+    },
+    {
+      "doc": "At positive length, a type class has at least `exp (n * H(q)) / (n+1)^k` words, with `k` the full ambient alphabet size, including zero-count symbols.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 329,
+      "module": "LeanInfoTheory.Shannon.TypeClassBounds",
+      "name": "LeanInfoTheory.Shannon.exp_entropy_div_pow_le_card_typeClass",
+      "path": "LeanInfoTheory/Shannon/TypeClassBounds.lean",
+      "short_name": "exp_entropy_div_pow_le_card_typeClass"
+    },
+    {
+      "doc": "The words with supplied admissible counts are counted by the multinomial coefficient. This includes zero length and zero-count symbols.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 96,
+      "module": "LeanInfoTheory.Shannon.TypeClassCardinality",
+      "name": "LeanInfoTheory.Shannon.card_typeClass_eq_multinomial",
+      "path": "LeanInfoTheory/Shannon/TypeClassCardinality.lean",
+      "short_name": "card_typeClass_eq_multinomial"
+    },
+    {
+      "doc": "Every word in a type class has real iid mass `exp (-n * (H(q) + D(q || p)))` under any prior whose support contains the empirical support. The canonical KL divergence is finite under this hypothesis, and both quantities use nats.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 67,
+      "module": "LeanInfoTheory.Shannon.TypeClassProbability",
+      "name": "LeanInfoTheory.Shannon.iid_apply_of_mem_typeClass",
+      "path": "LeanInfoTheory/Shannon/TypeClassProbability.lean",
+      "short_name": "iid_apply_of_mem_typeClass"
+    },
+    {
+      "doc": "The real iid mass of a type class is its cardinality times the common word mass under a prior whose support contains the empirical support. Canonical KL is finite under this hypothesis, and entropy and divergence use nats.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 138,
+      "module": "LeanInfoTheory.Shannon.TypeClassProbability",
+      "name": "LeanInfoTheory.Shannon.iid_toOuterMeasure_typeClass",
+      "path": "LeanInfoTheory/Shannon/TypeClassProbability.lean",
+      "short_name": "iid_toOuterMeasure_typeClass"
+    },
+    {
+      "doc": "The probability of a type class under a prior containing its empirical support is at most the exponential of minus its length times its KL divergence.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 170,
+      "module": "LeanInfoTheory.Shannon.TypeClassProbability",
+      "name": "LeanInfoTheory.Shannon.iid_toOuterMeasure_typeClass_le_exp_neg_klDiv",
+      "path": "LeanInfoTheory/Shannon/TypeClassProbability.lean",
+      "short_name": "iid_toOuterMeasure_typeClass_le_exp_neg_klDiv"
+    },
+    {
+      "doc": "The finite-KL lower bound for a type class uses the size of the entire alphabet in its polynomial denominator, including symbols with zero counts.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 184,
+      "module": "LeanInfoTheory.Shannon.TypeClassProbability",
+      "name": "LeanInfoTheory.Shannon.exp_neg_klDiv_div_pow_le_iid_toOuterMeasure_typeClass",
+      "path": "LeanInfoTheory/Shannon/TypeClassProbability.lean",
+      "short_name": "exp_neg_klDiv_div_pow_le_iid_toOuterMeasure_typeClass"
+    },
+    {
+      "doc": "A type class has zero iid probability if its empirical law gives positive mass to a symbol outside the sampling support.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 200,
+      "module": "LeanInfoTheory.Shannon.TypeClassProbability",
+      "name": "LeanInfoTheory.Shannon.iid_toOuterMeasure_typeClass_eq_zero_of_not_support_subset",
+      "path": "LeanInfoTheory/Shannon/TypeClassProbability.lean",
+      "short_name": "iid_toOuterMeasure_typeClass_eq_zero_of_not_support_subset"
+    },
+    {
       "doc": "Supported words of positive length whose normalized self-information is strictly within `\u03b5` of entropy. The set is empty at length zero and for nonpositive `\u03b5`. Information is measured in nats.",
       "kind": "def",
       "kind_label": "Definition",
@@ -9260,14 +10190,154 @@
       "name": "LeanInfoTheory.Shannon.entropyOf_div_log",
       "path": "LeanInfoTheory/Shannon/Units.lean",
       "short_name": "entropyOf_div_log"
+    },
+    {
+      "doc": "The number of positions of the word `x` occupied by symbol `a`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 36,
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.symbolCount",
+      "path": "LeanInfoTheory/Shannon/WordType.lean",
+      "short_name": "symbolCount"
+    },
+    {
+      "doc": "Every symbol occurs zero times in the empty word.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 41,
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.symbolCount_zero",
+      "path": "LeanInfoTheory/Shannon/WordType.lean",
+      "short_name": "symbolCount_zero"
+    },
+    {
+      "doc": "The counts over the full alphabet sum to the word length.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 46,
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.sum_symbolCount",
+      "path": "LeanInfoTheory/Shannon/WordType.lean",
+      "short_name": "sum_symbolCount"
+    },
+    {
+      "doc": "The natural count vectors on `A` whose entries sum to `n`.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 54,
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.wordTypes",
+      "path": "LeanInfoTheory/Shannon/WordType.lean",
+      "short_name": "wordTypes"
+    },
+    {
+      "doc": "A count vector is admissible at length `n` exactly when its total is `n`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 59,
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.mem_wordTypes",
+      "path": "LeanInfoTheory/Shannon/WordType.lean",
+      "short_name": "mem_wordTypes"
+    },
+    {
+      "doc": "The sole admissible type at length zero is the all-zero count vector.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 65,
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.wordTypes_zero",
+      "path": "LeanInfoTheory/Shannon/WordType.lean",
+      "short_name": "wordTypes_zero"
+    },
+    {
+      "doc": "The admissible type of a word, with its symbol counts as the underlying function.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 70,
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.wordType",
+      "path": "LeanInfoTheory/Shannon/WordType.lean",
+      "short_name": "wordType"
+    },
+    {
+      "doc": "Every admissible count vector is realized by a word of the prescribed length.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 74,
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.wordType_surjective",
+      "path": "LeanInfoTheory/Shannon/WordType.lean",
+      "short_name": "wordType_surjective"
+    },
+    {
+      "doc": "The finite set of all words with the given admissible count vector.",
+      "kind": "def",
+      "kind_label": "Definition",
+      "line": 92,
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.typeClass",
+      "path": "LeanInfoTheory/Shannon/WordType.lean",
+      "short_name": "typeClass"
+    },
+    {
+      "doc": "A word belongs to the supplied class exactly when its type is the class index.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 97,
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.mem_typeClass",
+      "path": "LeanInfoTheory/Shannon/WordType.lean",
+      "short_name": "mem_typeClass"
+    },
+    {
+      "doc": "Each word belongs to exactly one of the indexed type classes.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 103,
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.existsUnique_mem_typeClass",
+      "path": "LeanInfoTheory/Shannon/WordType.lean",
+      "short_name": "existsUnique_mem_typeClass"
+    },
+    {
+      "doc": "Reading old position `e i` at new position `i` preserves the count of each symbol.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 108,
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.symbolCount_comp_perm",
+      "path": "LeanInfoTheory/Shannon/WordType.lean",
+      "short_name": "symbolCount_comp_perm"
+    },
+    {
+      "doc": "A permutation of the positions of a word preserves its admissible type.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 119,
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.wordType_comp_perm",
+      "path": "LeanInfoTheory/Shannon/WordType.lean",
+      "short_name": "wordType_comp_perm"
+    },
+    {
+      "doc": "The number of distinct types is at most `(n + 1) ^ Fintype.card A`.",
+      "kind": "theorem",
+      "kind_label": "Theorem",
+      "line": 124,
+      "module": "LeanInfoTheory.Shannon.WordType",
+      "name": "LeanInfoTheory.Shannon.card_wordTypes_le",
+      "path": "LeanInfoTheory/Shannon/WordType.lean",
+      "short_name": "card_wordTypes_le"
     }
   ],
-  "documented_count": 925,
+  "documented_count": 1032,
   "kind_counts": {
-    "Definition": 137,
+    "Definition": 166,
     "Inductive": 4,
     "Instance": 4,
-    "Theorem": 781
+    "Theorem": 859
   },
   "modules": [
     "LeanInfoTheory.Basic",
@@ -9278,6 +10348,7 @@
     "LeanInfoTheory.Examples.StochasticChannels",
     "LeanInfoTheory.Examples.SufficientStatistics",
     "LeanInfoTheory.Examples.SupportSensitive",
+    "LeanInfoTheory.Probability.BinaryTesting",
     "LeanInfoTheory.Probability.Coupling",
     "LeanInfoTheory.Probability.Finite",
     "LeanInfoTheory.Probability.FiniteChannel",
@@ -9285,6 +10356,7 @@
     "LeanInfoTheory.Probability.FiniteProduct",
     "LeanInfoTheory.Probability.FiniteTopology",
     "LeanInfoTheory.Probability.Iid",
+    "LeanInfoTheory.Probability.NeymanPearson",
     "LeanInfoTheory.Probability.ProductChannel",
     "LeanInfoTheory.Probability.StandardChannels",
     "LeanInfoTheory.Probability.TotalVariation",
@@ -9292,18 +10364,29 @@
     "LeanInfoTheory.Shannon.BinaryEntropy",
     "LeanInfoTheory.Shannon.ChannelCapacity",
     "LeanInfoTheory.Shannon.ChannelCode",
+    "LeanInfoTheory.Shannon.ChannelCodeExpurgation",
     "LeanInfoTheory.Shannon.ChannelCoding",
     "LeanInfoTheory.Shannon.ChannelCodingAsymptotic",
+    "LeanInfoTheory.Shannon.ChannelCodingOneShot",
     "LeanInfoTheory.Shannon.CodingRate",
     "LeanInfoTheory.Shannon.Continuity",
+    "LeanInfoTheory.Shannon.EmpiricalPMF",
     "LeanInfoTheory.Shannon.Entropy",
     "LeanInfoTheory.Shannon.EntropyBounds",
     "LeanInfoTheory.Shannon.EntropyConcavity",
     "LeanInfoTheory.Shannon.Fano",
     "LeanInfoTheory.Shannon.FiniteFamily",
+    "LeanInfoTheory.Shannon.IidInformationDensity",
     "LeanInfoTheory.Shannon.InfoMeasures",
+    "LeanInfoTheory.Shannon.InformationDensity",
     "LeanInfoTheory.Shannon.LogSum",
+    "LeanInfoTheory.Shannon.OperationalCapacity",
+    "LeanInfoTheory.Shannon.OperationalExpurgation",
+    "LeanInfoTheory.Shannon.PrefixCode",
+    "LeanInfoTheory.Shannon.PrefixCodeLength",
+    "LeanInfoTheory.Shannon.PrefixCodeLengthIid",
     "LeanInfoTheory.Shannon.ProductChannelCapacity",
+    "LeanInfoTheory.Shannon.RandomCodebook",
     "LeanInfoTheory.Shannon.SemanticBridge.AEP",
     "LeanInfoTheory.Shannon.SemanticBridge.Conditional",
     "LeanInfoTheory.Shannon.SemanticBridge.ConditionalKL",
@@ -9325,12 +10408,19 @@
     "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency",
     "LeanInfoTheory.Shannon.SemanticBridge.Sufficiency.KL",
     "LeanInfoTheory.Shannon.SemanticBridge.Theorems",
+    "LeanInfoTheory.Shannon.SourceChannelCode",
+    "LeanInfoTheory.Shannon.SourceChannelConverse",
+    "LeanInfoTheory.Shannon.SourceChannelSeparation",
     "LeanInfoTheory.Shannon.SourceCoding",
     "LeanInfoTheory.Shannon.SourceCodingAsymptotic",
     "LeanInfoTheory.Shannon.StandardChannelCapacity",
     "LeanInfoTheory.Shannon.Topology",
+    "LeanInfoTheory.Shannon.TypeClassBounds",
+    "LeanInfoTheory.Shannon.TypeClassCardinality",
+    "LeanInfoTheory.Shannon.TypeClassProbability",
     "LeanInfoTheory.Shannon.TypicalSet",
-    "LeanInfoTheory.Shannon.Units"
+    "LeanInfoTheory.Shannon.Units",
+    "LeanInfoTheory.Shannon.WordType"
   ],
   "schema": "lean-info-theory.declaration-index.v1",
   "undocumented_count": 1

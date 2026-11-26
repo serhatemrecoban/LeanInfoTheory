@@ -13,11 +13,13 @@ PAGES = (
     "index.html", "docs/index.html", "theorems.html", "module-guide.html",
     "docs/getting-started.html", "docs/information-measures.html",
     "docs/markov-data-processing.html", "docs/research-projects.html",
-    "docs/mathlib.html",
+    "docs/mathlib.html", "docs/release-3-examples.html",
 )
 EXAMPLE_IDS = (
     "guide-entropy-pure", "guide-mi-nonneg",
     "guide-data-processing", "guide-markov-zero-cmi",
+    "r3-finite-testing", "r3-one-shot", "r3-capacity",
+    "r3-separation", "r3-prefix", "r3-types",
 )
 
 
@@ -117,4 +119,4 @@ def check_discovery(site_root: Path = SITE_ROOT) -> None:
 
 if __name__ == "__main__":
     check_discovery()
-    print(f"discovery metadata and sitemap passed for {len(PAGES)} pages; four Lean examples found")
+    print(f"discovery metadata and sitemap passed for {len(PAGES)} pages and {len(EXAMPLE_IDS)} Lean examples")
