@@ -1,163 +1,170 @@
-name: Lean build and release gates
+name: Verify the qualified LeanInfoTheory v0.3.0 Pages archives
 
 on:
-  push:
-  pull_request:
   workflow_dispatch:
-    inputs:
-      api_docs:
-        description: Run the full signature-bearing API documentation release gate
-        required: true
-        default: false
-        type: boolean
 
-      pages_dry_run:
-        description: Verify all three sites and archive the main site and v0.3.0 API (requires api_docs)
-        required: false
-        default: false
-        type: boolean
-      publish:
-        description: Must be false for release qualification
-        required: false
-        default: false
-        type: boolean
-
-permissions:
-  contents: read
-
-concurrency:
-  group: lean-release-gates-${{ github.ref }}
-  cancel-in-progress: true
+permissions: {}
 
 jobs:
-  release-gates:
-    name: Release gates
+  verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
-
+    timeout-minutes: 20
     steps:
-      - name: Reserve disk for the Lean toolchain and documentation
-        if: ${{ runner.environment == 'github-hosted' }}
-        run: |
-          df -h .
-          sudo rm -rf -- /usr/local/lib/android /usr/share/dotnet /opt/ghc
-          df -h .
-
-      - name: Checkout
-        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-
-      - name: Enforce qualification-only dispatch
-        if: ${{ github.event_name == 'workflow_dispatch' }}
+      - name: Retrieve and verify both archives at their permanent revision
         env:
-          PUBLISH: ${{ inputs.publish }}
-          PAGES_DRY_RUN: ${{ inputs.pages_dry_run }}
-          API_DOCS: ${{ inputs.api_docs }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          BUNDLES_REVISION: "8bea3423019cb848670b87cf9bdd7765bf404495"
         run: |
-          test "$PUBLISH" = false
-          test "$PAGES_DRY_RUN" != true || test "$API_DOCS" = true
+          set -euo pipefail
+          case "$GITHUB_REPOSITORY" in
+            serhatemrecoban/LeanInfoTheory-API-v0.3.0)
+              test "$GITHUB_REF" = "refs/heads/$DEFAULT_BRANCH" ;;
+            serhatemrecoban/LeanInfoTheory)
+              test "$GITHUB_REF" = "refs/heads/codex/v0.3.0-linux-bundle-verification" ;;
+            *) exit 1 ;;
+          esac
+          cat > "$RUNNER_TEMP/qualification.json" <<'PINS'
+          {
+            "archives": {
+              "api": {
+                "file_manifest_sha256": "324f408c314014e72c3609c5719fd7f304af4ee8514c4a1d95592f19de7e0c07",
+                "tar_bytes": 667535360,
+                "tar_sha256": "f9ad1e4a1818f2553cfeab0d7581d8be1687b2b6f00243fb2d2799f5e5a5b50d",
+                "zip_bytes": 31049441,
+                "zip_sha256": "6f4c6ee4aff71318d3d21ddf975fe9af222f73522d88157ab6ae5691311aedee"
+              },
+              "main": {
+                "file_manifest_sha256": "0d5454fd2f6466a69b65ee2fab6310119377ddbe2662d493628015d6a474b747",
+                "tar_bytes": 666081280,
+                "tar_sha256": "a035fd367a68b89aca7418e71f301dcd7ca59a83367422e99bd2e5f518a2e05e",
+                "zip_bytes": 31072283,
+                "zip_sha256": "4a2dc743322e899ca8931bd0039a6427ac2d598eae1b86677271ae37dd817bef"
+              }
+            },
+            "receipt_sha256": "7a096965f8c83fc97f49ac9634fe09fc9aeef42e9fa46b2bc309458bd07fda18",
+            "source": "d12af2d34d49ee493f55c8924cebff815b2953be",
+            "source_tree": "255afd15f8935a73e62bbaecadff6e7c2ed93399"
+          }
+          PINS
+          cat > "$RUNNER_TEMP/check_bundles.py" <<'PYTHON'
+          """Verify public Pages bundles from the pinned archive repository, before release promotion."""
+          from __future__ import annotations
 
-      - name: Check static release contract and Pages packaging regressions
-        run: |
-          mkdir -p tmp
-          python scripts/validate_development.py static
+          import argparse
+          from hashlib import file_digest, sha256
+          import json
+          from pathlib import Path, PurePosixPath
+          import re
+          import shutil
+          import tarfile
+          import tempfile
+          from urllib.request import Request, urlopen
+          from zipfile import ZIP_DEFLATED, ZipFile
 
-      - name: Set up Lean and build the default target
-        uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596 # v1
-        with:
-          auto-config: "false"
-          build: "true"
-          build-args: "--wfail"
-          test: "false"
-          lint: "false"
-          use-mathlib-cache: "true"
 
-      - name: Build maintained targets and check examples, both retained APIs, trust and hygiene
-        run: python scripts/validate_development.py compiled
+          REPOSITORY = "serhatemrecoban/LeanInfoTheory-API-v0.3.0"
+          VERSION = "v0.3.0"
+          SOURCE = "d12af2d34d49ee493f55c8924cebff815b2953be"
+          SOURCE_TREE = "255afd15f8935a73e62bbaecadff6e7c2ed93399"
+          HISTORICAL = {"files": 5569, "bytes": 662452623, "sha256": "bd7c79fe8d0404faa656ca63e8f352c2fa1c207d6091cd3e032a8ad9798b0b87"}
+          SITES = {"main": "LeanInfoTheory", "api": REPOSITORY.split("/")[1]}
 
-  api-documentation:
-    name: API documentation release gate
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.api_docs }}
-    needs: release-gates
-    runs-on: ubuntu-latest
-    timeout-minutes: 360
 
-    steps:
-      - name: Reserve disk for the Lean toolchain and documentation
-        if: ${{ runner.environment == 'github-hosted' }}
-        run: |
-          df -h .
-          sudo rm -rf -- /usr/local/lib/android /usr/share/dotnet /opt/ghc
-          df -h .
+          def require(condition: bool, issue: str) -> None:
+              if not condition:
+                  raise ValueError(issue)
 
-      - name: Checkout
-        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
-        with:
-          fetch-depth: 0
-          persist-credentials: false
 
-      - name: Check static documentation-build contract
-        run: |
-          mkdir -p tmp
-          python scripts/validate_development.py static
+          def binary_digest(p: Path) -> str:
+              with p.open("rb") as f:
+                  return file_digest(f, "sha256").hexdigest()
 
-      - name: Set up Lean and restore the mathlib cache
-        uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596 # v1
-        with:
-          auto-config: "false"
-          build: "true"
-          build-args: "--wfail"
-          test: "false"
-          lint: "false"
-          use-mathlib-cache: "true"
 
-      - name: Materialize the pinned documentation dependencies
-        working-directory: docbuild
-        run: |
-          lake env lean --version
-          git diff --exit-code -- lake-manifest.json
+          def fetch(root: Path, file: str, revision: str, local: Path | None) -> Path:
+              destination = root / file
+              if local is None:
+                  url = f"https://raw.githubusercontent.com/{REPOSITORY}/{revision}/packages/{VERSION}/{file}"
+                  request = Request(url, headers={"User-Agent": "LeanInfoTheory-Pages-bundle-verification"})
+                  inp = urlopen(request, timeout=90)
+              else:
+                  inp = (local / file).open("rb")
+              with inp, destination.open("xb") as output:
+                  shutil.copyfileobj(inp, output, 1 << 20)
+              return destination
 
-      - name: Build and validate signature-bearing API documentation
-        env:
-          DOCGEN_SRC: github
-        run: python scripts/validate_release.py api-docs
 
-      - name: Verify the three sites and archive the two deployment targets
-        if: ${{ inputs.pages_dry_run && !inputs.publish }}
-        run: |
-          package=".lake/release-pages/$GITHUB_SHA"
-          python scripts/package_release_pages.py build --release-3 --expected-commit "$GITHUB_SHA"
-          mkdir -p "$RUNNER_TEMP/qualification"
-          cp "$package/receipt.json" "$RUNNER_TEMP/qualification/receipt.json"
-          python scripts/archive_release_pages.py "$package" LeanInfoTheory "$RUNNER_TEMP/main/artifact.tar" --file-manifest "$RUNNER_TEMP/qualification/main-files.json"
-          python scripts/archive_release_pages.py "$package" LeanInfoTheory-API-v0.3.0 "$RUNNER_TEMP/api/artifact.tar" --file-manifest "$RUNNER_TEMP/qualification/api-files.json"
-          cat "$package/receipt.json" >> "$GITHUB_STEP_SUMMARY"
+          def verify_site(label: str, site: str, pins: dict, expected: dict, folder: Path,
+                          revision: str, local: Path | None) -> dict:
+              manifest_file = fetch(folder, label + "-files.json", revision, local)
+              require(binary_digest(manifest_file) == pins["file_manifest_sha256"], f"{label}: manifest digest")
+              manifest = json.loads(manifest_file.read_bytes())
+              require(manifest["schema"] == "lean-info-theory.pages-file-manifest.v1"
+                      and manifest["source"] == SOURCE and manifest["purpose"] == "candidate"
+                      and manifest["site"] == site and manifest["tree_sha256"] == expected["sha256"]
+                      and manifest["tar_sha256"] == pins["tar_sha256"], f"{label}: manifest identity")
+              bundle = fetch(folder, label + ".zip", revision, local)
+              require(bundle.stat().st_size == pins["zip_bytes"] and binary_digest(bundle) == pins["zip_sha256"],
+                      f"{label}: ZIP identity")
+              ordered, total, tree = [], 0, sha256()
+              with ZipFile(bundle) as z:
+                  require(z.namelist() == ["artifact.tar"] and z.getinfo("artifact.tar").compress_type == ZIP_DEFLATED,
+                          f"{label}: unexpected wrapper")
+                  require(z.getinfo("artifact.tar").file_size == pins["tar_bytes"], f"{label}: TAR size")
+                  with z.open("artifact.tar") as raw:
+                      require(file_digest(raw, "sha256").hexdigest() == pins["tar_sha256"], f"{label}: TAR digest")
+                  with z.open("artifact.tar") as raw, tarfile.open(fileobj=raw, mode="r|") as tar:
+                      for member in tar:
+                          path = member.name.removeprefix("./")
+                          parts = path.split("/")
+                          require(member.isfile() and member.name == "./" + path and not PurePosixPath(path).is_absolute()
+                                  and "\\" not in path and not any(p in ("", ".", "..") for p in parts)
+                                  and path in manifest["files"], f"{label}: unsafe or unlisted TAR member")
+                          per_file = manifest["files"][path]
+                          require(member.size == per_file["bytes"] and member.size <= 100 << 20, f"{label}: file size")
+                          tree.update(path.encode() + b"\0")
+                          digest = sha256()
+                          with tar.extractfile(member) as entry:
+                              while block := entry.read(1 << 20):
+                                  digest.update(block)
+                                  tree.update(block)
+                          require(digest.hexdigest() == per_file["sha256"], f"{label}: incorrect bytes for {path}")
+                          tree.update(b"\0")
+                          ordered.append(path)
+                          total += member.size
+              require(ordered == sorted(manifest["files"]), f"{label}: duplicate or missing members")
+              observed = {"files": len(ordered), "bytes": total, "sha256": tree.hexdigest()}
+              require(observed == expected and (manifest["file_count"], manifest["bytes"]) == (len(ordered), total)
+                      and total < 1_000_000_000, f"{label}: whole-site digest, capacity or counts")
+              return observed
 
-      - name: Retain the release source and all three site identities
-        if: ${{ inputs.pages_dry_run && !inputs.publish }}
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
-        with:
-          name: pages-receipt-${{ github.sha }}
-          path: ${{ runner.temp }}/qualification/
-          if-no-files-found: error
-          retention-days: 14
 
-      - name: Retain the main website dry run
-        if: ${{ inputs.pages_dry_run && !inputs.publish }}
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
-        with:
-          name: main-pages-${{ github.sha }}
-          path: ${{ runner.temp }}/main/artifact.tar
-          if-no-files-found: error
-          retention-days: 14
+          def main() -> None:
+              cli = argparse.ArgumentParser(description=__doc__)
+              cli.add_argument("--revision", required=True)
+              cli.add_argument("--pins", type=Path, required=True)
+              cli.add_argument("--local", type=Path, help="Verify the same files from a local archive directory")
+              args = cli.parse_args()
+              require(re.fullmatch(r"[0-9a-f]{40}", args.revision) is not None, "full Git revision required")
+              pins = json.loads(args.pins.read_bytes())
+              require(pins["source"] == SOURCE and pins["source_tree"] == SOURCE_TREE, "wrong qualification source")
+              with tempfile.TemporaryDirectory() as tmp:
+                  root = Path(tmp)
+                  path = fetch(root, "receipt.json", args.revision, args.local)
+                  require(binary_digest(path) == pins["receipt_sha256"], "qualification receipt hash mismatch")
+                  receipt = json.loads(path.read_bytes())
+                  require(receipt["schema"] == "lean-info-theory.release3-pages.v1" and receipt["purpose"] == "candidate"
+                          and receipt["source"] == SOURCE and receipt["source_tree"] == SOURCE_TREE
+                          and not receipt["rehearsal_overlays"] and set(receipt["sites"]) == {*SITES.values(), "LeanInfoTheory-API"}
+                          and receipt["sites"]["LeanInfoTheory-API"] == HISTORICAL, "invalid three-site receipt")
+                  results = {label: verify_site(label, site, pins["archives"][label], receipt["sites"][site], root,
+                                                args.revision, args.local) for label, site in SITES.items()}
+              print(json.dumps({"status": "PASS", "origin": "local" if args.local else "public-raw-github",
+                                "source": SOURCE, "tree": SOURCE_TREE, "bundles_revision": args.revision,
+                                "receipt_sha256": pins["receipt_sha256"], "verified_packages": results,
+                                "preserved_v02_identity_in_receipt": HISTORICAL}, indent=2))
 
-      - name: Retain the versioned API dry run
-        if: ${{ inputs.pages_dry_run && !inputs.publish }}
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
-        with:
-          name: api-pages-${{ github.sha }}
-          path: ${{ runner.temp }}/api/artifact.tar
-          if-no-files-found: error
-          retention-days: 14
+
+          if __name__ == "__main__":
+              main()
+          PYTHON
+          python -B "$RUNNER_TEMP/check_bundles.py" --revision "$BUNDLES_REVISION" --pins "$RUNNER_TEMP/qualification.json"
