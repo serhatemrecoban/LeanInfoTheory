@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Formalize an Information Theory Paper in Lean | LeanInfoTheory</title>
-    <meta name="description" content="Build an information-theory research formalization on LeanInfoTheory: pin a release, map statements to the API, preserve assumptions, and contribute reusable results.">
+    <meta name="description" content="See how a paper builds on LeanInfoTheory and mathlib, follow a worked proof about perfect functional representations, and start your own formalization.">
     <link rel="canonical" href="https://serhatemrecoban.github.io/LeanInfoTheory/docs/research-projects.html">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="LeanInfoTheory">
     <meta property="og:title" content="Formalize an Information Theory Paper in Lean | LeanInfoTheory">
-    <meta property="og:description" content="Build an information-theory research formalization on LeanInfoTheory: pin a release, map statements to the API, preserve assumptions, and contribute reusable results.">
+    <meta property="og:description" content="See how a paper builds on LeanInfoTheory and mathlib, follow a worked proof about perfect functional representations, and start your own formalization.">
     <meta property="og:url" content="https://serhatemrecoban.github.io/LeanInfoTheory/docs/research-projects.html">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Formalize an Information Theory Paper in Lean | LeanInfoTheory">
-    <meta name="twitter:description" content="Build an information-theory research formalization on LeanInfoTheory: pin a release, map statements to the API, preserve assumptions, and contribute reusable results.">
+    <meta name="twitter:description" content="See how a paper builds on LeanInfoTheory and mathlib, follow a worked proof about perfect functional representations, and start your own formalization.">
     <link rel="stylesheet" href="../styles.css">
   </head>
   <body>
@@ -29,63 +29,109 @@
       </nav>
     </header>
     <main id="content" class="main-content" role="main">
-      <p class="lead">Spend your formalization effort on the new mathematics. LeanInfoTheory supplies reusable information-theoretic foundations for research projects and downstream software.</p>
-      <h2>Start with a dependency, not a copy</h2>
-      <p>Create a separate Lean project and <a href="getting-started.html">pin a published version with Lake</a>. Keep the resolved manifest and toolchain under version control. A later library upgrade should be deliberate, followed by a full build of your own project.</p>
-      <h2>Map paper statements to existing results</h2>
-      <ol>
-        <li>List the paper's definitions, theorem statements, and assumptions. Distinguish the target manuscript from supplementary proof sources.</li>
-        <li>Match basic identities and inequalities to the <a href="../theorems.html">theorem highlights</a> and the <a href="./">API for your version</a>, then verify candidate names in a compiling Lean file.</li>
-        <li>Keep paper-specific structures and constructions in your project. Propose a library addition when a missing result is independently useful.</li>
-        <li>Build one coherent theorem step at a time, including concrete and degenerate examples. Independently review statements as well as proof completion.</li>
-      </ol>
-      <h2>Check the mathematical contract</h2>
-      <ul>
-        <li><strong>Alphabet scope:</strong> the release targets finite discrete information theory, not general continuous entropy.</li>
-        <li><strong>Units:</strong> canonical quantities use nats; convert explicitly if the paper uses bits.</li>
-        <li><strong>Support:</strong> distinguish global assumptions from properties needed only on positive-probability events.</li>
-        <li><strong>Conditioning:</strong> track argument order and null fibers; a total conditional law's fallback is not evidence about a probability-zero event.</li>
-        <li><strong>KL:</strong> keep infinity and real-valued conversion separate.</li>
-      </ul>
-      <h2>What the release provides</h2>
-      <p>Entropy and information identities, finite-family algebra, independence and Markov characterizations, stochastic data processing, finite Fano inequalities, convexity, and sufficiency are available now.</p>
-      <h2>Choosing a release for a proof</h2>
-      <p>
-        The published <a href="v0.2.0/">v0.2.0 API</a> includes iid AEP,
-        fixed-length source coding, attained information capacity and channel weak converses.
-        The third release also gives codes achieving rates below capacity,
-        identifies capacity as the least upper bound of achievable rates, and proves
-        lossless separation at strict entropy–capacity inequality.
-        The <a href="release-3-examples.html">six Lean examples</a> show the imports
-        and assumptions to use in a downstream proof.
-      </p>
+      <p class="lead">In your own Lean project, you can define the model from your paper and
+        prove the results specific to it. When a proof uses a familiar theorem (e.g. the
+        chain rule for mutual information), you can import it from LeanInfoTheory and apply it
+        to the random variables in your model.</p>
 
-      <h2>Applications and collaboration</h2>
-      <p>Keep paper-specific constructions and application automation in separate projects, with a pinned LeanInfoTheory version supplying the reusable mathematical foundations.</p>
+      <h2 id="layers-title">The four conceptual layers of a proof</h2>
+      <p>The figure illustrates four conceptual layers in the formalization of an information
+        theory paper. The first contains the paper’s main theorem. The second contains the
+        definitions, intermediate lemmas and estimates specific to its proof. These draw on
+        information-theoretic definitions and results in the third layer, which in turn use
+        general mathematics from mathlib in the fourth.</p>
+      <figure class="proof-layers" id="full-size-figure" aria-labelledby="layers-title">
+        <div class="figure-viewport" tabindex="0" role="region" aria-label="Figure 1. Scroll horizontally in the full-size view.">
+          <img src="figures/reuse-layers.svg" width="1440" height="469"
+            alt="The main theorem draws on paper-specific definitions, intermediate lemmas and estimates.
+              These use entropy and chain rules, independence and mutual information, and channel and support facts
+              from LeanInfoTheory. All three branches rest on mathlib’s probability mass functions, finite sums,
+              real analysis and finite types.">
+        </div>
+        <figcaption><strong>Figure 1.</strong> Arrows point from a statement or definition to the mathematics
+          it uses. Dependencies can be shared and can cross layers.
+          <a class="enlarge-figure" href="#full-size-figure">View the full-size figure</a><a class="fit-figure" href="#layers-title">Fit figure to page</a>.</figcaption>
+      </figure>
+      <p>When each project develops the third layer for itself, readers must interpret those
+        foundations separately for each paper. LeanInfoTheory aims to provide a shared third layer for
+        finite discrete information theory. Once its definitions and theorem statements have been
+        reviewed, readers can focus on the paper-specific work and on whether the shared results
+        apply to the paper’s model, distribution and hypotheses. Lean checks the full proof
+        across all four layers.</p>
+
+      <h2 id="start-project">Formalize one result from your paper</h2>
+      <ol>
+        <li><strong>Set up a project for your paper.</strong> Follow the
+          <a href="getting-started.html">Lake setup guide</a> to add a specific LeanInfoTheory
+          release to your project. Commit <code>lean-toolchain</code> and
+          <code>lake-manifest.json</code> so other researchers can build your proof with the
+          same versions.</li>
+        <li><strong>State the result in Lean.</strong> Choose one theorem from your paper.
+          Define the model it uses and write down its assumptions and conclusion in Lean.
+          Read the statement back in the paper’s notation. Do the random variables, their
+          joint law and the claimed conclusion agree with the paper?</li>
+        <li><strong>Apply a library theorem to your model.</strong> Suppose your paper models
+          a signal <var>X</var>, an observation <var>Y</var> and a processed observation
+          <var>Z</var>, all finite-valued. To prove I(X; Z) ≤ I(X; Y), first use your model’s
+          assumptions to show that X → Y → Z is a Markov chain. Given that hypothesis, the
+          library’s <a href="https://serhatemrecoban.github.io/LeanInfoTheory-API-v0.3.0/v0.3.0/LeanInfoTheory/Shannon/SemanticBridge/Markov.html#LeanInfoTheory.Shannon.mutualInfoOf_dataProcessing">data processing inequality</a>
+          gives the bound. The <a href="markov-data-processing.html">worked Lean example</a>
+          shows how to apply it.</li>
+      </ol>
+
+      <h2 id="theorem-assumptions">Does the library theorem match your paper?</h2>
+      <p>Read the library theorem in your paper’s notation. Do its quantities have the same
+        meaning, and does your model satisfy its assumptions? Which details matter depends
+        on the result you want to use.</p>
+      <ul>
+        <li><strong>Finite alphabets.</strong> In the data processing example above,
+          <var>X</var>, <var>Y</var> and <var>Z</var> take values in finite alphabets.
+          The underlying sample space can still be infinite.</li>
+        <li><strong>Bits and nats.</strong> LeanInfoTheory measures entropy in nats. To compare
+          a value in nats with a bound expressed in bits, divide the value in nats by ln&nbsp;2.
+          For example, a fair bit has entropy ln&nbsp;2 in nats and 1 in bits.</li>
+        <li><strong>Decoding on the support.</strong> A theorem may guarantee that a decoder
+          recovers the output for every source outcome of positive probability. If your paper
+          claims recovery for every outcome, you also need an argument for outcomes outside
+          the support.</li>
+        <li><strong>Conditioning.</strong> In H(Y | X), <var>X</var> is the variable you
+          condition on. If your proof uses the law of <var>Y</var> given <var>X</var> = <var>x</var>,
+          check that P(X = x) &gt; 0. When that probability is zero, the joint law leaves the
+          conditional distribution at <var>x</var> undetermined.</li>
+        <li><strong>KL divergence.</strong> On a finite alphabet, D(P ∥ Q) is finite exactly
+          when every outcome with positive probability under <var>P</var> also has positive
+          probability under <var>Q</var>. Check this support condition before using a
+          real-valued formula for the divergence.</li>
+      </ul>
+
       <section class="notice" aria-labelledby="pfr-case-study">
-        <h2 id="pfr-case-study">Case study: Perfect Functional Representations</h2>
-        <p>
-          <a href="https://serhatemrecoban.github.io/PerfectFunctionalRepresentationsLean/">PerfectFunctionalRepresentationsLean</a>
-          formalizes the definitions and main results of <em>On Perfect Functional
-          Representations</em>, within its documented finite-alphabet, support and
-          auxiliary-variable qualifications. It was completed using unchanged
-          LeanInfoTheory v0.1.0, with paper-specific constructions kept downstream.
-          It demonstrates historical library reuse.
+        <h2 id="pfr-case-study">An example from a case study: Perfect Functional Representations</h2>
+        <p>The formalization of <a href="https://serhatemrecoban.github.io/PerfectFunctionalRepresentationsLean/"><em>On Perfect Functional Representations</em></a>
+          used LeanInfoTheory v0.1.0 unchanged. One proof asks when a functional representation is
+          perfect. Suppose <var>X</var>, <var>Y</var> and <var>Z</var> are finite-valued,
+          <var>X</var> and <var>Z</var> are independent, and a decoder recovers <var>Y</var> from
+          <var>X</var> and <var>Z</var> on the support of the source law. Under these assumptions,</p>
+        <p role="math" aria-label="Mutual information of Y and Z equals conditional entropy of Y given X if and only if X, Y, Z form a Markov chain.">
+          I(Y; Z) = H(Y | X) &nbsp;⇔&nbsp; X → Y → Z.
         </p>
-        <p>
-          This separation provides a useful pattern for research formalization:
-          reuse the library's information measures and channel foundations, and
-          develop the paper's specialized constructions in its own project.
-          Record the dependency version so the formalization can be reproduced
-          independently of later library releases.
-        </p>
-        <p>
-          Explore the <a href="https://github.com/serhatemrecoban/PerfectFunctionalRepresentationsLean">repository</a>,
-          <a href="https://serhatemrecoban.github.io/PerfectFunctionalRepresentationsLean/discussion.html#limitations">scope and limitations</a>, and
-          <a href="https://serhatemrecoban.github.io/PerfectFunctionalRepresentationsLean/discussion.html#reuse">library reuse discussion</a>.
-        </p>
+        <p>The equality on the left is the paper’s definition of perfectness.
+          The <a href="https://github.com/serhatemrecoban/PerfectFunctionalRepresentationsLean/blob/943578126eae7425fe16e9fa43b678eeb4807e5f/PerfectFunctionalRepresentations/Semantics/FunctionalRepresentation.lean#L216-L224">downstream proof</a>
+          uses the decoder and independence to reduce that equality to I(X; Z | Y) = 0.
+          It draws on the library’s
+          <a href="https://serhatemrecoban.github.io/LeanInfoTheory/docs/v0.1.0/LeanInfoTheory/Shannon/SemanticBridge/Theorems.html#LeanInfoTheory.Shannon.mutualInfoOf_chain_rule_fst">mutual information chain rules</a>
+          and its <a href="https://serhatemrecoban.github.io/LeanInfoTheory/docs/v0.1.0/LeanInfoTheory/Shannon/SemanticBridge/Markov.html#LeanInfoTheory.Shannon.condMutualInfoOf_eq_zero_iff_isMarkovChainOf">Markov characterization</a>
+          to obtain the equivalence.</p>
+        <p>Explore the <a href="https://github.com/serhatemrecoban/PerfectFunctionalRepresentationsLean">case-study repository</a>,
+          its <a href="https://serhatemrecoban.github.io/PerfectFunctionalRepresentationsLean/discussion.html#limitations">scope and limitations</a>,
+          and the <a href="https://serhatemrecoban.github.io/PerfectFunctionalRepresentationsLean/discussion.html#reuse">account of library reuse</a>.</p>
       </section>
-      <p>For a missing theorem, confusing name, or import problem, <a href="https://github.com/serhatemrecoban/LeanInfoTheory/issues">open an issue</a> with the library version, intended mathematical statement, relevant source section, and a minimal Lean example when possible.</p>
+
+      <p>For an older proof, use the <a href="v0.1.0/">v0.1.0 API</a> or the
+        <a href="v0.2.0/">v0.2.0 API</a> matching its dependency. To
+        <a href="https://github.com/serhatemrecoban/LeanInfoTheory/issues">report a missing
+        theorem or an import problem</a>, include the library version, the intended statement
+        and a small Lean example.</p>
+
       <footer class="site-footer">
         <p><a href="./">All guides</a> &middot; <a href="../license.html">License and citation</a> &middot; <a href="../">LeanInfoTheory</a></p>
       </footer>

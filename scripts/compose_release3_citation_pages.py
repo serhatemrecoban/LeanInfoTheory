@@ -1,4 +1,4 @@
-"""Compose the two reviewed citation pages onto a qualified main-site tree."""
+"""Compose reviewed main-site pages and assets onto the qualified release tree."""
 from __future__ import annotations
 
 import argparse
@@ -10,18 +10,23 @@ import subprocess
 
 import release3_state as release
 from release_state import strict_json
-from stage_website import ROOT_MARKER, tree_digest
+from stage_website import ROOT_MARKER, require_unredirected_components, tree_digest
 
 
-PAGES = ("index.html", "license.html")
+CITATION_PAGES = ("index.html", "license.html")
+PAGES = (*CITATION_PAGES, "docs/research-projects.html")
+FIGURE = "docs/figures/reuse-layers.svg"
+ASSETS = ("styles.css", FIGURE)
+MAINTAINED_FILES = (*PAGES, *ASSETS)
 PINS = "docs/compatibility/v0.3.0-promotion.json"
 
 
 def compose(site: Path, decision: dict, source: str, archive: dict, pins: dict,
             pages: dict[str, bytes]) -> dict:
     """Validate every input before writing to the freshly extracted, disposable site."""
-    if not re.fullmatch(r"[0-9a-f]{40}", source) or set(pages) != set(PAGES):
-        raise ValueError("expected an exact maintenance revision and the two citation pages")
+    if not re.fullmatch(r"[0-9a-f]{40}", source) or set(pages) != set(MAINTAINED_FILES):
+        raise ValueError("expected an exact maintenance revision and the reviewed set of pages and assets")
+    site = require_unredirected_components(site, label="qualified main site")
     base_tree = decision["site_tree_sha256"]
     if tree_digest(site)[0] != base_tree:
         raise ValueError("main site differs from the qualified archive before composition")
@@ -34,20 +39,34 @@ def compose(site: Path, decision: dict, source: str, archive: dict, pins: dict,
             or pins["release_commit"] != archive["source_commit"] or pins["annotated_tag"] != archive["tag_object"]):
         raise ValueError("qualified main site, promotion pins, and verified archive identify different releases")
     doi = archive["version_doi"]
-    for name in PAGES:
-        if not (site / name).is_file() or ("https://doi.org/" + doi).encode() not in pages[name]:
+    for name in MAINTAINED_FILES:
+        if not isinstance(pages[name], bytes) or not pages[name]:
+            raise ValueError(f"expected nonempty tracked file content for {name}")
+    for name in CITATION_PAGES:
+        if ("https://doi.org/" + doi).encode() not in pages[name]:
             raise ValueError(f"expected the verified version DOI in {name}")
-    for name in PAGES:
-        (site / name).write_bytes(pages[name])
+    for name in (*MAINTAINED_FILES, ROOT_MARKER):
+        target = site / name
+        if name == FIGURE and not target.exists():
+            if target.parent.exists() and not target.parent.is_dir():
+                raise ValueError(f"expected a directory for {target.parent.name}")
+            continue
+        if not target.is_file() or target.stat().st_nlink != 1:
+            raise ValueError(f"expected an independent regular file at {name}")
     marker.update({
         "schema": "lean-info-theory.release3-citation-maintenance.v1",
         "purpose": "published-maintenance",
         "site_source_identity": source,
         "qualified_site_tree_sha256": base_tree,
         "maintained_pages": list(PAGES),
+        "maintained_assets": list(ASSETS),
         "version_doi": doi,
     })
-    path.write_bytes((json.dumps(marker, sort_keys=True, indent=2) + "\n").encode())
+    marker_bytes = (json.dumps(marker, sort_keys=True, indent=2) + "\n").encode()
+    (site / FIGURE).parent.mkdir(exist_ok=True)
+    for name in MAINTAINED_FILES:
+        (site / name).write_bytes(pages[name])
+    path.write_bytes(marker_bytes)
     return {
         "site_tree_sha256": tree_digest(site)[0],
         "qualified_site_tree_sha256": base_tree,
@@ -55,7 +74,7 @@ def compose(site: Path, decision: dict, source: str, archive: dict, pins: dict,
         "maintenance_commit": source,
         "version_doi": doi,
         "maintained_sha256": {name: hashlib.sha256((site / name).read_bytes()).hexdigest()
-                              for name in (*PAGES, ROOT_MARKER)},
+                              for name in (*MAINTAINED_FILES, ROOT_MARKER)},
     }
 
 
@@ -85,7 +104,7 @@ def main() -> None:
     if state["phase"] != "published-maintenance":
         raise ValueError("verified published-maintenance archive metadata is required")
     pins = strict_json(tracked(PINS))
-    pages = {name: tracked("home_page/" + name) for name in PAGES}
+    pages = {name: tracked("home_page/" + name) for name in MAINTAINED_FILES}
     print(json.dumps(compose(args.site, strict_json(args.decision.read_bytes()), args.commit,
                              state["archive"], pins, pages), sort_keys=True))
 

@@ -35,6 +35,9 @@ jobs:
             /docs/compatibility/v0.3.0-release-state.json
             /home_page/index.html
             /home_page/license.html
+            /home_page/docs/research-projects.html
+            /home_page/docs/figures/reuse-layers.svg
+            /home_page/styles.css
             /scripts/compose_release3_citation_pages.py
       - name: Select the reviewed site and tooling revision
         id: select
@@ -50,7 +53,7 @@ jobs:
           sha256sum --check --strict <<'PINS'
           099c686a50d3cfe1671328427917c6733dc4491ecf1eb37ac99c4ee014dbd12c  docs/compatibility/v0.3.0-promotion.json
           fba89f4e195c442d428fb597297bfbd9d3a6ea6ae23a2ca626a93f213d2c8aa0  docs/compatibility/v0.3.0-release-state.json
-          1d79480cc4a480ed165cc612ac6e2627b94d235eb8087c836a7f05d42b8673d9  scripts/compose_release3_citation_pages.py
+          46642d92602bf9eceda6a12447f235b9fb5352a76f7f4752ce6a419cccd2ef4d  scripts/compose_release3_citation_pages.py
           PINS
           source_sha=$(jq -er '.release_commit | select(test("^[a-f0-9]{40}$"))' docs/compatibility/v0.3.0-promotion.json)
           tag_sha=$(jq -er '.annotated_tag | select(test("^[a-f0-9]{40}$"))' docs/compatibility/v0.3.0-promotion.json)
@@ -125,6 +128,7 @@ jobs:
           tar --extract --file qualified.tar --directory site
           PYTHONPATH=verifier/scripts python -P -B scripts/compose_release3_citation_pages.py \
             --site site --decision decision.json --commit "$GITHUB_SHA" > composition.json
+          jq -c '.maintained_sha256' composition.json
           tar --format=gnu --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -cf artifact.tar -C site .
           tar --extract --file artifact.tar --directory restored
           diff --recursive --brief --no-dereference site restored
@@ -140,7 +144,7 @@ jobs:
               raise SystemExit("Restored Pages tree exceeds the hosting limits")
           print(f"Restored {files} files, {size} bytes, largest file {maximum} bytes, tree {tree}")
           if tree != expected:
-              raise SystemExit("Restored Pages tree differs from the verified citation composition")
+              raise SystemExit("Restored Pages tree differs from the verified maintenance composition")
           PY
           tar_sha=$(sha256sum artifact.tar | cut -d' ' -f1)
           echo "Pages TAR SHA-256: $tar_sha"

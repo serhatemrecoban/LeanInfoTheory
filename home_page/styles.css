@@ -459,6 +459,39 @@ a:hover {
   font-size: 0.95rem;
 }
 
+.proof-layers {
+  margin: 1.5rem 0;
+}
+
+.proof-layers .figure-viewport {
+  overflow-x: auto;
+}
+
+.proof-layers img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.proof-layers:target img {
+  width: 1440px;
+  max-width: none;
+}
+
+.proof-layers .fit-figure, .proof-layers:target .enlarge-figure {
+  display: none;
+}
+
+.proof-layers:target .fit-figure {
+  display: inline;
+}
+
+.proof-layers figcaption {
+  margin-top: 0.65rem;
+  color: #46545b;
+  font-size: 0.95rem;
+}
+
 .trusted-flow {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);

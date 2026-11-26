@@ -23,15 +23,57 @@
     <meta name="citation_publication_date" content="2026-11-26">
     <meta name="citation_doi" content="10.5281/zenodo.24563089">
     <link rel="stylesheet" href="styles.css">
+    <style>
+      @media screen and (max-width: 42em) {
+        .home-header {
+          padding: 1rem;
+        }
+
+        .home-header .project-tagline,
+        .home-header .project-authors {
+          max-width: none;
+          line-height: 1.35;
+        }
+
+        .home-header .project-tagline {
+          margin-top: 0.25rem;
+        }
+
+        .home-header .project-authors {
+          margin: 0.35rem auto 0.75rem;
+          font-size: 0.9rem;
+        }
+
+        .home-header + .main-content {
+          padding-top: 1rem;
+        }
+
+        .home-header .project-links {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 0.4rem;
+        }
+
+        .home-header .btn {
+          display: inline-flex;
+          align-items: center;
+          width: auto;
+          min-height: 44px;
+          margin: 0;
+          padding: 0.45rem 0.75rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <a id="skip-to-content" href="#content">Skip to the content.</a>
 
-    <header class="page-header" role="banner">
+    <header class="page-header home-header" role="banner">
       <h1 class="project-name">LeanInfoTheory</h1>
-      <h2 class="project-tagline">
+      <p class="project-tagline">
         A machine-checked information theory library for Lean 4.
-      </h2>
+      </p>
       <p class="project-authors">
         Created and maintained by <a href="https://serhatemrecoban.github.io/">Serhat Emre Coban</a>
         &middot; <a href="#contributors">Contributors and acknowledgments</a>
@@ -46,6 +88,45 @@
     </header>
 
     <main id="content" class="main-content" role="main">
+      <section class="project-summary" aria-labelledby="summary-heading">
+        <h2 id="summary-heading">A foundation for your next formalization</h2>
+        <p>
+          LeanInfoTheory is a Lean 4 library that provides a reusable information-theoretic
+          layer on top of mathlib. It currently covers finite discrete information theory.
+        </p>
+        <p>
+          <strong>Longer-term goal</strong><br>
+          Our goal is to help the information theory community build and maintain
+          a shared library. We are developing LeanInfoTheory as one possible
+          starting point for this effort, with definitions and theorems that others
+          can reuse and extend. Whether the community builds on this project or
+          develops another library, the needs that arise in formalizing papers
+          should shape its coverage and interfaces.
+        </p>
+        <p>
+          <strong>Importance of a common library</strong><br>
+          Checking a formal proof does not by itself establish that its statement and
+          definitions express the intended mathematics. Once the mathematical meaning
+          of shared definitions and theorem statements has been reviewed, subsequent
+          papers can reuse that review. This can reduce repeated checking of common
+          foundations.
+        </p>
+        <p>
+          <a href="docs/getting-started.html">Install and prove your first result</a>
+          or explore <a href="docs/research-projects.html">the research-project guide</a>.
+          Help shape the library through the <a href="#collaboration">collaboration guide</a>.
+        </p>
+      </section>
+
+      <section aria-labelledby="guides-heading">
+        <h2 id="guides-heading">From familiar mathematics to Lean proofs through some examples</h2>
+        <ul>
+          <li><a href="docs/information-measures.html">Entropy, mutual information, and KL divergence</a>: notation, assumptions, and working examples.</li>
+          <li><a href="docs/markov-data-processing.html">Markov chains and data processing</a>: turn conditional independence into information inequalities.</li>
+          <li><a href="docs/mathlib.html">LeanInfoTheory and mathlib</a>: a dedicated finite-information-theory API on shared probability foundations.</li>
+        </ul>
+      </section>
+
       <section class="status-strip" aria-label="Project status">
         <p class="status-badges">
           <a href="https://github.com/serhatemrecoban/LeanInfoTheory/actions/workflows/lean_action_ci.yml">
@@ -74,7 +155,7 @@
           <a href="https://github.com/serhatemrecoban/LeanInfoTheory/releases/tag/v0.3.0">release notes</a>.
           <a href="license.html#citation">Cite v0.3.0</a> ·
           <a href="https://doi.org/10.5281/zenodo.24563089">Version DOI 10.5281/zenodo.24563089</a>.
-          <a href="https://youtu.be/CXHebbD7ouA">Watch my LeanInfoTheory talk at EPFL</a>
+          <a href="https://youtu.be/CXHebbD7ouA">Watch the LeanInfoTheory talk at EPFL</a>
           (30 October 2026).
         </p>
       </section>
@@ -107,37 +188,6 @@
           <a href="module-guide.html#candidate-modules">focused imports</a> or
           <a href="theorems.html#candidate-results">theorems and their assumptions</a>.
         </p>
-      </section>
-
-      <section class="project-summary" aria-labelledby="summary-heading">
-        <h2 id="summary-heading">A foundation for your next formalization</h2>
-        <p>
-          The goal of LeanInfoTheory is to build a foundation for a collaboratively
-          maintained information-theory library. It brings finite discrete entropy,
-          mutual information, KL divergence, channels, Markov chains, and their
-          inequalities together in Lean 4 on top of mathlib.
-        </p>
-        <p>
-          Build research formalizations and information-theoretic software on
-          proved foundations. Install the tagged release, choose a focused
-          import, and reuse the results in your own proofs. Every formal theorem
-          is checked by Lean against its stated assumptions; the maintained
-          release validation rejects proof placeholders.
-        </p>
-        <p>
-          <a href="docs/getting-started.html">Install and prove your first result</a>
-          or explore <a href="docs/research-projects.html">the research-project guide</a>.
-          To help build the library, start with the <a href="#collaboration">collaboration guide</a>.
-        </p>
-      </section>
-
-      <section aria-labelledby="guides-heading">
-        <h2 id="guides-heading">From familiar mathematics to Lean proofs</h2>
-        <ul>
-          <li><a href="docs/information-measures.html">Entropy, mutual information, and KL divergence</a>: notation, assumptions, and working examples.</li>
-          <li><a href="docs/markov-data-processing.html">Markov chains and data processing</a>: turn conditional independence into information inequalities.</li>
-          <li><a href="docs/mathlib.html">LeanInfoTheory and mathlib</a>: a dedicated finite-information-theory API on shared probability foundations.</li>
-        </ul>
       </section>
 
       <section aria-labelledby="dashboard-heading">
