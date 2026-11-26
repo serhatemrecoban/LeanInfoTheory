@@ -1,87 +1,16 @@
-name: Lean build and release gates
-
+name: Qualify exact LeanInfoTheory candidate documentation
 on:
-  push:
-  pull_request:
   workflow_dispatch:
-    inputs:
-      api_docs:
-        description: Run the full signature-bearing API documentation release gate
-        required: true
-        default: false
-        type: boolean
-
-      pages_dry_run:
-        description: Verify all three sites and archive the main site and v0.3.0 API (requires api_docs)
-        required: false
-        default: false
-        type: boolean
-      publish:
-        description: Must be false for release qualification
-        required: false
-        default: false
-        type: boolean
-
 permissions:
   contents: read
-
-concurrency:
-  group: lean-release-gates-${{ github.ref }}
-  cancel-in-progress: true
-
+env:
+  QUALIFIED_SOURCE: "d12af2d34d49ee493f55c8924cebff815b2953be"
+  LEAN_NUM_THREADS: "2"
+  LEAN_STACK_SIZE_KB: "65536"
 jobs:
-  release-gates:
-    name: Release gates
-    runs-on: ubuntu-latest
-    timeout-minutes: 90
-
-    steps:
-      - name: Reserve disk for the Lean toolchain and documentation
-        if: ${{ runner.environment == 'github-hosted' }}
-        run: |
-          df -h .
-          sudo rm -rf -- /usr/local/lib/android /usr/share/dotnet /opt/ghc
-          df -h .
-
-      - name: Checkout
-        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-
-      - name: Enforce qualification-only dispatch
-        if: ${{ github.event_name == 'workflow_dispatch' }}
-        env:
-          PUBLISH: ${{ inputs.publish }}
-          PAGES_DRY_RUN: ${{ inputs.pages_dry_run }}
-          API_DOCS: ${{ inputs.api_docs }}
-        run: |
-          test "$PUBLISH" = false
-          test "$PAGES_DRY_RUN" != true || test "$API_DOCS" = true
-
-      - name: Check static release contract and Pages packaging regressions
-        run: |
-          mkdir -p tmp
-          python scripts/validate_development.py static
-
-      - name: Set up Lean and build the default target
-        uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596 # v1
-        with:
-          auto-config: "false"
-          build: "true"
-          build-args: "--wfail"
-          test: "false"
-          lint: "false"
-          use-mathlib-cache: "true"
-
-      - name: Build maintained targets and check examples, both retained APIs, trust and hygiene
-        run: python scripts/validate_development.py compiled
-
   api-documentation:
     name: API documentation release gate
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.api_docs }}
-    needs: release-gates
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 360
 
     steps:
@@ -92,12 +21,44 @@ jobs:
           sudo rm -rf -- /usr/local/lib/android /usr/share/dotnet /opt/ghc
           df -h .
 
+      - name: Record runner resources and reserve additional swap
+        run: |
+          set -euo pipefail
+          free -h
+          df -h .
+          printf 'CPUs '; nproc
+          uname -a
+          cat /proc/sys/vm/overcommit_memory
+          for f in memory.max memory.events pids.max; do if test -r "/sys/fs/cgroup/$f"; then cat "/sys/fs/cgroup/$f"; fi; done
+          grep -E '^(MemAvailable|CommitLimit|Committed_AS|SwapTotal):' /proc/meminfo
+          available=$(df --output=avail -k "$RUNNER_TEMP" | tail -1)
+          test "$available" -gt 47185920
+          sudo install -m 600 /dev/null "$RUNNER_TEMP/release-qualification.swap"
+          sudo fallocate -l 24G "$RUNNER_TEMP/release-qualification.swap"
+          sudo mkswap "$RUNNER_TEMP/release-qualification.swap"
+          sudo swapon "$RUNNER_TEMP/release-qualification.swap"
+          swapon --show
+          free -h
+          grep -E '^(MemAvailable|CommitLimit|Committed_AS|SwapTotal):' /proc/meminfo
       - name: Checkout
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
+          ref: d12af2d34d49ee493f55c8924cebff815b2953be
           fetch-depth: 0
           persist-credentials: false
 
+      - name: Prove the exact release source before building
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$QUALIFIED_SOURCE"
+          test "$(git rev-parse HEAD^{tree})" = "255afd15f8935a73e62bbaecadff6e7c2ed93399"
+          test "$(git show -s --format=%P HEAD)" = "85ca68878c96fab7f3f11103147e7a44e0c33504"
+          test -z "$(git status --porcelain --untracked-files=all)"
+          test ! -e docbuild/.lake/build
+          test ! -e .lake/build/lib/lean/LeanInfoTheory
+          remote=$(git remote get-url origin)
+          test "${remote%.git}" = "https://github.com/serhatemrecoban/LeanInfoTheory"
+          printf 'Controller %s; checked out release %s (tree %s)\n' "$GITHUB_SHA" "$QUALIFIED_SOURCE" "$(git rev-parse HEAD^{tree})"
       - name: Check static documentation-build contract
         run: |
           mkdir -p tmp
@@ -125,10 +86,12 @@ jobs:
         run: python scripts/validate_release.py api-docs
 
       - name: Verify the three sites and archive the two deployment targets
-        if: ${{ inputs.pages_dry_run && !inputs.publish }}
         run: |
-          package=".lake/release-pages/$GITHUB_SHA"
-          python scripts/package_release_pages.py build --release-3 --expected-commit "$GITHUB_SHA"
+          package=".lake/release-pages/$QUALIFIED_SOURCE"
+          python scripts/package_release_pages.py build --release-3 --expected-commit "$QUALIFIED_SOURCE"
+          python scripts/package_release_pages.py check --release-3 --expected-commit "$QUALIFIED_SOURCE"
+          test "$(git rev-parse HEAD)" = "$QUALIFIED_SOURCE"
+          test -z "$(git status --porcelain --untracked-files=all)"
           mkdir -p "$RUNNER_TEMP/qualification"
           cp "$package/receipt.json" "$RUNNER_TEMP/qualification/receipt.json"
           python scripts/archive_release_pages.py "$package" LeanInfoTheory "$RUNNER_TEMP/main/artifact.tar" --file-manifest "$RUNNER_TEMP/qualification/main-files.json"
@@ -136,28 +99,37 @@ jobs:
           cat "$package/receipt.json" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Retain the release source and all three site identities
-        if: ${{ inputs.pages_dry_run && !inputs.publish }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: pages-receipt-${{ github.sha }}
+          name: pages-receipt-d12af2d34d49ee493f55c8924cebff815b2953be
           path: ${{ runner.temp }}/qualification/
           if-no-files-found: error
           retention-days: 14
 
       - name: Retain the main website dry run
-        if: ${{ inputs.pages_dry_run && !inputs.publish }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: main-pages-${{ github.sha }}
+          name: main-pages-d12af2d34d49ee493f55c8924cebff815b2953be
           path: ${{ runner.temp }}/main/artifact.tar
           if-no-files-found: error
           retention-days: 14
 
       - name: Retain the versioned API dry run
-        if: ${{ inputs.pages_dry_run && !inputs.publish }}
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: api-pages-${{ github.sha }}
+          name: api-pages-d12af2d34d49ee493f55c8924cebff815b2953be
           path: ${{ runner.temp }}/api/artifact.tar
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Retain the native two-pass attestation
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: api-attestation-d12af2d34d49ee493f55c8924cebff815b2953be
+          path: |
+            docbuild/.lake/build/api-doc-build-attestation.json
+            docbuild/.lake/build/api-doc-build-config.json
+            docbuild/.lake/build/doc-manifest.json
+          include-hidden-files: true
           if-no-files-found: error
           retention-days: 14
