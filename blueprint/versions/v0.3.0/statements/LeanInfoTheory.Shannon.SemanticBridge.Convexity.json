@@ -8,6 +8,6 @@
   "LeanInfoTheory.Shannon.mutualInfo_channelJoint_eq_entropy_bind_sub_sum": "For finite alphabets, input law p and channel W, I(X;Y) = H(Y) − ∑ₓ p(x)H(W(·|x)), where Y is the output obtained by passing X through W.",
   "LeanInfoTheory.Shannon.sum_mul_mutualInfo_channelJoint_le": "For a fixed finite channel W and a finite mixture of input laws Pᵢ with weights rᵢ, the mutual information at the mixed input is at least ∑ᵢ rᵢ I(Pᵢ;W).",
   "LeanInfoTheory.Shannon.mutualInfo_binaryMixture_input_concave": "At fixed finite channel W and 0 ≤ t ≤ 1, I(tP+(1−t)Q;W) ≥ t I(P;W)+(1−t)I(Q;W), where I(P;W) denotes input–output mutual information under input P.",
-  "LeanInfoTheory.Shannon.mutualInfo_channelMixture_le_sum": "For fixed input law p and finite channels Wᵢ with mixture weights rᵢ, the mutual information of the row-wise mixed channel is at most ∑ᵢ rᵢ I(p;Wᵢ).",
+  "LeanInfoTheory.Shannon.mutualInfo_channelMixture_le_sum": "Let Wᵢ be a finite family of channels with common finite input and output alphabets, and let the weights rᵢ sum to one with rᵢ ≥ 0. For a fixed input law p, mixing the channel rows with these weights gives mutual information at most ∑ᵢ rᵢ I(p;Wᵢ).",
   "LeanInfoTheory.Shannon.mutualInfo_binaryChannelMixture_le": "Let W₁ and W₂ be channels with the same finite input and output alphabets. For a fixed input law p and 0 ≤ t ≤ 1, mixing the two output laws at each input gives I(p;tW₁+(1−t)W₂) ≤ tI(p;W₁)+(1−t)I(p;W₂)."
 }

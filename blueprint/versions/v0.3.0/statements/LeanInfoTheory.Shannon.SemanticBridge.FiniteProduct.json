@@ -1,5 +1,5 @@
 {
-  "LeanInfoTheory.Shannon.familyMarginal_finiteProduct": "If the coordinates of a finite product space have product law ⊗ᵢ pᵢ, its marginal on any subset S of the index set is the product of precisely the laws pᵢ with i in S.",
+  "LeanInfoTheory.Shannon.familyMarginal_finiteProduct": "Let I be a finite index set, with a probability law pᵢ on a finite alphabet for each i. For any subset S of I, the marginal of the product law ⊗ᵢ pᵢ on the coordinates in S is the product of the laws indexed by S.",
   "LeanInfoTheory.Shannon.isMutuallyIndependentFamily_finiteProduct": "Under the product of finitely many finite probability laws pᵢ, every subset of the coordinates is mutually independent.",
   "LeanInfoTheory.Shannon.isIndependentOf_finiteProduct_eval": "For a finite product of finite laws, the coordinate projections at any two distinct indices i and j are independent random variables.",
   "LeanInfoTheory.Shannon.entropy_finiteProduct": "For a finite product of finite laws pᵢ, H(⊗ᵢ pᵢ) = ∑ᵢ H(pᵢ).",

@@ -1,5 +1,5 @@
 {
   "LeanInfoTheory.Shannon.selfInfo_iid_of_mem_support": "For every supported word x of length n from a finite iid source p, its self-information −ln pⁿ(x) equals the sum of the single-letter self-informations −ln p(xⱼ). At length zero both sides are zero.",
   "LeanInfoTheory.Shannon.tendsto_selfInfo_iid_deviation": "For every ε > 0 and finite source p, under n independent draws the probability that normalized block self-information differs from H(p) by at least ε tends to zero as n tends to infinity. All logarithms are natural.",
-  "LeanInfoTheory.Shannon.tendsto_prob_weakTypicalSet": "For every ε > 0 and finite source p, the probability that an iid length-n word has positive probability and its per-symbol self-information lies strictly within ε of H(p) tends to one."
+  "LeanInfoTheory.Shannon.tendsto_prob_weakTypicalSet": "Let p be a PMF on a finite alphabet and ε > 0. At length n > 0, a word is weakly typical when it has positive probability under n iid draws from p and its self-information per symbol differs from H(p) by less than ε. At length zero the typical set is empty. The probability of the typical set tends to one as n tends to infinity."
 }

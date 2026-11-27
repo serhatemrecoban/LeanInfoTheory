@@ -9,6 +9,6 @@
   "PMF.productChannel_deterministicChannel": "The product of deterministic channels fᵢ is the deterministic map sending x to the vector with entries fᵢ(xᵢ).",
   "PMF.memorylessChannel": "For a finite output alphabet, the n-use memoryless extension of W sends x to the product of the n rows W(·|xᵢ). Outputs are conditionally independent given x.",
   "PMF.channelJoint_productChannel_map_eval": "For any input-vector law q, the marginal law of the i-th input–output pair under the product channel is the joint law induced by the i-th input marginal and channel Wᵢ.",
-  "PMF.channelJoint_productChannel_map_restrict": "For any input law q and any injection selecting coordinates, the joint law of the selected inputs and outputs is obtained by passing the selected input marginal through the selected product channel.",
+  "PMF.channelJoint_productChannel_map_restrict": "Let q be the input PMF for a finite product of channels with finite output alphabets. Select coordinates by an injection e. To sample the joint law of the selected inputs and outputs, draw the input vector from the corresponding marginal of q. Given this vector, draw each output independently from its coordinate channel and retain both vectors.",
   "PMF.finiteProduct_channelJoint_map": "Draw independent pairs with respective joint laws induced by pᵢ and Wᵢ. Regrouping their coordinates as an input vector and an output vector gives the joint law of the product input through the product channel."
 }

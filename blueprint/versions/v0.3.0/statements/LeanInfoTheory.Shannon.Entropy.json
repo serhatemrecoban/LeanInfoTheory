@@ -7,7 +7,7 @@
   "LeanInfoTheory.Shannon.entropy_pure": "A law concentrated at one point has entropy zero.",
   "LeanInfoTheory.Shannon.entropy_eq_zero_iff": "A finite probability law has entropy zero if and only if it is concentrated at one outcome.",
   "LeanInfoTheory.Shannon.entropyOf": "For a finite-valued random variable X and discrete source law p, H(X) is the entropy of the distribution of X induced by p.",
-  "LeanInfoTheory.Shannon.entropyOf_eq_zero_iff": "A finite-valued X has entropy zero exactly when some value a satisfies X(ω) = a for every ω of positive source probability.",
+  "LeanInfoTheory.Shannon.entropyOf_eq_zero_iff": "Let p be a probability mass function on the source outcomes and X a finite-valued random variable. Then H(X) = 0 exactly when there is a value a such that X(ω) = a for every ω with p(ω) > 0.",
   "LeanInfoTheory.Shannon.entropyOf_id": "For a finite law p, the entropy of the identity observation is H(p).",
   "LeanInfoTheory.Shannon.entropyOf_comp_equiv": "Bijectively relabeling the finite values of a random variable X preserves H(X).",
   "LeanInfoTheory.Shannon.entropyOf_comp_injective": "If f is injective between finite alphabets, H(f(X)) = H(X).",

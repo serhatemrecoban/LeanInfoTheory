@@ -3,6 +3,6 @@
   "LeanInfoTheory.Shannon.natsToBits": "The value of x nats in bits is x divided by ln 2.",
   "LeanInfoTheory.Shannon.div_log_change_base": "Let b > 1 and c > 1. An information quantity of x nats has value x/ln b in base-b units. Multiplying by ln b/ln c converts it to base-c units, so x/ln c = (ln b/ln c)(x/ln b).",
   "LeanInfoTheory.Shannon.negMulLog_div_log": "Dividing the entropy summand −x ln x by ln b gives −x log base b of x. This algebraic identity holds for all real x and b with Lean’s total logarithm and division conventions.",
-  "LeanInfoTheory.Shannon.entropy_div_log": "For a law p on a finite alphabet, H(p)/ln b equals the sum of −p(a) log base b of p(a) over all letters a. For b > 1 this is entropy in base-b units. The algebraic identity uses total logarithms for all real b.",
-  "LeanInfoTheory.Shannon.entropyOf_div_log": "If X has a finite alphabet and law q under a source law p, then H(X)/ln b equals the sum of −q(a) log base b of q(a) over all values a. The identity extends to every real b under Lean’s total logarithm conventions."
+  "LeanInfoTheory.Shannon.entropy_div_log": "For a law p on a finite alphabet, H(p)/ln b is the sum over a of −p(a) times the base-b logarithm of p(a). For b > 1 this gives entropy in base-b units. Lean’s total logarithm and division make the identity valid for every real b. At b = 1, both sides are zero because Lean defines x/0 = 0.",
+  "LeanInfoTheory.Shannon.entropyOf_div_log": "Let q be the law of a finite-valued X under a source probability mass function p. Then H(X)/ln b is the sum over a of −q(a) times the base-b logarithm of q(a). The identity holds for every real b under Lean’s total logarithm and division conventions. At b = 1, both sides are zero because Lean defines x/0 = 0."
 }

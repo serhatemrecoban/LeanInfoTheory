@@ -7,7 +7,7 @@
   "LeanInfoTheory.Shannon.mutualInfo_channelJoint_binaryErasureChannel": "For a binary erasure channel with erasure probability 0 ≤ ε ≤ 1 and any input law p, the mutual information between input and output is (1 − ε)H(p).",
   "LeanInfoTheory.Shannon.channelCapacity_binaryErasureChannel": "The binary erasure channel with erasure probability 0 ≤ ε ≤ 1 has capacity (1 − ε) ln 2 nats per use.",
   "LeanInfoTheory.Shannon.channelCapacity_deterministicChannel_id_bits": "Measured in bits per use, the capacity of the noiseless identity channel on a finite nonempty alphabet A is log₂ |A|.",
-  "LeanInfoTheory.Shannon.channelCapacity_const_bits": "For finite alphabets and a nonempty input alphabet, a channel whose output law is independent of its input has capacity zero bits per use.",
+  "LeanInfoTheory.Shannon.channelCapacity_const_bits": "For a channel on finite alphabets with a nonempty input alphabet, if every input gives the same output distribution r, its capacity is zero bits per use.",
   "LeanInfoTheory.Shannon.channelCapacity_binarySymmetricChannel_bits": "The binary symmetric channel with crossover probability 0 ≤ ε ≤ 1 has capacity 1 − h₂(ε) bits per use, where h₂ is binary entropy in bits.",
   "LeanInfoTheory.Shannon.channelCapacity_binaryErasureChannel_bits": "The binary erasure channel with erasure probability 0 ≤ ε ≤ 1 has capacity 1 − ε bits per use."
 }

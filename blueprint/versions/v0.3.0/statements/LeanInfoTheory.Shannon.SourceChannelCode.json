@@ -1,4 +1,4 @@
 {
   "LeanInfoTheory.Shannon.sourceChannelErrorProbability": "Draw the n entries of the source word Sⁿ independently from p, encode the word with E, and transmit its codeword through n independent uses of W. The block error probability is Pr[D(Yⁿ) ≠ Sⁿ].",
-  "LeanInfoTheory.Shannon.sourceChannelErrorProbability_comp_le": "Compose a length-n source code and channel code with the same K possible indices. The end-to-end block error is at most the sum of the source reconstruction error and the channel decoding error, where each index is weighted by its actual probability under the source encoder."
+  "LeanInfoTheory.Shannon.sourceChannelErrorProbability_comp_le": "Compose a length-n source code and channel code with the same K possible indices. For n iid source symbols drawn from p and n memoryless uses of W, the end-to-end block error probability is at most the sum of the source reconstruction and channel decoding error probabilities. In the channel term, each index’s decoding error is weighted by the probability that the source encoder produces that index."
 }
