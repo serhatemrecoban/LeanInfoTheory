@@ -1,0 +1,14 @@
+{
+  "LeanInfoTheory.Shannon.SourceCode": "A deterministic source code with M messages is a pair of functions: an encoder from the source alphabet to the M indices, and a decoder from those indices back to the source alphabet.",
+  "LeanInfoTheory.Shannon.BlockSourceCode": "A length-n block source code with M messages encodes a word of n source symbols as one of M indices and decodes that index to a word of the same length.",
+  "LeanInfoTheory.Shannon.SourceCode.encoder": "The encoder of a source code is the function assigning one of its M message indices to each possible source symbol.",
+  "LeanInfoTheory.Shannon.SourceCode.decoder": "The decoder of a source code is the function assigning one reconstructed source symbol to each of its M message indices.",
+  "LeanInfoTheory.Shannon.SourceCode.errorProbability": "Under source law q, the error probability of a deterministic code is the probability that decoding the encoded symbol fails to recover the original symbol.",
+  "LeanInfoTheory.Shannon.SourceCode.successSet": "The success set of a code on a finite alphabet is the set of source letters x for which decoding the encoding of x returns x.",
+  "LeanInfoTheory.Shannon.SourceCode.mem_successSet": "A source letter x belongs to the success set if and only if the decoder returns x on the message assigned by the encoder to x.",
+  "LeanInfoTheory.Shannon.SourceCode.card_successSet_le": "A deterministic source code with M messages can recover at most M distinct source letters exactly.",
+  "LeanInfoTheory.Shannon.SourceCode.successProbability_eq_one_sub_errorProbability": "For a source code on a finite alphabet, the q-probability of its success set is one minus its error probability under q.",
+  "LeanInfoTheory.Shannon.SourceCode.successProbability_le": "Let T be a set of letters in a finite alphabet. If b ≥ 0 and each letter in T has q-probability at most b, then the success probability of any M-message code is at most q(Tᶜ) + Mb.",
+  "LeanInfoTheory.Shannon.exists_sourceCode_correctOn": "For a finite nonempty source alphabet, if T contains at most M letters and M ≥ 1, some deterministic M-message code recovers every letter in T exactly.",
+  "LeanInfoTheory.Shannon.exists_sourceCode_errorProbability_le": "For any law q on a finite source alphabet and any set T with |T| ≤ M and M ≥ 1, there is one M-message code that recovers every letter in T and has error probability at most q(Tᶜ)."
+}

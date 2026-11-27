@@ -1,0 +1,6 @@
+{
+  "LeanInfoTheory.Shannon.continuous_entropy": "On a fixed finite alphabet, entropy is a continuous function of the probability law.",
+  "LeanInfoTheory.Shannon.continuous_condEntropy": "On a fixed pair of finite alphabets, the conditional entropy H(X | Y) is a continuous function of the joint law of X and Y.",
+  "LeanInfoTheory.Shannon.continuous_mutualInfo": "On a fixed pair of finite alphabets, mutual information is a continuous function of the joint law.",
+  "LeanInfoTheory.Shannon.continuous_mutualInfo_channelJoint": "For a fixed channel W between finite alphabets, the mutual information between its input and its output is a continuous function of the input law."
+}

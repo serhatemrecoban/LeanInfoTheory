@@ -1,0 +1,5 @@
+{
+  "LeanInfoTheory.Shannon.infoDensity_iid_of_mem_support": "For iid inputs with finite law p and a memoryless channel W with finite output alphabet, every word pair of positive joint probability satisfies i(xⁿ;yⁿ) = ∑ⱼ i(xⱼ;yⱼ), in nats. The empty sum gives zero at length zero.",
+  "LeanInfoTheory.Shannon.tendsto_infoDensity_iid_deviation": "Let X be drawn from p on a finite alphabet, and draw Y through W on a finite output alphabet. With iid inputs and n memoryless uses of W, the probability that |i(Xⁿ;Yⁿ)/n − I(X;Y)| ≥ ε tends to zero as positive n tends to infinity, for every ε > 0.",
+  "LeanInfoTheory.Shannon.tendsto_prob_infoDensityThresholdEvent_iid_compl": "For iid inputs of law p and a memoryless channel W on finite alphabets, choose s < I(X;Y) for a single channel use. Then Pr[i(Xⁿ;Yⁿ) ≤ ns] tends to zero as n tends to infinity, with probability under the true joint law of the input and output words."
+}

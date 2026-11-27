@@ -1,0 +1,4 @@
+{
+  "LeanInfoTheory.Shannon.mul_entropy_le_mul_channelCapacity_add_error": "Consider an iid source with law p on a finite alphabet S and a finite memoryless channel W with a nonempty input alphabet. For any encoder and decoder using n channel uses for n source symbols, with block error probability e, nH(p) ≤ nC(W) + ln 2 + e · n · ln |S|.",
+  "LeanInfoTheory.Shannon.entropy_le_channelCapacity_of_tendsto_sourceChannelErrorProbability": "For an iid finite-alphabet source and a finite memoryless channel with nonempty input alphabet, suppose a sequence of encoders and decoders uses the channel once per symbol and its block error tends to zero. Then H(p) ≤ C(W)."
+}

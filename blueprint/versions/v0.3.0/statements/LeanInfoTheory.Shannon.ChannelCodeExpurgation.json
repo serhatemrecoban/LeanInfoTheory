@@ -1,0 +1,16 @@
+{
+  "LeanInfoTheory.Shannon.BlockChannelCode.messageErrorProbability": "Fix a message m and transmit its codeword through n memoryless uses of W. Its error probability is the sum of Wⁿ(y|encoder(m)) over output words y whose decoded index differs from m. This definition is available even if a chosen message prior gives m zero mass.",
+  "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_eq_mean_messageErrorProbability": "For M ≥ 1, the average decoding error equals the arithmetic mean of the M message-specific errors.",
+  "LeanInfoTheory.Shannon.BlockChannelCode.errorProbabilityWithPrior": "For a message prior π, draw m from π, encode m, and transmit through the memoryless channel. The prior-weighted error is the probability that the decoder returns a different message.",
+  "LeanInfoTheory.Shannon.BlockChannelCode.errorProbabilityWithPrior_eq_sum": "For any prior π on the messages, the code error equals ∑ₘ π(m)eₘ, where eₘ is the error when the encoder sends m. Messages of zero prior mass contribute zero.",
+  "LeanInfoTheory.Shannon.BlockChannelCode.errorProbabilityWithPrior_uniformOfFintype": "For M ≥ 1, taking the prior uniform on the M messages gives the usual average error probability.",
+  "LeanInfoTheory.Shannon.BlockChannelCode.errorProbabilityWithPrior_pure": "When the prior is concentrated at message m, the prior-weighted error equals the conditional error for m.",
+  "LeanInfoTheory.Shannon.BlockChannelCode.maximalErrorProbability": "For M ≥ 1, the maximal error probability is the maximum of the conditional error probabilities over all M messages.",
+  "LeanInfoTheory.Shannon.BlockChannelCode.maximalErrorProbability_le_iff": "For M ≥ 1, maximal error is at most b if and only if each message has conditional error at most b.",
+  "LeanInfoTheory.Shannon.BlockChannelCode.errorProbabilityWithPrior_le_maximalErrorProbability": "For M ≥ 1 and every message prior π, the prior-weighted error is at most the maximal error.",
+  "LeanInfoTheory.Shannon.BlockChannelCode.restrictMessages": "An injection i selects K messages from a code. The restricted code uses their original codewords, translates decoded messages in the image back through i, and otherwise returns the selected fallback message j₀.",
+  "LeanInfoTheory.Shannon.BlockChannelCode.restrictMessages_decoder_of_eq": "If the original decoder returns the selected message i(j) on a word y, then the restricted decoder returns j on that word.",
+  "LeanInfoTheory.Shannon.BlockChannelCode.messageErrorProbability_restrictMessages_le": "Restricting to a set of messages, with any selected fallback j₀, cannot increase the conditional error of any retained message j relative to its original index i(j).",
+  "LeanInfoTheory.Shannon.BlockChannelCode.half_le_card_filter_messageErrorProbability": "For M ≥ 1 messages, at least ⌈M/2⌉ have conditional error at most twice the average error.",
+  "LeanInfoTheory.Shannon.BlockChannelCode.exists_expurgated_restrictions": "Let G be the messages whose error is at most twice the average, with M ≥ 1. There is an enumeration of G with |G| ≥ ⌈M/2⌉. For every 1 ≤ K ≤ |G|, restricting to its first K messages with fallback zero gives a code whose maximal error and error under every prior are each at most twice the original average."
+}

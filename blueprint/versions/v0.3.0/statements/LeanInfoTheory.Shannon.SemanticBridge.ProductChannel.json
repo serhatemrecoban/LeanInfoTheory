@@ -1,0 +1,8 @@
+{
+  "LeanInfoTheory.Shannon.condEntropy_channelJoint_productChannel": "For a finite family of finite channels used independently given an input vector X of arbitrary joint law, the conditional output entropy decomposes as H(Y | X) = ∑ᵢ H(Yᵢ | Xᵢ).",
+  "LeanInfoTheory.Shannon.sum_mutualInfo_sub_mutualInfo_productChannel": "For a product of finite channels and any joint input law, the mutual-information gap ∑ᵢ I(Xᵢ;Yᵢ) − I(X;Y) equals the output entropy gap ∑ᵢ H(Yᵢ) − H(Y).",
+  "LeanInfoTheory.Shannon.mutualInfo_channelJoint_productChannel_le": "For a finite product channel acting on any joint input law, the mutual information of the full vectors satisfies I(X;Y) ≤ ∑ᵢ I(Xᵢ;Yᵢ).",
+  "LeanInfoTheory.Shannon.mutualInfo_channelJoint_productChannel_eq_sum_iff": "For a finite product channel with any joint input law, I(X;Y) = ∑ᵢ I(Xᵢ;Yᵢ) if and only if the output coordinates are mutually independent under their joint output law.",
+  "LeanInfoTheory.Shannon.mutualInfo_channelJoint_finiteProduct": "For a finite product channel with independent input coordinates drawn from their respective laws, vector mutual information is additive: I(X;Y) = ∑ᵢ I(Xᵢ;Yᵢ).",
+  "LeanInfoTheory.Shannon.mutualInfo_channelJoint_iid": "For n independent draws from p over n uses of the same finite memoryless channel, block mutual information is n times the single-use mutual information under p."
+}

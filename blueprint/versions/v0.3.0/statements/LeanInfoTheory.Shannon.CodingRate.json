@@ -1,0 +1,14 @@
+{
+  "LeanInfoTheory.Shannon.codeRate": "For positive blocklength n and message count M ≥ 1, the rate is (ln M)/n nats per use. The total definition gives zero if the blocklength or message count is zero.",
+  "LeanInfoTheory.Shannon.codeRate_nonneg": "For M ≥ 1, a code with n uses and M messages has nonnegative rate.",
+  "LeanInfoTheory.Shannon.codeRate_zero": "For any message count M, the rate assigned to a code of blocklength zero is zero.",
+  "LeanInfoTheory.Shannon.codeRate_one": "A code with one message has rate zero at every blocklength.",
+  "LeanInfoTheory.Shannon.codeRate_le_iff": "For n > 0 and M ≥ 1, the rate is at most R exactly when M ≤ exp(nR).",
+  "LeanInfoTheory.Shannon.exp_mul_codeRate": "For n > 0 and M ≥ 1, if r is the rate (ln M)/n, then exp(nr) = M.",
+  "LeanInfoTheory.Shannon.roundedMessageSize": "The rounded message count at blocklength n and real target rate R is the smallest natural number at least exp(nR).",
+  "LeanInfoTheory.Shannon.roundedMessageSize_bounds": "For any n and real R, the rounded count M = ⌈exp(nR)⌉ is at least one and satisfies exp(nR) ≤ M < exp(nR) + 1.",
+  "LeanInfoTheory.Shannon.codeRate_roundedMessageSize_bounds": "For n > 0 and target R ≥ 0, using M = ⌈exp(nR)⌉ gives rate r satisfying R ≤ r ≤ R + (ln 2)/n.",
+  "LeanInfoTheory.Shannon.ceil_natsToBits_log_le_iff": "For M ≥ 1 and any nonnegative integer k, ⌈log₂ M⌉ ≤ k if and only if M ≤ 2ᵏ.",
+  "LeanInfoTheory.Shannon.natsToBits_codeRate_pow_two": "A code with 2ᵏ messages has rate k/n bits per use. At n = 0 the common value is defined to be zero.",
+  "LeanInfoTheory.Shannon.codeRate_sub_log_two_div_le_of_le_two_mul": "If n > 0, M ≥ 1 and M ≤ 2L, the rate at L messages is at least the rate at M messages minus (ln 2)/n. Equivalently, (ln L)/n ≥ (ln M)/n − (ln 2)/n."
+}

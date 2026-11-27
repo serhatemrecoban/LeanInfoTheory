@@ -1,0 +1,15 @@
+{
+  "PMF.toReal_nonneg": "The real probability mass p(a) of any individual outcome a is nonnegative.",
+  "PMF.toReal_le_one": "The real probability mass p(a) of any individual outcome a is at most one.",
+  "PMF.sum_toReal": "On a finite alphabet, the sum of all real atom masses of a probability law p is one.",
+  "PMF.bind_toReal_apply": "For a law p on a finite input alphabet and a channel f, the real output mass at b is ∑ₐ p(a) f(b|a).",
+  "PMF.supportFinset": "On a finite alphabet, the finite support of p consists of exactly the outcomes a with p(a) ≠ 0.",
+  "PMF.mem_supportFinset": "An outcome a belongs to the enumerated finite support of p exactly when it belongs to its ordinary support.",
+  "PMF.coe_supportFinset": "Viewed as a set, the enumerated finite support of p equals its ordinary support.",
+  "PMF.supportFinset_card": "The number of outcomes in the enumerated finite support equals the cardinality of the support set of p.",
+  "PMF.supportFinset_nonempty": "Every probability law on a finite alphabet gives positive mass to at least one outcome.",
+  "PMF.eq_pure_iff_support_eq_singleton": "A discrete law p is the point mass at a if and only if its support is the singleton {a}.",
+  "PMF.map_apply_of_injective": "If f is injective, the pushforward of p assigns mass p(a) to f(a) for each a.",
+  "PMF.map_apply_eq_zero_of_notMem_range": "If b is outside the range of f, then the pushforward of p by f assigns zero mass to b.",
+  "PMF.map_apply_equiv": "Under a bijective relabeling e, the mass of e(a) in the relabeled law equals the original mass of a."
+}

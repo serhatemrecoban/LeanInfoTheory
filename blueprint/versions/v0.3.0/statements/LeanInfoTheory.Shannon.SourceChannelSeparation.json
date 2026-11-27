@@ -1,0 +1,3 @@
+{
+  "LeanInfoTheory.Shannon.exists_sourceChannelCode_tendsto_errorProbability_zero": "For an iid finite-alphabet source p and finite memoryless channel W with nonempty input alphabet, if H(p) < C(W), there is a sequence of deterministic block encoders and decoders using one channel use per source symbol whose block error probability tends to zero."
+}

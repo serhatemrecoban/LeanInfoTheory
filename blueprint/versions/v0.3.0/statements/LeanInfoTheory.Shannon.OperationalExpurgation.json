@@ -1,0 +1,3 @@
+{
+  "LeanInfoTheory.Shannon.exists_expurgated_family_of_tendsto_errorProbability": "Suppose a sequence of block codes for W has Mₙ ≥ 1 messages, average errors eₙ tending to zero, and rate eventually at least R − δ for every δ > 0. At each n retain exactly the messages with individual error at most 2eₙ, relabel them by an injection, and redirect discarded decoder outputs to retained index zero. The resulting code has Lₙ ≥ ⌈Mₙ/2⌉ messages and maximal error at most 2eₙ, hence vanishing maximal error. At positive lengths its rate loss is at most (ln 2)/n, so the same eventual rate bounds hold."
+}

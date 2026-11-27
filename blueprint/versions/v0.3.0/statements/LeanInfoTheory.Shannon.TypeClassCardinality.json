@@ -1,0 +1,3 @@
+{
+  "LeanInfoTheory.Shannon.card_typeClass_eq_multinomial": "If a length-n type t has count t(a) for each letter a of a finite alphabet, the number of words in its type class is the multinomial coefficient n! divided by the product of t(a)! over all letters."
+}

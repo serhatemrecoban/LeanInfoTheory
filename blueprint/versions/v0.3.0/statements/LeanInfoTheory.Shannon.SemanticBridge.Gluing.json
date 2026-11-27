@@ -1,0 +1,3 @@
+{
+  "LeanInfoTheory.Shannon.exists_isMarkovChain_with_marginals": "Let L be a law on (X,Y) and R a law on (Y,Z), with finite alphabet for Z. If their Y marginals agree, there exists a joint law on (X,Y,Z) with (X,Y) marginal L and (Y,Z) marginal R under which X → Y → Z is a Markov chain."
+}

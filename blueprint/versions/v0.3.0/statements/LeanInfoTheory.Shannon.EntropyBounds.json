@@ -1,0 +1,10 @@
+{
+  "LeanInfoTheory.Shannon.entropy_le_log_card": "On a nonempty finite alphabet A, every law p satisfies H(p) ≤ ln |A| nats.",
+  "LeanInfoTheory.Shannon.entropy_le_log_support_ncard": "For a law p on a finite alphabet, H(p) ≤ ln |supp(p)|, the logarithm of the number of outcomes of positive probability.",
+  "LeanInfoTheory.Shannon.entropyOf_le_log_support_ncard": "For a finite-valued variable X, H(X) is at most the logarithm of the number of values X attains with positive probability.",
+  "LeanInfoTheory.Shannon.entropy_uniformOfFintype": "The uniform law on a nonempty finite set A has entropy ln |A| nats.",
+  "LeanInfoTheory.Shannon.entropy_eq_log_card_iff_eq_uniformOfFintype": "A probability law p on a nonempty finite set A has H(p) = ln |A| if and only if it is uniform on all of A.",
+  "LeanInfoTheory.Shannon.entropy_eq_log_support_ncard_iff_eq_uniformOnSupport": "A finite law p has entropy ln |supp(p)| exactly when p assigns equal mass to all outcomes in its support.",
+  "LeanInfoTheory.Shannon.entropyOf_eq_log_card_iff_map_eq_uniformOfFintype": "For a finite-valued variable X with nonempty alphabet A, H(X) equals ln |A| exactly when X has the uniform distribution on A.",
+  "LeanInfoTheory.Shannon.entropyOf_eq_log_support_ncard_iff_map_eq_uniformOnSupport": "The entropy of a finite-valued X equals the logarithm of the size of its support exactly when all its positive-probability values are equally likely."
+}

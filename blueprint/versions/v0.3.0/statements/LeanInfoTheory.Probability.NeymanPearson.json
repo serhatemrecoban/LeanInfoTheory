@@ -1,0 +1,6 @@
+{
+  "PMF.BinaryTest.likelihoodThresholdTest": "Given null law P₀, alternative law P₁, threshold c ≥ 0 and tie probability γ ∈ [0,1], reject when P₁(x) > cP₀(x), accept when P₁(x) < cP₀(x), and reject with probability γ on equality. Comparing masses also covers P₀(x) = 0.",
+  "PMF.BinaryTest.likelihoodThresholdTest_apply": "At observation x, the threshold test has rejection probability 1 when P₁(x) > cP₀(x), 0 when P₁(x) < cP₀(x), and γ when the masses tie.",
+  "PMF.BinaryTest.power_le_power_likelihoodThresholdTest": "For two laws on a finite alphabet, fix c ≥ 0 and γ ∈ [0,1]. Every randomized test with size no greater than that of this threshold test has power no greater than its power.",
+  "PMF.BinaryTest.exists_likelihoodThresholdTest": "For any false-alarm level a ∈ [0,1] and any two laws on the same finite alphabet, there are c ≥ 0 and γ ∈ [0,1] giving a threshold test of size exactly a. Its power is at least that of every randomized test with size at most a."
+}

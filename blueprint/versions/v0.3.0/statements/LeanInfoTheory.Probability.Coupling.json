@@ -1,0 +1,14 @@
+{
+  "PMF.IsCoupling": "A joint law on A × B is a coupling of p and q if its first marginal is p and its second marginal is q.",
+  "PMF.isCoupling_channelJoint_const": "Draw a point from p and draw a second point independently from q. The law of the resulting pair is a coupling of p and q.",
+  "PMF.exists_isCoupling": "Any two discrete probability laws p and q admit a coupling, possibly on different alphabets.",
+  "PMF.isCoupling_map_diag": "If X has law p, the law of (X,X) is a coupling of p with itself.",
+  "PMF.IsCoupling.map_swap": "If the law of (X,Y) couples p and q, the law of (Y,X) couples q and p.",
+  "PMF.IsCoupling.map": "If (X,Y) couples p and q, then (f(X),g(Y)) couples the pushforward of p by f with the pushforward of q by g.",
+  "PMF.IsCoupling.bind": "Let (X,Y) couple p and q. Suppose that at every pair (x,y) of positive joint mass, the channel K(x,y) couples W(x) and V(y). Sampling from K(X,Y) then couples the output of p through W with the output of q through V.",
+  "PMF.IsCoupling.totalVariation_le": "For any coupling (X,Y) of laws p and q on the same finite alphabet, TV(p,q) ≤ Pr[X ≠ Y].",
+  "PMF.maximalCoupling": "For finite laws p and q, put s(x) = min(p(x),q(x)) and d = TV(p,q). Assign s(x) to each diagonal pair (x,x). If d > 0, distribute the remaining mass d by drawing the two coordinates independently from the normalized residual laws (p−s)/d and (q−s)/d. If d = 0, the construction consists only of the diagonal law.",
+  "PMF.isCoupling_maximalCoupling": "The maximal coupling constructed from the finite laws p and q has first marginal p and second marginal q.",
+  "PMF.maximalCoupling_toOuterMeasure_ne": "For the maximal coupling of p and q, the probability assigned to unequal pairs is the total variation distance TV(p,q), expressed as an extended nonnegative number.",
+  "PMF.maximalCoupling_toOuterMeasure_ne_toReal": "For the maximal coupling of p and q, the real probability of unequal outcomes is exactly TV(p,q)."
+}

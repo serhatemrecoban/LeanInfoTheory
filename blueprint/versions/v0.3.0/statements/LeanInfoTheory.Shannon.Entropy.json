@@ -1,0 +1,22 @@
+{
+  "LeanInfoTheory.Shannon.entropy": "For a law p on a finite alphabet, its Shannon entropy in nats is H(p) = −∑ₐ p(a) ln p(a), with a zero term for each outcome of probability zero.",
+  "LeanInfoTheory.Shannon.entropy_eq_sum": "The entropy of a finite law p equals the sum of −p(a) ln p(a) over all outcomes, with 0 ln 0 taken as zero.",
+  "LeanInfoTheory.Shannon.entropy_nonneg": "The entropy of a finite probability law is nonnegative.",
+  "LeanInfoTheory.Shannon.entropy_map_equiv": "Bijectively relabeling the outcomes of a finite law preserves its entropy.",
+  "LeanInfoTheory.Shannon.entropy_map_injective": "Pushing a finite law through an injective map to another finite alphabet preserves its entropy.",
+  "LeanInfoTheory.Shannon.entropy_pure": "A law concentrated at one point has entropy zero.",
+  "LeanInfoTheory.Shannon.entropy_eq_zero_iff": "A finite probability law has entropy zero if and only if it is concentrated at one outcome.",
+  "LeanInfoTheory.Shannon.entropyOf": "For a finite-valued random variable X and discrete source law p, H(X) is the entropy of the distribution of X induced by p.",
+  "LeanInfoTheory.Shannon.entropyOf_eq_zero_iff": "A finite-valued X has entropy zero exactly when some value a satisfies X(ω) = a for every ω of positive source probability.",
+  "LeanInfoTheory.Shannon.entropyOf_id": "For a finite law p, the entropy of the identity observation is H(p).",
+  "LeanInfoTheory.Shannon.entropyOf_comp_equiv": "Bijectively relabeling the finite values of a random variable X preserves H(X).",
+  "LeanInfoTheory.Shannon.entropyOf_comp_injective": "If f is injective between finite alphabets, H(f(X)) = H(X).",
+  "LeanInfoTheory.Shannon.jointEntropy": "For a pair of finite random quantities, the joint entropy is the entropy of their pair law, H(X,Y) = −∑ₓ,ᵧ p(x,y) ln p(x,y).",
+  "LeanInfoTheory.Shannon.entropy_map_swap": "Swapping the coordinates of a finite pair law leaves its entropy unchanged.",
+  "LeanInfoTheory.Shannon.entropy_map_prodAssoc": "Regrouping a finite triple from ((x,y),z) to (x,(y,z)) preserves its entropy.",
+  "LeanInfoTheory.Shannon.entropy_map_prodAssoc_symm": "Regrouping a finite triple from (x,(y,z)) to ((x,y),z) preserves its entropy.",
+  "LeanInfoTheory.Shannon.jointEntropy_map_swap": "The joint entropy of a finite pair law is unchanged when its coordinates are interchanged.",
+  "LeanInfoTheory.Shannon.jointEntropyOf": "For finite-valued variables X and Y on the same discrete source, H(X,Y) is the entropy of the random pair (X,Y).",
+  "LeanInfoTheory.Shannon.jointEntropyOf_swap": "For finite-valued X and Y under the same law, H(Y,X) = H(X,Y).",
+  "LeanInfoTheory.Shannon.entropyOf_prodAssoc": "For jointly defined finite-valued X, Y and Z, the variables (X,(Y,Z)) and ((X,Y),Z) have the same entropy."
+}

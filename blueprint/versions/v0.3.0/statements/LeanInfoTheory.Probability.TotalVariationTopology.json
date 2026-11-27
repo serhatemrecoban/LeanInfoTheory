@@ -1,0 +1,4 @@
+{
+  "PMF.continuous_totalVariation": "On a finite alphabet, the real-valued function (p,q) ↦ TV(p,q) is jointly continuous in the two probability laws.",
+  "PMF.tendsto_iff_totalVariation_tendsto_zero": "On a finite alphabet and along any filter, pᵢ converges to p in the probability-law topology if and only if TV(pᵢ,p) tends to zero."
+}

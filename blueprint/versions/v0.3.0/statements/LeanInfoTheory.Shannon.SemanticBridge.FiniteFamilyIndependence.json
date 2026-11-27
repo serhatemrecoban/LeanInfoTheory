@@ -1,0 +1,11 @@
+{
+  "LeanInfoTheory.Shannon.IsMutuallyIndependentFamily": "A finite set S of coordinates is mutually independent under the joint law q if every assignment x to S has joint probability equal to the product over i in S of its one-coordinate marginal probabilities at xᵢ.",
+  "LeanInfoTheory.Shannon.IsMutuallyIndependentFamilyOf": "A finite collection of variables (Xᵢ) indexed by S is mutually independent under source law p if the joint distribution of their values factors pointwise into the product of their marginal distributions.",
+  "LeanInfoTheory.Shannon.isMutuallyIndependentFamily_empty": "The empty set of coordinates is mutually independent under every joint probability law.",
+  "LeanInfoTheory.Shannon.isMutuallyIndependentFamily_singleton": "Every singleton set of coordinates is mutually independent under every joint probability law.",
+  "LeanInfoTheory.Shannon.isMutuallyIndependentFamilyOf_pair_iff_isIndependentOf": "For two distinct indices i and j, mutual independence of the two-member family {Xᵢ,Xⱼ} is equivalent to ordinary independence of Xᵢ and Xⱼ.",
+  "LeanInfoTheory.Shannon.isMutuallyIndependentFamily_mono": "With finite coordinate alphabets, any subset S of a mutually independent finite coordinate set T is itself mutually independent.",
+  "LeanInfoTheory.Shannon.familyEntropy_eq_sum_singletons_iff_isMutuallyIndependentFamily": "For finite-valued coordinates and a finite set S, the joint entropy of the tuple indexed by S equals the sum of the individual entropies H(Xᵢ) over i in S exactly when the coordinates in S are mutually independent under their joint law.",
+  "LeanInfoTheory.Shannon.familyEntropyOf_eq_sum_singletons_iff_isMutuallyIndependentFamilyOf": "For finite-valued variables defined on a common source, the joint entropy of the tuple indexed by a finite set S is the sum of its individual entropies exactly when those variables are mutually independent under the source law.",
+  "LeanInfoTheory.Shannon.sum_mutualInfoOf_le_mutualInfoOf_pi": "If the finite-valued variables Xᵢ of a finite family are mutually independent, then for any finite-valued Y on the same source, ∑ᵢ I(Xᵢ;Y) ≤ I((Xᵢ)ᵢ;Y)."
+}

@@ -1,0 +1,6 @@
+{
+  "LeanInfoTheory.Shannon.exists_blockSourceCode_tendsto_errorProbability_zero": "For an iid source with finite alphabet and law p, every rate R > H(p) admits block codes with at least one message at each length, error tending to zero, and rate at most R at all sufficiently large lengths.",
+  "LeanInfoTheory.Shannon.tendsto_errorProbability_iid_one_of_eventually_codeRate_le": "For an iid source with finite alphabet and law p, fix R < H(p). Every sequence of block codes with positive message budgets whose rates are eventually at most R has error probability tending to one.",
+  "LeanInfoTheory.Shannon.eventually_entropy_sub_le_codeRate_of_tendsto_errorProbability_zero": "For a finite-alphabet iid source with law p, any sequence of codes with positive message budgets and error tending to zero eventually has rate at least H(p) − δ, for each δ > 0.",
+  "LeanInfoTheory.Shannon.sourceCoding_threshold": "The entropy H(p) of a finite-alphabet iid source is the infimum of the rates R for which block codes with positive message budgets have vanishing error and, for every η > 0, rate at most R + η at all sufficiently large lengths."
+}

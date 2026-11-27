@@ -1,0 +1,3 @@
+{
+  "LeanInfoTheory.Shannon.optimalPrefixLength_iid_div_bounds": "For n ≥ 1 independent draws from a finite source p, the optimal expected binary prefix length per source symbol satisfies H(p)/ln 2 ≤ L*(pⁿ)/n < H(p)/ln 2 + 1/n bits."
+}

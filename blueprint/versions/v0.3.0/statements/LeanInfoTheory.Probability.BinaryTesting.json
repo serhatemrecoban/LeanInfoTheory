@@ -1,0 +1,19 @@
+{
+  "PMF.BinaryTest": "A randomized binary test assigns each observation x a number f(x) between 0 and 1, the probability of rejecting the null hypothesis after observing x.",
+  "PMF.BinaryTest.ofEvent": "The test associated with an event s rejects the null exactly when the observation belongs to s.",
+  "PMF.BinaryTest.ofEvent_apply": "For any observation x, the event test has rejection probability 1 if x lies in s and 0 otherwise.",
+  "PMF.BinaryTest.tvTest": "Given null law P₀ and alternative law P₁, the total variation test rejects exactly those observations x for which P₁(x) > P₀(x). It accepts on ties.",
+  "PMF.BinaryTest.rejectProb": "On a finite alphabet, the probability of rejecting under law P is ∑ₓ P(x) f(x), the average rejection probability of the test f.",
+  "PMF.BinaryTest.rejectProb_mem_Icc": "For any randomized test f and law P on a finite alphabet, the probability of rejection lies in [0, 1].",
+  "PMF.BinaryTest.size": "The size of a test f is its probability of rejection under the null law P₀, namely ∑ₓ P₀(x) f(x).",
+  "PMF.BinaryTest.power": "The power of a test f is its probability of rejection under the alternative law P₁, namely ∑ₓ P₁(x) f(x).",
+  "PMF.BinaryTest.typeIIError": "The type II error is the probability of accepting under P₁. It equals 1 minus the power of f.",
+  "PMF.BinaryTest.rejectProb_ofEvent": "If f rejects precisely on the event s, its probability of rejection under P equals P(s).",
+  "PMF.BinaryTest.typeIIError_ofEvent": "If f rejects precisely on s, its type II error equals P₁(sᶜ), the alternative probability of observing a point outside s.",
+  "PMF.BinaryTest.errorSum": "The error sum adds the probability of a false alarm under P₀ to the probability of a miss under P₁.",
+  "PMF.BinaryTest.one_sub_totalVariation_le_errorSum": "Every randomized test of two finite laws P₀ and P₁ has error sum at least 1 − TV(P₀,P₁), where TV denotes total variation distance.",
+  "PMF.BinaryTest.errorSum_tvTest": "The test that rejects when P₁(x) > P₀(x) has error sum exactly 1 − TV(P₀,P₁).",
+  "PMF.BinaryTest.isLeast_errorSum": "Over all randomized tests of the finite laws P₀ and P₁, the minimum sum of the two error probabilities is 1 − TV(P₀,P₁). This minimum is attained.",
+  "PMF.BinaryTest.equalPriorError": "When the two hypotheses have equal prior probability, the overall error probability is half the sum of the false-alarm and miss probabilities.",
+  "PMF.BinaryTest.isLeast_equalPriorError": "For finite laws with equal prior probabilities, the smallest achievable error probability over all randomized tests is (1 − TV(P₀,P₁))/2."
+}

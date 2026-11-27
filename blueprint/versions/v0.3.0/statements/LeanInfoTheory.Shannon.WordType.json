@@ -1,0 +1,16 @@
+{
+  "LeanInfoTheory.Shannon.symbolCount": "The count of a letter a in a length-n word x is the number of positions i at which x(i) = a.",
+  "LeanInfoTheory.Shannon.symbolCount_zero": "Every letter occurs zero times in the empty word.",
+  "LeanInfoTheory.Shannon.sum_symbolCount": "For a word of length n on a finite alphabet, the sum of all its letter counts is n.",
+  "LeanInfoTheory.Shannon.wordTypes": "The length-n types on a finite alphabet A are all functions that assign a nonnegative integer count to each letter, with counts summing to n.",
+  "LeanInfoTheory.Shannon.mem_wordTypes": "A function from the finite alphabet A to the nonnegative integers belongs to the set of length-n types exactly when its counts sum to n.",
+  "LeanInfoTheory.Shannon.wordTypes_zero": "At length zero the only type on a finite alphabet is the function assigning zero to every letter.",
+  "LeanInfoTheory.Shannon.wordType": "The type of a word on a finite alphabet is its vector of letter counts. These counts sum to the word length n.",
+  "LeanInfoTheory.Shannon.wordType_surjective": "Every length-n type on a finite alphabet is the type of at least one word of length n.",
+  "LeanInfoTheory.Shannon.typeClass": "The type class of t is the set of all length-n words on the alphabet whose vector of letter counts is t.",
+  "LeanInfoTheory.Shannon.mem_typeClass": "A word belongs to the type class of t if and only if its vector of letter counts equals t.",
+  "LeanInfoTheory.Shannon.existsUnique_mem_typeClass": "Each length-n word on a finite alphabet belongs to exactly one of its length-n type classes.",
+  "LeanInfoTheory.Shannon.symbolCount_comp_perm": "Permuting a word’s positions leaves the number of occurrences of every letter unchanged.",
+  "LeanInfoTheory.Shannon.wordType_comp_perm": "Permuting the positions of a word on a finite alphabet preserves its type.",
+  "LeanInfoTheory.Shannon.card_wordTypes_le": "The number of types at length n on a finite alphabet A is at most (n + 1)^|A|."
+}

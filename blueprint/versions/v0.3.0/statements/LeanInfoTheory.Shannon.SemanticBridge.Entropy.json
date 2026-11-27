@@ -1,0 +1,7 @@
+{
+  "LeanInfoTheory.Shannon.selfInfo": "At an outcome a of positive mass, its self-information under p is −ln p(a) nats. This scalar is assigned the value zero at outcomes of mass zero.",
+  "LeanInfoTheory.Shannon.selfInfo_of_toReal_eq_zero": "At every outcome of zero probability, the defined value of self-information is zero.",
+  "LeanInfoTheory.Shannon.selfInfo_of_toReal_ne_zero": "At each outcome a with p(a) > 0, its self-information under p is −ln p(a) nats.",
+  "LeanInfoTheory.Shannon.toReal_mul_selfInfo": "For any atom a, its real probability times its self-information equals −p(a) ln p(a), with the value zero when p(a) = 0.",
+  "LeanInfoTheory.Shannon.entropy_eq_integral_selfInfo": "For a finite probability law p with measurable singletons, entropy equals the integral of self-information against p, H(p) = Eₚ[−ln p(X)], with zero contribution from null atoms."
+}

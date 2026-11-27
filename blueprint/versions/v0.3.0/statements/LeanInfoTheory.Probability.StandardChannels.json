@@ -1,0 +1,4 @@
+{
+  "PMF.binarySymmetricChannel": "For 0 ≤ ε ≤ 1, the binary symmetric channel sends the input bit unchanged with probability 1 − ε and flips it with probability ε.",
+  "PMF.binaryErasureChannel": "For 0 ≤ ε ≤ 1, the binary erasure channel outputs an erasure symbol with probability ε and the original bit with probability 1 − ε."
+}

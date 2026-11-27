@@ -1,0 +1,7 @@
+{
+  "LeanInfoTheory.Shannon.iid_apply_of_mem_typeClass": "Let t be a length-n type on a finite alphabet with n > 0 and empirical law r. If p is positive wherever r is positive, each word of type t has probability exp(−n[H(r) + D(r‖p)]) under n iid draws from p. The divergence is finite and measured in nats.",
+  "LeanInfoTheory.Shannon.iid_toOuterMeasure_typeClass": "At length n > 0, let T be the type class of empirical law r. If the support of r is contained in that of p, the probability of T under n iid draws from p is |T| exp(−n[H(r) + D(r‖p)]), with entropy and finite divergence in nats.",
+  "LeanInfoTheory.Shannon.iid_toOuterMeasure_typeClass_le_exp_neg_klDiv": "For a length-n type with empirical law r on a finite alphabet, if n > 0 and p is positive on the support of r, the iid p-probability of the type class is at most exp(−nD(r‖p)).",
+  "LeanInfoTheory.Shannon.exp_neg_klDiv_div_pow_le_iid_toOuterMeasure_typeClass": "For a type on a finite alphabet A at length n > 0, let r be its empirical law. If p is positive on the support of r, the iid p-probability of the type class is at least exp(−nD(r‖p))/(n + 1)^|A|.",
+  "LeanInfoTheory.Shannon.iid_toOuterMeasure_typeClass_eq_zero_of_not_support_subset": "At length n > 0, if some letter occurs in a type but has probability zero under p, the entire type class has probability zero under n iid draws from p."
+}

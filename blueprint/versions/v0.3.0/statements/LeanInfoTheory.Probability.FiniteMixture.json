@@ -1,0 +1,6 @@
+{
+  "PMF.binaryMixture": "For 0 ≤ t ≤ 1, the binary mixture draws from p with probability t and from q with probability 1 − t.",
+  "PMF.binaryMixture_apply": "For each outcome a and 0 ≤ t ≤ 1, the binary mixture assigns mass t p(a) + (1 − t) q(a).",
+  "PMF.binaryMixture_zero": "The binary mixture of p and q with weight zero on p equals q.",
+  "PMF.binaryMixture_one": "The binary mixture of p and q with weight one on p equals p."
+}

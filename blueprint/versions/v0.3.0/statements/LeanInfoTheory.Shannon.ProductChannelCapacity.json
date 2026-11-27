@@ -1,0 +1,5 @@
+{
+  "LeanInfoTheory.Shannon.channelCapacity_productChannel": "For a finite family of channels Wⱼ with finite alphabets and nonempty input alphabets, the capacity of their parallel product is ∑ⱼ C(Wⱼ), even when the supremum allows correlated inputs. The formula also covers the empty family.",
+  "LeanInfoTheory.Shannon.channelCapacity_memorylessChannel": "For a finite channel W with a nonempty input alphabet, n independent uses have capacity nC(W) for every natural n, including zero.",
+  "LeanInfoTheory.Shannon.mutualInfo_channelJoint_memorylessChannel_le": "Under any input distribution on length-n words, even with dependent coordinates, the mutual information through n memoryless uses of a finite channel W with nonempty input alphabet is at most nC(W)."
+}

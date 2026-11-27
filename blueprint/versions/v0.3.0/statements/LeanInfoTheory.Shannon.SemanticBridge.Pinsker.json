@@ -1,0 +1,7 @@
+{
+  "LeanInfoTheory.Shannon.ofReal_two_mul_totalVariation_sq_le_klDiv": "For any two probability laws p and q on a finite discrete alphabet, 2 dTV(p,q)² ≤ D(p‖q), where dTV is total variation distance and the divergence in nats may equal infinity.",
+  "LeanInfoTheory.Shannon.two_mul_totalVariation_sq_le_toReal_klDiv": "If p and q are finite discrete laws and q is positive wherever p is positive, the finite real-valued divergence satisfies D(p‖q) ≥ 2 dTV(p,q)², in nats.",
+  "LeanInfoTheory.Shannon.totalVariation_le_sqrt_toReal_klDiv": "For finite discrete laws p and q with supp(p) ⊆ supp(q), their total variation distance is at most √(D(p‖q)/2), with finite divergence measured in nats.",
+  "LeanInfoTheory.Shannon.two_mul_totalVariation_sq_le_mutualInfo": "For a finite pair (X,Y) with joint law P and marginal laws Pₓ and Pᵧ, twice the squared total variation distance between P and Pₓ ⊗ Pᵧ is at most I(X;Y) in nats.",
+  "LeanInfoTheory.Shannon.totalVariation_le_sqrt_mutualInfo": "For a finite pair (X,Y) with joint law P, the total variation distance between P and the product of its marginals is at most √(I(X;Y)/2), with mutual information in nats."
+}

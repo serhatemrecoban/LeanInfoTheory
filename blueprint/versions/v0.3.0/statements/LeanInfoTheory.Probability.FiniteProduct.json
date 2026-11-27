@@ -1,0 +1,12 @@
+{
+  "PMF.finiteProduct": "Given finitely many laws pᵢ on finite coordinate alphabets, their product is the joint law of independent draws from the respective pᵢ. A vector x has mass ∏ᵢ pᵢ(xᵢ).",
+  "PMF.finiteProduct_apply": "The probability of the vector x under the finite product law is the product ∏ᵢ pᵢ(xᵢ) of its coordinate probabilities.",
+  "PMF.mem_support_finiteProduct_iff": "A vector x has positive mass under the finite product law if and only if each coordinate xᵢ has positive mass under pᵢ.",
+  "PMF.finiteProduct_map_eval": "The i-th coordinate marginal of the product of the laws pⱼ is pᵢ.",
+  "PMF.finiteProduct_of_isEmpty": "Over an empty index set, the finite product law is the point mass on the unique empty vector.",
+  "PMF.finiteProduct_pure": "Taking the product of point masses at the coordinates aᵢ gives the point mass at the vector a.",
+  "PMF.finiteProduct_map_reindex": "Relabel the indices of a vector of independent coordinates by a bijection e from J to I. The relabeled coordinates are independent, and the law at j is the original law at e(j).",
+  "PMF.finiteProduct_map_restrict": "Select coordinates of a vector of independent draws using an injection e from J into I. The selected coordinates are independent, and the law of the j-th selection is the original law at e(j).",
+  "PMF.finiteProduct_map_sum": "Split the finite index set into disjoint blocks I and J. Under the product law, the two subvectors are independent and each has the product of its own coordinate laws.",
+  "PMF.finiteProduct_map_pair": "For distinct indices i and j, the joint law of the i-th and j-th coordinates of a product law is the independent product of pᵢ and pⱼ."
+}

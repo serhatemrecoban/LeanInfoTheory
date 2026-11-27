@@ -1,0 +1,5 @@
+{
+  "LeanInfoTheory.Shannon.sum_mul_entropy_le_entropy_bind": "For finite mixing probabilities rᵢ and component laws pᵢ on a finite alphabet, H(∑ᵢ rᵢpᵢ) ≥ ∑ᵢ rᵢH(pᵢ).",
+  "LeanInfoTheory.Shannon.binaryMixture_entropy_concave": "For 0 ≤ t ≤ 1 and finite laws p and q, H(tp + (1−t)q) ≥ tH(p) + (1−t)H(q).",
+  "LeanInfoTheory.Shannon.binaryMixture_entropy_eq_iff": "For 0 < t < 1 and finite laws p and q, equality H(tp + (1−t)q) = tH(p) + (1−t)H(q) holds if and only if p = q."
+}

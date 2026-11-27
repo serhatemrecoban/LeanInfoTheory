@@ -1,0 +1,11 @@
+{
+  "LeanInfoTheory.Shannon.logSumTerm": "For nonnegative masses a,b define L(a,b) = a ln(a/b) when both are positive. Set L(0,b) = 0 for every b and L(a,0) = +∞ for a > 0.",
+  "LeanInfoTheory.Shannon.logSumTerm_zero_left": "For every nonnegative b, the log-sum term with zero numerator is L(0,b) = 0, including at b = 0.",
+  "LeanInfoTheory.Shannon.logSumTerm_pos_zero": "For every positive a, the log-sum term with zero denominator is L(a,0) = +∞.",
+  "LeanInfoTheory.Shannon.logSumTerm_ne_bot": "For all nonnegative finite a,b, the extended log-sum term L(a,b) is strictly greater than −∞.",
+  "LeanInfoTheory.Shannon.sum_logSumTerm_ne_bot": "A finite sum of extended log-sum terms L(aᵢ,bᵢ) with nonnegative finite entries cannot equal −∞.",
+  "LeanInfoTheory.Shannon.logSum_inequality": "For any finite set S and nonnegative aᵢ,bᵢ, L(∑ᵢ aᵢ, ∑ᵢ bᵢ) ≤ ∑ᵢ L(aᵢ,bᵢ), with sums over S. Here L(a,b) = a ln(a/b) uses zero for a zero numerator and +∞ for a positive numerator over zero.",
+  "LeanInfoTheory.Shannon.logSum_eq_iff_exists_constant_ratio": "Equality in the extended finite log-sum inequality holds exactly when there is a single ratio c ∈ [0,+∞] such that aᵢ/bᵢ = c for every selected pair other than (0,0). A positive numerator over zero has ratio +∞.",
+  "LeanInfoTheory.Shannon.real_logSum_inequality_of_support": "For a finite set S and nonnegative aᵢ,bᵢ with bᵢ > 0 whenever aᵢ > 0, set A = ∑ᵢ aᵢ and B = ∑ᵢ bᵢ. Then A ln(A/B) ≤ ∑ᵢ aᵢ ln(aᵢ/bᵢ), as a real inequality with zero numerator terms interpreted as zero.",
+  "LeanInfoTheory.Shannon.real_logSum_eq_iff_exists_constant_ratio_of_support": "For a finite set of nonnegative pairs with bᵢ > 0 whenever aᵢ > 0, equality in the real log-sum inequality holds exactly when all pairs other than (0,0) have the same finite ratio aᵢ/bᵢ."
+}

@@ -1,0 +1,12 @@
+{
+  "LeanInfoTheory.Shannon.fstMarginal_toReal_apply": "For a joint law p with finite second alphabet, the first marginal mass at a, expressed as a real number, is ∑(b) p(a,b).",
+  "LeanInfoTheory.Shannon.sndMarginal_toReal_apply": "For a joint law p with finite first alphabet, the second marginal mass at b, expressed as a real number, is ∑ₐ p(a,b).",
+  "LeanInfoTheory.Shannon.sum_toReal_mul_fstMarginal": "For a finite pair law p and real function f of the first coordinate, ∑(a,b) p(a,b) f(a) = ∑ₐ p_X(a) f(a), where p_X is the first marginal.",
+  "LeanInfoTheory.Shannon.sum_toReal_mul_sndMarginal": "For a finite pair law p and real function f of the second coordinate, ∑(a,b) p(a,b) f(b) = ∑(b) p_Y(b) f(b), where p_Y is the second marginal.",
+  "LeanInfoTheory.Shannon.entropy_eq_sum_toReal_mul_neg_log": "The entropy in nats of a finite law p is ∑ₐ p(a)(−ln p(a)), with zero contribution at atoms of mass zero.",
+  "LeanInfoTheory.Shannon.entropy_fstMarginal_eq_sum_joint": "For a finite joint law p with first marginal p_X, H(X) = ∑(a,b) p(a,b)(−ln p_X(a)). A zero-mass pair contributes zero.",
+  "LeanInfoTheory.Shannon.entropy_sndMarginal_eq_sum_joint": "For a finite joint law p with second marginal p_Y, H(Y) = ∑(a,b) p(a,b)(−ln p_Y(b)). A zero-mass pair contributes zero.",
+  "LeanInfoTheory.Shannon.mutualInfo_eq_sum_neg_log": "For a finite pair law p with marginals p_X,p_Y, I(X;Y) is the sum over (a,b) of p(a,b)[−ln p_X(a) − ln p_Y(b) + ln p(a,b)]. Zero joint masses contribute zero.",
+  "LeanInfoTheory.Shannon.mutualInfo_summand_eq_log_ratio": "At each atom (a,b) of a finite joint law, the combination p(a,b)[−ln p_X(a) − ln p_Y(b) + ln p(a,b)] equals p(a,b) ln(p(a,b)/(p_X(a)p_Y(b))). Both sides are taken as zero at a zero-mass atom.",
+  "LeanInfoTheory.Shannon.mutualInfo_eq_sum_log_ratio": "For a finite joint law p with marginals p_X,p_Y, I(X;Y) = ∑(a,b) p(a,b) ln(p(a,b)/(p_X(a)p_Y(b))). Terms with zero joint mass contribute zero."
+}

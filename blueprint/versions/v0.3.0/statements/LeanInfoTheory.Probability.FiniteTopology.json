@@ -1,0 +1,12 @@
+{
+  "PMF.instTopologicalSpace": "Give discrete probability laws the topology inherited from the product space of their extended nonnegative atom masses. Thus neighborhoods test the masses of finitely many individual outcomes.",
+  "PMF.continuous_apply_toReal": "For a fixed outcome a, the map sending a probability law p to the real number p(a) is continuous.",
+  "PMF.homeomorphStdSimplex": "On a finite alphabet A, the space of probability laws is homeomorphic to the standard simplex of nonnegative real vectors summing to one. The homeomorphism records each atom mass.",
+  "PMF.homeomorphStdSimplex_apply": "The simplex vector associated with p has coordinate p(a), expressed as a real number, at every a.",
+  "PMF.homeomorphStdSimplex_symm_apply": "The law associated with a point x of the simplex assigns each outcome a its coordinate x(a), viewed as an extended nonnegative number.",
+  "PMF.tendsto_iff_forall_toReal_tendsto": "Along any filter, a family of laws converges to p if and only if its real atom masses converge to p(a) for every outcome a.",
+  "PMF.instCompactSpace": "On a finite alphabet, the space of all probability laws is compact in the topology of coordinatewise convergence.",
+  "PMF.continuous_bind": "For a fixed channel W with finite input alphabet, the output law varies continuously with the input law.",
+  "PMF.continuous_map": "For a fixed map g from a finite alphabet, the pushforward law under g varies continuously with the input law.",
+  "PMF.continuous_channelJoint": "For any fixed discrete channel W, the joint input–output law varies continuously with the input law."
+}

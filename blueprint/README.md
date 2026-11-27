@@ -3,22 +3,27 @@
 The [theorem blueprint](https://serhatemrecoban.github.io/LeanInfoTheory-Blueprint/)
 opens the edition for the latest published release. The
 [v0.3.0 edition](https://serhatemrecoban.github.io/LeanInfoTheory-Blueprint/v0.3.0/)
-begins with finite hypothesis testing and the exact-size Neyman–Pearson theorem.
+covers all 918 public declarations in 77 supported modules. Each entry has its Lean name,
+inputs, mathematical statement, and links to its formal declaration and tagged source.
+The exact-size Neyman–Pearson entry also links to a worked proof.
 Its [PDF](https://serhatemrecoban.github.io/LeanInfoTheory-Blueprint/v0.3.0/blueprint.pdf)
-uses the same chapter text. The separate [module map](https://serhatemrecoban.github.io/LeanInfoTheory/blueprint/dep_graph_document.html)
+contains the same mathematical statements and worked proof. The separate [module map](https://serhatemrecoban.github.io/LeanInfoTheory/blueprint/dep_graph_document.html)
 is generated from Lean imports. The layers below outline the wider project.
 
 ### Build an edition
 
-Keep the chapter HTML under `blueprint/versions/<release-tag>/`. Link each
-result to its versioned API declaration and the proof at the release commit.
-The build reads the chapters in filename order and prints the HTML to PDF.
+Keep mathematical statements in `blueprint/versions/<release-tag>/statements/`,
+one JSON object per declaring module keyed by full Lean name. `module-titles.json` also
+covers the import-only modules. The generator checks exact coverage against the
+tagged public manifest and reads binders and immutable source links from the release
+API. The browser search index, web pages and printable book share the same entries.
 With GitHub CLI and Chrome, Chromium or Edge installed, run:
 
 ```sh
 python scripts/build_theorem_blueprint.py --output PATH_TO_BLUEPRINT_REPO/site
 ```
 
+Use `--api-root PATH` to build from a local copy of the versioned doc-gen site.
 The build asks GitHub for LeanInfoTheory’s latest published release and
 requires matching chapter sources. It writes the stable entry and that
 edition’s files, preserving other release directories. Review the HTML and

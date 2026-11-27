@@ -1,0 +1,12 @@
+{
+  "LeanInfoTheory.Shannon.channelCapacity": "For a channel W with finite input and output alphabets and a nonempty input alphabet, its capacity in nats is C(W) = supₚ I(X;Y). The supremum runs over all input laws p, with Y generated from X through W.",
+  "LeanInfoTheory.Shannon.mutualInfo_channelJoint_le_channelCapacity": "For any input law p of a finite channel W with nonempty input alphabet, its input–output mutual information is at most C(W).",
+  "LeanInfoTheory.Shannon.channelCapacity_le_iff": "For a finite channel W with nonempty input alphabet, C(W) ≤ r if and only if every input law gives mutual information at most r.",
+  "LeanInfoTheory.Shannon.exists_mutualInfo_channelJoint_eq_channelCapacity": "For a finite channel with nonempty input alphabet, some input law achieves the supremum in the capacity formula, so its input–output mutual information equals capacity.",
+  "LeanInfoTheory.Shannon.channelCapacity_nonneg": "The capacity of a finite channel with nonempty input alphabet is nonnegative.",
+  "LeanInfoTheory.Shannon.channelCapacity_le_log_card_input": "A finite channel with nonempty input alphabet A has capacity at most ln |A| nats per use.",
+  "LeanInfoTheory.Shannon.channelCapacity_le_log_card_output": "A finite channel with nonempty input alphabet and output alphabet B has capacity at most ln |B| nats per use.",
+  "LeanInfoTheory.Shannon.channelCapacity_congr_equiv": "Independently relabeling the input and output alphabets by bijections preserves the capacity of a finite channel.",
+  "LeanInfoTheory.Shannon.channelCapacity_channelComp_le": "Cascading a finite channel V after W gives a channel of capacity at most C(W).",
+  "LeanInfoTheory.Shannon.channelCapacity_map_output_le": "Applying any deterministic function to the output of a finite channel gives a channel of capacity at most its original capacity."
+}

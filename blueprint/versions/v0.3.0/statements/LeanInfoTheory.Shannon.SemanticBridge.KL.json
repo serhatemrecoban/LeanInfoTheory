@@ -1,0 +1,16 @@
+{
+  "LeanInfoTheory.Shannon.toMeasure_absolutelyContinuous_iff_support_subset": "For probability mass functions p,q on a space with measurable singletons, the measure induced by p is absolutely continuous with respect to the measure induced by q exactly when supp(p) ⊆ supp(q).",
+  "LeanInfoTheory.Shannon.klDiv_pmf_ne_top_iff_support_subset": "For finite discrete distributions p,q, D(p∥q) is finite exactly when every outcome with positive p-mass has positive q-mass.",
+  "LeanInfoTheory.Shannon.klDiv_pmf_eq_top_iff_not_support_subset": "For finite discrete laws p,q, D(p∥q) = +∞ exactly when some outcome has positive mass under p and zero mass under q.",
+  "LeanInfoTheory.Shannon.klDiv_pmf_eq_zero_iff": "For probability mass functions p,q on a space with measurable singletons, their extended KL divergence is zero exactly when the two laws are equal.",
+  "LeanInfoTheory.Shannon.toReal_klDiv_pmf_eq_zero_iff": "For finite discrete p,q with supp(p) ⊆ supp(q), their real KL divergence is zero exactly when p=q.",
+  "LeanInfoTheory.Shannon.toMeasure_withDensity_pmf_div": "On a countable space with measurable singletons, if the measure induced by p is absolutely continuous with respect to that induced by q, weighting q by the density p(a)/q(a) reconstructs the measure of p.",
+  "LeanInfoTheory.Shannon.toReal_klDiv_pmf_eq_sum": "For finite discrete laws with p absolutely continuous with respect to q, D(p∥q) = ∑ₐ p(a) ln(p(a)/q(a)) as a real number, with zero contribution from atoms of zero p-mass.",
+  "LeanInfoTheory.Shannon.toReal_klDiv_pmf_uniformOfFinset": "For a finite discrete distribution p supported on a nonempty finite set S, the real KL divergence to the uniform distribution on S equals ln|S| − H(p).",
+  "LeanInfoTheory.Shannon.toReal_klDiv_pmf_uniformOfFintype": "For a law p on a nonempty finite discrete alphabet A, the real KL divergence to the uniform law on A equals ln|A| − H(p).",
+  "LeanInfoTheory.Shannon.mutualInfo_eq_toReal_klDiv_joint_indepProd": "For a finite discrete pair law, mutual information is the real KL divergence of its joint law from the independent product of its two marginal probability mass functions.",
+  "LeanInfoTheory.Shannon.mutualInfo_eq_toReal_klDiv_joint_prod_marginals": "For a finite discrete pair law, I(X;Y) is the real KL divergence between the joint probability measure and the product measure formed from the two marginal measures.",
+  "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThirdKL": "On a positive-mass fiber Z=c, this scalar is the real KL divergence from the conditional joint law of (X,Y) to the product of its two conditional marginals. At a zero-mass c it is defined to be zero.",
+  "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird_eq_KL": "For a triple with finite first and second alphabets, mutual information on each positive-mass fiber Z=c equals the real KL divergence of that conditional joint law from the product of its marginals. At a null c both scalar expressions equal zero by convention.",
+  "LeanInfoTheory.Shannon.condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThirdKL": "For a finite triple law, I(X;Y|Z) is the sum over c with Pr[Z=c] > 0 of Pr[Z=c] times the real KL divergence of the conditional joint law of (X,Y) given c from the product of its conditional marginals. Null fibers contribute zero."
+}

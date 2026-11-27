@@ -1,0 +1,14 @@
+{
+  "LeanInfoTheory.Shannon.indepProd": "The independent product of probability laws p and q is the joint distribution obtained by drawing one sample from each law independently.",
+  "LeanInfoTheory.Shannon.indepProd_apply": "Under the independent product of p and q, the probability of the pair (a,b) is p(a)q(b).",
+  "LeanInfoTheory.Shannon.indepProd_apply_eq_zero_iff": "The independent product of p and q gives (a,b) probability zero exactly when p(a) = 0 or q(b) = 0.",
+  "LeanInfoTheory.Shannon.indepProd_apply_ne_zero_iff": "The pair (a,b) has positive probability under the independent product of p and q exactly when both p(a) and q(b) are positive.",
+  "LeanInfoTheory.Shannon.support_indepProd": "The support of the independent product of p and q is the Cartesian product of the support of p with the support of q.",
+  "LeanInfoTheory.Shannon.fstMarginal_indepProd": "The first marginal of the independent product of p and q is p.",
+  "LeanInfoTheory.Shannon.sndMarginal_indepProd": "The second marginal of the independent product of p and q is q.",
+  "LeanInfoTheory.Shannon.indepProd_map_swap": "Swapping the two coordinates of the independent product p ⊗ q gives the independent product q ⊗ p.",
+  "LeanInfoTheory.Shannon.indepProd_toMeasure_prod": "For measurable sets S and T, the independent product of p and q assigns to the rectangle S × T the probability p(S)q(T).",
+  "LeanInfoTheory.Shannon.indepProd_toMeasure": "The measure induced by the independent product of two probability mass functions equals the product of the measures induced by its factors.",
+  "LeanInfoTheory.Shannon.joint_toMeasure_absolutelyContinuous_indepProd_marginals": "For any joint law p on two finite alphabets, the induced measure of p is absolutely continuous with respect to the measure induced by the independent product of its two marginals.",
+  "LeanInfoTheory.Shannon.joint_toMeasure_absolutelyContinuous_prod_marginals": "On the product measurable space of two finite alphabets, the measure of any joint law is absolutely continuous with respect to the product of its marginal measures."
+}

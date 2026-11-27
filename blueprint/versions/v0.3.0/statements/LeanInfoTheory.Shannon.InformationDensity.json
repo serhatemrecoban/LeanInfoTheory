@@ -1,0 +1,9 @@
+{
+  "LeanInfoTheory.Shannon.infoDensity": "For input distribution p and channel W, write J(x,y) = p(x)W(y|x) and Q(x,y) = p(x)Pr[Y=y]. At a pair of positive joint mass, the information density in nats is i(x;y) = ln(J(x,y)/Q(x,y)). At a pair of zero joint mass its defined value is zero.",
+  "LeanInfoTheory.Shannon.support_channelJoint_subset_indepProd": "Every pair of positive mass under the input–output joint law also has positive mass under the independent product of the input and output marginals.",
+  "LeanInfoTheory.Shannon.sum_mul_infoDensity_eq_mutualInfo": "For finite alphabets, mutual information is the joint-law mean of information density, I(X;Y) = ∑ₓ ∑ᵧ Pr[X=x,Y=y] i(x;y).",
+  "LeanInfoTheory.Shannon.infoDensityThresholdEvent": "The acceptance event at threshold t contains precisely the pairs whose joint mass exceeds eᵗ times their mass under the independent product of the marginals. A zero-joint-mass pair always fails this strict test.",
+  "LeanInfoTheory.Shannon.mem_infoDensityThresholdEvent_iff_of_mem_support": "At a pair of positive joint mass, the threshold test accepts exactly when its information density is strictly greater than t.",
+  "LeanInfoTheory.Shannon.channelJoint_infoDensityThresholdEvent_compl_eq": "Under the actual input–output joint law, the probability of failing the strict threshold test equals Pr[i(X;Y) ≤ t], including ties.",
+  "LeanInfoTheory.Shannon.indepProd_infoDensityThresholdEvent_le": "For finite alphabets and any real t, if X and Y are sampled independently from the channel input and output marginals, the probability of passing the strict mass-ratio test is at most exp(−t)."
+}

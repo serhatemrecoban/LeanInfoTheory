@@ -1,0 +1,8 @@
+{
+  "LeanInfoTheory.Shannon.familyMarginal_finiteProduct": "If the coordinates of a finite product space have product law ⊗ᵢ pᵢ, its marginal on any subset S of the index set is the product of precisely the laws pᵢ with i in S.",
+  "LeanInfoTheory.Shannon.isMutuallyIndependentFamily_finiteProduct": "Under the product of finitely many finite probability laws pᵢ, every subset of the coordinates is mutually independent.",
+  "LeanInfoTheory.Shannon.isIndependentOf_finiteProduct_eval": "For a finite product of finite laws, the coordinate projections at any two distinct indices i and j are independent random variables.",
+  "LeanInfoTheory.Shannon.entropy_finiteProduct": "For a finite product of finite laws pᵢ, H(⊗ᵢ pᵢ) = ∑ᵢ H(pᵢ).",
+  "LeanInfoTheory.Shannon.entropy_iid": "For n independent draws from a finite law p, the joint entropy of the length-n word is nH(p), including n = 0.",
+  "LeanInfoTheory.Shannon.mutualInfo_map_piProd_eq_sum_of_isMutuallyIndependentFamily": "For a finite family of mutually independent coordinate pairs (Xᵢ,Yᵢ) with finite alphabets, the mutual information between the two vectors is I((Xᵢ)ᵢ;(Yᵢ)ᵢ) = ∑ᵢ I(Xᵢ;Yᵢ). The two variables within each pair may be dependent."
+}

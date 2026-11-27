@@ -1,0 +1,3 @@
+{
+  "LeanInfoTheory.Shannon.entropy_bool": "For a law p on the two Boolean outcomes, put t = p(true). Its entropy in nats is the binary entropy −t ln t − (1 − t) ln(1 − t), using 0 ln 0 = 0."
+}
