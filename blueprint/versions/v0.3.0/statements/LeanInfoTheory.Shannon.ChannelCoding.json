@@ -3,7 +3,7 @@
   "LeanInfoTheory.Shannon.BlockChannelCode.isMarkovChainOf_decoder": "For M ≥ 1 and a uniform message, the message, received word and decoded estimate form a Markov chain in that order.",
   "LeanInfoTheory.Shannon.BlockChannelCode.mutualInfoOf_decoder_le": "For M ≥ 1 and a uniform message J, decoding the received word Y can only reduce its mutual information with J, so I(J;decoder(Y)) ≤ I(J;Y).",
   "LeanInfoTheory.Shannon.BlockChannelCode.mutualInfoOf_message_le_input": "For a finite-alphabet block code and M ≥ 1, the mutual information between the uniform message J and output Y is at most the mutual information between the encoded input X and Y.",
-  "LeanInfoTheory.Shannon.BlockChannelCode.one_sub_errorProbability_mul_log_le": "For a code with M ≥ 1 equiprobable messages on n uses of a finite channel of capacity C, the average error e satisfies (1 − e) ln M ≤ nC + ln 2.",
+  "LeanInfoTheory.Shannon.BlockChannelCode.one_sub_errorProbability_mul_log_le": "Let W have finite alphabets, a nonempty input alphabet and capacity C in nats per use. For any blocklength n ≥ 0 and any code with M ≥ 1 equiprobable messages, the average error e satisfies (1 − e) ln M ≤ nC + ln 2.",
   "LeanInfoTheory.Shannon.BlockChannelCode.one_sub_errorProbability_mul_codeRate_le": "For positive n and M ≥ 1, a code of rate r and average error e on a finite channel of capacity C satisfies (1 − e)r ≤ C + (ln 2)/n.",
   "LeanInfoTheory.Shannon.BlockChannelCode.one_sub_channelCapacity_div_sub_le_errorProbability": "If n > 0, M ≥ 1 and the code rate is at least R > 0, its average error on a finite channel of capacity C is at least 1 − C/R − (ln 2)/(nR)."
 }

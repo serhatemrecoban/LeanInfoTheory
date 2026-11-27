@@ -42,7 +42,7 @@
   "LeanInfoTheory.Shannon.jointEntropyOf_le_add_entropyOf": "The joint entropy of finite-valued random variables X and Y is at most the sum of their entropies: H(X,Y) ≤ H(X) + H(Y).",
   "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird_nonneg": "For finite-valued A and B, the mutual information computed under the conditional law given C = c is nonnegative whenever Pr(C = c) > 0. The fiber quantity is defined to be zero on null conditioning values.",
   "LeanInfoTheory.Shannon.condMutualInfo_nonneg": "For every joint law of a finite triple (A,B,C), the conditional mutual information I(A;B | C) is nonnegative.",
-  "LeanInfoTheory.Shannon.condMutualInfoOf_nonneg": "For finite-valued random variables X,Y,Z with any common source law, I(X;Y | Z) ≥ 0.",
+  "LeanInfoTheory.Shannon.condMutualInfoOf_nonneg": "Let X, Y and Z take values in finite alphabets and be defined on a common source with probability mass function p. Their conditional mutual information satisfies I(X;Y | Z) ≥ 0.",
   "LeanInfoTheory.Shannon.fstMarginal_fstThirdMarginal": "If one first takes the (A,C) marginal of the joint law of (A,B,C) and then its A marginal, the result is the original A marginal.",
   "LeanInfoTheory.Shannon.sndMarginal_eq_sndThirdMarginal": "View the joint law of (A,B,C) as the law of the pair (A,(B,C)). Its second marginal is precisely the joint law of (B,C).",
   "LeanInfoTheory.Shannon.mutualInfo_chain_rule_fst": "For a finite joint law of (A,B,C), the information A shares with the pair (B,C) satisfies I(A;B,C) = I(A;C) + I(A;B | C).",

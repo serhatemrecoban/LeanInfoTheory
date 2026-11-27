@@ -22,6 +22,6 @@
   "PMF.totalVariation_isGreatest_unitInterval": "Over all functions f from the finite alphabet into [0,1], the maximum absolute difference between the means of f under p and q equals TV(p,q).",
   "PMF.two_mul_totalVariation_isGreatest_bounded": "Over all real functions f on the finite alphabet with |f(a)| ≤ 1 everywhere, the maximum absolute difference between the means of f under p and q equals 2 TV(p,q).",
   "PMF.totalVariation_bind_le": "Passing p and q through the same channel between finite alphabets gives output laws at total variation distance at most TV(p,q).",
-  "PMF.totalVariation_map_le": "Applying the same function f to two laws on finite alphabets cannot increase their total variation distance.",
+  "PMF.totalVariation_map_le": "Let p and q be laws on the same finite alphabet A, and let f map A into a finite alphabet B. Applying f to both laws cannot increase their total variation distance.",
   "PMF.totalVariation_map_equiv": "Bijectively relabeling the outcomes of two finite laws preserves their total variation distance."
 }

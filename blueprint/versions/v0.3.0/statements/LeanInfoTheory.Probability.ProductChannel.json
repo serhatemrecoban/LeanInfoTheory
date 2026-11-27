@@ -1,11 +1,11 @@
 {
-  "PMF.productChannel": "A product channel, given an input vector x, draws independent output coordinates with conditional laws Wᵢ(·|xᵢ).",
+  "PMF.productChannel": "For finitely many channels Wᵢ with finite output alphabets, the product channel takes an input vector x and draws the output coordinates independently, with coordinate i distributed as Wᵢ(·|xᵢ). The input alphabets may be infinite.",
   "PMF.productChannel_apply": "For input vector x, the probability of output vector y under the product channel is ∏ᵢ Wᵢ(yᵢ|xᵢ).",
   "PMF.mem_support_productChannel_iff": "Given x, a word y has positive probability under the product channel exactly when each factor Wᵢ(yᵢ|xᵢ) is positive.",
   "PMF.productChannel_map_eval": "At input vector x, the i-th output marginal of the product channel is the single-coordinate row Wᵢ(·|xᵢ).",
   "PMF.productChannel_map_restrict": "Selecting output coordinates by an injection e gives the product channel on those coordinates. Its component at j uses the original channel and input symbol at index e(j).",
   "PMF.finiteProduct_bind_productChannel": "Passing independent inputs with respective laws pᵢ through a product channel gives independent outputs. Output i has law pᵢ passed through Wᵢ.",
-  "PMF.channelComp_productChannel": "Cascading two product channels on the same finite coordinate set gives the product of the coordinatewise cascades Wᵢ followed by Vᵢ.",
+  "PMF.channelComp_productChannel": "At each of finitely many coordinates, let Wᵢ feed into Vᵢ through a finite intermediate alphabet, with a finite output alphabet for Vᵢ. Cascading the two product channels gives the product of the coordinatewise cascades Wᵢ followed by Vᵢ. The input alphabets of Wᵢ may be infinite.",
   "PMF.productChannel_deterministicChannel": "The product of deterministic channels fᵢ is the deterministic map sending x to the vector with entries fᵢ(xᵢ).",
   "PMF.memorylessChannel": "For a finite output alphabet, the n-use memoryless extension of W sends x to the product of the n rows W(·|xᵢ). Outputs are conditionally independent given x.",
   "PMF.channelJoint_productChannel_map_eval": "For any input-vector law q, the marginal law of the i-th input–output pair under the product channel is the joint law induced by the i-th input marginal and channel Wᵢ.",

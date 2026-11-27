@@ -1,6 +1,6 @@
 {
   "LeanInfoTheory.Shannon.abs_entropy_sub_le_binEntropy_add_totalVariation_mul_log": "Let d = TV(p,q) for two laws on an alphabet of size m. For m ≥ 2, |H(p) − H(q)| ≤ h(d) + d ln(m−1), where h is binary entropy in nats. For m = 1, both laws coincide and both sides are zero.",
-  "LeanInfoTheory.Shannon.entropyContinuityBound": "The continuity bound B(m,ε) is zero for m ≤ 1. For m > 1 it is h(ε) + ε ln(m−1) when ε ≤ 1 − 1/m and ln m above this threshold, with h the binary entropy in nats.",
+  "LeanInfoTheory.Shannon.entropyContinuityBound": "The continuity bound B(m,ε) is zero for m ≤ 1. For m > 1 it is h(ε) + ε ln(m−1) when ε ≤ 1 − 1/m and ln m above that threshold. On [0,1], h is binary entropy in nats. For ε < 0 the definition uses the real extension h(ε) = −ε ln |ε| − (1−ε) ln(1−ε). Continuity estimates use ε ≥ 0.",
   "LeanInfoTheory.Shannon.entropyContinuityBound_mono": "For fixed alphabet size m, the entropy continuity bound B(m,ε) is nondecreasing in ε on [0,∞).",
   "LeanInfoTheory.Shannon.abs_entropy_sub_le_entropyContinuityBound": "For laws p and q on an m-point alphabet, if TV(p,q) ≤ ε then |H(p) − H(q)| ≤ B(m,ε), the entropy continuity bound at tolerance ε.",
   "LeanInfoTheory.Shannon.abs_condEntropy_sub_le_entropyContinuityBound": "Let p and q be joint laws with TV(p,q) ≤ ε, on two alphabets of sizes m and k. Their conditional entropies of the first coordinate given the second differ by at most B(mk,ε) + B(k,ε) in absolute value, where B is the entropy continuity bound.",

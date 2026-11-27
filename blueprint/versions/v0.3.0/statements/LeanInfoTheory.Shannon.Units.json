@@ -1,7 +1,7 @@
 {
   "LeanInfoTheory.Shannon.natsToBase": "To express x nats in logarithm base b, divide x by ln b. The usual unit interpretation assumes b > 1. The Lean definition gives a real value for every real b using total division and logarithm.",
   "LeanInfoTheory.Shannon.natsToBits": "The value of x nats in bits is x divided by ln 2.",
-  "LeanInfoTheory.Shannon.div_log_change_base": "For any real x and logarithm bases b > 1 and c > 1, its value in base c is its value in base b multiplied by log base c of b. In symbols, x/ln c = (ln b/ln c)(x/ln b).",
+  "LeanInfoTheory.Shannon.div_log_change_base": "Let b > 1 and c > 1. An information quantity of x nats has value x/ln b in base-b units. Multiplying by ln b/ln c converts it to base-c units, so x/ln c = (ln b/ln c)(x/ln b).",
   "LeanInfoTheory.Shannon.negMulLog_div_log": "Dividing the entropy summand −x ln x by ln b gives −x log base b of x. This algebraic identity holds for all real x and b with Lean’s total logarithm and division conventions.",
   "LeanInfoTheory.Shannon.entropy_div_log": "For a law p on a finite alphabet, H(p)/ln b equals the sum of −p(a) log base b of p(a) over all letters a. For b > 1 this is entropy in base-b units. The algebraic identity uses total logarithms for all real b.",
   "LeanInfoTheory.Shannon.entropyOf_div_log": "If X has a finite alphabet and law q under a source law p, then H(X)/ln b equals the sum of −q(a) log base b of q(a) over all values a. The identity extends to every real b under Lean’s total logarithm conventions."

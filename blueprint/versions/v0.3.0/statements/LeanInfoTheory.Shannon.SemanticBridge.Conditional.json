@@ -32,7 +32,7 @@
   "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird_of_thirdMarginal_eq_zero": "If Pr[Z=c] = 0, the defined scalar fiber mutual information at c is zero.",
   "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird_of_thirdMarginal_ne_zero": "For Pr[Z=c] > 0, the fiber mutual information equals the mutual information of X and Y under their conditional pair law given c.",
   "LeanInfoTheory.Shannon.condMutualInfo_eq_condEntropy_marginals": "For a finite triple law, I(X;Y|Z) = H(X|Z) + H(Y|Z) − H(X,Y|Z).",
-  "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird_eq_entropy_fibers_of_ne_zero": "At every c with Pr[Z=c] > 0, I(X;Y|Z=c) = H(X|Z=c) + H(Y|Z=c) − H(X,Y|Z=c).",
-  "LeanInfoTheory.Shannon.thirdMarginal_toReal_mul_condMutualInfoFstSndGivenThird": "For every c, multiplying the fiber identity by Pr[Z=c] gives Pr[Z=c] I(X;Y|Z=c) = Pr[Z=c] (H(X|Z=c) + H(Y|Z=c) − H(X,Y|Z=c)). Both sides vanish on a zero-mass fiber.",
+  "LeanInfoTheory.Shannon.condMutualInfoFstSndGivenThird_eq_entropy_fibers_of_ne_zero": "Let X and Y have finite alphabets. At every value c with Pr[Z=c] > 0, the conditional law given Z=c satisfies I(X;Y|Z=c) = H(X|Z=c) + H(Y|Z=c) − H(X,Y|Z=c).",
+  "LeanInfoTheory.Shannon.thirdMarginal_toReal_mul_condMutualInfoFstSndGivenThird": "Let X and Y have finite alphabets. For every value c of Z, write r = Pr[Z=c]. Then r I(X;Y|Z=c) = r(H(X|Z=c) + H(Y|Z=c) − H(X,Y|Z=c)). At r = 0 both sides are zero under the library’s convention for a null fiber.",
   "LeanInfoTheory.Shannon.condMutualInfo_eq_sum_thirdMarginal_mul_condMutualInfoFstSndGivenThird": "For a finite triple law, conditional mutual information is the average of the fiber mutual informations, I(X;Y|Z) = ∑(c) Pr[Z=c] I(X;Y|Z=c). Zero-probability values contribute zero."
 }

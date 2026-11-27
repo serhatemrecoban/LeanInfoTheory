@@ -6,7 +6,7 @@
   "LeanInfoTheory.Shannon.channelCapacity_nonneg": "The capacity of a finite channel with nonempty input alphabet is nonnegative.",
   "LeanInfoTheory.Shannon.channelCapacity_le_log_card_input": "A finite channel with nonempty input alphabet A has capacity at most ln |A| nats per use.",
   "LeanInfoTheory.Shannon.channelCapacity_le_log_card_output": "A finite channel with nonempty input alphabet and output alphabet B has capacity at most ln |B| nats per use.",
-  "LeanInfoTheory.Shannon.channelCapacity_congr_equiv": "Independently relabeling the input and output alphabets by bijections preserves the capacity of a finite channel.",
-  "LeanInfoTheory.Shannon.channelCapacity_channelComp_le": "Cascading a finite channel V after W gives a channel of capacity at most C(W).",
-  "LeanInfoTheory.Shannon.channelCapacity_map_output_le": "Applying any deterministic function to the output of a finite channel gives a channel of capacity at most its original capacity."
+  "LeanInfoTheory.Shannon.channelCapacity_congr_equiv": "For a channel with finite alphabets and a nonempty input alphabet, relabeling the inputs and outputs by separate bijections preserves capacity.",
+  "LeanInfoTheory.Shannon.channelCapacity_channelComp_le": "Let W and V be channels in succession with finite input, intermediate and output alphabets, and suppose the input alphabet of W is nonempty. The capacity of W followed by V is at most C(W).",
+  "LeanInfoTheory.Shannon.channelCapacity_map_output_le": "Let W have finite input and output alphabets, with a nonempty input alphabet. Applying a deterministic function from its output alphabet into another finite alphabet gives a channel of capacity at most C(W)."
 }

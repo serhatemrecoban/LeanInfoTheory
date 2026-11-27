@@ -5,7 +5,7 @@
   "LeanInfoTheory.Shannon.isMarkovChain_iff_isIndependent_condFstSndGivenThird": "For finite endpoint alphabets, A → B → C is Markov exactly when the conditional joint law of (A,C) given B = b is a product law for every b with positive probability.",
   "LeanInfoTheory.Shannon.isMarkovChain_iff_fiberwise_endpoints_independent": "For finite-valued endpoints A and C, A → B → C is Markov exactly when A and C are independent under each conditional law given B = b with Pr(B = b) > 0.",
   "LeanInfoTheory.Shannon.condMutualInfoOf_eq_zero_iff_isMarkovChainOf": "For finite-valued X, Y and Z with a common source law, I(X;Z | Y) = 0 if and only if X → Y → Z is a Markov chain.",
-  "LeanInfoTheory.Shannon.isMarkovChainOf_reverse": "Under any common source law, Z → Y → X is Markov if and only if X → Y → Z is Markov.",
+  "LeanInfoTheory.Shannon.isMarkovChainOf_reverse": "Let X, Y and Z be functions of a common outcome with probability mass function p. Then Z → Y → X is a Markov chain under p if and only if X → Y → Z is a Markov chain under p.",
   "LeanInfoTheory.Shannon.isMarkovChain_map_reverse": "Reversing the coordinate order of a triple preserves the Markov property: (C,B,A) has a Markov law exactly when (A,B,C) does.",
   "LeanInfoTheory.Shannon.condFstGivenSndChannel": "For a pair (A,B) with finite-valued A, this channel from B to A assigns the conditional law of A given B = b to each b of positive probability. At b of zero probability it returns the marginal law of A as a default.",
   "LeanInfoTheory.Shannon.condFstGivenSndChannel_of_sndMarginal_eq_zero": "If Pr(B = b) = 0, the row at b of the library’s total channel from B to finite-valued A is the marginal law of A, by its choice of default.",
@@ -28,10 +28,10 @@
   "LeanInfoTheory.Shannon.mutualInfo_dataProcessing_eq_iff": "For a finite Markov triple A → B → C, equality I(A;C) = I(A;B) holds if and only if A → C → B is Markov.",
   "LeanInfoTheory.Shannon.condEntropyOf_dataProcessing_eq_iff": "For finite-valued variables with X → Y → Z Markov, H(X | Y) = H(X | Z) if and only if X → Z → Y is also Markov.",
   "LeanInfoTheory.Shannon.condEntropy_dataProcessing_eq_iff": "For a finite joint law with A → B → C Markov, equality H(A | B) = H(A | C) holds exactly when A → C → B is also Markov.",
-  "LeanInfoTheory.Shannon.mutualInfo_channel_right_le": "Given a finite pair (A,B), draw C through a channel depending only on B. Then I(A;C) ≤ I(A;B).",
-  "LeanInfoTheory.Shannon.mutualInfo_channel_left_le": "Given a finite pair (A,B), draw C through a channel depending only on A. Then I(C;B) ≤ I(A;B).",
-  "LeanInfoTheory.Shannon.mutualInfo_independent_channels_le": "Given a finite pair (A,B), draw C from a channel applied to A and D from a channel applied to B, independently conditional on (A,B). Then I(C;D) ≤ I(A;B).",
+  "LeanInfoTheory.Shannon.mutualInfo_channel_right_le": "Let A and B take values in finite alphabets. Given (A,B), draw C from a channel with a finite output alphabet whose row depends only on B. Then I(A;C) ≤ I(A;B).",
+  "LeanInfoTheory.Shannon.mutualInfo_channel_left_le": "Let A and B take values in finite alphabets. Given (A,B), draw C from a channel with a finite output alphabet whose row depends only on A. Then I(C;B) ≤ I(A;B).",
+  "LeanInfoTheory.Shannon.mutualInfo_independent_channels_le": "Suppose A, B, C and D have finite alphabets. Given (A,B), draw C and D independently, using a channel from A to C and a channel from B to D. Then I(C;D) ≤ I(A;B).",
   "LeanInfoTheory.Shannon.mutualInfo_channelComp_le": "For finite alphabets, send X through channel W to Y and then through channel V to Z. For any input law, the cascade satisfies I(X;Z) ≤ I(X;Y).",
   "LeanInfoTheory.Shannon.mutualInfo_channel_cascade_le": "For a cascade of two finite channels, the mutual information between the initial input and final output is at most the mutual information between that input and the first output, for every input law.",
-  "LeanInfoTheory.Shannon.mutualInfo_channel_map_output_le": "If Y is the output of a finite channel with input X, then any deterministic output map f satisfies I(X;f(Y)) ≤ I(X;Y)."
+  "LeanInfoTheory.Shannon.mutualInfo_channel_map_output_le": "Send X through a channel with finite input and output alphabets, and call its output Y. For every deterministic map f from the output alphabet to a finite alphabet, I(X;f(Y)) ≤ I(X;Y)."
 }

@@ -2,7 +2,7 @@
   "LeanInfoTheory.Shannon.empiricalPMF": "For blocklength n > 0, the empirical law of a type t assigns each symbol a its count t(a) divided by n.",
   "LeanInfoTheory.Shannon.empiricalPMF_apply": "For n > 0, the mass of a under the empirical law of t is exactly t(a)/n.",
   "LeanInfoTheory.Shannon.mem_support_empiricalPMF_iff": "For n > 0, a symbol a belongs to the support of the empirical law of t if and only if its count t(a) is positive.",
-  "LeanInfoTheory.Shannon.wordTypeEquivPMF": "For n > 0, length-n types are in bijection with probability laws whose masses have the form c(a)/n for nonnegative integer counts c(a) summing to n.",
+  "LeanInfoTheory.Shannon.wordTypeEquivPMF": "For length n > 0 on a finite alphabet, the type with counts c(a) maps to its empirical law p(a) = c(a)/n. This is a bijection onto the laws that admit n as a common denominator, meaning that n p(a) is a nonnegative integer for every letter a. The counts sum to n.",
   "LeanInfoTheory.Shannon.wordTypeEquivPMF_apply": "For n > 0, the law associated to type t by the type–law bijection is its empirical distribution.",
   "LeanInfoTheory.Shannon.mem_typeClass_iff_empiricalPMF_eq": "For n > 0, a word x belongs to the type class of t if and only if the empirical distribution of x equals that of t."
 }

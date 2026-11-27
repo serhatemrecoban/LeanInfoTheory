@@ -1,7 +1,7 @@
 {
   "LeanInfoTheory.Shannon.expectedCodewordLength": "For a finite source with distribution p and binary words assigned on its positive support, the expected codeword length in bits is L(c) = ∑ₐ p(a) length(c(a)), summed over the supported symbols.",
   "LeanInfoTheory.Shannon.natsToBits_entropy_le_expectedCodewordLength": "Every binary prefix code on the positive support of a finite source p satisfies L(c) ≥ H(p)/ln 2, where the entropy H is in nats and L is in bits.",
-  "LeanInfoTheory.Shannon.exists_isBinaryPrefixCode_length_eq_ceil": "There is a binary prefix code on the positive support of p with each length equal to ⌈−log₂ p(a)⌉ and expected length strictly less than H(p)/ln 2 + 1 bits.",
+  "LeanInfoTheory.Shannon.exists_isBinaryPrefixCode_length_eq_ceil": "For a source law p on a finite alphabet, there is a binary prefix code on its support that assigns each symbol a of positive probability a codeword of length ⌈−log₂ p(a)⌉. Its expected length under p is strictly less than H(p)/ln 2 + 1 bits.",
   "LeanInfoTheory.Shannon.optimalPrefixLength": "For a finite source p, L*(p) is the infimum of expected binary codeword lengths over prefix codes on precisely the symbols of positive probability.",
   "LeanInfoTheory.Shannon.isLeast_optimalPrefixLength": "For a finite source p there exists a binary prefix code with mean length L*(p), and every prefix code on the supported symbols has mean length at least L*(p).",
   "LeanInfoTheory.Shannon.optimalPrefixLength_bounds": "For a finite source p the optimal expected binary prefix length satisfies H(p)/ln 2 ≤ L*(p) < H(p)/ln 2 + 1 bits."

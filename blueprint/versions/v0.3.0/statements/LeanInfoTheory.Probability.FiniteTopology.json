@@ -1,5 +1,5 @@
 {
-  "PMF.instTopologicalSpace": "Give discrete probability laws the topology inherited from the product space of their extended nonnegative atom masses. Thus neighborhoods test the masses of finitely many individual outcomes.",
+  "PMF.instTopologicalSpace": "View each probability law as its tuple of atom masses. The space of laws inherits the topology of the product of one copy of [0,∞] per outcome. A neighborhood basis at p is obtained by restricting the masses of finitely many outcomes to open neighborhoods of their values under p.",
   "PMF.continuous_apply_toReal": "For a fixed outcome a, the map sending a probability law p to the real number p(a) is continuous.",
   "PMF.homeomorphStdSimplex": "On a finite alphabet A, the space of probability laws is homeomorphic to the standard simplex of nonnegative real vectors summing to one. The homeomorphism records each atom mass.",
   "PMF.homeomorphStdSimplex_apply": "The simplex vector associated with p has coordinate p(a), expressed as a real number, at every a.",

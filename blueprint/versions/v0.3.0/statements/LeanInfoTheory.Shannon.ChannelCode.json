@@ -18,7 +18,7 @@
   "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_eq_sum": "The average error is (1/M)∑ₘ∑ᵧ Wⁿ(y|encoder(m)), where the inner sum runs over outputs y decoded to a message other than m and M ≥ 1.",
   "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_nonneg": "The average error probability of a block code with at least one message is nonnegative.",
   "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_le_one": "The average error probability of a block code with at least one message is at most one.",
-  "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_one": "A code with a single message has zero error for every channel and every blocklength.",
+  "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_one": "At every blocklength, a code with one message has zero decoding error on any channel with a finite output alphabet. The input alphabet may be infinite.",
   "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_zero": "A length-zero code with M ≥ 1 equiprobable messages has error probability 1 − 1/M.",
   "LeanInfoTheory.Shannon.BlockChannelCode.messageOutputLaw_one_map": "For a length-one code with M ≥ 1, the joint law of its uniform message m and single received symbol is the channel joint law with conditional output distribution W(·|encoder(m)₀).",
   "LeanInfoTheory.Shannon.BlockChannelCode.errorProbability_one_length_eq_sum": "For a length-one code with M ≥ 1, the error probability is the average over messages m of the sum of W(b|encoder(m)₀) over symbols b whose one-symbol output word decodes incorrectly."
