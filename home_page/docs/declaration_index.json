@@ -4032,7 +4032,7 @@
       "short_name": "decodingErrorProbabilityOf_fano_lower_bound_of_uniform_source"
     },
     {
-      "doc": "The tuple of values at the indices in the finite set `s`. The tuple and its marginal law allow arbitrary alphabets. Finite alphabets on `s` suffice for entropy of the marginal. `familyEntropy` and `familyEntropyOf` assume finite alphabets at every index.",
+      "doc": "The tuple of values at the indices in the finite set `s`. The tuple and its marginal law allow arbitrary alphabets. Finite alphabets on `s` suffice for entropy of the marginal. `familyEntropy` and `familyEntropyOf` require this at every index.",
       "kind": "abbrev",
       "kind_label": "Definition",
       "line": 42,
