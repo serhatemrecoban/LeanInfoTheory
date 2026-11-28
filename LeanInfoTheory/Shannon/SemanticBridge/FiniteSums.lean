@@ -43,9 +43,9 @@ private theorem pmf_apply_ne_top {alpha : Type u} (p : PMF alpha) (a : alpha) :
 /--
 Real-valued first-marginal mass formula.
 
-Mathematically, for a finite joint PMF `p` on `alpha × beta`,
-`p_A(a) = sum_b p(a,b)`, now stated after converting all finite masses to
-real numbers.
+For a joint PMF `p` on `alpha × beta` with finite second alphabet `beta`,
+the marginal mass at `a` is `p_A(a) = sum_b p(a,b)`, with all masses expressed
+as real numbers.
 -/
 theorem fstMarginal_toReal_apply {alpha : Type u} {beta : Type v} [Fintype beta]
     (p : PMF (alpha × beta)) (a : alpha) :
@@ -59,9 +59,9 @@ theorem fstMarginal_toReal_apply {alpha : Type u} {beta : Type v} [Fintype beta]
 /--
 Real-valued second-marginal mass formula.
 
-Mathematically, for a finite joint PMF `p` on `alpha × beta`,
-`p_B(b) = sum_a p(a,b)`, now stated after converting all finite masses to
-real numbers.
+For a joint PMF `p` on `alpha × beta` with finite first alphabet `alpha`,
+the marginal mass at `b` is `p_B(b) = sum_a p(a,b)`, with all masses expressed
+as real numbers.
 -/
 theorem sndMarginal_toReal_apply {alpha : Type u} {beta : Type v} [Fintype alpha]
     (p : PMF (alpha × beta)) (b : beta) :
@@ -125,8 +125,8 @@ theorem sum_toReal_mul_sndMarginal {alpha : Type u} {beta : Type v}
 /--
 Entropy as the elementary finite sum `sum_a p(a) * (-log p(a))`.
 
-This is definitionally the same as the `Real.negMulLog` formula, but this shape
-is better for comparing entropy identities with KL-divergence sums.
+Unfolding `Real.negMulLog x` gives `(-x) * Real.log x`. Moving the minus sign
+to the logarithmic factor gives the displayed summand.
 -/
 theorem entropy_eq_sum_toReal_mul_neg_log {alpha : Type u} [Fintype alpha]
     (p : PMF alpha) :

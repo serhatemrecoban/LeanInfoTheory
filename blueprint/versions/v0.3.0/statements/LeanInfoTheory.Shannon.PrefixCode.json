@@ -1,5 +1,5 @@
 {
-  "LeanInfoTheory.Shannon.IsBinaryPrefixCode": "A binary word assignment c is a prefix code if, whenever c(a) is a prefix of c(b), the labels a and b coincide. In particular distinct labels receive distinct words.",
+  "LeanInfoTheory.Shannon.IsBinaryPrefixCode": "A binary word assignment c is a prefix code if, whenever c(a) is a prefix of c(b), the labels a and b coincide. In particular distinct labels receive distinct words. On a singleton alphabet, the sole symbol may be assigned the empty word. Its Kraft weight is then one, and the encoded bits alone cannot tell a decoder how many symbols were sent.",
   "LeanInfoTheory.Shannon.IsBinaryPrefixCode.kraft_sum_le_one": "For any binary prefix code c on a finite label set, its codeword lengths satisfy the Kraft inequality ∑ₐ 2^(−length(c(a))) ≤ 1.",
   "LeanInfoTheory.Shannon.exists_isBinaryPrefixCode_of_kraft_sum_le_one": "If natural-number lengths ℓ(a) on a finite label set satisfy ∑ₐ 2^(−ℓ(a)) ≤ 1, there is a binary prefix code with length exactly ℓ(a) at each label."
 }
