@@ -32,7 +32,7 @@ noncomputable section
 universe u
 
 /--
-Self-information of an atom under a finite PMF, in nats.
+Real-valued self-information of an atom under a PMF, in nats.
 
 It is `-log p(a)` when the real mass of `a` is nonzero, and `0` on zero-mass
 atoms. The zero branch is the usual entropy convention that zero-probability

@@ -31,11 +31,11 @@ noncomputable section
 
 /-! ## Marginals -/
 
-/-- The first marginal of a finite joint PMF. -/
+/-- The first marginal of a joint PMF. -/
 abbrev fstMarginal {alpha : Type u} {beta : Type v} (p : PMF (alpha × beta)) : PMF alpha :=
   p.map Prod.fst
 
-/-- The second marginal of a finite joint PMF. -/
+/-- The second marginal of a joint PMF. -/
 abbrev sndMarginal {alpha : Type u} {beta : Type v} (p : PMF (alpha × beta)) : PMF beta :=
   p.map Prod.snd
 
@@ -143,7 +143,7 @@ theorem sndMarginal_apply {alpha : Type u} {beta : Type v} [Fintype alpha]
       intro a _ a' _ h
       exact congrArg Prod.fst h
 
-/-- The marginal on the first and second coordinates of a finite triple PMF. -/
+/-- The marginal on the first and second coordinates of a triple PMF. -/
 abbrev fstSndMarginal {alpha : Type u} {beta : Type v} {gamma : Type w}
     (p : PMF (alpha × beta × gamma)) : PMF (alpha × beta) :=
   p.map fun x => (x.1, x.2.1)
@@ -173,17 +173,17 @@ theorem fstSndMarginal_map_triple
       p.map fun omega => (X omega, Y omega) := by
   simp
 
-/-- The marginal on the first and third coordinates of a finite triple PMF. -/
+/-- The marginal on the first and third coordinates of a triple PMF. -/
 abbrev fstThirdMarginal {alpha : Type u} {beta : Type v} {gamma : Type w}
     (p : PMF (alpha × beta × gamma)) : PMF (alpha × gamma) :=
   p.map fun x => (x.1, x.2.2)
 
-/-- The marginal on the second and third coordinates of a finite triple PMF. -/
+/-- The marginal on the second and third coordinates of a triple PMF. -/
 abbrev sndThirdMarginal {alpha : Type u} {beta : Type v} {gamma : Type w}
     (p : PMF (alpha × beta × gamma)) : PMF (beta × gamma) :=
   p.map fun x => (x.2.1, x.2.2)
 
-/-- The marginal on the third coordinate of a finite triple PMF. -/
+/-- The marginal on the third coordinate of a triple PMF. -/
 abbrev thirdMarginal {alpha : Type u} {beta : Type v} {gamma : Type w}
     (p : PMF (alpha × beta × gamma)) : PMF gamma :=
   p.map fun x => x.2.2
