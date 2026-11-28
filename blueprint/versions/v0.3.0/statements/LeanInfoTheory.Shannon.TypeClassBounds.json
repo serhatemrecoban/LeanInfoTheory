@@ -1,6 +1,6 @@
 {
   "LeanInfoTheory.Shannon.iid_empiricalPMF_apply_of_mem_typeClass": "Let t be a length-n type on a finite alphabet, with n > 0, and let r be its empirical law. If a word has type t, its probability under n iid draws from r is exp(−nH(r)).",
-  "LeanInfoTheory.Shannon.iid_empiricalPMF_toOuterMeasure_typeClass": "For a type t at length n > 0, let r be its empirical law and T its type class. Under n iid draws from r, the probability of T is |T| exp(−nH(r)).",
+  "LeanInfoTheory.Shannon.iid_empiricalPMF_toOuterMeasure_typeClass": "For a length-n type on a finite alphabet with n > 0, let r be its empirical law and T its type class. Under n iid draws from r, the probability of T is |T| exp(−nH(r)).",
   "LeanInfoTheory.Shannon.card_typeClass_le_exp_entropy": "For a type with empirical law r at positive length n on a finite alphabet, its type class has at most exp(nH(r)) words.",
   "LeanInfoTheory.Shannon.exp_entropy_div_pow_le_card_typeClass": "For a type with empirical law r at positive length n on a finite alphabet A, its type class contains at least exp(nH(r))/(n + 1)^|A| words."
 }

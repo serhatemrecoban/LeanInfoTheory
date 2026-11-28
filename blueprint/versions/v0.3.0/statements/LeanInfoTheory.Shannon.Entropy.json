@@ -4,7 +4,7 @@
   "LeanInfoTheory.Shannon.entropy_nonneg": "The entropy of a finite probability law is nonnegative.",
   "LeanInfoTheory.Shannon.entropy_map_equiv": "Bijectively relabeling the outcomes of a finite law preserves its entropy.",
   "LeanInfoTheory.Shannon.entropy_map_injective": "Pushing a finite law through an injective map to another finite alphabet preserves its entropy.",
-  "LeanInfoTheory.Shannon.entropy_pure": "A law concentrated at one point has entropy zero.",
+  "LeanInfoTheory.Shannon.entropy_pure": "On a finite alphabet, a law concentrated at one point has entropy zero.",
   "LeanInfoTheory.Shannon.entropy_eq_zero_iff": "A finite probability law has entropy zero if and only if it is concentrated at one outcome.",
   "LeanInfoTheory.Shannon.entropyOf": "For a finite-valued random variable X and discrete source law p, H(X) is the entropy of the distribution of X induced by p.",
   "LeanInfoTheory.Shannon.entropyOf_eq_zero_iff": "Let p be a probability mass function on the source outcomes and X a finite-valued random variable. Then H(X) = 0 exactly when there is a value a such that X(ω) = a for every ω with p(ω) > 0.",

@@ -1,6 +1,6 @@
 {
   "PMF.iid": "The n-fold iid law of p on a finite alphabet is the law of a length-n word with independent coordinates of common law p. The mass of x is ∏ᵢ p(xᵢ).",
-  "PMF.finiteProduct_map_append_symm": "Split a product word of length m+n after its first m coordinates. The two blocks are independent, with the prescribed coordinate laws restricted to their respective positions.",
-  "PMF.channelJoint_finiteProduct_map_append": "Concatenating two independent product words of lengths m and n gives the product law with the first m marginal laws taken from p and the last n from q.",
-  "PMF.iid_map_perm": "The law of n independent draws from p is unchanged by any permutation of the n coordinates."
+  "PMF.finiteProduct_map_append_symm": "Split a product word over a finite alphabet after the first m of its m+n coordinates. The two blocks are independent, and each retains the coordinate laws of its positions in the original word.",
+  "PMF.channelJoint_finiteProduct_map_append": "Concatenating independent product words of lengths m and n over the same finite alphabet gives a product word whose first m coordinate laws come from p and whose last n come from q.",
+  "PMF.iid_map_perm": "For a law p on a finite alphabet, permuting the coordinates of a word drawn from n independent copies of p preserves its law."
 }

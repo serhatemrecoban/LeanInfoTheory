@@ -1,7 +1,7 @@
 {
-  "LeanInfoTheory.Shannon.weakTypicalSet": "The weakly ε-typical set consists of positive-probability words at length n > 0 whose self-information per symbol under the iid law differs from H(p) by strictly less than ε. At length zero the set is empty.",
-  "LeanInfoTheory.Shannon.mem_weakTypicalSet": "A word x is weakly ε-typical exactly when n > 0, its iid probability P(x) is positive, and |−ln P(x)/n − H(p)| < ε.",
-  "LeanInfoTheory.Shannon.weakTypicalSet_mass_bounds": "For a weakly ε-typical word x of length n under iid law p, its probability lies between exp(−n[H(p) + ε]) and exp(−n[H(p) − ε]), inclusive.",
+  "LeanInfoTheory.Shannon.weakTypicalSet": "For an iid source p on a finite alphabet, the weakly ε-typical set at length n > 0 is the finite set of positive-probability words whose self-information per symbol differs from H(p) by strictly less than ε. At length zero the set is empty.",
+  "LeanInfoTheory.Shannon.mem_weakTypicalSet": "For an iid source p on a finite alphabet, a length-n word x is weakly ε-typical exactly when n > 0, its word probability P(x) is positive, and |−ln P(x)/n − H(p)| < ε.",
+  "LeanInfoTheory.Shannon.weakTypicalSet_mass_bounds": "For an iid source p on a finite alphabet, the probability of any weakly ε-typical word of length n lies between exp(−n[H(p) + ε]) and exp(−n[H(p) − ε]), inclusive.",
   "LeanInfoTheory.Shannon.card_weakTypicalSet_le": "The weakly ε-typical set at length n on a finite alphabet has at most exp(n[H(p) + ε]) words.",
   "LeanInfoTheory.Shannon.prob_mul_exp_le_card_weakTypicalSet": "Let T be the weakly ε-typical set at length n for a finite-alphabet iid source p. Then |T| ≥ Pr(T) exp(n[H(p) − ε]), where Pr(T) is its iid probability."
 }

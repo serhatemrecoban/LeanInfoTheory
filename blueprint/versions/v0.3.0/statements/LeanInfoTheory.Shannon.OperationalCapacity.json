@@ -1,5 +1,5 @@
 {
-  "LeanInfoTheory.Shannon.IsAchievableRate": "A rate R is achievable over W if R ≥ 0 and there is one sequence of deterministic block codes with message counts Mₙ ≥ 1 whose uniform-message average error tends to zero and whose rates eventually exceed or equal R − δ for every δ > 0.",
+  "LeanInfoTheory.Shannon.IsAchievableRate": "For a channel W with finite output alphabet, a rate R is achievable if R ≥ 0 and there is one sequence of deterministic block codes with message counts Mₙ ≥ 1 whose uniform-message average error tends to zero and whose rates eventually reach or exceed R − δ for every δ > 0.",
   "LeanInfoTheory.Shannon.isAchievableRate_zero": "For any channel with nonempty input alphabet and finite output alphabet, rate zero is achievable by a code with one message at every blocklength.",
   "LeanInfoTheory.Shannon.isAchievableRate_of_lt_channelCapacity": "For a channel with finite alphabets and nonempty input alphabet, every rate R with 0 ≤ R < C(W) is achievable by deterministic block codes with vanishing average error.",
   "LeanInfoTheory.Shannon.le_channelCapacity_of_isAchievableRate": "For a channel with finite alphabets and nonempty input alphabet, every achievable rate R satisfies R ≤ C(W).",

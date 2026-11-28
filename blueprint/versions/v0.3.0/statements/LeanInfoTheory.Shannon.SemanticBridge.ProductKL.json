@@ -1,6 +1,6 @@
 {
   "LeanInfoTheory.Shannon.klDiv_finiteProduct": "For a finite family of pairs of laws on finite discrete alphabets, the KL divergence from the product of the pᵢ to the product of the qᵢ equals ∑ᵢ D(pᵢ‖qᵢ). This is an identity of extended nonnegative numbers.",
-  "LeanInfoTheory.Shannon.toReal_klDiv_finiteProduct": "Consider finitely many coordinates, each with a finite discrete alphabet. If qᵢ is positive wherever pᵢ is positive for every i, all divergences are finite and the KL divergence of the product laws satisfies D(⊗ᵢ pᵢ ‖ ⊗ᵢ qᵢ) = ∑ᵢ D(pᵢ‖qᵢ).",
+  "LeanInfoTheory.Shannon.toReal_klDiv_finiteProduct": "Consider finitely many coordinates, each with a finite discrete alphabet. Suppose qᵢ is positive wherever pᵢ is positive, for every i. This ensures that each coordinate divergence and the product divergence are finite. Their real values satisfy D(⊗ᵢ pᵢ ‖ ⊗ᵢ qᵢ) = ∑ᵢ D(pᵢ‖qᵢ).",
   "LeanInfoTheory.Shannon.klDiv_iid": "For two laws p and q on a finite discrete alphabet and any n ≥ 0, D(pⁿ‖qⁿ) = nD(p‖q), where the superscript denotes iid sampling. The identity uses extended nonnegative arithmetic, including 0 · ∞ = 0.",
   "LeanInfoTheory.Shannon.toReal_klDiv_iid": "For finite discrete laws p and q with supp(p) ⊆ supp(q), the real-valued divergence between their length-n iid laws equals n times D(p‖q)."
 }
