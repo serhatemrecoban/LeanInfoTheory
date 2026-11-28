@@ -34,10 +34,10 @@ universe u v w
 noncomputable section
 
 /--
-The tuple of values at the indices in the finite set `s`.
+The outcome type of the variables selected by the finite atom `s`.
 
-The tuple and its marginal law allow arbitrary alphabets. Finite alphabets on `s` suffice for
-entropy of the marginal. `familyEntropy` and `familyEntropyOf` require this at every index.
+No finiteness assumption is needed to form this type. Pointwise finiteness of
+the selected alphabets is required only when taking entropy.
 -/
 abbrev FamilyOutcome {Var : Type u} (alpha : Var -> Type v) (s : Finset Var) :=
   (i : s) -> alpha i

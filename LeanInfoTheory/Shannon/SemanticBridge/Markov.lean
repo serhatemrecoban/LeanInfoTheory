@@ -326,9 +326,9 @@ theorem isMarkovChainOf_comp
     PMF.map_comp, Function.comp_def] using hmarkov
 
 /--
-For a triple law with finite last alphabet, the Markov property holds exactly
-when extending its first-two marginal by the total conditional channel
-`P_{C | B}` extracted from its second-third marginal recovers the original law.
+A finite triple law is Markov exactly when its first-two marginal, extended by
+the total conditional channel `P_{C | B}` extracted from its second-third
+marginal, reconstructs the original law.
 
 The second-third marginal is swapped into `(C,B)` order because
 `condFstGivenSndChannel` constructs a channel from the second coordinate to the
@@ -418,9 +418,9 @@ theorem isMarkovChain_iff_canonical_channelExtension
   isMarkovChain_iff_eq_channelExtension_condFstGivenSndChannel p
 
 /--
-For a triple law with finite last alphabet, the Markov property holds exactly
-when some channel from the middle alphabet to the last extends the first-two
-marginal to the original triple law.
+Textbook channel-factorization characterization of a finite Markov triple: a
+law is Markov exactly when some channel from the middle alphabet extends its
+first-two marginal to the original triple law.
 -/
 theorem isMarkovChain_iff_exists_channelExtension
     {alpha : Type u} {beta : Type v} {gamma : Type w}

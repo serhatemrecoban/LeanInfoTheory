@@ -4032,7 +4032,7 @@
       "short_name": "decodingErrorProbabilityOf_fano_lower_bound_of_uniform_source"
     },
     {
-      "doc": "The tuple of values at the indices in the finite set `s`. The tuple and its marginal law allow arbitrary alphabets. Finite alphabets on `s` suffice for entropy of the marginal. `familyEntropy` and `familyEntropyOf` require this at every index.",
+      "doc": "The outcome type of the variables selected by the finite atom `s`. No finiteness assumption is needed to form this type. Pointwise finiteness of the selected alphabets is required only when taking entropy.",
       "kind": "abbrev",
       "kind_label": "Definition",
       "line": 42,
@@ -4782,7 +4782,7 @@
       "short_name": "tendsto_prob_infoDensityThresholdEvent_iid_compl"
     },
     {
-      "doc": "The first marginal of a joint PMF.",
+      "doc": "The first marginal of a finite joint PMF.",
       "kind": "abbrev",
       "kind_label": "Definition",
       "line": 35,
@@ -4792,7 +4792,7 @@
       "short_name": "fstMarginal"
     },
     {
-      "doc": "The second marginal of a joint PMF.",
+      "doc": "The second marginal of a finite joint PMF.",
       "kind": "abbrev",
       "kind_label": "Definition",
       "line": 39,
@@ -4882,7 +4882,7 @@
       "short_name": "sndMarginal_apply"
     },
     {
-      "doc": "The marginal on the first and second coordinates of a triple PMF.",
+      "doc": "The marginal on the first and second coordinates of a finite triple PMF.",
       "kind": "abbrev",
       "kind_label": "Definition",
       "line": 147,
@@ -4912,7 +4912,7 @@
       "short_name": "fstSndMarginal_map_triple"
     },
     {
-      "doc": "The marginal on the first and third coordinates of a triple PMF.",
+      "doc": "The marginal on the first and third coordinates of a finite triple PMF.",
       "kind": "abbrev",
       "kind_label": "Definition",
       "line": 177,
@@ -4922,7 +4922,7 @@
       "short_name": "fstThirdMarginal"
     },
     {
-      "doc": "The marginal on the second and third coordinates of a triple PMF.",
+      "doc": "The marginal on the second and third coordinates of a finite triple PMF.",
       "kind": "abbrev",
       "kind_label": "Definition",
       "line": 182,
@@ -4932,7 +4932,7 @@
       "short_name": "sndThirdMarginal"
     },
     {
-      "doc": "The marginal on the third coordinate of a triple PMF.",
+      "doc": "The marginal on the third coordinate of a finite triple PMF.",
       "kind": "abbrev",
       "kind_label": "Definition",
       "line": 187,
@@ -6872,7 +6872,7 @@
       "short_name": "entropy_le_entropy_bind_of_doublyStochastic"
     },
     {
-      "doc": "Real-valued self-information of an atom under a PMF, in nats. It is `-log p(a)` when the real mass of `a` is nonzero, and `0` on zero-mass atoms. The zero branch is the usual entropy convention that zero-probability outcomes contribute no expected information.",
+      "doc": "Self-information of an atom under a finite PMF, in nats. It is `-log p(a)` when the real mass of `a` is nonzero, and `0` on zero-mass atoms. The zero branch is the usual entropy convention that zero-probability outcomes contribute no expected information.",
       "kind": "def",
       "kind_label": "Definition",
       "line": 41,
@@ -7322,7 +7322,7 @@
       "short_name": "mutualInfo_map_piProd_eq_sum_of_isMutuallyIndependentFamily"
     },
     {
-      "doc": "Real-valued first-marginal mass formula. For a joint PMF `p` on `alpha \u00d7 beta` with finite second alphabet `beta`, the marginal mass at `a` is `p_A(a) = sum_b p(a,b)`, with all masses expressed as real numbers.",
+      "doc": "Real-valued first-marginal mass formula. Mathematically, for a finite joint PMF `p` on `alpha \u00d7 beta`, `p_A(a) = sum_b p(a,b)`, now stated after converting all finite masses to real numbers.",
       "kind": "theorem",
       "kind_label": "Theorem",
       "line": 50,
@@ -7332,7 +7332,7 @@
       "short_name": "fstMarginal_toReal_apply"
     },
     {
-      "doc": "Real-valued second-marginal mass formula. For a joint PMF `p` on `alpha \u00d7 beta` with finite first alphabet `alpha`, the marginal mass at `b` is `p_B(b) = sum_a p(a,b)`, with all masses expressed as real numbers.",
+      "doc": "Real-valued second-marginal mass formula. Mathematically, for a finite joint PMF `p` on `alpha \u00d7 beta`, `p_B(b) = sum_a p(a,b)`, now stated after converting all finite masses to real numbers.",
       "kind": "theorem",
       "kind_label": "Theorem",
       "line": 66,
@@ -7362,7 +7362,7 @@
       "short_name": "sum_toReal_mul_sndMarginal"
     },
     {
-      "doc": "Entropy as the elementary finite sum `sum_a p(a) * (-log p(a))`. Unfolding `Real.negMulLog x` gives `(-x) * Real.log x`. Moving the minus sign to the logarithmic factor gives the displayed summand.",
+      "doc": "Entropy as the elementary finite sum `sum_a p(a) * (-log p(a))`. This is definitionally the same as the `Real.negMulLog` formula, but this shape is better for comparing entropy identities with KL-divergence sums.",
       "kind": "theorem",
       "kind_label": "Theorem",
       "line": 131,
@@ -8042,7 +8042,7 @@
       "short_name": "isMarkovChainOf_comp"
     },
     {
-      "doc": "For a triple law with finite last alphabet, the Markov property holds exactly when extending its first-two marginal by the total conditional channel `P_{C | B}` extracted from its second-third marginal recovers the original law. The second-third marginal is swapped into `(C,B)` order because `condFstGivenSndChannel` constructs a channel from the second coordinate to the first. Its documented null-fiber fallback is irrelevant: both the original and reconstructed atom masses vanish whenever the middle marginal does.",
+      "doc": "A finite triple law is Markov exactly when its first-two marginal, extended by the total conditional channel `P_{C | B}` extracted from its second-third marginal, reconstructs the original law. The second-third marginal is swapped into `(C,B)` order because `condFstGivenSndChannel` constructs a channel from the second coordinate to the first. Its documented null-fiber fallback is irrelevant: both the original and reconstructed atom masses vanish whenever the middle marginal does.",
       "kind": "theorem",
       "kind_label": "Theorem",
       "line": 338,
@@ -8062,7 +8062,7 @@
       "short_name": "isMarkovChain_iff_canonical_channelExtension"
     },
     {
-      "doc": "For a triple law with finite last alphabet, the Markov property holds exactly when some channel from the middle alphabet to the last extends the first-two marginal to the original triple law.",
+      "doc": "Textbook channel-factorization characterization of a finite Markov triple: a law is Markov exactly when some channel from the middle alphabet extends its first-two marginal to the original triple law.",
       "kind": "theorem",
       "kind_label": "Theorem",
       "line": 425,
